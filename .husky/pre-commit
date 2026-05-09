@@ -1,0 +1,21 @@
+STAGED_COUNT=$(git diff --cached --name-only | wc -l | tr -d ' ')
+if [ "$STAGED_COUNT" -gt 15 ]; then
+  if [ "$BYPASS_BLAST_RADIUS" = "1" ]; then
+    echo "⚠ Blast radius: $STAGED_COUNT files staged (>15). Bypassed via BYPASS_BLAST_RADIUS=1."
+  else
+    echo "✗ Blast radius: $STAGED_COUNT files staged (max 15 per AGENTS.md)."
+    echo "  Break this into sequential commits, or bypass with: BYPASS_BLAST_RADIUS=1 git commit ..."
+    exit 1
+  fi
+fi
+
+if git diff --cached --name-only | grep -qx 'package.json'; then
+  if git diff --cached -U0 package.json | grep -E '^\+[^+].*":[[:space:]]*"latest"'; then
+    echo "✗ package.json uses \"latest\" — pin with ^ instead (per AGENTS.md)."
+    exit 1
+  fi
+fi
+
+pnpm check:spec || exit 1
+
+pnpm lint-staged

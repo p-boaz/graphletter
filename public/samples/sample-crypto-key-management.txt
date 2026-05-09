@@ -1,0 +1,47 @@
+CRYPTOGRAPHIC KEY MANAGEMENT PROCEDURE
+Document ID: SEC-CRY-002 | Version 1.4 | Last Updated: December 3, 2025
+
+1. PURPOSE
+This procedure defines the lifecycle management of cryptographic keys used to protect organizational data in transit and at rest, ensuring confidentiality, integrity, and availability of encryption services.
+
+2. SCOPE
+Applies to all cryptographic keys used across the organization, including:
+- TLS/SSL certificates for web services and APIs
+- Database encryption keys (TDE and column-level)
+- File and disk encryption keys (BitLocker, LUKS)
+- SSH keys for server and infrastructure access
+- Code signing certificates
+- API authentication tokens using HMAC or JWT signing keys
+
+3. KEY GENERATION
+3.1 All keys must be generated using FIPS 140-2 validated cryptographic modules.
+3.2 Minimum key lengths: RSA 2048-bit (4096-bit preferred), AES 256-bit, ECC P-256 or higher.
+3.3 Key generation must occur in a secure environment with sufficient entropy. Hardware Security Modules (HSMs) are required for root CA keys and master encryption keys.
+3.4 Dual-control and split knowledge procedures are required for keys classified as critical.
+
+4. KEY STORAGE
+4.1 Private keys must never be stored in plaintext. All key storage must use hardware-backed protection (HSM, TPM) or encrypted key vaults (AWS KMS, Azure Key Vault, HashiCorp Vault).
+4.2 Key storage access is restricted to authorized personnel and systems via role-based access control.
+4.3 Backup copies of critical keys are stored in geographically separated secure facilities.
+
+5. KEY DISTRIBUTION
+5.1 Keys are distributed through encrypted channels only. Manual key distribution requires dual-control procedures.
+5.2 Automated key distribution uses mutual TLS authentication between services.
+
+6. KEY ROTATION
+6.1 Rotation schedules: TLS certificates annually, database encryption keys every 2 years, SSH keys every 12 months, API signing keys every 6 months.
+6.2 Emergency rotation procedures are documented and tested quarterly.
+6.3 Key rotation must not cause service disruption; overlapping validity periods are required during transitions.
+
+7. KEY REVOCATION AND DESTRUCTION
+7.1 Compromised keys must be revoked within 4 hours of discovery.
+7.2 Key destruction follows NIST SP 800-57 guidelines using cryptographic zeroization.
+7.3 Destruction is logged and requires approval from the Security Operations team.
+
+8. AUDIT AND MONITORING
+8.1 All key lifecycle events (generation, access, rotation, destruction) are logged to the central SIEM.
+8.2 Monthly access reviews are conducted for all key management systems.
+8.3 Annual audits verify compliance with this procedure and applicable standards.
+
+Approved by: Security Operations Director
+Next Review: June 2026

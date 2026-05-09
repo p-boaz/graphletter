@@ -1,0 +1,7 @@
+echo "▶ pre-push: pnpm lint"
+pnpm lint || { echo "✗ pnpm lint failed. Fix or bypass with --no-verify (document in commit body)."; exit 1; }
+
+echo "▶ pre-push: pnpm typecheck"
+pnpm typecheck || { echo "✗ pnpm typecheck failed. Fix or bypass with --no-verify (document in commit body)."; exit 1; }
+
+echo "✓ pre-push checks passed"

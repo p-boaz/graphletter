@@ -1,0 +1,17 @@
+{
+	"success": true,
+	"document": {
+		"id": "document_demo_training_policy"
+	},
+	"extraction": {
+		"chunkCount": 3,
+		"createdAtomCount": 3,
+		"mappedCount": 1,
+		"atomIds": [
+			"atom_demo_training_001",
+			"atom_demo_training_002",
+			"atom_demo_training_003"
+		]
+	},
+	"source_evidence_id": "evidence_demo_training_policy"
+}

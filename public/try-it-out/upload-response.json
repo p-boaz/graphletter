@@ -1,0 +1,43 @@
+{
+	"success": true,
+	"message": "Upload completed: 2 controls identified, ready for assessment",
+	"evidence": {
+		"id": "evidence_demo_training_policy",
+		"file_name": "security-awareness-training-policy.pdf",
+		"evidence_status": "submitted"
+	},
+	"evidence_records": [
+		{
+			"id": "evidence_demo_training_policy_ctrl_iao04",
+			"scf_control_id": "SCF-IAO-04",
+			"file_name": "security-awareness-training-policy.pdf"
+		},
+		{
+			"id": "evidence_demo_training_policy_ctrl_iao05",
+			"scf_control_id": "SCF-IAO-05",
+			"file_name": "security-awareness-training-policy.pdf"
+		}
+	],
+	"discovered_controls": ["SCF-IAO-04", "SCF-IAO-05"],
+	"controls_details": [
+		{
+			"scf_control_id": "SCF-IAO-04",
+			"erl_id": "ERL-0472",
+			"title": "Security Awareness Training",
+			"description": "The organization provides security awareness training to workforce members."
+		},
+		{
+			"scf_control_id": "SCF-IAO-05",
+			"erl_id": "ERL-0473",
+			"title": "Training Completion Monitoring",
+			"description": "The organization tracks participation and completion of required training."
+		}
+	],
+	"documentation_artifact": "Security Awareness Training Policy",
+	"awaiting_assessment": true,
+	"version_info": {
+		"version": 1,
+		"is_replacement": false,
+		"replaces_evidence_id": null
+	}
+}

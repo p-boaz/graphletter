@@ -1,0 +1,50 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env*
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# playwright
+/test-results/
+/playwright-report/
+/playwright/artifacts/
+
+# dogfood artifacts (screenshots, reports, videos)
+dogfood-output/
+test-docs/
+
+# nested next.js build output
+app/.next/
+
+# ai-assessment run logs + dogfood script output (JSONL/MD run artifacts, not config)
+.logs/
+scripts/out/
+
+# Claude Code local state (session locks, per-user settings, agent worktrees)
+.claude/
+
+# Stray root-level image dropped by browser drag-in (keep locally, don't track)
+/jpeg

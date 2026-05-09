@@ -1,0 +1,108 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Premium gradient -->
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0891b2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0e7490;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Subtle glow effect -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Main geometric form - abstract interconnected structure -->
+  <g transform="translate(100, 100)">
+    
+    <!-- Primary hexagonal structure -->
+    <path d="M -25 -43.3 
+             L 25 -43.3 
+             L 50 0 
+             L 25 43.3 
+             L -25 43.3 
+             L -50 0 Z" 
+          fill="none" 
+          stroke="url(#primaryGradient)" 
+          stroke-width="3" 
+          opacity="0.8"/>
+    
+    <!-- Inner dynamic elements -->
+    <g transform="rotate(0)">
+      <!-- Central core -->
+      <circle cx="0" cy="0" r="8" fill="url(#primaryGradient)"/>
+      
+      <!-- Orbital elements suggesting AI/intelligence -->
+      <circle cx="20" cy="0" r="4" fill="url(#accentGradient)" opacity="0.9"/>
+      <circle cx="-20" cy="0" r="4" fill="url(#accentGradient)" opacity="0.9"/>
+      <circle cx="10" cy="17.3" r="3" fill="url(#accentGradient)" opacity="0.7"/>
+      <circle cx="-10" cy="-17.3" r="3" fill="url(#accentGradient)" opacity="0.7"/>
+      
+      <!-- Connecting lines - subtle framework suggestion -->
+      <line x1="0" y1="0" x2="20" y2="0" 
+            stroke="url(#primaryGradient)" 
+            stroke-width="1.5" 
+            opacity="0.6"/>
+      <line x1="0" y1="0" x2="-20" y2="0" 
+            stroke="url(#primaryGradient)" 
+            stroke-width="1.5" 
+            opacity="0.6"/>
+      <line x1="0" y1="0" x2="10" y2="17.3" 
+            stroke="url(#primaryGradient)" 
+            stroke-width="1" 
+            opacity="0.4"/>
+      <line x1="0" y1="0" x2="-10" y2="-17.3" 
+            stroke="url(#primaryGradient)" 
+            stroke-width="1" 
+            opacity="0.4"/>
+    </g>
+    
+    <!-- Outer accent elements -->
+    <g opacity="0.6">
+      <!-- Corner accent marks -->
+      <path d="M 35 -20 L 45 -20 L 45 -10" 
+            fill="none" 
+            stroke="url(#accentGradient)" 
+            stroke-width="2" 
+            stroke-linecap="round"/>
+      
+      <path d="M -35 20 L -45 20 L -45 10" 
+            fill="none" 
+            stroke="url(#accentGradient)" 
+            stroke-width="2" 
+            stroke-linecap="round"/>
+      
+      <!-- Subtle geometric details -->
+      <circle cx="30" cy="25" r="1.5" fill="url(#accentGradient)"/>
+      <circle cx="-30" cy="-25" r="1.5" fill="url(#accentGradient)"/>
+    </g>
+    
+    <!-- Abstract letter hint (very subtle G/L interplay) -->
+    <g opacity="0.3">
+      <path d="M -35 -10 
+               C -35 -20 -25 -30 -15 -30
+               L 0 -30" 
+            fill="none" 
+            stroke="url(#primaryGradient)" 
+            stroke-width="1" 
+            stroke-linecap="round"/>
+    </g>
+    
+  </g>
+  
+  <!-- Subtle ambient elements -->
+  <g opacity="0.2">
+    <circle cx="160" cy="50" r="2" fill="url(#accentGradient)"/>
+    <circle cx="40" cy="150" r="1.5" fill="url(#accentGradient)"/>
+  </g>
+  
+</svg>

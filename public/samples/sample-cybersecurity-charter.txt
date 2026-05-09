@@ -1,0 +1,42 @@
+CYBERSECURITY PROGRAM CHARTER
+Version 2.1 — Effective January 15, 2026
+
+1. PURPOSE
+This charter establishes the organization's cybersecurity program and defines the governance structure, roles, responsibilities, and objectives for protecting information assets across all business units.
+
+2. SCOPE
+This program applies to all employees, contractors, and third-party service providers who access, process, store, or transmit organizational data and information systems. It covers all physical and virtual environments, including cloud infrastructure, on-premises systems, and remote work environments.
+
+3. GOVERNANCE STRUCTURE
+3.1 The Chief Information Security Officer (CISO) reports directly to the Chief Executive Officer and provides quarterly briefings to the Board of Directors.
+3.2 A Cybersecurity Steering Committee, comprising senior leadership from IT, Legal, Risk, and Operations, meets monthly to review program status and approve strategic initiatives.
+3.3 Domain-specific working groups (Identity & Access, Network Security, Application Security, Data Protection) report to the Steering Committee.
+
+4. PROGRAM OBJECTIVES
+4.1 Establish and maintain a risk-based approach to identifying, protecting, detecting, responding to, and recovering from cybersecurity threats.
+4.2 Ensure compliance with applicable laws, regulations, and industry standards including NIST CSF, ISO 27001, GDPR, and PCI DSS.
+4.3 Foster a culture of security awareness through regular training and communication programs.
+4.4 Implement continuous monitoring and improvement of security controls.
+
+5. ROLES AND RESPONSIBILITIES
+5.1 Board of Directors: Provides oversight and approves cybersecurity strategy and risk appetite.
+5.2 CISO: Leads program development, implementation, and maintenance. Manages the cybersecurity budget and team.
+5.3 IT Department: Implements and operates technical security controls.
+5.4 All Employees: Comply with security policies, report incidents, and complete required training.
+
+6. RISK MANAGEMENT
+The program employs a risk management framework aligned with NIST SP 800-37 to identify, assess, and mitigate cybersecurity risks. Risk assessments are conducted annually and upon significant changes to the threat landscape or business operations.
+
+7. INCIDENT RESPONSE
+The organization maintains a documented incident response plan that is tested annually through tabletop exercises and simulation drills. All security incidents must be reported within 4 hours of detection.
+
+8. METRICS AND REPORTING
+Program effectiveness is measured through key performance indicators (KPIs) including mean time to detect (MTTD), mean time to respond (MTTR), vulnerability remediation rates, and security awareness training completion rates.
+
+9. PROGRAM REVIEW
+This charter is reviewed annually and updated as necessary to reflect changes in the threat landscape, regulatory environment, or business operations. The next scheduled review is January 2027.
+
+Approved by:
+Jane Smith, Chief Executive Officer
+John Doe, Chief Information Security Officer
+Date: January 15, 2026

@@ -1,0 +1,390 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --ft-pink: 25 100% 65%;
+    --ft-black: 0 0% 0%;
+    --ft-grey-4: 210 40% 96%;
+    --ft-cream: 25 100% 94%;
+    --ft-blue: 210 40% 86%;
+    --ft-grey-2: 210 40% 92%;
+    --ft-grey-1: 210 40% 94%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family:
+      var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-playfair), Georgia, serif;
+  }
+}
+
+/* Financial Times inspired utility classes */
+@layer utilities {
+  .font-ft-serif {
+    font-family: var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+
+  .font-ft-sans {
+    font-family:
+      var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, sans-serif;
+  }
+
+  .text-ft-pink {
+    color: hsl(var(--ft-pink));
+  }
+
+  .text-ft-black {
+    color: hsl(var(--ft-black));
+  }
+
+  .text-ft-grey {
+    color: hsl(var(--ft-grey-4));
+  }
+
+  .bg-ft-cream {
+    background-color: hsl(var(--ft-cream));
+  }
+
+  .bg-ft-pink {
+    background-color: hsl(var(--ft-pink));
+  }
+
+  .bg-ft-grey-1 {
+    background-color: hsl(var(--ft-grey-1));
+  }
+
+  .border-ft-pink {
+    border-color: hsl(var(--ft-pink));
+  }
+
+  .ring-ft-pink {
+    --tw-ring-color: hsl(var(--ft-pink));
+  }
+
+  .ft-gradient {
+    background: linear-gradient(135deg, hsl(var(--ft-pink)) 0%, hsl(var(--ft-blue)) 100%);
+  }
+
+  .ft-shadow {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .ft-shadow-lg {
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .ft-border {
+    border: 1px solid hsl(var(--ft-grey-2));
+  }
+
+  .ft-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, hsl(var(--ft-pink)) 50%, transparent 100%);
+  }
+
+  .ft-serif {
+    font-family: var(--font-playfair), Georgia, serif;
+  }
+
+  .ft-sans {
+    font-family:
+      var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  .ft-pink {
+    background-color: #fff1e5;
+    color: #9a3412;
+  }
+
+  .ft-salmon {
+    background-color: #fef2f2;
+    color: #dc2626;
+  }
+
+  .ft-navy {
+    background-color: #1e293b;
+    color: #f8fafc;
+  }
+}
+
+/* Sophisticated animations */
+@layer components {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Financial Times inspired components */
+.ft-card {
+  @apply bg-white ft-border ft-shadow rounded-lg overflow-hidden;
+  transition: all 0.3s ease;
+}
+
+.ft-card:hover {
+  @apply ft-shadow-lg;
+  transform: translateY(-2px);
+}
+
+.ft-button-primary {
+  @apply bg-ft-pink text-white font-medium px-6 py-3 rounded-md ft-shadow;
+  transition: all 0.2s ease;
+}
+
+.ft-button-primary:hover {
+  @apply ft-shadow-lg;
+  background-color: hsl(var(--ft-pink) / 0.9);
+  transform: translateY(-1px);
+}
+
+.ft-button-secondary {
+  @apply bg-white text-ft-black ft-border font-medium px-6 py-3 rounded-md;
+  transition: all 0.2s ease;
+}
+
+.ft-button-secondary:hover {
+  @apply bg-ft-grey-1;
+}
+
+.ft-nav-link {
+  @apply text-ft-black font-medium px-4 py-2 rounded-md;
+  transition: all 0.2s ease;
+}
+
+.ft-nav-link:hover {
+  @apply bg-ft-grey-1 text-ft-pink;
+}
+
+.ft-nav-link.active {
+  @apply bg-ft-pink text-white;
+}
+
+.ft-input {
+  @apply w-full px-4 py-3 ft-border rounded-md bg-white text-ft-black;
+  transition: all 0.2s ease;
+}
+
+.ft-input:focus {
+  @apply outline-none ring-2 ring-ft-pink border-ft-pink;
+}
+
+.ft-badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.ft-badge-success {
+  @apply ft-badge bg-green-100 text-green-800;
+}
+
+.ft-badge-warning {
+  @apply ft-badge bg-yellow-100 text-yellow-800;
+}
+
+.ft-badge-danger {
+  @apply ft-badge bg-red-100 text-red-800;
+}
+
+.ft-badge-info {
+  @apply ft-badge bg-blue-100 text-blue-800;
+}
+
+/* Typography enhancements */
+.ft-headline {
+  @apply font-ft-serif text-4xl font-bold text-ft-black leading-tight;
+}
+
+.ft-subheadline {
+  @apply font-ft-serif text-2xl font-semibold text-ft-black leading-snug;
+}
+
+.ft-body {
+  @apply font-ft-sans text-base text-ft-black leading-relaxed;
+}
+
+.ft-caption {
+  @apply font-ft-sans text-sm text-ft-grey leading-normal;
+}
+
+/* Layout components */
+.ft-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.ft-section {
+  @apply py-16 lg:py-24;
+}
+
+.ft-grid {
+  @apply grid gap-8 md:gap-12;
+}
+
+/* Status indicators */
+.ft-status-dot {
+  @apply inline-block w-2 h-2 rounded-full mr-2;
+}
+
+.ft-status-active {
+  @apply ft-status-dot bg-green-500;
+}
+
+.ft-status-pending {
+  @apply ft-status-dot bg-yellow-500;
+}
+
+.ft-status-inactive {
+  @apply ft-status-dot bg-red-500;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .ft-headline {
+    @apply text-3xl;
+  }
+
+  .ft-subheadline {
+    @apply text-xl;
+  }
+}
+
+/* Print styles for professional reports */
+@media print {
+  body {
+    @apply bg-white text-black;
+  }
+
+  .ft-card {
+    @apply shadow-none border border-gray-300;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

@@ -1,0 +1,59 @@
+DATA PRIVACY NOTICE
+Effective Date: March 1, 2026 | Version 3.0
+
+1. INTRODUCTION
+This Data Privacy Notice describes how Acme Corporation ("we," "us," "our") collects, uses, stores, shares, and protects personal data. This notice applies to all individuals whose personal data we process, including customers, employees, job applicants, website visitors, and business partners.
+
+2. DATA CONTROLLER
+Acme Corporation acts as the data controller for personal data collected through our services. Our Data Protection Officer can be reached at privacy@acme-example.com.
+
+3. CATEGORIES OF PERSONAL DATA COLLECTED
+3.1 Identity Data: Name, date of birth, government-issued identification numbers.
+3.2 Contact Data: Email address, phone number, mailing address.
+3.3 Financial Data: Payment card details, bank account information, transaction history.
+3.4 Technical Data: IP address, browser type, device identifiers, cookies, and usage logs.
+3.5 Employment Data (for employees): Job title, compensation, performance records, benefits enrollment.
+3.6 Special Category Data: Collected only with explicit consent and where legally required (e.g., health data for benefits administration).
+
+4. LEGAL BASES FOR PROCESSING
+We process personal data under the following legal bases:
+4.1 Consent: Where you have given clear consent for processing.
+4.2 Contract: Where processing is necessary for a contract with you.
+4.3 Legal Obligation: Where processing is required to comply with law.
+4.4 Legitimate Interest: Where processing serves our legitimate business interests, balanced against your rights.
+
+5. HOW WE USE PERSONAL DATA
+5.1 To provide and improve our products and services.
+5.2 To communicate with you about your account and transactions.
+5.3 To comply with legal and regulatory obligations.
+5.4 To detect and prevent fraud and security threats.
+5.5 To conduct analytics and improve user experience.
+
+6. DATA SHARING AND TRANSFERS
+6.1 We share personal data with service providers under data processing agreements.
+6.2 International transfers outside the EEA are protected by Standard Contractual Clauses or adequacy decisions.
+6.3 We do not sell personal data to third parties.
+
+7. DATA RETENTION
+Personal data is retained only as long as necessary for the purposes described in this notice or as required by law. Retention periods are documented in our Data Retention Schedule.
+
+8. YOUR RIGHTS
+Subject to applicable law, you have the right to:
+8.1 Access your personal data.
+8.2 Rectify inaccurate data.
+8.3 Request erasure ("right to be forgotten").
+8.4 Restrict processing.
+8.5 Data portability.
+8.6 Object to processing.
+8.7 Withdraw consent at any time.
+
+To exercise these rights, contact privacy@acme-example.com. We will respond within 30 days.
+
+9. SECURITY MEASURES
+We implement appropriate technical and organizational measures to protect personal data, including encryption, access controls, regular security assessments, and employee training.
+
+10. UPDATES TO THIS NOTICE
+This notice is reviewed annually and updated as needed. Material changes will be communicated through our website and direct notification where appropriate.
+
+Last Reviewed: March 1, 2026
+Data Protection Officer: Sarah Johnson

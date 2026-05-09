@@ -1,0 +1,44 @@
+Security Awareness Training Policy
+Version: 1.4
+Owner: Security & Compliance
+Effective Date: 2026-01-15
+Review Cycle: Annual
+
+1. Purpose
+This policy establishes mandatory security awareness training requirements for all workforce members.
+
+2. Scope
+This policy applies to all employees, contractors, interns, and privileged third-party operators with access to company systems or data.
+
+3. Control Objectives
+- Ensure workforce members understand secure handling of sensitive information.
+- Reduce phishing susceptibility through recurring education and simulation.
+- Verify completion and attestation for all in-scope personnel.
+
+4. Training Requirements
+4.1 New-Hire Training
+- Must be completed within 10 business days of account provisioning.
+- Covers password hygiene, MFA, incident reporting, and data classification.
+
+4.2 Annual Refresher
+- All personnel must complete annual refresher training.
+- Completion deadline is 30 calendar days after assignment.
+
+4.3 Role-Based Modules
+- Additional modules are required for engineering, support, and admin roles.
+- Privileged users must complete secure admin operations training.
+
+5. Monitoring and Enforcement
+- Security Operations tracks completion status weekly.
+- Managers receive escalation notices for overdue training.
+- Access restrictions may apply when training is overdue by more than 30 days.
+
+6. Evidence and Recordkeeping
+- Training completion records are retained for at least 24 months.
+- Evidence includes completion logs, attestation records, and campaign reports.
+
+7. Exceptions
+Any exception requires documented approval from Security and Compliance leadership.
+
+8. Policy Violations
+Failure to complete required training may result in corrective action.

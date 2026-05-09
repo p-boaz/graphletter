@@ -1,0 +1,692 @@
+Geography,Mapping Column Header,Source,Authoritative Source - Statutory / Regulatory / Contractual / Industry Framework,Set Theory Relationship Mapping (STRM),URL - Authoritative Source
+Universal,"AICPA
+TSC 2017
+(with 2022 revised POF)",AICPA,Service Organization Control - Trust Services Criteria (TSC) - SOC2 (2022 points of focus),https://securecontrolsframework.com/content/strm/scf-strm-general-aicpa-tsc-2017.pdf,https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022
+Universal,"BSI 
+Standard 200-1",BSI,Standard 200-1,,https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/IT-Grundschutz/BSI-Standards/BSI-Standard-200-1-Managementsysteme-fuer-Informationssicherheit/bsi-standard-200-1-managementsysteme-fuer-informationssicherheit_node.html
+Universal,"CIS
+CSC
+v8.1",CIS,Critical Security Controls (CSC) version 8.1,https://securecontrolsframework.com/content/strm/scf-strm-general-cis-csc-8-1.pdf,https://www.cisecurity.org/controls/v8-1
+Universal,"CIS
+CSC v8.1
+IG1",CIS,Critical Security Controls (CSC) version 8.1 - IG1,https://securecontrolsframework.com/content/strm/scf-strm-general-cis-csc-8-1.pdf,https://www.cisecurity.org/controls/v8-1
+Universal,"CIS
+CSC v8.1
+IG2",CIS,Critical Security Controls (CSC) version 8.1 - IG2,https://securecontrolsframework.com/content/strm/scf-strm-general-cis-csc-8-1.pdf,https://www.cisecurity.org/controls/v8-1
+Universal,"CIS
+CSC v8.1
+IG3",CIS,Critical Security Controls (CSC) version 8.1 - IG3,https://securecontrolsframework.com/content/strm/scf-strm-general-cis-csc-8-1.pdf,https://www.cisecurity.org/controls/v8-1
+Universal,"COBIT
+2019",ISACA,Control Objectives for Information and Related Technologies (COBIT) 2019,,https://store.isaca.org/s/store#/store/browse/detail/a2S4w000004Ko9ZEAS
+Universal,"COSO
+v2017",COSO,Committee of Sponsoring Organizations (COSO) 2017 Framework,,https://www.coso.org/_files/ugd/3059fc_61ea5985b03c4293960642fdce408eaa.pdf
+Universal,"CSA
+CCM
+v4",CSA,Cloud Controls Matrix (CCM) v4,,https://cloudsecurityalliance.org/group/cloud-controls-matrix/#_overview
+Universal,"CSA
+IoT SCF
+v2",CSA,CSA IoT Security Controls Framework v2,,https://cloudsecurityalliance.org/artifacts/csa-iot-security-controls-framework-v2/
+Universal,"ENISA
+v2.0",EU,European Union Agency for Network and Information Security (ENISA),,https://resilience.enisa.europa.eu/article-13/guideline-for-minimum-security-measures/Article_13a_ENISA_Technical_Guideline_On_Security_Measures_v2_0.pdf
+Universal,GAPP,AICPA,Generally Accepted Privacy Principles (GAPP),,https://www.scribd.com/document/92949889/10-229-AICPA-CICA-Privacy-Maturity-Model-Finale-Book
+Universal,"IEC TR 60601-4-5
+v2021",IEC,IEC TR 60601-4-5:2021,https://securecontrolsframework.com/content/strm/scf-strm-general-iec-tr-60601-4-5.pdf,https://webstore.iec.ch/publication/64703
+Universal,IEC 62443-4-2,IEC,"IEC 62443-4-2:2019 - Security for industrial automation and control systems 
+Part 4-2: Technical security requirements for IACS components",,https://webstore.iec.ch/publication/34421
+Universal,"ISO/SAE
+21434
+v2021",IEC,ISO/SAE 21434:2021 - Road vehicles — Cybersecurity engineering,,https://www.iso.org/standard/70918.html
+Universal,"ISO
+22301
+v2019",ISO,22301:2019 - Security and resilience — Business continuity management systems — Requirements,,https://www.iso.org/standard/75106.html
+Universal,"ISO
+27001
+v2013",ISO,27001:2013 - Information Security Management Systems (ISMS) - Requirements,,https://www.iso.org/standard/54534.html
+Universal,"ISO
+27001
+v2022",ISO,27001:2022 - Information Security Management Systems (ISMS) - Requirements,https://securecontrolsframework.com/content/strm/scf-strm-general-iso-27001-2022.pdf,https://www.iso.org/standard/27001
+Universal,"ISO
+27002
+v2013",ISO,27002:2013 - Code of Practice for Information Security Controls,,https://www.iso.org/standard/54533.html
+Universal,"ISO
+27002
+v2022",ISO,"27002:2022 - Information security, cybersecurity and privacy protection - Information security controls",https://securecontrolsframework.com/content/strm/scf-strm-general-iso-27002-2022.pdf,https://www.iso.org/standard/75652.html
+Universal,"ISO 
+27017
+v2015",ISO,27017:2015 - Information technology — Security techniques — Code of practice for information security controls based on ISO/IEC 27002 for cloud services,,https://www.iso.org/standard/43757.html
+Universal,"ISO 
+27018
+v2014",ISO,27018:2014 - Code of Practice for PI in Public Clouds Acting as PI Processors ,,https://www.iso.org/standard/61498.html
+Universal,"ISO
+27701 
+v2019",ISO,27701:2019 - Security techniques - Extension to ISO/IEC 27001 and ISO/IEC 27002 for privacy information management — Requirements and guidelines,,https://www.iso.org/standard/71670.html
+Universal,"ISO
+29100
+v2011",ISO,29100:2011 - Privacy Framework,,https://www.iso.org/standard/45123.html
+Universal,"ISO
+31000
+v2009",ISO,31000:2009 - Risk Management,,https://www.iso.org/iso-31000-risk-management.html
+Universal,"ISO
+31010
+v2009",ISO,31010:2009 - Risk Assessment Techniques,,https://www.iso.org/standard/51073.html
+Universal,"ISO
+42001
+v2023",ISO,ISO/IEC 42001:2023 - Information technology - Artificial intelligence - Management system,https://securecontrolsframework.com/content/strm/scf-strm-general-iso-42001-2023.pdf,https://www.iso.org/standard/81230.html
+Universal,"MITRE
+ATT&CK
+10",MITRE,MITRE ATT&CK - NIST 800-53 mappings,,https://mitre-engenuity.org/blog/2022/01/13/nist-800-53-control-mappings/
+Universal,"MPA 
+Content Security Program
+v5.1",MPA,MPA Content Security Best Practices Common Guidelines v5.1,,https://www.motionpictures.org/what-we-do/safeguarding-creativity/additional-resources/#content-protection-best-practices
+Universal,"NAIC
+Insurance Data Security Model Law (MDL-668)",NAIC,Insurance Data Security Model Law (MDL-668),,https://content.naic.org/sites/default/files/inline-files/MDL-668.pdf
+Universal,"NIST
+AI RMF
+AI 100-1
+v1.0",NIST,NIST Artificial Intelligence Risk Management Framework (AI RMF) v1.0,,https://www.nist.gov/itl/ai-risk-management-framework
+Universal,"NIST Privacy Framework
+v1.0",NIST,NIST Privacy Framework v1.0,,https://www.nist.gov/privacy-framework
+Universal,"NIST
+800-37 
+rev 2",NIST,NIST SP 800-37 - Guide for Applying the RMF to Federal Information Systems rev2,,https://csrc.nist.gov/publications/detail/sp/800-37/rev-2/final
+Universal,"NIST
+800-39",NIST,NIST SP 800-39 - Managing Information Security Risk,,https://csrc.nist.gov/publications/detail/sp/800-39/final
+Universal,"NIST
+800-53
+rev4",NIST,NIST SP 800-53 R4 - Security and Privacy Controls for Information Systems and Organizations,,http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r4.pdf
+Universal,"NIST
+800-53 rev4
+(low)",NIST,NIST SP 800-53 R4 - Security and Privacy Controls for Information Systems and Organizations (low baseline),,http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r4.pdf
+Universal,"NIST
+800-53 rev4
+(moderate)",NIST,NIST SP 800-53 R4 - Security and Privacy Controls for Information Systems and Organizations (moderate baseline),,http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r4.pdf
+Universal,"NIST
+800-53 rev4
+(high)",NIST,NIST SP 800-53 R4 - Security and Privacy Controls for Information Systems and Organizations (high baseline),,http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r4.pdf
+Universal,"NIST
+800-53
+rev5",NIST,NIST SP 800-53 R5 - Security and Privacy Controls for Information Systems and Organizations,https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-53-r5-1-1.pdf,https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
+Universal,"NIST
+800-53B
+rev5
+(privacy)",NIST,"NIST SP 800-53 R5 - Security and Privacy Controls for Information Systems and Organizations
+Privacy Baseline",https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-53-r5-1-1.pdf,https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
+Universal,"NIST
+800-53B
+rev5
+(low)",NIST,"NIST SP 800-53 R5 - Security and Privacy Controls for Information Systems and Organizations
+Low Baseline",https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-53-r5-1-1.pdf,https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
+Universal,"NIST
+800-53B
+rev5
+(moderate)",NIST,"NIST SP 800-53 R5 - Security and Privacy Controls for Information Systems and Organizations
+Moderate Baseline",https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-53-r5-1-1.pdf,https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
+Universal,"NIST
+800-53B
+rev5
+(high)",NIST,"NIST SP 800-53 R5 - Security and Privacy Controls for Information Systems and Organizations
+High Baseline",https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-53-r5-1-1.pdf,https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
+Universal,"NIST
+800-53
+rev5
+(NOC)",NIST,"NIST SP 800-53 R5 - Security and Privacy Controls for Information Systems and Organizations
+Select Not Otherwise Categorized (NOC) controls",,https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
+Universal,"NIST
+800-63B
+(partial mapping)",NIST,NIST SP 800-63B - Digital Identity Guidelines (partial mapping),,https://pages.nist.gov/800-63-3/sp800-63b.html
+Universal,"NIST
+800-82 rev3
+LOW 
+OT Overlay",NIST,NIST SP 800-82 R3 - Guide to Industrial Control Systems (ICS) Security,,https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf
+Universal,"NIST
+800-82 rev3
+MODERATE
+OT Overlay",NIST,NIST SP 800-82 - Guide to Industrial Control Systems (ICS) Security,,https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf
+Universal,"NIST
+800-82 rev3
+HIGH 
+OT Overlay",NIST,NIST SP 800-82 - Guide to Industrial Control Systems (ICS) Security,,https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf
+Universal,"NIST
+800-160",NIST,NIST SP 800-160 - Systems Security Engineering,,https://csrc.nist.gov/publications/detail/sp/800-160/final
+Universal,"NIST
+800-161
+rev 1",NIST,NIST SP 800-161 R1 - Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations,https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-161-r1.pdf,https://csrc.nist.gov/publications/detail/sp/800-161/rev-1/final
+Universal,"NIST
+800-161
+rev 1
+C-SCRM Baseline",NIST,NIST SP 800-161 R1 - Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations (C-SCRM Baseline),https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-161-r1.pdf,https://csrc.nist.gov/publications/detail/sp/800-161/rev-1/final
+Universal,"NIST
+800-161
+rev 1
+Flow Down",NIST,NIST SP 800-161 R1 - Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations (Flow Down),https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-161-r1.pdf,https://csrc.nist.gov/publications/detail/sp/800-161/rev-1/final
+Universal,"NIST
+800-161
+rev 1
+Level 1",NIST,NIST SP 800-161 R1 - Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations (Level 1),https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-161-r1.pdf,https://csrc.nist.gov/publications/detail/sp/800-161/rev-1/final
+Universal,"NIST
+800-161
+rev 1
+Level 2",NIST,NIST SP 800-161 R1 - Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations (Level 2),https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-161-r1.pdf,https://csrc.nist.gov/publications/detail/sp/800-161/rev-1/final
+Universal,"NIST
+800-161
+rev 1
+Level 3",NIST,NIST SP 800-161 R1 - Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations (Level 3),https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-161-r1.pdf,https://csrc.nist.gov/publications/detail/sp/800-161/rev-1/final
+Universal,"NIST 
+800-171
+rev 2",NIST,NIST SP 800-171 R2 - Protecting CUI in Nonfederal Systems and Organizations,https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-171-r2.pdf,https://csrc.nist.gov/publications/detail/sp/800-171/rev-2/final
+Universal,"NIST
+800-171
+rev 3",NIST,NIST SP 800-171 R3,https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-171-r3.pdf,https://csrc.nist.gov/pubs/sp/800/171/r3/final
+Universal,"NIST 
+800-171A",NIST,NIST SP 800-171A - Assessing Security Requirements for Controlled Unclassified Information,https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-171a.pdf,https://csrc.nist.gov/publications/detail/sp/800-171a/final
+Universal,"NIST 
+800-171A
+rev 3",NIST,NIST 800-171A R3,https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-171a-r3.pdf,https://csrc.nist.gov/pubs/sp/800/171/a/r3/final
+Universal,"NIST
+800-172",NIST,NIST SP 800-172 - Protecting Controlled Unclassified Information in Nonfederal Systems and Organizations: Enhanced Security Requirements for Critical Programs and High Value Assets,,https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-172.pdf
+Universal,"NIST
+800-207",NIST,NIST SP 800-207 - Zero Trust Architecture,https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-207.pdf,https://csrc.nist.gov/pubs/sp/800/207/final
+Universal,"NIST
+800-218
+v1.1
+SSDF",NIST,NIST SP 800-218 - Secure Software Development Framework (SSDF) Version 1.1:,https://securecontrolsframework.com/content/strm/scf-strm-general-nist-800-218.pdf,https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf
+Universal,"NIST
+CSF
+v1.1",NIST,NIST Cybersecurity Framework (CSF) v1.1,,https://www.nist.gov/cyberframework
+Universal,"NIST
+CSF
+v2.0",NIST,NIST Cybersecurity Framework (CSF) v2.0,https://securecontrolsframework.com/content/strm/scf-strm-general-nist-csf-2-0.pdf,https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf
+Universal,"OWASP
+Top 10
+v2021",OWASP,OWASP Top 10 Most Critical Web Application Security Risks,,https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project
+Universal,"PCIDSS
+v3.2",PCI SSC,Payment Card Industry Data Security Standard (PCI DSS),,https://www.pcisecuritystandards.org/document_library
+Universal,"PCIDSS
+v4.0.1",PCI SSC,Payment Card Industry Data Security Standard (PCI DSS) v4.01,https://securecontrolsframework.com/content/strm/scf-strm-general-pci-dss-4-0-1.pdf,https://www.pcisecuritystandards.org/document_library
+Universal,"PCIDSS
+v4.0
+SAQ A",PCI SSC,Payment Card Industry Data Security Standard (PCI DSS) v4.0.1 - SAQ A,https://securecontrolsframework.com/content/strm/scf-strm-general-pci-dss-4-0-1.pdf,https://www.pcisecuritystandards.org/document_library
+Universal,"PCIDSS
+v4.0.1
+SAQ A-EP",PCI SSC,Payment Card Industry Data Security Standard (PCI DSS) v4.0.1 - SAQ A-EP,https://securecontrolsframework.com/content/strm/scf-strm-general-pci-dss-4-0-1.pdf,https://www.pcisecuritystandards.org/document_library
+Universal,"PCIDSS
+v4.0.1
+SAQ B",PCI SSC,Payment Card Industry Data Security Standard (PCI DSS) v4.0.1 - SAQ B,https://securecontrolsframework.com/content/strm/scf-strm-general-pci-dss-4-0-1.pdf,https://www.pcisecuritystandards.org/document_library
+Universal,"PCIDSS
+v4.0.1
+SAQ B-IP",PCI SSC,Payment Card Industry Data Security Standard (PCI DSS) v4.0.1 - SAQ B-IP,https://securecontrolsframework.com/content/strm/scf-strm-general-pci-dss-4-0-1.pdf,https://www.pcisecuritystandards.org/document_library
+Universal,"PCIDSS
+v4.0.1
+SAQ C",PCI SSC,Payment Card Industry Data Security Standard (PCI DSS) v4.0.1 - SAQ C,https://securecontrolsframework.com/content/strm/scf-strm-general-pci-dss-4-0-1.pdf,https://www.pcisecuritystandards.org/document_library
+Universal,"PCIDSS
+v4.0.1
+SAQ C-VT",PCI SSC,Payment Card Industry Data Security Standard (PCI DSS) v4.0.1 - SAQ C-VT,https://securecontrolsframework.com/content/strm/scf-strm-general-pci-dss-4-0-1.pdf,https://www.pcisecuritystandards.org/document_library
+Universal,"PCIDSS
+v4.0.1
+SAQ D Merchant",PCI SSC,Payment Card Industry Data Security Standard (PCI DSS) v4.0.1 - SAQ D Merchant,https://securecontrolsframework.com/content/strm/scf-strm-general-pci-dss-4-0-1.pdf,https://www.pcisecuritystandards.org/document_library
+Universal,"PCIDSS
+v4.0.1
+SAQ D Service Provider",PCI SSC,Payment Card Industry Data Security Standard (PCI DSS) v4.0.1 - SAQ D Service Provider,https://securecontrolsframework.com/content/strm/scf-strm-general-pci-dss-4-0-1.pdf,https://www.pcisecuritystandards.org/document_library
+Universal,"PCIDSS
+v4.0.1
+SAQ P2PE",PCI SSC,Payment Card Industry Data Security Standard (PCI DSS) v4.0.1 - SAQ P2PE,https://securecontrolsframework.com/content/strm/scf-strm-general-pci-dss-4-0-1.pdf,https://www.pcisecuritystandards.org/document_library
+Universal,Shared Assessments SIG 2024,Shared Assessments,Shared Assessments Standard Information Gathering Questionnaire (SIG) 2024,,https://sharedassessments.org/sig/
+Universal,SPARTA,SPARTA,Space Attack Research & Tactic Analysis (SPARTA) Countermeasures,https://securecontrolsframework.com/content/strm/scf-strm-general-sparta.pdf,https://sparta.aerospace.org/countermeasures/SPARTA
+Universal,"SWIFT
+CSF
+v2023",SWIFT,SWIFT Customer Security Controls Framework 2021,,https://www.swift.com/myswift/customer-security-programme-csp/security-controls
+Universal,"TISAX
+ISA v6",TISAX,TISAX ISA 6.0.3,https://securecontrolsframework.com/content/strm/scf-strm-general-tisa6-0-3.pdf,https://portal.enx.com/en-us/TISAX/downloads/
+Universal,"UL
+2900-1",UL,2900-1 - Software Cybersecurity for Network-Connectable Products,,https://webstore.ansi.org/standards/ul/ansiul29002023?srsltid=AfmBOooyD9mE75SD8skM6pRIbgMY0izMHm8IonblOI5P_onzRRA6h7OT
+Universal,"UN
+R155",United Nations,UN Regulation No. 155 - Cyber security and cyber security management system,,https://unece.org/transport/documents/2021/03/standards/un-regulation-no-155-cyber-security-and-cyber-security
+Universal,"UN
+ECE WP.29",United Nations,UNECE WP.29 ,,https://unece.org/fileadmin/DAM/trans/doc/2020/wp29/ECE-TRANS-WP29-2020-079e.pdf
+US,"US
+C2M2
+v2.1",Federal,Cybersecurity Capability Maturity Model v2.1,,https://c2m2.doe.gov/
+US,"US CERT
+RMM
+v1.2",Federal,CERT Resilience Management Model v1.2,,https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=508084
+US,"US
+CISA
+CPG
+v2022",Federal,CISA Cross-Sector Cybersecurity Performance Goals (CPG),https://securecontrolsframework.com/content/strm/scf-strm-us-fed-dhs-cisa-cpg.pdf,https://www.cisa.gov/cpg
+US,"US
+DHS CISA
+SSDAF",Federal,CISA Secure Software Development Attestation Form (SSDAF),https://securecontrolsframework.com/content/strm/scf-strm-us-fed-dhs-cisa-ssdaf.pdf,https://www.cisa.gov/secure-software-attestation-form
+US,"US
+CJIS Security Policy 5.9.3",Federal,US DOJ / FBI - Criminal Justice Information Services (CJIS) Security Policy v5.9.3,https://securecontrolsframework.com/content/strm/scf-strm-us-fed-cjis-5-9-3.pdf,https://le.fbi.gov/cjis-division/cjis-security-policy-resource-center
+US,"US
+CMMC 2.0
+Level 1",Federal,Cybersecurity Maturity Model Certification (CMMC) v2.0 Level 1,https://securecontrolsframework.com/content/strm/scf-strm-us-fed-dod-cmmc-2-level-1.pdf,https://www.acq.osd.mil/asda/dpc/cp/cyber/cmmc.html
+US,"US
+CMMC 2.0
+Level 2",Federal,Cybersecurity Maturity Model Certification (CMMC) v2.0 Level 2,,https://www.acq.osd.mil/asda/dpc/cp/cyber/cmmc.html
+US,"US
+CMMC 2.0
+Level 3",Federal,Cybersecurity Maturity Model Certification (CMMC) v2.0 Level 3,,https://www.acq.osd.mil/asda/dpc/cp/cyber/cmmc.html
+US,"US
+CMS
+MARS-E v2.0",Federal,"US Centers for Medicare & Medicaid Services MARS-E Document Suite, Version 2.0",,https://www.cms.gov/CCIIO/Resources/Regulations-and-Guidance/Downloads/3-MARS-E-v2-0-Catalog-of-Security-and-Privacy-Controls-11102015.pdf
+US,"US
+COPPA",Federal,Children's Online Privacy Protection Act (COPPA),,http://uscode.house.gov/view.xhtml?req=granuleid%3AUSC-prelim-title15-section6501&edition=prelim
+US,"US
+Data Privacy Framework (DPF)",Federal,Data Privacy Framework (DPF),https://securecontrolsframework.com/content/strm/scf-strm-us-fed-data-privacy-framework.pdf,https://www.dataprivacyframework.gov/Program-Overview
+US,"US
+DoD
+Zero Trust Reference Architecture v2.0",Federal,DoD Zero Trust Reference Architecture v2,https://securecontrolsframework.com/content/strm/scf-strm-us-fed-dod-zta-reference-architecture-2-0.pdf,https://dodcio.defense.gov/Portals/0/Documents/Library/(U)ZT_RA_v2.0(U)_Sep22.pdf
+US,"US
+DFARS
+Cybersecurity
+252.204-70xx",Federal,Defense Federal Acquisition Regulation Supplement (DFARS) 252.204-7008 - 7012,,https://www.acq.osd.mil/dpap/dars/dfars/html/current/252204.htm
+US,"US
+DHS CISA
+TIC 3.0",Federal,Department of Homeland Security (DHS) Cybersecurity and Infrastructure Security Agency (CISA) Trusted Internet Connections 3.0 Security Capabilities Catalog,https://securecontrolsframework.com/content/strm/scf-strm-us-fed-dhs-cis-tic-3-0.pdf,https://www.cisa.gov/sites/default/files/2023-12/CISA%20TIC%203.0%20Security%20Capabilities%20Catalog_508c.pdf
+US,"US
+DHS ZTCF",Federal,Department of Homeland Security (DHS) Zero Trust Capability Framework (ZTCF),Draft release - not yet publicly available,Draft release - not yet publicly available
+US,"US
+FACTA",Federal,Fair & Accurate Credit Transactions Act (FACTA) / Fair Credit Reporting Act (FCRA),,http://www.consumer.ftc.gov/sites/default/files/articles/pdf/pdf-0111-fair-credit-reporting-act.pdf
+US,"US
+FAR
+52.204-21",Federal,Federal Acquisition Regulation (FAR) 52.204-21,,https://www.acquisition.gov/far/52.204-21
+US,"US
+FAR
+52.204-27",Federal,Federal Acquisition Regulation (FAR) 52.204-27 Prohibition on a ByteDance Covered Application,,https://www.acquisition.gov/far/52.204-27
+US,"US
+FAR
+Section 889",Federal,Federal Acquisition Regulation (FAR) 889,,https://www.federalregister.gov/documents/2020/07/14/2020-15293/federal-acquisition-regulation-prohibition-on-contracting-with-entities-using-certain
+US,"US
+FDA
+21 CFR Part 11",Federal,Food & Drug Administration (FDA) 21 CFR Part 11,,https://www.gpo.gov/fdsys/pkg/CFR-2012-title21-vol1/pdf/CFR-2012-title21-vol1-part11.pdf
+US,"US
+FedRAMP
+R4",Federal,Federal Risk and Authorization Management Program R4 (FedRAMP R4),,https://www.fedramp.gov/
+US,"US
+FedRAMP
+R4 (low)",Federal,Federal Risk and Authorization Management Program R4 (FedRAMP R4) (low baseline),,https://www.fedramp.gov/
+US,"US
+FedRAMP
+R4 (moderate)",Federal,Federal Risk and Authorization Management Program R4 (FedRAMP R4) (moderate baseline),,https://www.fedramp.gov/
+US,"US
+FedRAMP
+R4 (high)",Federal,Federal Risk and Authorization Management Program R4 (FedRAMP R4) (high baseline),,https://www.fedramp.gov/
+US,"US
+FedRAMP
+R4 (LI-SaaS)",Federal,Federal Risk and Authorization Management Program R4 (FedRAMP R4) (Li-SAAS) baseline),,https://www.fedramp.gov/
+US,"US
+FedRAMP
+R5",Federal,Federal Risk and Authorization Management Program R5 (FedRAMP),,https://www.fedramp.gov/
+US,"US
+FedRAMP
+R5
+(low)",Federal,Federal Risk and Authorization Management Program R5 (FedRAMP R5) (low baseline),,https://www.fedramp.gov/
+US,"US
+FedRAMP
+R5
+(moderate)",Federal,Federal Risk and Authorization Management Program R5 (FedRAMP R5) (moderate baseline),,https://www.fedramp.gov/
+US,"US
+FedRAMP
+R5
+(high)",Federal,Federal Risk and Authorization Management Program R5 (FedRAMP R5) (high baseline),,https://www.fedramp.gov/
+US,"US
+FedRAMP
+R5
+(LI-SaaS)",Federal,Federal Risk and Authorization Management Program R5 (FedRAMP R5) (Li-SAAS) baseline),,https://www.fedramp.gov/
+US,"US
+FERPA",Federal,Family Educational Rights and Privacy Act (FERPA),,https://www.gpo.gov/fdsys/pkg/USCODE-2010-title20/pdf/USCODE-2010-title20-chap31-subchapIII-part4-sec1232g.pdf
+US,"US
+FFIEC",Federal,Federal Financial Institutions Examination Council (FFIEC) ,,https://www.ffiec.gov/pdf/cybersecurity/FFIEC_CAT_App_B_Map_to_NIST_CSF_June_2015_PDF4.pdf
+US,"US
+FINRA",Federal,Financial Industry Regulatory Authority (FINRA),,http://www.finra.org/industry/cybersecurity
+US,"US
+FTC Act",Federal,Federal Trade Commission (FTC) Act,,https://www.ftc.gov/enforcement/statutes/federal-trade-commission-act
+US,"US
+GLBA
+CFR 314
+(Dec 2023)",Federal,Gramm Leach Bliley Act (GLBA) - CFR 314 (Dec 2023),https://securecontrolsframework.com/content/strm/scf-strm-us-fed-glba-cfr-314.pdf,https://www.ecfr.gov/current/title-16/chapter-I/subchapter-C/part-314
+US,"US
+HIPAA Administrative Simplification (2013)",Federal,HIPAA Administrative Simplification (2013),https://securecontrolsframework.com/content/strm/scf-strm-us-fed-hipaa-hitech.pdf,https://www.hhs.gov/sites/default/files/ocr/privacy/hipaa/administrative/combined/hipaa-simplification-201303.pdf
+US,"US
+HIPAA
+Security Rule / NIST SP 800-66 R2",Federal,HIPAA Security Rule (includes mapping to NIST SP 800-66 R2),https://securecontrolsframework.com/content/strm/scf-strm-us-fed-hipaa-hitech.pdf,https://www.hhs.gov/hipaa/for-professionals/security/index.html 
+US,"HIPAA - HICP
+Small Practice",Federal,Health Industry Cybersecurity Practices (HICP) - Small Practice,,https://www.phe.gov/Preparedness/planning/405d/Pages/hic-practices.aspx
+US,"HIPAA - HICP
+Medium Practice",Federal,Health Industry Cybersecurity Practices (HICP) - Medium Practice,,https://www.phe.gov/Preparedness/planning/405d/Pages/hic-practices.aspx
+US,"HIPAA - HICP
+Large Practice",Federal,Health Industry Cybersecurity Practices (HICP) - Large Practice,,https://www.phe.gov/Preparedness/planning/405d/Pages/hic-practices.aspx
+US,"US
+IRS 1075",Federal,Internal Revenue Service (IRS) 1075,,https://www.irs.gov/pub/irs-utl/p1075.pdf
+US,"ITAR
+Part 120
+[limited]",Federal,International Traffic in Arms Regulation (ITAR) [limited to Part 120],,https://www.ecfr.gov/cgi-bin/text-idx?SID=70e390c181ea17f847fa696c47e3140a&mc=true&node=pt22.1.120&rgn=div
+US,"US
+NERC
+CIP",Federal,North American Electric Reliability Corporation Critical Infrastructure Protection (NERC CIP),,https://www.nerc.com/pa/Stand/Pages/USRelStand.aspx
+US,"US
+NISPOM",Federal,National Industrial Security Program Operating Manual (NISPOM),,https://www.federalregister.gov/documents/2020/12/21/2020-27698/national-industrial-security-program-operating-manual-nispom
+US,"US
+NNPI
+(unclass)",Federal,Naval Nuclear Propulsion Information (NNPI),,https://www.secnav.navy.mil/doni/Directives/09000%20General%20Ship%20Design%20and%20Support/09-200%20Propulsion%20Plants%20Support/N9210.3%20(Unclas%20Portion).pdf
+US,"US
+NSTC
+NSPM-33",Federal,National Science & Technology Council (NSTC) NSPM-33,,https://bidenwhitehouse.archives.gov/wp-content/uploads/2022/01/010422-NSPM-33-Implementation-Guidance.pdf
+US,"US
+SEC
+Cybersecurity Rule",Federal,"Cybersecurity Final Rule (Cybersecurity Risk Management, Strategy, Governance, and Incident Disclosure) - 17 CFR Parts 229, 232, 239, 240, and 249
+",https://securecontrolsframework.com/content/strm/scf-strm-us-fed-sec-cybersecurity-rule.pdf,https://www.sec.gov/files/rules/final/2023/33-11216.pdf
+US,"US
+SOX",Federal,Sarbanes Oxley Act (SOX),,http://www.sec.gov/about/laws/soa2002.pdf
+US,"US
+SSA 
+EIESR
+v8.0",Federal,Social Security Administration (SSA) Electronic Information Exchange Security Requirements ,,https://www.ssa.gov/dataexchange/security.html
+US,"StateRAMP
+Low
+Category 1",State,"StateRAMP Low (Category 1)
+",,https://stateramp.org/documents/
+US,"StateRAMP
+Low+
+Category 2",State,"StateRAMP Low+ (Category 2)
+",,https://stateramp.org/documents/
+US,"StateRAMP
+Moderate
+Category 3",State,"StateRAMP Moderate (Category 3)
+",,https://stateramp.org/documents/
+US,"US
+TSA / DHS
+1580/82-2022-01",Federal,Security Directive 1580/82-2022-01 (Rail Cybersecurity Mitigation Actions and Testing),,https://www.tsa.gov/sites/default/files/sd-1580-82-2022-01.pdf
+US,"US - AK
+PIPA",State,AK - Alaska Personal Information Protection Act (PIPA),,https://www.akleg.gov/basis/get_documents.asp?session=29&docid=65934
+US,"US - CA
+SB327",State,CA - SB327,,https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180SB327
+US,"US-CA
+CCPA / CPRA
+(Nov 2022)",State,California Consumer Privacy Act (CCPA) / California Privacy Rights Act (CPRA) - November 2022 version,https://securecontrolsframework.com/content/strm/scf-strm-us-state-ca-ccpa-cpra.pdf,https://cppa.ca.gov/regulations/pdf/20221102_mod_text.pdf
+US,"US - CA
+SB1386",State,CA - SB1386,,https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=200120020SB1386
+US,"US - CO
+Colorado Privacy Act",State,CO - Colorado Privacy Act,,https://leg.colorado.gov/sites/default/files/2021a_190_signed.pdf
+US,"US - IL
+BIPA",State,IL - Illinois Biometric Information Privacy Act (PIPA) ,,https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004&ChapterID=57
+US,"US - IL
+IPA",State,IL - Illinois Identity Protection Act (IPA) ,,https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3174&ChapterID=2
+US,"US - IL
+PIPA",State,IL - Illinois Personal Information Protection Act (PIPA),,https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=2702&ChapterID=67
+US,"US - MA
+201 CMR 17.00",State,MA - 201 CMR 17.00,,http://www.mass.gov/ocabr/docs/idtheft/201cmr1700reg.pdf
+US,"US - NV
+SB220",State,NV - SB220,,https://www.leg.state.nv.us/App/NELIS/REL/80th2019/Bill/6365/Tex
+US,"US - NY
+DFS
+23 NYCRR500
+2023 Amd 2",State,NY - Cybersecurity Requirements for Financial Services Companies (DFS 23 NYCRR500) - 2023 Amendment 2,https://securecontrolsframework.com/content/strm/scf-strm-us-state-ny-dfs-23-nycrr500-amd2.pdf,https://www.dfs.ny.gov/system/files/documents/2023/12/rf23_nycrr_part_500_amend02_20231101.pdf
+US,"US - NY
+SHIELD Act
+S5575B",State,NY - SHIELD Act (SB S5575B),,https://legislation.nysenate.gov/pdf/bills/2019/s5575b
+US,"US - OR
+646A",State,OR - ORS 646A,,https://www.oregonlegislature.gov/bills_laws/ors/ors646a.html
+US,"US - OR
+CPA",State,OR - Consumer Privacy Act (SB 619),https://securecontrolsframework.com/content/strm/scf-strm-us-state-or-cpa.pdf,https://olis.oregonlegislature.gov/liz/2023R1/Downloads/MeasureDocument/SB619/Enrolled
+US,"US - SC
+Insurance Data Security Act",State,SC - South Carolina Insurance Data Security Act,,https://www.scstatehouse.gov/sess122_2017-2018/bills/4655.htm
+US,"US - TN
+Tennessee Information Protection Act ",State,TN - Information Protection Act,https://securecontrolsframework.com/content/strm/scf-strm-us-state-tn-information-protection-act.pdf,https://www.capitol.tn.gov/Bills/113/Amend/HA0348.pdf
+US,"US - TX
+BC521",State,TX - BC521,,http://www.statutes.legis.state.tx.us/Docs/BC/htm/BC.521.htm
+US,"US-TX
+Cybersecurity Act",State,TX - Cybersecurity Act,,http://www.legis.state.tx.us/tlodocs/85R/billtext/pdf/HB00008F.pdf#navpanes=0
+US,"US-TX
+CDPA",State,TX - Consumer Data Protection Act (CDPA),https://securecontrolsframework.com/content/strm/scf-strm-us-state-tx-cdpa.pdf,https://capitol.texas.gov/tlodocs/88R/billtext/html/HB00004F.htm
+US,US-TX DIR Control Standards 2.0,State,TX - DIR Security Control Standards Catalog v2.0,,https://dir.texas.gov/resource-library-item/security-controls-standards-catalog
+US,"US-TX
+TX-RAMP
+Level 1",State,TX - Texas Risk & Authorization Management Program (TX-RAMP),,http://dir.texas.gov/texas-risk-and-authorization-management-program-tx-ramp
+US,"US-TX
+TX-RAMP
+Level 2",State,TX - Texas Risk & Authorization Management Program (TX-RAMP),,http://dir.texas.gov/texas-risk-and-authorization-management-program-tx-ramp
+US,"US-TX
+SB820",State,TX - 2019 - SB820,,https://www.legiscan.com/TX/text/SB820/id/2027614/Texas-2019-SB820-Enrolled.html
+US,"US-VA
+CDPA
+2023",State,Virginia Consumer Data Protection Act (2023),,https://lis.virginia.gov/cgi-bin/legp604.exe?212+ful+CHAP0035+pdf
+US,"US-VT
+Act 171 of 2018",State,VT - Act 171 of 2018 (Data Broker Registration Act),,https://legislature.vermont.gov/Documents/2018/Docs/ACTS/ACT171/ACT171%20As%20Enacted.pdf
+EMEA,"EMEA
+EU
+EBA
+GL/2019/04",EU,European Banking Authority (EBA) Guidelines on ICT and security risk management,,https://www.eba.europa.eu/regulation-and-policy/internal-governance/guidelines-on-ict-and-security-risk-management
+EMEA,"EMEA
+EU
+DORA",EU,EU Digital Operational Resilience Act (DORA) (2023),https://securecontrolsframework.com/content/strm/scf-strm-emea-eu-dora.pdf,https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022R2554&from=EN
+EMEA,"EMEA
+EU
+GDPR",EU,General Data Protection Regulation (GDPR),https://securecontrolsframework.com/content/strm/scf-strm-emea-eu-gdpr.pdf,https://commission.europa.eu/law/law-topic/data-protection/legal-framework-eu-data-protection_en
+EMEA,"EMEA
+EU
+NIS2",EU,ENISA NIS2 (Directive (EU) 2022/2555),https://securecontrolsframework.com/content/strm/scf-strm-emea-eu-nis2.pdf,https://www.enisa.europa.eu/topics/awareness-and-cyber-hygiene/network-and-information-systems-directive-2-nis2
+EMEA,"EMEA
+EU
+PSD2",EU,Second Payment Services Directive (PSD2),,https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32015L2366
+EMEA,"EMEA
+EU
+EU-US Data Privacy Framework",EU,EU-US Data Privacy Framework,,https://www.dataprivacyframework.gov/s/
+EMEA,"EMEA
+Austria",Austria,Federal Act concerning the Protection of Personal Data (DSG 2000) ,,https://www.ris.bka.gv.at/Dokumente/Erv/ERV_1999_1_165/ERV_1999_1_165.pdf
+EMEA,"EMEA
+Belgium",Belgium,Act of 8 December 1992 ,,http://www.privacycommission.be/sites/privacycommission/files/documents/Privacy_Act_1992.pdf
+EMEA,"EMEA
+Germany",Germany,Federal Data Protection Act,,https://www.gesetze-im-internet.de/englisch_bdsg/englisch_bdsg.pdf
+EMEA,"EMEA
+Germany
+Banking Supervisory Requirements for IT (BAIT)",Germany,Banking Supervisory Requirements for IT (BAIT),,https://www.bafin.de/SharedDocs/Downloads/EN/Rundschreiben/dl_rs_1710_ba_BAIT_en.html;jsessionid=CDFE3798FF983139B1E73C57CD17B025.1_cid389?nn=9866146
+EMEA,"EMEA
+Germany
+C5:2020",Germany,Cloud Computing Compliance Controls Catalogue (C5) 2020,,https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/CloudComputing/ComplianceControlsCatalogue-Cloud_Computing-C5.pdf?__blob=publicationFile&v=3
+EMEA,"EMEA
+Greece",Greece,Protection of Individuals with Regard to the Processing of Personal Data (2472/1997),,https://www.dpa.gr/sites/default/files/2019-10/law_2472-97-nov2013-en.pdf
+EMEA,"EMEA
+Hungary",Hungary,Informational Self-Determination and Freedom of Information (Act CXII of 2011),,http://www.naih.hu/files/Privacy_Act-CXII-of-2011_EN_201310.pdf
+EMEA,"EMEA
+Ireland",Ireland,Data Protection Act (2003),,http://www.irishstatutebook.ie/2003/en/act/pub/0006/print.html
+EMEA,"EMEA
+Israel
+CDMO
+v1.0",Israel,Cybersecurity Methodology for an Organization v1.0,,https://www.gov.il/BlobFolder/policy/cyber_security_methodology_for_organizations/en/Cyber%20Defense%20Methodology%20for%20an%20Oragnization.pdf
+EMEA,"EMEA
+Israel",Israel,"Protection of Privacy Law, 5741 – 1981",,https://www.gov.il/BlobFolder/legalinfo/legislation/en/ProtectionofPrivacyLaw57411981unofficialtranslatio.pdf
+EMEA,"EMEA
+Italy",Italy,Personal Data Protection Code,,http://www.privacy.it/privacycode-en.html
+EMEA,"EMEA
+Kenya
+DPA 2019",Kenya,Kenya Data Protection Act (2019),,http://kenyalaw.org/kl/fileadmin/pdfdownloads/Acts/2019/TheDataProtectionAct__No24of2019.pdf
+EMEA,"EMEA
+Netherlands",Netherlands,Personal Data Protection Act,,https://www.autoriteitpersoonsgegevens.nl/en/themes/basic-gdpr
+EMEA,"EMEA
+Nigeria
+DPR 2019",Nigeria,Nigeria Data Protection Regulation (2019),,https://nitda.gov.ng/wp-content/uploads/2020/11/NigeriaDataProtectionRegulation11.pdf
+EMEA,"EMEA
+Norway",Norway,Personal Data Act,,https://lovdata.no/dokument/NLE/lov/2018-06-15-38
+EMEA,"EMEA
+Poland",Poland,Act of 29 August 1997 on the Protection of Personal Data,,http://www.giodo.gov.pl/144/id_art/171/j/en/
+EMEA,"EMEA
+Qatar
+PDPPL",Qatar,Personal Data Privacy Protection Law (PDPPL),,https://compliance.qcert.org/sites/default/files/library/2020-11/Law%20No.%20%2813%29%20of%202016%20%20on%20Protecting%20Personal%20Data%20Privacy%20-%20English.pdf
+EMEA,"EMEA
+Russia",Russia,Federal Law of 27 July 2006 N 152-FZ,,http://www.rg.ru/2006/07/29/personaljnye-dannye-dok.html 
+EMEA,"EMEA
+Saudi Arabia
+CSCC – 1: 2019",Saudi Arabia,Critical Systems Cybersecurity Controls (CSCC – 1: 2019),,https://www.nca.gov.sa/en/legislation?item=194&slug=controls-list
+EMEA,"EMEA
+Saudi Arabia
+IoT CGIoT-1:2024",Saudi Arabia,Saudi Arabia IoT CGIoT-1:2024,https://securecontrolsframework.com/content/strm/scf-strm-emea-sa-cybersecurity-guidelines-iot.pdf,https://cdn.nca.gov.sa/api/files/public/upload/207a41a9-febf-45ea-9517-5519e863028a_CGIoT-.pdf
+EMEA,"EMEA
+Saudi Arabia
+ECC-1 2018",Saudi Arabia,Essential Cybersecurity Controls (ECC – 1 : 2018) ,,https://nca.gov.sa/ar/ecc-en.pdf
+EMEA,"EMEA
+Saudi Arabia
+OTCC-1 2022",Saudi Arabia,Operational Technology Cybersecurity Controls (OTCC -1: 2022),,https://nca.gov.sa/otcc_en.pdf
+EMEA,"EMEA
+Saudi Arabia
+Personal Data Protection Law",Saudi Arabia,Saudi Arabia Personal Data Protection Law (PDPL),https://securecontrolsframework.com/content/strm/scf-strm-emea-sa-pdpl.pdf,"https://sdaia.gov.sa/en/SDAIA/about/Documents/Personal%20Data%20English%20V2-23April2023-%20Reviewed-.pdf	"
+EMEA,"EMEA
+Saudi Arabia
+SACS-002",Saudi Arabia,SACS-002 - Third Party Cybersecurity Standard,,https://www.aramco.com/-/media/downloads/working-with-us/ccc/sacs-002-third-party-cybersecurity-standard.pdf
+EMEA,"EMEA
+Saudi Arabia
+SAMA CSFv1.0",Saudi Arabia,Saudi Arabian Monetary Authority (SAMA) Cyber Security Framework (CSF) Version 1.0 (May 2017),,https://www.sama.gov.sa/en-US/Laws/FinanceRules/SAMA%20Cyber%20Security%20Framework%20v1.0%20final_updated.pdf
+EMEA,"EMEA
+Serbia
+87/2018",Serbia,Act of 9 November 2018 on Personal Data Protection (Official Gazette No. 87/18),,https://www.refworld.org/legal/legislation/natlegbod/2018/en/123513
+EMEA,"EMEA
+South Africa",South Africa,Protection of Personal Information Act (POPIA),,http://www.justice.gov.za/legislation/acts/2013-004.pdf
+EMEA,"EMEA
+Spain
+BOE-A-2022-7191",Spain,BOE-A-2022-7191,https://securecontrolsframework.com/content/strm/scf-strm-emea-spain-boe-a-2022-7191.pdf,https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-7191
+EMEA,"EMEA
+Spain
+1720/2007",Spain,Royal Decree 1720/2007 (protection of personal data),,https://www.mjusticia.gob.es/es/AreaTematica/DocumentacionPublicaciones/Documents/Royal_Decree_approving_the_regulations_relating_to_Constitucional_Act_on_Personal_Data_Protection_%28.PDF
+EMEA,"EMEA
+Spain
+311/2022",Spain,Spain Royal Decree 311/2022,,https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-7191
+EMEA,"EMEA
+Spain
+CCN-STIC 825",Spain,ICT Security Guide CCN-STIC 825,,https://www.ccn-cert.cni.es/es/800-guia-esquema-nacional-de-seguridad/7122-ccn-stic-825-national-security-framework-27001-certifications/file.html
+EMEA,"EMEA
+Sweden",Sweden,Personal Data Act,,http://www.datainspektionen.se/in-english/legislation/the-personal-data-act/
+EMEA,"EMEA
+Switzerland",Switzerland,Federal Act on Data Protection (FADP),,https://www.admin.ch/opc/en/classified-compilation/19920153/index.html
+EMEA,"EMEA
+Turkey",Turkey,Regulation on Protection of Personal Data in Electronic Communications Sector,,https://global.tbmm.gov.tr/docs/constitution_en.pdf
+EMEA,"EMEA
+UAE
+NIAF",UAE,UAE National Information Assurance Framework (NIAF),https://securecontrolsframework.com/content/strm/scf-strm-emea-uae-niaf.pdf,https://u.ae/-/media/Documents-2023/National-Information-Assurance-Framework-NIAF.pdf
+EMEA,"EMEA
+UK
+CAF v3.1",United Kingdom,Cyber Assessment Framework (CAF) v3.1,,https://www.ncsc.gov.uk/files/Cyber-Assessment-Framework-v3-1.pdf
+EMEA,"EMEA
+UK
+CAP 1850",United Kingdom,Cyber Assessment Framework (CAF) for Aviation Guidance (CAP1850),,https://publicapps.caa.co.uk/modalapplication.aspx?appid=11&mode=detail&id=9295
+EMEA,"EMEA
+UK
+Cyber Essentials",United Kingdom,Cyber Essentials,,https://www.cyberessentials.ncsc.gov.uk 
+EMEA,"EMEA
+UK
+DPA",United Kingdom,Data Protection Act,,http://www.legislation.gov.uk/ukpga/1998/29/contents
+EMEA,"EMEA
+UK
+DEFSTAN 05-138",United Kingdom,Ministry of Defence Standard 05-138 (14 May 2024),https://securecontrolsframework.com/content/strm/scf-strm-emea-uk-def-stan-05-138.pdf,https://www.gov.uk/government/publications/cyber-security-for-defence-suppliers-def-stan-05-138-issue-4
+EMEA,"EMEA
+UK
+GDPR",United Kingdom,UK General Data Protection Regulation,,https://www.legislation.gov.uk/eur/2016/679/data.pdf
+APAC,"APAC
+Australia
+Essential 8",Australia,Australia Essential Eight,https://securecontrolsframework.com/content/strm/scf-strm-apac-australia-essential-8.pdf,https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/essential-eight
+APAC,"APAC
+Australia
+Privacy Act",Australia,Privacy Act of 1998,,https://www.comlaw.gov.au/Details/C2015C00089
+APAC,"APAC
+Australian Privacy Principles",Australia,Australia Privacy Principles,,https://www.oaic.gov.au/privacy/australian-privacy-principles/australian-privacy-principles-quick-reference/
+APAC,"APAC
+Australia
+ISM June 2024",Australia,Australian Government Information Security Manual (ISM) (June 2024),https://securecontrolsframework.com/content/strm/scf-strm-apac-australia-ism-june-2024.pdf,https://www.cyber.gov.au/acsc/view-all-content/ism
+APAC,"APAC
+Australia
+IoT Code of Practice",Australia,Australia - Code of Practice - Securing the Internet of Things for Consumers,,https://www.homeaffairs.gov.au/reports-and-pubs/files/code-of-practice.pdf
+APAC,"APAC
+Australia
+Prudential Standard CPS230",Australia,Prudential Standard CPS 230 - Operational Risk Management,,https://www.apra.gov.au/sites/default/files/2023-07/Prudential%20Standard%20CPS%20230%20Operational%20Risk%20Management%20-%20clean.pdf 
+APAC,"APAC
+Australia
+Prudential Standard CPS234",Australia,Prudential Standard CPS 234 Information Security,,https://www.apra.gov.au/sites/default/files/cps_234_july_2019_for_public_release.pdf
+APAC,"APAC
+China
+Cybersecurity
+Law",China,China Cybersecurity Law of the People's Republic of China (China Cybersecurity Law) 2017,https://securecontrolsframework.com/content/strm/scf-strm-apac-china-cybersecurity-law-2017.pdf,https://digichina.stanford.edu/work/translation-cybersecurity-law-of-the-peoples-republic-of-china-effective-june-1-2017/
+APAC,"APAC
+China
+Data Security Law (DSL)",China,China Data Security Law of the People's Republic of China,,https://digichina.stanford.edu/news/translation-data-security-law-peoples-republic-china
+APAC,"APAC
+China
+DNSIP",China,Decision on Strengthening Network Information Protection,,http://translate.google.com/translate?hl=en&sl=zh-CN&u=http://www.gov.cn/jrzg/2012-12/28/content_2301231.htm&prev=search
+APAC,"APAC
+China
+Privacy Law",China,Personal Information Protection Law of the People's Republic of China,,http://www.npc.gov.cn/npc/c30834/202108/a8c4e3672c74491a80b53a172bb753fe.shtml
+APAC,"APAC
+Hong Kong",Hong Kong,Personal Data Ordinance,,https://www.elegislation.gov.hk/hk/cap486!en-zh-Hant-HK.pdf?FROMCAPINDEX=Y
+APAC,"APAC
+India
+DPDPA 2023",India,India Digital Personal Data Protection Act 2023,https://securecontrolsframework.com/content/strm/scf-strm-apac-india-dpdpa-2023.pdf,https://www.meity.gov.in/static/uploads/2024/06/2bf1f0e9f04e6fb4f8fef35e82c42aa5.pdf
+APAC,"APAC
+India
+ITR",India,Information Technology Rules (Privacy Rules),,http://www.wipo.int/edocs/lexdocs/laws/en/in/in098en.pdf
+APAC,"APAC
+Japan
+APPI",Japan,Act on the Protection of Personal Information (June 2020),,https://www.ppc.go.jp/files/pdf/APPI_english.pdf
+APAC,"APAC
+Japan
+ISMAP",Japan,Japan Information System Security Management and Assessment Program (ISMAP) ,,https://www.ismap.go.jp/csm/en?id=kb_article_view&sysparm_article=KB0010301&sys_kb_id=4d06b8701b4f011013a78665cc4bcbd2&spa=1
+APAC,"APAC
+Malaysia",Malaysia,Personal Data Protection Act of 2010,,https://www.malaysia.gov.my/portal/content/654
+APAC,"APAC
+New Zealand HISF 2022",New Zealand,NZ Health Information Security Framework (2022),https://securecontrolsframework.com/content/strm/scf-strm-apac-nz-hisf-2022.pdf,https://www.tewhatuora.govt.nz/publications/health-information-security-framework
+APAC,"APAC
+New Zealand HISF Suppliers 2023",New Zealand,HISO 10029:2024 NZ Health Information Security Framework Guidance for Suppliers,https://securecontrolsframework.com/content/strm/scf-strm-apac-nz-hisf-suppliers-2023.pdf,https://www.tewhatuora.govt.nz/assets/Publications/HISO-Standards/HISO-10029-4-2023-Health-Information-Security-Framework-Guidance-for-Suppliers.pdf
+APAC,"APAC
+New Zealand
+NZISM 3.6",New Zealand,New Zealand Information Security Manual (NZISM) v3.6,,https://www.nzism.gcsb.govt.nz/ism-document/
+APAC,"APAC
+New Zealand Privacy Act of 2020",New Zealand,Privacy Act of 2020,,https://www.legislation.govt.nz/act/public/2020/0031/latest/LMS23223.html
+APAC,"APAC
+Philippines",Philippines,Data Privacy Act of 2012,,https://privacy.gov.ph/implementing-rules-and-regulations-of-republic-act-no-10173-known-as-the-data-privacy-act-of-2012/
+APAC,"APAC
+Singapore",Singapore,Personal Data Protection Act of 2012,,https://sso.agc.gov.sg/Act/PDPA2012
+APAC,"APAC
+Singapore 
+Cyber Hygiene Practice",Singapore,Cyber Hygiene Practice,,https://www.mas.gov.sg/-/media/MAS/Notices/PDF/MAS-Notice-132.pdf
+APAC,"APAC
+Singapore MAS
+TRM 2021",Singapore,Monitory Authority of Singapore (MAS) Technology Risk Management (TRM) Guidelines (2021),,https://www.mas.gov.sg/-/media/MAS/Regulations-and-Financial-Stability/Regulatory-and-Supervisory-Framework/Risk-Management/TRM-Guidelines-18-January-2021.pdf
+APAC,"APAC
+South Korea",South Korea,Personal Information Protection Act,,http://koreanlii.or.kr/w/images/0/0e/KoreanDPAct2011.pdf
+APAC,"APAC
+Taiwan",Taiwan,Personal Data Protection Act,,http://law.moj.gov.tw/Eng/LawClass/LawAll.aspx?PCode=I0050021
+Americas,"Americas
+Argentina",Argentina,"Protection of Personal Law No. 25,326",,http://www.infoleg.gov.ar/infolegInternet/anexos/60000-64999/64790/norma.htm 
+Americas,"Americas
+Argentina
+Reg 132/2018",Argentina,Protection of Personal Data - MEN-2018-147-APN-PTE,,https://www.argentina.gob.ar/sites/default/files/mensaje_ndeg_147-2018_datos_personales.pdf
+Americas,"Americas
+Bahamas",Bahamas,Data Protection Act,,https://www.lexbahamas.com/Data%20Protection%202003.pdf
+Americas,"Americas
+Bermuda
+BMA CCC",Bermuda,Bermuda Monetary Authority Cyber Code of Conduct,,https://www.bma.bm/viewPDF/documents/2020-10-06-09-27-29-Insurance-Sector-Cyber-Risk-Management-Code-of-Conduct.pdf
+Americas,"Americas
+Brazil
+LGPD",Brazil,General Data Protection Law (LGPD),,https://www.pnm.adv.br/wp-content/uploads/2018/08/Brazilian-General-Data-Protection-Law.pdf
+Americas,"Americas
+Canada
+CSAG",Canada,Office of the Superintendent of Financial Institutions Canada (OSFI) - Cyber Security Self-Assessment Guidance,,https://www.osfi-bsif.gc.ca/en/risks/technology-cyber-risk-management/cyber-security-self-assessment
+Americas,"Americas
+Canada
+ITSP-10-171",Canada,Protecting controlled information in non-Government of Canada systems and organizations (ITSP.10.171),https://securecontrolsframework.com/content/strm/scf-strm-americas-canada-itsp-10-171.pdf,https://www.cyber.gc.ca/en/guidance/protecting-controlled-information-non-government-canada-systems-and-organizations-itsp10171
+Americas,"Americas
+Canada
+OSFI B-13",Canada,B-13,https://securecontrolsframework.com/content/strm/scf-strm-americas-canada-OSFI-B13.pdf,https://www.osfi-bsif.gc.ca/Eng/fi-if/rg-ro/gdn-ort/gl-ld/Pages/b13-jul-let.aspx
+Americas,"Americas
+Canada
+PIPEDA",Canada,Personal Information Protection and Electronic Documents Act (PIPEDA),,http://laws-lois.justice.gc.ca/eng/acts/p-8.6/FullText.html
+Americas,"Americas
+Chile",Chile,Act 19628 - Protection of Personal Data,,http://www.leychile.cl/Navegar?idNorma=141599
+Americas,"Americas
+Colombia",Colombia,Law 1581 of 2012,,https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=49981
+Americas,"Americas
+Costa Rica",Costa Rica,Protection of the Person in the Processing of His Personal Data,,Link is deprecated - no longer works.
+Americas,"Americas
+Mexico",Mexico,Federal Law on Protection of Personal Data held by Private Parties,,https://privacyassociation.org/media/pdf/knowledge_center/Mexico_Federal_Data_Protection_Act_July2010.pdf
+Americas,"Americas
+Peru",Peru,Personal Data Protection Law,,Link is deprecated - no longer works.
+Americas,"Americas
+Uruguay",Uruguay,"Law No. 18,331 - Protection of Personal Data and Action ""Habeas Data""",,Link is deprecated - no longer works.
