@@ -26,7 +26,7 @@ export default function SecurityPage() {
     {
       title: "Vulnerability Disclosure",
       description:
-        "Report security issues to security@graphletter.com. We acknowledge reports within 48 hours.",
+        "Report security issues to security@graphletter.com following SECURITY.md. We acknowledge reports within 48 hours.",
     },
   ];
 

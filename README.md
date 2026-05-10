@@ -37,7 +37,6 @@ The output is per-control verdicts grounded in your actual documents — not a c
 - **Frontend / backend:** Next.js 16 (App Router), React 19, TypeScript strict, Tailwind + shadcn/ui
 - **Auth + DB:** Supabase (Postgres with Row Level Security, Storage)
 - **AI:** Vercel AI SDK with OpenAI and Anthropic models; structured output via Zod schemas
-- **Workflows:** Vercel Workflow (WDK) for multi-step AI pipelines
 - **Testing:** Playwright (UI), Node integration tests
 - **Package manager:** pnpm
 
@@ -52,8 +51,8 @@ The output is per-control verdicts grounded in your actual documents — not a c
 ### Local setup
 
 ```sh
-git clone https://github.com/p-boaz/graphletter.git
-cd graphletter
+git clone https://github.com/p-boaz/graphletter-public.git
+cd graphletter-public
 pnpm install
 
 cp .env.example .env.local
@@ -69,6 +68,7 @@ Open [http://localhost:3000](http://localhost:3000).
 Schema migrations live in `supabase/migrations/`. Apply them via the Supabase CLI:
 
 ```sh
+pnpm dlx supabase login
 pnpm dlx supabase link --project-ref <your-project-ref>
 pnpm dlx supabase db push
 ```
@@ -76,6 +76,7 @@ pnpm dlx supabase db push
 ### Validation
 
 ```sh
+pnpm audit --audit-level=high
 pnpm typecheck       # TypeScript strict check
 pnpm lint            # ESLint
 pnpm test:scf        # SCF parser unit tests
@@ -107,6 +108,10 @@ The repository includes Secure Controls Framework data (controls, frameworks, as
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Short version: open an issue first, then a PR.
+
+## Security
+
+Report vulnerabilities according to [SECURITY.md](SECURITY.md).
 
 ## License
 

@@ -10,11 +10,8 @@ export default function TermsPage() {
     <div className="flex min-h-screen flex-col bg-white">
       <Navigation />
       <main className="ft-container flex-1 py-16">
-        <div className="mb-8 rounded-md border border-amber-200 bg-amber-50 px-4 py-2 text-amber-900 text-sm">
-          Draft — subject to revision. For questions contact hello@graphletter.com.
-        </div>
         <h1 className="ft-serif text-4xl font-bold">Terms of Service</h1>
-        <p className="mt-4 text-slate-600">Last updated: 2026-04-14</p>
+        <p className="mt-4 text-slate-600">Last updated: 2026-05-09</p>
         <section className="prose prose-slate mt-8 max-w-3xl">
           <p>
             These terms govern your use of Graphletter (&quot;Graphletter&quot;, &quot;we&quot;,

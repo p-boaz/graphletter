@@ -21,7 +21,7 @@ SELECT
   e.file_size,
   COALESCE(e.storage_path, e.file_path),
   encode(
-    digest(
+    extensions.digest(
       COALESCE(NULLIF(e.extracted_content, ''), NULLIF(e.processed_content, ''), COALESCE(e.evidence_data::text, '')),
       'sha256'
     ),

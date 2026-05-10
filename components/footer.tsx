@@ -101,6 +101,13 @@ export function Footer() {
               >
                 Terms of Service
               </Link>
+              <Link
+                href="/security"
+                className="ft-sans text-slate-300 text-sm hover:text-white transition-colors"
+                data-testid="footer-link-security"
+              >
+                Security
+              </Link>
               <a
                 href="https://status.graphletter.com"
                 target="_blank"

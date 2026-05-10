@@ -37,16 +37,15 @@ export interface UserAssessment {
     id: string;
     email: string;
   };
-  evidence_assessment_links?: Array<{
+  evidence?: {
     id: string;
-    evidence_id: string;
-    link_type: string;
-    relevance_score: number;
-    user_evidence: {
-      id: string;
-      file_name: string;
-      evidence_type: string;
-      evidence_status: string;
-    };
-  }>;
+    file_name: string;
+    evidence_type: string;
+    evidence_status: string;
+    file_size?: number | null;
+    collection_method?: string | null;
+    data_source?: string | null;
+    confidence_score?: number | null;
+    created_at?: string;
+  } | null;
 }

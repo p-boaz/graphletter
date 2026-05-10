@@ -7,6 +7,30 @@ const isCi =
 	process.env.CI === "1" ||
 	process.env.GITHUB_ACTIONS === "true";
 const enforceTypeChecks = isCi || process.env.ENFORCE_TYPECHECK === "1";
+const securityHeaders = [
+	{
+		key: "Content-Security-Policy",
+		value: [
+			"default-src 'self'",
+			"base-uri 'self'",
+			"form-action 'self'",
+			"frame-ancestors 'none'",
+			"object-src 'none'",
+			"script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+			"style-src 'self' 'unsafe-inline' https:",
+			"img-src 'self' data: blob: https:",
+			"font-src 'self' data: https:",
+			"connect-src 'self' https: wss:",
+		].join("; "),
+	},
+	{ key: "X-Frame-Options", value: "DENY" },
+	{ key: "X-Content-Type-Options", value: "nosniff" },
+	{ key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+	{
+		key: "Permissions-Policy",
+		value: "camera=(), geolocation=(), microphone=(), payment=(), usb=()",
+	},
+];
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -34,6 +58,14 @@ const nextConfig = {
 			};
 		}
 		return config;
+	},
+	async headers() {
+		return [
+			{
+				source: "/:path*",
+				headers: securityHeaders,
+			},
+		];
 	},
 };
 

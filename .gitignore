@@ -15,6 +15,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+pnpm-debug.log*
+*.log
 
 # env files
 .env*
@@ -26,6 +28,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+coverage/
+.coverage/
 
 # playwright
 /test-results/
@@ -45,6 +49,14 @@ scripts/out/
 
 # Claude Code local state (session locks, per-user settings, agent worktrees)
 .claude/
+
+# common OS / editor artifacts
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
 
 # Stray root-level image dropped by browser drag-in (keep locally, don't track)
 /jpeg

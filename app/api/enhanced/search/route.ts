@@ -123,7 +123,7 @@ export async function GET(request: NextRequest) {
     if (!user) {
       return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
     }
-    const hasAdminAccess = await isAdminUser(user, supabase);
+    const hasAdminAccess = await isAdminUser(user);
 
     const { searchParams } = new URL(request.url);
     const action = searchParams.get("action");

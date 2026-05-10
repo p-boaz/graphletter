@@ -6,7 +6,7 @@ Single source of truth for all AI coding agents working on Graphletter (Claude C
 
 **Graphletter** — AI-powered compliance validation. Evidence documents → Secure Controls Framework (SCF, 79+ frameworks) → automated compliance reports.
 
-Stack: Next.js 16 (App Router) · React 19 · TypeScript strict · Tailwind + shadcn/ui · Supabase (Postgres + RLS + Storage) · Vercel AI SDK · Vercel Workflow (WDK) · pnpm.
+Stack: Next.js 16 (App Router) · React 19 · TypeScript strict · Tailwind + shadcn/ui · Supabase (Postgres + RLS + Storage) · Vercel AI SDK · pnpm.
 
 Deploy: Vercel (serverless). Auth: Supabase SSR — see `lib/supabase/server.ts` and `lib/auth/supabase-auth.ts`.
 
@@ -78,19 +78,6 @@ log.info("message", { key: "value" });
 
 Don't build logging wrappers — use this one.
 
-## Long-running operations (Workflows)
-
-Use Vercel Workflow (WDK) when an operation may exceed the 2-minute Vercel timeout, chains multiple AI providers, needs parallel fan-out, or requires human-in-the-loop.
-
-See `lib/workflow/workflow-wrapper.ts` for `withWorkflow`, `createStep`, `FatalError`, `RetryableError`.
-
-Canonical examples:
-
-- Evidence pipeline: `app/api/evidence/{extract-content,upload-only,assess-uploaded}/route.ts`
-- Parallel AI assessment: `lib/ai/assessment-engine-workflow.ts`
-
-Error model: `FatalError` = do not retry (validation, missing data). `RetryableError` = auto-retry. Default errors are retryable.
-
 ## AI providers
 
 Config lives in `lib/ai-config.ts`. That file is the source of truth — don't restate model names or temperatures here. If you change routing, update comments in that file, not this one.
@@ -115,6 +102,8 @@ Key Playwright helpers: `browser-skills.ts` (agent-style wrappers), `selectors.t
 <important if="you are changing the Supabase schema">
 Run `pnpm schema:migrations:check` (always available) and `pnpm schema:drift:check` before committing. The strict variant of the drift check (`--strict` flag on `scripts/schema-drift-check.js`) requires a local Supabase stack on port 54322 (Supabase CLI + Docker).
 </important>
+
+For fresh local bootstrap, authenticate the Supabase CLI first: `pnpm dlx supabase login`, then `pnpm dlx supabase link --project-ref ...`, then `pnpm dlx supabase db push`.
 
 ## Dogfood / QA auth
 
