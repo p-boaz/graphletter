@@ -6,7 +6,7 @@ Single source of truth for all AI coding agents working on Graphletter (Claude C
 
 This is the canonical (public, OSS) Graphletter repo. **All feature work lands here first.**
 
-A thin private overlay lives at [`p-boaz/v0-graphletter`](https://github.com/p-boaz/v0-graphletter) for deployment-specific config, secrets, and a small set of intentionally-held-back internal infrastructure (currently `lib/workflow/` and `lib/ai/assessment-engine-workflow.ts`). The overlay merges or rebases from this repo — never the other way around. If a change _could_ live in public, it _must_ land here first.
+A thin private overlay lives at [`p-boaz/graphletter-private`](https://github.com/p-boaz/graphletter-private) for deployment-specific config, secrets, and a small set of intentionally-held-back internal infrastructure (currently `lib/workflow/` and `lib/ai/assessment-engine-workflow.ts`). The overlay merges or rebases from this repo — never the other way around. If a change _could_ live in public, it _must_ land here first.
 
 ## What this project is
 
