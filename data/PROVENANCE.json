@@ -1,0 +1,86 @@
+{
+  "scfVersion": "2026.1.1",
+  "license": "CC BY-ND 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-nd/4.0/",
+  "source": {
+    "publisher": "Secure Controls Framework Council",
+    "url": "https://securecontrolsframework.com/free-content/scf-download",
+    "downloadedAt": "2026-05-11"
+  },
+  "xlsx": {
+    "path": "data/secure-controls-framework-scf-2026-1-1.xlsx",
+    "sha256": "e95e59bd70dd4177b1b607c2d3e399a2e123ff615b23063bfa7e3ea9b66d766d",
+    "bytes": 5093536
+  },
+  "extraction": {
+    "encoding": "utf-8",
+    "lineEnding": "lf",
+    "bom": false,
+    "quoting": "rfc4180",
+    "trailingNewline": true,
+    "cellNormalization": "embedded CR and CRLF inside cell values are normalized to LF; the resulting CSV is strictly LF-only end-to-end"
+  },
+  "sheets": [
+    {
+      "sheet": "SCF 2026.1",
+      "csv": "data/controls.csv",
+      "consumer": "graphletter:scf_controls",
+      "sha256": null
+    },
+    {
+      "sheet": "Authoritative Sources",
+      "csv": "data/Authoritative Sources.csv",
+      "consumer": "graphletter:scf_authoritative_sources",
+      "sha256": null
+    },
+    {
+      "sheet": "SCF Domains & Principles",
+      "csv": "data/Domains and Principles.csv",
+      "consumer": "graphletter:scf_domains_principles",
+      "sha256": null
+    },
+    {
+      "sheet": "Assessment Objectives 2026.1",
+      "csv": "data/Assessment_objectives.csv",
+      "consumer": "graphletter:scf_assessment_objectives",
+      "sha256": null
+    },
+    {
+      "sheet": "Threat Catalog",
+      "csv": "data/threats.csv",
+      "consumer": "graphletter:scf_threats",
+      "sha256": null
+    },
+    {
+      "sheet": "Risk Catalog",
+      "csv": "data/risks.csv",
+      "consumer": "graphletter:scf_risks",
+      "sha256": null
+    },
+    {
+      "sheet": "Evidence Request List 2026.1",
+      "csv": "data/evidence-request-list.csv",
+      "consumer": "graphletter:scf_evidence_requests",
+      "sha256": null
+    },
+    {
+      "sheet": "Compensating Controls 2026.1",
+      "csv": "data/compensating-controls.csv",
+      "consumer": "deferred:phase4",
+      "sha256": null
+    },
+    {
+      "sheet": "Data Privacy Mgmt Principles",
+      "csv": "data/data-privacy-principles.csv",
+      "consumer": "deferred:phase4",
+      "sha256": null
+    }
+  ],
+  "graphletterAuthored": ["data/anthropic-controls.pdf", "data/eu-ai-act/"],
+  "documentation": [
+    "data/scf_data_import_strategy.md",
+    "data/scf_import_usage_guide.md",
+    "data/README.md",
+    "data/PROVENANCE.json"
+  ]
+}
