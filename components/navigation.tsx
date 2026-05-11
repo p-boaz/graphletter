@@ -1,6 +1,6 @@
 "use client";
 
-import { BarChart3, LogOut, Menu, Settings, User } from "lucide-react";
+import { BarChart3, LogOut, Menu, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -154,12 +154,6 @@ export function Navigation() {
                     <Link href="/dashboard" className="flex items-center">
                       <BarChart3 className="mr-2 h-4 w-4" />
                       Dashboard
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/settings" className="flex items-center">
-                      <Settings className="mr-2 h-4 w-4" />
-                      Settings
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
