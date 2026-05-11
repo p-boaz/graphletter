@@ -2,6 +2,12 @@
 
 Single source of truth for all AI coding agents working on Graphletter (Claude Code, Codex, Cursor, Copilot, etc).
 
+## Repository topology
+
+This is the canonical (public, OSS) Graphletter repo. **All feature work lands here first.**
+
+A thin private overlay lives at [`p-boaz/v0-graphletter`](https://github.com/p-boaz/v0-graphletter) for deployment-specific config, secrets, and a small set of intentionally-held-back internal infrastructure (currently `lib/workflow/` and `lib/ai/assessment-engine-workflow.ts`). The overlay merges or rebases from this repo — never the other way around. If a change _could_ live in public, it _must_ land here first.
+
 ## What this project is
 
 **Graphletter** — AI-powered compliance validation. Evidence documents → Secure Controls Framework (SCF, 79+ frameworks) → automated compliance reports.
