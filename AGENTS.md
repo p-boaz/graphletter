@@ -105,6 +105,10 @@ Run `pnpm schema:migrations:check` (always available) and `pnpm schema:drift:che
 
 For fresh local bootstrap, authenticate the Supabase CLI first: `pnpm dlx supabase login`, then `pnpm dlx supabase link --project-ref ...`, then `pnpm dlx supabase db push`.
 
+<important if="this is the first `db push` against the live production project since the 2026-05-11 OSS cutover">
+The production migration ledger has 32 rows; this repo has 16 files (the historical 16 were absorbed into the comprehensive baseline). Before any `db push`, run the one-time reconciliation in [`docs/migration-ledger-reconcile.md`](docs/migration-ledger-reconcile.md). Metadata-only — no schema or data is touched. Delete that doc after running.
+</important>
+
 ## Dogfood / QA auth
 
 `.env` holds `QA_USER_EMAIL` and `QA_USER_PASSWORD` for Playwright and manual dogfooding. Never commit these.
