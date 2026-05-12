@@ -40,7 +40,8 @@ function makeMockSupabase(): { supabase: any; calls: Call[] } {
 const FIXTURE_CSV = `#,ERL #,Area of Focus,Documentation Artifact,Artifact Description,SCF Control Mappings,"Relevant\\nCMMC 2.0 L2 Control"
 1,E-GOV-01,Cybersecurity & Data Protection Management,Charter - Cybersecurity Program,Documented evidence of a charter.,GOV-01,
 2,E-GOV-02,Cybersecurity & Data Protection Management,Policy - Information Security,Documented evidence of a policy.,"GOV-02, GOV-03",AC.L2-3.1.1
-3,E-ACC-01,Access Control,Access Control Procedures,Documented evidence of procedures.,ACC-01 ACC-02 ACC-03,
+3,E-ACC-01,Access Control,Access Control Procedures,Documented evidence of procedures.,"ACC-01
+ACC-02 ACC-03",
 4,E-ACC-02,Access Control,Account Provisioning Logs,Documented evidence of logs.,ACC-04,
 5,E-AST-01,Asset Management,Asset Inventory,Documented evidence of inventory.,AST-01,
 `;
@@ -72,6 +73,18 @@ test("seedERL upserts every ERL row with control mappings parsed into text[]", a
 
     const opts = upsertCall!.args[1] as { onConflict: string };
     assert.equal(opts.onConflict, "erl_id,import_id");
+
+    const delEqCall = calls.find(
+      (c) => c.table === "scf_evidence_request_list" && c.method === "delete.eq"
+    );
+    assert.ok(delEqCall, "delete.eq call must exist");
+    assert.deepEqual(delEqCall!.args, ["scf_version", "2026.1.1"]);
+
+    const delIsCall = calls.find(
+      (c) => c.table === "scf_evidence_request_list" && c.method === "delete.is"
+    );
+    assert.ok(delIsCall, "delete.is call must exist");
+    assert.deepEqual(delIsCall!.args, ["import_id", null]);
   } finally {
     await rm(dir, { recursive: true, force: true });
   }

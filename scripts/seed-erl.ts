@@ -25,7 +25,9 @@ function splitControlMappings(raw: string): string[] {
 }
 
 export async function seedERL(supabase: SupabaseClient, csvPath: string): Promise<ERLSeedSummary> {
-  const csv = await readFile(csvPath, "utf8");
+  const csv = await readFile(csvPath, "utf8").catch((e: NodeJS.ErrnoException) => {
+    throw new Error(`seed-erl: cannot read ${csvPath}: ${e.message}`);
+  });
   const records = parse(csv, {
     columns: true,
     skip_empty_lines: true,
