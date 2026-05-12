@@ -21,6 +21,8 @@ import { useAuth } from "@/lib/auth/auth-context";
 import { createClient } from "@/lib/supabase/client";
 
 const MOBILE_NAV_SHEET_ID = "primary-mobile-navigation-sheet";
+const GITHUB_URL = "https://github.com/p-boaz/graphletter";
+const NAVIGATION_ITEMS = [{ href: "/try", label: "Try" }] as const;
 let lastClientPathname: string | null = null;
 const isProtectedPath = (path: string | null) =>
   Boolean(path?.startsWith("/dashboard") || path?.startsWith("/profile"));
@@ -72,9 +74,6 @@ export function Navigation() {
     await supabase.auth.signOut();
   };
 
-  const navigationItems = [{ href: "/try", label: "Try" }];
-  const GITHUB_URL = "https://github.com/p-boaz/graphletter";
-
   return (
     <header
       data-testid="primary-navigation"
@@ -102,7 +101,7 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center space-x-6 md:flex">
-            {navigationItems.map((item) => (
+            {NAVIGATION_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -197,7 +196,7 @@ export function Navigation() {
                 className="w-[300px] rounded-l-2xl border-l-2 border-ft-pink bg-white px-6 py-8 shadow-lg sm:w-[400px]"
               >
                 <nav className="mt-8 flex flex-col space-y-6">
-                  {navigationItems.map((item) => (
+                  {NAVIGATION_ITEMS.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
