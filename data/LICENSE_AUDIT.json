@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2026-05-12",
+  "scfVersion": "2026.1.1",
+  "license": "CC BY-ND 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-nd/4.0/",
+  "source": {
+    "publisher": "Secure Controls Framework Council",
+    "url": "https://securecontrolsframework.com/free-content/scf-download",
+    "downloadedAt": "2026-05-11"
+  },
+  "xlsxSha256": "e95e59bd70dd4177b1b607c2d3e399a2e123ff615b23063bfa7e3ea9b66d766d",
+  "verdict": "clean",
+  "entries": [
+    {
+      "file": "secure-controls-framework-scf-2026-1-1.xlsx",
+      "authoringSource": "upstream-scf",
+      "classification": "upstream-verbatim",
+      "sha256": "e95e59bd70dd4177b1b607c2d3e399a2e123ff615b23063bfa7e3ea9b66d766d",
+      "reason": "Vendored verbatim from SCF download under CC BY-ND 4.0."
+    },
+    {
+      "file": "controls.csv",
+      "authoringSource": "upstream-scf",
+      "classification": "upstream-extract",
+      "sha256": "e3b4402cd0978d19c2202674bf442d7b23bd18fc8d72c47f2803a31e95c41b06",
+      "reason": "Deterministically extracted from sheet \"SCF 2026.1\" of the vendored XLSX."
+    },
+    {
+      "file": "Authoritative Sources.csv",
+      "authoringSource": "upstream-scf",
+      "classification": "upstream-extract",
+      "sha256": "cfdff3f343b23db62ab5545139a3244f021e861a1f2b04889e96578fffe3b8dc",
+      "reason": "Deterministically extracted from sheet \"Authoritative Sources\" of the vendored XLSX."
+    },
+    {
+      "file": "Domains and Principles.csv",
+      "authoringSource": "upstream-scf",
+      "classification": "upstream-extract",
+      "sha256": "08f96d686df942913b5891a7e686168d28e3c9ecf9ded2c1ac84ca4fdc560221",
+      "reason": "Deterministically extracted from sheet \"SCF Domains & Principles\" of the vendored XLSX."
+    },
+    {
+      "file": "Assessment_objectives.csv",
+      "authoringSource": "upstream-scf",
+      "classification": "upstream-extract",
+      "sha256": "8eceb040e4d6a1459e9ac5e0868d4f2b8408b537c55bfc70b41be2fdc4c6fcb9",
+      "reason": "Deterministically extracted from sheet \"Assessment Objectives 2026.1\" of the vendored XLSX."
+    },
+    {
+      "file": "threats.csv",
+      "authoringSource": "upstream-scf",
+      "classification": "upstream-extract",
+      "sha256": "762c146a5ac08614e9c1e3f74b8583c5d069aeec4c36b0f118fc84ca6bed2f69",
+      "reason": "Deterministically extracted from sheet \"Threat Catalog\" of the vendored XLSX."
+    },
+    {
+      "file": "risks.csv",
+      "authoringSource": "upstream-scf",
+      "classification": "upstream-extract",
+      "sha256": "6ff135294d007bf156fdc342c0228713f5e3eff56dac7feb2d1dd506c3aacc92",
+      "reason": "Deterministically extracted from sheet \"Risk Catalog\" of the vendored XLSX."
+    },
+    {
+      "file": "evidence-request-list.csv",
+      "authoringSource": "upstream-scf",
+      "classification": "upstream-extract",
+      "sha256": "f7a3057db9a34d04ff0e4c464b7a05f293a400450665da99cb37714b79f16063",
+      "reason": "Deterministically extracted from sheet \"Evidence Request List 2026.1\" of the vendored XLSX."
+    },
+    {
+      "file": "compensating-controls.csv",
+      "authoringSource": "upstream-scf",
+      "classification": "upstream-extract",
+      "sha256": "d5afbf8b06ec4c53a67deb5b060de89c53934b47276caba36ec206d5f8edec12",
+      "reason": "Deterministically extracted from sheet \"Compensating Controls 2026.1\" of the vendored XLSX."
+    },
+    {
+      "file": "data-privacy-principles.csv",
+      "authoringSource": "upstream-scf",
+      "classification": "upstream-extract",
+      "sha256": "7c605271f671c88d980f5967bc12b085c9e59313729c83e8407d2f165310cbc4",
+      "reason": "Deterministically extracted from sheet \"Data Privacy Mgmt Principles\" of the vendored XLSX."
+    },
+    {
+      "file": "anthropic-controls.pdf",
+      "authoringSource": "graphletter",
+      "classification": "graphletter-authored",
+      "sha256": null,
+      "reason": "Authored in graphletter (not derived from the SCF upstream)."
+    },
+    {
+      "file": "eu-ai-act",
+      "authoringSource": "graphletter",
+      "classification": "graphletter-authored",
+      "sha256": null,
+      "reason": "Authored in graphletter (not derived from the SCF upstream)."
+    },
+    {
+      "file": "scf_data_import_strategy.md",
+      "authoringSource": "documentation",
+      "classification": "documentation",
+      "sha256": null,
+      "reason": "Documentation; not subject to SCF redistribution rules."
+    },
+    {
+      "file": "scf_import_usage_guide.md",
+      "authoringSource": "documentation",
+      "classification": "documentation",
+      "sha256": null,
+      "reason": "Documentation; not subject to SCF redistribution rules."
+    },
+    {
+      "file": "README.md",
+      "authoringSource": "documentation",
+      "classification": "documentation",
+      "sha256": null,
+      "reason": "Documentation; not subject to SCF redistribution rules."
+    },
+    {
+      "file": "PROVENANCE.json",
+      "authoringSource": "documentation",
+      "classification": "documentation",
+      "sha256": null,
+      "reason": "Documentation; not subject to SCF redistribution rules."
+    }
+  ]
+}
