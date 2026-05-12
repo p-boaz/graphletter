@@ -646,7 +646,7 @@ function ComplianceGaps() {
               <p className="text-xs text-slate-600">
                 New to this workflow?{" "}
                 <Link
-                  href="/how-it-works#workflow"
+                  href="/docs#workflow"
                   className="font-medium underline underline-offset-4 hover:text-slate-900"
                 >
                   See the evidence-to-insight walkthrough
