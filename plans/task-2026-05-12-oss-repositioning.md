@@ -110,3 +110,4 @@ See `docs/superpowers/plans/2026-05-12-oss-repositioning.md` for the verbatim pe
 - 2026-05-12: Task spec created.
 - 2026-05-12: Expanded task spec to match repo template (Context Files / Scope / Implementation Plan / Test Plan / Acceptance Criteria / Approval Gate sections added).
 - 2026-05-12: Stood up /docs and /try; redirected /how-it-works, /try-it-out, /demo, /architecture.
+- 2026-05-12: Fixed Task 1 review issues — removed dead GlossaryTooltip, repositioned metadata export, retargeted three try-it-out test gotos to /try.

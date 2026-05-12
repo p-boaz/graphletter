@@ -158,7 +158,7 @@ test.describe("try-it-out results UI", () => {
         body: JSON.stringify(demoMock),
       })
     );
-    await page.goto("/try-it-out");
+    await page.goto("/try");
     await page.getByTestId("demo-sample-select").click();
     await page.getByRole("option", { name: /Cybersecurity Program Charter/ }).click();
     await page.getByTestId("demo-run-button").click();
@@ -177,7 +177,7 @@ test.describe("try-it-out results UI", () => {
         body: JSON.stringify(demoMock),
       })
     );
-    await page.goto("/try-it-out");
+    await page.goto("/try");
     await page.getByTestId("demo-sample-select").click();
     await page.getByRole("option", { name: /Cybersecurity Program Charter/ }).click();
     await page.getByTestId("demo-run-button").click();
@@ -188,7 +188,7 @@ test.describe("try-it-out results UI", () => {
 
 test.describe("try-it-out intro + quota", () => {
   test("does not render the Live Workflow block", async ({ page }) => {
-    await page.goto("/try-it-out");
+    await page.goto("/try");
     await expect(page.getByRole("heading", { name: /Live Workflow/i })).toHaveCount(0);
   });
 
@@ -200,7 +200,7 @@ test.describe("try-it-out intro + quota", () => {
         body: JSON.stringify({ remaining: 2, max: 3 }),
       })
     );
-    await page.goto("/try-it-out");
+    await page.goto("/try");
     await expect(page.getByTestId("demo-runs-remaining")).toContainText("2 of 3");
   });
 });

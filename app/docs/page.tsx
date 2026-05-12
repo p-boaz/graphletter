@@ -4,10 +4,8 @@ import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { PipelineDiagram } from "@/components/how-it-works/pipeline-diagram";
 import { Navigation } from "@/components/navigation";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { pageTitle } from "@/lib/seo/page-title";
-
-export const metadata: Metadata = { title: pageTitle("Docs") };
 import {
   analysisLayers,
   explainerIntro,
@@ -22,7 +20,9 @@ import {
   workflowSteps,
 } from "@/lib/content/compliance-explainer";
 import { supabase } from "@/lib/database/supabase";
-import { GLOSSARY, type GlossaryKey } from "@/lib/how-it-works/glossary";
+import { GLOSSARY } from "@/lib/how-it-works/glossary";
+
+export const metadata: Metadata = { title: pageTitle("Docs") };
 
 const GLOSSARY_TERMS_IN_PAGE_GLOSSARY = new Set([
   "SCF Control",
@@ -30,19 +30,6 @@ const GLOSSARY_TERMS_IN_PAGE_GLOSSARY = new Set([
   "Framework Mapping (SCF Normalization)",
   "Evidence Request List (ERL) Artifact",
 ]);
-
-function GlossaryTooltip({ k, children }: { k: GlossaryKey; children: React.ReactNode }) {
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <span className="underline decoration-dotted underline-offset-2 cursor-help">
-          {children}
-        </span>
-      </TooltipTrigger>
-      <TooltipContent className="max-w-xs">{GLOSSARY[k].def}</TooltipContent>
-    </Tooltip>
-  );
-}
 
 type ScfStats = {
   controls: number;
