@@ -139,9 +139,7 @@ test("upload flow skips graph mapping when extracted content is not usable", asy
   assert_no_browser_failures(report);
 });
 
-test("upload dialog artifact mapping link navigates to how-it-works anchor", async ({
-  page,
-}, testInfo) => {
+test("upload dialog artifact mapping link navigates to docs anchor", async ({ page }, testInfo) => {
   const observer = inspect_console_errors(page);
   let report = observer.getReport();
 
