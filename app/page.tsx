@@ -33,7 +33,7 @@ export default function HomePage() {
           </Button>
           <Button asChild size="lg" variant="outline">
             <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-              GitHub →
+              GitHub →<span className="sr-only"> (opens in new tab)</span>
             </a>
           </Button>
         </div>
@@ -170,7 +170,7 @@ export default function HomePage() {
             rel="noopener noreferrer"
             className="ft-sans text-ft-pink font-medium underline underline-offset-4 hover:text-ft-black transition-colors"
           >
-            View the code on GitHub →
+            View the code on GitHub →<span className="sr-only"> (opens in new tab)</span>
           </a>
         </div>
       </section>
