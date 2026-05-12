@@ -1301,5 +1301,3 @@ Expected: PR created; CI runs typecheck, lint, build, audit. All pass.
 **Blast radius check:** Largest commit is Task 6 (4 files) — well under the 15-file cap.
 
 **Open variable:** The `GITHUB_URL` constant appears in three files (`app/page.tsx`, `components/navigation.tsx`, `components/footer.tsx`). If a follow-up refactor wants to centralize it, that's outside this plan's scope.
-
-- 2026-05-12 Task 5: lean light footer; drop Resources/Project/Contact columns and Status link; clean up obsolete footer + nav-active assertions in playwright tests

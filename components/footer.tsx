@@ -1,17 +1,14 @@
-"use client";
-
 import Link from "next/link";
 
 const GITHUB_URL = "https://github.com/p-boaz/graphletter";
+const CURRENT_YEAR = new Date().getFullYear();
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="border-slate-200 border-t bg-white">
       <div className="ft-container py-8">
         <div className="ft-sans flex flex-col items-start gap-3 text-sm text-ft-black md:flex-row md:items-center md:justify-between">
-          <div className="text-ft-black/70">Graphletter · MIT-licensed · © {currentYear}</div>
+          <div className="text-ft-black/70">Graphletter · MIT-licensed · © {CURRENT_YEAR}</div>
           <nav className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <Link href="/frameworks" className="hover:text-ft-pink">
               Frameworks
