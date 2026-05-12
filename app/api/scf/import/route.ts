@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/database/supabase";
 import { createLogger } from "@/lib/logger";
 import { SCFParser } from "@/lib/scf-parser";
+import { writeParsedSCF } from "@/lib/scf/writer";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser, isAdminUser } from "@/utils/auth";
 
@@ -92,289 +93,15 @@ export async function POST(request: NextRequest) {
     const importId = importRecord.id;
 
     try {
-      // Clean up any existing data for this version to avoid conflicts
-      log.info("Cleaning up existing data for version", { version: parseResult.summary.version });
-
-      // First get framework IDs to clean up mappings
-      const { data: frameworksToDelete } = await supabaseAdmin
-        .from("scf_frameworks")
-        .select("id")
-        .eq("scf_version", parseResult.summary.version);
-
-      if (frameworksToDelete && frameworksToDelete.length > 0) {
-        const frameworkIds = frameworksToDelete.map((fw) => fw.id);
-        await supabaseAdmin.from("scf_control_mappings").delete().in("framework_id", frameworkIds);
-      }
-
-      await supabaseAdmin
-        .from("scf_frameworks")
-        .delete()
-        .eq("scf_version", parseResult.summary.version);
-
-      await supabaseAdmin
-        .from("scf_controls")
-        .delete()
-        .eq("scf_version", parseResult.summary.version);
-
-      await supabaseAdmin
-        .from("scf_domains")
-        .delete()
-        .eq("scf_version", parseResult.summary.version);
-
-      await supabaseAdmin
-        .from("scf_principles")
-        .delete()
-        .eq("scf_version", parseResult.summary.version);
-
-      await supabaseAdmin
-        .from("scf_authoritative_sources")
-        .delete()
-        .eq("scf_version", parseResult.summary.version);
-      // Import principles if available
-      if (parseResult.principles && parseResult.principles.length > 0) {
-        const principlesData = parseResult.principles.map((principle) => ({
-          number: principle.number,
-          domain_code: principle.domainCode, // Map camelCase to snake_case
-          domain_name: principle.domainName, // Map camelCase to snake_case
-          principle_name: principle.principleName, // Map camelCase to snake_case
-          principle_intent: principle.principleIntent, // Map camelCase to snake_case
-          scf_version: parseResult.summary.version,
-          import_id: importId,
-        }));
-
-        const { error: principlesError } = await supabaseAdmin
-          .from("scf_principles")
-          .insert(principlesData);
-
-        if (principlesError) {
-          console.error("Failed to import principles:", principlesError);
-          throw new Error(`Failed to import principles: ${principlesError.message}`);
-        }
-      }
-
-      // Import domains if available
-      if (parseResult.domains && parseResult.domains.length > 0) {
-        const domainsData = parseResult.domains.map((domain) => ({
-          id: domain.id,
-          name: domain.name,
-          description: domain.description,
-          principles: domain.principles,
-          principle_intent: domain.principleIntent, // Map camelCase to snake_case
-          control_count: domain.controlCount, // Map camelCase to snake_case
-          scf_version: parseResult.summary.version,
-          import_id: importId,
-        }));
-
-        const { error: domainsError } = await supabaseAdmin.from("scf_domains").insert(domainsData);
-
-        if (domainsError) {
-          console.error("Failed to import domains:", domainsError);
-          throw new Error(`Failed to import domains: ${domainsError.message}`);
-        }
-      }
-
-      // Import authoritative sources if available
-      if (parseResult.authoritativeSources && parseResult.authoritativeSources.length > 0) {
-        const authSourcesData = parseResult.authoritativeSources.map((source) => ({
-          geography: source.geography,
-          mapping_column_header: source.mappingColumnHeader,
-          source_organization: source.sourceOrganization,
-          authoritative_source: source.authoritativeSource,
-          strm_url: source.strmUrl,
-          source_url: source.sourceUrl,
-          scf_version: source.version,
-          import_id: importId,
-        }));
-
-        const { error: authSourcesError } = await supabaseAdmin
-          .from("scf_authoritative_sources")
-          .insert(authSourcesData);
-
-        if (authSourcesError) {
-          console.error("Failed to import authoritative sources:", authSourcesError);
-          throw new Error(`Failed to import authoritative sources: ${authSourcesError.message}`);
-        }
-      }
-
-      // Import controls if available
-      if (parseResult.controls && parseResult.controls.length > 0) {
-        const controlsData = parseResult.controls.map((control) => {
-          // Extract domain code from control ID (e.g., "ACC-01" -> "ACC")
-          const domainCode =
-            control.id.match(/^([A-Z]+)-/)?.[1] || control.id.substring(0, 3).toUpperCase();
-
-          return {
-            id: control.id,
-            title: control.title,
-            description: control.description,
-            domain_id: domainCode, // Use extracted domain code instead of domain name
-            principle: control.principle,
-            control_questions: control.controlQuestions, // Map camelCase to snake_case
-            guidance_micro: control.organizationGuidance?.micro,
-            guidance_small: control.organizationGuidance?.small,
-            guidance_medium: control.organizationGuidance?.medium,
-            guidance_large: control.organizationGuidance?.large,
-            guidance_enterprise: control.organizationGuidance?.enterprise,
-            applies_to_people: control.applicability?.people || false, // Map camelCase to snake_case
-            applies_to_process: control.applicability?.process || false, // Map camelCase to snake_case
-            applies_to_technology: control.applicability?.technology || false, // Map camelCase to snake_case
-            applies_to_governance: control.applicability?.governance || false, // Map camelCase to snake_case
-            risk_ids: control.riskIds, // Map camelCase to snake_case
-            threat_ids: control.threatIds, // Map camelCase to snake_case
-            assessment_objectives: control.assessmentObjectives, // Map camelCase to snake_case
-            evidence_requests: control.evidenceRequests, // Map camelCase to snake_case
-            scf_version: parseResult.summary.version,
-            import_id: importId,
-          };
-        });
-
-        const { error: controlsError } = await supabaseAdmin
-          .from("scf_controls")
-          .insert(controlsData);
-
-        if (controlsError) {
-          console.error("Failed to import controls:", controlsError);
-          throw new Error(`Failed to import controls: ${controlsError.message}`);
-        }
-      }
-
-      // Import control mappings if controls CSV is available
-      if (controlsCSV && parseResult.controls && parseResult.controls.length > 0) {
-        log.info("Processing control mappings");
-
-        // Parse control mappings from the controls CSV
-        const controlMappings = SCFParser.parseControlMappings(controlsCSV);
-
-        if (controlMappings.length > 0) {
-          // Get list of valid control IDs that were actually imported
-          const validControlIds = new Set(parseResult.controls.map((c) => c.id));
-
-          // Filter mappings to only include valid controls
-          const validMappings = controlMappings.filter((mapping) => {
-            if (!validControlIds.has(mapping.controlId)) {
-              console.warn(`Skipping mapping for non-existent control: ${mapping.controlId}`);
-              return false;
-            }
-            return true;
-          });
-
-          log.info("Filtered mappings", {
-            total: controlMappings.length,
-            valid: validMappings.length,
-          });
-
-          if (validMappings.length === 0) {
-            log.info("No valid control mappings to process");
-          } else {
-            // Group mappings by framework to create framework records efficiently
-            const frameworksMap = new Map<string, { name: string; version?: string }>();
-
-            validMappings.forEach((mapping) => {
-              const frameworkKey = `${mapping.frameworkName}_${
-                mapping.frameworkVersion || "default"
-              }`;
-              if (!frameworksMap.has(frameworkKey)) {
-                frameworksMap.set(frameworkKey, {
-                  name: mapping.frameworkName,
-                  version: mapping.frameworkVersion,
-                });
-              }
-            });
-            // Create framework records
-            const frameworksData = Array.from(frameworksMap.values()).map((fw) => ({
-              framework_name: fw.name,
-              framework_version: fw.version,
-              mapping_type: "direct" as const,
-              total_mappings: validMappings.filter(
-                (m) => m.frameworkName === fw.name && m.frameworkVersion === fw.version
-              ).length,
-              scf_version: parseResult.summary.version,
-              import_id: importId,
-            }));
-
-            const { data: frameworkRecords, error: frameworksError } = await supabaseAdmin
-              .from("scf_frameworks")
-              .insert(frameworksData)
-              .select();
-
-            if (frameworksError) {
-              console.error("Failed to create framework records:", frameworksError);
-              throw new Error(`Failed to create framework records: ${frameworksError.message}`);
-            }
-
-            // Create a lookup map for framework IDs
-            const frameworkIdMap = new Map<string, string>();
-            frameworkRecords?.forEach((fw) => {
-              const key = `${fw.framework_name}_${fw.framework_version || "default"}`;
-              frameworkIdMap.set(key, fw.id);
-            });
-
-            // Create control mapping records
-            const mappingsData = validMappings
-              .map((mapping) => {
-                const frameworkKey = `${mapping.frameworkName}_${
-                  mapping.frameworkVersion || "default"
-                }`;
-                const frameworkId = frameworkIdMap.get(frameworkKey);
-
-                if (!frameworkId) {
-                  console.warn(`Framework ID not found for ${frameworkKey}`);
-                  return null;
-                }
-
-                return {
-                  control_id: mapping.controlId,
-                  framework_id: frameworkId,
-                  framework_control_id: mapping.frameworkControlId,
-                  mapping_type: mapping.mappingType,
-                  confidence_score: 1.0,
-                };
-              })
-              .filter(Boolean);
-
-            log.info("Inserting control mappings", { count: mappingsData.length });
-
-            // Insert mappings in batches to avoid overwhelming the database
-            const batchSize = 1264;
-            for (let i = 0; i < mappingsData.length; i += batchSize) {
-              const batch = mappingsData.slice(i, i + batchSize);
-
-              const { error: mappingsError } = await supabaseAdmin
-                .from("scf_control_mappings")
-                .insert(batch);
-
-              if (mappingsError) {
-                console.error(
-                  `Failed to insert mapping batch ${i / batchSize + 1}:`,
-                  mappingsError
-                );
-                throw new Error(`Failed to insert control mappings: ${mappingsError.message}`);
-              }
-            }
-
-            log.info("Successfully imported control mappings", { count: mappingsData.length });
-          }
-        }
-      }
-
-      // Update import status to completed
-      await supabaseAdmin
-        .from("scf_imports")
-        .update({
-          import_status: "completed",
-          completed_at: new Date().toISOString(),
-        })
-        .eq("id", importId);
+      const summary = await writeParsedSCF(supabaseAdmin, parseResult, controlsCSV, importId);
 
       return NextResponse.json({
         success: true,
         importId,
-        summary: parseResult.summary,
-        errors: parseResult.errors,
-        warnings: parseResult.warnings,
+        summary,
       });
     } catch (error) {
-      // Update import status to failed
+      log.error("Writer failed", { importId, error });
       await supabaseAdmin
         .from("scf_imports")
         .update({
@@ -382,7 +109,6 @@ export async function POST(request: NextRequest) {
           errors: [...parseResult.errors, error instanceof Error ? error.message : "Unknown error"],
         })
         .eq("id", importId);
-
       throw error;
     }
   } catch (error) {
