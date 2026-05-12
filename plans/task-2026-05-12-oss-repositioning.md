@@ -115,3 +115,4 @@ See `docs/superpowers/plans/2026-05-12-oss-repositioning.md` for the verbatim pe
 - 2026-05-12: Renamed stale upload.spec.ts test name from "...how-it-works anchor" to "...docs anchor".
 - 2026-05-12: Rewrote landing page to five-section layout with GitHub CTA and 'Built in the open' block.
 - 2026-05-12: fix(a11y): add sr-only new-tab indicator to external GitHub links
+- 2026-05-12 Task 4: slim top navigation; drop marketing links, add Try + GitHub

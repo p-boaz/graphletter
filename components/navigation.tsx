@@ -72,12 +72,8 @@ export function Navigation() {
     await supabase.auth.signOut();
   };
 
-  const navigationItems = [
-    { href: "/frameworks", label: "Frameworks" },
-    { href: "/how-it-works", label: "How It Works" },
-    { href: "/try-it-out", label: "Try It Out" },
-    { href: "/research", label: "Research" },
-  ];
+  const navigationItems = [{ href: "/try", label: "Try" }];
+  const GITHUB_URL = "https://github.com/p-boaz/graphletter";
 
   return (
     <header
@@ -115,6 +111,16 @@ export function Navigation() {
                 {item.label}
               </Link>
             ))}
+            <a
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="nav-github"
+              className="ft-nav-link text-base outline-none focus-visible:ring-2 focus-visible:ring-ft-pink focus-visible:ring-offset-2"
+            >
+              GitHub
+              <span className="sr-only"> (opens in new tab)</span>
+            </a>
           </nav>
 
           {/* User Menu */}
@@ -201,6 +207,17 @@ export function Navigation() {
                       {item.label}
                     </Link>
                   ))}
+                  <a
+                    href={GITHUB_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="nav-mobile-github"
+                    className="ft-nav-link text-lg outline-none focus-visible:ring-2 focus-visible:ring-ft-pink focus-visible:ring-offset-2"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    GitHub
+                    <span className="sr-only"> (opens in new tab)</span>
+                  </a>
                   <div className="mt-6 flex flex-col space-y-3 border-slate-200 border-t pt-6">
                     <Link
                       href="/auth"
