@@ -14,6 +14,7 @@ RETURNS TABLE (
 LANGUAGE sql
 STABLE
 SECURITY INVOKER
+SET search_path = pg_catalog, public
 AS $$
   SELECT
     kcu.table_name::text          AS referring_table,

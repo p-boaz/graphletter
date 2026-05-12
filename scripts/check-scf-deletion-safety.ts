@@ -12,7 +12,7 @@
 //
 // Read-only against the DB; safe to run against prod.
 
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, renameSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { VersionDiff } from "./diff-scf-versions";
@@ -88,29 +88,89 @@ export async function checkDeletionSafety(
 
   const removed: RemovedIDReport[] = [];
 
+  // Split an array into groups of at most `size` elements.
+  function chunk<T>(arr: T[], size: number): T[][] {
+    const out: T[][] = [];
+    for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+    return out;
+  }
+
+  // Fetch every row where fk.referring_column is IN removedIds, paginating
+  // through PostgREST's page size (default 1000) to avoid silent count caps.
+  // Returns a map from id → tally of referring rows.
+  //
+  // Type note: the Supabase query builder's generic return types are too complex
+  // for a narrow cast here; we reach through via `unknown` and validate at
+  // runtime via the error field.
+  async function fetchTallies(
+    fk: FKMetadataRow,
+    removedIds: string[]
+  ): Promise<Map<string, number>> {
+    const tallies = new Map<string, number>();
+    const PAGE = 1000; // conservative page size matching PostgREST default max_rows
+    const IN_CHUNK = 1000; // max IDs per IN clause to stay within URL length limits
+
+    type RowResult = { data: Record<string, unknown>[] | null; error: { message: string } | null };
+
+    for (const idChunk of chunk(removedIds, IN_CHUNK)) {
+      let offset = 0;
+      while (true) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const builder: any = supabase.from(fk.referring_table).select(fk.referring_column);
+
+        // Apply .in() filter then .range() for pagination.
+        // Using `any` here because PostgREST builder generics don't expose
+        // .in() / .range() in a way that's compatible with the narrow mock type.
+        const { data, error }: RowResult = await builder
+          .in(fk.referring_column, idChunk)
+          .range(offset, offset + PAGE - 1);
+
+        if (error) {
+          throw new Error(
+            `Failed to fetch inbound refs for ${fk.referring_table}.${fk.referring_column}: ${error.message}`
+          );
+        }
+
+        const rows = data ?? [];
+        for (const row of rows) {
+          const id = row[fk.referring_column] as string;
+          tallies.set(id, (tallies.get(id) ?? 0) + 1);
+        }
+
+        // Fewer rows than a full page means we've consumed all results.
+        if (rows.length < PAGE) break;
+        offset += PAGE;
+      }
+    }
+
+    return tallies;
+  }
+
   for (const [scfTable, td] of Object.entries(diff.tables)) {
     if (td.removed.length === 0) continue;
     const fks = fksByReferencedTable.get(scfTable) ?? [];
+    const removedIds = td.removed;
 
-    for (const id of td.removed) {
+    // Batch: one query per FK (across ALL removed IDs), not one per removed ID.
+    // For large removed sets (>1000), idChunks are processed inside fetchTallies.
+    const countsByFK = new Map<string, Map<string, number>>();
+    for (const fk of fks) {
+      const tallies = await fetchTallies(fk, removedIds);
+      countsByFK.set(`${fk.referring_table}.${fk.referring_column}`, tallies);
+    }
+
+    for (const id of removedIds) {
       const inboundReferences: InboundReference[] = [];
 
       for (const fk of fks) {
-        const { count, error } = await supabase
-          .from(fk.referring_table)
-          .select("*", { count: "exact", head: true })
-          .eq(fk.referring_column, id);
-        if (error) {
-          throw new Error(
-            `Failed counting ${fk.referring_table}.${fk.referring_column}=${id}: ${error.message}`
-          );
-        }
-        if ((count ?? 0) > 0) {
+        const key = `${fk.referring_table}.${fk.referring_column}`;
+        const rowCount = countsByFK.get(key)?.get(id) ?? 0;
+        if (rowCount > 0) {
           inboundReferences.push({
             referringTable: fk.referring_table,
             referringColumn: fk.referring_column,
             deleteRule: fk.delete_rule,
-            rowCount: count ?? 0,
+            rowCount,
           });
         }
       }
@@ -155,8 +215,9 @@ async function main() {
 
   mkdirSync("migrations-staging", { recursive: true });
   const outPath = "migrations-staging/scf-2026-1-1-deletion-safety.json";
+  const tmpPath = outPath + ".tmp";
   writeFileSync(
-    outPath,
+    tmpPath,
     JSON.stringify(
       {
         generatedAt: new Date().toISOString(),
@@ -168,6 +229,7 @@ async function main() {
       2
     ) + "\n"
   );
+  renameSync(tmpPath, outPath);
 
   console.log(`safe-to-delete:    ${report.summary.safeToDelete}`);
   console.log(`safe-with-orphans: ${report.summary.safeWithOrphans}`);
