@@ -118,3 +118,4 @@ See `docs/superpowers/plans/2026-05-12-oss-repositioning.md` for the verbatim pe
 - 2026-05-12 Task 4: slim top navigation; drop marketing links, add Try + GitHub
 
 - 2026-05-12 Task 4 fix: hoist NAVIGATION_ITEMS and GITHUB_URL to module scope
+- 2026-05-12 Task 5: lean light footer; drop Resources/Project/Contact columns and Status link; clean up obsolete footer + nav-active assertions in playwright tests

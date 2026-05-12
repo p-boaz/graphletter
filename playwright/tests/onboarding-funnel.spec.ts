@@ -18,10 +18,13 @@ test.describe("landing hero", () => {
     await expect(closer.getByRole("link", { name: /try it/i })).toHaveAttribute("href", "/try");
   });
 
-  test("footer exposes Resources column with Docs / Privacy / Terms / Status", async ({ page }) => {
+  test("footer shows the lean link row", async ({ page }) => {
     await page.goto("/");
-    const resources = page.getByRole("contentinfo").getByRole("heading", { name: /Resources/i });
-    await expect(resources).toBeVisible();
+    const footer = page.getByRole("contentinfo");
+    await expect(footer.getByRole("link", { name: "Frameworks" })).toBeVisible();
+    await expect(footer.getByRole("link", { name: "Research" })).toBeVisible();
+    await expect(footer.getByRole("link", { name: "GitHub" })).toBeVisible();
+    await expect(footer.getByRole("link", { name: /hello@graphletter\.com/ })).toBeVisible();
   });
 });
 
