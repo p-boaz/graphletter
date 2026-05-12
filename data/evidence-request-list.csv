@@ -1,0 +1,1874 @@
+#,ERL #,Area of Focus,Documentation Artifact,Artifact Description,SCF Control Mappings,"Relevant
+CMMC 2.0 L2 Control"
+1,E-GOV-01,Cybersecurity & Data Protection Management,Charter - Cybersecurity Program,Documented evidence of a charter to establish and resource the organization's cybersecurity program.,GOV-01,
+2,E-GOV-02,Cybersecurity & Data Protection Management,Charter - Data Privacy Program,Documented evidence of a charter to establish and resource the organization's data privacy program.,"GOV-01
+PRI-01",
+3,E-GOV-03,Cybersecurity & Data Protection Management,Charter - Cybersecurity Steering Committee,"Documented evidence of an executive steering committee, or advisory board, that is formed to perform oversight of cybersecurity management decisions and is comprised of key cybersecurity, technology, risk, privacy and business executives.","GOV-01.1
+GOV-01.2",
+4,E-GOV-04,Cybersecurity & Data Protection Management,Charter - Data Privacy Steering Committee,"Documented evidence of an executive steering committee, or advisory board, that is formed to perform oversight of privacy management decisions and is comprised of key cybersecurity, technology, risk, privacy and business executives.","GOV-01.2
+CPL-02",
+5,E-GOV-05,Cybersecurity & Data Protection Management,Charter - Audit Committee,"Documented evidence of an executive steering committee, or advisory board, that is formed to perform oversight of internal and external audit management decisions and is comprised of key cybersecurity, technology, risk, privacy and business executives.","GOV-01.2
+CPL-02",
+6,E-GOV-06,Cybersecurity & Data Protection Management,Charter - Risk Committee,"Documented evidence of an executive steering committee, or advisory board, that is formed to perform oversight of risk management decisions and is comprised of key cybersecurity, technology, risk, privacy and business executives.","GOV-01.2
+CPL-02",
+7,E-GOV-07,Cybersecurity & Data Protection Management,Charter - Data Management Board (DMB),Documented evidence of the organization's Data Management Board (DMB) charter and mission.,GOV-01.2,
+8,E-GOV-08,Cybersecurity & Data Protection Management,Cybersecurity & Data Protection Policies,Documented evidence of an appropriately-scoped cybersecurity & data protection policies. Policies are high-level statements of management intent from an organization's executive leadership that are designed to influence decisions and guide the organization to achieve the desired outcomes. Policies are enforced by standards and further implemented by procedures to establish actionable and accountable requirements.,"GOV-02
+PRI-01","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L1-3.1.20
+AC.L1-3.1.22
+AC.L2-3.1.7
+AC.L2-3.1.9
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.21
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.5
+AC.L2-3.1.6
+AC.L2-3.1.8
+AT.L2-3.2.1
+AT.L2-3.2.2
+AT.L2-3.2.3
+AT.L2-3.2.3
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.8
+AU.L2-3.3.9
+AU.L2-3.3.9
+CA.L2-3.12.1
+CA.L2-3.12.3
+CA.L2-3.12.4
+CM.L2-3.4.1
+CM.L2-3.4.4
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.8
+IA.L2-3.5.9
+IA.L2-3.5.9
+IR.L2-3.6.1
+IR.L2-3.6.1
+IR.L2-3.6.2
+MA.L2-3.7.2
+MA.L2-3.7.4
+MP.L1-3.8.3
+MP.L2-3.8.1
+MP.L2-3.8.1
+MP.L2-3.8.1
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.7
+MP.L2-3.8.8
+MP.L2-3.8.8
+PE.L1-3.10.3
+PE.L1-3.10.4
+PE.L1-3.10.5
+PS.L2-3.9.1
+PS.L2-3.9.2
+RA.L2-3.11.2
+SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.12
+SC.L2-3.13.13
+SC.L2-3.13.13
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.2
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.1
+SI.L1-3.14.4
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L1-3.14.5
+SI.L2-3.14.3
+SI.L2-3.14.6
+SI.L2-3.14.6
+SI.L2-3.14.7"
+9,E-GOV-09,Cybersecurity & Data Protection Management,Cybersecurity & Data Protection Standards,"Documented evidence of an appropriately-scoped cybersecurity & data protection standards. Standards are mandatory requirements regarding processes, actions and configurations. Standards are intended to be granular and prescriptive to ensure Technology Assets, Applications and/or Services (TAAS) are designed and operated to include appropriate cybersecurity & data protection protections",GOV-02,"AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L1-3.1.20
+AC.L1-3.1.22
+AC.L2-3.1.7
+AC.L2-3.1.9
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.21
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.5
+AC.L2-3.1.6
+AC.L2-3.1.8
+AT.L2-3.2.1
+AT.L2-3.2.2
+AT.L2-3.2.3
+AT.L2-3.2.3
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.8
+AU.L2-3.3.9
+AU.L2-3.3.9
+CA.L2-3.12.1
+CA.L2-3.12.3
+CA.L2-3.12.4
+CM.L2-3.4.1
+CM.L2-3.4.4
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.8
+IA.L2-3.5.9
+IA.L2-3.5.9
+IR.L2-3.6.1
+IR.L2-3.6.1
+IR.L2-3.6.2
+MA.L2-3.7.2
+MA.L2-3.7.4
+MP.L1-3.8.3
+MP.L2-3.8.1
+MP.L2-3.8.1
+MP.L2-3.8.1
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.7
+MP.L2-3.8.8
+MP.L2-3.8.8
+PE.L1-3.10.3
+PE.L1-3.10.4
+PE.L1-3.10.5
+PS.L2-3.9.1
+PS.L2-3.9.2
+RA.L2-3.11.2
+SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.12
+SC.L2-3.13.13
+SC.L2-3.13.13
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.2
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.1
+SI.L1-3.14.4
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L1-3.14.5
+SI.L2-3.14.3
+SI.L2-3.14.6
+SI.L2-3.14.6
+SI.L2-3.14.7"
+10,E-GOV-10,Cybersecurity & Data Protection Management,Cybersecurity & Data Protection Controls,"Documented evidence of an appropriately-scoped cybersecurity & data protection controls. Controls are technical, administrative or physical safeguards. Controls are the nexus used to manage risks through preventing, detecting or lessening the ability of a particular threat from negatively impacting business processes. Controls directly map to standards, since control testing is designed to measure specific aspects of how standards are actually implemented.","GOV-09
+CPL-01
+CPL-01.2
+BCD-13
+BCD-13.1
+SEA-01.1
+SEA-01.2",
+11,E-GOV-11,Cybersecurity & Data Protection Management,Cybersecurity & Data Protection Procedures,"Documented evidence of an appropriate appropriately-scoped cybersecurity & data protection procedures. Procedures are a documented set of steps necessary to perform a specific task or process in conformance with an applicable standard. Procedures help address the question of how the organization actually operationalizes a policy, standard or control. The result of a procedure is intended to satisfy a specific control. Procedures are also commonly referred to as “control activities.”","GOV-02
+OPS-01.1
+BCD-13
+BCD-13.1","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L1-3.1.20
+AC.L1-3.1.22
+AC.L2-3.1.10
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.21
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.5
+AC.L2-3.1.5
+AC.L2-3.1.6
+AC.L2-3.1.7
+AC.L2-3.1.8
+AC.L2-3.1.9
+AT.L2-3.2.1
+AT.L2-3.2.2
+AT.L2-3.2.3
+AU.L2-3.3.1
+AU.L2-3.3.1
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+CA.L2-3.12.1
+CA.L2-3.12.1
+CA.L2-3.12.3
+CA.L2-3.12.3
+CA.L2-3.12.4
+CA.L2-3.12.4
+CM.L2-3.4.1
+CM.L2-3.4.1
+CM.L2-3.4.4
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.9
+IR.L2-3.6.1
+IR.L2-3.6.1
+IR.L2-3.6.1
+IR.L2-3.6.2
+IR.L2-3.6.2
+MA.L2-3.7.2
+MA.L2-3.7.4
+MP.L1-3.8.3
+MP.L2-3.8.1
+MP.L2-3.8.1
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.8
+PE.L1-3.10.3
+PE.L1-3.10.4
+PE.L1-3.10.5
+PS.L2-3.9.1
+PS.L2-3.9.2
+RA.L2-3.11.2
+SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.13
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.2
+SC.L2-3.13.2
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.1
+SI.L1-3.14.1
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L2-3.14.3
+SI.L2-3.14.6
+SI.L2-3.14.6
+SI.L2-3.14.7"
+12,E-GOV-12,Cybersecurity & Data Protection Management,Cybersecurity & Data Protection Policies & Standards Reviews,Documented evidence of a periodic review process for the organization's cybersecurity & data protection policies and standards to identify necessary updates.,"GOV-03
+SEA-01.1
+SEA-01.2",
+13,E-GOV-13,Cybersecurity & Data Protection Management,Measures of Performance (Metrics),"Documented evidence of formal measure of performance that are used to track the health of the cybersecurity & data protection program (e.g., metrics, KPIs, KRIs).","GOV-01.2
+GOV-05
+GOV-05.2
+CPL-02",
+14,E-GOV-14,Cybersecurity & Data Protection Management,Materiality Threshold Definition,Documented evidence of criteria to define the organization's materiality threshold.,GOV-16,
+15,E-GOV-15,Cybersecurity & Data Protection Management,Material Risks,Documented evidence of specific risks that are categorized as material risks.,"GOV-16.1
+RSK-13
+RSK-13.2",
+16,E-GOV-16,Cybersecurity & Data Protection Management,Material Threats,Documented evidence of specific threats that are categorized as material threats.,GOV-16.2,
+17,E-GOV-17,Cybersecurity & Data Protection Management,Cybersecurity & Data Privacy Status Reports,"Documented evidence of status reports of the organization's security, compliance and/or resilience program that were submitted to applicable statutory and/or regulatory authorities.",GOV-17,
+18,E-GOV-18,Cybersecurity & Data Protection Management,Exception Management,"Documented evidence of authorized exceptions to standards (e.g., configurations, practices, etc.)","CRY-01.1
+GOV-02.1",
+19,E-GOV-19,Cybersecurity & Data Protection Management,Operationalizing Cybersecurity & Data Protection Practices,"Documented evidence of personnel management actions to compel data and/or process owners to operationalize cybersecurity and data protection practices for each Technology Asset, Application and/or Service (TAAS) under their control.",GOV-15,
+20,E-GOV-20,Cybersecurity & Data Protection Management,Compensating Controls,"Documented evidence of compensating controls (e.g., countermeasure to reduce risk associated with control deficiencies).","CFG-02.9
+RSK-06.2",
+21,E-AAT-01,Artificial Intelligence (AI) & Autonomous Technologies Governance,Artificial Intelligence and Autonomous Technologies (AAT) Governance Program,Documented evidence of a governance program for Artificial Intelligence and Autonomous Technologies (AAT).,AAT-01,
+22,E-AAT-02,Artificial Intelligence (AI) & Autonomous Technologies Governance,Compliance Obligations for Artificial Intelligence and Autonomous Technologies (AAT).,"Documented evidence of applicable statutory, regulatory and contractual cybersecurity & data privacy obligations for Artificial Intelligence and Autonomous Technologies (AAT).",AAT-01.1,
+23,E-AAT-03,Artificial Intelligence (AI) & Autonomous Technologies Governance,Secure Development Practices for Artificial Intelligence and Autonomous Technologies (AAT).,Documented evidence of industry-recognized secure practices to develop and maintain trustworthy Artificial Intelligence and Autonomous Technologies (AAT).,AAT-01.2,
+24,E-AAT-04,Artificial Intelligence (AI) & Autonomous Technologies Governance,Business Case for Artificial Intelligence and Autonomous Technologies (AAT),Documented evidence of a business case for Artificial Intelligence and Autonomous Technologies (AAT).,AAT-04,
+25,E-AAT-05,Artificial Intelligence (AI) & Autonomous Technologies Governance,Risk Management Decision Makers for Artificial Intelligence and Autonomous Technologies (AAT),"Documented evidence of diversity of demographics, disciplines, experience, expertise and backgrounds for mapping, measuring and managing Artificial Intelligence (AI) and Autonomous Technologies (AAT)-related risks.",AAT-07,
+26,E-AAT-06,Artificial Intelligence (AI) & Autonomous Technologies Governance,Impact Assessments for Artificial Intelligence and Autonomous Technologies (AAT),"Documented evidence of impact assessments of proposed Artificial Intelligence (AI) and Autonomous Technologies (AAT) on individuals, groups, communities, organizations and society.","AAT-07.1
+AAT-07.2",
+27,E-AAT-07,Artificial Intelligence (AI) & Autonomous Technologies Governance,"Artificial Intelligence Test, Evaluation, Validation & Verification (AI TEVV) Practices","Documented evidence of Artificial Intelligence Test, Evaluation, Validation & Verification (AI TEVV) practices.",AAT-10,
+28,E-AAT-08,Artificial Intelligence (AI) & Autonomous Technologies Governance,Robust Stakeholder Involvement for Artificial Intelligence and Autonomous Technologies (AAT),Documented evidence of robust stakeholder involvement on Artificial Intelligence (AI) and Autonomous Technologies (AAT) initiatives.,AAT-11,
+29,E-AAT-09,Artificial Intelligence (AI) & Autonomous Technologies Governance,Intellectual Property (IP) Infringement Assessment of Artificial Intelligence and Autonomous Technologies (AAT),Documented evidence of a legal opinion on the potential for Intellectual Property (IP) infringement by the organization's Artificial Intelligence (AI) and Autonomous Technologies (AAT) initiatives.,AAT-12,
+30,E-AAT-10,Artificial Intelligence (AI) & Autonomous Technologies Governance,Source Data Identification for Artificial Intelligence and Autonomous Technologies (AAT),Documented evidence of data sources utilized in the training and/or operation of Artificial Intelligence and Autonomous Technologies (AAT).,AAT-12.1,
+31,E-AST-01,Asset Management,IT Asset Management (ITAM),"Documented evidence of an IT Asset Management (ITAM) program that addresses the due diligence and due care activities associated with maintaining both secure, compliance and resilient Technology Assets, Applications and/or Services (TAAS).","AST-01
+AST-03
+AST-03.1
+AST-10
+CFG-05
+END-01
+IAC-01
+IAC-02.2
+MON-03
+MON-16.4",CM.L2-3.4.9
+32,E-AST-02,Asset Management,Asset Scoping Guidance,"Documented evidence of an asset scoping guidance. This is program-level documentation in the form of a runbook, playbook or a similar format provides guidance on defining in-scope Technology Assets, Applications, Services and/or Data (TAASD) (including third-parties).","AST-04.1
+AST-04.2
+AST-04.3
+CPL-01.2
+IAO-01.1",
+33,E-AST-03,Asset Management,Asset Disposal Evidence,"Documented evidence of asset disposal/destruction (e.g., asset tracking by serial # for shredding, degaussing, etc.).","AST-09
+DCH-08
+DCH-09
+DCH-09.1",
+34,E-AST-04,Asset Management,Asset Inventories - Hardware,Documented evidence of an inventory of the organization's technology hardware assets. ,AST-02,"CM.L2-3.4.1
+SI.L2-3.14.6
+SI.L2-3.14.7"
+35,E-AST-05,Asset Management,Asset Inventories - Software,Documented evidence of an inventory of the organization's software assets. ,AST-02,"CM.L2-3.4.1
+SI.L2-3.14.6
+SI.L2-3.14.7"
+36,E-AST-06,Asset Management,Asset Inventories - Cloud Service Provider (CSP),"Documented evidence of an inventory of the organization's cloud-based services (e.g., SaaS, IaaS, PaaS, etc.). ","CLD-01
+CLD-09
+TPM-01.1",CM.L2-3.4.1
+37,E-AST-07,Asset Management,Cyber-Physical Systems (CPS),Documented evidence of an inventory of the organization's physical assets that process functions based on software and networks.,"AST-02
+EMB-01","PE.L1-3.10.3
+PE.L1-3.10.4
+PE.L1-3.10.5"
+38,E-AST-08,Asset Management,Asset Inventories - Sensitive / Regulated Data,"Documented evidence of an inventory of the organization's sensitive/regulated data (including systems where sensitive/regulated data is stored, processed and/or transmitted) that contains sufficient information to determine the potential impact in the event of a data loss incident.","CLD-10
+DCH-01.3
+DCH-06.2
+BCD-11.2
+PRI-05.5",
+39,E-AST-09,Asset Management,Computer Lifecycle Plan (CLP),Documented evidence of a Computer Lifecycle Plan (CLP) that describes how the life of technology assets is managed.,"SEA-07
+SEA-07.1
+TDA-17",
+40,E-AST-10,Asset Management,Prohibited Equipment List (PEM),Documented evidence of equipment identified by Federal Acquisition Regulation (FAR) section 889 prohibitions for certain telecommunications equipment.,AST-17,
+41,E-AST-11,Asset Management,Data Retention Program,Documented evidence of a formal data retention program that governs the retention and destruction of data types.,"DCH-18
+MON-10
+PRI-05",
+42,E-AST-12,Asset Management,Secure Baseline Configurations Reviews,"Documented evidence of a review process to ensure Secure Baseline Configurations (SBC) are current and applicable (e.g., system configuration settings and associated documentation).","CFG-02
+CFG-02.1
+CFG-02.5
+CFG-03
+NET-04
+NET-04.1
+NET-04.6",CM.L2-3.4.8
+43,E-AST-13,Asset Management,Secure Baseline Configurations - Cloud-Based Services,Documented evidence of secure baseline configurations for all deployed types of cloud-based services or applications.,"CFG-02
+CFG-03
+CFG-02.5","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L1-3.1.20
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.21
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.5
+AC.L2-3.1.6
+AC.L2-3.1.7
+AC.L2-3.1.8
+AC.L2-3.1.9
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.9
+CM.L2-3.4.1
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.9
+MP.L1-3.8.3
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.8
+SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L2-3.14.6
+SI.L2-3.14.7"
+44,E-AST-14,Asset Management,Secure Baseline Configurations - Databases,Documented evidence of secure baseline configurations for all deployed types of databases.,"CFG-02
+CFG-03
+CFG-02.5","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L1-3.1.20
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.21
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.5
+AC.L2-3.1.6
+AC.L2-3.1.7
+AC.L2-3.1.8
+AC.L2-3.1.9
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.9
+CM.L2-3.4.1
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.9
+MP.L1-3.8.3
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.8
+SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L2-3.14.6
+SI.L2-3.14.7"
+45,E-AST-15,Asset Management,Secure Baseline Configurations - Embedded Technologies,Documented evidence of secure baseline configurations for all deployed types of embedded technologies.,"CFG-02
+CFG-03
+CFG-02.5","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L1-3.1.20
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.21
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.5
+AC.L2-3.1.6
+AC.L2-3.1.7
+AC.L2-3.1.8
+AC.L2-3.1.9
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.9
+CM.L2-3.4.1
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.9
+MP.L1-3.8.3
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.8
+SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L2-3.14.6
+SI.L2-3.14.7"
+46,E-AST-16,Asset Management,Secure Baseline Configurations - Major Applications,Documented evidence of secure baseline configurations for all deployed types of major applications.,"CFG-02
+CFG-03
+CFG-02.5","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L1-3.1.20
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.21
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.5
+AC.L2-3.1.6
+AC.L2-3.1.7
+AC.L2-3.1.8
+AC.L2-3.1.9
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.9
+CM.L2-3.4.1
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.9
+MP.L1-3.8.3
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.8
+SC.L1-3.13.1
+SC.L2-3.13.13
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L2-3.14.6
+SI.L2-3.14.7"
+47,E-AST-17,Asset Management,Secure Baseline Configurations - Minor Applications,Documented evidence of secure baseline configurations for all deployed types of minor applications.,"CFG-02
+CFG-03
+CFG-02.5","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L1-3.1.20
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.21
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.5
+AC.L2-3.1.6
+AC.L2-3.1.7
+AC.L2-3.1.8
+AC.L2-3.1.9
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.9
+CM.L2-3.4.1
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.9
+MP.L1-3.8.3
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.8
+SC.L1-3.13.1
+SC.L2-3.13.13
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L2-3.14.6
+SI.L2-3.14.7"
+48,E-AST-18,Asset Management,Secure Baseline Configurations - Mobile Devices,Documented evidence of secure baseline configurations for all deployed types of mobile devices.,"CFG-02
+CFG-03
+CFG-02.5","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L1-3.1.20
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.21
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.5
+AC.L2-3.1.6
+AC.L2-3.1.7
+AC.L2-3.1.8
+AC.L2-3.1.9
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.9
+CM.L2-3.4.1
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.9
+MP.L1-3.8.3
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.8
+SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.13
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L2-3.14.6
+SI.L2-3.14.7"
+49,E-AST-19,Asset Management,Secure Baseline Configurations - Network Devices,Documented evidence of secure baseline configurations for all deployed types of network devices.,"CFG-02
+CFG-02.5
+CFG-03
+NET-04
+NET-04.1","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L1-3.1.20
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.21
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.5
+AC.L2-3.1.6
+AC.L2-3.1.7
+AC.L2-3.1.8
+AC.L2-3.1.9
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.9
+CM.L2-3.4.1
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.9
+MP.L1-3.8.3
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.8
+SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L2-3.14.6
+SI.L2-3.14.7"
+50,E-AST-20,Asset Management,Secure Baseline Configurations - Server Class Systems,Documented evidence of secure baseline configurations for all deployed types of server-class operating systems.,"CFG-02
+CFG-02.5
+CFG-03
+CFG-03.2","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L1-3.1.20
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.21
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.5
+AC.L2-3.1.6
+AC.L2-3.1.7
+AC.L2-3.1.8
+AC.L2-3.1.9
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.9
+CM.L2-3.4.1
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.9
+MP.L1-3.8.3
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.8
+SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.13
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L2-3.14.6
+SI.L2-3.14.7"
+51,E-AST-21,Asset Management,Secure Baseline Configurations - Workstation Class Systems,Documented evidence of secure baseline configurations for all deployed types of workstation-class operating systems.,"CFG-02
+CFG-02.5
+CFG-03
+CFG-03.2
+CFG-05","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L1-3.1.20
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.21
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.5
+AC.L2-3.1.6
+AC.L2-3.1.7
+AC.L2-3.1.8
+AC.L2-3.1.9
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.9
+CM.L2-3.4.1
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.9
+MP.L1-3.8.3
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.8
+SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L2-3.14.6
+SI.L2-3.14.7"
+52,E-AST-22,Asset Management,Provenance,"Documented evidence that tracks the origin, development, ownership, location and changes to Technology Assets, Applications, Services and/or Data (TAASD).",AST-03.2,
+53,E-AST-23,Asset Management,Geolocation Inventory,"Documented evidence of designated internal and third-party facilities where organizational data is stored, transmitted and/or processed.","BCD-02.4
+CLD-09
+DCH-19
+DCH-24",
+54,E-AST-24,Asset Management,"Technology Assets, Applications, and/or Services (TAAS) Categorization","Documented evidence of a methodology to categorize Technology Assets, Applications, and/or Services (TAAS) (e.g., criticality and data classification considerations)","AST-31
+AST-31.1",
+55,E-AST-25,Asset Management,Logical Tamper Detection Tool,"Documented evidence of software that is implemented and configured to detect logical tampering (e.g., configurations).",AST-15,
+56,E-AST-26,Asset Management,Roots of Trust Evidence,Documented evidence of product supplier data that can be used as a “roots of trust” basis for integrity verification.,AST-18,
+57,E-AST-27,Asset Management,Configuration Management,Documented evidence of standardized configuration management practices.,CFG-01,"AC.L2-3.1.12
+AC.L2-3.1.16
+AC.L2-3.1.18
+CM.L2-3.4.1
+CM.L2-3.4.4
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9"
+58,E-AST-28,Asset Management,Software Licenses,Documented evidence of software license inventories.,AST-02,
+59,E-AST-29,Asset Management,Authorized To Connect,"Documented evidence of a list of devices and systems authorized to connect to organizational Technology Asset, Application and/or Service (TAAS).",AST-01.5,AC.L1-3.1.1
+60,E-AST-30,Asset Management,System Events To Be Logged,Documented evidence of the justification for certain system events to be logged.,MON-01.16,AU.L2-3.3.1
+61,E-AST-31,Asset Management,Allowlist / Denylist,Documented evidence of software applications that are explicitly allowed (allowlist / whitelist) and/or blocked (denylist / blacklist).,CFG-03.3,CM.L2-3.4.8
+62,E-AST-32,Asset Management,Mobile Code,Documented evidence of mobile code that is explicitly allowed (allowlist / whitelist) and/or blocked (denylist / blacklist).,END-10,SC.L2-3.13.13
+63,E-AST-33,Asset Management,Tailored Baselines,"Documented evidence exists for tailored baseline configurations to address unique business and/or technical requirements (e.g., kiosk, hazardous environments, etc.).","AST-02.4
+CFG-02.5
+CFG-02.7
+CFG-02.9",
+64,E-BCM-01,Business Continuity,Continuity of Operations Plan (COOP),"Documented evidence of a Continuity of Operations Plan (COOP). This is program-level documentation in the form of a runbook, playbook or a similar format provides guidance on organizational practices that support existing policies and standards. This involves internal and external stakeholders for incident response, disaster recovery and business continuity support requirements.","BCD-01
+BCD-01.1
+BCD-01.2
+BCD-01.6
+BCD-01.7
+BCD-02.1
+SEA-01.2",IR.L2-3.6.1
+65,E-BCM-02,Business Continuity,Recovery Time Objectives (RTOs),Documented evidence of Recovery Time Objectives (RTOs) that guide Continuity of Operations Plan (COOP)-related operations.,BCD-01.4,
+66,E-BCM-03,Business Continuity,Recovery Point Objectives (RPOs),Documented evidence of Recovery Point Objectives (RPOs) that guide Continuity of Operations Plan (COOP)-related operations.,BCD-01.4,
+67,E-BCM-04,Business Continuity,COOP Root Cause Analysis (RCA),"Documented evidence of a Root Cause Analysis (RCA) from any Continuity of Operations Plan (COOP)-related training, testing or incident.",BCD-05,
+68,E-BCM-05,Business Continuity,COOP Updates,Documented evidence of a periodic review process for the organization's Continuity of Operations Plan (COOP) to identify necessary updates.,BCD-06,
+69,E-BCM-06,Business Continuity,COOP Testing,Documented evidence of a Continuity of Operations Plan (COOP)-related testing activity.,"BCD-03.1
+BCD-04",
+70,E-BCM-07,Business Continuity,COOP Training,Documented evidence of a Continuity of Operations Plan (COOP)-related training activity.,"BCD-03
+BCD-04",
+71,E-BCM-08,Business Continuity,COOP Criticality Analysis,Documented evidence of a Continuity of Operations Plan (COOP)-related criticality analysis.,"BCD-02
+TDA-06.1",
+72,E-BCM-09,Business Continuity,COOP Dependency Analysis,"Documented evidence of a Continuity of Operations Plan (COOP)-related dependency analysis for Technology Assets, Applications, Services and/or Data (TAASD) (including facilities and third-parties).","AST-01.1
+RSK-02
+RSK-02.1",
+73,E-BCM-10,Business Continuity,Backups,Documented evidence of a Continuity of Operations Plan (COOP)-related data backup scheme that demonstrates the methods of data backup (including protection measures) for all data types to ensure business continuity requirements.,"BCD-11
+BCD-11.1",
+74,E-BCM-11,Business Continuity,Backups - Local,Documented evidence of event logs for the on-site / local data backup solution.,"BCD-11
+BCD-11.2",
+75,E-BCM-12,Business Continuity,Backups - Remote,Documented evidence of event logs for the off-site / remote data backup solution.,"BCD-11
+BCD-11.2
+BCD-11.6",
+76,E-BCM-13,Business Continuity,Backups - Recovery Activities,Documented evidence of recovery activities (successful and failed).,"BCD-11
+BCD-11.1",
+77,E-BCM-14,Business Continuity,Recovery Operations Criteria,Documented evidence of specific criteria to activate Business Continuity / Disaster Recovery (BC/DR) plans.,BCD-01.5,
+78,E-BCM-15,Business Continuity,Restoration Events,"Documented evidence of system, application and/or data recovery events. This can include random testing of data backups to ensure recovery methods are viable.","BCD-11.5
+BCD-12",
+79,E-BCM-16,Business Continuity,Encrypted Backup Media,Documented evidence of backup media being encrypted.,BCD-11.4,
+80,E-BCM-17,Business Continuity,Designated Alternative Decision Makers,Documented evidence of personnel being assigned with decision-making authority if the primary decision maker is unable to communicate due to adverse conditions.,BCD-06.1,
+81,E-CAP-01,Capacity Management,Capacity Planning,Documented evidence of proactive capacity planning to meet expected and anticipated future technology-related capacity and/or performance requirements.,"CAP-01
+CAP-03",
+82,E-CAP-02,Capacity Management,Resource Prioritization,"Documented evidence of resource prioritization to maintain business performance requirements for critical Technology Assets, Applications, Services and/or Data (TAASD) (including facilities and third-parties).",CAP-02,
+83,E-CAP-03,Capacity Management,Technology Performance Monitoring,Documented evidence of performance monitoring for technology-related capacity and/or performance criteria.,CAP-04,
+84,E-CAP-04,Capacity Management,Dynamic Expansion Capabilities,"Documented evidence of dynamic expansion capabilities (e.g., elastic expansion) to meet capacity and/or performance requirements for critical Technology Assets, Applications and/or Services (TAAS).",CAP-05,
+85,E-CHG-01,Change Management,Business Impact Analysis (BIA),Documented evidence of a Business Impact Analysis (BIA) for proposed changes.,"RSK-08
+TDA-06.1",
+86,E-CHG-02,Change Management,Charter - Change Control Board (CCB),Documented evidence of the organization's Change Control Board (CCB) charter and mission to govern the organization's change control processes.,"CHG-01
+CHG-02
+CHG-02.1",
+87,E-CHG-03,Change Management,Change Control Board (CCB) Minutes,Documented evidence of Change Control Board (CCB) meeting minutes,CHG-02.2,"CM.L2-3.4.1
+CM.L2-3.4.4
+CM.L2-3.4.5
+CM.L2-3.4.8
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.5
+SI.L1-3.14.1"
+88,E-CHG-04,Change Management,Evidence of Cybersecurity / Data Privacy Reviews,"Documented evidence of Change Control Board (CCB) meeting-related security, compliance and/or resilience reviews for proposed change(s).","CHG-02.3
+CHG-03",
+89,E-CHG-05,Change Management,Change Control Records,"Documented evidence of change control records (including test results, when applicable).","CHG-02
+CHG-02.2","CM.L2-3.4.1
+CM.L2-3.4.4
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.5
+SI.L1-3.14.1"
+90,E-CHG-06,Change Management,Stakeholder Notification of Changes,Documented evidence of stakeholder notification communications for proposed changes.,CHG-05,
+91,E-CPL-01,Compliance,"Statutory, Regulatory & Contractual Obligations","Documented evidence of applicable statutory, regulatory and/or contractual obligations for cybersecurity & data privacy controls.","CPL-01
+MON-03",
+92,E-CPL-02,Compliance,Defined Compliance Scope (DCS),"Documented evidence of a formal scoping document that identifies applicable statutory, regulatory and/or contractual obligations for the organization. Defines the affected Lines of Business (LOB), internal / external stakeholders and facilities for the specific scope of compliance obligations.","AST-04.1
+AST-04.2
+AST-04.3
+CPL-01.2",
+93,E-CPL-03,Compliance,Shared Responsibility Matrix (SRM) / Controls Responsibility Matrix (CRM),"Documented evidence of a Controls Responsibility Matrix (CRM), or similar documentation, that identifies the stakeholder involved in executing assigned controls (e.g., Responsible, Accountable, Supportive, Consulted & Informed (RASCI) matrix).","AST-01.2
+AST-03
+CLD-06.1
+TPM-05.4",
+94,E-CPL-04,Compliance,Internal Audit (IA),Documented evidence of an Internal Audit (IA) capability.,CPL-02.1,
+95,E-CPL-05,Compliance,Internal Audit (IA) Findings,Documented evidence of a centrally-managed and prioritized repository Internal Audit (IA) findings.,"CPL-01.1
+CPL-03
+GOV-01.2",
+96,E-CPL-06,Compliance,Manufacturer Disclosure Statement for Medical Device Security (MDS2),Documented Manufacturer Disclosure Statement for Medical Device Security (MDS2) that communicates information about medical device cybersecurity & data privacy characteristics to current device owners and potential buyers. [note MDS2 is specific to medical device manufacturers],"TDA-01.1
+TDA-02.1
+TDA-02.5
+TDA-04
+TDA-04.1
+TPM-04
+TPM-04.2",
+97,E-CPL-07,Compliance,Control Assessments,Documented evidence of internal or third-party control assessments to provide governance oversight of cybersecurity & data privacy controls.,"CPL-02
+CPL-02.1
+CPL-03
+CPL-03.1",
+98,E-CPL-08,Compliance,Functional Review of Cybersecurity Controls,Documented evidence of control testing to ensure cybersecurity controls function as expected.,CPL-03.2,
+99,E-CPL-09,Compliance,Non-Compliance Oversight Reporting,Documented evidence of governance oversight reporting of non-compliance to the organization's executive leadership.,"CPL-02
+GOV-01.2",
+100,E-CPL-10,Compliance,Statement of Applicability (SOA),"Documented Statement of Applicability (SOA), or similar document, that scopes compliance-related activities.",CPL-12,
+101,E-CRY-01,Cryptographic Protections,Cryptographic Protections,Documented evidence of organization-approved cryptographic solutions and modules for both data at rest and in transit.,"CRY-01
+CRY-03
+CRY-04
+CRY-05
+CRY-09
+CRY-09.1
+CRY-09.2
+DCH-01
+DCH-01.2","AC.L2-3.1.13
+AC.L2-3.1.19
+SC.L2-3.13.10"
+102,E-CRY-02,Cryptographic Protections,Cryptographic Key Management,Documented evidence of cryptographic key management practices.,CRY-09,
+103,E-CRY-03,Cryptographic Protections,Certificate Monitoring,Documented evidence of certificate monitoring activities.,CRY-12,
+104,E-DCH-01,Data Protection,Data Classification Scheme,Documented evidence of an organization-specific data classification scheme.,"AST-04.1
+DCH-02",
+105,E-DCH-02,Data Protection,Data Handling Practices,"Documented evidence of an organization-specific data handling practices (e.g., guidance specific the data classification scheme).","AST-04.1
+DCH-01.1
+DCH-01.2
+DCH-01.4
+DCH-02
+DCH-06",
+106,E-DCH-03,Data Protection,Network Diagram - Global System View (GSV),"Documented evidence of a high-level network diagram that provides a conceptual, logical depiction of the network(s) to describe the interconnections of the systems/applications/services, including internal and external interfaces.","AST-04
+NET-02",
+107,E-DCH-04,Data Protection,Network Diagram - Low Level,"Documented evidence of a low-level network diagram that provides a detailed, logical depiction of assets on the network(s).","AST-04
+NET-02",
+108,E-DCH-05,Data Protection,Data Flow Diagram (DFD),"Documented evidence of a Data Flow Diagram (DFD) that accurately identifies where sensitive/regulated data is stored, transmitted and/or processed.","AST-02.8
+AST-04
+NET-02",
+109,E-DCH-06,Data Protection,Third-Party Inventories,"Documented evidence of an inventory of External Service Providers (ESP), contractors, vendors, etc. that directly or indirectly impact the organization's Technology Assets, Applications, Services and/or Data (TAASD).",TPM-01.1,
+110,E-DCH-07,Data Protection,Media Sanitization Documentation,Documented evidence of media sanitization actions.,"DCH-09
+DCH-09.1",MP.L1-3.8.3
+111,E-DCH-08,Data Protection,Authorization Documentation,Documented evidence of that identifies authorized users and processes acting on behalf of authorized users.,"CFG-08
+DCH-01.4","AC.L2-3.1.4
+AC.L2-3.1.5
+AU.L2-3.3.9"
+112,E-DCH-09,Data Protection,Assigned Responsibilities,Documented evidence of data stewardship being assigned and communicated to individuals entrusted with sensitive and/or regulated data.,"CRY-01
+DCH-01.1
+DCH-14",
+113,E-DCH-10,Data Protection,Structured & Unstructured Data Reviews,Documented evidence of a capability to review and/or scan data repositories (structured or unstructured) for instances of sensitive and/or regulated data.,DCH-06.3,
+114,E-DCH-11,Data Protection,Authorized Users To Post Publicly Accessible Content,Documented evidence of list of users authorized to post publicly accessible content on organizational systems.,HRS-05.2,AC.L1-3.1.22
+115,E-DCH-12,Data Protection,Publicly Accessible Information Reviews,Documented evidence of reviews for publicly accessible sensitive / regulated data.,"DCH-15
+WEB-14",AC.L1-3.1.22
+116,E-DCH-13,Data Protection,Media Storage Facilities,Documented evidence of media storage facilities.,"BCD-01.3
+DCH-06",MP.L2-3.8.1
+117,E-DCH-14,Data Protection,Media Transportation Records,Documented evidence of media transportation records.,DCH-07,MP.L2-3.8.6
+118,E-DCH-15,Data Protection,Geolocation Restrictions,Documented evidence of geolocation restrictions placed on specific types of sensitive and/or regulated data for where that data can be stored and/or processed.,CLD-09,
+119,E-SAT-01,Education,Continuing Professional Education (CPE),Documented evidence of Continuing Professional Education (CPE) requirements for cybersecurity & data privacy personnel.,SAT-03.7,
+120,E-SAT-02,Education,Initial User Training,"Documented evidence of initial user training for security, compliance and/or resilience topics.","SAT-01
+SAT-02
+SAT-02.2
+SAT-04
+HRS-05.7",
+121,E-SAT-03,Education,Practical Exercises,"Documented evidence of practical user training exercises for security, compliance and/or resilience topics (e.g., phishing exercise).","SAT-02.1
+SAT-03.1
+SAT-04",
+122,E-SAT-04,Education,Recurring User Training,"Documented evidence of recurring (e.g., annual) user training for security, compliance and/or resilience topics.","SAT-01
+SAT-03.4
+SAT-03.6
+SAT-03.7
+SAT-04
+HRS-05.7
+THR-05",
+123,E-SAT-05,Education,Role-Based Training,"Documented evidence of specialized user training for privileged users, executives, individuals who handle sensitive/regulated data, etc.","DCH-14
+SAT-01
+SAT-03
+SAT-03.4
+SAT-03.5
+SAT-04
+THR-05",
+124,E-SAT-06,Education,Training Materials,"Documented evidence of security awareness training materials (e.g., curriculum, course work, presentations, etc.)",SAT-04,"AC.L1-3.1.22
+AT.L2-3.2.1
+AT.L2-3.2.2
+AT.L2-3.2.3
+IR.L2-3.6.1"
+125,E-SAT-07,Education,Training Records,Documented evidence of security awareness training records,SAT-04,"AC.L1-3.1.22
+AT.L2-3.2.1
+AT.L2-3.2.2
+CM.L2-3.4.9
+IR.L2-3.6.1
+SI.L2-3.14.6
+SI.L2-3.14.7"
+126,E-MON-01,Event Log Monitoring,Event Log Review & Analysis,"Documented evidence of a capability to perform security event log review and analysis (e.g., system monitoring records, continuous monitoring strategy, etc.).","MON-01
+MON-01.1
+MON-01.2
+MON-01.3
+MON-01.4
+MON-01.8
+MON-02
+MON-02.2","AC.L1-3.1.1
+CM.L2-3.4.9
+SC.L2-3.13.13
+SC.L2-3.13.14
+SI.L2-3.14.6
+SI.L2-3.14.7"
+127,E-MON-02,Event Log Monitoring,Malware Activity,Documented evidence of malware activity being logged and included as part of the centralized event log collection and review/analysis process.,"MON-01.8
+MON-02.2
+END-04.3",
+128,E-MON-03,Event Log Monitoring,Privileged User Oversight,Documented evidence of privileged user activity being logged and included as part of the centralized event log collection and review/analysis process.,"MON-01.14
+MON-01.15",
+129,E-MON-04,Event Log Monitoring,Rogue Devices,Documented evidence of rogue device identification is included as part of the centralized event log collection and review/analysis process.,AST-02.6,
+130,E-MON-05,Event Log Monitoring,Centralized Event Log Collection,Documented evidence of security-relevant activities being logged and included as part of the centralized event log collection and review/analysis process.,"MON-01.2
+MON-01.8
+MON-02
+MON-02.2
+MON-02.1",AU.L2-3.3.8
+131,E-MON-06,Event Log Monitoring,Automated Event Escalation & Reporting,"Documented evidence of a capability for selected events to alert applicable personnel, or roles, based on the type of event. This can be demonstrated by the configuration of a Security Incident Event Manager (SIEM), or similar technology, that helps automate event log analysis and reporting.","MON-01
+MON-01.1
+MON-01.3
+MON-01.4
+MON-01.12","AU.L2-3.3.2
+AU.L2-3.3.8"
+132,E-MON-07,Event Log Monitoring,Situational Awareness,"Documented evidence of the organization leveraging knowledge of event log generation to gain situational awareness of cross-domain activities (e.g., technology issues, security events, policy violations, service provider activities, remote workforce activities, physical security events, etc.).","MON-01
+MON-01.1
+MON-01.3
+MON-01.4
+MON-02.1
+MON-11.3
+MON-16
+MON-16.1
+MON-16.2
+MON-16.3",AU.L2-3.3.2
+133,E-MON-08,Event Log Monitoring,Integrity Monitoring,"Documented evidence of integrity monitoring, where files and/or configurations on critical Technology Assets, Applications and/or Services (TAAS) are actively monitored for changes that could indicate unauthorized changes.",MON-01.7,
+134,E-MON-09,Event Log Monitoring,Event Logs,"Documented evidence of event logs being generated by Technology Assets, Applications and/or Services (TAAS).","MON-03.2
+MON-03.3","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L1-3.1.22
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.6
+AC.L2-3.1.7
+AC.L2-3.1.8
+AC.L2-3.1.9
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.9
+CM.L2-3.4.4
+CM.L2-3.4.5
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+MP.L2-3.8.1
+MP.L1-3.8.3
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.8
+SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.13
+SC.L2-3.13.13
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L2-3.14.6"
+135,E-MON-10,Event Log Monitoring,Event Logging Processing Failure Notifications,Documented evidence of the list of personnel to be notified in the event of an event log processing failure.,MON-05,AU.L2-3.3.4
+136,E-MON-11,Event Log Monitoring,System Authenticator Types,Documented evidence of the list of authorized system authenticator types.,IAC-01,"IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.5"
+137,E-HRS-01,Human Resources,Position Categorization,"Documented evidence of a discrete roles for cybersecurity & data privacy functions (e.g., position categorization). ","GOV-04
+HRS-01
+HRS-02
+HRS-03
+HRS-03.1",
+138,E-HRS-02,Human Resources,Assigned Roles - Application Developers,List of employed or contract personnel assigned to application development roles.,"HRS-02
+HRS-02.1
+HRS-03
+OPS-01",
+139,E-HRS-03,Human Resources,Assigned Roles - Cybersecurity Staff,List of employed or contract personnel assigned to cybersecurity roles.,"HRS-02
+HRS-02.1
+HRS-03
+OPS-01",
+140,E-HRS-04,Human Resources,Assigned Roles - Data Privacy Staff,List of employed or contract personnel assigned to data privacy roles.,"HRS-02
+HRS-02.1
+HRS-03
+OPS-01",
+141,E-HRS-05,Human Resources,Role Assignment - CISO,Documented evidence of a formal role assignment to the Chief Information Security Officer (CISO) position.,GOV-04,
+142,E-HRS-06,Human Resources,Role Assignment - COO,Documented evidence of a formal role assignment to the Chief Operations Officer (COO) position.,GOV-04,
+143,E-HRS-07,Human Resources,Role Assignment - CIO,Documented evidence of a formal role assignment to the Chief Information Officer (CIO) position.,GOV-04,
+144,E-HRS-08,Human Resources,Role Assignment - CPO,Documented evidence of a formal role assignment to the Chief Privacy Officer (CPO) position.,"GOV-04
+PRI-01.1",
+145,E-HRS-09,Human Resources,Role Assignment - CRO,Documented evidence of a formal role assignment to the Chief Risk Officer (CRO) position.,GOV-04,
+146,E-HRS-10,Human Resources,Role Assignment - DPO,Documented evidence of a formal role assignment to Data Protection Officer (DPO) positions.,"GOV-04
+PRI-01.4",
+147,E-HRS-11,Human Resources,Role Assignment - Sensitive / Regulated Data,Documented evidence of a formal role assignment to personnel who are cleared to handle sensitive/regulated data.,"HRS-02
+HRS-02.1
+HRS-03",
+148,E-HRS-12,Human Resources,Role Review,Documented evidence of a formal review process to ensure personnel roles currently reflect business needs.,"IAC-07
+IAC-07.1
+IAC-08
+IAC-17",
+149,E-HRS-13,Human Resources,Defined Cybersecurity & Data Privacy Responsibilities,Documented evidence of a role-based cybersecurity & data privacy responsibilities to ensure personnel are both educated on the role and are responsible for the associated control execution.,"CHG-04
+GOV-04
+HRS-03
+HRS-03.1
+OPS-01",
+150,E-HRS-14,Human Resources,Responsibilities Review,Documented evidence of a formal review process to ensure assigned responsibilities currently reflect business needs for the assigned role.,IAC-17,
+151,E-HRS-15,Human Resources,Organization Chart,Current and accurate organization chart that depicts logical staff hierarchies.,"GOV-04
+GOV-04.1
+GOV-04.2
+HRS-01
+OPS-01",
+152,E-HRS-16,Human Resources,Access Agreements ,Documented evidence of personnel management practices protecting sensitive/regulated data through formal access agreements.,"HRS-03.1
+HRS-05
+HRS-06
+HRS-10",
+153,E-HRS-17,Human Resources,Background Checks,"Documented evidence of personnel screening practices, which centers around some form of formalized background check process.","HRS-04
+HRS-04.1",PS.L2-3.9.1
+154,E-HRS-18,Human Resources,Provisioning Checklist (Onboarding),Documented evidence of personnel management practices to formally onboard personnel into their assigned roles.,"HRS-03
+HRS-03.1
+HRS-04.2
+HRS-05.7
+HRS-10
+IAC-07
+IAC-28",
+155,E-HRS-19,Human Resources,Deprovisioning Checklist (Offboarding),Documented evidence of personnel management practices to formally offboard personnel from their assigned roles due to employment termination or role change.,"HRS-06.2
+HRS-09
+HRS-09.1
+HRS-09.2
+HRS-09.3
+IAC-07
+IAC-07.1
+IAC-07.2",
+156,E-HRS-20,Human Resources,Non-Disclosure Agreements (NDAs),Documented evidence of the use of Non-Disclosure Agreements (NDAs) that restricts unauthorized sharing of sensitive/regulated data.,HRS-06.1,
+157,E-HRS-21,Human Resources,Position Competency Requirements,Documented evidence of personnel management practices to define minimum competency requirements for cybersecurity & data privacy-related roles.,"HRS-03.2
+HRS-04
+HRS-04.1",
+158,E-HRS-22,Human Resources,Rules of Behavior,"Documented evidence of personnel management practices to define ""acceptable use"" or ""rules of behavior"" criteria that specify acceptable and unacceptable user behaviors. ","HRS-02
+HRS-02.1
+HRS-03
+HRS-05
+HRS-05.1
+HRS-05.2
+HRS-05.3
+HRS-05.4
+HRS-05.5
+HRS-10","MP.L2-3.8.7
+MP.L2-3.8.8"
+159,E-HRS-23,Human Resources,Critical Cybersecurity & Data Privacy Skills,Documented evidence of personnel management practices to formally identify critical cybersecurity skills needed to support business operations.,"HRS-03.2
+HRS-13",
+160,E-HRS-24,Human Resources,Critical Cybersecurity & Data Privacy Skill Gaps,Documented evidence of personnel management practices to formally identify critical cybersecurity & data privacy skill gaps.,"HRS-13
+HRS-13.1",
+161,E-HRS-25,Human Resources,Separation of Duties (SoD),Documented evidence of personnel management practices to implement and maintain Separation of Duties (SoD) to prevent potential inappropriate activity without collusion.,"HRS-11
+HRS-12",AC.L2-3.1.4
+162,E-HRS-26,Human Resources,Vital Cybersecurity & Data Privacy Staff,Documented evidence of personnel management practices to formally identify vital cybersecurity & data privacy personnel.,HRS-13.2,
+163,E-HRS-27,Human Resources,Personnel Sanctions,Documented evidence of personnel management practices to formally sanction unacceptable behavior(s).,"HRS-01
+HRS-07
+OPS-01",PS.L2-3.9.2
+164,E-HRS-28,Human Resources,Authorized Personnel Access List,Documented evidence of an authorized personnel access list.,"HRS-03
+PES-02","IA.L2-3.5.6
+PS.L2-3.9.2"
+165,E-HRS-29,Human Resources,Personnel Actions Documentation,"Documented evidence of notifications or records of recently transferred, separated, or terminated employees.","HRS-07
+HRS-08
+HRS-09","AC.L1-3.1.1
+AC.L2-3.1.5
+PS.L2-3.9.1
+PS.L2-3.9.2"
+166,E-IAM-01,Identity & Access Management,Access Permission Review,Documented evidence of periodic access permission reviews.,IAC-17,"AC.L1-3.1.1
+AC.L2-3.1.5"
+167,E-IAM-02,Identity & Access Management,Defined Roles & Authorizations (RBAC),"Documented evidence of defined access control-specific roles (e.g., Role Based Access Control (RBAC)) that affect both logical and physical access authorizations.","CFG-05
+CHG-04
+DCH-03
+END-03
+IAC-08
+IAC-21","AC.L1-3.1.20
+AC.L2-3.1.21"
+168,E-IAM-03,Identity & Access Management,Privileged User Inventory,"Documented evidence of an inventory of privileged users across Technology Assets, Applications and/or Services (TAAS) (internal and external).","IAC-16
+IAC-16.1","AC.L2-3.1.5
+AU.L2-3.3.9
+IA.L2-3.5.4"
+169,E-IAM-04,Identity & Access Management,User & Service Inventory,Documented evidence of an inventory of authorized users and services.,IAC-01.3,"AC.L2-3.1.5
+AC.L2-3.1.6
+IA.L2-3.5.6
+PS.L2-3.9.2"
+170,E-IAM-05,Identity & Access Management,Identity & Access Management (IAM) Function,"Documented evidence of an Identity & Access Management (IAM), or similar function, that facilitates the implementation of identification and access management controls.","IAC-01
+IAC-02
+IAC-02.2
+IAC-03
+IAC-03.5
+IAC-04
+IAC-05
+IAC-21
+IAC-28","AC.L1-3.1.20
+AC.L2-3.1.21"
+171,E-IAM-06,Identity & Access Management,"Authenticate, Authorize and Audit (AAA) Solution","Documented evidence of an Authenticate, Authorize and Audit (AAA) solution (on-premises and hosted by External Service Providers (ESP)).","IAC-01.2
+IAC-02
+IAC-02.2
+IAC-03
+IAC-03.5
+IAC-04
+IAC-05
+IAC-21
+IAC-28",
+172,E-IAM-07,Identity & Access Management,Account Management Compliance Reviews,Documented evidence of account management compliance reviews.,"IAC-15
+IAC-15.7",
+173,E-IAM-08,Identity & Access Management,Conditions for Group / Role Membership,Documented evidence of conditions for group and role membership.,"IAC-15
+IAC-15.5","AC.L1-3.1.1
+AC.L2-3.1.5"
+174,E-IAM-09,Identity & Access Management,Access Authorization Records,Documented evidence of access authorization records.,"IAC-21.3
+IAC-28.1","AC.L1-3.1.1
+AC.L1-3.1.5
+AC.L1-3.1.2
+SC.L2-3.13.13"
+175,E-IAM-10,Identity & Access Management,Active Accounts,Documented evidence of active system accounts and the name of the individual associated with each account.,IAC-01.3,"AC.L1-3.1.1
+AC.L2-3.1.5
+IA.L2-3.5.4
+IA.L2-3.5.6
+PS.L2-3.9.2"
+176,E-IAM-11,Identity & Access Management,Recently Disabled Accounts,Documented evidence of list of recently disabled system accounts along with the name of the individual associated with each account.,IAC-01.3,"AC.L1-3.1.1
+AC.L2-3.1.5"
+177,E-IAM-12,Identity & Access Management,Account Management Documentation,Documented evidence of list of account management practices.,IAC-01,
+178,E-IAM-13,Asset Management,Authenticator Types,Documented evidence of system authenticator types.,IAC-02,
+179,E-IAM-14,Asset Management,Remote Access Authorizations,Documented evidence of authorization for users to connect via remote access methods.,"NET-14
+NET-14.5
+NET-14.6",AC.L2-3.1.12
+180,E-IRO-01,Incident Response,Incident Response Plan (IRP),"Documented evidence of a Incident Response Plan (IRP). This is program-level documentation in the form of a runbook, playbook or a similar format provides guidance on organizational practices that support existing policies and standards.","IRO-01
+IRO-02.4
+IRO-02.5
+IRO-04
+IRO-06.1
+IRO-07
+IRO-08
+IRO-10
+IRO-10.2","IR.L2-3.6.1
+IR.L2-3.6.2"
+181,E-IRO-02,Incident Response,Indicators of Compromise (IOC),Documented evidence of defined Indicators of Compromise (IOC).,"MON-11.3
+MON-16
+MON-16.1
+MON-16.2
+MON-16.3
+IRO-03",
+182,E-IRO-03,Incident Response,Incident Tracking,Documented evidence of a centralized repository to track cybersecurity & data privacy incidents.,"IRO-02
+IRO-09",
+183,E-IRO-04,Incident Response,IRP Testing,Documented evidence of an Incident Response Plan (IRP)-related testing activity.,IRO-06,
+184,E-IRO-05,Incident Response,Table Top Exercises,"Documented evidence of ""table top"" exercises that test incident response practices.",IRO-05,
+185,E-IRO-06,Incident Response,IRP Training,Documented evidence of an Incident Response Plan (IRP)-related training activity.,IRO-05,
+186,E-IRO-07,Incident Response,IRP Updates,Documented evidence of a periodic review process for the organization's Incident Response Plan (IRP) to identify necessary updates.,IRO-04.2,
+187,E-IRO-08,Incident Response,Root Cause Analysis (RCA),"Documented evidence of a Root Cause Analysis (RCA) from any Incident Response Plan (IRP)-related training, testing or significant incident.",IRO-13,
+188,E-IRO-09,Incident Response,Formally Assigned Incident Response Roles & Responsibilities,"Documented evidence of the establishment of a formally-assigned, integrated team of cybersecurity, IT and business function representatives that are capable of addressing cybersecurity & data privacy incident response operations.","IRO-07
+IRO-16",
+189,E-IRO-10,Incident Response,Chain of Custody,"Documented evidence of an in-house, or externally contracted, capability to perform digital forensics and maintain the integrity of the chain of custody, in accordance with applicable laws, regulations and industry-recognized secure practices.",IRO-08,
+190,E-IRO-11,Incident Response,Incident Reporting Capability,"Documented evidence of a capability to provide situational awareness of incidents to internal stakeholders and generated necessary reporting to affected clients, applicable third-parties and regulatory authorities.","IRO-10
+IRO-10.2",
+191,E-IRO-12,Incident Response,Sensitive / Regulated Data Spills,Documented evidence of records of response to sensitive / regulated data spills.,IRO-12,
+192,E-IRO-13,Incident Response,Incident Response Records,Documented evidence of records of response to cybersecurity and/or data protection incidents.,IRO-09,"AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AC.L1-3.1.22
+IR.L2-3.6.2"
+193,E-IAO-01,Information Assurance,Information Assurance Program (IAP),"Documented evidence of a Information Assurance Program (IAP). This is program-level documentation in the form of a runbook, playbook or a similar format provides guidance on organizational practices that support existing policies and standards.","IAO-01
+IAO-02.4",
+194,E-IAO-02,Information Assurance,"Artificial Intelligence Test, Evaluation, Validation & Verification (AI TEVV)","Documented evidence of Artificial Intelligence Test, Evaluation, Validation & Verification (AI TEVV) practices to enable AI-related testing, identification of incidents and information sharing.",AAT-10,
+195,E-IAO-03,Information Assurance,Pre-Production Controls Testing,"Documented evidence of pre-production cybersecurity & data protection controls testing to determine the extent to which the controls are implemented correctly, operating as intended and producing the desired outcome with respect to meeting expected requirements.","IAO-02
+IAO-02.4
+IAO-03.2",
+196,E-IAO-04,Information Assurance,Security Assessment Plan,Documented evidence of a plan to conduct security assessments.,IAO-02,CA.L2-3.12.1
+197,E-IAO-05,Information Assurance,Security Assessment Report,Documented evidence of a report on security assessments.,IAO-02.4,RA.L2-3.11.2
+198,E-MNT-01,Maintenance,Maintenance - Authorized Maintenance Personnel,Documented evidence of personnel who have designated maintenance roles.,MNT-06.1,
+199,E-MNT-02,Maintenance,Maintenance Plan,"Documented evidence of a Maintenance Plan. This is program-level documentation in the form of a runbook, playbook or a similar format provides guidance on organizational practices that support existing policies and standards.",MNT-01,"MA.L2-3.7.2
+MA.L2-3.7.4"
+200,E-MNT-03,Maintenance,Patch Management,"Documented evidence of maintenance activities for Technology Assets, Applications and/or Services (TAAS) (e.g., patch management).","VPM-01
+VPM-04
+VPM-05",
+201,E-MNT-04,Maintenance,Maintenance Activities,"Documented evidence of maintenance activities for the organization's Technology Assets, Applications and/or Services (TAAS).","MNT-01
+MNT-02
+MNT-03
+MNT-03.1",
+202,E-MNT-05,Maintenance,Maintenance Tool Inspection Records,Documented evidence of maintenance tool inspection records.,MNT-04.2,MA.L2-3.7.2
+203,E-NET-01,Network Security,Content / DNS Filtering,Documented evidence of the methods that content / DNS filtering is implemented to prevent Internet traffic from prohibited content and/or hostile web sites.,"NET-18
+NET-18.1",
+204,E-NET-02,Network Security,Wireless Rogue Detection,Documented evidence of automated or manual means to detect rogue wireless devices.,NET-15.5,
+205,E-NET-03,Network Security,Work From Anywhere (WFA) Guidance (remote workers),"Documented evidence of administrative and technical measures that are enforced at ""alternate work sites"" which includes working from home or working while traveling on business.","NET-14
+NET-14.5",
+206,E-NET-04,Network Security,Network Security Controls (NSC),"Documented evidence of the organization's network security controls (e.g., boundary protections, content filtering, wireless infrastructure, etc.).",NET-01,"SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.14"
+207,E-NET-05,Network Security,Zero Trust Architecture (ZTA),Documented evidence of controls that would enable the organization to claim conformity with Zero Trust (ZT) principles.,NET-01.1,
+208,E-NET-06,Network Security,Authorized Network Connections,"Documented evidence of third-party Technology Assets, Applications and/or Services (TAAS) authorized to connect to organizational TAAS, including remote access authorizations.","NET-04
+NET-05
+NET-05.1
+MDM-11","AC.L2-3.1.16
+AC.L2-3.1.18
+SC.L2-3.13.14"
+209,E-NET-07,Network Security,External System Accessibility,"Documented evidence of a list of Technology Assets, Applications and/or Services (TAAS) accessible from third-party entities.","NET-04
+NET-04.1",
+210,E-NET-08,Network Security,Internal Boundaries,Documented evidence of key internal boundaries.,NET-03,"SC.L1-3.13.1
+SC.L1-3.13.5"
+211,E-NET-09,Network Security,Network Access Control Points,Documented evidence of network access control points.,"NET-03
+NET-05.1
+NET-14.3",AC.L2-3.1.14
+212,E-NET-10,Network Security,Information Flow Control,"Documented evidence of information flow control mechanisms (e.g., Access Control Lists, etc.).","NET-04
+NET-04.1","AC.L2-3.1.3
+AU.L2-3.3.9"
+213,E-PES-01,Physical Security,Environmental Monitoring,"Documented evidence of environmental monitoring (e.g., water leaks, temperature, humidity, etc.)","PES-01
+PES-07
+PES-07.5
+PES-08
+PES-09",
+214,E-PES-02,Physical Security,Visitor Logbook,Documented evidence of a visitor management and logging visitor activities.,"PES-03.3
+PES-06
+PES-06.4",
+215,E-PES-03,Physical Security ,Defined Physical Security Roles,Documented evidence of defined physical access control-specific roles that limit physical access to rooms and/or facilities.,"PES-02
+PES-02.1",
+216,E-PES-04,Physical Security ,Physical Security Plan,Documented evidence of a physical security plan.,PES-01.1,"SI.L2-3.14.6
+SI.L2-3.14.7"
+217,E-PES-05,Physical Security ,Physical Security Operations,Documented evidence of the organization's physical security capabilities as it pertains to operating and monitoring Physical Access Control (PAC) mechanisms.,"PES-01
+PES-02
+PES-02.1
+PES-03
+PES-05",
+218,E-PES-06,Physical Security ,Physical Access Control Logs,Documented evidence of physical access control logs or records.,PES-03,"IA.L2-3.5.6
+MP.L2-3.8.1
+PE.L1-3.10.3
+PE.L1-3.10.4
+PE.L1-3.10.5"
+219,E-PES-07,Physical Security ,Physical Access Control Devices,Documented evidence of Physical Access Control (PAC) mechanisms.,PES-03,"PE.L1-3.10.3
+PE.L1-3.10.4
+PE.L1-3.10.5"
+220,E-PES-08,Physical Security ,Physical Access Control Device Inventories,Documented evidence of inventory records of physical access control devices.,PES-03,
+221,E-PES-09,Physical Security ,Key & Combination Changes,Documented evidence of key and lock combination changes.,PES-03,"PE.L1-3.10.3
+PE.L1-3.10.4
+PE.L1-3.10.5"
+222,E-PES-10,Physical Security ,Physical Access Authorizations,"Documented evidence of physical access authorization activities (e.g., list reviews, termination changes, etc.).","PES-02
+PES-02.1",
+223,E-PES-11,Physical Security ,Physical Security Zones,Documented evidence of security safeguards controlling access to designated physical security zones within facilities.,PES-01.2,
+224,E-PES-12,Physical Security ,Entry and Exist Points,Documented evidence of physical entry and exit points.,PES-03.1,"PE.L1-3.10.3
+PE.L1-3.10.4
+PE.L1-3.10.5"
+225,E-PRI-01,Privacy,Accounting of Disclosures,Documented evidence of accounting for privacy-related disclosures.,PRI-14.1,
+226,E-PRI-02,Privacy,Authorized Use,Documented evidence of authorized use definitions for privacy-related data operations.,"PRI-04
+PRI-04.1
+PRI-05
+PRI-05.1",
+227,E-PRI-03,Privacy,Data Authority Registrations,Documented evidence of registrations made with applicable data authorities for privacy-related data processing.,PRI-15,
+228,E-PRI-04,Privacy,Data Protection Impact Assessment (DPIA),Documented evidence of Data Protection Impact Assessment (DPIA).,RSK-10,
+229,E-PRI-05,Privacy,Data Sharing Agreement,"Documented evidence of formal data sharing practices that address, at a minimum:
+• The business justification for the data sharing;
+• The type / category of data being shared;
+• The third-parties the data is being shared with;
+• Lawful bases for data sharing; and
+• Data subject rights.","PRI-01.5
+PRI-07
+PRI-07.1
+PRI-07.2",
+230,E-PRI-06,Privacy,Data Subject Access,Documented evidence of how data subject access requests are handled that includes intake through remediation.,PRI-06,
+231,E-PRI-07,Privacy,Personal Data Categories,Documented evidence of formal personal data categories.,PRI-05.7,
+232,E-PRI-08,Privacy,Data Privacy Notice,Documented evidence of a publicly-accessible data privacy notice.,PRI-02,
+233,E-PRM-01,Resource Management,Cybersecurity Business Plan (CBP),Documented evidence of a cybersecurity-specific business plan that documents a strategic plan and discrete objectives.,"GOV-08
+PRM-01.1
+PRM-03",
+234,E-PRM-02,Resource Management,Portfolio Roadmap,Documented evidence of the organization's roadmap for implementing cybersecurity-related initiatives and technologies.,"PRM-01
+PRM-02
+PRM-03",
+235,E-PRM-03,Resource Management,Secure Development Lifecycle (SDLC),Documented evidence of a secure development lifecycle that the organization utilizes for new initiatives or significant changes to existing initiatives to ensure cybersecurity & data privacy principles are identified and implemented by default.,"PRM-04
+PRM-05
+PRM-06
+PRM-07",
+236,E-PRM-04,Resource Management,Targeted Maturity Level,Documented evidence of a targeted level of control maturity from a Capability Maturity Model (CMM).,PRM-01.2,
+237,E-PRM-05,Resource Management,System Design Document (SDD) ,"Documented evidence of a System Design Document (SDD) focuses on how a Technology Asset, Application and/or Service (TAAS) is built (e.g., architecture, components, data flow, functions, etc.).","PRM-04
+PRM-05
+PRM-06
+PRM-07","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.12
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.3
+AC.L2-3.1.5
+AC.L2-3.1.7
+AC.L2-3.1.8
+AC.L2-3.1.9
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.9
+CM.L2-3.4.1
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.9
+MP.L1-3.8.3
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.8
+SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.3
+SC.L2-3.13.9
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L2-3.14.6
+SI.L2-3.14.7"
+238,E-PRM-06,Resource Management,Quarterly Business Review (QBR),"Documented evidence of a Quarterly Business Review (QBR), or similar process, to provide recurring status reports on the current state of the cybersecurity and data protection program.",GOV-01.1,
+239,E-RSK-01,Risk Management,Risk Management Program (RMP),"Documented evidence of a Risk Management Program (RMP). This is program-level documentation in the form of a runbook, playbook or a similar format provides guidance on organizational practices that support existing policies and standards.","RSK-01
+RSK-01.1
+RSK-02
+RSK-12",
+240,E-RSK-02,Risk Management,Supply Chain Risk Management (SCRM) Plan,"Documented evidence of a Supply Chain Risk Management (SCRM) Plan. This is program-level documentation in the form of a playbook, concept of operations or a similar format provides guidance on organizational practices that support existing policies and standards. ","IRO-10.4
+RSK-09
+TPM-03
+TPM-05
+TPM-05.2",
+241,E-RSK-03,Risk Management,Plan of Actions & Milestones (POA&M) / Risk Register,"Documented evidence of a POA&M, or risk register, that tracks control deficiencies from identification through remediation.","AST-02.4
+CPL-02
+IAO-05
+RSK-04.1
+RSK-06
+RSK-06.1
+RSK-06.2
+VPM-02
+VPM-03",
+242,E-RSK-04,Risk Management,Cybersecurity Risk Assessment (RA),Documented evidence of a cybersecurity-specific risk assessment.,"RSK-02
+RSK-02.1
+RSK-03
+RSK-04
+RSK-05
+VPM-02
+VPM-03",
+243,E-RSK-05,Risk Management,Supply Chain Risk Assessment (SCRA),Documented evidence of supply chain-specific risk assessment that evaluates risks that are specific to its supply chain.,RSK-09.1,
+244,E-RSK-06,Risk Management,Risk Threshold,Documented evidence the organization has a defined risk threshold.,"RSK-01.1
+RSK-01.3",
+245,E-RSK-07,Risk Management,Risk Tolerance,Documented evidence the organization has a defined risk tolerance.,"RSK-01.1
+RSK-01.4",
+246,E-RSK-08,Risk Management,Risk Appetite,Documented evidence the organization has a defined risk appetite.,"RSK-01.1
+RSK-01.5",
+247,E-RSK-09,Risk Management,Risk Catalog,Documented evidence of a risk catalog.,RSK-03.1,
+248,E-RSK-10,Risk Management,Material Risk Definition,Documented evidence of criteria necessary to designate a risk as a material risk.,"GOV-16.1
+RSK-13
+RSK-13.2",
+249,E-RSK-11,Risk Management,Risk Alternatives,Documented evidence of alternative courses of action to manage material risks.,RSK-13.1,
+250,E-RSK-12,Risk Management,Risk Management Justification,Document evidence of justification for selecting a specific course of action to manage material risk.,RSK-13.2,
+251,E-RSK-13,Risk Management,Risk Treatment Options,Documented evidence of organization-approved risk treatment options.,RSK-06.3,
+252,E-RSK-14,Risk Management,Risk Treatment Plan,Documented Risk Treatment Plan (RTP) for applicable stakeholders to utilize in remediating identified risks according to a defined timeline.,RSK-06.4,
+253,E-RSK-15,Risk Management,Instances Requiring A Risk Assessment,Documented criteria that define instances requiring a risk assessment to be performed.,RSK-04.3,
+254,E-SEA-01,Secure Engineering & Architecture ,Logon Banner,Documented evidence of a system use notification message or logon banner.,"SEA-18
+SEA-18.1
+SEA-18.2","AC.L2-3.1.7
+AC.L2-3.1.9"
+255,E-SEA-02,Secure Engineering & Architecture ,Security Architecture,Documented evidence of security architecture-related documentation.,"SEA-01
+SEA-02","SC.L1-3.13.1
+SC.L2-3.13.2
+SC.L1-3.13.5"
+256,E-OPS-01,Security Operations,Security Operations Center (SOC),Documented evidence of a Security Operations Center (SOC).,OPS-04,
+257,E-TDA-01,Technology Design & Acquisition,Secure Software Development Principles (SSDP),"Documented evidence of a Secure Software Development Principles (SSDP). This is program-level documentation in the form of a runbook, playbook or a similar format provides guidance on organizational practices that support existing policies and standards.","SEA-01
+TDA-01
+TDA-14
+TDA-14.1
+TDA-14.2",
+258,E-TDA-02,Technology Design & Acquisition,Secure Engineering & Data Privacy (SEDP),"Documented evidence of a Secure Engineering & Data Privacy (SEDP) program. This is program-level documentation in the form of a runbook, playbook or a similar format provides guidance on organizational practices that support existing policies and standards.","SEA-01
+TDA-01
+TDA-14
+TDA-14.1
+TDA-14.2","CA.L2-3.12.3
+CA.L2-3.12.4
+CM.L2-3.4.1
+CM.L2-3.4.5
+SC.L2-3.13.2"
+259,E-TDA-03,Technology Design & Acquisition,Application Security Testing (AST),"Documented evidence of application security testing (e.g., DAST, SAST, fuzzing, etc.).","TDA-06.2
+TDA-09
+TDA-09.1
+TDA-09.2
+TDA-09.3
+TDA-09.4
+TDA-09.5
+TDA-09.6",
+260,E-TDA-04,Technology Design & Acquisition,Design and Development Plan (DDP),Documented evidence of an engineering method to control the design process and govern the lifecycle of the product/service.,"SEA-01
+SEA-02
+SEA-03
+TDA-02.3
+TDA-05
+TDA-06.3
+TDA-14
+TDA-14.1
+TDA-14.2",
+261,E-TDA-05,Technology Design & Acquisition,Failure Mode and Effect Analysis (FMEA),"Documented evidence of an engineering method designed to define, identify, and present solutions for system failures, problems, or errors.","TDA-01.1
+TDA-06.5
+TDA-09",
+262,E-TDA-06,Technology Design & Acquisition,Multi Patient Harm View (MPHV),Documented evidence of a description of a Multi Patient Harm View (MPHV) that explains how the device / system defends against and/or responds to attacks with the potential to harm multiple patients. [note MPHV is specific to medical device manufacturers],"TDA-01.1
+TDA-02
+TDA-04
+TDA-04.1",
+263,E-TDA-07,Technology Design & Acquisition,"Ports, Protocols & Services (PPS)","Documented evidence of all ports, protocols and services in use by the system, application or service.","TDA-01.1
+TDA-02.1
+TDA-02.5
+TPM-04.2",
+264,E-TDA-08,Technology Design & Acquisition,Secure Engineering Principles (SEP),"Documented evidence of defined secure engineering principles used to ensure Sensitivity, Integrity, Availability & Safety (CIAS) concerns are properly addressed in the design and implementation of Technology Assets, Applications and/or Services (TAAS).","SEA-01
+TDA-01
+TDA-06
+TDA-14
+TDA-14.1
+TDA-14.2",
+265,E-TDA-09,Technology Design & Acquisition,Security Architecture View,"Documented evidence that identifies security-relevant system elements and their interfaces:
+• Define security context, domains, boundaries, and external interfaces of the system;
+• Align the architecture with (a) the system security objectives and requirements, (b) security design characteristics; and
+• Establish traceability of architecture elements to user and system security requirements.","CLD-02
+SEA-01
+SEA-02
+SEA-03",
+266,E-TDA-10,Technology Design & Acquisition,Security Use Case View (SUCV),"Documented evidence of diagrams, with explanatory text, describing various security scenarios in each of the operational and clinical functionality states of the system and how the system addresses each scenario architecturally. [note SUCV is specific to medical device manufacturers]","TDA-04
+TDA-04.1
+TDA-06.2",
+267,E-TDA-11,Technology Design & Acquisition,Software Assurance Maturity Model (SAMM),Documented evidence of a Software Assurance Maturity Model (SAMM).,"TDA-06
+TDA-06.3",
+268,E-TDA-12,Technology Design & Acquisition,Software Bill of Materials (SBOM),Documented evidence of a Software Bill of Materials (SBOM).,TDA-04.2,
+269,E-TDA-13,Technology Design & Acquisition,Software Escrow,Documented evidence of a software escrow solution.,TDA-20.3,
+270,E-TDA-14,Technology Design & Acquisition,System Security Plan (SSP),"Documented evidence of at least one (1) System Security Plan (SSP) that covers the sensitive/regulated data environment. There may be multiple SSPs, based on applicable contracts.","AST-02.4
+IAO-03","AC.L1-3.1.1
+AC.L1-3.1.2
+AC.L2-3.1.12
+AC.L1-3.1.20
+AC.L1-3.1.22
+AC.L2-3.1.10
+AC.L2-3.1.11
+AC.L2-3.1.13
+AC.L2-3.1.14
+AC.L2-3.1.15
+AC.L2-3.1.16
+AC.L2-3.1.17
+AC.L2-3.1.18
+AC.L2-3.1.19
+AC.L2-3.1.21
+AC.L2-3.1.3
+AC.L2-3.1.4
+AC.L2-3.1.5
+AC.L2-3.1.6
+AC.L2-3.1.7
+AC.L2-3.1.8
+AC.L2-3.1.9
+AT.L2-3.2.1
+AT.L2-3.2.2
+AT.L2-3.2.3
+AU.L2-3.3.1
+AU.L2-3.3.2
+AU.L2-3.3.4
+AU.L2-3.3.7
+AU.L2-3.3.8
+AU.L2-3.3.9
+CA.L2-3.12.1
+CA.L2-3.12.3
+CA.L2-3.12.4
+CM.L2-3.4.1
+CM.L2-3.4.4
+CM.L2-3.4.5
+CM.L2-3.4.6
+CM.L2-3.4.8
+CM.L2-3.4.9
+IA.L1-3.5.2
+IA.L2-3.5.10
+IA.L2-3.5.4
+IA.L2-3.5.5
+IA.L2-3.5.6
+IA.L2-3.5.7
+IA.L2-3.5.8
+IA.L2-3.5.9
+IR.L2-3.6.1
+IR.L2-3.6.2
+MA.L2-3.7.2
+MA.L2-3.7.4
+MP.L1-3.8.3
+MP.L2-3.8.1
+MP.L2-3.8.6
+MP.L2-3.8.7
+MP.L2-3.8.8
+PE.L1-3.10.3
+PE.L1-3.10.4
+PE.L1-3.10.5
+PS.L2-3.9.1
+RA.L2-3.11.2
+SC.L1-3.13.1
+SC.L1-3.13.5
+SC.L2-3.13.9
+SC.L2-3.13.10
+SC.L2-3.13.12
+SC.L2-3.13.13
+SC.L2-3.13.14
+SC.L2-3.13.15
+SC.L2-3.13.2
+SC.L2-3.13.3
+SI.L1-3.14.1
+SI.L1-3.14.4
+SI.L1-3.14.5
+SI.L2-3.14.3
+SI.L2-3.14.6
+SI.L2-3.14.7"
+271,E-TDA-15,Technology Design & Acquisition,Updateability / Patchability View,Documented evidence of a description of the end-to-end process permitting software updates and patches to be deployed to the device/service.,"TDA-01.1
+TDA-01.2
+TDA-04.1",
+272,E-TDA-16,Technology Design & Acquisition,Vulnerability Disclosure Program (VDP),"Documented evidence of a Vulnerability Disclosure Program (VDP) (e.g., bug bounty).",THR-06,
+273,E-TDA-17,Technology Design & Acquisition,System Design Documentation,Documented evidence of system design documentation.,"TDA-01
+TDA-01.1",
+274,E-TDA-18,Technology Design & Acquisition,System Security Plan (SSP) Reviews,Documented evidence of reviews and/or updates to System Security Plan (SSP) documentation.,IAO-03,"CA.L2-3.12.3
+CA.L2-3.12.4
+SC.L2-3.13.2"
+275,E-THR-01,Threat Management,Indicators of Exposure (IOE),Documented evidence of defined Indicators of Exposure (IOE).,THR-02,
+276,E-THR-02,Threat Management,Industry Associations / Memberships,Documented evidence of industry associations the organization utilizes to maintain situational awareness of evolving threats and trends.,GOV-07,
+277,E-THR-03,Threat Management,Threat Intelligence Feeds (TIF),Documented evidence of threat intelligence feeds.,THR-03,SI.L2-3.14.3
+278,E-THR-04,Threat Management,Threat Intelligence Program (TIP),Documented evidence of a formal capability that intakes and analysis threat information to determine specific threat to the organization and necessary actions to mitigate the threat(s).,"THR-01
+THR-04
+THR-05",
+279,E-THR-05,Threat Management,Threat Mitigation,Documented evidence of steps taken to mitigate identified threats.,"TDA-06.2
+THR-07
+VPM-01
+VPM-04",
+280,E-THR-06,Threat Management,Threat Catalog,Documented evidence of a threat catalog.,THR-09,
+281,E-THR-07,Threat Management,Threat Analysis,Documented evidence of a completed threat analysis.,THR-10,
+282,E-THR-08,Threat Management,Behavioral Baselining,Documented evidence of behavioral baselining to determine normal vs abnormal activities.,THR-11,
+283,E-TPM-01,Third-Party Management,Third-Party Contracts,Documented evidence of third-party contractual obligations for cybersecurity & data privacy protections.,"PRI-07
+PRI-07.1
+PRI-07.2
+TPM-01
+TPM-03.2
+TPM-03.3
+TPM-04.1
+TPM-05
+TPM-04.3
+TPM-05.3
+TPM-05.6
+TPM-06
+TPM-10
+TPM-11",AC.L1-3.1.20
+284,E-TPM-02,Third-Party Management,Third-Party Criticality Assessment,Documented evidence of third-party criticality assessment that evaluates the critical nature of each third-party the organization works with.,"RSK-02
+RSK-02.1
+TDA-06.1
+TPM-02
+TPM-03.2
+TPM-03.3
+TPM-04.1",
+285,E-TPM-03,Third-Party Management,Third-Party Service Reviews,"Documented evidence of a formal, annual stakeholder review of third-party services for each External Service Provider (ESP).","TPM-01
+TPM-03.2
+TPM-03.3
+TPM-04.1
+TPM-05
+TPM-05.5
+TPM-08
+TPM-09",
+286,E-TPM-04,Third-Party Management,Service Level Agreements (SLAs),Documented evidence of third-party Service Level Agreements (SLAs) to support business operations.,"BCD-09.3
+BCD-10.1
+OPS-03",
+287,E-TPM-05,Third-Party Management,Break Clauses,"Documented evidence of ""break clauses"" in third-party contracts.","TPM-03.2
+TPM-03.3
+TPM-05.7",
+288,E-TPM-06,Third-Party Management,Third-Party Terms & Conditions,Documented evidence of terms and conditions for external systems.,"TPM-01
+TPM-05",
+289,E-TPM-07,Third-Party Management,System Connection or Processing Agreements,Documented evidence of system connection or processing agreements.,TPM-05,"AC.L1-3.1.2
+AC.L1-3.1.20
+AC.L2-3.1.21"
+290,E-VPM-01,Vulnerability & Patch Management,Vulnerability & Patch Management Program (VPMP),"Documented evidence of a Vulnerability & Patch Management Program (VPMP). This is program-level documentation in the form of a runbook, playbook or a similar format provides guidance on organizational practices that support existing policies and standards.","VPM-01
+VPM-02
+VPM-03",RA.L2-3.11.2
+291,E-VPM-02,Vulnerability Management,Penetration Testing - Application,"Documented evidence of Application Security Testing (AST) activities:
+• Abuse case, malformed, and unexpected inputs (e.g., Robustness or Fuzz testing);
+• Attack surface analysis;
+• Vulnerability chaining;
+• Closed box testing of known vulnerability scanning;
+• Software composition analysis of binary executable files; and/or
+• Static and dynamic code analysis, including testing for credentials that are “hardcoded,” default, easily guessed, and easily compromised.",VPM-07,
+292,E-VPM-03,Vulnerability Management,Penetration Testing - Network,Documented evidence of internal and external network penetration testing activities that focus on discovering and exploiting security vulnerabilities.,VPM-07,
+293,E-VPM-04,Vulnerability Management,Red Team Testing,"Documented evidence of ""red team"" testing.",VPM-07.1,
+294,E-VPM-05,Vulnerability Management,Vulnerability Assessments,Documented evidence of internal and external vulnerability assessment activities.,"VPM-06
+VPM-06.6
+VPM-06.7",
+295,E-VPM-06,Vulnerability Management,Attack Surface Scope,"Documented evidence of the organization defining its attack surface (e.g., may be in the form of graphical network diagrams or other forms of written documentation).",VPM-01.1,
+296,E-VPM-07,Vulnerability Management,Flaw Remediation Change Control,Documented evidence of installation/change control records for security-relevant software and firmware updates.,VPM-01.1,
+297,E-VPM-08,Vulnerability Management,Flaw Remediation Test Results,Documented evidence of test results from the installation of software and firmware updates to correct system flaws.,VPM-01.1,SI.L1-3.14.1
+298,E-VPM-09,Vulnerability Management,Flaw Remediation Actions,"Documented evidence of list of recent security flaw remediation actions performed on the system (e.g., list of installed patches, service packs, hot fixes, and other software updates to correct system flaws).",VPM-02,"RA.L2-3.11.2
+SI.L1-3.14.1"
+299,E-VPM-10,Vulnerability Management,Applicable Flaws & Vulnerabilities,"Documented evidence of flaws and vulnerabilities potentially affecting a specific system, application and/or service.","VPM-03
+VPM-05","RA.L2-3.11.2
+SI.L1-3.14.1"
+300,E-VPM-11,Vulnerability Management,Vulnerability Scanning,Documented evidence of internal and external vulnerability scans being performed.,VPM-06,RA.L2-3.11.2
+301,E-END-01,Endpoint Security,Endpoint Security Tools,"Documented evidence of endpoint security tools employed by the organization to ensure secure, compliant and resilient Technology Assets, Applications and/or Services (TAAS) (e.g., antimalware, FIM, etc.).","END-01
+END-04
+END-06","SI.L1-3.14.4
+SI.L1-3.14.5"
+302,E-END-02,Endpoint Security,Malware Tool Updates,Documented evidence of malicious code protection updates.,END-04.1,"SI.L1-3.14.4
+SI.L1-3.14.5"
+303,E-END-03,Endpoint Security,Antimalware Scanning Results,Documented evidence of scan results from malicious code protection mechanisms.,"END-04.3
+MON-01.4","SI.L1-3.14.4
+SI.L1-3.14.5"

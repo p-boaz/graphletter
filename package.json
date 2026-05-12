@@ -20,9 +20,14 @@
     "test:ui:debug": "playwright test --debug",
     "test:scf": "node --import tsx scripts/test-scf-parser.ts",
     "eval:artifact-classifier": "tsx scripts/eval-artifact-classifier.ts",
+    "extract:scf": "node --import tsx scripts/extract-scf.ts",
+    "seed": "node --import tsx scripts/seed-all.ts",
+    "seed:snapshot": "node --import tsx scripts/snapshot-row-counts.ts",
+    "seed:verify": "node --import tsx scripts/seed-verify.ts",
     "test:integration": "node --import tsx --test tests/**/*.test.ts lib/**/*.test.ts",
     "schema:migrations:check": "node scripts/schema-migration-convention-check.js",
     "schema:drift:check": "node scripts/schema-drift-check.js",
+    "verify:scf-extraction": "node --import tsx scripts/verify-scf-extraction.ts",
     "prepare": "husky"
   },
   "dependencies": {
@@ -66,6 +71,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "csv-parse": "^6.1.0",
+    "csv-stringify": "^6.7.0",
     "date-fns": "4.1.0",
     "dotenv": "^17.2.3",
     "embla-carousel-react": "^8.6.0",
@@ -90,6 +96,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tesseract.js": "^7.0.0",
     "vaul": "^1.1.2",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
     "zod": "^4.2.1"
   },
   "devDependencies": {

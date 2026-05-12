@@ -1,0 +1,19 @@
+{
+  "capturedAt": "2026-05-12T14:41:48.599Z",
+  "scfVersion": "2026.1.1",
+  "tables": {
+    "scf_principles": 33,
+    "scf_domains": 33,
+    "scf_authoritative_sources": 159,
+    "scf_frameworks": 79,
+    "scf_controls": 1468,
+    "scf_control_mappings": 34619,
+    "scf_risks": 39,
+    "scf_threats": 41,
+    "scf_maturity_levels": 1264,
+    "scf_evidence_request_list": 303,
+    "scf_assessment_objectives": 5776,
+    "scf_control_evidence_mappings": 481,
+    "scf_control_integrations": 4
+  }
+}

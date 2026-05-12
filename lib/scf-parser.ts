@@ -665,7 +665,7 @@ export class SCFParser {
           totalDomains: domains.length,
           totalFrameworks: frameworks.length,
           totalMappings,
-          version: "2025.1.1",
+          version: "2026.1.1",
         },
         controls,
         domains,
@@ -686,7 +686,7 @@ export class SCFParser {
           totalDomains: 0,
           totalFrameworks: 0,
           totalMappings: 0,
-          version: "2025.1.1",
+          version: "2026.1.1",
         },
         controls: [],
         domains: [],
@@ -910,7 +910,7 @@ export class SCFParser {
       assessmentObjectives: [],
       evidenceRequests,
       mappings,
-      version: "2025.1.1",
+      version: "2026.1.1",
       lastUpdated: new Date(),
     };
   }
@@ -1039,7 +1039,7 @@ export class SCFParser {
           domainName: domainName.trim(),
           principleName: principleName.trim(),
           principleIntent: principleIntent.trim(),
-          version: "2025.1.1",
+          version: "2026.1.1",
         };
 
         principles.push(principle);
@@ -1081,19 +1081,28 @@ export class SCFParser {
 
       log.info("Processing authoritative source rows", { count: rows.length });
 
+      // Upstream column order (Authoritative Sources.csv, SCF 2026.1.1):
+      //  0: Geography
+      //  1: SCF Column Header           → mappingColumnHeader
+      //  2: Focal Document Identifier   → id slug (canonical upstream key)
+      //  3: Source                      → sourceOrganization (Federal/State/etc.)
+      //  4: Focal Document Name         → authoritativeSource (short, unique-ish)
+      //  5: Focal Document Title        → (dropped; full title is in upstream CSV)
+      //  6: Focal Document Source URL   → sourceUrl
+      //  7: Set Theory Relationship Map → strmUrl
       rows.forEach((row, index) => {
-        if (row.length < 6) {
+        if (row.length < 8) {
           log.warn("Row insufficient columns", {
             row: index + 1,
             columns: row.length,
-            expected: 6,
+            expected: 8,
           });
           return;
         }
 
-        const [geography, mappingColumnHeader, sourceOrg, authSource, strmUrl, sourceUrl] = row;
+        const [geography, mappingColumnHeader, fdi, sourceOrg, fdn, , sourceUrl, strmUrl] = row;
 
-        if (!geography || !mappingColumnHeader || !authSource) {
+        if (!geography || !mappingColumnHeader || !fdn) {
           log.warn("Row missing required data", { row: index + 1 });
           return;
         }
@@ -1106,16 +1115,16 @@ export class SCFParser {
         }
 
         const source: SCFAuthoritativeSource = {
-          id: `${geography}-${mappingColumnHeader}`
+          id: (fdi || `${geography}-${mappingColumnHeader}`)
             .replace(/\s+/g, "-")
             .replace(/[^a-zA-Z0-9-]/g, ""),
           geography: geography as SCFGeography,
           mappingColumnHeader,
           sourceOrganization: sourceOrg || "Unknown",
-          authoritativeSource: authSource,
+          authoritativeSource: fdn,
           strmUrl: strmUrl || undefined,
           sourceUrl: sourceUrl || undefined,
-          version: "2025.1.1",
+          version: "2026.1.1",
         };
 
         sources.push(source);
@@ -1151,7 +1160,7 @@ export class SCFParser {
         totalMappings: 0,
         totalPrinciples: 0,
         totalAuthoritativeSources: 0,
-        version: "2025.1.1",
+        version: "2026.1.1",
       },
       controls: [],
       domains: [],
@@ -1213,7 +1222,7 @@ export class SCFParser {
         totalMappings: controlResult.summary.totalMappings,
         totalPrinciples: principles.length,
         totalAuthoritativeSources: authoritativeSources.length,
-        version: "2025.1.1",
+        version: "2026.1.1",
       },
       controls: controlResult.controls,
       domains: domains.length > 0 ? domains : controlResult.domains,

@@ -1,8 +1,7 @@
-﻿"RISK CATALOG use case: What are the risks associated with a control deficiency? (e.g., if the control fails, what risk(s) is the organization exposed to?)",,,,,,,,
+"RISK CATALOG use case: What are the risks associated with a control deficiency? (e.g., if the control fails, what risk(s) is the organization exposed to?)",,,,,,,,
 * Definition of risk,,,** Danger: state of possibly suffering harm or injury,,,,,
 "noun A situation where someone or something valued is exposed to danger, harm or loss.**",,,** Harm: material / physical damage,,,,,
 "verb To expose someone or something valued to danger, harm or loss.",,,"** Loss: destruction, deprivation or inability to use",,,,,
-,,,,,,,,
 Risk Grouping,Risk #,"Risk*
 Note - Some of these risks may indicate a deficiency that could be considered a failure to meet ""reasonable security practices"" ",Description of Possible Risk Due To Control Deficiency,"NIST CSF 
 Function","Materiality Considerations
@@ -47,5 +46,4 @@ Supply Chain,R-SC-1,Third-party cybersecurity exposure,"Loss of Confidentiality,
 ,R-SC-4,Third-party compliance / legal exposure,"The inability to maintain compliance due to third-party non-compliance, criminal acts, or other relevant legal action(s).",Protect,Unknown,Unknown,Unknown,Unknown
 ,R-SC-5,Use of product / service,The misuse of the product / service in a manner that it was not designed or how it was approved for use.,Protect,Unknown,Unknown,Unknown,Unknown
 ,R-SC-6,Reliance on the third-party,"The inability to continue business operations, due to the reliance on the third-party product and/or service.",Protect,Unknown,Unknown,Unknown,Unknown
-,,,,,,,,
 Note: These are POSSIBLE risks and the risk catalog is expected to be tailored by the end user for the organization's unique set of obligations. This is not an authoritative list of all applicable risks. You are required to apply critical thought processes when identifying and evaluating risks.,,,,,,,,
