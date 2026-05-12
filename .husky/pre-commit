@@ -18,4 +18,9 @@ fi
 
 pnpm check:spec || exit 1
 
+# Verify SCF data pipeline when staged changes could affect extraction outputs.
+if git diff --cached --name-only | grep -Eq '^(data/|scripts/extract-scf\.ts$|scripts/verify-scf-extraction\.ts$)'; then
+  pnpm verify:scf-extraction || exit 1
+fi
+
 pnpm lint-staged

@@ -20,9 +20,11 @@
     "test:ui:debug": "playwright test --debug",
     "test:scf": "node --import tsx scripts/test-scf-parser.ts",
     "eval:artifact-classifier": "tsx scripts/eval-artifact-classifier.ts",
+    "extract:scf": "node --import tsx scripts/extract-scf.ts",
     "test:integration": "node --import tsx --test tests/**/*.test.ts lib/**/*.test.ts",
     "schema:migrations:check": "node scripts/schema-migration-convention-check.js",
     "schema:drift:check": "node scripts/schema-drift-check.js",
+    "verify:scf-extraction": "node --import tsx scripts/verify-scf-extraction.ts",
     "prepare": "husky"
   },
   "dependencies": {
