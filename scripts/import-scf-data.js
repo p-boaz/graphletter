@@ -1,3 +1,10 @@
+/**
+ * LEGACY — invoked as a subprocess from scripts/seed-all.ts. This file is
+ * preserved as-is because it is well-tested in production. See
+ * docs/superpowers/specs/2026-05-11-scf-2026-1-1-pivot-design.md and
+ * plans/task-2026-05-11-scf-2026-1-1-pivot.md (Phase 3 deferred task) for the
+ * eventual absorption plan.
+ */
 const { readFileSync } = require("fs");
 const { join } = require("path");
 const { parse } = require("csv-parse/sync");
