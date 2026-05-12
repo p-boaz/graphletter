@@ -151,8 +151,8 @@ async function main(): Promise<void> {
     ...process.env,
     NEXT_PUBLIC_SUPABASE_URL: supabaseUrl,
     SUPABASE_SERVICE_ROLE_KEY: serviceKey,
-    ALLOW_PROD_SEED: targetingProd ? "1" : undefined,
-  } as NodeJS.ProcessEnv);
+    ...(targetingProd ? { ALLOW_PROD_SEED: "1" } : {}),
+  });
 
   console.log("\nseed-reset: running pnpm seed:verify…");
   await runChild("pnpm", ["seed:verify"], {
