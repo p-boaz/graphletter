@@ -4,15 +4,19 @@
 
 - Date: 2026-05-12
 - Owner: claude (peter@barplaybook.com)
-- Status: In Progress
+- Status: Done
 - Branch: fix/scf-writer-domains-before-principles
-- Related issue/PR: follow-up to PR #3 (seed-reset); blocks prod migration to 2026.1.1
+- Related issue/PR: PR #6 (merged: writer ordering), PR #7 (open: drift columns).
+  Prod seed:reset against gbnxwsntyzyrpwmjaaqa completed end-to-end on 2026-05-12;
+  `pnpm seed:verify` reported 13 tables within ±1 %.
 
 ## Goal
 
 Reorder `writeParsedSCF` so `scf_domains` is upserted before `scf_principles` is
 inserted, and codify the schema drift between local baseline and prod by adding
-the missing `scf_principles_domain_code_fkey` to local migrations.
+the missing `scf_principles_domain_code_fkey` plus three drifted columns
+(`scf_domains.principles`, `scf_controls.evidence_requests`,
+`scf_evidence_request_list.scf_control_mappings`) to local migrations.
 
 ## Context Files
 
@@ -23,6 +27,10 @@ the missing `scf_principles_domain_code_fkey` to local migrations.
       where the FK should have been declared (line 93)
 - [x] `supabase/migrations/20260512130000_add_scf_principles_domain_code_fkey.sql`
       — new forward migration, idempotent
+- [x] `supabase/migrations/20260512140000_add_scf_writer_drift_columns.sql`
+      — `ADD COLUMN IF NOT EXISTS` for three columns the writer/seeder send
+      that prod's baseline never received. Idempotent. Applied to prod via
+      Supabase MCP before commit; the local commit catches up fork-clones.
 
 ## Constraints
 
@@ -40,6 +48,10 @@ the missing `scf_principles_domain_code_fkey` to local migrations.
   assertion to `writer.test.ts`.
 - Add forward migration to define `scf_principles_domain_code_fkey` so
   fork-clone schemas match prod.
+- Add forward migration for the three missing columns
+  (`scf_domains.principles`, `scf_controls.evidence_requests`,
+  `scf_evidence_request_list.scf_control_mappings`) — surfaced by the
+  second prod seed:reset attempt (PGRST204) after the FK fix landed.
 
 ### Out of scope
 
@@ -67,15 +79,20 @@ the missing `scf_principles_domain_code_fkey` to local migrations.
 - [x] `pnpm test:integration` — 67/67 passing (includes new ordering assertion).
 - [x] `pnpm typecheck` — clean.
 - [x] `pnpm lint` — clean.
-- [ ] Peter re-runs `pnpm seed:reset --env-file .env.prod --yes` against
+- [x] Peter re-runs `pnpm seed:reset --env-file .env.prod --yes` against
       `gbnxwsntyzyrpwmjaaqa`; seed completes; verify step within ±1 %.
+      Final stats: 39 risks · 41 threats · 1 264 maturity levels ·
+      36 217 control-risk mappings · 22 743 control-threat mappings ·
+      303 ERL · 5 776 AO · 481 CEM · 4 SCI · verify ✓ on 13 tables.
 
 ## Acceptance Criteria
 
 - [x] Writer test asserts domains.upsert precedes principles.insert.
 - [x] Writer reorders domains upsert above principles insert.
 - [x] Forward migration adds FK idempotently.
-- [ ] Prod seed:reset completes without FK violation.
+- [x] Forward migration adds three drifted columns idempotently and is
+      applied to prod via Supabase MCP.
+- [x] Prod seed:reset completes end-to-end (no FK violation, no PGRST204).
 
 ## Approval Gate
 
