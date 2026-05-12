@@ -25,55 +25,55 @@
       "sheet": "SCF 2026.1",
       "csv": "data/controls.csv",
       "consumer": "graphletter:scf_controls",
-      "sha256": null
+      "sha256": "e3b4402cd0978d19c2202674bf442d7b23bd18fc8d72c47f2803a31e95c41b06"
     },
     {
       "sheet": "Authoritative Sources",
       "csv": "data/Authoritative Sources.csv",
       "consumer": "graphletter:scf_authoritative_sources",
-      "sha256": null
+      "sha256": "cfdff3f343b23db62ab5545139a3244f021e861a1f2b04889e96578fffe3b8dc"
     },
     {
       "sheet": "SCF Domains & Principles",
       "csv": "data/Domains and Principles.csv",
       "consumer": "graphletter:scf_domains_principles",
-      "sha256": null
+      "sha256": "08f96d686df942913b5891a7e686168d28e3c9ecf9ded2c1ac84ca4fdc560221"
     },
     {
       "sheet": "Assessment Objectives 2026.1",
       "csv": "data/Assessment_objectives.csv",
       "consumer": "graphletter:scf_assessment_objectives",
-      "sha256": null
+      "sha256": "8eceb040e4d6a1459e9ac5e0868d4f2b8408b537c55bfc70b41be2fdc4c6fcb9"
     },
     {
       "sheet": "Threat Catalog",
       "csv": "data/threats.csv",
       "consumer": "graphletter:scf_threats",
-      "sha256": null
+      "sha256": "762c146a5ac08614e9c1e3f74b8583c5d069aeec4c36b0f118fc84ca6bed2f69"
     },
     {
       "sheet": "Risk Catalog",
       "csv": "data/risks.csv",
       "consumer": "graphletter:scf_risks",
-      "sha256": null
+      "sha256": "6ff135294d007bf156fdc342c0228713f5e3eff56dac7feb2d1dd506c3aacc92"
     },
     {
       "sheet": "Evidence Request List 2026.1",
       "csv": "data/evidence-request-list.csv",
       "consumer": "graphletter:scf_evidence_requests",
-      "sha256": null
+      "sha256": "f7a3057db9a34d04ff0e4c464b7a05f293a400450665da99cb37714b79f16063"
     },
     {
       "sheet": "Compensating Controls 2026.1",
       "csv": "data/compensating-controls.csv",
       "consumer": "deferred:phase4",
-      "sha256": null
+      "sha256": "d5afbf8b06ec4c53a67deb5b060de89c53934b47276caba36ec206d5f8edec12"
     },
     {
       "sheet": "Data Privacy Mgmt Principles",
       "csv": "data/data-privacy-principles.csv",
       "consumer": "deferred:phase4",
-      "sha256": null
+      "sha256": "7c605271f671c88d980f5967bc12b085c9e59313729c83e8407d2f165310cbc4"
     }
   ],
   "graphletterAuthored": ["data/anthropic-controls.pdf", "data/eu-ai-act/"],
