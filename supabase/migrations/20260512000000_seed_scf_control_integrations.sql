@@ -1,6 +1,8 @@
--- Seeds the scf_control_integrations table with the four graphletter-authored
--- integration fixtures. This is graphletter-authored content (not derived from
--- the upstream SCF release) — it lives in a migration rather than a CSV.
+-- Creates the scf_control_integrations table (DDL only). The 4
+-- graphletter-authored integration fixtures are seeded by
+-- scripts/seed-scf-control-integrations.ts (invoked by scripts/seed-all.ts) so
+-- the migration can apply cleanly on a fresh sandbox where scf_controls is
+-- still empty.
 --
 -- The table CREATE is idempotent (IF NOT EXISTS) so prod (which already has
 -- the table from a pre-migration era) is unaffected.
@@ -41,48 +43,3 @@ ALTER TABLE public.scf_control_integrations ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public can read scf control integrations" ON public.scf_control_integrations;
 CREATE POLICY "Public can read scf control integrations"
   ON public.scf_control_integrations FOR SELECT USING (true);
-
--- Seed rows. Use deterministic UUIDs so re-running is idempotent.
-INSERT INTO public.scf_control_integrations (id, scf_control_id, provider_id, service_name, check_type, validation_rules, priority, is_active)
-VALUES
-  (
-    'a0000000-0000-4000-8000-000000000001',
-    'AAT-02',
-    'github',
-    'GitHub',
-    'mfa_enforced',
-    '{"endpoint": "/orgs/{org}", "field": "two_factor_requirement_enabled"}'::jsonb,
-    100,
-    true
-  ),
-  (
-    'a0000000-0000-4000-8000-000000000002',
-    'AAT-02',
-    'aws',
-    'AWS IAM',
-    'mfa_enforced',
-    '{"action": "iam:GetAccountSummary", "field": "AccountMFAEnabled"}'::jsonb,
-    100,
-    true
-  ),
-  (
-    'a0000000-0000-4000-8000-000000000003',
-    'ACC-22',
-    'github',
-    'GitHub',
-    'branch_protection',
-    '{"endpoint": "/repos/{owner}/{repo}/branches/{branch}/protection"}'::jsonb,
-    100,
-    true
-  ),
-  (
-    'a0000000-0000-4000-8000-000000000004',
-    'CFG-02',
-    'aws',
-    'AWS Config',
-    'config_recorder',
-    '{"action": "config:DescribeConfigurationRecorders"}'::jsonb,
-    100,
-    true
-  )
-ON CONFLICT (id) DO NOTHING;

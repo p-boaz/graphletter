@@ -8,6 +8,7 @@
  *   3. seed-erl (data/evidence-request-list.csv).
  *   4. seed-assessment-objectives (data/Assessment_objectives.csv).
  *   5. seed-control-evidence-mappings (derived from DB state).
+ *   6. seed-scf-control-integrations (4 graphletter-authored fixtures).
  *
  * Reads SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY from env. Targets ONLY the
  * sandbox; never run against production.
@@ -23,6 +24,7 @@ import { writeParsedSCF } from "../lib/scf/writer";
 import { seedERL } from "./seed-erl";
 import { seedAssessmentObjectives } from "./seed-assessment-objectives";
 import { seedControlEvidenceMappings } from "./seed-control-evidence-mappings";
+import { seedScfControlIntegrations } from "./seed-scf-control-integrations";
 
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -109,6 +111,10 @@ async function main(): Promise<void> {
   // Step 5: derived mappings
   const cemSummary = await seedControlEvidenceMappings(supabase);
   console.log("seed-all: cem summary", cemSummary);
+
+  // Step 6: graphletter-authored control_integrations fixtures
+  const sciSummary = await seedScfControlIntegrations(supabase);
+  console.log("seed-all: sci summary", sciSummary);
 
   console.log("\nseed-all: ✓ all steps complete");
 }
