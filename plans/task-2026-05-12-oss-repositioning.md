@@ -122,3 +122,4 @@ See `docs/superpowers/plans/2026-05-12-oss-repositioning.md` for the verbatim pe
 - 2026-05-12 Task 5 fix: drop "use client" from footer (server component); hoist CURRENT_YEAR; revert spurious plan doc edit
 
 - 2026-05-12 Task 6: deleted /contact; migrated security mailto to /security; cleaned up contact selectors and public-pages assertions
+- 2026-05-12 Task 6 fix: align security mailto styling with project mailto convention

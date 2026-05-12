@@ -56,7 +56,7 @@ export default function SecurityPage() {
                   <p className="ft-sans text-slate-600">
                     <a
                       href="mailto:security@graphletter.com?subject=Security%20Disclosure"
-                      className="text-ft-pink underline"
+                      className="ft-sans text-ft-pink underline underline-offset-4 hover:text-ft-black transition-colors"
                     >
                       security@graphletter.com
                     </a>
