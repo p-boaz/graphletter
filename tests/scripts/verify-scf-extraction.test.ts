@@ -130,3 +130,35 @@ test("verifier: regenerates README + LICENSE_AUDIT in repoRoot/data", async () =
     await rm(dir, { recursive: true, force: true });
   }
 });
+
+test("verifier: generated README.md and LICENSE_AUDIT.json are prettier-idempotent", async () => {
+  // The pre-commit hook runs `prettier --write` on staged .md/.json files via
+  // lint-staged. If the verifier emits raw markdown that prettier reformats,
+  // every subsequent verifier run produces a phantom diff. Guard against that
+  // by asserting the verifier's output is already prettier's fixed point.
+  const prettier = await import("prettier");
+  const dir = await mkdtemp(join(tmpdir(), "scf-verify-idem-"));
+  try {
+    await buildRepo(dir);
+    await verifyExtraction({ repoRoot: dir });
+
+    const readmePath = join(dir, "data", "README.md");
+    const auditPath = join(dir, "data", "LICENSE_AUDIT.json");
+    const readme = await readFile(readmePath, "utf8");
+    const audit = await readFile(auditPath, "utf8");
+
+    const readmeFormatted = await prettier.format(readme, {
+      parser: "markdown",
+      filepath: readmePath,
+    });
+    const auditFormatted = await prettier.format(audit, {
+      parser: "json",
+      filepath: auditPath,
+    });
+
+    assert.equal(readme, readmeFormatted, "README.md must match prettier's fixed point");
+    assert.equal(audit, auditFormatted, "LICENSE_AUDIT.json must match prettier's fixed point");
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
