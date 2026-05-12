@@ -115,7 +115,7 @@ For fresh local bootstrap, authenticate the Supabase CLI first: `pnpm dlx supaba
 - ESLint / Prettier config details (see `eslint.config.mjs`, `.prettierrc`).
 - Model names or AI temperatures (see `lib/ai-config.ts`).
 - Playwright config details (see `playwright.config.ts`).
-- SCF data import details (see `SEEDING.md`; `pnpm seed` is the orchestrator and `scripts/import-scf-data.js` is invoked as a subprocess only).
+- SCF data import details (see `SEEDING.md`; `pnpm seed` is the orchestrator, `pnpm seed:reset` is the wipe-and-reseed path for SCF version bumps, and `scripts/import-scf-data.js` is invoked as a subprocess only).
 
 Those files are the truth. Duplicating them here guarantees drift.
 

@@ -54,10 +54,15 @@ async function main(): Promise<void> {
     throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY.");
   }
 
-  // Guard rail: refuse to run against the production graphletter project.
-  if (url.includes("gbnxwsntyzyrpwmjaaqa")) {
+  // Guard rail: refuse to run against the production graphletter project
+  // unless the caller has set ALLOW_PROD_SEED=1 (used only by seed-reset
+  // after the operator has taken a Supabase point-in-time snapshot and
+  // typed the hostname confirmation token).
+  if (url.includes("gbnxwsntyzyrpwmjaaqa") && !process.env.ALLOW_PROD_SEED) {
     throw new Error(
-      "seed-all: refusing to run against the production graphletter Supabase project."
+      "seed-all: refusing to run against the production graphletter Supabase " +
+        "project. Set ALLOW_PROD_SEED=1 to override (intended only for " +
+        "`pnpm seed:reset` after taking a snapshot)."
     );
   }
 
