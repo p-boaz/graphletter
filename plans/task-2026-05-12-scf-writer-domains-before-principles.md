@@ -3,7 +3,7 @@
 ## Metadata
 
 - Date: 2026-05-12
-- Owner: claude (peter@barplaybook.com)
+- Owner: claude (peter@graphletter.com)
 - Status: Done
 - Branch: fix/scf-writer-domains-before-principles
 - Related issue/PR: PR #6 (merged: writer ordering), PR #7 (open: drift columns).

@@ -179,13 +179,13 @@ import { parseGitLogNameStatus, type GitCommit } from "../../scripts/scf-license
 describe("parseGitLogNameStatus", () => {
   it("parses a single add commit", () => {
     const raw = [
-      "abc123\tpeter@barplaybook.com\t2025-06-01T12:00:00+00:00\tinitial import",
+      "abc123\tpeter@graphletter.com\t2025-06-01T12:00:00+00:00\tinitial import",
       "A\tdata/controls.csv",
     ].join("\n");
     const commits = parseGitLogNameStatus(raw);
     assert.equal(commits.length, 1);
     assert.equal(commits[0].sha, "abc123");
-    assert.equal(commits[0].author, "peter@barplaybook.com");
+    assert.equal(commits[0].author, "peter@graphletter.com");
     assert.equal(commits[0].subject, "initial import");
     assert.deepEqual(commits[0].fileOps, [{ status: "A", path: "data/controls.csv" }]);
   });
