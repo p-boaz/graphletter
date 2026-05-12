@@ -120,3 +120,5 @@ See `docs/superpowers/plans/2026-05-12-oss-repositioning.md` for the verbatim pe
 - 2026-05-12 Task 4 fix: hoist NAVIGATION_ITEMS and GITHUB_URL to module scope
 - 2026-05-12 Task 5: lean light footer; drop Resources/Project/Contact columns and Status link; clean up obsolete footer + nav-active assertions in playwright tests
 - 2026-05-12 Task 5 fix: drop "use client" from footer (server component); hoist CURRENT_YEAR; revert spurious plan doc edit
+
+- 2026-05-12 Task 6: deleted /contact; migrated security mailto to /security; cleaned up contact selectors and public-pages assertions

@@ -67,10 +67,6 @@ test("public pages: dogfood report regressions are covered", async ({ page }, te
     await expect(page.getByTestId(selectors.public.frameworkDetailHeading)).toBeVisible();
     await expect(page.getByTestId(selectors.public.frameworkDetailMappings)).toBeVisible();
 
-    await open_local_app(page, "/contact");
-    await expect(page.getByTestId(selectors.public.contactPageHeading)).toBeVisible();
-    await expect(page.getByTestId(selectors.public.contactResponseTime)).toBeVisible();
-
     await open_local_app(page, "/try");
     await expect(page.getByTestId(selectors.public.tryItOutHeading)).toBeVisible();
     await expect(page.getByTestId(selectors.public.tryItOutSummary)).toContainText(
