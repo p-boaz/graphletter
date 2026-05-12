@@ -1,6 +1,5 @@
 import Link from "next/link";
-
-const GITHUB_URL = "https://github.com/p-boaz/graphletter";
+import { GITHUB_URL } from "@/lib/config/links";
 const CURRENT_YEAR = new Date().getFullYear();
 
 export function Footer() {

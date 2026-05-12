@@ -19,9 +19,9 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { authUrl } from "@/lib/auth/auth-tabs";
 import { useAuth } from "@/lib/auth/auth-context";
 import { createClient } from "@/lib/supabase/client";
+import { GITHUB_URL } from "@/lib/config/links";
 
 const MOBILE_NAV_SHEET_ID = "primary-mobile-navigation-sheet";
-const GITHUB_URL = "https://github.com/p-boaz/graphletter";
 const NAVIGATION_ITEMS = [{ href: "/try", label: "Try" }] as const;
 let lastClientPathname: string | null = null;
 const isProtectedPath = (path: string | null) =>

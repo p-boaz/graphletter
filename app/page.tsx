@@ -5,8 +5,7 @@ import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { authUrl } from "@/lib/auth/auth-tabs";
 import { pageTitle } from "@/lib/seo/page-title";
-
-const GITHUB_URL = "https://github.com/p-boaz/graphletter";
+import { GITHUB_URL } from "@/lib/config/links";
 
 export const metadata: Metadata = {
   title: pageTitle("Compliance analysis for regulatory frameworks"),
