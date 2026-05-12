@@ -1,12 +1,19 @@
 # Task Spec: SCF License Audit
 
+> ⛔ **SUPERSEDED.** The git-history-only audit approach was structurally unsound (`data/` had a
+> single import commit, so the audit was non-discriminating). Replaced by Phase 1 of the SCF
+> 2026.1.1 pivot, which performs offline byte-comparison against the vendored upstream XLSX. See
+> `plans/task-2026-05-11-scf-2026-1-1-pivot.md` for the active task and
+> `docs/superpowers/specs/2026-05-11-scf-2026-1-1-pivot-design.md` for the authoritative design.
+
 ## Metadata
 
 - Date: 2026-05-11
 - Owner: claude (agent)
-- Status: In Progress
+- Status: Superseded
 - Branch: chore/scf-license-audit
 - Related issue/PR: n/a
+- Superseded by: `plans/task-2026-05-11-scf-2026-1-1-pivot.md` (2026-05-12)
 
 ## Goal
 
