@@ -15,8 +15,11 @@
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { parse } from "csv-parse/sync";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+
+const PAGE = 1000;
 
 export interface TableDiff {
   added: string[];
@@ -25,7 +28,10 @@ export interface TableDiff {
   unchanged: string[];
 }
 
-export type VersionDiff = Record<string, TableDiff>;
+export interface VersionDiff {
+  missingFiles: string[];
+  tables: Record<string, TableDiff>;
+}
 
 interface TableSpec {
   table: string;
@@ -104,7 +110,8 @@ const TABLE_SPECS: TableSpec[] = [
 
 function readCSVRows(path: string): Array<Record<string, string>> {
   const content = readFileSync(path, "utf8");
-  return parse(content, { columns: true, skip_empty_lines: true });
+  // bom:true strips the UTF-8 BOM that Excel may prepend to the first header cell
+  return parse(content, { columns: true, skip_empty_lines: true, bom: true });
 }
 
 function rowsChanged(
@@ -112,6 +119,8 @@ function rowsChanged(
   csvRow: Record<string, string>,
   cols: TableSpec["compareColumns"]
 ): boolean {
+  // Values are stringified for comparison; works for all current text columns.
+  // Arrays or JSON columns would need custom logic here.
   for (const { db, csv } of cols) {
     const dbVal = dbRow[db] == null ? "" : String(dbRow[db]);
     const csvVal = csvRow[csv] == null ? "" : String(csvRow[csv]);
@@ -120,30 +129,76 @@ function rowsChanged(
   return false;
 }
 
+/** Fetch all rows from a table for a given scf_version, paginating past the
+ *  PostgREST 1000-row default cap via .range(). */
+async function fetchAllRows(
+  supabase: SupabaseClient,
+  table: string,
+  version: string
+): Promise<Array<Record<string, unknown>>> {
+  const rows: Array<Record<string, unknown>> = [];
+  let from = 0;
+
+  while (true) {
+    const { data, error } = await supabase
+      .from(table)
+      .select("*")
+      .eq("scf_version", version)
+      .range(from, from + PAGE - 1);
+
+    if (error) {
+      throw new Error(`diff: failed to fetch ${table}: ${error.message}`);
+    }
+
+    const page = data ?? [];
+    rows.push(...page);
+
+    if (page.length < PAGE) break;
+    from += PAGE;
+  }
+
+  return rows;
+}
+
 export async function diffSCFVersions(
   supabase: SupabaseClient,
   csvDir: string,
   priorVersion: string,
   _newVersion: string
 ): Promise<VersionDiff> {
-  const result: VersionDiff = {};
+  const missingFiles: string[] = [];
+  const tables: Record<string, TableDiff> = {};
 
   for (const spec of TABLE_SPECS) {
     const csvPath = join(csvDir, spec.csvFile);
-    if (!existsSync(csvPath)) continue;
-    const csvRows = readCSVRows(csvPath);
-    const csvById = new Map(csvRows.map((r) => [r[spec.csvIdColumn], r]));
 
-    const { data: dbRows, error } = await supabase
-      .from(spec.table)
-      .select("*")
-      .eq("scf_version", priorVersion);
-
-    if (error) {
-      throw new Error(`diff: failed to fetch ${spec.table}: ${error.message}`);
+    if (!existsSync(csvPath)) {
+      // Surface missing CSVs in output rather than silently skipping
+      console.warn(
+        `[diff-scf-versions] WARNING: CSV not found for table "${spec.table}": ${csvPath}`
+      );
+      missingFiles.push(csvPath);
+      continue;
     }
 
-    const dbById = new Map((dbRows ?? []).map((r) => [String(r[spec.idColumn]), r]));
+    const allCsvRows = readCSVRows(csvPath);
+
+    // Filter rows where the id column is falsy/empty (e.g. BOM-mangled headers)
+    const validCsvRows = allCsvRows.filter((r) => {
+      const id = r[spec.csvIdColumn];
+      return id != null && id.trim() !== "";
+    });
+    const skipped = allCsvRows.length - validCsvRows.length;
+    if (skipped > 0) {
+      console.warn(
+        `[diff-scf-versions] WARNING: dropped ${skipped} CSV row(s) with empty id in "${spec.table}" (column "${spec.csvIdColumn}")`
+      );
+    }
+
+    const csvById = new Map(validCsvRows.map((r) => [r[spec.csvIdColumn], r]));
+
+    const dbRows = await fetchAllRows(supabase, spec.table, priorVersion);
+    const dbById = new Map(dbRows.map((r) => [String(r[spec.idColumn]), r]));
 
     const added: string[] = [];
     const removed: string[] = [];
@@ -164,7 +219,7 @@ export async function diffSCFVersions(
       if (!csvById.has(id)) removed.push(id);
     }
 
-    result[spec.table] = {
+    tables[spec.table] = {
       added: added.sort(),
       removed: removed.sort(),
       changed: changed.sort(),
@@ -172,7 +227,7 @@ export async function diffSCFVersions(
     };
   }
 
-  return result;
+  return { missingFiles, tables };
 }
 
 async function main() {
@@ -182,8 +237,21 @@ async function main() {
     throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY");
   }
 
+  // Read versions from argv with hardcoded fallback defaults
+  const priorVersion = process.argv[2] ?? "2025.1.1";
+  const newVersion = process.argv[3] ?? "2026.1.1";
+  console.log(
+    `[diff-scf-versions] comparing priorVersion=${priorVersion} → newVersion=${newVersion}`
+  );
+
   const supabase = createClient(url, key, { auth: { persistSession: false } });
-  const diff = await diffSCFVersions(supabase, "data", "2025.1.1", "2026.1.1");
+  const result = await diffSCFVersions(supabase, "data", priorVersion, newVersion);
+
+  if (result.missingFiles.length > 0) {
+    console.warn(
+      `[diff-scf-versions] ${result.missingFiles.length} CSV file(s) were missing — those tables are omitted from the diff`
+    );
+  }
 
   mkdirSync("migrations-staging", { recursive: true });
   const outPath = "migrations-staging/scf-2026-1-1-diff.json";
@@ -192,9 +260,10 @@ async function main() {
     JSON.stringify(
       {
         generatedAt: new Date().toISOString(),
-        priorVersion: "2025.1.1",
-        newVersion: "2026.1.1",
-        diff,
+        priorVersion,
+        newVersion,
+        missingFiles: result.missingFiles,
+        diff: result.tables,
       },
       null,
       2
@@ -204,7 +273,7 @@ async function main() {
   let totalAdded = 0;
   let totalRemoved = 0;
   let totalChanged = 0;
-  for (const [table, td] of Object.entries(diff)) {
+  for (const [table, td] of Object.entries(result.tables)) {
     console.log(
       `${table}: +${td.added.length} -${td.removed.length} ~${td.changed.length} =${td.unchanged.length}`
     );
@@ -216,8 +285,10 @@ async function main() {
   console.log(`wrote ${outPath}`);
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch((err) => {
+// Use fileURLToPath for reliable CLI entry detection under tsx
+const isMain = process.argv[1] != null && fileURLToPath(import.meta.url) === process.argv[1];
+if (isMain) {
+  void main().catch((err) => {
     console.error(err);
     process.exit(1);
   });
