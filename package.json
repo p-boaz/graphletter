@@ -97,7 +97,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tesseract.js": "^7.0.0",
     "vaul": "^1.1.2",
-    "xlsx": "^0.18.5",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
     "zod": "^4.2.1"
   },
   "devDependencies": {
@@ -131,5 +131,18 @@
       "prettier --write"
     ]
   },
-  "packageManager": "pnpm@10.30.3"
+  "packageManager": "pnpm@10.30.3",
+  "pnpm": {
+    "overrides": {
+      "glob@>=10.2.0 <10.5.0": "^10.5.0",
+      "minimatch@<3.1.4": "^3.1.4",
+      "minimatch@>=9.0.0 <9.0.7": "^9.0.7",
+      "flatted@<3.4.2": "^3.4.2",
+      "picomatch@<2.3.2": "^2.3.2",
+      "picomatch@>=4.0.0 <4.0.4": "^4.0.4",
+      "@xmldom/xmldom@<0.8.13": "^0.8.13",
+      "underscore@<1.13.8": "^1.13.8",
+      "fast-uri@<3.1.2": "^3.1.2"
+    }
+  }
 }
