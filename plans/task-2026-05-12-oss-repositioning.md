@@ -127,3 +127,4 @@ See `docs/superpowers/plans/2026-05-12-oss-repositioning.md` for the verbatim pe
 - 2026-05-12 Task 6 fix: align security mailto styling with project mailto convention
 - 2026-05-12 Task 7: final sweep + validation (typecheck PASS, lint PASS, build PASS, e2e skipped — no dev server); two stale <Link href="/try-it-out"> refs found in app/not-found.tsx:24 and components/dashboard/first-run-hero.tsx:46 (follow-up items; redirects cover them); branch ready to ship
 - 2026-05-12 Final-review fix: consolidate GITHUB_URL into lib/config/links.ts; import from three call sites
+- 2026-05-12 PR #9 follow-ups: unfiltered "Evidence Request List (ERL) Artifact" so #artifacts-and-controls anchor renders; renamed docs section id from `maturity` to `maturity-levels` to match consumer link in control-row.tsx; added `playwright/artifacts/**` to eslint ignores

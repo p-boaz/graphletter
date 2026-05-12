@@ -28,7 +28,6 @@ const GLOSSARY_TERMS_IN_PAGE_GLOSSARY = new Set([
   "SCF Control",
   "Coverage vs Gap",
   "Framework Mapping (SCF Normalization)",
-  "Evidence Request List (ERL) Artifact",
 ]);
 
 type ScfStats = {
@@ -399,7 +398,7 @@ export default async function DocsPage() {
           </div>
         </section>
 
-        <section id="maturity" className="scroll-mt-28 py-20">
+        <section id="maturity-levels" className="scroll-mt-28 py-20">
           <div className="ft-container">
             <div className="mb-8 max-w-3xl">
               <h2 className="ft-serif text-3xl font-bold text-ft-black">Maturity Levels</h2>
