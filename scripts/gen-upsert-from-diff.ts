@@ -31,16 +31,22 @@
 //     arrays that require full-row parse; operator should verify post-seed)
 //   - scf_controls.guidance_* (large text blocks; included as text columns)
 //   - scf_authoritative_sources: uses uuid PK (gen_random_uuid()), so conflict
-//     target is the UNIQUE constraint on (mapping_column_header, geography,
-//     import_id); because import_id is NULL for seed rows, ON CONFLICT cannot
-//     target it. Authoritative sources are emitted with a leading comment
-//     noting the operator must verify the upsert strategy.
+//     target is the UNIQUE constraint on
+//     (mapping_column_header, geography, authoritative_source, import_id);
+//     because import_id is NULL for seed rows and the uuid PK is auto-generated,
+//     ON CONFLICT DO NOTHING is the safest default. Operator: verify these rows
+//     are up-to-date after applying, and hand-tune if updates are required.
 //
-// ADVISORY NOTE: authoritative_sources rows use a uuid PK and the UNIQUE
-// constraint includes import_id (which is NULL for seed rows). Standard
-// INSERT ... ON CONFLICT (id) DO UPDATE cannot target a uuid PK that is
-// generated on insert. The emitted block uses ON CONFLICT DO NOTHING as a
-// safe default — operator should hand-tune if updates are needed.
+// ADVISORY NOTE: scf_evidence_request_list rows use a uuid PK and the UNIQUE
+// constraint is (erl_id, import_id). Seed rows have import_id = NULL, so the
+// effective dedup key is (erl_id, NULL). The emitted SQL uses
+// ON CONFLICT (erl_id, import_id) targeting the existing
+// UNIQUE (erl_id, import_id) constraint (migration 20250731000000).
+// IMPORTANT: a re-run will INSERT new (erl_id, NULL) rows rather than
+// UPDATE because Postgres treats (erl_id, NULL) pairs as always-distinct
+// unless a partial unique index exists. This block should run ONCE per
+// upgrade. For idempotent re-runs, first add:
+//   CREATE UNIQUE INDEX ON scf_evidence_request_list (erl_id) WHERE import_id IS NULL;
 
 import { readFileSync, writeFileSync, renameSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
@@ -53,12 +59,21 @@ import { parse } from "csv-parse/sync";
 
 type SqlType = "text" | "text-array" | "bool" | "int";
 
-interface ColumnSpec {
+/** A column sourced from a CSV cell. */
+interface CsvColumnSpec {
   db: string; // column name in the database
   csv: string; // column header in the CSV (exact match after trim)
   sql: SqlType; // how to render the value in SQL
   notNull?: boolean; // emit DEFAULT '' fallback if cell is empty
 }
+
+/** A column whose SQL value is a constant literal (e.g. "'2026.1.1'" or "NULL"). */
+interface LiteralColumnSpec {
+  db: string; // column name in the database
+  literal: string; // raw SQL token emitted verbatim (must be a valid SQL literal)
+}
+
+type ColumnSpec = CsvColumnSpec | LiteralColumnSpec;
 
 interface TableSpec {
   table: string;
@@ -132,6 +147,7 @@ const TABLE_SPECS: TableSpec[] = [
   },
   // -------------------------------------------------------------------------
   // scf_authoritative_sources — uuid PK; ON CONFLICT DO NOTHING (see header)
+  // source_organization maps to CSV column "Source" (NOT NULL in schema).
   // -------------------------------------------------------------------------
   {
     table: "scf_authoritative_sources",
@@ -144,6 +160,7 @@ const TABLE_SPECS: TableSpec[] = [
     columns: [
       { db: "geography", csv: "Geography", sql: "text", notNull: true },
       { db: "mapping_column_header", csv: "SCF Column Header", sql: "text", notNull: true },
+      { db: "source_organization", csv: "Source", sql: "text", notNull: true },
       { db: "authoritative_source", csv: "Focal Document Name (FDN)", sql: "text", notNull: true },
       { db: "source_url", csv: "Focal Document Source (FDS)", sql: "text" },
       { db: "strm_url", csv: "Set Theory Relationship Mapping (STRM)", sql: "text" },
@@ -166,10 +183,10 @@ const TABLE_SPECS: TableSpec[] = [
   },
   // -------------------------------------------------------------------------
   // scf_evidence_request_list
-  // PK is uuid; conflict target is (erl_id, import_id) unique constraint.
-  // Seed rows have import_id = NULL; to upsert on erl_id alone we use
-  // ON CONFLICT (erl_id) with a partial index — but the actual UNIQUE is on
-  // (erl_id, import_id). Emit an advisory comment; operator should verify.
+  // PK is uuid; UNIQUE constraint is (erl_id, import_id).
+  // Seed rows have import_id = NULL; we emit import_id = NULL explicitly so
+  // the conflict target (erl_id, import_id) matches the existing constraint
+  // (migration 20250731000000). See header note on re-run semantics.
   // -------------------------------------------------------------------------
   {
     table: "scf_evidence_request_list",
@@ -179,6 +196,7 @@ const TABLE_SPECS: TableSpec[] = [
     conflictTarget: "__ADVISORY_ERL__",
     columns: [
       { db: "erl_id", csv: "ERL #", sql: "text", notNull: true },
+      { db: "import_id", literal: "NULL" }, // seed rows: NULL identifies seed-owned rows
       { db: "area_of_focus", csv: "Area of Focus", sql: "text", notNull: true },
       { db: "documentation_artifact", csv: "Documentation Artifact", sql: "text", notNull: true },
       { db: "artifact_description", csv: "Artifact Description", sql: "text", notNull: true },
@@ -350,7 +368,8 @@ export function generateUpsertSQL(
 
     if (toUpsert.length === 0) continue;
 
-    // Build the emitted columns list, potentially injecting domain_id for controls
+    // Build the emitted columns list, potentially injecting domain_id for controls.
+    // scf_version is always appended last as a synthesized literal.
     const emitColumns = [...spec.columns];
     const isControls = spec.table === "scf_controls";
     if (isControls) {
@@ -361,11 +380,16 @@ export function generateUpsertSQL(
         sql: "text",
       });
     }
+    // Append scf_version literal last — every table has this column (DEFAULT 'unknown').
+    // Injecting it ensures new rows land on the correct version rather than 'unknown'.
+    emitColumns.push({ db: "scf_version", literal: "'2026.1.1'" });
 
     const colNames = emitColumns.map((c) => c.db).join(", ");
 
     const valueRows = toUpsert.map((row) => {
       const vals = emitColumns.map((c) => {
+        // Literal columns: emit the raw SQL token verbatim.
+        if ("literal" in c) return c.literal;
         if (c.csv === "__DERIVED__" && c.db === "domain_id") {
           // Derived from control id
           const controlId = row[spec.csvIdColumn]?.trim() ?? "";
@@ -377,32 +401,45 @@ export function generateUpsertSQL(
       return "  (" + vals.join(", ") + ")";
     });
 
+    // Columns excluded from DO UPDATE SET (PK columns; import_id on ERL must not be overwritten).
+    const doUpdateExclude = new Set([spec.dbIdColumn, spec.conflictTarget]);
+
     // ON CONFLICT / DO UPDATE strategy
     let conflictClause: string;
     if (spec.conflictTarget === "__ADVISORY_DO_NOTHING__") {
       conflictClause = `ON CONFLICT DO NOTHING`;
       blocks.push(
         `-- ADVISORY: ${spec.table} uses a uuid PK. Rows with identical\n` +
-          `-- (mapping_column_header, geography) will be silently skipped.\n` +
+          `-- (mapping_column_header, geography, authoritative_source, import_id)\n` +
+          `-- will be silently skipped (UNIQUE constraint per migration\n` +
+          `-- 20260512000001_widen_scf_authoritative_sources_unique.sql).\n` +
           `-- Operator: verify these rows are up-to-date after applying.\n`
       );
     } else if (spec.conflictTarget === "__ADVISORY_ERL__") {
+      // Uses the existing UNIQUE (erl_id, import_id) constraint.
+      // The (erl_id, NULL) tuple is unique per-version; a re-run will INSERT
+      // new rows rather than UPDATE (Postgres treats NULLs as always-distinct
+      // in UNIQUE indexes). Run this block ONCE per upgrade.
+      // For idempotent re-runs, first create:
+      //   CREATE UNIQUE INDEX ON scf_evidence_request_list (erl_id) WHERE import_id IS NULL;
       conflictClause =
-        `ON CONFLICT (erl_id) WHERE import_id IS NULL\n` +
-        `DO UPDATE SET\n` +
+        `ON CONFLICT (erl_id, import_id) DO UPDATE SET\n` +
         emitColumns
-          .filter((c) => c.db !== "erl_id" && c.db !== "id")
+          .filter((c) => c.db !== "erl_id" && c.db !== "id" && c.db !== "import_id")
           .map((c) => `  ${c.db} = EXCLUDED.${c.db}`)
           .join(",\n");
       blocks.push(
-        `-- NOTE: ${spec.table} conflict target uses partial index on (erl_id) WHERE import_id IS NULL.\n` +
-          `-- This requires the partial unique index to exist on prod; verify before applying.\n`
+        `-- NOTE: ${spec.table} uses UNIQUE (erl_id, import_id) (migration 20250731000000).\n` +
+          `-- Seed rows have import_id = NULL. Postgres treats (erl_id, NULL) as always-distinct,\n` +
+          `-- so a re-run INSERTs new rows rather than UPDATEs. Run ONCE per upgrade.\n` +
+          `-- For idempotent re-runs, first add a partial index:\n` +
+          `--   CREATE UNIQUE INDEX ON scf_evidence_request_list (erl_id) WHERE import_id IS NULL;\n`
       );
     } else {
       conflictClause =
         `ON CONFLICT (${spec.conflictTarget}) DO UPDATE SET\n` +
         emitColumns
-          .filter((c) => c.db !== spec.conflictTarget && c.db !== spec.dbIdColumn)
+          .filter((c) => !doUpdateExclude.has(c.db))
           .map((c) => `  ${c.db} = EXCLUDED.${c.db}`)
           .join(",\n");
     }

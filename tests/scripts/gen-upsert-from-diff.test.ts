@@ -186,3 +186,125 @@ test("treats empty or whitespace-only cells as NULL, not empty string", () => {
   // Also confirm empty-string literal does not appear
   assert.ok(!sql.includes("''"), `should not emit '' for empty cells, got:\n${sql}`);
 });
+
+// ---------------------------------------------------------------------------
+// Test 7: ERL conflict target uses (erl_id, import_id) — NOT a partial index
+// ---------------------------------------------------------------------------
+test("ERL emits ON CONFLICT (erl_id, import_id) and NOT WHERE import_id IS NULL", () => {
+  const diff = {
+    ...EMPTY_DIFF,
+    scf_evidence_request_list: { added: ["E-GOV-01"], changed: [] },
+  };
+
+  const csvRowsByTable: Record<string, Array<Record<string, string>>> = {
+    scf_evidence_request_list: [
+      {
+        "ERL #": "E-GOV-01",
+        "Area of Focus": "Governance",
+        "Documentation Artifact": "Charter",
+        "Artifact Description": "Evidence of charter.",
+        "SCF Control Mappings": "GOV-01",
+      },
+    ],
+  };
+
+  const sql = generateUpsertSQL(diff, csvRowsByTable);
+
+  assert.ok(
+    sql.includes("ON CONFLICT (erl_id, import_id)"),
+    `expected ON CONFLICT (erl_id, import_id), got:\n${sql}`
+  );
+  // The partial-index form must not appear in the conflict clause itself.
+  // (A mention in an advisory SQL comment is fine; the regex anchors to ON CONFLICT.)
+  assert.ok(
+    !sql.match(/ON CONFLICT\s*\([^)]*\)\s*WHERE\s+import_id\s+IS\s+NULL/),
+    `must NOT use partial-index form ON CONFLICT (...) WHERE import_id IS NULL, got:\n${sql}`
+  );
+  // import_id should appear as NULL in the VALUES list
+  assert.ok(
+    sql.includes("NULL"),
+    `expected NULL in VALUES (import_id = NULL for seed rows), got:\n${sql}`
+  );
+  // import_id must NOT appear in DO UPDATE SET clause
+  assert.ok(
+    !sql.match(/DO UPDATE SET[\s\S]*import_id\s*=/),
+    `import_id must not be in DO UPDATE SET, got:\n${sql}`
+  );
+});
+
+// ---------------------------------------------------------------------------
+// Test 8: scf_authoritative_sources includes source_organization column
+// ---------------------------------------------------------------------------
+test("scf_authoritative_sources emits source_organization in column list and VALUES", () => {
+  const diff = {
+    ...EMPTY_DIFF,
+    scf_authoritative_sources: { added: ["general-aicpa-pmf-2020"], changed: [] },
+  };
+
+  const csvRowsByTable: Record<string, Array<Record<string, string>>> = {
+    scf_authoritative_sources: [
+      {
+        "Focal Document Identifier (FDI)": "general-aicpa-pmf-2020",
+        Geography: "General",
+        "SCF Column Header": "AICPA\nPrivacy Management Framework (PMF)",
+        Source: "AICPA",
+        "Focal Document Name (FDN)": "AICPA Privacy Management Framework (PMF) (2020)",
+        "Focal Document Source (FDS)": "https://example.com/pmf",
+        "Set Theory Relationship Mapping (STRM)": "https://example.com/strm",
+      },
+    ],
+  };
+
+  const sql = generateUpsertSQL(diff, csvRowsByTable);
+
+  assert.ok(
+    sql.includes("INSERT INTO public.scf_authoritative_sources"),
+    "should emit INSERT for scf_authoritative_sources"
+  );
+  assert.ok(
+    sql.includes("source_organization"),
+    `expected source_organization in column list, got:\n${sql}`
+  );
+  assert.ok(
+    sql.includes("'AICPA'"),
+    `expected 'AICPA' value for source_organization, got:\n${sql}`
+  );
+});
+
+// ---------------------------------------------------------------------------
+// Test 9: scf_version literal injected in every table INSERT and in DO UPDATE SET
+// ---------------------------------------------------------------------------
+test("emits scf_version = '2026.1.1' in column list, VALUES, and DO UPDATE SET", () => {
+  const diff = {
+    ...EMPTY_DIFF,
+    scf_risks: { added: ["R-AC-1"], changed: [] },
+  };
+
+  const csvRowsByTable: Record<string, Array<Record<string, string>>> = {
+    scf_risks: [
+      {
+        "Risk #": "R-AC-1",
+        'Risk*\nNote - Some of these risks may indicate a deficiency that could be considered a failure to meet "reasonable security practices" ':
+          "Some risk title",
+        "Description of Possible Risk Due To Control Deficiency": "Some description.",
+        "Risk Grouping": "Access Control",
+        "NIST CSF \nFunction": "Protect",
+      },
+    ],
+  };
+
+  const sql = generateUpsertSQL(diff, csvRowsByTable);
+
+  // Column list must include scf_version
+  assert.ok(
+    sql.match(/INSERT INTO public\.scf_risks \([^)]*scf_version[^)]*\)/),
+    `expected scf_version in INSERT column list, got:\n${sql}`
+  );
+  // VALUES must include the literal '2026.1.1'
+  assert.ok(sql.includes("'2026.1.1'"), `expected '2026.1.1' literal in VALUES, got:\n${sql}`);
+  // DO UPDATE SET must include scf_version = EXCLUDED.scf_version
+  assert.ok(
+    sql.includes("scf_version = EXCLUDED.scf_version"),
+    `expected scf_version = EXCLUDED.scf_version in DO UPDATE SET, got:\n${sql}`
+  );
+});
