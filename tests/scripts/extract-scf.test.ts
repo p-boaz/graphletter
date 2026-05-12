@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtemp, readFile, writeFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { createHash } from "node:crypto";
 import * as XLSX from "xlsx";
 import { extractWorkbookToCsvs } from "../../scripts/extract-scf";
 
@@ -55,7 +56,7 @@ test("extractor: emits LF line endings, no BOM, RFC 4180 quoting", async () => {
     const buf = await readFile(join(outDir, "controls.csv"));
     const text = buf.toString("utf8");
 
-    assert.equal(buf[0] !== 0xef || buf[1] !== 0xbb || buf[2] !== 0xbf, true, "no UTF-8 BOM");
+    assert.notDeepEqual(buf.subarray(0, 3), Buffer.from([0xef, 0xbb, 0xbf]), "no UTF-8 BOM");
     assert.equal(
       text.includes("\r\n"),
       false,
@@ -86,9 +87,10 @@ test("extractor: returns sha256 for each emitted csv", async () => {
     const xlsxPath = join(dir, "fixture.xlsx");
     await writeFile(xlsxPath, new Uint8Array(buildFixtureWorkbook()));
 
+    const outDir = join(dir, "out");
     const result = await extractWorkbookToCsvs({
       xlsxPath,
-      outDir: join(dir, "out"),
+      outDir,
       mapping: [{ sheet: "SCF 2026.1", csv: "controls.csv" }],
     });
 
@@ -97,6 +99,13 @@ test("extractor: returns sha256 for each emitted csv", async () => {
     assert.match(result[0].sha256, /^[0-9a-f]{64}$/, "sha256 is 64 lowercase hex chars");
     assert.equal(typeof result[0].rows, "number");
     assert.equal(result[0].rows, 5, "fixture has header + 4 data rows");
+
+    // Non-tautological check: the returned sha256 must match the sha256
+    // of the bytes actually written to disk. The verifier in Task 7+8
+    // depends on this contract.
+    const writtenBytes = await readFile(join(outDir, "controls.csv"));
+    const expected = createHash("sha256").update(new Uint8Array(writtenBytes)).digest("hex");
+    assert.equal(result[0].sha256, expected, "returned sha256 must equal sha256 of file on disk");
   } finally {
     await rm(dir, { recursive: true, force: true });
   }

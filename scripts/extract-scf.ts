@@ -50,6 +50,8 @@ function rowsFromSheet(sheet: XLSX.WorkSheet): string[][] {
     raw: false,
     blankrows: false,
   });
+  // Right-pad short rows to a uniform width so downstream parsers see a
+  // rectangular CSV; XLSX rows can be jagged when trailing cells are blank.
   const maxLen = aoa.reduce((m, r) => Math.max(m, r.length), 0);
   return aoa.map((row) => {
     const padded: string[] = [];
