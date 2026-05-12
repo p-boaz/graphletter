@@ -3,7 +3,7 @@
 ## Metadata
 
 - Date: 2026-05-12
-- Owner: claude (peter@barplaybook.com)
+- Owner: claude (peter@graphletter.com)
 - Status: In Progress
 - Branch: chore/advisor-security-hardening
 - Related task: #50 (Triage remaining Supabase security advisors)
