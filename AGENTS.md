@@ -109,6 +109,53 @@ For fresh local bootstrap, authenticate the Supabase CLI first: `pnpm dlx supaba
 
 `.env` holds `QA_USER_EMAIL` and `QA_USER_PASSWORD` for Playwright and manual dogfooding. Never commit these.
 
+## Phase 3: SCF 2025.1.1 → 2026.1.1 upgrade (operator procedure)
+
+**Pre-reqs:** `.env.prod.local` with prod's `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`. Sandbox project must already be on 2026.1.1 (Phase 2 acceptance complete).
+
+1. **Snapshot prod first.** Open the Supabase dashboard → Database → Point-in-Time Recovery. Confirm PITR is enabled and the most recent automatic snapshot is < 24h old, or trigger a manual logical backup. Record the snapshot time.
+
+2. **Deploy the FK metadata RPC.** From the repo root:
+
+   ```bash
+   pnpm dlx supabase db push  # applies 20260512100000_get_fk_metadata_function.sql
+   ```
+
+3. **Generate the diff.** Read-only against prod:
+
+   ```bash
+   set -a; source .env.prod.local; set +a
+   pnpm diff:scf-versions  # writes migrations-staging/scf-2026-1-1-diff.json
+   git add migrations-staging/scf-2026-1-1-diff.json && git commit -m "chore(migrations): capture scf 2025.1.1 → 2026.1.1 diff"
+   ```
+
+4. **Run the deletion-safety check.** Read-only against prod:
+
+   ```bash
+   pnpm check:scf-deletion-safety  # writes migrations-staging/scf-2026-1-1-deletion-safety.json
+   ```
+
+   Inspect the report. Every removed ID must be classified `safe-to-delete` or `safe-with-orphans`. **Any `requires-decision` classification aborts the procedure** — escalate to the data-model owner for case-by-case triage.
+
+5. **Generate the advisory upsert SQL.**
+
+   ```bash
+   pnpm gen:upsert-from-diff  # writes migrations-staging/scf-2026-1-1-upsert.sql
+   ```
+
+6. **Hand-author the upgrade migration.** Create `supabase/migrations/<ts>_upgrade_scf_to_2026_1_1.sql` by composing:
+   - the upsert SQL from step 5
+   - the deletion SQL for IDs in `removed[]` that the safety report cleared
+   - the `UPDATE … SET scf_version = '2026.1.1' WHERE scf_version = '2025.1.1'` tail for any rows that should be re-versioned
+
+   Review every advisory comment in the generated SQL. Inspect the diff visually. Get a second pair of eyes if the diff is non-trivial.
+
+7. **Apply to prod.** `pnpm dlx supabase db push`.
+
+8. **Verify.** `set -a; source .env.prod.local; set +a; pnpm seed:verify` — row counts must match `data/seed/expected_row_counts.json` within ±1 %.
+
+9. **If anything fails post-apply** — Supabase PITR restore to the time recorded in step 1. Do not attempt manual rollback SQL.
+
 ## What NOT to put in this file
 
 - Package lists or dependency versions (see `package.json`).
