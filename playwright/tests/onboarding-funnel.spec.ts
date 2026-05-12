@@ -229,15 +229,9 @@ test.describe("frameworks list filter & closer", () => {
   });
 });
 
-test.describe("how-it-works restructure", () => {
-  test("hero has TL;DR and primary CTA to /try-it-out", async ({ page }) => {
-    await page.goto("/how-it-works");
-    await expect(page.getByTestId("hiw-tldr")).toContainText(/upload/i);
-    await expect(page.getByTestId("hiw-primary-cta")).toHaveAttribute("href", "/try-it-out");
-  });
-
+test.describe("docs page", () => {
   test("pipeline diagram renders all 6 step labels", async ({ page }) => {
-    await page.goto("/how-it-works");
+    await page.goto("/docs");
     const diagram = page.getByTestId("pipeline-diagram");
     for (const label of [
       "Upload",
@@ -249,13 +243,6 @@ test.describe("how-it-works restructure", () => {
     ]) {
       await expect(diagram).toContainText(label);
     }
-  });
-
-  test("closes with a CTA before the footer", async ({ page }) => {
-    await page.goto("/how-it-works");
-    const closer = page.getByTestId("hiw-closing-cta");
-    await closer.scrollIntoViewIfNeeded();
-    await expect(closer).toBeVisible();
   });
 });
 
