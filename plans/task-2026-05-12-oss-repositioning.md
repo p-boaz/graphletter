@@ -1,5 +1,7 @@
 # Task Spec: OSS Repositioning
 
+- 2026-05-12 Task 7 fix: update two stale Link hrefs from /try-it-out to /try (not-found.tsx, first-run-hero.tsx)
+
 ## Metadata
 
 - Date: 2026-05-12

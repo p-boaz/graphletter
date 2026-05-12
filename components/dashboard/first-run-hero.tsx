@@ -43,7 +43,7 @@ export function FirstRunHero({ onUploadClick }: { onUploadClick?: () => void }) 
           </Button>
         )}
         <Button asChild variant="outline">
-          <Link href="/try-it-out">Or run the sample demo first →</Link>
+          <Link href="/try">Or run the sample demo first →</Link>
         </Button>
       </div>
     </div>
