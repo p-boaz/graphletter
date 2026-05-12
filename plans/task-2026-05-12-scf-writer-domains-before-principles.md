@@ -4,9 +4,11 @@
 
 - Date: 2026-05-12
 - Owner: claude (peter@barplaybook.com)
-- Status: In Progress
+- Status: Done
 - Branch: fix/scf-writer-domains-before-principles
-- Related issue/PR: follow-up to PR #3 (seed-reset); blocks prod migration to 2026.1.1
+- Related issue/PR: PR #6 (merged: writer ordering), PR #7 (open: drift columns).
+  Prod seed:reset against gbnxwsntyzyrpwmjaaqa completed end-to-end on 2026-05-12;
+  `pnpm seed:verify` reported 13 tables within ±1 %.
 
 ## Goal
 
@@ -77,8 +79,11 @@ the missing `scf_principles_domain_code_fkey` plus three drifted columns
 - [x] `pnpm test:integration` — 67/67 passing (includes new ordering assertion).
 - [x] `pnpm typecheck` — clean.
 - [x] `pnpm lint` — clean.
-- [ ] Peter re-runs `pnpm seed:reset --env-file .env.prod --yes` against
+- [x] Peter re-runs `pnpm seed:reset --env-file .env.prod --yes` against
       `gbnxwsntyzyrpwmjaaqa`; seed completes; verify step within ±1 %.
+      Final stats: 39 risks · 41 threats · 1 264 maturity levels ·
+      36 217 control-risk mappings · 22 743 control-threat mappings ·
+      303 ERL · 5 776 AO · 481 CEM · 4 SCI · verify ✓ on 13 tables.
 
 ## Acceptance Criteria
 
@@ -87,7 +92,7 @@ the missing `scf_principles_domain_code_fkey` plus three drifted columns
 - [x] Forward migration adds FK idempotently.
 - [x] Forward migration adds three drifted columns idempotently and is
       applied to prod via Supabase MCP.
-- [ ] Prod seed:reset completes end-to-end (no FK violation, no PGRST204).
+- [x] Prod seed:reset completes end-to-end (no FK violation, no PGRST204).
 
 ## Approval Gate
 
