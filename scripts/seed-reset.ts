@@ -86,7 +86,9 @@ function runChild(
     child.on("error", rejectP);
     child.on("exit", (code) => {
       if (code === 0) resolveP();
-      else rejectP(new Error(`${command} ${args.join(" ")} exited with code ${code}`));
+      // Intentionally omit args from the error: psql's first positional
+      // is the libpq URI, which contains the DB password.
+      else rejectP(new Error(`${command} exited with code ${code}`));
     });
   });
 }
