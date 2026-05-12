@@ -153,6 +153,20 @@ test("writeParsedSCF deletes by version then inserts principles, domains, source
   assert.ok(tables.includes("scf_authoritative_sources.insert"));
   assert.ok(tables.includes("scf_controls.insert"));
 
+  // scf_domains MUST be upserted before scf_principles is inserted: on a
+  // freshly-wiped DB the baseline-seeded domain rows are gone, and
+  // scf_principles.domain_code has a FK to scf_domains.id in prod
+  // (drift from the local baseline schema, but the FK is real). Inserting
+  // principles first triggers a 23503 FK violation. Surfaced by the
+  // first attempt to run `pnpm seed:reset` against prod
+  // (gbnxwsntyzyrpwmjaaqa) on 2026-05-12.
+  const domainsUpsertIdx = tables.indexOf("scf_domains.upsert");
+  const principlesInsertIdx = tables.indexOf("scf_principles.insert");
+  assert.ok(
+    domainsUpsertIdx < principlesInsertIdx,
+    "scf_domains.upsert must precede scf_principles.insert"
+  );
+
   // Final status update.
   assert.ok(tables.includes("scf_imports.update.eq"));
 });

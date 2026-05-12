@@ -68,27 +68,13 @@ export async function writeParsedSCF(
       .eq("scf_version", parseResult.summary.version)
   );
 
-  // Import principles if available
-  if (parseResult.principles && parseResult.principles.length > 0) {
-    const principlesData = parseResult.principles.map((principle) => ({
-      number: principle.number,
-      domain_code: principle.domainCode, // Map camelCase to snake_case
-      domain_name: principle.domainName, // Map camelCase to snake_case
-      principle_name: principle.principleName, // Map camelCase to snake_case
-      principle_intent: principle.principleIntent, // Map camelCase to snake_case
-      scf_version: parseResult.summary.version,
-      import_id: importId,
-    }));
-
-    const { error: principlesError } = await supabase.from("scf_principles").insert(principlesData);
-
-    if (principlesError) {
-      console.error("Failed to import principles:", principlesError);
-      throw new Error(`Failed to import principles: ${principlesError.message}`);
-    }
-  }
-
-  // Import domains if available
+  // Import domains FIRST — scf_principles.domain_code has an FK to
+  // scf_domains.id in prod (drift from local baseline; surfaced when
+  // `pnpm seed:reset` ran against prod on 2026-05-12). The baseline
+  // migration's 'seed' rows are wiped by scripts/wipe-scf-data.sql, so
+  // the writer can't rely on them being present in the post-wipe seed
+  // path. Upserting domains before principles makes the writer correct
+  // for both fresh-install and post-wipe environments.
   if (parseResult.domains && parseResult.domains.length > 0) {
     const domainsData = parseResult.domains.map((domain) => ({
       id: domain.id,
@@ -112,6 +98,27 @@ export async function writeParsedSCF(
     if (domainsError) {
       console.error("Failed to import domains:", domainsError);
       throw new Error(`Failed to import domains: ${domainsError.message}`);
+    }
+  }
+
+  // Import principles (now safe — domains exist either from the upsert
+  // above or from a pre-existing baseline that this writer didn't touch).
+  if (parseResult.principles && parseResult.principles.length > 0) {
+    const principlesData = parseResult.principles.map((principle) => ({
+      number: principle.number,
+      domain_code: principle.domainCode, // Map camelCase to snake_case
+      domain_name: principle.domainName, // Map camelCase to snake_case
+      principle_name: principle.principleName, // Map camelCase to snake_case
+      principle_intent: principle.principleIntent, // Map camelCase to snake_case
+      scf_version: parseResult.summary.version,
+      import_id: importId,
+    }));
+
+    const { error: principlesError } = await supabase.from("scf_principles").insert(principlesData);
+
+    if (principlesError) {
+      console.error("Failed to import principles:", principlesError);
+      throw new Error(`Failed to import principles: ${principlesError.message}`);
     }
   }
 
