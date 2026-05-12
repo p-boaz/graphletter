@@ -8,27 +8,14 @@ test.describe("landing hero", () => {
     await expect(h1).not.toHaveText("Graphletter");
     const primary = page.getByTestId("hero-primary-cta");
     await expect(primary).toBeVisible();
-    await expect(primary).toHaveAttribute("href", "/try-it-out");
+    await expect(primary).toHaveAttribute("href", "/try");
   });
 
   test("landing page ends with a CTA above the footer", async ({ page }) => {
     await page.goto("/");
     const closer = page.getByTestId("landing-closing-cta");
     await closer.scrollIntoViewIfNeeded();
-    await expect(closer.getByRole("link", { name: /try it/i })).toHaveAttribute(
-      "href",
-      "/try-it-out"
-    );
-  });
-
-  test("pipeline cards use plain-English labels", async ({ page }) => {
-    await page.goto("/");
-    const titles = await page.getByTestId("pipeline-card-title").allInnerTexts();
-    expect(titles).toEqual([
-      "Upload your evidence",
-      "AI reads it against the framework",
-      "Get a gap report you can act on",
-    ]);
+    await expect(closer.getByRole("link", { name: /try it/i })).toHaveAttribute("href", "/try");
   });
 
   test("footer exposes Resources column with Docs / Privacy / Terms / Status", async ({ page }) => {
@@ -287,7 +274,7 @@ test.describe("legal placeholder pages", () => {
 });
 
 test("per-page titles are distinct", async ({ page }) => {
-  const paths = ["/", "/how-it-works", "/research", "/try-it-out", "/auth", "/privacy", "/terms"];
+  const paths = ["/", "/docs", "/research", "/try", "/auth", "/privacy", "/terms"];
   const titles: string[] = [];
   for (const path of paths) {
     await page.goto(path);

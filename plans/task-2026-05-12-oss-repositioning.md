@@ -113,3 +113,4 @@ See `docs/superpowers/plans/2026-05-12-oss-repositioning.md` for the verbatim pe
 - 2026-05-12: Fixed Task 1 review issues — removed dead GlossaryTooltip, repositioned metadata export, retargeted three try-it-out test gotos to /try.
 - 2026-05-12: Updated 9 in-app help links from /how-it-works to /docs (8 from plan + 1 missed at control-row.tsx:413). Non-anchored references in app/page.tsx, navigation.tsx, footer.tsx remain for Tasks 3-5.
 - 2026-05-12: Renamed stale upload.spec.ts test name from "...how-it-works anchor" to "...docs anchor".
+- 2026-05-12: Rewrote landing page to five-section layout with GitHub CTA and 'Built in the open' block.
