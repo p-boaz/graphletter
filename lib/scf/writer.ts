@@ -22,6 +22,15 @@ export async function writeParsedSCF(
   // Clean up any existing data for this version to avoid conflicts
   log.info("Cleaning up existing data for version", { version: parseResult.summary.version });
 
+  // Errors here used to be silently swallowed (no destructure of `error`),
+  // which produced confusing downstream PK violations when an FK RESTRICT
+  // blocked a DELETE. Throw on failure so the operator sees the real cause.
+  const failOnDeleteError = (table: string) => (res: { error: { message: string } | null }) => {
+    if (res.error) {
+      throw new Error(`Cleanup delete on ${table} failed: ${res.error.message}`);
+    }
+  };
+
   // First get framework IDs to clean up mappings
   const { data: frameworksToDelete } = await supabase
     .from("scf_frameworks")
@@ -30,21 +39,34 @@ export async function writeParsedSCF(
 
   if (frameworksToDelete && frameworksToDelete.length > 0) {
     const frameworkIds = frameworksToDelete.map((fw: { id: string }) => fw.id);
-    await supabase.from("scf_control_mappings").delete().in("framework_id", frameworkIds);
+    failOnDeleteError("scf_control_mappings")(
+      await supabase.from("scf_control_mappings").delete().in("framework_id", frameworkIds)
+    );
   }
 
-  await supabase.from("scf_frameworks").delete().eq("scf_version", parseResult.summary.version);
+  failOnDeleteError("scf_frameworks")(
+    await supabase.from("scf_frameworks").delete().eq("scf_version", parseResult.summary.version)
+  );
 
-  await supabase.from("scf_controls").delete().eq("scf_version", parseResult.summary.version);
+  failOnDeleteError("scf_controls")(
+    await supabase.from("scf_controls").delete().eq("scf_version", parseResult.summary.version)
+  );
 
-  await supabase.from("scf_domains").delete().eq("scf_version", parseResult.summary.version);
+  // scf_domains uses upsert below (not delete-then-insert) so we leave existing
+  // rows in place: the baseline migration seeds 23 domains with scf_version='seed'
+  // that are referenced by domain_tier_weights via FK; deleting them would either
+  // fail (RESTRICT) or orphan downstream weights.
 
-  await supabase.from("scf_principles").delete().eq("scf_version", parseResult.summary.version);
+  failOnDeleteError("scf_principles")(
+    await supabase.from("scf_principles").delete().eq("scf_version", parseResult.summary.version)
+  );
 
-  await supabase
-    .from("scf_authoritative_sources")
-    .delete()
-    .eq("scf_version", parseResult.summary.version);
+  failOnDeleteError("scf_authoritative_sources")(
+    await supabase
+      .from("scf_authoritative_sources")
+      .delete()
+      .eq("scf_version", parseResult.summary.version)
+  );
 
   // Import principles if available
   if (parseResult.principles && parseResult.principles.length > 0) {
@@ -79,7 +101,13 @@ export async function writeParsedSCF(
       import_id: importId,
     }));
 
-    const { error: domainsError } = await supabase.from("scf_domains").insert(domainsData);
+    // Upsert (not insert): the baseline migration pre-seeds 23 domain rows
+    // (scf_version='seed') that are FK targets of domain_tier_weights. Upserting
+    // on PK preserves those FK references while updating name/description with
+    // the fresh 2026.1.1 values.
+    const { error: domainsError } = await supabase
+      .from("scf_domains")
+      .upsert(domainsData, { onConflict: "id" });
 
     if (domainsError) {
       console.error("Failed to import domains:", domainsError);

@@ -41,6 +41,10 @@ function makeMockSupabase(): { supabase: any; calls: Call[] } {
           resolve({ data: null, error: null }),
       };
     },
+    upsert: (rows: unknown, options: unknown) => {
+      calls.push({ table, method: "upsert", args: [rows, options] });
+      return Promise.resolve({ data: null, error: null });
+    },
     update: (patch: unknown) => ({
       eq: (...a: unknown[]) => {
         calls.push({ table, method: "update.eq", args: [patch, ...a] });
@@ -134,21 +138,66 @@ test("writeParsedSCF deletes by version then inserts principles, domains, source
   const lastDeleteIdx = tables.findLastIndex((t) => t.startsWith("scf_") && t.includes("delete"));
   assert.ok(firstInsertIdx > lastDeleteIdx, "all deletes must precede first insert");
 
-  // The five cleanup deletes by scf_version.
+  // The four version-filtered cleanup deletes. scf_domains intentionally skipped:
+  // it uses upsert (the baseline migration pre-seeds FK-referenced rows that
+  // can't be safely deleted).
   assert.ok(tables.includes("scf_frameworks.delete.eq"));
   assert.ok(tables.includes("scf_controls.delete.eq"));
-  assert.ok(tables.includes("scf_domains.delete.eq"));
   assert.ok(tables.includes("scf_principles.delete.eq"));
   assert.ok(tables.includes("scf_authoritative_sources.delete.eq"));
+  assert.ok(!tables.includes("scf_domains.delete.eq"), "scf_domains must not be deleted");
 
-  // The four upstream-extract insert tables.
+  // The three insert tables + scf_domains upsert.
   assert.ok(tables.includes("scf_principles.insert"));
-  assert.ok(tables.includes("scf_domains.insert"));
+  assert.ok(tables.includes("scf_domains.upsert"));
   assert.ok(tables.includes("scf_authoritative_sources.insert"));
   assert.ok(tables.includes("scf_controls.insert"));
 
   // Final status update.
   assert.ok(tables.includes("scf_imports.update.eq"));
+});
+
+test("writeParsedSCF surfaces cleanup-delete errors instead of swallowing them", async () => {
+  const calls: Call[] = [];
+  const failingSupabase: any = {
+    from: (table: string) => ({
+      select: () => ({
+        eq: () => Promise.resolve({ data: [], error: null }),
+      }),
+      delete: () => ({
+        eq: () => {
+          calls.push({ table, method: "delete.eq", args: [] });
+          // First delete (scf_frameworks) returns an FK-style error so the
+          // writer must throw rather than continuing to insert.
+          if (table === "scf_frameworks") {
+            return Promise.resolve({
+              data: null,
+              error: { message: "update or delete on ... violates foreign key constraint" },
+            });
+          }
+          return Promise.resolve({ data: null, error: null });
+        },
+        in: () => Promise.resolve({ data: null, error: null }),
+      }),
+    }),
+  };
+
+  await assert.rejects(
+    () =>
+      writeParsedSCF(
+        failingSupabase,
+        fixtureParseResult,
+        undefined,
+        "11111111-1111-1111-1111-111111111111"
+      ),
+    /Cleanup delete on scf_frameworks failed/
+  );
+
+  // No insert call should have been attempted after the failed cleanup.
+  assert.ok(
+    !calls.some((c) => c.method === "insert"),
+    "writer must abort before any insert when cleanup fails"
+  );
 });
 
 test("writeParsedSCF maps camelCase parseResult fields to snake_case DB columns on controls", async () => {

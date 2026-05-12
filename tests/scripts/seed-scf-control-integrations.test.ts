@@ -36,7 +36,7 @@ function makeMockSupabase(opts: { controlIds: string[] }): { supabase: any; call
 }
 
 test("seedScfControlIntegrations inserts all 4 fixtures when controls exist", async () => {
-  const { supabase, calls } = makeMockSupabase({ controlIds: ["AAT-02", "ACC-22", "CFG-02"] });
+  const { supabase, calls } = makeMockSupabase({ controlIds: ["AAT-02", "CHG-04", "CFG-02"] });
 
   const summary = await seedScfControlIntegrations(supabase);
   assert.equal(summary.inserted, 4);
@@ -56,19 +56,19 @@ test("seedScfControlIntegrations inserts all 4 fixtures when controls exist", as
   ]);
 
   const controls = rows.map((r) => r.scf_control_id).sort();
-  assert.deepEqual(controls, ["AAT-02", "AAT-02", "ACC-22", "CFG-02"]);
+  assert.deepEqual(controls, ["AAT-02", "AAT-02", "CFG-02", "CHG-04"]);
 
   const options = upsert!.args[1] as { onConflict?: string };
   assert.equal(options.onConflict, "id");
 });
 
 test("seedScfControlIntegrations skips rows whose control_id is missing", async () => {
-  // Only AAT-02 exists — the ACC-22 and CFG-02 rows should be skipped.
+  // Only AAT-02 exists — the CHG-04 and CFG-02 rows should be skipped.
   const { supabase, calls } = makeMockSupabase({ controlIds: ["AAT-02"] });
 
   const summary = await seedScfControlIntegrations(supabase);
   assert.equal(summary.inserted, 2); // both AAT-02 fixtures
-  assert.equal(summary.skipped, 2); // ACC-22 + CFG-02 fixtures
+  assert.equal(summary.skipped, 2); // CHG-04 + CFG-02 fixtures
 
   const upsert = calls.find((c) => c.table === "scf_control_integrations" && c.method === "upsert");
   assert.ok(upsert, "upsert call must exist");

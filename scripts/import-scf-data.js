@@ -48,7 +48,9 @@ async function importRisksFromCsv() {
         "materiality_total_revenue",
       ],
       skip_empty_lines: true,
-      from_line: 11, // Skip header rows based on CSV structure
+      from_line: 10, // R-AC-1 lives on physical line 10 of risks.csv; the
+      // `record.risk_id.includes("Risk #")` guard below filters out any
+      // residual header pseudo-rows above.
       relax_column_count: true, // Allow for variable column counts
     });
 
@@ -124,7 +126,9 @@ async function importThreatsFromCsv() {
         "materiality_total_revenue",
       ],
       skip_empty_lines: true,
-      from_line: 9, // Skip header rows based on CSV structure
+      from_line: 8, // NT-1 lives on physical line 8 of threats.csv; the
+      // `record.threat_id.includes("Threat #")` guard below filters out any
+      // residual header pseudo-rows above.
       relax_column_count: true, // Allow for variable column counts
     });
 

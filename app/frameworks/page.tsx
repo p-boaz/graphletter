@@ -87,7 +87,7 @@ export default function FrameworksPage() {
             </h1>
             <p className="ft-sans text-slate-600 text-xl max-w-3xl mx-auto">
               Graphletter normalizes compliance requirements through the Secure Controls Framework
-              (SCF 2025.1.1). Each framework below is mapped to SCF controls, enabling
+              (SCF 2026.1.1). Each framework below is mapped to SCF controls, enabling
               cross-framework traceability from a single evidence base.
             </p>
             <div className="flex justify-center">

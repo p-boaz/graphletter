@@ -49,7 +49,7 @@ export const SCI_FIXTURES: ReadonlyArray<SCIRow> = [
   },
   {
     id: "a0000000-0000-4000-8000-000000000003",
-    scf_control_id: "ACC-22",
+    scf_control_id: "CHG-04",
     provider_id: "github",
     service_name: "GitHub",
     check_type: "branch_protection",
