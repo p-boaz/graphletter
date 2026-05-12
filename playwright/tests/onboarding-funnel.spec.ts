@@ -8,33 +8,23 @@ test.describe("landing hero", () => {
     await expect(h1).not.toHaveText("Graphletter");
     const primary = page.getByTestId("hero-primary-cta");
     await expect(primary).toBeVisible();
-    await expect(primary).toHaveAttribute("href", "/try-it-out");
+    await expect(primary).toHaveAttribute("href", "/try");
   });
 
   test("landing page ends with a CTA above the footer", async ({ page }) => {
     await page.goto("/");
     const closer = page.getByTestId("landing-closing-cta");
     await closer.scrollIntoViewIfNeeded();
-    await expect(closer.getByRole("link", { name: /try it/i })).toHaveAttribute(
-      "href",
-      "/try-it-out"
-    );
+    await expect(closer.getByRole("link", { name: /try it/i })).toHaveAttribute("href", "/try");
   });
 
-  test("pipeline cards use plain-English labels", async ({ page }) => {
+  test("footer shows the lean link row", async ({ page }) => {
     await page.goto("/");
-    const titles = await page.getByTestId("pipeline-card-title").allInnerTexts();
-    expect(titles).toEqual([
-      "Upload your evidence",
-      "AI reads it against the framework",
-      "Get a gap report you can act on",
-    ]);
-  });
-
-  test("footer exposes Resources column with Docs / Privacy / Terms / Status", async ({ page }) => {
-    await page.goto("/");
-    const resources = page.getByRole("contentinfo").getByRole("heading", { name: /Resources/i });
-    await expect(resources).toBeVisible();
+    const footer = page.getByRole("contentinfo");
+    await expect(footer.getByRole("link", { name: "Frameworks" })).toBeVisible();
+    await expect(footer.getByRole("link", { name: "Research" })).toBeVisible();
+    await expect(footer.getByRole("link", { name: "GitHub" })).toBeVisible();
+    await expect(footer.getByRole("link", { name: /hello@graphletter\.com/ })).toBeVisible();
   });
 });
 
@@ -158,7 +148,7 @@ test.describe("try-it-out results UI", () => {
         body: JSON.stringify(demoMock),
       })
     );
-    await page.goto("/try-it-out");
+    await page.goto("/try");
     await page.getByTestId("demo-sample-select").click();
     await page.getByRole("option", { name: /Cybersecurity Program Charter/ }).click();
     await page.getByTestId("demo-run-button").click();
@@ -177,7 +167,7 @@ test.describe("try-it-out results UI", () => {
         body: JSON.stringify(demoMock),
       })
     );
-    await page.goto("/try-it-out");
+    await page.goto("/try");
     await page.getByTestId("demo-sample-select").click();
     await page.getByRole("option", { name: /Cybersecurity Program Charter/ }).click();
     await page.getByTestId("demo-run-button").click();
@@ -188,7 +178,7 @@ test.describe("try-it-out results UI", () => {
 
 test.describe("try-it-out intro + quota", () => {
   test("does not render the Live Workflow block", async ({ page }) => {
-    await page.goto("/try-it-out");
+    await page.goto("/try");
     await expect(page.getByRole("heading", { name: /Live Workflow/i })).toHaveCount(0);
   });
 
@@ -200,7 +190,7 @@ test.describe("try-it-out intro + quota", () => {
         body: JSON.stringify({ remaining: 2, max: 3 }),
       })
     );
-    await page.goto("/try-it-out");
+    await page.goto("/try");
     await expect(page.getByTestId("demo-runs-remaining")).toContainText("2 of 3");
   });
 });
@@ -229,15 +219,9 @@ test.describe("frameworks list filter & closer", () => {
   });
 });
 
-test.describe("how-it-works restructure", () => {
-  test("hero has TL;DR and primary CTA to /try-it-out", async ({ page }) => {
-    await page.goto("/how-it-works");
-    await expect(page.getByTestId("hiw-tldr")).toContainText(/upload/i);
-    await expect(page.getByTestId("hiw-primary-cta")).toHaveAttribute("href", "/try-it-out");
-  });
-
+test.describe("docs page", () => {
   test("pipeline diagram renders all 6 step labels", async ({ page }) => {
-    await page.goto("/how-it-works");
+    await page.goto("/docs");
     const diagram = page.getByTestId("pipeline-diagram");
     for (const label of [
       "Upload",
@@ -249,13 +233,6 @@ test.describe("how-it-works restructure", () => {
     ]) {
       await expect(diagram).toContainText(label);
     }
-  });
-
-  test("closes with a CTA before the footer", async ({ page }) => {
-    await page.goto("/how-it-works");
-    const closer = page.getByTestId("hiw-closing-cta");
-    await closer.scrollIntoViewIfNeeded();
-    await expect(closer).toBeVisible();
   });
 });
 
@@ -300,7 +277,7 @@ test.describe("legal placeholder pages", () => {
 });
 
 test("per-page titles are distinct", async ({ page }) => {
-  const paths = ["/", "/how-it-works", "/research", "/try-it-out", "/auth", "/privacy", "/terms"];
+  const paths = ["/", "/docs", "/research", "/try", "/auth", "/privacy", "/terms"];
   const titles: string[] = [];
   for (const path of paths) {
     await page.goto(path);

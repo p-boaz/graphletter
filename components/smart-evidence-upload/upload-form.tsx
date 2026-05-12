@@ -113,7 +113,7 @@ export function UploadForm({
           <p className="text-xs text-slate-500">
             Not sure which artifact to choose?{" "}
             <Link
-              href="/how-it-works#artifacts-and-controls"
+              href="/docs#artifacts-and-controls"
               data-testid="artifact-mapping-link"
               className="font-medium underline underline-offset-4 hover:text-slate-700"
             >

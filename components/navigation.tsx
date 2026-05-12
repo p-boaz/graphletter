@@ -19,8 +19,10 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { authUrl } from "@/lib/auth/auth-tabs";
 import { useAuth } from "@/lib/auth/auth-context";
 import { createClient } from "@/lib/supabase/client";
+import { GITHUB_URL } from "@/lib/config/links";
 
 const MOBILE_NAV_SHEET_ID = "primary-mobile-navigation-sheet";
+const NAVIGATION_ITEMS = [{ href: "/try", label: "Try" }] as const;
 let lastClientPathname: string | null = null;
 const isProtectedPath = (path: string | null) =>
   Boolean(path?.startsWith("/dashboard") || path?.startsWith("/profile"));
@@ -72,13 +74,6 @@ export function Navigation() {
     await supabase.auth.signOut();
   };
 
-  const navigationItems = [
-    { href: "/frameworks", label: "Frameworks" },
-    { href: "/how-it-works", label: "How It Works" },
-    { href: "/try-it-out", label: "Try It Out" },
-    { href: "/research", label: "Research" },
-  ];
-
   return (
     <header
       data-testid="primary-navigation"
@@ -106,7 +101,7 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center space-x-6 md:flex">
-            {navigationItems.map((item) => (
+            {NAVIGATION_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -115,6 +110,16 @@ export function Navigation() {
                 {item.label}
               </Link>
             ))}
+            <a
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="nav-github"
+              className="ft-nav-link text-base outline-none focus-visible:ring-2 focus-visible:ring-ft-pink focus-visible:ring-offset-2"
+            >
+              GitHub
+              <span className="sr-only"> (opens in new tab)</span>
+            </a>
           </nav>
 
           {/* User Menu */}
@@ -191,7 +196,7 @@ export function Navigation() {
                 className="w-[300px] rounded-l-2xl border-l-2 border-ft-pink bg-white px-6 py-8 shadow-lg sm:w-[400px]"
               >
                 <nav className="mt-8 flex flex-col space-y-6">
-                  {navigationItems.map((item) => (
+                  {NAVIGATION_ITEMS.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
@@ -201,6 +206,17 @@ export function Navigation() {
                       {item.label}
                     </Link>
                   ))}
+                  <a
+                    href={GITHUB_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="nav-mobile-github"
+                    className="ft-nav-link text-lg outline-none focus-visible:ring-2 focus-visible:ring-ft-pink focus-visible:ring-offset-2"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    GitHub
+                    <span className="sr-only"> (opens in new tab)</span>
+                  </a>
                   <div className="mt-6 flex flex-col space-y-3 border-slate-200 border-t pt-6">
                     <Link
                       href="/auth"

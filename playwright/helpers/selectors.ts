@@ -72,10 +72,6 @@ export const selectors = {
     frameworkCardDescription: "framework-card-description",
     frameworkDetailHeading: "framework-detail-heading",
     frameworkDetailMappings: "framework-detail-mappings",
-    footerLinkHowItWorks: "footer-link-how-it-works",
-    footerLinkTryItOut: "footer-link-try-it-out",
-    contactPageHeading: "contact-page-heading",
-    contactResponseTime: "contact-response-time",
   },
   inbox: {
     page: "compliance-inbox-page",

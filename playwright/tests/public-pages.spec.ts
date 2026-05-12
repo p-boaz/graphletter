@@ -1,146 +1,91 @@
 import { expect, test } from "@playwright/test";
 import {
-	assert_no_browser_failures,
-	inspect_console_errors,
-	open_local_app,
-	take_snapshot,
-	trace_failure,
+  assert_no_browser_failures,
+  inspect_console_errors,
+  open_local_app,
+  take_snapshot,
+  trace_failure,
 } from "../helpers/browser-skills";
 import { selectors } from "../helpers/selectors";
 
-test("public pages: dogfood report regressions are covered", async ({
-	page,
-}, testInfo) => {
-	test.setTimeout(60_000);
+test("public pages: dogfood report regressions are covered", async ({ page }, testInfo) => {
+  test.setTimeout(60_000);
 
-	const observer = inspect_console_errors(page);
-	let report = observer.getReport();
+  const observer = inspect_console_errors(page);
+  let report = observer.getReport();
 
-	try {
-		await open_local_app(page, "/how-it-works");
+  try {
+    await open_local_app(page, "/docs");
 
-		const nav = page.getByTestId(selectors.public.navHeader);
-		await expect(nav).toBeVisible();
+    const nav = page.getByTestId(selectors.public.navHeader);
+    await expect(nav).toBeVisible();
 
-		await page.evaluate(() => window.scrollTo(0, 260));
-		const navBackground = await nav.evaluate((element) => {
-			return window.getComputedStyle(element).backgroundColor;
-		});
-		expect(navBackground).not.toBe("rgba(0, 0, 0, 0)");
+    await page.evaluate(() => window.scrollTo(0, 260));
+    const navBackground = await nav.evaluate((element) => {
+      return window.getComputedStyle(element).backgroundColor;
+    });
+    expect(navBackground).not.toBe("rgba(0, 0, 0, 0)");
 
-		await open_local_app(page, "/frameworks");
-		await expect(
-			page.getByRole("link", { name: "Frameworks" }).first(),
-		).toHaveClass(/active/);
-		await expect(
-			page.getByRole("link", { name: "How It Works" }).first(),
-		).not.toHaveClass(/active/);
+    await open_local_app(page, "/frameworks");
+    await expect(page.getByRole("link", { name: "Frameworks" }).first()).toHaveClass(/active/);
 
-		const searchInput = page.getByTestId(selectors.public.frameworkSearchInput);
-		const resultsCount = page.getByTestId(
-			selectors.public.frameworkResultsCount,
-		);
-		const frameworkCardLinks = page.getByTestId(
-			selectors.public.frameworkCardLink,
-		);
+    const searchInput = page.getByTestId(selectors.public.frameworkSearchInput);
+    const resultsCount = page.getByTestId(selectors.public.frameworkResultsCount);
+    const frameworkCardLinks = page.getByTestId(selectors.public.frameworkCardLink);
 
-		await expect(searchInput).toBeVisible();
-		await expect(resultsCount).toBeVisible();
-		await expect(frameworkCardLinks.first()).toBeVisible();
+    await expect(searchInput).toBeVisible();
+    await expect(resultsCount).toBeVisible();
+    await expect(frameworkCardLinks.first()).toBeVisible();
 
-		const descriptions = await page
-			.getByTestId(selectors.public.frameworkCardDescription)
-			.allTextContents();
-		const uniqueDescriptionCount = new Set(
-			descriptions.slice(0, 12).map((description) => description.trim()),
-		).size;
-		expect(uniqueDescriptionCount).toBeGreaterThan(1);
+    const descriptions = await page
+      .getByTestId(selectors.public.frameworkCardDescription)
+      .allTextContents();
+    const uniqueDescriptionCount = new Set(
+      descriptions.slice(0, 12).map((description) => description.trim())
+    ).size;
+    expect(uniqueDescriptionCount).toBeGreaterThan(1);
 
-		const firstTitle = await page
-			.getByTestId(selectors.public.frameworkCardTitle)
-			.first()
-			.innerText();
-		const searchToken =
-			firstTitle
-				.split(/\s+/)
-				.map((token) => token.replace(/[^a-zA-Z0-9-]/g, ""))
-				.find((token) => /[a-zA-Z]/.test(token) && !/^v\d/i.test(token)) ||
-			firstTitle;
+    const firstTitle = await page
+      .getByTestId(selectors.public.frameworkCardTitle)
+      .first()
+      .innerText();
+    const searchToken =
+      firstTitle
+        .split(/\s+/)
+        .map((token) => token.replace(/[^a-zA-Z0-9-]/g, ""))
+        .find((token) => /[a-zA-Z]/.test(token) && !/^v\d/i.test(token)) || firstTitle;
 
-		await searchInput.fill(searchToken);
-		await expect(resultsCount).toContainText("of");
-		await expect(frameworkCardLinks.first()).toBeVisible();
+    await searchInput.fill(searchToken);
+    await expect(resultsCount).toContainText("of");
+    await expect(frameworkCardLinks.first()).toBeVisible();
 
-		const firstFrameworkHref = await frameworkCardLinks
-			.first()
-			.getAttribute("href");
-		expect(firstFrameworkHref).toMatch(/^\/frameworks\/[^/]+$/);
+    const firstFrameworkHref = await frameworkCardLinks.first().getAttribute("href");
+    expect(firstFrameworkHref).toMatch(/^\/frameworks\/[^/]+$/);
 
-		await frameworkCardLinks.first().click();
-		await expect(page).toHaveURL(/\/frameworks\/[^/]+$/, { timeout: 20_000 });
-		await expect(
-			page.getByTestId(selectors.public.frameworkDetailHeading),
-		).toBeVisible();
-		await expect(
-			page.getByTestId(selectors.public.frameworkDetailMappings),
-		).toBeVisible();
+    await frameworkCardLinks.first().click();
+    await expect(page).toHaveURL(/\/frameworks\/[^/]+$/, { timeout: 20_000 });
+    await expect(page.getByTestId(selectors.public.frameworkDetailHeading)).toBeVisible();
+    await expect(page.getByTestId(selectors.public.frameworkDetailMappings)).toBeVisible();
 
-		await open_local_app(page, "/contact");
-		await expect(
-			page.getByTestId(selectors.public.contactPageHeading),
-		).toBeVisible();
-		await expect(
-			page.getByTestId(selectors.public.contactResponseTime),
-		).toBeVisible();
-		await expect(
-			page.getByTestId(selectors.public.footerLinkHowItWorks),
-		).toBeVisible();
-		await expect(
-			page.getByTestId(selectors.public.footerLinkTryItOut),
-		).toBeVisible();
+    await open_local_app(page, "/try");
+    await expect(page.getByTestId(selectors.public.tryItOutHeading)).toBeVisible();
+    await expect(page.getByTestId(selectors.public.tryItOutSummary)).toContainText(
+      "real Smart Evidence Upload flow"
+    );
+    await expect(page.getByTestId(selectors.public.tryItOutLiveUploadSection)).toBeVisible();
+    await expect(page.getByTestId(selectors.upload.openSmartUploadButton)).toBeVisible();
+  } finally {
+    observer.stop();
+    report = observer.getReport();
+    report.failedRequests = report.failedRequests.filter((request) => {
+      const isAbortedRequest = request.errorText.includes("net::ERR_ABORTED");
+      const isRscFetch = request.url.includes("_rsc=");
+      const isNextChunk = request.url.includes("/_next/static/chunks/");
+      return !(isAbortedRequest && (isRscFetch || isNextChunk));
+    });
+    await trace_failure(testInfo, report);
+    await take_snapshot(page, testInfo, "public-pages");
+  }
 
-		await open_local_app(page, "/how-it-works");
-		await expect(
-			page.getByRole("link", { name: "How It Works" }).first(),
-		).toHaveClass(/active/);
-		await expect(
-			page.getByRole("link", { name: "Frameworks" }).first(),
-		).not.toHaveClass(/active/);
-		await expect(
-			page.getByRole("link", { name: "Try It Out" }).first(),
-		).not.toHaveClass(/active/);
-
-		await open_local_app(page, "/try-it-out");
-		await expect(
-			page.getByTestId(selectors.public.tryItOutHeading),
-		).toBeVisible();
-		await expect(
-			page.getByRole("link", { name: "Try It Out" }).first(),
-		).toHaveClass(/active/);
-		await expect(
-			page.getByRole("link", { name: "How It Works" }).first(),
-		).not.toHaveClass(/active/);
-		await expect(
-			page.getByTestId(selectors.public.tryItOutSummary),
-		).toContainText("real Smart Evidence Upload flow");
-		await expect(
-			page.getByTestId(selectors.public.tryItOutLiveUploadSection),
-		).toBeVisible();
-		await expect(
-			page.getByTestId(selectors.upload.openSmartUploadButton),
-		).toBeVisible();
-	} finally {
-		observer.stop();
-		report = observer.getReport();
-		report.failedRequests = report.failedRequests.filter((request) => {
-			const isAbortedRequest = request.errorText.includes("net::ERR_ABORTED");
-			const isRscFetch = request.url.includes("_rsc=");
-			const isNextChunk = request.url.includes("/_next/static/chunks/");
-			return !(isAbortedRequest && (isRscFetch || isNextChunk));
-		});
-		await trace_failure(testInfo, report);
-		await take_snapshot(page, testInfo, "public-pages");
-	}
-
-	assert_no_browser_failures(report);
+  assert_no_browser_failures(report);
 });

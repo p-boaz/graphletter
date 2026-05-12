@@ -261,14 +261,11 @@ export function ControlRow({
             </div>
             <p className="mt-1">
               Each objective is a testable checkpoint for the control.{" "}
-              <Link
-                href="/how-it-works#assessment-objectives"
-                className="underline underline-offset-4"
-              >
+              <Link href="/docs#assessment-objectives" className="underline underline-offset-4">
                 Learn objective basics
               </Link>{" "}
               and{" "}
-              <Link href="/how-it-works#result-states" className="underline underline-offset-4">
+              <Link href="/docs#result-states" className="underline underline-offset-4">
                 result states
               </Link>
               .
@@ -305,10 +302,7 @@ export function ControlRow({
                   </div>
                   <p className="mb-2 text-xs text-slate-600">
                     {getObjectiveResultGuidance(enrichedObjective.result)}{" "}
-                    <Link
-                      href="/how-it-works#result-states"
-                      className="underline underline-offset-4"
-                    >
+                    <Link href="/docs#result-states" className="underline underline-offset-4">
                       See scoring guide
                     </Link>
                     .
@@ -410,7 +404,7 @@ export function ControlRow({
                   </ol>
                   <p className="mt-1 text-xs text-slate-500">
                     See{" "}
-                    <Link href="/how-it-works#maturity-levels" className="underline">
+                    <Link href="/docs#maturity-levels" className="underline">
                       How It Works
                     </Link>{" "}
                     for detail.

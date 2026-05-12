@@ -26,7 +26,7 @@ export default function SecurityPage() {
     {
       title: "Vulnerability Disclosure",
       description:
-        "Report security issues to security@graphletter.com following SECURITY.md. We acknowledge reports within 48 hours.",
+        "Report security issues following SECURITY.md. We acknowledge reports within 48 hours.",
     },
   ];
 
@@ -52,6 +52,16 @@ export default function SecurityPage() {
               <div key={p.title} className="space-y-2 pb-8 border-b border-slate-100 last:border-0">
                 <h2 className="ft-serif font-bold text-lg text-ft-black">{p.title}</h2>
                 <p className="ft-sans text-slate-600 leading-relaxed">{p.description}</p>
+                {p.title === "Vulnerability Disclosure" && (
+                  <p className="ft-sans text-slate-600">
+                    <a
+                      href="mailto:security@graphletter.com?subject=Security%20Disclosure"
+                      className="ft-sans text-ft-pink underline underline-offset-4 hover:text-ft-black transition-colors"
+                    >
+                      security@graphletter.com
+                    </a>
+                  </p>
+                )}
               </div>
             ))}
           </div>
