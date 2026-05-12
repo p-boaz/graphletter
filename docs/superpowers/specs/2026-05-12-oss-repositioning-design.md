@@ -158,22 +158,27 @@ Graphletter         Try    GitHub    Log in    Sign up
 
 ### Delete
 
-- `/how-it-works` — 669-line marketing deep-dive; the landing absorbs what's needed.
-- `/demo` — currently just a redirect to `/how-it-works`. Dead route.
+- `/demo` — currently a redirect. Replace with redirect to `/docs` so old links still land somewhere useful.
 - `/contact` — sales-funnel page ("primary framework focus", "target timeline"). Replaced by `mailto:hello@graphletter.com` link in footer.
 
-### Rename
+### Rename + rewrite
 
 - `/try-it-out` → `/try`. Add a redirect from `/try-it-out` to `/try` to preserve any external links.
+- `/how-it-works` → `/docs`. The current page is also the product's in-app help surface (anchored from upload dialog, assessment results, dashboard, architecture). Strip the marketing intro/CTA sections, keep the documentation sections that the anchors target (`#assessment-objectives`, `#result-states`, `#artifacts-and-controls`, `#workflow`). Add a redirect from `/how-it-works` to `/docs`. Update the in-app links to point at `/docs#...` instead of `/how-it-works#...`.
 
 ### Link cleanup
 
-After route deletes and the rename, scan and update every internal `Link` and `href` reference:
+After route renames, scan and update every internal `Link` and `href` reference:
 
-- `components/footer.tsx` — drops `/how-it-works`, `/try-it-out` → `/try`, removes "Documentation" link
-- `components/navigation.tsx` — drops marketing links, adds GitHub external link
+- `components/footer.tsx` — drops the marketing nav, updates `/try-it-out` → `/try`, `/how-it-works` → `/docs`
+- `components/navigation.tsx` — drops marketing links, adds GitHub external link, updates surviving link to `/try`
 - `app/page.tsx` — secondary hero CTA changes from `/how-it-works` to GitHub external
-- Anywhere else that links `/how-it-works`, `/demo`, `/contact`, `/try-it-out`: update or remove
+- `components/smart-evidence-upload/upload-form.tsx` — `/how-it-works#artifacts-and-controls` → `/docs#artifacts-and-controls`
+- `components/assessment-results-display/control-row.tsx` (3 hrefs) — `/how-it-works#...` → `/docs#...`
+- `components/assessment-review-dialog/detailed-view.tsx` (3 hrefs) — `/how-it-works#...` → `/docs#...`
+- `app/dashboard/page.tsx` — `/how-it-works#workflow` → `/docs#workflow`
+- `app/architecture/page.tsx` — `redirect("/how-it-works")` → `redirect("/docs")`
+- `app/demo/page.tsx` — `redirect("/how-it-works")` → `redirect("/docs")`
 
 ### Tone passes
 
