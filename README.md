@@ -51,8 +51,8 @@ The output is per-control verdicts grounded in your actual documents — not a c
 ### Local setup
 
 ```sh
-git clone https://github.com/p-boaz/graphletter-public.git
-cd graphletter-public
+git clone https://github.com/p-boaz/graphletter.git
+cd graphletter
 pnpm install
 
 cp .env.example .env.local

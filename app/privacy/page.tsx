@@ -11,8 +11,18 @@ export default function PrivacyPage() {
     <div className="flex min-h-screen flex-col bg-white">
       <Navigation />
       <main className="ft-container flex-1 py-16">
-        <h1 className="ft-serif text-4xl font-bold">Privacy Policy</h1>
-        <p className="mt-4 text-slate-600">Last updated: 2026-05-09</p>
+        <div className="flex items-center gap-3">
+          <h1 className="ft-serif text-4xl font-bold">Privacy Policy</h1>
+          <span
+            className="rounded-full border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-amber-800"
+            data-testid="legal-draft-badge"
+          >
+            Draft
+          </span>
+        </div>
+        <p className="mt-4 text-slate-600">
+          Last updated: 2026-05-09. This is a working draft and not yet reviewed legal text.
+        </p>
         <section className="prose prose-slate mt-8 max-w-3xl">
           <p>
             Graphletter processes documents you upload solely to produce the compliance assessment
