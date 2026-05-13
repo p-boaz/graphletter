@@ -232,7 +232,7 @@ export function Navigation() {
                       className="block rounded-md bg-ft-pink px-4 py-2 text-center font-semibold text-white"
                       onClick={() => setIsOpen(false)}
                     >
-                      Sign up free
+                      Sign up
                     </Link>
                   </div>
                 </nav>

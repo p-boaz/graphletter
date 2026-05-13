@@ -1,7 +1,7 @@
 export const GLOSSARY = {
   scf: {
     term: "SCF",
-    def: "Secure Controls Framework — a meta-framework with ~1,200 controls that map to 79+ regulatory standards.",
+    def: "Secure Controls Framework — a meta-framework with ~1,500 controls that map to 79+ regulatory standards.",
   },
   erl: {
     term: "ERL",

@@ -251,7 +251,7 @@ test.describe("research page", () => {
 });
 
 test.describe("mobile nav", () => {
-  test("hamburger menu exposes Sign in and Sign up free", async ({ page }) => {
+  test("hamburger menu exposes Sign in and Sign up", async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto("/");
     const trigger = page.getByTestId("nav-mobile-toggle");

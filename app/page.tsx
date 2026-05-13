@@ -23,7 +23,7 @@ export default function HomePage() {
           Prove your policies meet the frameworks that matter.
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-slate-700 leading-relaxed">
-          Upload an evidence document. Graphletter reads it against 1,200+ SCF controls and maps the
+          Upload an evidence document. Graphletter reads it against 1,468 SCF controls and maps the
           outcome to 79 frameworks — with AI reasoning quoted back to your source.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
@@ -37,7 +37,7 @@ export default function HomePage() {
           </Button>
         </div>
         <p className="mt-6 text-xs text-slate-500">
-          79 frameworks · 1,200+ controls · 25,000+ cross-framework mappings
+          79 frameworks · 1,468 controls · 34,619 cross-framework mappings · SCF 2026.1.1
         </p>
       </section>
 
@@ -192,7 +192,7 @@ export default function HomePage() {
               <Link href="/try">Try it now</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href={authUrl("signup")}>Create a free account</Link>
+              <Link href={authUrl("signup")}>Create an account</Link>
             </Button>
           </div>
         </div>

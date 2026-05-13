@@ -32,8 +32,7 @@ export async function signUp(formData: FormData) {
     log.error("Auth signup error", { error: error.message });
     const params = new URLSearchParams({
       tab: "signup",
-      error:
-        "We could not create your account. Please try again, or open a GitHub issue if it persists.",
+      error: "We could not create your account. Please try again.",
     });
     if (userData.full_name) params.set("name", userData.full_name);
     if (data.email) params.set("email", data.email);

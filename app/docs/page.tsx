@@ -494,7 +494,7 @@ export default async function DocsPage() {
                 <h3 className="ft-serif font-bold text-lg text-ft-black">SCF Catalog</h3>
                 <ul className="ft-sans text-slate-600 space-y-1.5 text-sm">
                   <li>
-                    <span className="font-mono text-slate-500">scf_controls</span> — 1,200+ controls
+                    <span className="font-mono text-slate-500">scf_controls</span> — 1,468 controls
                     across 33 domains
                   </li>
                   <li>

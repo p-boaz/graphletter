@@ -420,7 +420,7 @@ export function DemoSmartEvidenceUpload() {
           </p>
           <div className="flex items-center justify-center gap-3">
             <Button asChild>
-              <Link href={authUrl("signup")}>Sign Up Free</Link>
+              <Link href={authUrl("signup")}>Sign up</Link>
             </Button>
             <Button variant="outline" onClick={reset}>
               Try Another Document
