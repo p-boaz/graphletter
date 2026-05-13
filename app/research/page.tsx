@@ -4,6 +4,7 @@ import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { GITHUB_URL } from "@/lib/config/links";
 import { RESEARCH_TOPICS, type ResearchStatus } from "@/lib/research/research-topics";
 import { pageTitle } from "@/lib/seo/page-title";
 
@@ -87,10 +88,13 @@ export default function ResearchPage() {
           >
             <h2 className="ft-serif text-lg font-bold text-ft-black">Want to discuss?</h2>
             <p className="mt-2 text-sm text-slate-600">
-              We&apos;re always happy to compare notes on compliance automation.
+              Open an issue or a discussion on GitHub — we&apos;re happy to compare notes on
+              compliance automation.
             </p>
             <Button asChild className="mt-3">
-              <a href="mailto:hello@graphletter.com?subject=Research%20chat">Get in touch</a>
+              <a href={`${GITHUB_URL}/discussions`} target="_blank" rel="noopener noreferrer">
+                Open a discussion
+              </a>
             </Button>
           </section>
         </div>

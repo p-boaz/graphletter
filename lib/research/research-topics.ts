@@ -18,10 +18,10 @@ export const RESEARCH_TOPICS: ResearchTopic[] = [
     summary:
       "Modeling relationships between SCF controls, assessment objectives, and cross-framework mappings as a navigable graph structure.",
     bullets: [
-      "SCF 2025.1.15 normalization task across 79+ frameworks.",
+      "SCF 2026.1.1 normalization across 79+ frameworks.",
       "Hierarchical domain → control → objective → evidence relationships.",
-      "Cross-framework traceability (cue controls / objective implies required evidence).",
-      "Graph-based gap propagation — a gap in one control surfaces across all mapped frameworks.",
+      "Cross-framework traceability — one evidence base, many framework views.",
+      "Graph-based gap propagation: a gap on one control surfaces across every framework it maps to.",
     ],
   },
   {
@@ -31,10 +31,9 @@ export const RESEARCH_TOPICS: ResearchTopic[] = [
     summary:
       "Developing reliable confidence metrics for LLM-based evidence assessment against compliance controls.",
     bullets: [
-      "Per-objective scoring with Strong/Moderate/Weak/Insufficient ratings.",
-      "Evaluation against SME 5-of-5 by-mapping consistency: Clause 4.7 (benchmark for assessing depth).",
-      "Temperature tuning for task types 0.0–0.3 range.",
-      "Exploring calibration between LLM confidence and auditor agreement.",
+      "Per-objective confidence as a 0.0–1.0 score, bucketed into low / medium / high for display.",
+      "Low model temperatures (0.1–0.2) to keep assessments consistent across runs.",
+      "Open question: how well does model-reported confidence track human-auditor agreement?",
     ],
   },
   {

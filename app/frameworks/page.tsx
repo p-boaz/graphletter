@@ -255,28 +255,6 @@ export default function FrameworksPage() {
         </div>
       </section>
 
-      <section className="pb-20">
-        <div className="container mx-auto px-4">
-          <div
-            className="rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center"
-            data-testid="frameworks-missing-cta"
-          >
-            <h2 className="ft-serif text-xl font-bold text-ft-black">
-              Don&apos;t see your framework?
-            </h2>
-            <p className="mt-2 text-slate-600 text-sm">
-              We add new frameworks on request. Tell us which one you need and we&apos;ll reply with
-              a timeline.
-            </p>
-            <Button asChild className="mt-4">
-              <a href="mailto:hello@graphletter.com?subject=Framework%20request">
-                Request a framework
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );

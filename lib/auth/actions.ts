@@ -33,7 +33,7 @@ export async function signUp(formData: FormData) {
     const params = new URLSearchParams({
       tab: "signup",
       error:
-        "We could not create your account. Please try again or contact hello@graphletter.com if it persists.",
+        "We could not create your account. Please try again, or open a GitHub issue if it persists.",
     });
     if (userData.full_name) params.set("name", userData.full_name);
     if (data.email) params.set("email", data.email);

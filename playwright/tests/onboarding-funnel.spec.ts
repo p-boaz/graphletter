@@ -24,7 +24,7 @@ test.describe("landing hero", () => {
     await expect(footer.getByRole("link", { name: "Frameworks" })).toBeVisible();
     await expect(footer.getByRole("link", { name: "Research" })).toBeVisible();
     await expect(footer.getByRole("link", { name: "GitHub" })).toBeVisible();
-    await expect(footer.getByRole("link", { name: /hello@graphletter\.com/ })).toBeVisible();
+    await expect(footer.getByRole("link", { name: /hello@graphletter\.com/ })).toHaveCount(0);
   });
 });
 
@@ -207,15 +207,9 @@ test.describe("frameworks list filter & closer", () => {
     expect(narrowed).toBeGreaterThan(0);
   });
 
-  test("page ends with a 'Request a framework' CTA", async ({ page }) => {
+  test("does not expose a 'Request a framework' mailto CTA", async ({ page }) => {
     await page.goto("/frameworks");
-    const cta = page.getByTestId("frameworks-missing-cta");
-    await cta.scrollIntoViewIfNeeded();
-    await expect(cta).toContainText(/don.?t see your framework/i);
-    await expect(cta.getByRole("link")).toHaveAttribute(
-      "href",
-      "mailto:hello@graphletter.com?subject=Framework%20request"
-    );
+    await expect(page.getByTestId("frameworks-missing-cta")).toHaveCount(0);
   });
 });
 
@@ -246,12 +240,13 @@ test.describe("research page", () => {
     }
   });
 
-  test("closes with a contact CTA", async ({ page }) => {
+  test("closes with a GitHub discussion CTA, not a mailto", async ({ page }) => {
     await page.goto("/research");
     const cta = page.getByTestId("research-contact-cta");
     await cta.scrollIntoViewIfNeeded();
     await expect(cta).toBeVisible();
-    await expect(cta.getByRole("link")).toHaveAttribute("href", /^mailto:hello@graphletter\.com/);
+    await expect(cta.getByRole("link")).toHaveAttribute("href", /github\.com/);
+    await expect(cta.getByRole("link")).not.toHaveAttribute("href", /^mailto:/);
   });
 });
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
+import { GITHUB_URL } from "@/lib/config/links";
 import { pageTitle } from "@/lib/seo/page-title";
 
 export const metadata: Metadata = { title: pageTitle("Terms of Service") };
@@ -35,7 +36,11 @@ export default function TermsPage() {
           </p>
           <h2>Contact</h2>
           <p>
-            Questions? Email <a href="mailto:hello@graphletter.com">hello@graphletter.com</a>.
+            Questions? Open an issue on{" "}
+            <a href={`${GITHUB_URL}/issues`} target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+            .
           </p>
         </section>
       </main>

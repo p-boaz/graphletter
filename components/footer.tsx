@@ -33,9 +33,6 @@ export function Footer() {
               GitHub
               <span className="sr-only"> (opens in new tab)</span>
             </a>
-            <a href="mailto:hello@graphletter.com" className="hover:text-ft-pink">
-              hello@graphletter.com
-            </a>
           </nav>
         </div>
       </div>
