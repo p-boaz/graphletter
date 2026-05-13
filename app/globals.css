@@ -185,6 +185,32 @@
       sans-serif;
   }
 
+  .ft-mono {
+    font-family:
+      "SF Mono", ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, "Liberation Mono",
+      monospace;
+    font-feature-settings:
+      "tnum" 1,
+      "ss01" 1;
+    letter-spacing: 0.02em;
+  }
+
+  .ft-eyebrow {
+    @apply ft-mono text-xs uppercase tracking-[0.22em] text-ft-pink;
+  }
+
+  .ft-rule {
+    border-top: 1px solid hsl(0 0% 0% / 0.12);
+  }
+
+  .ft-rule-strong {
+    border-top: 1px solid hsl(0 0% 0% / 0.45);
+  }
+
+  .ft-paper {
+    background-color: hsl(25 100% 99%);
+  }
+
   .ft-pink {
     background-color: #fff1e5;
     color: #9a3412;
