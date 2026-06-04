@@ -35,7 +35,7 @@ For each uploaded document, the platform:
 3. **Assesses** coverage across SCF controls with AI-generated confidence scores and quoted evidence
 4. **Maps** findings to whichever frameworks you care about
 
-The output is per-control verdicts grounded in your actual documents — not a checkbox survey.
+The output is per-control verdicts grounded in your actual documents — not a checkbox survey. For the full field-by-field result schema and how to read confidence scores, see [docs/VERDICTS.md](docs/VERDICTS.md).
 
 ## Example output
 
@@ -65,6 +65,8 @@ The output is per-control verdicts grounded in your actual documents — not a c
 - Node.js 20+, pnpm 10+
 - A [Supabase](https://supabase.com) project (free tier works)
 - An OpenAI key, an Anthropic key, or both
+
+> For a full deploy-your-own walkthrough (env vars, database seeding, production deploy, troubleshooting), see [docs/SELF_HOSTING.md](docs/SELF_HOSTING.md).
 
 ### Local setup
 
