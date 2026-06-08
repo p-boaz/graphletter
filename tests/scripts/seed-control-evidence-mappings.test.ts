@@ -15,21 +15,28 @@ function makeMockSupabase(opts: {
       from: (table: string) => {
         if (table === "scf_evidence_request_list") {
           return {
-            select: (...a: unknown[]) => {
-              calls.push({ table, method: "select", args: a });
-              return Promise.resolve({ data: opts.erlRows, error: null });
-            },
+            select: (...a: unknown[]) => ({
+              range: (from: number, to: number) => {
+                calls.push({ table, method: "select.range", args: [...a, from, to] });
+                return Promise.resolve({
+                  data: opts.erlRows.slice(from, to + 1),
+                  error: null,
+                });
+              },
+            }),
           };
         }
         if (table === "scf_controls") {
           return {
-            select: (...a: unknown[]) => {
-              calls.push({ table, method: "select", args: a });
-              return Promise.resolve({
-                data: opts.controlIds.map((id) => ({ id })),
-                error: null,
-              });
-            },
+            select: (...a: unknown[]) => ({
+              range: (from: number, to: number) => {
+                calls.push({ table, method: "select.range", args: [...a, from, to] });
+                return Promise.resolve({
+                  data: opts.controlIds.slice(from, to + 1).map((id) => ({ id })),
+                  error: null,
+                });
+              },
+            }),
           };
         }
         if (table === "scf_control_evidence_mappings") {
@@ -77,4 +84,20 @@ test("seedControlEvidenceMappings emits one row per (ERL × valid control) pair"
     "GOV-02|e1",
   ]);
   assert.equal(rows[0].is_active, true);
+});
+
+test("seedControlEvidenceMappings reads controls beyond the first REST page", async () => {
+  const controlIds = Array.from({ length: 1001 }, (_, index) => `CTRL-${index + 1}`);
+  const { supabase, calls } = makeMockSupabase({
+    erlRows: [{ id: "e1", scf_control_mappings: ["CTRL-1001"] }],
+    controlIds,
+  });
+
+  const summary = await seedControlEvidenceMappings(supabase);
+
+  assert.equal(summary.inserted, 1);
+  assert.equal(
+    calls.filter((call) => call.table === "scf_controls" && call.method === "select.range").length,
+    2
+  );
 });

@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-05-12T14:41:48.599Z",
+  "capturedAt": "2026-06-08T17:09:03.379Z",
   "scfVersion": "2026.1.1",
   "tables": {
     "scf_principles": 33,
@@ -13,7 +13,7 @@
     "scf_maturity_levels": 1264,
     "scf_evidence_request_list": 303,
     "scf_assessment_objectives": 5776,
-    "scf_control_evidence_mappings": 481,
+    "scf_control_evidence_mappings": 774,
     "scf_control_integrations": 4
   }
 }

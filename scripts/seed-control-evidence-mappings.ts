@@ -10,28 +10,49 @@ export interface CEMSeedSummary {
   inserted: number;
 }
 
+const PAGE_SIZE = 1000;
+
+async function selectAll<T>(
+  supabase: SupabaseClient,
+  table: string,
+  columns: string
+): Promise<T[]> {
+  const rows: T[] = [];
+
+  for (let from = 0; ; from += PAGE_SIZE) {
+    const { data, error } = await supabase
+      .from(table)
+      .select(columns)
+      .range(from, from + PAGE_SIZE - 1);
+    if (error) throw new Error(`seed-cem: read ${table} failed: ${error.message}`);
+
+    const page = (data ?? []) as T[];
+    rows.push(...page);
+    if (page.length < PAGE_SIZE) return rows;
+  }
+}
+
 export async function seedControlEvidenceMappings(
   supabase: SupabaseClient
 ): Promise<CEMSeedSummary> {
-  const { data: erlRows, error: erlError } = await supabase
-    .from("scf_evidence_request_list")
-    .select("id, scf_control_mappings");
-  if (erlError) throw new Error(`seed-cem: read ERL failed: ${erlError.message}`);
+  const erlRows = await selectAll<{ id: string; scf_control_mappings: string[] | null }>(
+    supabase,
+    "scf_evidence_request_list",
+    "id, scf_control_mappings"
+  );
+  const controls = await selectAll<{ id: string }>(supabase, "scf_controls", "id");
 
-  const { data: controls, error: cError } = await supabase.from("scf_controls").select("id");
-  if (cError) throw new Error(`seed-cem: read controls failed: ${cError.message}`);
-
-  const validControlIds = new Set((controls ?? []).map((c: { id: string }) => c.id));
+  const validControlIds = new Set(controls.map((control) => control.id));
 
   const rows: Array<{ scf_control_id: string; evidence_request_id: string; is_active: boolean }> =
     [];
-  for (const erl of erlRows ?? []) {
-    const mappings = (erl as { scf_control_mappings: string[] | null }).scf_control_mappings ?? [];
+  for (const erl of erlRows) {
+    const mappings = erl.scf_control_mappings ?? [];
     for (const controlId of mappings) {
       if (validControlIds.has(controlId)) {
         rows.push({
           scf_control_id: controlId,
-          evidence_request_id: (erl as { id: string }).id,
+          evidence_request_id: erl.id,
           is_active: true,
         });
       }

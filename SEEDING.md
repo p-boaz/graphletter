@@ -1,15 +1,60 @@
 # Seeding graphletter
 
-This guide walks through standing up a freshly-cloned graphletter checkout
-against a clean Supabase project.
+This guide covers both local development and provisioning a hosted Supabase
+project.
 
 ## Prerequisites
 
 - Node 22, pnpm
-- A Supabase project (free tier is fine; postgres-17 release channel works)
-- The project's `URL` and `service_role` key from Project Settings → API
+- Supabase CLI
+- Local development: Docker via Colima
+- Hosted deployment: a Supabase project and its API keys
 
-## Environment
+## Local development
+
+Graphletter uses one hosted Supabase project for production. Development,
+destructive migration testing, and seed rehearsals run against local Supabase.
+Do not create a persistent hosted sandbox.
+
+Install the local runtime once:
+
+```bash
+brew install colima docker docker-compose supabase
+colima start --vm-type vz --arch aarch64 --runtime docker --cpu 4 --memory 4 --disk 30
+pnpm install --frozen-lockfile
+```
+
+Start the stack and load a clean database:
+
+```bash
+supabase start --exclude vector
+supabase db reset --local
+set -a
+source .env.supabase.local
+set +a
+pnpm seed
+pnpm seed:verify
+```
+
+`.env.supabase.local` is gitignored and points the app and seed scripts at
+`http://127.0.0.1:54321`. Generate its Supabase values from
+`supabase status -o env`; keep AI provider keys in the same file when local
+assessment routes need them.
+
+Run the app in the same shell after sourcing the file:
+
+```bash
+pnpm dev
+```
+
+Stop the runtime when it is not needed:
+
+```bash
+supabase stop
+colima stop
+```
+
+## Hosted environment
 
 Create `.env.local` (already in `.gitignore`):
 
@@ -21,13 +66,13 @@ SUPABASE_SERVICE_ROLE_KEY=<service-role key>
 DATABASE_URL=postgresql://postgres.<ref>:<password>@aws-0-<region>.pooler.supabase.com:5432/postgres
 ```
 
-## One-shot bring-up
+## Hosted one-shot bring-up
 
 ```bash
 pnpm install
 pnpm dlx supabase link --project-ref <your-project-ref>
 pnpm dlx supabase db push   # applies every migration in supabase/migrations/
-pnpm seed                   # writes ≈ 1265 controls + risks/threats/maturity/ERL/AO/CEM
+pnpm seed                   # writes controls + risks/threats/maturity/ERL/AO/CEM
 pnpm seed:verify            # asserts every table's row count is within ±1 %
 ```
 
@@ -79,6 +124,10 @@ already idempotent.
 - **"Missing NEXT_PUBLIC_SUPABASE_URL"** — set the env or source the right `.env*` file.
 - **`pnpm seed:verify` reports mismatches** — re-run `pnpm seed`; the seeders are idempotent. If a
   mismatch persists, check `supabase/migrations/` is in sync (`pnpm dlx supabase db push`).
+- **Local ports refuse connections after Colima starts** — run `colima stop`, then repeat the
+  `colima start` command above. Colima recreates its host port forwarders on startup.
+- **Vector cannot mount the Docker socket under Colima** — start with `--exclude vector`. Local
+  database, Auth, REST, Storage, Studio, and application testing do not require it.
 - **"refusing to run against the production graphletter Supabase project"** — you pointed at prod
   by accident. Switch env files. (If you genuinely intend to reseed prod, use `pnpm seed:reset` —
   it sets `ALLOW_PROD_SEED=1` only after a hostname-confirmation prompt.)
