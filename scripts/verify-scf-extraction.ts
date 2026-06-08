@@ -118,6 +118,34 @@ export async function verifyExtraction(opts: { repoRoot: string }): Promise<Veri
   return { ok: mismatches.length === 0, mismatches, checked: manifest.sheets.length };
 }
 
+/**
+ * Resolve the audit's `generatedAt` stamp. If the existing audit file is
+ * byte-identical except for its date, reuse the prior date so this verifier —
+ * which runs on every commit via the pre-commit hook — does not pollute the
+ * working tree with a date-only diff. Only a genuine content change bumps the
+ * stamp to today. A missing or unreadable prior audit falls back to today.
+ */
+async function resolveGeneratedAt(
+  auditPath: string,
+  body: Record<string, unknown>
+): Promise<string> {
+  const today = new Date().toISOString().slice(0, 10);
+  if (!existsSync(auditPath)) return today;
+  try {
+    const prev = JSON.parse(await readFile(auditPath, "utf8")) as {
+      generatedAt?: string;
+      [key: string]: unknown;
+    };
+    const { generatedAt: prevDate, ...prevBody } = prev;
+    if (prevDate && JSON.stringify(prevBody) === JSON.stringify(body)) {
+      return prevDate;
+    }
+  } catch {
+    // Corrupt or unreadable prior audit — regenerate with today's date.
+  }
+  return today;
+}
+
 async function regenerateLicenseDocs(repoRoot: string, manifest: Manifest): Promise<void> {
   type AuditEntry = {
     file: string;
@@ -171,8 +199,13 @@ async function regenerateLicenseDocs(repoRoot: string, manifest: Manifest): Prom
     });
   }
 
-  const audit = {
-    generatedAt: new Date().toISOString().slice(0, 10),
+  const auditPath = join(repoRoot, "data", "LICENSE_AUDIT.json");
+
+  // Everything in the audit except the date stamp. The stamp is resolved
+  // separately (see resolveGeneratedAt) so an audit whose content has not
+  // changed keeps its prior date — otherwise the verifier, which runs on every
+  // commit, would dirty the working tree with a date-only diff each time.
+  const auditBody = {
     scfVersion: manifest.scfVersion,
     license: manifest.license,
     licenseUrl: manifest.licenseUrl,
@@ -181,12 +214,13 @@ async function regenerateLicenseDocs(repoRoot: string, manifest: Manifest): Prom
     verdict: "clean" as const,
     entries,
   };
+  const generatedAt = await resolveGeneratedAt(auditPath, auditBody);
+  const audit = { generatedAt, ...auditBody };
 
   // Format every doc through prettier so lint-staged's `prettier --write` is a
   // no-op at commit time. Without this, the verifier and lint-staged disagree
   // on table alignment and the working tree picks up a phantom diff on every
   // run.
-  const auditPath = join(repoRoot, "data", "LICENSE_AUDIT.json");
   const auditRaw = JSON.stringify(audit, null, 2) + "\n";
   const auditFormatted = await prettier.format(auditRaw, {
     parser: "json",
