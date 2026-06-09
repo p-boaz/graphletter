@@ -104,7 +104,7 @@
     "@commitlint/cli": "^20.4.3",
     "@commitlint/config-conventional": "^20.4.3",
     "@playwright/test": "^1.55.0",
-    "@types/node": "^22",
+    "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "baseline-browser-mapping": "^2.10.0",
@@ -133,7 +133,7 @@
   },
   "packageManager": "pnpm@10.33.4",
   "engines": {
-    "node": ">=22.0.0"
+    "node": "24.x"
   },
   "pnpm": {
     "overrides": {

@@ -5,7 +5,7 @@ project.
 
 ## Prerequisites
 
-- Node 22, pnpm
+- Node 24, pnpm
 - Supabase CLI
 - Local development: Docker via Colima
 - Hosted deployment: a Supabase project and its API keys

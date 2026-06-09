@@ -62,7 +62,7 @@ The output is per-control verdicts grounded in your actual documents — not a c
 
 ### Prerequisites
 
-- Node.js 20+, pnpm 10+
+- Node.js 24, pnpm 10+
 - A [Supabase](https://supabase.com) project (free tier works)
 - An OpenAI key, an Anthropic key, or both
 

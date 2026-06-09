@@ -6,7 +6,7 @@ If anything here is unclear or out of date, please [open an issue](https://githu
 
 ## 1. Prerequisites
 
-- **Node.js 22+** and **pnpm 10+** (`corepack enable` will provide pnpm)
+- **Node.js 24** and **pnpm 10+** (`corepack enable` will provide pnpm)
 - A **[Supabase](https://supabase.com) project** — the free tier is enough to evaluate
 - **At least one AI provider key**: OpenAI, Anthropic, or both
 
