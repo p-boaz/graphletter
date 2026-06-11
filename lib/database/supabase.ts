@@ -77,7 +77,9 @@ export class SCFDatabase {
       .single();
 
     if (error) {
-      console.error("Failed to create import session:", error);
+      log.error("database.import_session_create_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       throw new Error(`Failed to create import session: ${error.message}`);
     }
 
@@ -102,7 +104,9 @@ export class SCFDatabase {
     });
 
     if (error) {
-      console.error("Failed to upsert domains:", error);
+      log.error("database.domains_upsert_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       throw new Error(`Failed to store domains: ${error.message}`);
     }
 
@@ -125,7 +129,9 @@ export class SCFDatabase {
 
       // Validate required fields before processing
       if (!framework.mappingType) {
-        console.warn(`Framework ${frameworkName} missing mappingType, using 'direct' as default`);
+        log.warn("database.framework_missing_mapping_type", {
+          detail: `Framework ${frameworkName} missing mappingType, using 'direct' as default`,
+        });
       }
       const mappingType = framework.mappingType || "direct";
 
@@ -139,7 +145,9 @@ export class SCFDatabase {
 
       if (selectError && selectError.code !== "PGRST116") {
         // PGRST116 is "not found" error, which is expected for new frameworks
-        console.error("Error checking existing framework:", selectError);
+        log.error("database.framework_check_failed", {
+          detail: selectError instanceof Error ? selectError.message : String(selectError),
+        });
         continue;
       }
 
@@ -159,8 +167,8 @@ export class SCFDatabase {
           .single();
 
         if (updateError) {
-          console.error("Failed to update framework:", updateError);
-          console.error("Framework data:", {
+          log.error("database.framework_update_failed", {
+            detail: updateError instanceof Error ? updateError.message : String(updateError),
             frameworkName,
             frameworkVersion,
             mappingType,
@@ -185,8 +193,8 @@ export class SCFDatabase {
           .single();
 
         if (insertError) {
-          console.error("Failed to create framework:", insertError);
-          console.error("Framework data:", {
+          log.error("database.framework_create_failed", {
+            detail: insertError instanceof Error ? insertError.message : String(insertError),
             frameworkName,
             frameworkVersion,
             mappingType,
@@ -233,8 +241,10 @@ export class SCFDatabase {
       });
 
       if (error) {
-        console.error("Failed to upsert controls batch:", error);
-        console.error("Sample record:", JSON.stringify(batch[0], null, 2));
+        log.error("database.controls_upsert_failed", {
+          detail: error instanceof Error ? error.message : String(error),
+          sample: JSON.stringify(batch[0], null, 2),
+        });
         throw new Error(`Failed to store controls: ${error.message}`);
       }
 
@@ -283,7 +293,9 @@ export class SCFDatabase {
       .in("control_id", controlIds);
 
     if (deleteError) {
-      console.warn("Warning: Could not delete existing mappings:", deleteError.message);
+      log.warn("database.mappings_delete_failed", {
+        detail: deleteError instanceof Error ? deleteError.message : String(deleteError),
+      });
     } else {
       log.info("Deleted existing mappings for controls");
     }
@@ -296,8 +308,10 @@ export class SCFDatabase {
       const { error } = await supabaseAdmin.from("scf_control_mappings").insert(batch);
 
       if (error) {
-        console.error("Failed to store control mappings batch:", error);
-        console.error("Sample mapping:", JSON.stringify(batch[0], null, 2));
+        log.error("database.control_mappings_store_failed", {
+          detail: error instanceof Error ? error.message : String(error),
+          sample: JSON.stringify(batch[0], null, 2),
+        });
         throw new Error(`Failed to store control mappings: ${error.message}`);
       }
 
@@ -347,7 +361,9 @@ export class SCFDatabase {
       .eq("id", importId);
 
     if (error) {
-      console.error("Failed to complete import session:", error);
+      log.error("database.import_session_complete_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       throw new Error(`Failed to complete import session: ${error.message}`);
     }
 
@@ -366,7 +382,9 @@ export class SCFDatabase {
       .eq("id", importId);
 
     if (updateError) {
-      console.error("Failed to mark import as failed:", updateError);
+      log.error("database.import_session_fail_mark_failed", {
+        detail: updateError instanceof Error ? updateError.message : String(updateError),
+      });
     }
   }
 
@@ -379,7 +397,9 @@ export class SCFDatabase {
       .limit(limit);
 
     if (error) {
-      console.error("Failed to get import history:", error);
+      log.error("database.import_history_fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return [];
     }
 
@@ -424,7 +444,9 @@ export class SCFDatabase {
     const { data, error } = await query;
 
     if (error) {
-      console.error("Failed to get SCF controls:", error);
+      log.error("database.scf_controls_fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return [];
     }
 
@@ -435,7 +457,9 @@ export class SCFDatabase {
     const { data, error } = await supabase.from("scf_domains").select("*").order("id");
 
     if (error) {
-      console.error("Failed to get SCF domains:", error);
+      log.error("database.scf_domains_fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return [];
     }
 
@@ -457,7 +481,9 @@ export class SCFDatabase {
       .eq("control_id", controlId);
 
     if (error) {
-      console.error("Failed to get control mappings:", error);
+      log.error("database.control_mappings_fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return [];
     }
 

@@ -101,7 +101,9 @@ export class EnhancedDatabaseService {
       const { data: controls, error } = await query;
 
       if (error) {
-        console.error("Error searching controls:", error);
+        log.error("enhanced_database.controls_search_failed", {
+          detail: error instanceof Error ? error.message : String(error),
+        });
         return [];
       }
 
@@ -219,11 +221,15 @@ Candidate controls: ${JSON.stringify(candidateSummaries)}`,
 
         return aiResults.slice(0, params.limit || 20);
       } catch (aiError) {
-        console.error("AI enhanced search failed, falling back to text ranking:", aiError);
+        log.error("enhanced_database.ai_search_failed", {
+          detail: aiError instanceof Error ? aiError.message : String(aiError),
+        });
         return fallbackRanked.slice(0, params.limit || 20);
       }
     } catch (error) {
-      console.error("Search controls failed:", error);
+      log.error("enhanced_database.search_controls_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return [];
     }
   }
@@ -247,7 +253,9 @@ Candidate controls: ${JSON.stringify(candidateSummaries)}`,
       if (error) throw error;
       return data || [];
     } catch (error) {
-      console.error("Error fetching framework crosswalk:", error);
+      log.error("enhanced_database.framework_crosswalk_fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return [];
     }
   }
@@ -266,7 +274,9 @@ Candidate controls: ${JSON.stringify(candidateSummaries)}`,
       if (error) throw error;
       return data;
     } catch (error) {
-      console.error("Error adding framework mapping:", error);
+      log.error("enhanced_database.framework_mapping_add_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return null;
     }
   }
@@ -298,7 +308,9 @@ Candidate controls: ${JSON.stringify(candidateSummaries)}`,
       if (error) throw error;
       return data || [];
     } catch (error) {
-      console.error("Error fetching compliance benchmarks:", error);
+      log.error("enhanced_database.compliance_benchmarks_fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return [];
     }
   }
@@ -321,7 +333,9 @@ Candidate controls: ${JSON.stringify(candidateSummaries)}`,
         children: childrenResult.data || [],
       };
     } catch (error) {
-      console.error("Error fetching control hierarchies:", error);
+      log.error("enhanced_database.control_hierarchies_fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return { parents: [], children: [] };
     }
   }
@@ -468,7 +482,9 @@ Candidate controls: ${JSON.stringify(candidateSummaries)}`,
         },
       ];
     } catch (error) {
-      console.error("Error fetching compliance dashboard:", error);
+      log.error("enhanced_database.compliance_dashboard_fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return [];
     }
   }
@@ -587,7 +603,9 @@ Candidate controls: ${JSON.stringify(candidateSummaries)}`,
 
       return result;
     } catch (error) {
-      console.error("Error fetching framework coverage heatmap:", error);
+      log.error("enhanced_database.framework_coverage_heatmap_fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return [];
     }
   }
@@ -601,7 +619,9 @@ Candidate controls: ${JSON.stringify(candidateSummaries)}`,
       if (error) throw error;
       log.info("Materialized views refreshed successfully");
     } catch (error) {
-      console.error("Error refreshing materialized views:", error);
+      log.error("enhanced_database.materialized_views_refresh_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
     }
   }
 
@@ -639,7 +659,9 @@ Candidate controls: ${JSON.stringify(candidateSummaries)}`,
         improvementTrends: [], // Would be calculated from historical data
       };
     } catch (error) {
-      console.error("Error fetching compliance analytics:", error);
+      log.error("enhanced_database.compliance_analytics_fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return {
         totalControls: 0,
         avgConfidence: 0,

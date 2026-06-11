@@ -3,7 +3,7 @@ import { SCFParser } from "@/lib/scf-parser";
 import type { SCFImportResult } from "@/lib/scf-types";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-const log = createLogger("scf-writer");
+const log = createLogger("lib/scf/writer");
 
 export interface WriteSummary {
   principles: number;
@@ -96,7 +96,9 @@ export async function writeParsedSCF(
       .upsert(domainsData, { onConflict: "id" });
 
     if (domainsError) {
-      console.error("Failed to import domains:", domainsError);
+      log.error("writer.domains_import_failed", {
+        detail: domainsError instanceof Error ? domainsError.message : String(domainsError),
+      });
       throw new Error(`Failed to import domains: ${domainsError.message}`);
     }
   }
@@ -117,7 +119,10 @@ export async function writeParsedSCF(
     const { error: principlesError } = await supabase.from("scf_principles").insert(principlesData);
 
     if (principlesError) {
-      console.error("Failed to import principles:", principlesError);
+      log.error("writer.principles_import_failed", {
+        detail:
+          principlesError instanceof Error ? principlesError.message : String(principlesError),
+      });
       throw new Error(`Failed to import principles: ${principlesError.message}`);
     }
   }
@@ -140,7 +145,10 @@ export async function writeParsedSCF(
       .insert(authSourcesData);
 
     if (authSourcesError) {
-      console.error("Failed to import authoritative sources:", authSourcesError);
+      log.error("writer.auth_sources_import_failed", {
+        detail:
+          authSourcesError instanceof Error ? authSourcesError.message : String(authSourcesError),
+      });
       throw new Error(`Failed to import authoritative sources: ${authSourcesError.message}`);
     }
   }
@@ -180,7 +188,9 @@ export async function writeParsedSCF(
     const { error: controlsError } = await supabase.from("scf_controls").insert(controlsData);
 
     if (controlsError) {
-      console.error("Failed to import controls:", controlsError);
+      log.error("writer.controls_import_failed", {
+        detail: controlsError instanceof Error ? controlsError.message : String(controlsError),
+      });
       throw new Error(`Failed to import controls: ${controlsError.message}`);
     }
   }
@@ -200,7 +210,9 @@ export async function writeParsedSCF(
       // Filter mappings to only include valid controls
       const validMappings = controlMappings.filter((mapping) => {
         if (!validControlIds.has(mapping.controlId)) {
-          console.warn(`Skipping mapping for non-existent control: ${mapping.controlId}`);
+          log.warn("writer.mapping_skipped_invalid_control", {
+            detail: `Skipping mapping for non-existent control: ${mapping.controlId}`,
+          });
           return false;
         }
         return true;
@@ -244,7 +256,10 @@ export async function writeParsedSCF(
           .select();
 
         if (frameworksError) {
-          console.error("Failed to create framework records:", frameworksError);
+          log.error("writer.framework_records_create_failed", {
+            detail:
+              frameworksError instanceof Error ? frameworksError.message : String(frameworksError),
+          });
           throw new Error(`Failed to create framework records: ${frameworksError.message}`);
         }
 
@@ -266,7 +281,9 @@ export async function writeParsedSCF(
             const frameworkId = frameworkIdMap.get(frameworkKey);
 
             if (!frameworkId) {
-              console.warn(`Framework ID not found for ${frameworkKey}`);
+              log.warn("writer.framework_id_not_found", {
+                detail: `Framework ID not found for ${frameworkKey}`,
+              });
               return null;
             }
 
@@ -292,7 +309,11 @@ export async function writeParsedSCF(
             .insert(batch);
 
           if (mappingsError) {
-            console.error(`Failed to insert mapping batch ${i / batchSize + 1}:`, mappingsError);
+            log.error("writer.mapping_batch_insert_failed", {
+              detail:
+                mappingsError instanceof Error ? mappingsError.message : String(mappingsError),
+              batch: i / batchSize + 1,
+            });
             throw new Error(`Failed to insert control mappings: ${mappingsError.message}`);
           }
           mappingsInserted += batch.length;

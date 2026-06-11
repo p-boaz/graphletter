@@ -25,7 +25,9 @@ export class ComplianceCalculator {
         .eq("processing_status", "completed");
 
       if (docsError) {
-        console.error("Error fetching user documents:", docsError);
+        log.error("compliance_calculator.user_documents_fetch_failed", {
+          detail: docsError instanceof Error ? docsError.message : String(docsError),
+        });
         return [];
       }
 
@@ -39,7 +41,10 @@ export class ComplianceCalculator {
         .select("*");
 
       if (frameworksError) {
-        console.error("Error fetching frameworks:", frameworksError);
+        log.error("compliance_calculator.frameworks_fetch_failed", {
+          detail:
+            frameworksError instanceof Error ? frameworksError.message : String(frameworksError),
+        });
         return [];
       }
 
@@ -149,7 +154,9 @@ export class ComplianceCalculator {
 
       return complianceResults;
     } catch (error) {
-      console.error("Error calculating user compliance:", error);
+      log.error("compliance_calculator.calculation_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return [];
     }
   }
