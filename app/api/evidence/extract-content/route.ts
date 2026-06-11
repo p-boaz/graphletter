@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     const user = await getCurrentUser(supabase);
 
     if (!user) {
-      console.error("❌ [EXTRACT-CONTENT] Unauthorized - no user");
+      log.warn("evidence.extract_content.unauthorized", {});
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -218,7 +218,9 @@ export async function extractFileContent(file: File): Promise<string> {
       }
     }
   } catch (error) {
-    console.error("❌ [EXTRACT] Content extraction failed:", error);
+    log.error("evidence.extract_content.extraction_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return `[Content extraction failed: ${error instanceof Error ? error.message : "Unknown error"}]`;
   }
 }
@@ -247,7 +249,7 @@ async function extractPdfContent(file: File): Promise<string> {
       });
 
       if (!text) {
-        console.warn("⚠️ [PDF] No text content found in PDF");
+        log.warn("evidence.extract_content.pdf_no_text", {});
         return "[PDF document contains no extractable text - may be image-based or encrypted]";
       }
 
@@ -255,7 +257,9 @@ async function extractPdfContent(file: File): Promise<string> {
     } catch (pdfParseError) {
       const parsedPdfParseError =
         pdfParseError instanceof Error ? pdfParseError : new Error(String(pdfParseError));
-      console.warn("⚠️ [PDF] pdf-parse failed:", parsedPdfParseError.message);
+      log.warn("evidence.extract_content.pdf_parse_failed", {
+        detail: parsedPdfParseError.message,
+      });
 
       // Fallback to pdf-lib for basic validation
       log.info("Attempting pdf-lib fallback");
@@ -273,7 +277,9 @@ async function extractPdfContent(file: File): Promise<string> {
       } catch (pdfLibError) {
         const parsedPdfLibError =
           pdfLibError instanceof Error ? pdfLibError : new Error(String(pdfLibError));
-        console.warn("⚠️ [PDF] pdf-lib fallback also failed:", parsedPdfLibError.message);
+        log.warn("evidence.extract_content.pdf_lib_fallback_failed", {
+          detail: parsedPdfLibError.message,
+        });
 
         // Final fallback - just acknowledge the PDF
         const arrayBuffer = await file.arrayBuffer();
@@ -282,10 +288,9 @@ async function extractPdfContent(file: File): Promise<string> {
       }
     }
   } catch (error) {
-    console.error(
-      "❌ [PDF] All PDF processing methods failed:",
-      error instanceof Error ? error.message : String(error)
-    );
+    log.error("evidence.extract_content.pdf_all_methods_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return "[PDF processing failed - file may be corrupted or password-protected]";
   }
 }
@@ -302,7 +307,9 @@ async function extractWordContent(file: File): Promise<string> {
     log.info("Word document extracted", { characters: text.length });
 
     if (result.messages.length > 0) {
-      console.warn("⚠️ [WORD] Extraction warnings:", result.messages);
+      log.warn("evidence.extract_content.word_extraction_warnings", {
+        count: result.messages.length,
+      });
     }
 
     if (!text) {
@@ -311,7 +318,9 @@ async function extractWordContent(file: File): Promise<string> {
 
     return text;
   } catch (error) {
-    console.error("❌ [WORD] Word extraction failed:", error);
+    log.error("evidence.extract_content.word_extraction_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return "[Word document content could not be extracted]";
   }
 }
@@ -341,7 +350,9 @@ async function extractImageContent(file: File): Promise<string> {
 
     return cleanText;
   } catch (error) {
-    console.error("❌ [OCR] Image OCR failed:", error);
+    log.error("evidence.extract_content.ocr_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return "[Image OCR processing failed - image may not contain readable text]";
   }
 }
@@ -358,7 +369,9 @@ async function extractSpreadsheetContent(file: File): Promise<string> {
     // For now, return a meaningful message
     return "[Spreadsheet detected - content extraction limited. Please export as CSV or PDF for full text analysis]";
   } catch (error) {
-    console.error("❌ [SPREADSHEET] Spreadsheet extraction failed:", error);
+    log.error("evidence.extract_content.spreadsheet_extraction_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return "[Spreadsheet content could not be extracted]";
   }
 }

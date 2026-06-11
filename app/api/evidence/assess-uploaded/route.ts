@@ -295,7 +295,11 @@ export async function POST(request: NextRequest) {
           }
         );
       } catch (assessmentError) {
-        console.error(`Assessment failed for ${controlId}:`, assessmentError);
+        log.error("evidence.assess_uploaded.control_assessment_failed", {
+          controlId,
+          detail:
+            assessmentError instanceof Error ? assessmentError.message : String(assessmentError),
+        });
         failedControls.push({
           control_id: controlId,
           error: assessmentError instanceof Error ? assessmentError.message : "Assessment failed",
