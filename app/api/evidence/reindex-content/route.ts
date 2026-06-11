@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { extractFileContent } from "@/app/api/evidence/extract-content/route";
+import { apiError } from "@/lib/api/error-response";
 import { createRequestLogger, getOrCreateRequestId } from "@/lib/observability/logger";
 import { createEvidenceServiceClient } from "@/lib/services/evidence/upload-utils";
 import { createClient } from "@/lib/supabase/server";
@@ -212,7 +213,7 @@ export async function POST(request: NextRequest) {
           evidence_id: record.id,
           file_name: record.file_name,
           status: "failed",
-          error: error instanceof Error ? error.message : "Unknown error",
+          error: "Content extraction failed",
         });
         errors++;
       }
@@ -233,15 +234,7 @@ export async function POST(request: NextRequest) {
       results,
     });
   } catch (error) {
-    logger.error("reindex_content.failed", {
-      message: error instanceof Error ? error.message : "unknown",
-    });
-    return NextResponse.json(
-      {
-        error: error instanceof Error ? error.message : "Content reindexing failed",
-      },
-      { status: 500 }
-    );
+    return apiError("evidence.reindex_content_failed", "Content reindexing failed", 500, error);
   }
 }
 
@@ -289,14 +282,11 @@ export async function GET(request: NextRequest) {
         summary.total > 0 ? Math.round((summary.completed / summary.total) * 100) : 0,
     });
   } catch (error) {
-    logger.error("reindex_content.get.failed", {
-      message: error instanceof Error ? error.message : "unknown",
-    });
-    return NextResponse.json(
-      {
-        error: error instanceof Error ? error.message : "Failed to get reindexing status",
-      },
-      { status: 500 }
+    return apiError(
+      "evidence.reindex_content_get_failed",
+      "Failed to get reindexing status",
+      500,
+      error
     );
   }
 }
