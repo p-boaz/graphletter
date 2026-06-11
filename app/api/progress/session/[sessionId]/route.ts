@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { apiError } from "@/lib/api/error-response";
 import { createClient } from "@/lib/supabase/server";
 import { progressTracker } from "@/lib/websocket/progress-tracker";
 import { getCurrentUser } from "@/utils/auth";
@@ -6,98 +7,82 @@ import { getCurrentUser } from "@/utils/auth";
 export const runtime = "nodejs";
 
 async function ensureSessionOwner(sessionId: string) {
-	const supabase = await createClient();
-	const user = await getCurrentUser(supabase);
+  const supabase = await createClient();
+  const user = await getCurrentUser(supabase);
 
-	if (!user) {
-		return {
-			error: NextResponse.json({ error: "Unauthorized" }, { status: 401 }),
-		};
-	}
+  if (!user) {
+    return {
+      error: NextResponse.json({ error: "Unauthorized" }, { status: 401 }),
+    };
+  }
 
-	const session = progressTracker.getSession(sessionId);
-	if (!session) {
-		return {
-			error: NextResponse.json({ error: "Session not found" }, { status: 404 }),
-		};
-	}
+  const session = progressTracker.getSession(sessionId);
+  if (!session) {
+    return {
+      error: NextResponse.json({ error: "Session not found" }, { status: 404 }),
+    };
+  }
 
-	if (session.userId !== user.id) {
-		return {
-			error: NextResponse.json({ error: "Forbidden" }, { status: 403 }),
-		};
-	}
+  if (session.userId !== user.id) {
+    return {
+      error: NextResponse.json({ error: "Forbidden" }, { status: 403 }),
+    };
+  }
 
-	return { session };
+  return { session };
 }
 
 export async function GET(
-	_request: NextRequest,
-	{ params }: { params: Promise<{ sessionId: string }> },
+  _request: NextRequest,
+  { params }: { params: Promise<{ sessionId: string }> }
 ) {
-	const { sessionId } = await params;
-	const { error, session } = await ensureSessionOwner(sessionId);
-	if (error) return error;
+  const { sessionId } = await params;
+  const { error, session } = await ensureSessionOwner(sessionId);
+  if (error) return error;
 
-	return NextResponse.json({ session });
+  return NextResponse.json({ session });
 }
 
 export async function PATCH(
-	request: NextRequest,
-	{ params }: { params: Promise<{ sessionId: string }> },
+  request: NextRequest,
+  { params }: { params: Promise<{ sessionId: string }> }
 ) {
-	try {
-		const { sessionId } = await params;
-		const { error, session } = await ensureSessionOwner(sessionId);
-		if (error || !session) return error;
+  try {
+    const { sessionId } = await params;
+    const { error, session } = await ensureSessionOwner(sessionId);
+    if (error || !session) return error;
 
-		const body = await request.json().catch(() => ({}));
-		const stage =
-			typeof body.stage === "string" && body.stage.trim() !== ""
-				? body.stage.trim()
-				: undefined;
-		const message =
-			typeof body.message === "string" ? body.message.trim() : undefined;
-		const metadata =
-			typeof body.metadata === "object" && body.metadata !== null
-				? body.metadata
-				: undefined;
-		const status = body.status as "completed" | "error" | "active" | undefined;
+    const body = await request.json().catch(() => ({}));
+    const stage =
+      typeof body.stage === "string" && body.stage.trim() !== "" ? body.stage.trim() : undefined;
+    const message = typeof body.message === "string" ? body.message.trim() : undefined;
+    const metadata =
+      typeof body.metadata === "object" && body.metadata !== null ? body.metadata : undefined;
+    const status = body.status as "completed" | "error" | "active" | undefined;
 
-		if (status === "completed") {
-			progressTracker.completeSession(sessionId, message);
-		} else if (status === "error") {
-			progressTracker.errorSession(
-				sessionId,
-				message || "An unexpected error occurred",
-			);
-		} else if (
-			stage ||
-			typeof body.progress === "number" ||
-			message ||
-			metadata
-		) {
-			const progressValue =
-				typeof body.progress === "number" ? body.progress : session.progress;
-			progressTracker.updateProgress(
-				sessionId,
-				stage || session.currentStage,
-				progressValue,
-				message || `Progress updated: ${stage || session.currentStage}`,
-				metadata,
-			);
-		}
+    if (status === "completed") {
+      progressTracker.completeSession(sessionId, message);
+    } else if (status === "error") {
+      progressTracker.errorSession(sessionId, message || "An unexpected error occurred");
+    } else if (stage || typeof body.progress === "number" || message || metadata) {
+      const progressValue = typeof body.progress === "number" ? body.progress : session.progress;
+      progressTracker.updateProgress(
+        sessionId,
+        stage || session.currentStage,
+        progressValue,
+        message || `Progress updated: ${stage || session.currentStage}`,
+        metadata
+      );
+    }
 
-		const updatedSession = progressTracker.getSession(sessionId);
-		return NextResponse.json({ success: true, session: updatedSession });
-	} catch (error) {
-		console.error("Failed to update progress session", error);
-		return NextResponse.json(
-			{
-				error: "Failed to update progress session",
-				message: error instanceof Error ? error.message : "Unknown error",
-			},
-			{ status: 500 },
-		);
-	}
+    const updatedSession = progressTracker.getSession(sessionId);
+    return NextResponse.json({ success: true, session: updatedSession });
+  } catch (error) {
+    return apiError(
+      "progress.session_update_failed",
+      "Failed to update progress session",
+      500,
+      error
+    );
+  }
 }

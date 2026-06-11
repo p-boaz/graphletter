@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { apiError } from "@/lib/api/error-response";
 import { createLogger } from "@/lib/logger";
 import EnhancedDatabaseService from "@/lib/services/enhanced-database-service";
 import { createClient } from "@/lib/supabase/server";
@@ -104,15 +105,7 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error("💥 Enhanced search API error:", error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: error instanceof Error ? error.message : "Enhanced search failed",
-        search_enhanced: false,
-      },
-      { status: 500 }
-    );
+    return apiError("enhanced.search_post_failed", "Enhanced search failed", 500, error);
   }
 }
 
@@ -198,13 +191,6 @@ export async function GET(request: NextRequest) {
         );
     }
   } catch (error) {
-    console.error("💥 Enhanced search GET API error:", error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: error instanceof Error ? error.message : "Enhanced search GET failed",
-      },
-      { status: 500 }
-    );
+    return apiError("enhanced.search_get_failed", "Enhanced search GET failed", 500, error);
   }
 }

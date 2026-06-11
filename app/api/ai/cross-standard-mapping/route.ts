@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { GraphletterAI, type IndustryContext, type ParsedStandard } from "@/lib/ai-client";
 import { validateAIEnvironment } from "@/lib/ai-config";
+import { apiError } from "@/lib/api/error-response";
 import { createLogger } from "@/lib/logger";
 import { enforceUserRateLimit, requireAuthenticatedUser } from "@/utils/api-guards";
 
@@ -78,13 +79,11 @@ export async function POST(request: NextRequest) {
       data: analysis,
     });
   } catch (error) {
-    console.error("Error in cross-standard mapping API:", error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: error instanceof Error ? error.message : "Failed to analyze cross-standard mapping",
-      },
-      { status: 500 }
+    return apiError(
+      "ai.cross_standard_mapping_failed",
+      "Failed to analyze cross-standard mapping",
+      500,
+      error
     );
   }
 }
