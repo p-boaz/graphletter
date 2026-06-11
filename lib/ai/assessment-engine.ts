@@ -77,7 +77,9 @@ export async function extractEvidenceContent(
 
     return textContent;
   } catch (error) {
-    console.error("Error extracting evidence content:", error);
+    log.error("assessment_engine.extract_evidence_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     throw new Error("Failed to extract evidence content");
   }
 }
@@ -184,7 +186,9 @@ Please provide a detailed assessment for each objective in the following JSON fo
       recommendations: assessment.recommendations || [],
     }));
   } catch (error) {
-    console.error("Error in AI assessment:", error);
+    log.error("assessment_engine.ai_assessment_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     throw new Error("Failed to complete AI assessment");
   }
 }
@@ -251,7 +255,9 @@ Respond in JSON format:
       recommendations: object.recommendations || [],
     };
   } catch (error) {
-    console.error("Error generating summary:", error);
+    log.error("assessment_engine.summary_generation_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return {
       summary: `Assessment completed with ${passCount}/${totalCount} objectives passed`,
       recommendations: ["Review failed objectives and address identified gaps"],
@@ -349,7 +355,9 @@ export async function assessEvidence(
       recommendations,
     };
   } catch (error) {
-    console.error("Error in evidence assessment:", error);
+    log.error("assessment_engine.evidence_assessment_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     throw error;
   }
 }

@@ -95,7 +95,9 @@ export async function testProvider(
 
     return { success: true, message: text.trim() };
   } catch (error) {
-    console.error(`Error testing ${provider}:`, error);
+    log.error("ai_client.provider_test_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return {
       success: false,
       message: `${provider} test failed`,
@@ -708,7 +710,9 @@ Respond with valid JSON only - no markdown, no explanations, no code blocks.
 
       return result;
     } catch (error) {
-      console.error("Error in document parsing:", error);
+      log.error("ai_client.document_parsing_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
 
       // Return a fallback result if parsing fails
       return {
@@ -869,7 +873,9 @@ Consider industry-specific factors, regulatory requirements, and organizational 
 
       return result;
     } catch (error) {
-      console.error("Error in enhanced control mapping:", error);
+      log.error("ai_client.enhanced_control_mapping_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       throw new Error("Failed to perform enhanced control mapping analysis");
     }
   }
@@ -928,7 +934,9 @@ Consider industry-specific factors, regulatory requirements, and organizational 
               }
             }
           } catch (error) {
-            console.error(`Error mapping ${sourceControl.id} to ${targetControl.id}:`, error);
+            log.error("ai_client.control_mapping_failed", {
+              detail: error instanceof Error ? error.message : String(error),
+            });
           }
         }
       }
@@ -1089,7 +1097,9 @@ Format your response as JSON with the following structure:
 
       return object;
     } catch (error) {
-      console.error("Error in control mapping analysis:", error);
+      log.error("ai_client.control_mapping_analysis_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       throw new Error("Failed to analyze control mapping");
     }
   }
@@ -1264,7 +1274,9 @@ Respond in this exact JSON format:
             : 0,
       };
     } catch (error) {
-      console.error("Failed to generate policy mapping:", error);
+      log.error("ai_client.policy_mapping_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
 
       // Fallback: simple keyword-based matching
       const keywords = policyText.toLowerCase().split(/\s+/);
