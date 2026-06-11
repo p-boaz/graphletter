@@ -1,80 +1,71 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { createLogger } from "@/lib/logger";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/utils/auth";
 
-export async function POST(
-	request: NextRequest,
-	{ params }: { params: Promise<{ id: string }> },
-) {
-	try {
-		const supabase = await createClient();
-		const user = await getCurrentUser(supabase);
+const log = createLogger("api/evidence/approve");
 
-		if (!user) {
-			return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-		}
+export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  try {
+    const supabase = await createClient();
+    const user = await getCurrentUser(supabase);
 
-		const { id } = await params;
-		const body = await request.json();
-		const { reviewed_at } = body;
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-		// Verify the evidence belongs to the current user
-		const { data: evidence, error: evidenceError } = await supabase
-			.from("evidence")
-			.select("id, user_id, evidence_status, evidence_group_id")
-			.eq("id", id)
-			.eq("user_id", user.id)
-			.single();
+    const { id } = await params;
+    const body = await request.json();
+    const { reviewed_at } = body;
 
-		if (evidenceError || !evidence) {
-			return NextResponse.json(
-				{ error: "Evidence not found or unauthorized" },
-				{ status: 404 },
-			);
-		}
+    // Verify the evidence belongs to the current user
+    const { data: evidence, error: evidenceError } = await supabase
+      .from("evidence")
+      .select("id, user_id, evidence_status, evidence_group_id")
+      .eq("id", id)
+      .eq("user_id", user.id)
+      .single();
 
-		// Update status for the whole evidence group so grouped rows stay consistent
-		const reviewedAt = reviewed_at || new Date().toISOString();
-		let updateQuery = supabase
-			.from("evidence")
-			.update({
-				evidence_status: "approved",
-				reviewed_by: user.id,
-				reviewed_at: reviewedAt,
-				updated_at: new Date().toISOString(),
-			})
-			.eq("user_id", user.id);
+    if (evidenceError || !evidence) {
+      return NextResponse.json({ error: "Evidence not found or unauthorized" }, { status: 404 });
+    }
 
-		if (evidence.evidence_group_id) {
-			updateQuery = updateQuery.eq(
-				"evidence_group_id",
-				evidence.evidence_group_id,
-			);
-		} else {
-			updateQuery = updateQuery.eq("id", id);
-		}
+    // Update status for the whole evidence group so grouped rows stay consistent
+    const reviewedAt = reviewed_at || new Date().toISOString();
+    let updateQuery = supabase
+      .from("evidence")
+      .update({
+        evidence_status: "approved",
+        reviewed_by: user.id,
+        reviewed_at: reviewedAt,
+        updated_at: new Date().toISOString(),
+      })
+      .eq("user_id", user.id);
 
-		const { data: updatedRows, error: updateError } =
-			await updateQuery.select("id");
+    if (evidence.evidence_group_id) {
+      updateQuery = updateQuery.eq("evidence_group_id", evidence.evidence_group_id);
+    } else {
+      updateQuery = updateQuery.eq("id", id);
+    }
 
-		if (updateError) {
-			console.error("Error updating evidence status:", updateError);
-			return NextResponse.json(
-				{ error: "Failed to approve evidence" },
-				{ status: 500 },
-			);
-		}
+    const { data: updatedRows, error: updateError } = await updateQuery.select("id");
 
-		return NextResponse.json({
-			success: true,
-			message: "Evidence approved successfully",
-			updated_count: updatedRows?.length || 0,
-		});
-	} catch (error) {
-		console.error("Error approving evidence:", error);
-		return NextResponse.json(
-			{ error: "Internal server error" },
-			{ status: 500 },
-		);
-	}
+    if (updateError) {
+      log.error("evidence.approve.update_failed", {
+        detail: updateError instanceof Error ? updateError.message : String(updateError),
+      });
+      return NextResponse.json({ error: "Failed to approve evidence" }, { status: 500 });
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: "Evidence approved successfully",
+      updated_count: updatedRows?.length || 0,
+    });
+  } catch (error) {
+    log.error("evidence.approve.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
 }
