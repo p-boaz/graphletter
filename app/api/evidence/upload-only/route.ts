@@ -1,5 +1,6 @@
 import { createHash } from "crypto";
 import { type NextRequest, NextResponse } from "next/server";
+import { apiError } from "@/lib/api/error-response";
 import { checkRouteRateLimit } from "@/lib/api/rate-limiter";
 import { supabaseAdmin } from "@/lib/database/supabase";
 import { createRequestLogger, getOrCreateRequestId } from "@/lib/observability/logger";
@@ -596,11 +597,6 @@ export async function POST(request: NextRequest) {
         error instanceof Error ? error.message : "Evidence upload failed"
       );
     }
-    return NextResponse.json(
-      {
-        error: error instanceof Error ? error.message : "Upload failed",
-      },
-      { status: 500 }
-    );
+    return apiError("evidence.upload_only_failed", "Upload failed", 500, error);
   }
 }

@@ -8,6 +8,7 @@ import {
   getTemperatureSettings,
   validateAIEnvironment,
 } from "@/lib/ai-config";
+import { apiError } from "@/lib/api/error-response";
 import { supabase } from "@/lib/database/supabase";
 import { createLogger } from "@/lib/logger";
 import { enforceUserRateLimit, requireAuthenticatedUser } from "@/utils/api-guards";
@@ -332,13 +333,11 @@ Please analyze the policy text and respond with ONLY valid JSON in this exact fo
       });
     }
   } catch (error) {
-    console.error("Error in custom control mapping API:", error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: error instanceof Error ? error.message : "Failed to analyze custom policy mapping",
-      },
-      { status: 500 }
+    return apiError(
+      "ai.custom_control_mapping_failed",
+      "Failed to analyze custom policy mapping",
+      500,
+      error
     );
   }
 }

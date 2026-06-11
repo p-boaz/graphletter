@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { apiError } from "@/lib/api/error-response";
 import { computeControlGaps } from "@/lib/graph/gap-analysis";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/utils/auth";
@@ -188,11 +189,6 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    return NextResponse.json(
-      {
-        error: error instanceof Error ? error.message : "Failed to run gap analysis",
-      },
-      { status: 500 }
-    );
+    return apiError("analysis.run_gap_analysis_failed", "Failed to run gap analysis", 500, error);
   }
 }

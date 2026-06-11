@@ -14,6 +14,7 @@ import type {
 import { validateObjectiveAssessmentQuality } from "@/lib/ai/assessment-quality";
 import { consumeDemoQuota } from "@/lib/demo/demo-quota";
 import { getDemoSampleById } from "@/lib/demo/demo-registry";
+import { apiError } from "@/lib/api/error-response";
 import { createLogger } from "@/lib/logger";
 import { getClientIpAddress } from "@/lib/security/rate-limit";
 
@@ -286,14 +287,6 @@ export async function POST(request: NextRequest) {
       assessment: assessmentResult,
     });
   } catch (error) {
-    log.error("Demo assessment failed", {
-      message: error instanceof Error ? error.message : "unknown",
-    });
-    return NextResponse.json(
-      {
-        error: error instanceof Error ? error.message : "Demo assessment failed",
-      },
-      { status: 500 }
-    );
+    return apiError("demo.assessment_failed", "Demo assessment failed", 500, error);
   }
 }

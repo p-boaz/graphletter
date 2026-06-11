@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/database/supabase";
+import { apiError } from "@/lib/api/error-response";
 import { createLogger } from "@/lib/logger";
 import { SCFParser } from "@/lib/scf-parser";
 import { writeParsedSCF } from "@/lib/scf/writer";
@@ -112,13 +113,6 @@ export async function POST(request: NextRequest) {
       throw error;
     }
   } catch (error) {
-    console.error("SCF import error:", error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      },
-      { status: 500 }
-    );
+    return apiError("scf.import_failed", "SCF import failed", 500, error);
   }
 }
