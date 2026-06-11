@@ -1,8 +1,11 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { apiError } from "@/lib/api/error-response";
+import { createLogger } from "@/lib/logger";
 import { supabaseAdmin } from "@/lib/database/supabase";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/utils/auth";
+
+const log = createLogger("api/assessments/assignments");
 
 type AssignmentUpdateData = Record<string, unknown>;
 
@@ -64,7 +67,9 @@ export async function GET(request: NextRequest) {
     const { data: assignments, error } = await query;
 
     if (error) {
-      console.error("Error fetching assignment:", error);
+      log.error("assessments.assignments.get.fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return NextResponse.json({ error: "Failed to fetch assignments" }, { status: 500 });
     }
 
@@ -100,7 +105,9 @@ export async function GET(request: NextRequest) {
       hasMore: offset + limit < (count || 0),
     });
   } catch (error) {
-    console.error("Error in assignments GET:", error);
+    log.error("assessments.assignments.get.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
@@ -224,7 +231,10 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (assignmentError) {
-      console.error("Error creating assignment:", assignmentError);
+      log.error("assessments.assignments.post.create_failed", {
+        detail:
+          assignmentError instanceof Error ? assignmentError.message : String(assignmentError),
+      });
       return NextResponse.json({ error: "Failed to create assignment" }, { status: 500 });
     }
 
@@ -343,7 +353,9 @@ export async function PUT(request: NextRequest) {
       .single();
 
     if (updateError) {
-      console.error("Error updating assignment:", updateError);
+      log.error("assessments.assignments.put.update_failed", {
+        detail: updateError instanceof Error ? updateError.message : String(updateError),
+      });
       return NextResponse.json({ error: "Failed to update assignment" }, { status: 500 });
     }
 
@@ -353,7 +365,9 @@ export async function PUT(request: NextRequest) {
       message: "Assignment updated successfully",
     });
   } catch (error) {
-    console.error("Error in assignments PUT:", error);
+    log.error("assessments.assignments.put.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
@@ -418,7 +432,9 @@ export async function DELETE(request: NextRequest) {
       .eq("id", assignmentId);
 
     if (deleteError) {
-      console.error("Error deleting assignment:", deleteError);
+      log.error("assessments.assignments.delete.delete_failed", {
+        detail: deleteError instanceof Error ? deleteError.message : String(deleteError),
+      });
       return NextResponse.json({ error: "Failed to delete assignment" }, { status: 500 });
     }
 
@@ -427,7 +443,9 @@ export async function DELETE(request: NextRequest) {
       message: "Assignment deleted successfully",
     });
   } catch (error) {
-    console.error("Error in assignments DELETE:", error);
+    log.error("assessments.assignments.delete.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
