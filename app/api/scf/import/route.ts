@@ -81,7 +81,9 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (importError) {
-      console.error("Failed to create import record:", importError);
+      log.error("import.record_create_failed", {
+        detail: importError instanceof Error ? importError.message : String(importError),
+      });
       return NextResponse.json(
         {
           success: false,

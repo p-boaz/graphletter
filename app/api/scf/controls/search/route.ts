@@ -1,5 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/database/supabase";
+import { createLogger } from "@/lib/logger";
+
+const log = createLogger("api/scf/controls/search");
 
 export async function GET(request: NextRequest) {
   try {
@@ -50,7 +53,9 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(controls || []);
   } catch (error) {
-    console.error("Error searching controls:", error);
+    log.error("controls.search_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Failed to search controls" }, { status: 500 });
   }
 }

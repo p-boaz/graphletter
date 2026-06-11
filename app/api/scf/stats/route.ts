@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/database/supabase";
+import { createLogger } from "@/lib/logger";
+
+const log = createLogger("api/scf/stats");
 
 export async function GET() {
   try {
@@ -16,7 +19,9 @@ export async function GET() {
       mappings: mappingsResult.count || 0,
     });
   } catch (error) {
-    console.error("Error fetching stats:", error);
+    log.error("stats.fetch_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Failed to fetch stats" }, { status: 500 });
   }
 }

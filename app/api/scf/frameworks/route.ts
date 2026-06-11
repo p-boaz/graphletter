@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/database/supabase";
+import { createLogger } from "@/lib/logger";
+
+const log = createLogger("api/scf/frameworks");
 
 export async function GET() {
   try {
@@ -14,7 +17,9 @@ export async function GET() {
 
     return NextResponse.json(frameworks || []);
   } catch (error) {
-    console.error("Error fetching frameworks:", error);
+    log.error("frameworks.fetch_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Failed to fetch frameworks" }, { status: 500 });
   }
 }
