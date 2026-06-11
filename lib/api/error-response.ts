@@ -15,7 +15,7 @@ export function apiError(
 ): NextResponse {
   log.error(context, {
     status,
-    message: error instanceof Error ? error.message : String(error ?? ""),
+    detail: error instanceof Error ? error.message : String(error ?? ""),
   });
   return NextResponse.json({ error: publicMessage }, { status });
 }

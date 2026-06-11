@@ -43,19 +43,34 @@ test("apiError: logs the internal error message server-side", () => {
   const captured: string[] = [];
   const original = console.error;
   const internalMsg = "internal constraint violation";
+  const context = "evidence.upload_failed";
   try {
     console.error = (...args: unknown[]) => {
       captured.push(args.map(String).join(" "));
     };
-    apiError("evidence.upload_failed", "Upload failed", 500, new Error(internalMsg));
+    apiError(context, "Upload failed", 500, new Error(internalMsg));
   } finally {
     console.error = original;
   }
   assert.equal(captured.length, 1, "expected exactly one console.error call");
-  assert.ok(
-    captured[0].includes(internalMsg),
-    `Expected log output to contain internal message, got: ${captured[0]}`
+
+  // Parse the JSON log line to verify field-level correctness.
+  const parsed = JSON.parse(captured[0]) as Record<string, unknown>;
+
+  // (a) The context event name must survive as the `message` field.
+  assert.equal(
+    parsed["message"],
+    context,
+    `Expected log.message to be the event name "${context}", got: ${parsed["message"]}`
   );
+
+  // (b) The internal error text must be under `detail`, not `message`.
+  assert.equal(
+    parsed["detail"],
+    internalMsg,
+    `Expected log.detail to contain internal message, got: ${parsed["detail"]}`
+  );
+
   // The logger module name "api-error" is always present in the JSON output.
   assert.ok(
     captured[0].includes("api-error"),
