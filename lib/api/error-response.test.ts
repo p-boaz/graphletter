@@ -1,53 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-
-// Minimal stub for NextResponse so we don't need the full Next.js runtime.
-// We only test that the helper constructs the correct body and status.
-class StubResponse {
-  readonly status: number;
-  readonly body: unknown;
-
-  constructor(body: unknown, init?: { status?: number }) {
-    this.body = body;
-    this.status = init?.status ?? 200;
-  }
-
-  async json() {
-    return this.body;
-  }
-}
-
-// Stub createLogger so the module can load without a real Next.js env.
-const loggedErrors: Array<{ context: string; meta: Record<string, unknown> }> = [];
-
-// Monkey-patch the modules before importing the helper.
-// We register mock implementations before the dynamic import below.
-const mockLogger = {
-  error: (context: string, meta: Record<string, unknown>) => {
-    loggedErrors.push({ context, meta });
-  },
-};
-
-// The helper imports from "next/server" and "@/lib/logger".
-// Use a separate entry-point test approach via dynamic import with module mocking.
-// Since node:test doesn't have native mock module support as cleanly as Jest,
-// we test the observable behaviour by importing the real module after registering
-// environment stubs via globalThis.
-
-// ── Inline the helper logic here to avoid Next.js runtime dependency ──────────
-// This mirrors lib/api/error-response.ts exactly so the tests remain valid.
-function apiError(
-  context: string,
-  publicMessage: string,
-  status: number,
-  error?: unknown
-): StubResponse {
-  mockLogger.error(context, {
-    status,
-    message: error instanceof Error ? error.message : String(error ?? ""),
-  });
-  return new StubResponse({ error: publicMessage }, { status });
-}
+import { apiError } from "@/lib/api/error-response";
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
 
@@ -87,10 +40,25 @@ test("apiError: works when error is a non-Error object", async () => {
 });
 
 test("apiError: logs the internal error message server-side", () => {
-  loggedErrors.length = 0; // reset
+  const captured: string[] = [];
+  const original = console.error;
   const internalMsg = "internal constraint violation";
-  apiError("evidence.upload_failed", "Upload failed", 500, new Error(internalMsg));
-  assert.equal(loggedErrors.length, 1);
-  assert.equal(loggedErrors[0].context, "evidence.upload_failed");
-  assert.equal((loggedErrors[0].meta as { message: string }).message, internalMsg);
+  try {
+    console.error = (...args: unknown[]) => {
+      captured.push(args.map(String).join(" "));
+    };
+    apiError("evidence.upload_failed", "Upload failed", 500, new Error(internalMsg));
+  } finally {
+    console.error = original;
+  }
+  assert.equal(captured.length, 1, "expected exactly one console.error call");
+  assert.ok(
+    captured[0].includes(internalMsg),
+    `Expected log output to contain internal message, got: ${captured[0]}`
+  );
+  // The logger module name "api-error" is always present in the JSON output.
+  assert.ok(
+    captured[0].includes("api-error"),
+    `Expected log output to contain module name "api-error", got: ${captured[0]}`
+  );
 });
