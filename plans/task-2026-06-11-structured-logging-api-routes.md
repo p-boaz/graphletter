@@ -16,7 +16,7 @@
 
 - Date: 2026-06-11
 - Owner: agent (advisor plan 003)
-- Status: Draft
+- Status: Done (2026-06-11)
 - Branch: `refactor/structured-logging-api-routes`
 - Planned at: commit `ea65d95`
 - Priority: P2 · Effort: M · Risk: LOW · Category: dx

@@ -18,11 +18,18 @@ const config = [
 			"prefer-const": "warn",
 		},
 	},
-	// Phase 1: Prevent bare console.log in production code
+	// Phase 1 → Phase 2: Enforce structured logger in app/api and lib
 	{
 		files: ["app/api/**/*.ts", "lib/**/*.ts"],
 		rules: {
-			"no-console": ["warn", { allow: ["warn", "error", "info", "debug"] }],
+			"no-console": "error",
+		},
+	},
+	// Exempt logger implementations and tests that stub console
+	{
+		files: ["lib/logger.ts", "lib/observability/logger.ts", "lib/**/*.test.ts"],
+		rules: {
+			"no-console": "off",
 		},
 	},
 	// Phase 3: Import boundary enforcement
