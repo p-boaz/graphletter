@@ -20,6 +20,7 @@ rejected findings are recorded below so nothing gets re-audited from scratch.
 | 003 | `task-2026-06-11-structured-logging-api-routes.md` | console.\* → createLogger in app/api + lib, enforced | P2       | M      | 002        | DONE (merged to main `4056e23`, 2026-06-11)                           |
 | 004 | `task-2026-06-11-dashboard-framework-counts.md`    | Batch dashboard framework counts (N+1) + pagination  | P2       | M      | 001        | DONE (merged to main `0b3ceb8`, 2026-06-12)                           |
 | 005 | `task-2026-06-11-durable-progress-tracking.md`     | DB-backed progress sessions across serverless        | P2       | L      | —          | DONE (merged to main `03f3c4e`, 2026-06-12; 1 review revision)        |
+| 006 | `task-2026-06-12-playwright-qa-login.md`           | Real QA login for Playwright (storage-state auth)    | P1       | M      | —          | IN PROGRESS                                                           |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (one-line reason) |
 REJECTED (one-line rationale).
