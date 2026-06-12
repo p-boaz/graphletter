@@ -13,15 +13,16 @@ rejected findings are recorded below so nothing gets re-audited from scratch.
 
 ## Execution order & status (2026-06-11 audit)
 
-| #   | Plan file                                          | Title                                                | Priority | Effort | Depends on | Status                                                                                                |
-| --- | -------------------------------------------------- | ---------------------------------------------------- | -------- | ------ | ---------- | ----------------------------------------------------------------------------------------------------- |
-| 001 | `task-2026-06-11-paginate-compliance-reads.md`     | Paginate compliance reads past 1000-row cap          | P1       | M      | —          | DONE (merged to main `37d931e`, 2026-06-11)                                                           |
-| 002 | `task-2026-06-11-sanitize-api-error-responses.md`  | Stop leaking internal error details in API responses | P1       | M      | —          | DONE (merged to main `26b6d22`, 2026-06-11; 2 review revision rounds)                                 |
-| 003 | `task-2026-06-11-structured-logging-api-routes.md` | console.\* → createLogger in app/api + lib, enforced | P2       | M      | 002        | DONE (merged to main `4056e23`, 2026-06-11)                                                           |
-| 004 | `task-2026-06-11-dashboard-framework-counts.md`    | Batch dashboard framework counts (N+1) + pagination  | P2       | M      | 001        | DONE (merged to main `0b3ceb8`, 2026-06-12)                                                           |
-| 005 | `task-2026-06-11-durable-progress-tracking.md`     | DB-backed progress sessions across serverless        | P2       | L      | —          | DONE (merged to main `03f3c4e`, 2026-06-12; 1 review revision)                                        |
-| 006 | `task-2026-06-12-playwright-qa-login.md`           | Real QA login for Playwright (storage-state auth)    | P1       | M      | —          | DONE (commits `5af1d26..c1667a3` on `fix/playwright-qa-login`; reviewed, merged to main 2026-06-12)   |
-| 007 | `task-2026-06-12-ai-pipeline-test-baseline.md`     | AI assessment pipeline test baseline (mocked model)  | P1       | L      | —          | DONE (commits `6c170c0..fb93564` on `test/ai-pipeline-baseline`; reviewed, merged to main 2026-06-12) |
+| #   | Plan file                                          | Title                                                                         | Priority | Effort | Depends on | Status                                                                                                |
+| --- | -------------------------------------------------- | ----------------------------------------------------------------------------- | -------- | ------ | ---------- | ----------------------------------------------------------------------------------------------------- |
+| 001 | `task-2026-06-11-paginate-compliance-reads.md`     | Paginate compliance reads past 1000-row cap                                   | P1       | M      | —          | DONE (merged to main `37d931e`, 2026-06-11)                                                           |
+| 002 | `task-2026-06-11-sanitize-api-error-responses.md`  | Stop leaking internal error details in API responses                          | P1       | M      | —          | DONE (merged to main `26b6d22`, 2026-06-11; 2 review revision rounds)                                 |
+| 003 | `task-2026-06-11-structured-logging-api-routes.md` | console.\* → createLogger in app/api + lib, enforced                          | P2       | M      | 002        | DONE (merged to main `4056e23`, 2026-06-11)                                                           |
+| 004 | `task-2026-06-11-dashboard-framework-counts.md`    | Batch dashboard framework counts (N+1) + pagination                           | P2       | M      | 001        | DONE (merged to main `0b3ceb8`, 2026-06-12)                                                           |
+| 005 | `task-2026-06-11-durable-progress-tracking.md`     | DB-backed progress sessions across serverless                                 | P2       | L      | —          | DONE (merged to main `03f3c4e`, 2026-06-12; 1 review revision)                                        |
+| 006 | `task-2026-06-12-playwright-qa-login.md`           | Real QA login for Playwright (storage-state auth)                             | P1       | M      | —          | DONE (commits `5af1d26..c1667a3` on `fix/playwright-qa-login`; reviewed, merged to main 2026-06-12)   |
+| 007 | `task-2026-06-12-ai-pipeline-test-baseline.md`     | AI assessment pipeline test baseline (mocked model)                           | P1       | L      | —          | DONE (commits `6c170c0..fb93564` on `test/ai-pipeline-baseline`; reviewed, merged to main 2026-06-12) |
+| 008 | `task-2026-06-12-small-fix-batch.md`               | Small-fix batch: 401s, partial-failure warnings, ESLint ignore, test-glob fix | P2       | S      | —          | IN PROGRESS (`fix/small-fix-batch`)                                                                   |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (one-line reason) |
 REJECTED (one-line rationale).
@@ -41,10 +42,6 @@ REJECTED (one-line rationale).
   tests). Highest long-term leverage in the audit, but L-effort each and
   needs a human decision on mocking strategy for the Vercel AI SDK.
   Recommended as the headline of the next planning round.
-- **Assessment POST swallows secondary-write failures**
-  (`app/api/assessments/route.ts:241–273` — evidence link + assignment insert
-  failures are `console.warn`'d and the response still says success). Real;
-  S/M fix (report partial status or fail hard).
 - **Demo quota is per-instance in-memory** (`lib/demo/demo-quota.ts`,
   limitation documented in its header) — quota multiplies by instance count
   on the unauthenticated `/try` AI endpoint. Fix pattern = plan 005's table.
@@ -74,13 +71,6 @@ REJECTED (one-line rationale).
   `QA_USER_EMAIL`/`QA_USER_PASSWORD`" is stale — no such file or vars exist.
   Fix: real QA login (or mock the remaining compliance endpoints) + AGENTS.md
   correction.
-- **Missing auth yields 500, not 401**, on `/api/compliance/inbox`,
-  `gap-remediation`, `impact-preview` (and likely siblings): `getCurrentUser`
-  throws and the catch-all converts to 500. Pre-existing; S fix per route.
-- **ESLint crawls into `.claude/worktrees/`** (found 2026-06-12): while an
-  agent worktree with a built `.next/` exists under the repo, `pnpm lint`
-  from the main tree fails with hundreds of errors from generated chunks.
-  One-line fix: add `**/.claude/**` to the ignores in `eslint.config.mjs`.
 - **9 pre-existing Playwright failures** classified during plan 006's
   full-suite run (analytics assertion, 2 compliance-autopilot UI asserts,
   dashboard-navigation flaky timeout, 4 evidence-errors timeouts, evidence
