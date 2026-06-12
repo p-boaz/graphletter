@@ -76,6 +76,15 @@ REJECTED (one-line rationale).
 - **Missing auth yields 500, not 401**, on `/api/compliance/inbox`,
   `gap-remediation`, `impact-preview` (and likely siblings): `getCurrentUser`
   throws and the catch-all converts to 500. Pre-existing; S fix per route.
+- **ESLint crawls into `.claude/worktrees/`** (found 2026-06-12): while an
+  agent worktree with a built `.next/` exists under the repo, `pnpm lint`
+  from the main tree fails with hundreds of errors from generated chunks.
+  One-line fix: add `**/.claude/**` to the ignores in `eslint.config.mjs`.
+- **9 pre-existing Playwright failures** classified during plan 006's
+  full-suite run (analytics assertion, 2 compliance-autopilot UI asserts,
+  dashboard-navigation flaky timeout, 4 evidence-errors timeouts, evidence
+  unmocked fetch, public-pages active-class assert) — see the plan 006
+  executor report; candidates for a dedicated spec-repair plan.
 
 ## Direction options (maintainer's call — grounded in repo evidence, not ranked against bugs)
 
