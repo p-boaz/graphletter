@@ -1,5 +1,9 @@
 import { expect, test } from "@playwright/test";
 
+// This spec tests public/signed-out pages and the signed-out nav chrome —
+// clear any stored session so the nav shows Sign in / Sign up links.
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test.describe("landing hero", () => {
   test("has a primary 'Try it' CTA and a benefit-led H1", async ({ page }) => {
     await page.goto("/");

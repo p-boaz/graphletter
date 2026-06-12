@@ -28,6 +28,7 @@
     "test:integration": "node --import tsx --test tests/**/*.test.ts lib/**/*.test.ts",
     "schema:migrations:check": "node scripts/schema-migration-convention-check.js",
     "schema:drift:check": "node scripts/schema-drift-check.js",
+    "qa:user:ensure": "node --import tsx scripts/qa-user-ensure.ts",
     "verify:scf-extraction": "node --import tsx scripts/verify-scf-extraction.ts",
     "prepare": "husky"
   },

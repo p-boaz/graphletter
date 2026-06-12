@@ -80,7 +80,6 @@ test.describe("dashboard first-run", () => {
       })
     );
 
-    await page.setExtraHTTPHeaders({ "x-test-bypass-auth": "1" });
     await page.goto("/dashboard", { waitUntil: "domcontentloaded" });
     await expect(page).toHaveURL(/\/dashboard(?:\?|$)/);
     await expect(page.getByTestId("dashboard-first-run-hero")).toBeVisible();
