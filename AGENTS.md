@@ -107,7 +107,18 @@ For fresh local bootstrap, authenticate the Supabase CLI first: `pnpm dlx supaba
 
 ## Dogfood / QA auth
 
-`.env` holds `QA_USER_EMAIL` and `QA_USER_PASSWORD` for Playwright and manual dogfooding. Never commit these.
+`.env.local` (gitignored) holds `QA_USER_EMAIL` and `QA_USER_PASSWORD` for
+Playwright and manual dogfooding. Never commit these values.
+
+`pnpm qa:user:ensure` provisions or resets the QA user in the linked Supabase
+project (idempotent — safe to run at any time; requires `SUPABASE_SERVICE_ROLE_KEY`).
+
+Playwright signs in once at the start of each run via
+`playwright/setup/auth.setup.ts` and stores the resulting session in
+`playwright/artifacts/.auth/qa.json` (gitignored). All specs that call
+`login_test_user` reuse this session via `storageState` — no browser-visible
+login flow per test. Specs that need to assert the signed-out UI must opt out
+at the file level: `test.use({ storageState: { cookies: [], origins: [] } });`
 
 ## What NOT to put in this file
 

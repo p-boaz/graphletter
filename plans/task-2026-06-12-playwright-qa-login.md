@@ -12,7 +12,7 @@
 
 - Date: 2026-06-12
 - Owner: agent (advisor plan 006)
-- Status: In Progress (dispatched 2026-06-12)
+- Status: Done (2026-06-12)
 - Branch: `fix/playwright-qa-login`
 - Planned at: commit `b2f8c24`
 - Priority: P1 · Effort: M · Risk: MED · Category: tests/dx
