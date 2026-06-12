@@ -1,3 +1,4 @@
+import { isAuthSessionMissingError } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
 
 type SupabaseServerClient = Awaited<ReturnType<typeof createClient>>;
@@ -14,6 +15,15 @@ export async function getCurrentUser(supabase?: SupabaseServerClient) {
   } = await client.auth.getUser();
 
   if (error) {
+    // A missing or rejected session means "no user" — return null so routes
+    // answer 401. Only infrastructure failures (network/retryable errors,
+    // auth-server 5xx) should throw and surface as 500.
+    if (
+      isAuthSessionMissingError(error) ||
+      (typeof error.status === "number" && error.status >= 400 && error.status < 500)
+    ) {
+      return null;
+    }
     throw new Error(`Authentication error: ${error.message}`);
   }
 

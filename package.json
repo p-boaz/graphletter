@@ -25,7 +25,7 @@
     "seed:snapshot": "node --import tsx scripts/snapshot-row-counts.ts",
     "seed:verify": "node --import tsx scripts/seed-verify.ts",
     "seed:reset": "node --import tsx scripts/seed-reset.ts",
-    "test:integration": "node --import tsx --test tests/**/*.test.ts lib/**/*.test.ts lib/**/**/*.test.ts",
+    "test:integration": "node --import tsx --test \"tests/**/*.test.ts\" \"lib/**/*.test.ts\"",
     "schema:migrations:check": "node scripts/schema-migration-convention-check.js",
     "schema:drift:check": "node scripts/schema-drift-check.js",
     "qa:user:ensure": "node --import tsx scripts/qa-user-ensure.ts",

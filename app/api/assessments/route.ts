@@ -241,6 +241,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // The assessment exists at this point; failures in the secondary writes
+    // below are reported as warnings rather than failing the request.
+    const warnings: string[] = [];
+
     // Link evidence to assessment if provided
     if (evidence_ids.length > 0) {
       // For now, just link the first evidence ID to the assessment record
@@ -254,7 +258,7 @@ export async function POST(request: NextRequest) {
         log.warn("assessments.post.evidence_link_failed", {
           detail: linkError instanceof Error ? linkError.message : String(linkError),
         });
-        // Don't fail the entire operation for link errors
+        warnings.push("Evidence could not be linked to the assessment");
       }
     }
 
@@ -274,14 +278,18 @@ export async function POST(request: NextRequest) {
           detail:
             assignmentError instanceof Error ? assignmentError.message : String(assignmentError),
         });
-        // Don't fail the entire operation for assignment creation
+        warnings.push("Assignment record could not be created");
       }
     }
 
     return NextResponse.json({
       success: true,
       assessment: assessmentData,
-      message: "Assessment created successfully",
+      warnings,
+      message:
+        warnings.length > 0
+          ? "Assessment created with partial failures"
+          : "Assessment created successfully",
     });
   } catch (error) {
     return apiError("assessments.post_failed", "Failed to create assessment", 500, error);
@@ -406,6 +414,10 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "Failed to update assessment" }, { status: 500 });
     }
 
+    // The update succeeded at this point; the evidence-link write below is
+    // reported as a warning rather than failing the request.
+    const warnings: string[] = [];
+
     // Update evidence links if provided
     if (evidence_ids.length >= 0) {
       // Update the evidence_id field directly
@@ -420,14 +432,18 @@ export async function PUT(request: NextRequest) {
         log.warn("assessments.put.evidence_link_failed", {
           detail: linkError instanceof Error ? linkError.message : String(linkError),
         });
-        // Don't fail the entire update for link errors
+        warnings.push("Evidence links could not be updated");
       }
     }
 
     return NextResponse.json({
       success: true,
       assessment: updatedAssessment,
-      message: "Assessment updated successfully",
+      warnings,
+      message:
+        warnings.length > 0
+          ? "Assessment updated with partial failures"
+          : "Assessment updated successfully",
     });
   } catch (error) {
     log.error("assessments.put.unhandled", {

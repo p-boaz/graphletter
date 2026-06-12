@@ -4,9 +4,8 @@
  * NOTE: ai/test cannot be imported directly because its barrel
  * (ai/dist/test/index.mjs) re-exports from @ai-sdk/provider-utils/test
  * which requires the `msw` peer dependency — not installed in this project.
- * MockLanguageModelV2 below is a faithful transcription of the class from
- * node_modules/ai/dist/test/index.mjs (lines 49-87) with the same
- * constructor signature as documented in node_modules/ai/dist/test/index.d.ts.
+ * MockLanguageModelV2 below is a faithful transcription of the class shipped
+ * in ai@5.0.115's `./test` export, with the same constructor signature.
  * Shape verified against @ai-sdk/provider@2.0.0 LanguageModelV2 interface.
  */
 
@@ -35,8 +34,7 @@ function notImplemented(): never {
 
 // ---------------------------------------------------------------------------
 // MockLanguageModelV2
-// Transcribed from node_modules/ai/dist/test/index.mjs lines 49-87.
-// Same constructor shape as node_modules/ai/dist/test/index.d.ts.
+// Transcribed from ai@5.0.115's `./test` export (same constructor shape).
 // ---------------------------------------------------------------------------
 
 export class MockLanguageModelV2 implements LMV2 {
@@ -68,7 +66,6 @@ export class MockLanguageModelV2 implements LMV2 {
       if (typeof doGenerate === "function") {
         return (doGenerate as LMV2["doGenerate"])(options);
       } else if (Array.isArray(doGenerate)) {
-        // Return the call-index element (same as SDK source)
         const result = (doGenerate as DoGenerateResult[])[this.doGenerateCalls.length - 1];
         if (!result) throw new Error("MockLanguageModelV2: no more canned results");
         return result;
