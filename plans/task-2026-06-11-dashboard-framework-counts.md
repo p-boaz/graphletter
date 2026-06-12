@@ -6,7 +6,7 @@
 > When done, update this plan's row in `plans/README.md`.
 >
 > **Drift check (run first)**:
-> `git diff --stat ea65d95..HEAD -- app/api/dashboard/overview/route.ts supabase/migrations/`
+> `git diff --stat 7c95049..HEAD -- app/api/dashboard/overview/route.ts supabase/migrations/`
 > Compare "Current state" excerpts against the live code; on a mismatch,
 > treat it as a STOP condition.
 
@@ -14,9 +14,9 @@
 
 - Date: 2026-06-11
 - Owner: agent (advisor plan 004)
-- Status: Draft
+- Status: In Progress (dispatched 2026-06-11)
 - Branch: `perf/dashboard-framework-counts`
-- Planned at: commit `ea65d95`
+- Planned at: commit `7c95049`
 - Priority: P2 · Effort: M · Risk: MED · Category: perf
 - Depends on: plans/task-2026-06-11-paginate-compliance-reads.md (reuses
   `lib/database/paged-select.ts`)
@@ -40,16 +40,16 @@ users get a silently incomplete compliance breakdown on their dashboard.
 
 ## Current state
 
-`app/api/dashboard/overview/route.ts` (verified at `ea65d95`):
+`app/api/dashboard/overview/route.ts` (verified at `7c95049`):
 
-- Lines 320–323 — unpaginated mappings read:
+- Lines 326–329 — unpaginated mappings read:
   ```ts
   const { data: controlMappings } = await supabase
     .from("scf_control_mappings")
     .select("control_id, framework_id, framework_control_id, confidence_score")
     .in("control_id", scfControlIds);
   ```
-- Lines 354–363 — the N+1:
+- Lines 361–370 — the N+1:
   ```ts
   const frameworkTotals = await Promise.all(
     frameworkIds.map(async (frameworkId) => {
@@ -139,7 +139,7 @@ run the non-strict default and note it.
 
 ### Step 2: Replace the N+1
 
-In `app/api/dashboard/overview/route.ts:354–363`, replace the
+In `app/api/dashboard/overview/route.ts:361–370`, replace the
 `Promise.all` count loop with:
 
 ```ts
@@ -157,7 +157,7 @@ failed count silently becomes `count || 0` — match that spirit, with a log).
 
 ### Step 3: Paginate the mappings read
 
-Replace lines 320–323 with a chunked + paginated read using
+Replace lines 326–329 with a chunked + paginated read using
 `chunkArray(scfControlIds, IN_CHUNK_SIZE)` and `selectAllRows` from
 `@/lib/database/paged-select` (same pattern as in
 `lib/compliance/inbox-generator.ts` after the dependency plan). Keep the

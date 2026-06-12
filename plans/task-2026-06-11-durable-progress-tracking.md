@@ -6,7 +6,7 @@
 > When done, update this plan's row in `plans/README.md`.
 >
 > **Drift check (run first)**:
-> `git diff --stat ea65d95..HEAD -- lib/websocket/ app/api/ws/ app/api/progress/ hooks/use-progress-tracker.ts supabase/migrations/`
+> `git diff --stat 7c95049..HEAD -- lib/websocket/ app/api/ws/ app/api/progress/ hooks/use-progress-tracker.ts supabase/migrations/`
 > Compare "Current state" excerpts against the live code; on a mismatch,
 > treat it as a STOP condition.
 
@@ -14,9 +14,9 @@
 
 - Date: 2026-06-11
 - Owner: agent (advisor plan 005)
-- Status: Draft
+- Status: In Progress (dispatched 2026-06-11)
 - Branch: `fix/durable-progress-tracking`
-- Planned at: commit `ea65d95`
+- Planned at: commit `7c95049`
 - Priority: P2 · Effort: L · Risk: MED · Category: bug/architecture
 - Depends on: none (independent of plans 001–004)
 
@@ -45,13 +45,13 @@ can't be reproduced locally (single dev process = always same "instance").
 
 ## Current state
 
-Verified at `ea65d95`:
+Verified at `7c95049`:
 
 - `lib/websocket/progress-tracker.ts` — class with
   `sessions: Map<string, ProgressSession>` and
   `subscribers: Map<string, Set<callback>>`; singleton on `globalThis`;
-  30s post-completion cleanup via `setTimeout` (lines 106–108, 131–133);
-  10-minute expiry sweep `setInterval` (lines 260–271).
+  30s post-completion cleanup via `setTimeout` (lines 101, 123);
+  10-minute expiry sweep `setInterval` (lines 247–256).
   Exposes: `createSession`, `updateProgress`, `completeSession`,
   `errorSession`, `subscribe`, `getSession`, `getUserSessions`.
 - `app/api/progress/session/route.ts` — POST: auth via `getCurrentUser`,
@@ -180,7 +180,7 @@ each taking the caller's `SupabaseClient` as first argument:
   INSERT row.
 - `updateProgress(supabase, sessionId, stage, progress, message, metadata?)` —
   UPDATE clamped progress (`Math.min(100, Math.max(0, p))` — preserve the
-  old tracker's clamping, lines 81–82), `updated_at = now`. A missing row
+  old tracker's clamping, the updateProgress clamp), `updated_at = now`. A missing row
   logs a warn (old behavior: `console.warn("Progress session ... not found")`)
   and returns without throwing.
 - `completeProgressSession(supabase, sessionId, message?)` /
