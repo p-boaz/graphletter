@@ -32,6 +32,10 @@ const IGNORABLE_CONSOLE_ERROR_PATTERNS = [
   // Vercel Analytics script is blocked by the app's CSP in local dev — not
   // a test concern; ignore the resulting console error and failed request.
   /va\.vercel-scripts\.com/i,
+  // supabase auth-js getUser() aborted by a test navigation while in flight
+  // (e.g. login lands on /dashboard, the spec immediately navigates away).
+  // The matching request shows up as net::ERR_ABORTED, which is also ignored.
+  /TypeError: Failed to fetch[\s\S]*auth-js/i,
 ];
 
 export function inspectConsoleErrors(page: Page) {
@@ -63,6 +67,13 @@ export function inspectConsoleErrors(page: Page) {
   }) => {
     const url = request.url();
     if (IGNORABLE_REQUEST_PATTERNS.some((pattern) => pattern.test(url))) {
+      return;
+    }
+
+    // ERR_ABORTED means the browser canceled the request (test navigation,
+    // image unmount, RSC prefetch) — not a server failure. Genuine backend
+    // problems surface as non-2xx responses in failedResponses instead.
+    if (request.failure()?.errorText === "net::ERR_ABORTED") {
       return;
     }
 

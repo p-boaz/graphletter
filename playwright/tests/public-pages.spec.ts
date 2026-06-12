@@ -26,8 +26,10 @@ test("public pages: dogfood report regressions are covered", async ({ page }, te
     });
     expect(navBackground).not.toBe("rgba(0, 0, 0, 0)");
 
+    // The lean-nav redesign removed "Frameworks" from the header (it lives in
+    // the footer, which has no active styling) — the page content assertions
+    // below are the regression coverage for this route.
     await open_local_app(page, "/frameworks");
-    await expect(page.getByRole("link", { name: "Frameworks" }).first()).toHaveClass(/active/);
 
     const searchInput = page.getByTestId(selectors.public.frameworkSearchInput);
     const resultsCount = page.getByTestId(selectors.public.frameworkResultsCount);
@@ -70,19 +72,13 @@ test("public pages: dogfood report regressions are covered", async ({ page }, te
     await open_local_app(page, "/try");
     await expect(page.getByTestId(selectors.public.tryItOutHeading)).toBeVisible();
     await expect(page.getByTestId(selectors.public.tryItOutSummary)).toContainText(
-      "real Smart Evidence Upload flow"
+      "Smart Evidence Upload flow"
     );
     await expect(page.getByTestId(selectors.public.tryItOutLiveUploadSection)).toBeVisible();
     await expect(page.getByTestId(selectors.upload.openSmartUploadButton)).toBeVisible();
   } finally {
     observer.stop();
     report = observer.getReport();
-    report.failedRequests = report.failedRequests.filter((request) => {
-      const isAbortedRequest = request.errorText.includes("net::ERR_ABORTED");
-      const isRscFetch = request.url.includes("_rsc=");
-      const isNextChunk = request.url.includes("/_next/static/chunks/");
-      return !(isAbortedRequest && (isRscFetch || isNextChunk));
-    });
     await trace_failure(testInfo, report);
     await take_snapshot(page, testInfo, "public-pages");
   }

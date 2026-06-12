@@ -115,6 +115,17 @@ export async function mockDashboardApis(page: Page): Promise<void> {
       }),
     });
   });
+
+  // The dashboard's GapRemediationPanel always POSTs here with the mocked
+  // framework id ("fw-nist-csf"), which the real API rejects as an invalid
+  // UUID (500). An empty list renders the panel's empty state.
+  await page.route("**/api/compliance/gap-remediation", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ remediations: [] }),
+    });
+  });
 }
 
 export async function mockAssessmentsPageApis(page: Page): Promise<void> {
@@ -318,6 +329,23 @@ export async function mockEvidencePageApis(page: Page): Promise<void> {
       }),
     });
   });
+
+  // The evidence page always fetches freshness alongside history. Specs that
+  // assert freshness dots register mockComplianceAutopilotApis afterwards,
+  // whose richer mock wins (page.route is last-registered-first).
+  await page.route("**/api/compliance/freshness**", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        freshness: {
+          items: [],
+          summary: { fresh: 0, expiring: 0, stale: 0 },
+          scannedAt: new Date().toISOString(),
+        },
+      }),
+    });
+  });
 }
 
 export async function mockComplianceAutopilotApis(page: Page): Promise<void> {
@@ -482,6 +510,21 @@ export async function mockUploadWorkflowApis(
             strongest_coverage_rank: 1,
           },
         ],
+      }),
+    });
+  });
+
+  // The upload results view (and its NextUploadSuggestion child) POSTs here
+  // after assessment. The real endpoint is rate-limited, so repeated suite
+  // runs start returning 429s and fail the observer.
+  await page.route("**/api/controls/framework-impact", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        total_frameworks_impacted: 0,
+        total_controls_submitted: 2,
+        frameworks: [],
       }),
     });
   });

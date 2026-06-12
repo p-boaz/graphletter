@@ -19,6 +19,10 @@ test("auth page renders stable sign-in and sign-up controls", async ({ page }, t
   try {
     await open_local_app(page, "/auth");
 
+    // Next dev streaming can briefly mount a second hidden copy of the form
+    // under load; toHaveCount retries until the transient settles, and still
+    // fails if a duplicate form ever persists for real.
+    await expect(page.getByTestId(selectors.auth.form)).toHaveCount(1);
     await expect(page.getByTestId(selectors.auth.form)).toBeVisible();
     await expect(page.getByTestId(selectors.auth.signInTab)).toBeVisible();
     await expect(page.getByTestId(selectors.auth.signInEmailInput)).toBeVisible();

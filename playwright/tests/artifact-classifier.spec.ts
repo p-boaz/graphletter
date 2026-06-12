@@ -43,6 +43,19 @@ test("classifier pre-fills documentation artifact from filename", async ({ page 
       });
     });
 
+    // The upload pipeline races the badge assertion: with every API mocked,
+    // upload completes almost instantly and the dialog advances past the
+    // artifact form, unmounting the badge. Hold extraction until the badge
+    // is verified; fallback() then defers to mockUploadWorkflowApis's handler.
+    let releaseExtraction: () => void = () => {};
+    const extractionGate = new Promise<void>((resolve) => {
+      releaseExtraction = resolve;
+    });
+    await page.route("**/api/evidence/extract-content", async (route) => {
+      await extractionGate;
+      await route.fallback();
+    });
+
     const classifyCalls: Array<Record<string, unknown>> = [];
 
     await page.route("**/api/artifacts/classify", async (route) => {
@@ -77,6 +90,7 @@ test("classifier pre-fills documentation artifact from filename", async ({ page 
     });
 
     await expect(dialog.getByTestId("artifact-ai-suggested")).toBeVisible();
+    releaseExtraction();
 
     // Verify the classifier's artifact flowed through to the upload workflow.
     await expect

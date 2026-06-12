@@ -33,9 +33,12 @@ test("dashboard tabs navigate on first click between overview, evidence, and ass
     await expect(page).toHaveURL(/\/dashboard(?:\?|$)/);
     await expect(page.getByRole("heading", { name: "Compliance Dashboard" })).toBeVisible();
 
-    const publicFrameworkLink = page
+    // "Try" is the one public link the lean-nav header still has; the point
+    // of this section is the dashboard → public-page transition, not the
+    // specific destination.
+    const publicTryLink = page
       .getByTestId(selectors.public.navHeader)
-      .getByRole("link", { name: "Frameworks" })
+      .getByRole("link", { name: "Try" })
       .first();
 
     const navHeader = page.getByTestId(selectors.public.navHeader);
@@ -52,16 +55,12 @@ test("dashboard tabs navigate on first click between overview, evidence, and ass
       return signInVisible;
     })();
 
-    await publicFrameworkLink.click();
-    await expect(page).toHaveURL(/\/frameworks(?:\?|$)/);
+    await publicTryLink.click();
+    await expect(page).toHaveURL(/\/try(?:\?|$)/);
     expect(await signInMonitorPromise).toBe(false);
   } finally {
     observer.stop();
     report = observer.getReport();
-    report.failedRequests = report.failedRequests.filter(
-      (request) =>
-        !(request.errorText.includes("net::ERR_ABORTED") && request.url.includes("_rsc="))
-    );
     await trace_failure(testInfo, report);
     await take_snapshot(page, testInfo, "dashboard-navigation");
   }
