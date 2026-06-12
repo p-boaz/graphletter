@@ -2,6 +2,7 @@
 import { anthropic } from "@ai-sdk/anthropic";
 import { openai } from "@ai-sdk/openai";
 import { generateObject, generateText, streamText } from "ai";
+import type { LanguageModel } from "ai";
 import { z } from "zod";
 
 import {
@@ -19,8 +20,16 @@ import { createLogger } from "./logger";
 
 const log = createLogger("lib/ai-client");
 
+let testModelFactory: ((provider: AIProvider, model: AIModel) => LanguageModel) | null = null;
+
+/** Test-only: install a factory returning a mock LanguageModel (ai/test). */
+export function setModelFactoryForTesting(factory: typeof testModelFactory): void {
+  testModelFactory = factory;
+}
+
 // Get model instance based on provider and model name with proper API key handling
 export function getModel(provider: AIProvider, model: AIModel) {
+  if (testModelFactory) return testModelFactory(provider, model);
   const config = getProviderConfig();
   const fallbackProvider = getFallbackProvider(provider);
 
