@@ -55,4 +55,7 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm audit --audit-level=high
+      # --prod scopes the gate to dependencies that ship to production.
+      # Dev-only tooling advisories (e.g. esbuild via tsx) must not block deploys;
+      # they're caught by Dependabot/manual review instead.
+      - run: pnpm audit --audit-level=high --prod
