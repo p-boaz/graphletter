@@ -12,7 +12,7 @@
 
 - Date: 2026-06-12
 - Owner: agent (advisor plan 007)
-- Status: In Progress (dispatched 2026-06-12)
+- Status: Done (2026-06-12)
 - Branch: `test/ai-pipeline-baseline`
 - Planned at: commit `1545606`
 - Priority: P1 · Effort: L · Risk: LOW · Category: tests
