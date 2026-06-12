@@ -113,6 +113,11 @@ new reusable fake-Supabase helper.
 - [x] No env vars read by any new test (hermetic run proves it).
 - [x] Fake-supabase helper documented and reusable for future route tests.
 
+## Review revisions
+
+- Dropped a dead conditional in the guidance cache-upsert test handler
+  (both branches returned the same value) — found in the pre-merge review.
+
 ## Findings (pinned, not fixed)
 
 - `generateGuidance` cache-read path does not validate `estimated_effort` —

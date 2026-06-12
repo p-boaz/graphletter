@@ -154,8 +154,7 @@ test("generateGuidance: AI success parses JSON and caches the result", async (t)
   );
 
   const { client, queries } = fakeSupabase({
-    erl_guidance_cache: (chain) =>
-      chain.some((c) => c.method === "upsert") ? { data: null } : { data: null },
+    erl_guidance_cache: { data: null },
   });
 
   const result = await generateGuidance(client, request());
