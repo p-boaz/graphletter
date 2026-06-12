@@ -15,7 +15,7 @@
 
 - Date: 2026-06-11
 - Owner: agent (advisor plan 002)
-- Status: Draft
+- Status: Done (merged 2026-06-11)
 - Branch: `fix/sanitize-api-error-responses`
 - Planned at: commit `ea65d95`
 - Priority: P1 · Effort: M · Risk: LOW · Category: security

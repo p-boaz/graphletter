@@ -119,7 +119,7 @@ into commit batches of ≤15 files.
 
 Per file: add `const log = createLogger("<module-name>")` once at module
 scope (name = file's purpose, kebab/snake matching neighbors), convert each
-`console.error(msg, err)` → `log.error("<module>.<event>", { message: ... })`,
+`console.error(msg, err)` → `log.error("<module>.<event>", { detail: ... })`,
 `console.warn` → `log.warn`, `console.log` → `log.info` or `log.debug`
 (judgment: developer-trace noise → debug; operational events → info). Where a
 route already imports `createRequestLogger`, extend that usage instead of

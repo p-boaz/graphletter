@@ -1,0 +1,3 @@
+# Vercel rejects pnpm's local-only `use-node-version` setting.
+# Vercel gets Node 24 from package.json; local shells get 24.16.0 from .npmrc.
+.npmrc
