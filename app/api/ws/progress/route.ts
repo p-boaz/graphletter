@@ -86,6 +86,24 @@ export async function GET(request: NextRequest) {
       // Initial connected event
       enqueue({ type: "connected", sessionId, operation: session.operation });
 
+      // Immediately emit the current session state so a client connecting
+      // mid-operation or after completion sees the latest progress without
+      // waiting for the next DB poll (mirrors old in-memory tracker behaviour).
+      enqueue({
+        type: "progressUpdate",
+        update: {
+          sessionId: session.sessionId,
+          stage: session.currentStage,
+          progress: session.progress,
+          message: session.message ?? "",
+          timestamp: session.updatedAt,
+          metadata: session.metadata ?? undefined,
+        },
+      });
+      if (session.status === "completed" || session.status === "error") {
+        setTimeout(close, 2000);
+      }
+
       // 30s heartbeat
       const heartbeatInterval = setInterval(() => {
         enqueue({ type: "heartbeat", timestamp: new Date().toISOString() });
