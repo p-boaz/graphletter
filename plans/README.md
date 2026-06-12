@@ -13,18 +13,19 @@ rejected findings are recorded below so nothing gets re-audited from scratch.
 
 ## Execution order & status (2026-06-11 audit)
 
-| #   | Plan file                                              | Title                                                                               | Priority | Effort | Depends on | Status                                                                                                           |
-| --- | ------------------------------------------------------ | ----------------------------------------------------------------------------------- | -------- | ------ | ---------- | ---------------------------------------------------------------------------------------------------------------- |
-| 001 | `task-2026-06-11-paginate-compliance-reads.md`         | Paginate compliance reads past 1000-row cap                                         | P1       | M      | —          | DONE (merged to main `37d931e`, 2026-06-11)                                                                      |
-| 002 | `task-2026-06-11-sanitize-api-error-responses.md`      | Stop leaking internal error details in API responses                                | P1       | M      | —          | DONE (merged to main `26b6d22`, 2026-06-11; 2 review revision rounds)                                            |
-| 003 | `task-2026-06-11-structured-logging-api-routes.md`     | console.\* → createLogger in app/api + lib, enforced                                | P2       | M      | 002        | DONE (merged to main `4056e23`, 2026-06-11)                                                                      |
-| 004 | `task-2026-06-11-dashboard-framework-counts.md`        | Batch dashboard framework counts (N+1) + pagination                                 | P2       | M      | 001        | DONE (merged to main `0b3ceb8`, 2026-06-12)                                                                      |
-| 005 | `task-2026-06-11-durable-progress-tracking.md`         | DB-backed progress sessions across serverless                                       | P2       | L      | —          | DONE (merged to main `03f3c4e`, 2026-06-12; 1 review revision)                                                   |
-| 006 | `task-2026-06-12-playwright-qa-login.md`               | Real QA login for Playwright (storage-state auth)                                   | P1       | M      | —          | DONE (commits `5af1d26..c1667a3` on `fix/playwright-qa-login`; reviewed, merged to main 2026-06-12)              |
-| 007 | `task-2026-06-12-ai-pipeline-test-baseline.md`         | AI assessment pipeline test baseline (mocked model)                                 | P1       | L      | —          | DONE (commits `6c170c0..fb93564` on `test/ai-pipeline-baseline`; reviewed, merged to main 2026-06-12)            |
-| 008 | `task-2026-06-12-small-fix-batch.md`                   | Small-fix batch: 401s, partial-failure warnings, ESLint ignore, test-glob fix       | P2       | S      | —          | DONE (commits `baabf57..17a0ef6` on `fix/small-fix-batch`; reviewed +1 revision, merged 2026-06-12)              |
-| 009 | `task-2026-06-12-playwright-spec-repair.md`            | Repair all pre-existing Playwright failures (suite green ×2, ~1 min runtime)        | P2       | M      | 006, 008   | DONE (commit `10e67cd` on `fix/playwright-spec-repair`; reviewed, merged 2026-06-12)                             |
-| 010 | `task-2026-06-12-compliance-characterization-tests.md` | Compliance engine characterization tests (24 hermetic tests + fake-supabase helper) | P2       | M      | 007        | DONE (commits `d76f602..c579879` on `test/compliance-characterization`; reviewed +1 revision, merged 2026-06-12) |
+| #   | Plan file                                              | Title                                                                                         | Priority | Effort | Depends on | Status                                                                                                           |
+| --- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------- | -------- | ------ | ---------- | ---------------------------------------------------------------------------------------------------------------- |
+| 001 | `task-2026-06-11-paginate-compliance-reads.md`         | Paginate compliance reads past 1000-row cap                                                   | P1       | M      | —          | DONE (merged to main `37d931e`, 2026-06-11)                                                                      |
+| 002 | `task-2026-06-11-sanitize-api-error-responses.md`      | Stop leaking internal error details in API responses                                          | P1       | M      | —          | DONE (merged to main `26b6d22`, 2026-06-11; 2 review revision rounds)                                            |
+| 003 | `task-2026-06-11-structured-logging-api-routes.md`     | console.\* → createLogger in app/api + lib, enforced                                          | P2       | M      | 002        | DONE (merged to main `4056e23`, 2026-06-11)                                                                      |
+| 004 | `task-2026-06-11-dashboard-framework-counts.md`        | Batch dashboard framework counts (N+1) + pagination                                           | P2       | M      | 001        | DONE (merged to main `0b3ceb8`, 2026-06-12)                                                                      |
+| 005 | `task-2026-06-11-durable-progress-tracking.md`         | DB-backed progress sessions across serverless                                                 | P2       | L      | —          | DONE (merged to main `03f3c4e`, 2026-06-12; 1 review revision)                                                   |
+| 006 | `task-2026-06-12-playwright-qa-login.md`               | Real QA login for Playwright (storage-state auth)                                             | P1       | M      | —          | DONE (commits `5af1d26..c1667a3` on `fix/playwright-qa-login`; reviewed, merged to main 2026-06-12)              |
+| 007 | `task-2026-06-12-ai-pipeline-test-baseline.md`         | AI assessment pipeline test baseline (mocked model)                                           | P1       | L      | —          | DONE (commits `6c170c0..fb93564` on `test/ai-pipeline-baseline`; reviewed, merged to main 2026-06-12)            |
+| 008 | `task-2026-06-12-small-fix-batch.md`                   | Small-fix batch: 401s, partial-failure warnings, ESLint ignore, test-glob fix                 | P2       | S      | —          | DONE (commits `baabf57..17a0ef6` on `fix/small-fix-batch`; reviewed +1 revision, merged 2026-06-12)              |
+| 009 | `task-2026-06-12-playwright-spec-repair.md`            | Repair all pre-existing Playwright failures (suite green ×2, ~1 min runtime)                  | P2       | M      | 006, 008   | DONE (commit `10e67cd` on `fix/playwright-spec-repair`; reviewed, merged 2026-06-12)                             |
+| 010 | `task-2026-06-12-compliance-characterization-tests.md` | Compliance engine characterization tests (24 hermetic tests + fake-supabase helper)           | P2       | M      | 007        | DONE (commits `d76f602..c579879` on `test/compliance-characterization`; reviewed +1 revision, merged 2026-06-12) |
+| 011 | `task-2026-06-12-assessment-export-ui.md`              | Assessment export UI: loader + export route + download menu (closes the deferred half of #12) | P2       | M      | 010        | DONE (commit `51f4430` on `feat/assessment-export-ui`; reviewed, merged 2026-06-12)                              |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (one-line reason) |
 REJECTED (one-line rationale).
@@ -67,10 +68,6 @@ REJECTED (one-line rationale).
 
 ## Direction options (maintainer's call — grounded in repo evidence, not ranked against bugs)
 
-- **Wire assessment export to the UI.** `lib/assessments/export.ts`
-  (CSV/JSON serializers, fully tested) has zero callers outside its tests;
-  the 2026-06-04 task spec explicitly deferred the UI. One API route + a
-  download button finishes a feature that's 50% shipped.
 - **Bulk import as the export counterpart.** Export just shipped; there is no
   import path (no `/api/evidence/import-bulk` or assessment-results import).
   Compliance teams live in spreadsheets — the asymmetry is the product gap.
