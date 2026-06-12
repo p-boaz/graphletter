@@ -23,6 +23,7 @@ rejected findings are recorded below so nothing gets re-audited from scratch.
 | 006 | `task-2026-06-12-playwright-qa-login.md`           | Real QA login for Playwright (storage-state auth)                             | P1       | M      | —          | DONE (commits `5af1d26..c1667a3` on `fix/playwright-qa-login`; reviewed, merged to main 2026-06-12)   |
 | 007 | `task-2026-06-12-ai-pipeline-test-baseline.md`     | AI assessment pipeline test baseline (mocked model)                           | P1       | L      | —          | DONE (commits `6c170c0..fb93564` on `test/ai-pipeline-baseline`; reviewed, merged to main 2026-06-12) |
 | 008 | `task-2026-06-12-small-fix-batch.md`               | Small-fix batch: 401s, partial-failure warnings, ESLint ignore, test-glob fix | P2       | S      | —          | DONE (commits `baabf57..17a0ef6` on `fix/small-fix-batch`; reviewed +1 revision, merged 2026-06-12)   |
+| 009 | `task-2026-06-12-playwright-spec-repair.md`        | Repair all pre-existing Playwright failures (suite green ×2, ~1 min runtime)  | P2       | M      | 006, 008   | DONE (commit `10e67cd` on `fix/playwright-spec-repair`; reviewed, merged 2026-06-12)                  |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (one-line reason) |
 REJECTED (one-line rationale).
@@ -71,11 +72,6 @@ REJECTED (one-line rationale).
   `QA_USER_EMAIL`/`QA_USER_PASSWORD`" is stale — no such file or vars exist.
   Fix: real QA login (or mock the remaining compliance endpoints) + AGENTS.md
   correction.
-- **9 pre-existing Playwright failures** classified during plan 006's
-  full-suite run (analytics assertion, 2 compliance-autopilot UI asserts,
-  dashboard-navigation flaky timeout, 4 evidence-errors timeouts, evidence
-  unmocked fetch, public-pages active-class assert) — see the plan 006
-  executor report; candidates for a dedicated spec-repair plan.
 
 ## Direction options (maintainer's call — grounded in repo evidence, not ranked against bugs)
 
