@@ -2,6 +2,7 @@
 
 import { ChevronDown, ChevronUp, CircleHelp } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import { AssessmentExportMenu } from "@/components/assessment-export-menu";
 import { AssessmentResultsDisplay } from "@/components/assessment-results-display";
 import { DashboardLayout } from "@/components/dashboard-layout";
 import { EmptyTabState } from "@/components/dashboard/empty-tab-state";
@@ -116,6 +117,12 @@ export default function AssessmentsPage() {
     >
       <Card className="ft-card">
         <CardContent>
+          {assessmentRecords.length > 0 && (
+            <div className="mb-4 flex justify-end">
+              <AssessmentExportMenu />
+            </div>
+          )}
+
           <div className="mb-4 rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm text-blue-900">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p>Need a quick explanation of SCF assessment objectives and result states?</p>

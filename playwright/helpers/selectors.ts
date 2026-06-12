@@ -38,6 +38,9 @@ export const selectors = {
     rowDetailButton: "assessment-row-detail-button",
     detailDialog: "assessment-detail-dialog",
     detailRunGroup: "assessment-detail-run-group",
+    exportButton: "assessments-export-button",
+    exportCsv: "assessments-export-csv",
+    exportJson: "assessments-export-json",
   },
   evidence: {
     row: "evidence-row",
