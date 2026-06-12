@@ -9,7 +9,7 @@ import {
   validateEvidenceUploadFile,
 } from "@/lib/services/evidence/upload-utils";
 import { createClient } from "@/lib/supabase/server";
-import { progressTracker } from "@/lib/websocket/progress-tracker";
+import { errorProgressSession, updateProgress } from "@/lib/progress/progress-store";
 import { getCurrentUser } from "@/utils/auth";
 
 const ALLOWED_EVIDENCE_TYPES = new Set([
@@ -360,7 +360,8 @@ export async function POST(request: NextRequest) {
 
     try {
       if (sessionId) {
-        progressTracker.updateProgress(
+        await updateProgress(
+          supabase,
           sessionId,
           "upload-validating",
           35,
@@ -384,7 +385,8 @@ export async function POST(request: NextRequest) {
       });
 
       if (sessionId) {
-        progressTracker.updateProgress(
+        await updateProgress(
+          supabase,
           sessionId,
           "upload-analyzing",
           40,
@@ -449,7 +451,8 @@ export async function POST(request: NextRequest) {
       }
 
       if (sessionId) {
-        progressTracker.updateProgress(
+        await updateProgress(
+          supabase,
           sessionId,
           "uploading-evidence",
           48,
@@ -532,7 +535,8 @@ export async function POST(request: NextRequest) {
       }
 
       if (sessionId) {
-        progressTracker.updateProgress(
+        await updateProgress(
+          supabase,
           sessionId,
           "evidence-records-created",
           55,
@@ -552,7 +556,8 @@ export async function POST(request: NextRequest) {
       });
 
       if (sessionId) {
-        progressTracker.updateProgress(
+        await updateProgress(
+          supabase,
           sessionId,
           "upload-complete",
           60,
@@ -592,10 +597,14 @@ export async function POST(request: NextRequest) {
     });
     const sessionId = request.headers.get("x-progress-session");
     if (sessionId) {
-      progressTracker.errorSession(
-        sessionId,
-        error instanceof Error ? error.message : "Evidence upload failed"
-      );
+      const supabase2 = await createClient().catch(() => null);
+      if (supabase2) {
+        await errorProgressSession(
+          supabase2,
+          sessionId,
+          error instanceof Error ? error.message : "Evidence upload failed"
+        );
+      }
     }
     return apiError("evidence.upload_only_failed", "Upload failed", 500, error);
   }

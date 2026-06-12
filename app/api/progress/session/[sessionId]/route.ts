@@ -1,7 +1,12 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { apiError } from "@/lib/api/error-response";
+import {
+  completeProgressSession,
+  errorProgressSession,
+  getProgressSession,
+  updateProgress,
+} from "@/lib/progress/progress-store";
 import { createClient } from "@/lib/supabase/server";
-import { progressTracker } from "@/lib/websocket/progress-tracker";
 import { getCurrentUser } from "@/utils/auth";
 
 export const runtime = "nodejs";
@@ -16,7 +21,7 @@ async function ensureSessionOwner(sessionId: string) {
     };
   }
 
-  const session = progressTracker.getSession(sessionId);
+  const session = await getProgressSession(supabase, sessionId);
   if (!session) {
     return {
       error: NextResponse.json({ error: "Session not found" }, { status: 404 }),
@@ -29,7 +34,7 @@ async function ensureSessionOwner(sessionId: string) {
     };
   }
 
-  return { session };
+  return { supabase, session };
 }
 
 export async function GET(
@@ -49,8 +54,9 @@ export async function PATCH(
 ) {
   try {
     const { sessionId } = await params;
-    const { error, session } = await ensureSessionOwner(sessionId);
-    if (error || !session) return error;
+    const result = await ensureSessionOwner(sessionId);
+    if (result.error || !result.session) return result.error;
+    const { supabase, session } = result;
 
     const body = await request.json().catch(() => ({}));
     const stage =
@@ -61,12 +67,13 @@ export async function PATCH(
     const status = body.status as "completed" | "error" | "active" | undefined;
 
     if (status === "completed") {
-      progressTracker.completeSession(sessionId, message);
+      await completeProgressSession(supabase, sessionId, message);
     } else if (status === "error") {
-      progressTracker.errorSession(sessionId, message || "An unexpected error occurred");
+      await errorProgressSession(supabase, sessionId, message || "An unexpected error occurred");
     } else if (stage || typeof body.progress === "number" || message || metadata) {
       const progressValue = typeof body.progress === "number" ? body.progress : session.progress;
-      progressTracker.updateProgress(
+      await updateProgress(
+        supabase,
         sessionId,
         stage || session.currentStage,
         progressValue,
@@ -75,7 +82,7 @@ export async function PATCH(
       );
     }
 
-    const updatedSession = progressTracker.getSession(sessionId);
+    const updatedSession = await getProgressSession(supabase, sessionId);
     return NextResponse.json({ success: true, session: updatedSession });
   } catch (error) {
     return apiError(

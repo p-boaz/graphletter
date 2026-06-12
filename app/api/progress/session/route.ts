@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { apiError } from "@/lib/api/error-response";
-import { progressTracker } from "@/lib/websocket/progress-tracker";
+import { createProgressSession } from "@/lib/progress/progress-store";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/utils/auth";
 
@@ -22,7 +22,11 @@ export async function POST(request: Request) {
         : "Smart evidence workflow";
 
     const sessionId = crypto.randomUUID();
-    const session = progressTracker.createSession(sessionId, user.id, operation);
+    const session = await createProgressSession(supabase, {
+      sessionId,
+      userId: user.id,
+      operation,
+    });
 
     return NextResponse.json({
       sessionId,

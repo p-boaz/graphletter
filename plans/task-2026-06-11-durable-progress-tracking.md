@@ -14,7 +14,7 @@
 
 - Date: 2026-06-11
 - Owner: agent (advisor plan 005)
-- Status: Draft
+- Status: Done (2026-06-11)
 - Branch: `fix/durable-progress-tracking`
 - Planned at: commit `ea65d95`
 - Priority: P2 · Effort: L · Risk: MED · Category: bug/architecture

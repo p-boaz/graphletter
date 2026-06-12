@@ -15,7 +15,11 @@ import { enqueuePostureRecalc } from "@/lib/compliance/posture-scorer";
 import { createLogger } from "@/lib/logger";
 import { createRequestLogger, getOrCreateRequestId } from "@/lib/observability/logger";
 import { createClient } from "@/lib/supabase/server";
-import { progressTracker } from "@/lib/websocket/progress-tracker";
+import {
+  completeProgressSession,
+  errorProgressSession,
+  updateProgress,
+} from "@/lib/progress/progress-store";
 import { getCurrentUser } from "@/utils/auth";
 
 const log = createLogger("api/evidence/assess-uploaded");
@@ -101,13 +105,13 @@ export async function POST(request: NextRequest) {
       return { averageControlDurationMs, estimatedRemainingMs };
     };
 
-    const emitAssessmentProgress = (
+    const emitAssessmentProgress = async (
       stage: string,
       message: string,
       metadata: Record<string, unknown> = {}
     ) => {
       if (!sessionId) return;
-      progressTracker.updateProgress(sessionId, stage, getAssessmentProgressValue(), message, {
+      await updateProgress(supabase, sessionId, stage, getAssessmentProgressValue(), message, {
         totalControls,
         completedControls,
         ...buildTimingMetadata(),
@@ -116,7 +120,8 @@ export async function POST(request: NextRequest) {
     };
 
     if (sessionId) {
-      progressTracker.updateProgress(
+      await updateProgress(
+        supabase,
         sessionId,
         "assessment-started",
         65,
@@ -136,7 +141,7 @@ export async function POST(request: NextRequest) {
       const controlEvidenceRecords = evidenceRecords.filter((e) => e.scf_control_id === controlId);
       const primaryEvidence = controlEvidenceRecords[0];
 
-      emitAssessmentProgress(
+      await emitAssessmentProgress(
         "assessing-control",
         `Assessing ${controlId}... (${controlNumber}/${totalControls})`,
         {
@@ -216,7 +221,7 @@ export async function POST(request: NextRequest) {
           );
 
           completedControls += 1;
-          emitAssessmentProgress(
+          await emitAssessmentProgress(
             "assessing-control",
             `Completed ${controlId} (${completedControls}/${totalControls})`,
             {
@@ -282,7 +287,7 @@ export async function POST(request: NextRequest) {
         );
 
         completedControls += 1;
-        emitAssessmentProgress(
+        await emitAssessmentProgress(
           "assessing-control",
           `Completed ${controlId} (${completedControls}/${totalControls})`,
           {
@@ -305,7 +310,7 @@ export async function POST(request: NextRequest) {
           error: assessmentError instanceof Error ? assessmentError.message : "Assessment failed",
         });
         completedControls += 1;
-        emitAssessmentProgress(
+        await emitAssessmentProgress(
           "assessing-control",
           `Unable to assess ${controlId} (${completedControls}/${totalControls})`,
           {
@@ -334,14 +339,15 @@ export async function POST(request: NextRequest) {
       completedCount: assessmentResults.length,
     });
 
-    emitAssessmentProgress(
+    await emitAssessmentProgress(
       "assessment-finalizing",
       `Finalizing results (${assessmentResults.length}/${uniqueControlIds.length} controls assessed)`,
       { phase: "assessment-finalizing" }
     );
 
     if (sessionId) {
-      progressTracker.completeSession(
+      await completeProgressSession(
+        supabase,
         sessionId,
         `Evidence assessment completed (${assessmentResults.length}/${uniqueControlIds.length})`
       );
@@ -379,10 +385,14 @@ export async function POST(request: NextRequest) {
     });
     const sessionId = request.headers.get("x-progress-session");
     if (sessionId) {
-      progressTracker.errorSession(
-        sessionId,
-        error instanceof Error ? error.message : "Assessment failed"
-      );
+      const supabase2 = await createClient().catch(() => null);
+      if (supabase2) {
+        await errorProgressSession(
+          supabase2,
+          sessionId,
+          error instanceof Error ? error.message : "Assessment failed"
+        );
+      }
     }
     return apiError("evidence.assess_uploaded_failed", "Assessment failed", 500, error);
   }

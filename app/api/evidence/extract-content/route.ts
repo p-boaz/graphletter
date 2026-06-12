@@ -3,7 +3,7 @@ import { apiError } from "@/lib/api/error-response";
 import { checkRouteRateLimit } from "@/lib/api/rate-limiter";
 import { createLogger } from "@/lib/logger";
 import { createClient } from "@/lib/supabase/server";
-import { progressTracker } from "@/lib/websocket/progress-tracker";
+import { errorProgressSession, updateProgress } from "@/lib/progress/progress-store";
 import { getCurrentUser } from "@/utils/auth";
 
 const log = createLogger("evidence/extract-content");
@@ -81,7 +81,8 @@ export async function POST(request: NextRequest) {
     });
 
     if (sessionId) {
-      progressTracker.updateProgress(
+      await updateProgress(
+        supabase,
         sessionId,
         "extracting-content",
         15,
@@ -120,7 +121,8 @@ export async function POST(request: NextRequest) {
       }
 
       if (sessionId) {
-        progressTracker.updateProgress(
+        await updateProgress(
+          supabase,
           sessionId,
           "content-extracted",
           25,
@@ -144,7 +146,8 @@ export async function POST(request: NextRequest) {
       });
     } catch (error) {
       if (sessionId) {
-        progressTracker.errorSession(
+        await errorProgressSession(
+          supabase,
           sessionId,
           error instanceof Error ? error.message : "Content extraction failed"
         );
@@ -154,10 +157,14 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     const sessionId = request.headers.get("x-progress-session");
     if (sessionId) {
-      progressTracker.errorSession(
-        sessionId,
-        error instanceof Error ? error.message : "Content extraction request failed"
-      );
+      const supabase2 = await createClient().catch(() => null);
+      if (supabase2) {
+        await errorProgressSession(
+          supabase2,
+          sessionId,
+          error instanceof Error ? error.message : "Content extraction request failed"
+        );
+      }
     }
     return apiError("evidence.extract_content_request_failed", "Request failed", 500, error);
   }
