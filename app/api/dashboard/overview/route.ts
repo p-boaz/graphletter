@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createLogger } from "@/lib/logger";
 import { createClient } from "@/lib/supabase/server";
+import { selectAllRows, chunkArray, IN_CHUNK_SIZE } from "@/lib/database/paged-select";
 
 const log = createLogger("api/dashboard/overview");
 
@@ -323,12 +324,28 @@ async function fetchFrameworkComplianceFallback(supabase: SupabaseServerClient, 
         typedUserControls.map((uc) => uc.scf_control_id).filter((id): id is string => Boolean(id))
       ),
     ];
-    const { data: controlMappings } = await supabase
-      .from("scf_control_mappings")
-      .select("control_id, framework_id, framework_control_id, confidence_score")
-      .in("control_id", scfControlIds);
+    const controlMappingsAll: ControlMappingRow[] = [];
+    const idChunks = chunkArray(scfControlIds, IN_CHUNK_SIZE);
+    for (const chunk of idChunks) {
+      let chunkRows: ControlMappingRow[];
+      try {
+        chunkRows = await selectAllRows<ControlMappingRow>(() =>
+          supabase
+            .from("scf_control_mappings")
+            .select("control_id, framework_id, framework_control_id, confidence_score")
+            .in("control_id", chunk)
+            .order("control_id")
+        );
+      } catch (err) {
+        log.warn("dashboard.mappings_fetch_error", {
+          detail: err instanceof Error ? err.message : "unknown",
+        });
+        chunkRows = [];
+      }
+      controlMappingsAll.push(...chunkRows);
+    }
 
-    if (!controlMappings || controlMappings.length === 0) {
+    if (controlMappingsAll.length === 0) {
       return {
         frameworks: [],
         summary: {
@@ -339,7 +356,7 @@ async function fetchFrameworkComplianceFallback(supabase: SupabaseServerClient, 
         },
       };
     }
-    const typedControlMappings = (controlMappings || []) as ControlMappingRow[];
+    const typedControlMappings = controlMappingsAll;
 
     // Get framework details
     const frameworkIds = [...new Set(typedControlMappings.map((cm) => cm.framework_id))];
@@ -357,21 +374,21 @@ async function fetchFrameworkComplianceFallback(supabase: SupabaseServerClient, 
       {} as Record<string, FrameworkRow>
     );
 
-    // Get total control counts for each framework (in parallel)
-    const frameworkTotals = await Promise.all(
-      frameworkIds.map(async (frameworkId) => {
-        const { count } = await supabase
-          .from("scf_control_mappings")
-          .select("*", { count: "exact", head: true })
-          .eq("framework_id", frameworkId);
-        return { frameworkId, total: count || 0 };
-      })
+    // Get total control counts for each framework via a single SQL function call
+    const { data: totalsRows, error: totalsError } = await supabase.rpc(
+      "framework_mapping_counts",
+      { p_framework_ids: frameworkIds }
     );
+    if (totalsError) {
+      log.warn("dashboard.framework_totals_error", { detail: totalsError.message });
+    }
 
-    const frameworkTotalsMap = frameworkTotals.reduce(
-      (acc: Record<string, number>, { frameworkId, total }) => ({
+    const frameworkTotalsMap = (
+      (totalsRows ?? []) as { framework_id: string; total: number }[]
+    ).reduce(
+      (acc: Record<string, number>, row) => ({
         ...acc,
-        [frameworkId]: total,
+        [row.framework_id]: row.total,
       }),
       {} as Record<string, number>
     );
