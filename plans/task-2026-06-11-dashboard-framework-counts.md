@@ -14,7 +14,7 @@
 
 - Date: 2026-06-11
 - Owner: agent (advisor plan 004)
-- Status: In Progress (dispatched 2026-06-11)
+- Status: Done (2026-06-11)
 - Branch: `perf/dashboard-framework-counts`
 - Planned at: commit `7c95049`
 - Priority: P2 · Effort: M · Risk: MED · Category: perf
