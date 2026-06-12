@@ -63,6 +63,18 @@ REJECTED (one-line rationale).
 - **Tailwind v3 → v4 migration** — deliberate "not now": M effort, MED risk
   across all shadcn/ui components, no current cost beyond staying one major
   behind.
+- **Playwright auth bypass breaks every unmocked API call** (found 2026-06-12):
+  `playwright/helpers/login.ts` sets `TEST_BYPASS_AUTH_HEADER` instead of a
+  real login, so pages render but any API route not mocked in
+  `playwright/helpers/mocks.ts` returns 500 ("Auth session missing") —
+  `dashboard.spec.ts` and `upload.spec.ts` fail by construction (verified
+  identical at pre-audit baseline `ea65d95`). Also: AGENTS.md's "`.env` holds
+  `QA_USER_EMAIL`/`QA_USER_PASSWORD`" is stale — no such file or vars exist.
+  Fix: real QA login (or mock the remaining compliance endpoints) + AGENTS.md
+  correction.
+- **Missing auth yields 500, not 401**, on `/api/compliance/inbox`,
+  `gap-remediation`, `impact-preview` (and likely siblings): `getCurrentUser`
+  throws and the catch-all converts to 500. Pre-existing; S fix per route.
 
 ## Direction options (maintainer's call — grounded in repo evidence, not ranked against bugs)
 
