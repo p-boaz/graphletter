@@ -1,8 +1,11 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { checkRouteRateLimit } from "@/lib/api/rate-limiter";
+import { createLogger } from "@/lib/logger";
 import { supabaseAdmin } from "@/lib/database/supabase";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser, isAdminUser } from "@/utils/auth";
+
+const log = createLogger("api/users");
 
 const USERS_INDEX_RATE_LIMIT = {
   namespace: "users_index",
@@ -56,7 +59,9 @@ export async function GET(request: NextRequest) {
     const { data: profiles, error } = await query;
 
     if (error) {
-      console.error("Error fetching user profiles:", error);
+      log.error("users.get.fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return NextResponse.json({ error: "Failed to fetch users" }, { status: 500 });
     }
 
@@ -88,7 +93,9 @@ export async function GET(request: NextRequest) {
       hasMore: offset + limit < (count || 0),
     });
   } catch (error) {
-    console.error("Error in users GET:", error);
+    log.error("users.get.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

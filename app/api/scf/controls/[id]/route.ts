@@ -1,5 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/database/supabase";
+import { createLogger } from "@/lib/logger";
+
+const log = createLogger("api/scf/controls");
 
 export async function GET(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
@@ -41,7 +44,8 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
     // Fetch associated risks
     const { data: risks } = await supabase
       .from("scf_control_risk_mappings")
-      .select(`
+      .select(
+        `
         scf_risks (
           id,
           title,
@@ -49,20 +53,23 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
           risk_grouping,
           nist_csf_function
         )
-      `)
+      `
+      )
       .eq("scf_control_id", id);
 
     // Fetch associated threats
     const { data: threats } = await supabase
       .from("scf_control_threat_mappings")
-      .select(`
+      .select(
+        `
         scf_threats (
           id,
           title,
           description,
           threat_grouping
         )
-      `)
+      `
+      )
       .eq("scf_control_id", id);
 
     // Fetch maturity levels
@@ -82,7 +89,9 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
 
     return NextResponse.json(enhancedControl);
   } catch (error) {
-    console.error("Error fetching control:", error);
+    log.error("controls.fetch_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Failed to fetch control" }, { status: 500 });
   }
 }

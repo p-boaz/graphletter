@@ -151,16 +151,22 @@ export function validateAIEnvironment() {
   });
 
   if (!openaiKey && !anthropicKey) {
-    console.error("No AI providers configured. Please add OPENAI_API_KEY or ANTHROPIC_API_KEY");
+    log.error("ai_config.no_providers_configured", {
+      detail: "No AI providers configured. Please add OPENAI_API_KEY or ANTHROPIC_API_KEY",
+    });
     return false;
   }
 
   if (!openaiKey) {
-    console.warn("OpenAI not configured. Some features may be limited.");
+    log.warn("ai_config.openai_not_configured", {
+      detail: "OpenAI not configured. Some features may be limited.",
+    });
   }
 
   if (!anthropicKey) {
-    console.warn("Anthropic not configured. Some features may be limited.");
+    log.warn("ai_config.anthropic_not_configured", {
+      detail: "Anthropic not configured. Some features may be limited.",
+    });
   }
 
   return true;

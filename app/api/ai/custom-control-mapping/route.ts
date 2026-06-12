@@ -137,7 +137,9 @@ export async function POST(request: NextRequest) {
       .limit(200); // Reasonable limit for analysis
 
     if (controlsError) {
-      console.error("Database error:", controlsError);
+      log.error("ai.custom_control_mapping.controls_fetch_failed", {
+        detail: controlsError instanceof Error ? controlsError.message : String(controlsError),
+      });
       return NextResponse.json(
         {
           success: false,
@@ -255,7 +257,9 @@ Please analyze the policy text and respond with ONLY valid JSON in this exact fo
         },
       });
     } catch (error) {
-      console.error("AI mapping failed, using keyword fallback:", error);
+      log.warn("ai.custom_control_mapping.ai_failed_using_fallback", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
 
       // Fallback analysis
       const keywords = policyText

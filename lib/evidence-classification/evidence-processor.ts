@@ -129,7 +129,10 @@ export class EvidenceProcessor {
       // Step 6: Return machine-readable analysis
       return EvidenceProcessor.generateMachineReadableOutput(mapping, evidenceData);
     } catch (error) {
-      console.error(`❌ [EVIDENCE-PROCESSOR] Failed to process ${dataSource} evidence:`, error);
+      log.error("processor.evidence_process_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+        dataSource,
+      });
       throw error;
     }
   }
@@ -308,16 +311,18 @@ export class EvidenceProcessor {
           .limit(1);
 
         if (aoError || !objectives?.length) {
-          console.warn(
-            `⚠️ No assessment objectives found for control ${controlAssessment.control_id}`
-          );
+          log.warn("processor.assessment_objectives_missing", {
+            detail: `No assessment objectives found for control ${controlAssessment.control_id}`,
+          });
           continue;
         }
 
         // Get the latest evidence record ID
         const latestEvidence = evidenceRecords[evidenceRecords.length - 1];
         if (!latestEvidence?.id) {
-          console.warn(`⚠️ No evidence record found for control ${controlAssessment.control_id}`);
+          log.warn("processor.evidence_record_missing", {
+            detail: `No evidence record found for control ${controlAssessment.control_id}`,
+          });
           continue;
         }
 
@@ -358,10 +363,11 @@ export class EvidenceProcessor {
           .single();
 
         if (assessmentError) {
-          console.error(
-            `❌ Failed to create assessment for ${controlAssessment.control_id}:`,
-            assessmentError
-          );
+          log.error("processor.assessment_create_failed", {
+            detail:
+              assessmentError instanceof Error ? assessmentError.message : String(assessmentError),
+            controlId: controlAssessment.control_id,
+          });
           continue;
         }
 
@@ -371,7 +377,10 @@ export class EvidenceProcessor {
           status: controlAssessment.status,
         });
       } catch (error) {
-        console.error(`❌ Error creating assessment for ${controlAssessment.control_id}:`, error);
+        log.error("processor.assessment_loop_error", {
+          detail: error instanceof Error ? error.message : String(error),
+          controlId: controlAssessment.control_id,
+        });
       }
     }
   }

@@ -1,7 +1,10 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { createLogger } from "@/lib/logger";
 import { evidenceStorage } from "@/lib/storage/evidence-storage";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/utils/auth";
+
+const log = createLogger("api/evidence/download");
 
 export async function GET(request: NextRequest) {
   try {
@@ -56,7 +59,9 @@ export async function GET(request: NextRequest) {
       action,
     });
   } catch (error) {
-    console.error("Error in evidence download:", error);
+    log.error("evidence.download.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

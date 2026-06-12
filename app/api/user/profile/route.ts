@@ -1,5 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { createLogger } from "@/lib/logger";
 import { createClient } from "@/lib/supabase/server";
+
+const log = createLogger("api/user/profile");
 
 export async function GET() {
   try {
@@ -23,7 +26,9 @@ export async function GET() {
       .single();
 
     if (error) {
-      console.error("Error fetching user profile:", error);
+      log.error("user.profile.get.fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return NextResponse.json({ error: "Failed to fetch profile" }, { status: 500 });
     }
 
@@ -32,7 +37,9 @@ export async function GET() {
       profile,
     });
   } catch (error) {
-    console.error("Profile API error:", error);
+    log.error("user.profile.get.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
@@ -68,7 +75,9 @@ export async function PUT(request: NextRequest) {
       .single();
 
     if (error) {
-      console.error("Error updating user profile:", error);
+      log.error("user.profile.put.update_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return NextResponse.json({ error: "Failed to update profile" }, { status: 500 });
     }
 
@@ -77,7 +86,9 @@ export async function PUT(request: NextRequest) {
       profile,
     });
   } catch (error) {
-    console.error("Profile update API error:", error);
+    log.error("user.profile.put.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

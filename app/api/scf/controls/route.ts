@@ -49,7 +49,9 @@ export async function GET(request: NextRequest) {
           .range(currentOffset, currentOffset + chunkSize - 1);
 
         if (error) {
-          console.error("Error in chunk:", error);
+          log.error("controls.chunk_fetch_failed", {
+            detail: error instanceof Error ? error.message : String(error),
+          });
           throw error;
         }
 
@@ -115,7 +117,9 @@ export async function GET(request: NextRequest) {
     log.info("API returned controls", { count: controls?.length || 0, limit });
     return NextResponse.json(controls || []);
   } catch (error) {
-    console.error("Error fetching controls:", error);
+    log.error("controls.fetch_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Failed to fetch controls" }, { status: 500 });
   }
 }

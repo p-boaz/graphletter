@@ -31,7 +31,9 @@ export async function createUserProfileManually(
     log.debug("Table check result", { hasData: !!tableCheck, hasError: !!tableError });
 
     if (tableError) {
-      console.error("Table access error:", tableError);
+      log.error("profile_utils.table_access_failed", {
+        detail: tableError instanceof Error ? tableError.message : String(tableError),
+      });
       return { success: false, error: "Table access failed", details: tableError };
     }
 
@@ -67,7 +69,9 @@ export async function createUserProfileManually(
 
     return { success: true, profile: newProfile };
   } catch (error) {
-    console.error("Unexpected error in profile creation:", error);
+    log.error("profile_utils.profile_creation_unexpected_error", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return { success: false, error: "Unexpected error", details: error };
   }
 }
@@ -92,7 +96,9 @@ export async function debugUserProfilesTable() {
 
     return { success: !error, data, error };
   } catch (error) {
-    console.error("Debug table access failed:", error);
+    log.error("profile_utils.debug_table_access_failed", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return { success: false, error };
   }
 }

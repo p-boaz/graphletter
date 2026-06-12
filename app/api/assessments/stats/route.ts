@@ -1,7 +1,10 @@
 import { type NextRequest, NextResponse } from "next/server";
 import type { UserAssessment } from "@/lib/types/assessment";
+import { createLogger } from "@/lib/logger";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/utils/auth";
+
+const log = createLogger("api/assessments/stats");
 
 interface ObjectiveSummaryRow {
   scf_ao_id: string;
@@ -48,7 +51,10 @@ export async function GET(request: NextRequest) {
     const { data: assessments, error: assessmentError } = await assessmentQuery;
 
     if (assessmentError) {
-      console.error("Error fetching assessment stats:", assessmentError);
+      log.error("assessments.stats.get.fetch_failed", {
+        detail:
+          assessmentError instanceof Error ? assessmentError.message : String(assessmentError),
+      });
       return NextResponse.json({ error: "Failed to fetch assessment statistics" }, { status: 500 });
     }
 
@@ -287,7 +293,9 @@ export async function GET(request: NextRequest) {
       generated_at: new Date().toISOString(),
     });
   } catch (error) {
-    console.error("Error in assessment stats GET:", error);
+    log.error("assessments.stats.get.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

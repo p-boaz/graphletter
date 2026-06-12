@@ -165,7 +165,9 @@ export async function GET() {
 
     return NextResponse.json(response);
   } catch (error) {
-    console.error("Error loading dashboard overview:", error);
+    log.error("dashboard.overview.get.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Failed to load dashboard data" }, { status: 500 });
   }
 }
@@ -193,7 +195,9 @@ async function fetchOptimizedFrameworkCompliance(supabase: SupabaseServerClient,
       .eq("user_id", userId);
 
     if (frameworkError) {
-      console.warn("Materialized view query failed, falling back:", frameworkError);
+      log.warn("dashboard.overview.mv_query_failed", {
+        detail: frameworkError instanceof Error ? frameworkError.message : String(frameworkError),
+      });
       return await fetchFrameworkComplianceFallback(supabase, userId);
     }
 
@@ -281,7 +285,9 @@ async function fetchOptimizedFrameworkCompliance(supabase: SupabaseServerClient,
       summary,
     };
   } catch (error) {
-    console.error("Error in optimized framework compliance:", error);
+    log.error("dashboard.overview.framework_compliance.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return await fetchFrameworkComplianceFallback(supabase, userId);
   }
 }
@@ -433,7 +439,9 @@ async function fetchFrameworkComplianceFallback(supabase: SupabaseServerClient, 
       summary,
     };
   } catch (error) {
-    console.error("Error in fetchFrameworkCompliance:", error);
+    log.error("dashboard.overview.framework_compliance_fallback.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return {
       frameworks: [],
       summary: {

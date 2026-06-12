@@ -1,7 +1,10 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { apiError } from "@/lib/api/error-response";
+import { createLogger } from "@/lib/logger";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/utils/auth";
+
+const log = createLogger("api/assessments");
 
 type AssessmentUpdateData = Record<string, unknown>;
 
@@ -86,7 +89,9 @@ export async function GET(request: NextRequest) {
     const { data: assessments, error } = await query;
 
     if (error) {
-      console.error("Error fetching assessments:", error);
+      log.error("assessments.get.fetch_failed", {
+        detail: error instanceof Error ? error.message : String(error),
+      });
       return NextResponse.json({ error: "Failed to fetch assessments" }, { status: 500 });
     }
 
@@ -126,7 +131,9 @@ export async function GET(request: NextRequest) {
       hasMore: offset + limit < (count || 0),
     });
   } catch (error) {
-    console.error("Error in assessments GET:", error);
+    log.error("assessments.get.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
@@ -244,7 +251,9 @@ export async function POST(request: NextRequest) {
         .eq("id", assessmentData.id);
 
       if (linkError) {
-        console.warn("Failed to link evidence:", linkError);
+        log.warn("assessments.post.evidence_link_failed", {
+          detail: linkError instanceof Error ? linkError.message : String(linkError),
+        });
         // Don't fail the entire operation for link errors
       }
     }
@@ -261,7 +270,10 @@ export async function POST(request: NextRequest) {
       });
 
       if (assignmentError) {
-        console.warn("Failed to create assignment:", assignmentError);
+        log.warn("assessments.post.assignment_create_failed", {
+          detail:
+            assignmentError instanceof Error ? assignmentError.message : String(assignmentError),
+        });
         // Don't fail the entire operation for assignment creation
       }
     }
@@ -388,7 +400,9 @@ export async function PUT(request: NextRequest) {
       .single();
 
     if (updateError) {
-      console.error("Error updating assessment:", updateError);
+      log.error("assessments.put.update_failed", {
+        detail: updateError instanceof Error ? updateError.message : String(updateError),
+      });
       return NextResponse.json({ error: "Failed to update assessment" }, { status: 500 });
     }
 
@@ -403,7 +417,9 @@ export async function PUT(request: NextRequest) {
         .eq("id", assessmentId);
 
       if (linkError) {
-        console.warn("Failed to update evidence link:", linkError);
+        log.warn("assessments.put.evidence_link_failed", {
+          detail: linkError instanceof Error ? linkError.message : String(linkError),
+        });
         // Don't fail the entire update for link errors
       }
     }
@@ -414,7 +430,9 @@ export async function PUT(request: NextRequest) {
       message: "Assessment updated successfully",
     });
   } catch (error) {
-    console.error("Error in assessments PUT:", error);
+    log.error("assessments.put.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
@@ -470,7 +488,9 @@ export async function DELETE(request: NextRequest) {
       .eq("id", assessmentId);
 
     if (deleteError) {
-      console.error("Error deleting assessment:", deleteError);
+      log.error("assessments.delete.delete_failed", {
+        detail: deleteError instanceof Error ? deleteError.message : String(deleteError),
+      });
       return NextResponse.json({ error: "Failed to delete assessment" }, { status: 500 });
     }
 
@@ -479,7 +499,9 @@ export async function DELETE(request: NextRequest) {
       message: "Assessment deleted successfully",
     });
   } catch (error) {
-    console.error("Error in assessments DELETE:", error);
+    log.error("assessments.delete.unhandled", {
+      detail: error instanceof Error ? error.message : String(error),
+    });
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
