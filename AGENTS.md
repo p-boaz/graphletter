@@ -51,7 +51,7 @@ Before every commit, verify: (a) `pnpm lint` clean, (b) `pnpm typecheck` clean, 
 
 ## Code quality rules
 
-- **No `console.log` in `app/api/`, `lib/`.** Use `createLogger` from `@/lib/logger`. For request-scoped API logging, use `createRequestLogger` from `@/lib/observability/logger`. ESLint enforces this (warn).
+- **No `console.*` in `app/api/`, `lib/`.** Use `createLogger` from `@/lib/logger`. For request-scoped API logging, use `createRequestLogger` from `@/lib/observability/logger`. ESLint enforces this (error). Put error text under a `detail` key in the log data payload — a `message` key silently overwrites the event name.
 - **No `TODO`/`FIXME` without a GitHub issue:** `// TODO(#123): description`.
 - **No `as any` without a justifying comment on the same line.**
 - **Never use `"latest"` as a version specifier.** Pin with `^` (e.g., `"^1.2.3"`).

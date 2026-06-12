@@ -13,13 +13,13 @@ rejected findings are recorded below so nothing gets re-audited from scratch.
 
 ## Execution order & status (2026-06-11 audit)
 
-| #   | Plan file                                          | Title                                                | Priority | Effort | Depends on | Status                                                                                                       |
-| --- | -------------------------------------------------- | ---------------------------------------------------- | -------- | ------ | ---------- | ------------------------------------------------------------------------------------------------------------ |
-| 001 | `task-2026-06-11-paginate-compliance-reads.md`     | Paginate compliance reads past 1000-row cap          | P1       | M      | —          | DONE (merged to main `37d931e`, 2026-06-11)                                                                  |
-| 002 | `task-2026-06-11-sanitize-api-error-responses.md`  | Stop leaking internal error details in API responses | P1       | M      | —          | DONE (merged to main `26b6d22`, 2026-06-11; 2 review revision rounds)                                        |
-| 003 | `task-2026-06-11-structured-logging-api-routes.md` | console.\* → createLogger in app/api + lib, enforced | P2       | M      | 002        | DONE (merged to main `4056e23`, 2026-06-11)                                                                  |
-| 004 | `task-2026-06-11-dashboard-framework-counts.md`    | Batch dashboard framework counts (N+1) + pagination  | P2       | M      | 001        | DONE (commit `2b5134e` on `perf/dashboard-framework-counts`; reviewed, awaiting merge)                       |
-| 005 | `task-2026-06-11-durable-progress-tracking.md`     | DB-backed progress sessions across serverless        | P2       | L      | —          | DONE (commits `818d3ab..dc6a7fd` on `fix/durable-progress-tracking`; reviewed w/ 1 revision, awaiting merge) |
+| #   | Plan file                                          | Title                                                | Priority | Effort | Depends on | Status                                                                |
+| --- | -------------------------------------------------- | ---------------------------------------------------- | -------- | ------ | ---------- | --------------------------------------------------------------------- |
+| 001 | `task-2026-06-11-paginate-compliance-reads.md`     | Paginate compliance reads past 1000-row cap          | P1       | M      | —          | DONE (merged to main `37d931e`, 2026-06-11)                           |
+| 002 | `task-2026-06-11-sanitize-api-error-responses.md`  | Stop leaking internal error details in API responses | P1       | M      | —          | DONE (merged to main `26b6d22`, 2026-06-11; 2 review revision rounds) |
+| 003 | `task-2026-06-11-structured-logging-api-routes.md` | console.\* → createLogger in app/api + lib, enforced | P2       | M      | 002        | DONE (merged to main `4056e23`, 2026-06-11)                           |
+| 004 | `task-2026-06-11-dashboard-framework-counts.md`    | Batch dashboard framework counts (N+1) + pagination  | P2       | M      | 001        | DONE (merged to main `0b3ceb8`, 2026-06-12)                           |
+| 005 | `task-2026-06-11-durable-progress-tracking.md`     | DB-backed progress sessions across serverless        | P2       | L      | —          | DONE (merged to main `03f3c4e`, 2026-06-12; 1 review revision)        |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (one-line reason) |
 REJECTED (one-line rationale).
