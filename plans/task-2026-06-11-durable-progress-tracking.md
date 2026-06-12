@@ -14,7 +14,7 @@
 
 - Date: 2026-06-11
 - Owner: agent (advisor plan 005)
-- Status: In Progress (dispatched 2026-06-11)
+- Status: Done (2026-06-11)
 - Branch: `fix/durable-progress-tracking`
 - Planned at: commit `7c95049`
 - Priority: P2 · Effort: L · Risk: MED · Category: bug/architecture
@@ -295,6 +295,7 @@ Implements: plans/task-2026-06-11-durable-progress-tracking.md
 - `lib/demo/demo-quota.ts` has the same in-memory-on-serverless limitation
   (documented in its header comment); if that's ever fixed, this table/RLS
   pattern is the template.
+- SSE route emits the current session state immediately on connect (review fix).
 
 ## Approval Gate
 
