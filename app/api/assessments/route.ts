@@ -418,9 +418,10 @@ export async function PUT(request: NextRequest) {
     // reported as a warning rather than failing the request.
     const warnings: string[] = [];
 
-    // Update evidence links if provided
-    if (evidence_ids.length >= 0) {
-      // Update the evidence_id field directly
+    // Update evidence links only when the request explicitly provides the
+    // field — an omitted evidence_ids must not clear an existing link.
+    // An explicit empty array clears it intentionally.
+    if (Array.isArray(body.evidence_ids)) {
       const evidenceId = evidence_ids.length > 0 ? evidence_ids[0] : null;
 
       const { error: linkError } = await supabase

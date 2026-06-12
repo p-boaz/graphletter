@@ -62,6 +62,15 @@ into `.claude/` agent worktrees, and `mock-model.ts` comments must not cite
 3. Add `**/.claude/**` to `eslint.config.mjs` ignores.
 4. Re-anchor `mock-model.ts` provenance comments to the package version
    (`ai@5.0.115`) instead of dist-file line numbers.
+5. **Review revision (found during the pre-merge review):** the PUT handler's
+   evidence-link block was guarded by `evidence_ids.length >= 0` — always
+   true with the `evidence_ids = []` destructure default — so any PUT that
+   omitted the field (which is every UI update: `handleUpdateAssessment`
+   sends `Partial<UserAssessment>` and `components/` never includes
+   `evidence_ids`) silently nulled the assessment's `evidence_id`.
+   Pre-existing data-loss bug in a touched function; now guarded by
+   `Array.isArray(body.evidence_ids)` so an omitted field is a no-op and an
+   explicit `[]` still clears intentionally.
 
 ### Out of scope
 
