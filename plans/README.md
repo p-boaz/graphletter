@@ -1,106 +1,66 @@
 # Implementation Plans
 
-This directory holds the repo's task specs (`task-YYYY-MM-DD-<slug>.md`, per
-AGENTS.md). The table below indexes the **advisor-generated plans from the
-2026-06-11 codebase audit** (improve skill, planned at commit `ea65d95`).
-Executors: read the plan fully before starting, honor its STOP conditions,
-get the Approval Gate signed off before implementing, and update your status
-row when done.
+Task specs live in `plans/` while active and move to `plans/archive/` after
+merge. GitHub issues are the source of truth for backlog work; this file is the
+index, not a second backlog.
 
-Selection note: this audit ran non-interactively, so per the skill's default
-the top 5 findings by leverage were planned. The full findings table and the
-rejected findings are recorded below so nothing gets re-audited from scratch.
+## Active Plans
 
-## Execution order & status (2026-06-11 audit)
+| Plan                                 | Status                    |
+| ------------------------------------ | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
 
-| #   | Plan file                                              | Title                                                                                         | Priority | Effort | Depends on | Status                                                                                                           |
-| --- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------- | -------- | ------ | ---------- | ---------------------------------------------------------------------------------------------------------------- |
-| 001 | `task-2026-06-11-paginate-compliance-reads.md`         | Paginate compliance reads past 1000-row cap                                                   | P1       | M      | —          | DONE (merged to main `37d931e`, 2026-06-11)                                                                      |
-| 002 | `task-2026-06-11-sanitize-api-error-responses.md`      | Stop leaking internal error details in API responses                                          | P1       | M      | —          | DONE (merged to main `26b6d22`, 2026-06-11; 2 review revision rounds)                                            |
-| 003 | `task-2026-06-11-structured-logging-api-routes.md`     | console.\* → createLogger in app/api + lib, enforced                                          | P2       | M      | 002        | DONE (merged to main `4056e23`, 2026-06-11)                                                                      |
-| 004 | `task-2026-06-11-dashboard-framework-counts.md`        | Batch dashboard framework counts (N+1) + pagination                                           | P2       | M      | 001        | DONE (merged to main `0b3ceb8`, 2026-06-12)                                                                      |
-| 005 | `task-2026-06-11-durable-progress-tracking.md`         | DB-backed progress sessions across serverless                                                 | P2       | L      | —          | DONE (merged to main `03f3c4e`, 2026-06-12; 1 review revision)                                                   |
-| 006 | `task-2026-06-12-playwright-qa-login.md`               | Real QA login for Playwright (storage-state auth)                                             | P1       | M      | —          | DONE (commits `5af1d26..c1667a3` on `fix/playwright-qa-login`; reviewed, merged to main 2026-06-12)              |
-| 007 | `task-2026-06-12-ai-pipeline-test-baseline.md`         | AI assessment pipeline test baseline (mocked model)                                           | P1       | L      | —          | DONE (commits `6c170c0..fb93564` on `test/ai-pipeline-baseline`; reviewed, merged to main 2026-06-12)            |
-| 008 | `task-2026-06-12-small-fix-batch.md`                   | Small-fix batch: 401s, partial-failure warnings, ESLint ignore, test-glob fix                 | P2       | S      | —          | DONE (commits `baabf57..17a0ef6` on `fix/small-fix-batch`; reviewed +1 revision, merged 2026-06-12)              |
-| 009 | `task-2026-06-12-playwright-spec-repair.md`            | Repair all pre-existing Playwright failures (suite green ×2, ~1 min runtime)                  | P2       | M      | 006, 008   | DONE (commit `10e67cd` on `fix/playwright-spec-repair`; reviewed, merged 2026-06-12)                             |
-| 010 | `task-2026-06-12-compliance-characterization-tests.md` | Compliance engine characterization tests (24 hermetic tests + fake-supabase helper)           | P2       | M      | 007        | DONE (commits `d76f602..c579879` on `test/compliance-characterization`; reviewed +1 revision, merged 2026-06-12) |
-| 011 | `task-2026-06-12-assessment-export-ui.md`              | Assessment export UI: loader + export route + download menu (closes the deferred half of #12) | P2       | M      | 010        | DONE (commit `51f4430` on `feat/assessment-export-ui`; reviewed, merged 2026-06-12)                              |
+## Product Backlog
 
-Status values: TODO | IN PROGRESS | DONE | BLOCKED (one-line reason) |
-REJECTED (one-line rationale).
+| Issue                                                  | Work                                   |
+| ------------------------------------------------------ | -------------------------------------- |
+| [#11](https://github.com/p-boaz/graphletter/issues/11) | Docker Compose self-hosting            |
+| [#14](https://github.com/p-boaz/graphletter/issues/14) | Publish classifier eval results in CI  |
+| [#15](https://github.com/p-boaz/graphletter/issues/15) | Incident Response Plan classification  |
+| [#16](https://github.com/p-boaz/graphletter/issues/16) | Framework filter on assessment results |
+| [#18](https://github.com/p-boaz/graphletter/issues/18) | Upload and results accessibility pass  |
+| [#19](https://github.com/p-boaz/graphletter/issues/19) | Local/OSS AI provider support          |
+| [#31](https://github.com/p-boaz/graphletter/issues/31) | Bulk compliance spreadsheet import     |
+| [#32](https://github.com/p-boaz/graphletter/issues/32) | Enhanced analytics API product surface |
+| [#33](https://github.com/p-boaz/graphletter/issues/33) | Evidence approval workflow UI          |
 
-## Dependency notes
+## Engineering Backlog
 
-- 003 depends on 002: the error-response sweep rewrites many of the same
-  `console.error` lines; doing 002 first avoids double-touching files.
-- 004 depends on 001: it reuses `lib/database/paged-select.ts` created there.
-- 001, 002, 005 are mutually independent and can run in parallel branches.
+| Issue                                                  | Work                                                 |
+| ------------------------------------------------------ | ---------------------------------------------------- |
+| [#23](https://github.com/p-boaz/graphletter/issues/23) | Route-level API tests and guidance effort validation |
+| [#24](https://github.com/p-boaz/graphletter/issues/24) | Durable serverless demo quotas                       |
+| [#25](https://github.com/p-boaz/graphletter/issues/25) | SheetJS dependency provenance                        |
+| [#26](https://github.com/p-boaz/graphletter/issues/26) | Upload file-signature validation                     |
+| [#27](https://github.com/p-boaz/graphletter/issues/27) | Dead-code and unused-dependency cleanup              |
+| [#28](https://github.com/p-boaz/graphletter/issues/28) | Structured AI fallback metadata                      |
+| [#29](https://github.com/p-boaz/graphletter/issues/29) | Consistent malformed-JSON rejection                  |
+| [#30](https://github.com/p-boaz/graphletter/issues/30) | Tailwind CSS v4 migration                            |
+| [#34](https://github.com/p-boaz/graphletter/issues/34) | Azure and GCP evidence classification                |
+| [#35](https://github.com/p-boaz/graphletter/issues/35) | Multi-framework impact previews                      |
+| [#36](https://github.com/p-boaz/graphletter/issues/36) | Admin artifacts RBAC                                 |
+| [#37](https://github.com/p-boaz/graphletter/issues/37) | Supabase dashboard security configuration            |
 
-## Audited but not planned this round (backlog, by leverage)
+## Recent Reconciliation
 
-- **Route-level tests for `app/api/`** — the remaining piece of the
-  test-baseline item: the AI pipeline (plan 007) and compliance engine
-  (plan 010) are covered; `app/api/` still has zero route-level tests.
-  `lib/testing/fake-supabase.ts` was built to be reusable for this.
-  Guidance cache-read effort validation (one-line `isValidEffort()` guard)
-  is a known nit pinned in plan 010's findings — fold into the same pass.
-- **Demo quota is per-instance in-memory** (`lib/demo/demo-quota.ts`,
-  limitation documented in its header) — quota multiplies by instance count
-  on the unauthenticated `/try` AI endpoint. Fix pattern = plan 005's table.
-- **xlsx installed from CDN tarball** (`package.json:100`) — outside npm
-  audit/provenance tooling. Decide: npm-registry version or document the
-  SheetJS licensing rationale inline.
-- **Upload validation is MIME/size only** (`lib/services/evidence/upload-utils.ts:18–39`)
-  — no magic-byte check before files hit pdf-parse/mammoth/tesseract.
-- **Dead code sweep**: `components/ui/chart.tsx` (sole importer of the
-  `recharts` dependency, itself unimported) and `components/coverage-heatmap.tsx`
-  have no consumers. A knip audit (2026-05-09) found ~57 unused files.
-- **AI keyword-fallback responses indistinguishable from AI success** for
-  monitoring (`app/api/ai/custom-control-mapping/route.ts:256+`) — response
-  text mentions the fallback but there's no structured `method` field.
-- **`request.json().catch(() => ({}))`** treats malformed bodies as valid
-  empty requests (e.g. `app/api/analysis/run-gap-analysis/route.ts:99`,
-  triggering an expensive whole-framework run) — fold into a validation pass.
-- **Tailwind v3 → v4 migration** — deliberate "not now": M effort, MED risk
-  across all shadcn/ui components, no current cost beyond staying one major
-  behind.
+- [#12](https://github.com/p-boaz/graphletter/issues/12) assessment export:
+  closed as completed on 2026-06-13.
+- [#13](https://github.com/p-boaz/graphletter/issues/13) synthetic-document
+  demo: closed as completed on 2026-06-13.
+- All task specs completed through 2026-06-12 are under `plans/archive/`.
 
-## Direction options (maintainer's call — grounded in repo evidence, not ranked against bugs)
+## Rejected Findings
 
-- **Bulk import as the export counterpart.** Export just shipped; there is no
-  import path (no `/api/evidence/import-bulk` or assessment-results import).
-  Compliance teams live in spreadsheets — the asymmetry is the product gap.
-- **Surface or fold in the `enhanced` API.** `app/api/enhanced/search` is
-  consumed by `FrameworkCrosswalk` (dashboard/frameworks page) but its other
-  actions (heatmap, analytics) have a dead component
-  (`coverage-heatmap.tsx`) as their only would-be consumer. Either ship the
-  heatmap on the dashboard or prune the unused actions.
-- **Evidence approval workflow UI.** Approve/reject endpoints exist
-  (`app/api/evidence/[id]/approve|reject`) with no UI that calls them
-  (MED confidence — verify before investing).
+These were investigated and intentionally rejected. They are recorded to avoid
+repeating the same audit:
 
-## Findings considered and rejected (do not re-audit)
-
-- _Assignments IDOR / user enumeration_ (`app/api/assessments/assignments/route.ts`):
-  rejected — the `.or(assigned_to.eq.user,assigned_by.eq.user)` scope at
-  line 45 is applied unconditionally; extra query params only narrow within
-  the user's own rows (PostgREST ANDs the filters).
-- _`USING (true)` RLS policies on `erl_guidance_cache` /
-  `scf_control_evidence_mappings`_: by design — migration
-  `20260512160000_advisor_rls_hardening.sql` documents these as public
-  reference data read by user-session clients.
-- _Race condition in `progressTracker.subscribe`_: impossible — the
-  check-then-add is synchronous on a single-threaded event loop.
-- _"Unbounded cleanup timers" in progress-tracker_: misread — cleanup
-  timeouts are scheduled only on complete/error, not per update. (The module
-  is being replaced by plan 005 anyway.)
-- _Service-role client in `try-it-out/demo` route_: by design — key stays
-  server-side; reads public SCF reference data.
-- _pnpm audit moderates (postcss/ws/yaml/etc.)_: below the repo's CI bar
-  (`pnpm audit --audit-level=high` gates CI); dev-chain noise floor.
-- _Legacy redirect pages `app/try-it-out/page.tsx`, `app/how-it-works/page.tsx`_:
-  idiomatic Next `redirect()` stubs preserving old URLs — keep.
-- _Assessment status check-then-act race_ (`app/api/assessments/route.ts:324–346`):
-  real pattern but ownership is re-checked and the write is user-scoped;
-  optimistic locking isn't worth the complexity at current concurrency.
+- Assignments IDOR/user enumeration: filters only narrow rows already scoped
+  to the current user.
+- Public-read RLS policies on shared SCF reference tables: intentional.
+- Progress subscription race: the check and subscription are synchronous.
+- Progress cleanup timers: scheduled only on completion or error.
+- Service-role use in the demo route: server-side and intentional.
+- Moderate dependency advisories: below the production CI audit threshold.
+- Legacy redirect pages: intentional URL-preserving Next.js redirects.
+- Assessment status check-then-act: writes remain ownership-scoped; optimistic
+  locking is not justified at current concurrency.

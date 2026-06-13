@@ -159,6 +159,6 @@ export async function previewUploadImpact(
     currentScore,
     projectedScore,
     improvementPct,
-    frameworkImpacts: [], // TODO: multi-framework breakdown in future
+    frameworkImpacts: [], // TODO(#35): Add per-framework impact breakdowns.
   };
 }

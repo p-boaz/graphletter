@@ -1,6 +1,6 @@
 "use client";
 
-// TODO: Add RBAC/role-based protection for admin access
+// TODO(#36): Add role-based protection for admin access.
 
 import type { User } from "@supabase/supabase-js";
 import Link from "next/link";

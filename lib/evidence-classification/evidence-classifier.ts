@@ -214,7 +214,7 @@ export class EvidenceClassifier {
 	): EvidenceClassification {
 		void _evidenceData;
 		void _checkType;
-		// TODO: Implement Azure classification rules
+		// TODO(#34): Implement Azure classification rules.
 		throw new Error("Azure classification not yet implemented");
 	}
 
@@ -224,7 +224,7 @@ export class EvidenceClassifier {
 	): EvidenceClassification {
 		void _evidenceData;
 		void _checkType;
-		// TODO: Implement GCP classification rules
+		// TODO(#34): Implement GCP classification rules.
 		throw new Error("GCP classification not yet implemented");
 	}
 }
