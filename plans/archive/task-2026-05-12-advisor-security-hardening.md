@@ -4,7 +4,7 @@
 
 - Date: 2026-05-12
 - Owner: claude (peter@graphletter.com)
-- Status: In Progress
+- Status: Done (2026-05-12)
 - Branch: chore/advisor-security-hardening
 - Related task: #50 (Triage remaining Supabase security advisors)
 - Related PRs: TBD

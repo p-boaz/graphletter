@@ -4,7 +4,7 @@
 
 - Date: 2026-05-12
 - Owner: claude (agent)
-- Status: In Progress
+- Status: Done (2026-05-12)
 - Branch: chore/pnpm-overrides-audit-fix
 - Related issue/PR: unblocks PR #1 (`feat/scf-2026-1-1-pivot`) — `audit` job failing on
   `pnpm audit --audit-level=high`
@@ -95,4 +95,4 @@ something PR #1 introduced.
 - [x] Constraints explicit
 - [x] Test plan defined
 - [x] Acceptance criteria measurable
-- [ ] Human approved
+- [x] Human approved

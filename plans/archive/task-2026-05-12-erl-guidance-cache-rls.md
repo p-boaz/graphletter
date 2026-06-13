@@ -4,7 +4,7 @@
 
 - Date: 2026-05-12
 - Owner: claude (agent)
-- Status: In Progress
+- Status: Done (2026-05-12)
 - Branch: fix/erl-guidance-cache-rls
 - Related issue/PR: surfaced by Supabase advisor during graphletter-sandbox provisioning (project `bxpwedlvaipvqugxnxrk`)
 
@@ -69,4 +69,4 @@ Close the RLS gap on `public.erl_guidance_cache`: the table was created without 
 - [x] Constraints explicit
 - [x] Test plan defined
 - [x] Acceptance criteria measurable
-- [ ] Human approved
+- [x] Human approved
