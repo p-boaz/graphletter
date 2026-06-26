@@ -12,12 +12,11 @@ index, not a second backlog.
 
 ## Product Backlog
 
-| Issue                                                  | Work                                  |
-| ------------------------------------------------------ | ------------------------------------- |
-| [#18](https://github.com/p-boaz/graphletter/issues/18) | Upload and results accessibility pass |
-| [#19](https://github.com/p-boaz/graphletter/issues/19) | Local/OSS AI provider support         |
-| [#31](https://github.com/p-boaz/graphletter/issues/31) | Bulk compliance spreadsheet import    |
-| [#33](https://github.com/p-boaz/graphletter/issues/33) | Evidence approval workflow UI         |
+| Issue                                                  | Work                               |
+| ------------------------------------------------------ | ---------------------------------- |
+| [#19](https://github.com/p-boaz/graphletter/issues/19) | Local/OSS AI provider support      |
+| [#31](https://github.com/p-boaz/graphletter/issues/31) | Bulk compliance spreadsheet import |
+| [#33](https://github.com/p-boaz/graphletter/issues/33) | Evidence approval workflow UI      |
 
 ## Engineering Backlog
 
@@ -39,6 +38,8 @@ index, not a second backlog.
   classification: closed as completed on 2026-06-26.
 - [#16](https://github.com/p-boaz/graphletter/issues/16) framework filter
   on assessment results: closed as completed on 2026-06-26.
+- [#18](https://github.com/p-boaz/graphletter/issues/18) upload and results
+  accessibility pass: closed as completed on 2026-06-26.
 - [#23](https://github.com/p-boaz/graphletter/issues/23) route-level API tests:
   closed as completed on 2026-06-26.
 - [#24](https://github.com/p-boaz/graphletter/issues/24) durable serverless demo
