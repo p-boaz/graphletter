@@ -19,7 +19,7 @@ Add a client-side framework selector to the upload assessment results view so us
 - [x] `playwright/helpers/mocks.ts`
 - [x] `playwright/tests/upload.spec.ts`
 - [x] `plans/README.md`
-- [x] `plans/task-2026-06-26-results-framework-filter.md`
+- [x] `plans/archive/task-2026-06-26-results-framework-filter.md`
 
 ## Constraints
 
@@ -65,7 +65,7 @@ Add a client-side framework selector to the upload assessment results view so us
 - [x] All frameworks is the default and shows all result controls.
 - [x] Selecting a framework hides controls that do not map to it.
 - [x] Filtering is client-side after the results view loads.
-- [ ] GitHub issue #16 is closed after validated changes are pushed.
+- [x] GitHub issue #16 is closed after validated changes are pushed.
 
 ## Approval Gate
 

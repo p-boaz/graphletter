@@ -6,21 +6,19 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                          | Status                    |
-| --------------------------------------------- | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md`          | Done; archive after merge |
-| `task-2026-06-26-results-framework-filter.md` | Done; archive after merge |
+| Plan                                 | Status                    |
+| ------------------------------------ | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
 
 ## Product Backlog
 
-| Issue                                                  | Work                                   |
-| ------------------------------------------------------ | -------------------------------------- |
-| [#11](https://github.com/p-boaz/graphletter/issues/11) | Docker Compose self-hosting            |
-| [#16](https://github.com/p-boaz/graphletter/issues/16) | Framework filter on assessment results |
-| [#18](https://github.com/p-boaz/graphletter/issues/18) | Upload and results accessibility pass  |
-| [#19](https://github.com/p-boaz/graphletter/issues/19) | Local/OSS AI provider support          |
-| [#31](https://github.com/p-boaz/graphletter/issues/31) | Bulk compliance spreadsheet import     |
-| [#33](https://github.com/p-boaz/graphletter/issues/33) | Evidence approval workflow UI          |
+| Issue                                                  | Work                                  |
+| ------------------------------------------------------ | ------------------------------------- |
+| [#11](https://github.com/p-boaz/graphletter/issues/11) | Docker Compose self-hosting           |
+| [#18](https://github.com/p-boaz/graphletter/issues/18) | Upload and results accessibility pass |
+| [#19](https://github.com/p-boaz/graphletter/issues/19) | Local/OSS AI provider support         |
+| [#31](https://github.com/p-boaz/graphletter/issues/31) | Bulk compliance spreadsheet import    |
+| [#33](https://github.com/p-boaz/graphletter/issues/33) | Evidence approval workflow UI         |
 
 ## Engineering Backlog
 
@@ -40,6 +38,8 @@ index, not a second backlog.
   publishing: closed as completed on 2026-06-26.
 - [#15](https://github.com/p-boaz/graphletter/issues/15) Incident Response Plan
   classification: closed as completed on 2026-06-26.
+- [#16](https://github.com/p-boaz/graphletter/issues/16) framework filter
+  on assessment results: closed as completed on 2026-06-26.
 - [#23](https://github.com/p-boaz/graphletter/issues/23) route-level API tests:
   closed as completed on 2026-06-26.
 - [#24](https://github.com/p-boaz/graphletter/issues/24) durable serverless demo
