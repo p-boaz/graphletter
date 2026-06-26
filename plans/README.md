@@ -14,7 +14,6 @@ index, not a second backlog.
 
 | Issue                                                  | Work                               |
 | ------------------------------------------------------ | ---------------------------------- |
-| [#19](https://github.com/p-boaz/graphletter/issues/19) | Local/OSS AI provider support      |
 | [#31](https://github.com/p-boaz/graphletter/issues/31) | Bulk compliance spreadsheet import |
 | [#33](https://github.com/p-boaz/graphletter/issues/33) | Evidence approval workflow UI      |
 
@@ -40,6 +39,8 @@ index, not a second backlog.
   on assessment results: closed as completed on 2026-06-26.
 - [#18](https://github.com/p-boaz/graphletter/issues/18) upload and results
   accessibility pass: closed as completed on 2026-06-26.
+- [#19](https://github.com/p-boaz/graphletter/issues/19) local/OSS AI provider
+  support: closed as completed on 2026-06-26.
 - [#23](https://github.com/p-boaz/graphletter/issues/23) route-level API tests:
   closed as completed on 2026-06-26.
 - [#24](https://github.com/p-boaz/graphletter/issues/24) durable serverless demo
