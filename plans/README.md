@@ -12,9 +12,7 @@ index, not a second backlog.
 
 ## Product Backlog
 
-| Issue                                                  | Work                          |
-| ------------------------------------------------------ | ----------------------------- |
-| [#33](https://github.com/p-boaz/graphletter/issues/33) | Evidence approval workflow UI |
+No open product backlog issues.
 
 ## Engineering Backlog
 
@@ -58,6 +56,8 @@ No open engineering backlog issues.
   spreadsheet import: closed as completed on 2026-06-26.
 - [#32](https://github.com/p-boaz/graphletter/issues/32) enhanced analytics
   API product surface: closed as completed on 2026-06-26.
+- [#33](https://github.com/p-boaz/graphletter/issues/33) evidence approval
+  workflow UI: closed as completed on 2026-06-26.
 - [#34](https://github.com/p-boaz/graphletter/issues/34) Azure and GCP evidence
   classification: closed as completed on 2026-06-26.
 - [#35](https://github.com/p-boaz/graphletter/issues/35) multi-framework
