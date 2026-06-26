@@ -68,7 +68,7 @@ Keep the SheetJS CDN tarball dependency while making its provenance, integrity p
 - [x] Lockfile integrity and exact tarball provenance are verified deterministically.
 - [x] License rationale and update procedure are documented.
 - [x] Tests cover verifier success and failure.
-- [ ] GitHub issue #25 is closed after validated changes are pushed.
+- [x] GitHub issue #25 is closed after validated changes are pushed.
 
 ## Approval Gate
 

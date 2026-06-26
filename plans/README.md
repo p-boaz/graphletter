@@ -6,10 +6,9 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                    | Status                    |
-| --------------------------------------- | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md`    | Done; archive after merge |
-| `task-2026-06-26-sheetjs-provenance.md` | In Progress               |
+| Plan                                 | Status                    |
+| ------------------------------------ | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
 
 ## Product Backlog
 
@@ -30,7 +29,6 @@ index, not a second backlog.
 | ------------------------------------------------------ | ---------------------------------------------------- |
 | [#23](https://github.com/p-boaz/graphletter/issues/23) | Route-level API tests and guidance effort validation |
 | [#24](https://github.com/p-boaz/graphletter/issues/24) | Durable serverless demo quotas                       |
-| [#25](https://github.com/p-boaz/graphletter/issues/25) | SheetJS dependency provenance                        |
 | [#26](https://github.com/p-boaz/graphletter/issues/26) | Upload file-signature validation                     |
 | [#27](https://github.com/p-boaz/graphletter/issues/27) | Dead-code and unused-dependency cleanup              |
 | [#30](https://github.com/p-boaz/graphletter/issues/30) | Tailwind CSS v4 migration                            |
@@ -45,6 +43,8 @@ index, not a second backlog.
   demo: closed as completed on 2026-06-13.
 - [#15](https://github.com/p-boaz/graphletter/issues/15) Incident Response Plan
   classification: closed as completed on 2026-06-26.
+- [#25](https://github.com/p-boaz/graphletter/issues/25) SheetJS dependency
+  provenance: closed as completed on 2026-06-26.
 - [#28](https://github.com/p-boaz/graphletter/issues/28) structured AI
   fallback metadata: closed as completed on 2026-06-26.
 - [#29](https://github.com/p-boaz/graphletter/issues/29) malformed JSON
