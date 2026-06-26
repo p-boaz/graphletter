@@ -20,7 +20,7 @@ Remove confirmed unused UI code and its unused charting dependency while keeping
 - [x] `package.json`
 - [x] `pnpm-lock.yaml`
 - [x] `plans/README.md`
-- [x] `plans/task-2026-06-26-dead-code-unused-deps.md`
+- [x] `plans/archive/task-2026-06-26-dead-code-unused-deps.md`
 
 ## Constraints
 
@@ -72,7 +72,7 @@ Remove confirmed unused UI code and its unused charting dependency while keeping
 - [x] Confirmed unused files, exports, and dependency entries are removed.
 - [x] Active enhanced analytics API code remains untouched for issue #32.
 - [x] Lint, typecheck, build, UI, and spec checks are green.
-- [ ] GitHub issue #27 is closed after validated changes are pushed.
+- [x] GitHub issue #27 is closed after validated changes are pushed.
 
 ## Approval Gate
 
