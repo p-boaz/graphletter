@@ -1,1 +1,3 @@
 source_path,documentation_artifact,erl_id,confidence,notes
+synthetic/SEC-IR-001_Incident Response Plan.pdf,Incident Response Plan (IRP),E-IRO-01,high,Explicit incident response plan title
+synthetic/Security IRP 2026.docx,Incident Response Plan (IRP),E-IRO-01,high,Common IRP abbreviation

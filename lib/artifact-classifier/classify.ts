@@ -48,6 +48,44 @@ export interface ClassifyOptions {
   catalog?: ArtifactCatalogEntry[];
 }
 
+function normalizeFilename(filename: string): string {
+  return filename
+    .replace(/\.[^.]+$/, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function classifyDeterministic(
+  filename: string,
+  catalog: ArtifactCatalogEntry[]
+): ClassifyResponse | null {
+  const normalized = normalizeFilename(filename);
+  const hasIncidentResponsePlan =
+    /\bincident response plan\b/.test(normalized) ||
+    /\bir plan\b/.test(normalized) ||
+    /\birp\b/.test(normalized);
+  const moreSpecificIrpArtifact =
+    /\b(test|testing|tabletop|exercise|training|update|review|revision|rca|root cause|lessons learned)\b/.test(
+      normalized
+    );
+
+  if (hasIncidentResponsePlan && !moreSpecificIrpArtifact) {
+    const match = catalog.find((entry) => entry.artifact === "Incident Response Plan (IRP)");
+    if (match) {
+      return {
+        artifact: match.artifact,
+        erlId: match.erlId,
+        confidence: "high",
+        reasoning: "Filename explicitly identifies an incident response plan.",
+      };
+    }
+  }
+
+  return null;
+}
+
 export async function classifyArtifactFromFilename(
   filename: string,
   options: ClassifyOptions = {}
@@ -62,6 +100,11 @@ export async function classifyArtifactFromFilename(
       confidence: "low",
       reasoning: "Empty artifact catalog",
     };
+  }
+
+  const deterministic = classifyDeterministic(filename, catalog);
+  if (deterministic) {
+    return deterministic;
   }
 
   const enumValues = [...catalog.map((e) => e.artifact), NO_MATCH] as unknown as [
@@ -112,6 +155,7 @@ export async function classifyArtifactFromFilename(
     `  - "risk management report" can map to "Cybersecurity Risk Assessment (RA)" when assessment/reporting language is present`,
     `  - "software maintenance" leans "Patch Management" unless the filename explicitly says maintenance plan`,
     `  - "CAPA", "corrective and preventive action" → "Root Cause Analysis (RCA)"`,
+    `  - "incident response plan", "IR plan", "IRP" → "Incident Response Plan (IRP)" unless the filename is about IRP testing, training, updates, RCA, or lessons learned`,
     `Examples:`,
     `  "IT-1-100001_FAQ for Video Conferencing.docx" → "Cybersecurity & Data Protection Procedures"`,
     `  "IT-2-100003_IT Asset Management.docx" → "IT Asset Management (ITAM)"`,
@@ -135,6 +179,8 @@ export async function classifyArtifactFromFilename(
     `  "SOP-1-110012_CAPA Procedure.docx" → "Root Cause Analysis (RCA)"`,
     `  "SOP-1-110014_Internal Audit.docx" → "Internal Audit (IA)"`,
     `  "SOP-1-110025_Design Control.docx" → "Secure Engineering Principles (SEP)"`,
+    `  "SEC-IR-001_Incident Response Plan.pdf" → "Incident Response Plan (IRP)"`,
+    `  "Security IRP 2026.docx" → "Incident Response Plan (IRP)"`,
     `  "POL-1-100066_Generative AI Use Policy.docx" → "Artificial Intelligence and Autonomous Technologies (AAT) Governance Program"`,
     `  "POL-1-100062_Physical Security Policy.docx" → "Physical Security Operations"`,
     `  "RSK-1-128006_Annual Risk Management Report.docx" → "Cybersecurity Risk Assessment (RA)"`,
