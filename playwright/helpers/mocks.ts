@@ -522,9 +522,28 @@ export async function mockUploadWorkflowApis(
       status: 200,
       contentType: "application/json",
       body: JSON.stringify({
-        total_frameworks_impacted: 0,
+        total_frameworks_impacted: 2,
         total_controls_submitted: 2,
-        frameworks: [],
+        frameworks: [
+          {
+            id: "fw-soc-2",
+            framework_name: "SOC_2",
+            framework_version: "Latest",
+            total_framework_mappings: 1,
+            controls_advanced: 1,
+            control_ids: ["AC-01"],
+            unique_requirements_touched: 1,
+          },
+          {
+            id: "fw-iso-27001",
+            framework_name: "ISO_27001",
+            framework_version: "2022",
+            total_framework_mappings: 1,
+            controls_advanced: 1,
+            control_ids: ["AC-02"],
+            unique_requirements_touched: 1,
+          },
+        ],
       }),
     });
   });

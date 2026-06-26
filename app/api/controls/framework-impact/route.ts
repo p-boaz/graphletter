@@ -78,6 +78,7 @@ export async function POST(request: NextRequest) {
         framework_version: data.framework_version,
         total_framework_mappings: data.total_mappings,
         controls_advanced: data.controls_touched.size,
+        control_ids: Array.from(data.controls_touched).sort(),
         unique_requirements_touched: new Set(data.mapping_ids).size,
       }))
       .sort((a, b) => b.controls_advanced - a.controls_advanced);

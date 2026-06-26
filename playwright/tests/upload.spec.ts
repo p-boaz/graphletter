@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import path from "node:path";
 import {
   assert_no_browser_failures,
   inspect_console_errors,
@@ -25,9 +26,30 @@ test("upload flow runs end-to-end and posts expected graph payloads", async ({
     const calls = await mockUploadWorkflowApis(page, DEFAULT_ARTIFACT_NAME);
     await login_test_user(page);
 
-    await run_critical_path(page, {
-      artifactName: DEFAULT_ARTIFACT_NAME,
-    });
+    await page.getByTestId(selectors.upload.openSmartUploadButton).first().click();
+
+    const smartUploadDialog = page.getByTestId(selectors.upload.dialog);
+    await expect(smartUploadDialog).toBeVisible();
+
+    await smartUploadDialog.getByTestId(selectors.upload.documentationArtifactCombobox).click();
+    await page.getByRole("option", { name: DEFAULT_ARTIFACT_NAME, exact: true }).click();
+
+    await smartUploadDialog
+      .getByTestId(selectors.upload.documentUploadInput)
+      .setInputFiles(path.resolve(process.cwd(), "data/anthropic-controls.pdf"));
+
+    await expect(smartUploadDialog.getByText("Evidence Uploaded Successfully!")).toBeVisible();
+
+    await smartUploadDialog.getByTestId(selectors.upload.startAiAssessmentButton).click();
+
+    const reviewDialog = page
+      .locator('[role="dialog"]')
+      .filter({ hasText: "Assessment Review Required" });
+    await expect(reviewDialog).toBeVisible();
+
+    await reviewDialog.getByTestId(selectors.upload.approveAssessmentButton).click();
+    await expect(reviewDialog).toBeHidden();
+    await expect(smartUploadDialog.getByText("Evidence Uploaded Successfully!")).toBeVisible();
 
     await expect.poll(() => calls.documentsCalls.length).toBe(1);
     await expect.poll(() => calls.mapControlsCalls.length).toBe(1);
@@ -50,6 +72,21 @@ test("upload flow runs end-to-end and posts expected graph payloads", async ({
       mappingMethod: "rule",
       coverageStrength: "moderate",
     });
+
+    await expect(page.getByTestId("assessment-result-card")).toHaveCount(2);
+    await expect(page.getByTestId("results-framework-filter-trigger")).toContainText(
+      "All frameworks"
+    );
+
+    await page.getByTestId("results-framework-filter-trigger").click();
+    await page.getByRole("option", { name: "SOC 2" }).click();
+
+    await expect(page.getByTestId("assessment-result-card")).toHaveCount(1);
+    await expect(page.getByTestId("assessment-result-card")).toContainText("AC-01");
+    await expect(page.getByTestId("assessment-result-card")).not.toContainText("AC-02");
+
+    await smartUploadDialog.getByRole("button", { name: "Done" }).click();
+    await expect(smartUploadDialog).toBeHidden();
   } finally {
     observer.stop();
     report = observer.getReport();
