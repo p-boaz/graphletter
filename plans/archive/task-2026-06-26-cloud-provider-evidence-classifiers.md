@@ -63,7 +63,7 @@ Implement explicit Azure and GCP evidence classification rules so provider evide
 - [x] GCP check types have explicit classification rules.
 - [x] Unknown Azure/GCP check types return structured fallback classifications.
 - [x] Unit tests cover representative evidence for both providers.
-- [ ] GitHub issue #34 is closed after validated changes are pushed.
+- [x] GitHub issue #34 is closed after validated changes are pushed.
 
 ## Approval Gate
 

@@ -6,10 +6,9 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                                     | Status                    |
-| -------------------------------------------------------- | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md`                     | Done; archive after merge |
-| `task-2026-06-26-cloud-provider-evidence-classifiers.md` | In Progress               |
+| Plan                                 | Status                    |
+| ------------------------------------ | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
 
 ## Product Backlog
 
@@ -34,7 +33,6 @@ index, not a second backlog.
 | [#26](https://github.com/p-boaz/graphletter/issues/26) | Upload file-signature validation                     |
 | [#27](https://github.com/p-boaz/graphletter/issues/27) | Dead-code and unused-dependency cleanup              |
 | [#30](https://github.com/p-boaz/graphletter/issues/30) | Tailwind CSS v4 migration                            |
-| [#34](https://github.com/p-boaz/graphletter/issues/34) | Azure and GCP evidence classification                |
 | [#36](https://github.com/p-boaz/graphletter/issues/36) | Admin artifacts RBAC                                 |
 | [#37](https://github.com/p-boaz/graphletter/issues/37) | Supabase dashboard security configuration            |
 
@@ -50,6 +48,8 @@ index, not a second backlog.
   fallback metadata: closed as completed on 2026-06-26.
 - [#29](https://github.com/p-boaz/graphletter/issues/29) malformed JSON
   rejection: closed as completed on 2026-06-26.
+- [#34](https://github.com/p-boaz/graphletter/issues/34) Azure and GCP evidence
+  classification: closed as completed on 2026-06-26.
 - [#35](https://github.com/p-boaz/graphletter/issues/35) multi-framework
   impact previews: closed as completed on 2026-06-26.
 - All task specs completed through 2026-06-12 are under `plans/archive/`.
