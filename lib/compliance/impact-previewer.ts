@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createLogger } from "@/lib/logger";
-import { selectAllRows } from "@/lib/database/paged-select";
+import { chunkArray, IN_CHUNK_SIZE, selectAllRows } from "@/lib/database/paged-select";
 
 const log = createLogger("impact-previewer");
 
@@ -10,6 +10,11 @@ export interface ImpactPreview {
   currentScore: number;
   projectedScore: number;
   improvementPct: number;
+  /**
+   * Per-framework projection for frameworks affected by the submitted controls.
+   * Each entry uses the same score scale as the top-level preview: 0-100 with
+   * `improvementPct` expressed as projected minus current percentage points.
+   */
   frameworkImpacts: Array<{
     frameworkName: string;
     currentScore: number;
@@ -27,11 +32,22 @@ interface TierWeightRow {
 interface GapRow {
   scf_control_id: string;
   status: string;
+  framework_id?: string | null;
 }
 
 interface ControlCatalogRow {
   id: string;
   domain_id: string;
+}
+
+interface ControlMappingRow {
+  control_id: string | null;
+  framework_id: string | null;
+}
+
+interface FrameworkRow {
+  id: string;
+  framework_name: string | null;
 }
 
 /**
@@ -70,6 +86,115 @@ function computeScore(
   return totalWeight > 0 ? Math.round((totalWeightedScore / totalWeight) * 10000) / 100 : 0;
 }
 
+async function loadControlMappings(
+  supabase: SupabaseClient,
+  controlIds: string[],
+  frameworkId?: string | null
+): Promise<ControlMappingRow[]> {
+  const mappings: ControlMappingRow[] = [];
+
+  for (const chunk of chunkArray(controlIds, IN_CHUNK_SIZE)) {
+    const chunkRows = await selectAllRows<ControlMappingRow>(() => {
+      let q = supabase
+        .from("scf_control_mappings")
+        .select("control_id, framework_id")
+        .in("control_id", chunk)
+        .order("control_id")
+        .order("framework_id");
+
+      if (frameworkId) {
+        q = q.eq("framework_id", frameworkId);
+      }
+
+      return q;
+    });
+
+    mappings.push(...chunkRows);
+  }
+
+  return mappings.filter((row) => row.control_id && row.framework_id);
+}
+
+async function loadFrameworks(
+  supabase: SupabaseClient,
+  frameworkIds: string[]
+): Promise<FrameworkRow[]> {
+  if (frameworkIds.length === 0) return [];
+
+  return selectAllRows<FrameworkRow>(() =>
+    supabase
+      .from("scf_frameworks")
+      .select("id, framework_name")
+      .in("id", frameworkIds)
+      .order("framework_name")
+  );
+}
+
+function buildFrameworkImpacts(
+  gaps: GapRow[],
+  projectedGaps: GapRow[],
+  mappings: ControlMappingRow[],
+  frameworks: FrameworkRow[],
+  simulatedControlIds: Set<string>,
+  controlDomainMap: Map<string, string>,
+  weightMap: Map<string, number>
+): ImpactPreview["frameworkImpacts"] {
+  const frameworkNames = new Map(
+    frameworks
+      .filter((framework): framework is FrameworkRow & { framework_name: string } =>
+        Boolean(framework.framework_name)
+      )
+      .map((framework) => [framework.id, framework.framework_name])
+  );
+  const controlsByFramework = new Map<string, Set<string>>();
+  const affectedFrameworkIds = new Set<string>();
+
+  for (const mapping of mappings) {
+    if (!mapping.control_id || !mapping.framework_id) continue;
+
+    const controls = controlsByFramework.get(mapping.framework_id) ?? new Set<string>();
+    controls.add(mapping.control_id);
+    controlsByFramework.set(mapping.framework_id, controls);
+
+    if (simulatedControlIds.has(mapping.control_id)) {
+      affectedFrameworkIds.add(mapping.framework_id);
+    }
+  }
+
+  const impacts = Array.from(affectedFrameworkIds).flatMap((frameworkId) => {
+    const frameworkName = frameworkNames.get(frameworkId);
+    const mappedControls = controlsByFramework.get(frameworkId);
+    if (!frameworkName || !mappedControls) return [];
+
+    const frameworkScopedGaps = gaps.filter((gap) => gap.framework_id === frameworkId);
+    const frameworkScopedProjectedGaps = projectedGaps.filter(
+      (gap) => gap.framework_id === frameworkId
+    );
+    const currentGaps = frameworkScopedGaps.length
+      ? frameworkScopedGaps
+      : gaps.filter((gap) => mappedControls.has(gap.scf_control_id));
+    const currentProjectedGaps = frameworkScopedProjectedGaps.length
+      ? frameworkScopedProjectedGaps
+      : projectedGaps.filter((gap) => mappedControls.has(gap.scf_control_id));
+
+    if (currentGaps.length === 0) return [];
+
+    const currentScore = computeScore(currentGaps, controlDomainMap, weightMap);
+    const projectedScore = computeScore(currentProjectedGaps, controlDomainMap, weightMap);
+
+    return [
+      {
+        frameworkName,
+        currentScore,
+        projectedScore,
+        improvementPct: Math.round((projectedScore - currentScore) * 100) / 100,
+      },
+    ];
+  });
+
+  return impacts.sort((a, b) => a.frameworkName.localeCompare(b.frameworkName));
+}
+
 /**
  * Simulate the posture impact of uploading evidence for given controls.
  * Does NOT write to DB — pure read + calculation.
@@ -94,7 +219,7 @@ export async function previewUploadImpact(
       selectAllRows<GapRow>(() => {
         let q = supabase
           .from("control_gap_analysis")
-          .select("scf_control_id, status")
+          .select("scf_control_id, status, framework_id")
           .eq("user_id", userId)
           .order("scf_control_id");
         if (frameworkId) {
@@ -127,6 +252,7 @@ export async function previewUploadImpact(
 
   const weightMap = new Map(tiers.map((t) => [t.domain_id, t.weight]));
   const controlDomainMap = new Map(catalog.map((c) => [c.id, c.domain_id]));
+  const gapControlIds = Array.from(new Set(gaps.map((gap) => gap.scf_control_id)));
 
   // Current score
   const currentScore = computeScore(gaps, controlDomainMap, weightMap);
@@ -143,6 +269,31 @@ export async function previewUploadImpact(
   const projectedScore = computeScore(projectedGaps, controlDomainMap, weightMap);
 
   const improvementPct = Math.round((projectedScore - currentScore) * 100) / 100;
+  let frameworkImpacts: ImpactPreview["frameworkImpacts"] = [];
+  try {
+    const mappings = await loadControlMappings(supabase, gapControlIds, frameworkId);
+    const frameworks = await loadFrameworks(
+      supabase,
+      Array.from(
+        new Set(mappings.flatMap((mapping) => (mapping.framework_id ? [mapping.framework_id] : [])))
+      )
+    );
+    frameworkImpacts = buildFrameworkImpacts(
+      gaps,
+      projectedGaps,
+      mappings,
+      frameworks,
+      simulatedControlIds,
+      controlDomainMap,
+      weightMap
+    );
+  } catch (err) {
+    log.warn("impact_previewer.framework_impacts_failed", {
+      userId,
+      frameworkId,
+      detail: err instanceof Error ? err.message : "unknown",
+    });
+  }
 
   const durationMs = Date.now() - startMs;
   log.info("impact_previewer.calculated", {
@@ -159,6 +310,6 @@ export async function previewUploadImpact(
     currentScore,
     projectedScore,
     improvementPct,
-    frameworkImpacts: [], // TODO(#35): Add per-framework impact breakdowns.
+    frameworkImpacts,
   };
 }
