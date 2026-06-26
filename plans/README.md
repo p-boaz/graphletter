@@ -6,10 +6,9 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                                   | Status                    |
-| ------------------------------------------------------ | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md`                   | Done; archive after merge |
-| `task-2026-06-26-incident-response-plan-classifier.md` | Approved                  |
+| Plan                                 | Status                    |
+| ------------------------------------ | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
 
 ## Product Backlog
 
@@ -17,7 +16,6 @@ index, not a second backlog.
 | ------------------------------------------------------ | -------------------------------------- |
 | [#11](https://github.com/p-boaz/graphletter/issues/11) | Docker Compose self-hosting            |
 | [#14](https://github.com/p-boaz/graphletter/issues/14) | Publish classifier eval results in CI  |
-| [#15](https://github.com/p-boaz/graphletter/issues/15) | Incident Response Plan classification  |
 | [#16](https://github.com/p-boaz/graphletter/issues/16) | Framework filter on assessment results |
 | [#18](https://github.com/p-boaz/graphletter/issues/18) | Upload and results accessibility pass  |
 | [#19](https://github.com/p-boaz/graphletter/issues/19) | Local/OSS AI provider support          |
@@ -47,6 +45,8 @@ index, not a second backlog.
   closed as completed on 2026-06-13.
 - [#13](https://github.com/p-boaz/graphletter/issues/13) synthetic-document
   demo: closed as completed on 2026-06-13.
+- [#15](https://github.com/p-boaz/graphletter/issues/15) Incident Response Plan
+  classification: closed as completed on 2026-06-26.
 - [#29](https://github.com/p-boaz/graphletter/issues/29) malformed JSON
   rejection: closed as completed on 2026-06-26.
 - All task specs completed through 2026-06-12 are under `plans/archive/`.

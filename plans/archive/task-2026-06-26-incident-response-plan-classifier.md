@@ -4,7 +4,7 @@
 
 - Date: 2026-06-26
 - Owner: codex
-- Status: In Progress
+- Status: Done (2026-06-26)
 - Branch: main
 - Related issue/PR: https://github.com/p-boaz/graphletter/issues/15
 
@@ -69,7 +69,7 @@ control set used by downstream upload flows.
 - [x] An uploaded IR plan filename is classified as `Incident Response Plan (IRP)`.
 - [x] Synthetic fixture rows and unit tests cover IR plan examples.
 - [x] The mapped ERL entry is `E-IRO-01` and includes relevant SCF controls.
-- [ ] GitHub issue #15 is closed after validation passes.
+- [x] GitHub issue #15 is closed after validation passes.
 
 ## Approval Gate
 
