@@ -85,6 +85,7 @@ export function UploadForm({
   processingStage,
 }: UploadFormProps) {
   const { getRootProps, getInputProps, isDragActive } = dropzone;
+  const uploadDisabled = uploading || (showVersionDialog && !versionAction);
 
   return (
     <div className="space-y-6">
@@ -273,16 +274,26 @@ export function UploadForm({
 
       {/* File Upload */}
       <div
-        {...getRootProps()}
+        {...getRootProps({
+          role: "button",
+          "aria-label": "Upload evidence file",
+          "aria-describedby": "evidence-upload-help",
+          "aria-disabled": uploadDisabled,
+          tabIndex: uploadDisabled ? -1 : 0,
+        })}
         className={cn(
-          "cursor-pointer rounded-lg border-2 border-dashed p-8 text-center transition-colors",
+          "cursor-pointer rounded-lg border-2 border-dashed p-8 text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2",
           isDragActive ? "border-blue-400 bg-blue-50" : "border-gray-300 hover:border-gray-400",
-          uploading || (showVersionDialog && !versionAction) ? "cursor-not-allowed opacity-50" : ""
+          uploadDisabled ? "cursor-not-allowed opacity-50" : ""
         )}
       >
+        <p id="evidence-upload-help" className="sr-only">
+          Accepted evidence file types are PDF, Word, Excel, image, text, and CSV files up to 50MB.
+        </p>
         <input
           {...getInputProps()}
           data-testid="document-upload-input"
+          aria-label="Evidence file"
           disabled={showVersionDialog && !versionAction}
         />
         {uploading ? (

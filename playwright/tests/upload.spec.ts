@@ -26,13 +26,20 @@ test("upload flow runs end-to-end and posts expected graph payloads", async ({
     const calls = await mockUploadWorkflowApis(page, DEFAULT_ARTIFACT_NAME);
     await login_test_user(page);
 
-    await page.getByTestId(selectors.upload.openSmartUploadButton).first().click();
+    const openUploadButton = page.getByTestId(selectors.upload.openSmartUploadButton).first();
+    await openUploadButton.focus();
+    await expect(openUploadButton).toBeFocused();
+    await page.keyboard.press("Enter");
 
     const smartUploadDialog = page.getByTestId(selectors.upload.dialog);
     await expect(smartUploadDialog).toBeVisible();
 
     await smartUploadDialog.getByTestId(selectors.upload.documentationArtifactCombobox).click();
     await page.getByRole("option", { name: DEFAULT_ARTIFACT_NAME, exact: true }).click();
+
+    const uploadTarget = smartUploadDialog.getByRole("button", { name: "Upload evidence file" });
+    await expect(uploadTarget).toBeVisible();
+    await expect(uploadTarget).toHaveAttribute("aria-disabled", "false");
 
     await smartUploadDialog
       .getByTestId(selectors.upload.documentUploadInput)
@@ -74,11 +81,22 @@ test("upload flow runs end-to-end and posts expected graph payloads", async ({
     });
 
     await expect(page.getByTestId("assessment-result-card")).toHaveCount(2);
+    await expect(page.getByTestId(selectors.upload.resultVerdict).first()).toContainText(
+      /PASS|PARTIAL|FAIL|NOT APPLICABLE/
+    );
+    await expect(page.getByTestId("assessment-result-card").first()).toContainText("Verdict");
     await expect(page.getByTestId("results-framework-filter-trigger")).toContainText(
       "All frameworks"
     );
 
-    await page.getByTestId("results-framework-filter-trigger").click();
+    const resultsFilter = page.getByTestId("results-framework-filter-trigger");
+    await resultsFilter.focus();
+    await expect(resultsFilter).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(page.getByRole("option", { name: "All frameworks" })).toBeVisible();
+    await page.keyboard.press("Escape");
+
+    await resultsFilter.click();
     await page.getByRole("option", { name: "SOC 2" }).click();
 
     await expect(page.getByTestId("assessment-result-card")).toHaveCount(1);

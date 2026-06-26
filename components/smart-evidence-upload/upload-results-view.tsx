@@ -187,6 +187,7 @@ export function UploadResultsView({
               <Select value={selectedFrameworkId} onValueChange={setSelectedFrameworkId}>
                 <SelectTrigger
                   className="w-full sm:w-56"
+                  aria-label="Filter assessment results by framework"
                   data-testid="results-framework-filter-trigger"
                 >
                   <SelectValue placeholder="All frameworks" />

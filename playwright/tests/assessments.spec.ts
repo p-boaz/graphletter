@@ -40,7 +40,14 @@ test("assessments page keeps explainer in-context and opens row details without 
 
     const firstAssessmentRow = page.getByTestId(selectors.assessments.controlRow).first();
     await expect(firstAssessmentRow).toBeVisible();
-    await firstAssessmentRow.click();
+    await expect(firstAssessmentRow).toHaveAttribute("role", "button");
+    await expect(firstAssessmentRow.getByTestId(selectors.assessments.rowVerdict)).toContainText(
+      /PASS|PARTIAL|FAIL|NOT APPLICABLE/
+    );
+    await expect(firstAssessmentRow).toContainText("Verdict");
+    await firstAssessmentRow.focus();
+    await expect(firstAssessmentRow).toBeFocused();
+    await page.keyboard.press("Enter");
 
     await expect(page.getByTestId(selectors.assessments.detailDialog)).toBeVisible();
     await expect(page.getByTestId(selectors.assessments.detailDialog)).toContainText(

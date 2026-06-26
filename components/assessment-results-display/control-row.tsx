@@ -15,6 +15,7 @@ import {
   Target,
 } from "lucide-react";
 import Link from "next/link";
+import type { KeyboardEvent } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -51,10 +52,28 @@ export function ControlRow({
 }: ControlRowProps) {
   const hasObjectives = control.objectives.length > 0;
   const overallResult = getControlOverallResult(control.objectives);
+  const overallResultLabel = overallResult.replace(/_/g, " ").toUpperCase();
   const overallConfidence = getControlOverallConfidence(control.objectives);
   const maturityAssessment = control.maturity_assessment;
   const { topGap, topRecommendation } = getTopGapAndRecommendation(control.objectives);
   const isLowConfidence = overallConfidence < 0.6;
+  const rowIsInteractive = enableRowDetailDialog;
+  const openDetails = () => onSelectControl(control.control_id);
+  const handleRowKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (!rowIsInteractive) return;
+    if (event.key !== "Enter" && event.key !== " ") return;
+
+    const target = event.target as HTMLElement;
+    if (
+      target.closest("[data-row-action='expand']") ||
+      target.closest("[data-row-action='details']")
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    openDetails();
+  };
   const formattedDate = control.completed_at
     ? new Date(control.completed_at).toLocaleDateString("en-US", {
         year: "numeric",
@@ -67,8 +86,15 @@ export function ControlRow({
 
   return (
     <div
-      className="border border-gray-200 rounded-lg bg-white shadow-sm"
       data-testid="assessment-result-card"
+      role={rowIsInteractive ? "button" : undefined}
+      tabIndex={rowIsInteractive ? 0 : undefined}
+      aria-label={
+        rowIsInteractive
+          ? `Open assessment details for ${control.control_id}, verdict ${overallResultLabel}`
+          : undefined
+      }
+      onKeyDown={handleRowKeyDown}
       onClick={(event) => {
         if (!enableRowDetailDialog) {
           return;
@@ -80,8 +106,13 @@ export function ControlRow({
         ) {
           return;
         }
-        onSelectControl(control.control_id);
+        openDetails();
       }}
+      className={`border border-gray-200 rounded-lg bg-white shadow-sm ${
+        rowIsInteractive
+          ? "cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+          : ""
+      }`}
     >
       {!hideSummary && (
         <div
@@ -191,18 +222,20 @@ export function ControlRow({
                   Low confidence
                 </Badge>
               )}
+              <div className="text-gray-500 text-[10px] uppercase tracking-wide">Verdict</div>
               <div
+                data-testid="assessment-result-verdict"
                 className={`font-semibold text-sm ${
                   overallResult === "pass"
                     ? "text-green-600"
                     : overallResult === "fail"
                       ? "text-red-600"
                       : overallResult === "partial"
-                        ? "text-yellow-600"
+                        ? "text-yellow-700"
                         : "text-gray-600"
                 }`}
               >
-                {overallResult.toUpperCase()}
+                {overallResultLabel}
               </div>
             </div>
             {enableRowDetailDialog && (
@@ -212,10 +245,11 @@ export function ControlRow({
                 size="sm"
                 data-row-action="details"
                 data-testid="assessment-row-detail-button"
+                aria-label={`View assessment details for ${control.control_id}`}
                 onClick={(event) => {
                   event.preventDefault();
                   event.stopPropagation();
-                  onSelectControl(control.control_id);
+                  openDetails();
                 }}
               >
                 View details
@@ -227,6 +261,10 @@ export function ControlRow({
                 size="sm"
                 type="button"
                 data-row-action="expand"
+                aria-label={`${isExpanded ? "Collapse" : "Expand"} assessment objectives for ${
+                  control.control_id
+                }`}
+                aria-expanded={isExpanded}
                 onClick={(event) => {
                   event.preventDefault();
                   event.stopPropagation();
