@@ -4,7 +4,7 @@ import {
   type AdminArtifactsDeps,
   type AdminArtifactsRepository,
   createAdminArtifactsHandlers,
-} from "@/app/api/admin/artifacts/route";
+} from "@/lib/admin/artifacts-route-handlers";
 
 function createRepository() {
   const calls: string[] = [];
