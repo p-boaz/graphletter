@@ -8,13 +8,18 @@ import type {
   SCFRisk,
   SCFThreat,
 } from "@/lib/scf-types";
+import {
+  getSupabaseAnonKey,
+  getSupabaseServerUrl,
+  getSupabaseServiceRoleKey,
+} from "@/lib/supabase/env";
 
 const log = createLogger("lib/database/supabase");
 
 // Initialize Supabase clients
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+const supabaseUrl = getSupabaseServerUrl();
+const supabaseAnonKey = getSupabaseAnonKey();
+const supabaseServiceKey = getSupabaseServiceRoleKey();
 
 // Client-side Supabase client (with RLS)
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);

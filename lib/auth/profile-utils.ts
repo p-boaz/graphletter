@@ -1,5 +1,6 @@
 import { createClient as createServiceClient } from "@supabase/supabase-js";
 import { createLogger } from "@/lib/logger";
+import { getSupabaseServerUrl, getSupabaseServiceRoleKey } from "@/lib/supabase/env";
 
 const log = createLogger("lib/auth/profile-utils");
 
@@ -8,16 +9,12 @@ export async function createUserProfileManually(
   userData: { full_name: string; organization: string }
 ) {
   // Use service role client for admin operations during signup
-  const supabase = createServiceClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false,
-      },
-    }
-  );
+  const supabase = createServiceClient(getSupabaseServerUrl(), getSupabaseServiceRoleKey(), {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  });
 
   log.info("Attempting to create profile for user", { userId });
 
@@ -77,16 +74,12 @@ export async function createUserProfileManually(
 }
 
 export async function debugUserProfilesTable() {
-  const supabase = createServiceClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false,
-      },
-    }
-  );
+  const supabase = createServiceClient(getSupabaseServerUrl(), getSupabaseServiceRoleKey(), {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  });
 
   try {
     // Test basic table access

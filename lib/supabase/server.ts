@@ -1,9 +1,10 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import { getSupabaseAnonKey, getSupabaseServerUrl } from "@/lib/supabase/env";
 
 // Get environment variables directly to avoid Node.js process.version checks
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseUrl = getSupabaseServerUrl();
+const supabaseKey = getSupabaseAnonKey();
 
 export async function createClient() {
   const cookieStore = await cookies();

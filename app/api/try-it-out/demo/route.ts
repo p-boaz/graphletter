@@ -17,6 +17,7 @@ import { getDemoSampleById } from "@/lib/demo/demo-registry";
 import { apiError } from "@/lib/api/error-response";
 import { createLogger } from "@/lib/logger";
 import { getClientIpAddress } from "@/lib/security/rate-limit";
+import { getSupabaseServerUrl, getSupabaseServiceRoleKey } from "@/lib/supabase/env";
 
 const log = createLogger("api/try-it-out/demo");
 
@@ -61,8 +62,8 @@ export async function POST(request: NextRequest) {
 
     // Query SCF data (read-only) via service client
     const serviceSupabase = createServiceClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      getSupabaseServerUrl(),
+      getSupabaseServiceRoleKey(),
       { auth: { autoRefreshToken: false, persistSession: false } }
     );
 

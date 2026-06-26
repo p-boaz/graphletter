@@ -1,4 +1,5 @@
 import { createClient as createServiceClient } from "@supabase/supabase-js";
+import { getSupabaseServerUrl, getSupabaseServiceRoleKey } from "@/lib/supabase/env";
 
 const MAX_EVIDENCE_FILE_BYTES = 50 * 1024 * 1024;
 
@@ -128,14 +129,7 @@ export async function validateEvidenceUploadFile(file: File | null | undefined):
 }
 
 export function createEvidenceServiceClient() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-  if (!supabaseUrl || !serviceRoleKey) {
-    throw new Error("Missing Supabase service-role configuration");
-  }
-
-  return createServiceClient(supabaseUrl, serviceRoleKey, {
+  return createServiceClient(getSupabaseServerUrl(), getSupabaseServiceRoleKey(), {
     auth: { autoRefreshToken: false, persistSession: false },
   });
 }

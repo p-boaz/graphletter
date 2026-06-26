@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+!.env.self-host.example
+.git
+.next
+coverage
+node_modules
+playwright/artifacts
+test-results

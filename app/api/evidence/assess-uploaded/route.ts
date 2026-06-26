@@ -20,6 +20,7 @@ import {
   errorProgressSession,
   updateProgress,
 } from "@/lib/progress/progress-store";
+import { getSupabaseServerUrl, getSupabaseServiceRoleKey } from "@/lib/supabase/env";
 import { getCurrentUser } from "@/utils/auth";
 
 const log = createLogger("api/evidence/assess-uploaded");
@@ -61,8 +62,8 @@ export async function POST(request: NextRequest) {
     log.info("Starting assessment", { evidenceCount: evidenceIds.length });
 
     const serviceSupabase = createServiceClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      getSupabaseServerUrl(),
+      getSupabaseServiceRoleKey(),
       { auth: { autoRefreshToken: false, persistSession: false } }
     );
 
