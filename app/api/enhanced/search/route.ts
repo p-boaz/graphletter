@@ -3,7 +3,7 @@ import { apiError } from "@/lib/api/error-response";
 import { createLogger } from "@/lib/logger";
 import EnhancedDatabaseService from "@/lib/services/enhanced-database-service";
 import { createClient } from "@/lib/supabase/server";
-import { getCurrentUser, isAdminUser } from "@/utils/auth";
+import { getCurrentUser } from "@/utils/auth";
 
 const log = createLogger("api/enhanced/search");
 
@@ -106,91 +106,5 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     return apiError("enhanced.search_post_failed", "Enhanced search failed", 500, error);
-  }
-}
-
-export async function GET(request: NextRequest) {
-  try {
-    const supabase = await createClient();
-    const user = await getCurrentUser(supabase);
-    if (!user) {
-      return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
-    }
-    const hasAdminAccess = await isAdminUser(user);
-
-    const { searchParams } = new URL(request.url);
-    const action = searchParams.get("action");
-
-    switch (action) {
-      case "dashboard": {
-        const userId = searchParams.get("user_id");
-        if (userId && userId !== user.id && !hasAdminAccess) {
-          return NextResponse.json({ success: false, error: "Forbidden" }, { status: 403 });
-        }
-        const dashboardData = await EnhancedDatabaseService.getComplianceDashboard(
-          userId || user.id
-        );
-
-        return NextResponse.json({
-          success: true,
-          action: "dashboard",
-          data: dashboardData,
-        });
-      }
-
-      case "heatmap": {
-        const heatmapData = await EnhancedDatabaseService.getFrameworkCoverageHeatmap();
-
-        return NextResponse.json({
-          success: true,
-          action: "heatmap",
-          data: heatmapData,
-        });
-      }
-
-      case "refresh":
-        if (!hasAdminAccess) {
-          return NextResponse.json({ success: false, error: "Forbidden" }, { status: 403 });
-        }
-        await EnhancedDatabaseService.refreshMaterializedViews();
-
-        return NextResponse.json({
-          success: true,
-          action: "refresh",
-          message: "Materialized views refreshed successfully",
-        });
-
-      case "analytics": {
-        const analyticsUserId = searchParams.get("user_id");
-        if (!analyticsUserId) {
-          return NextResponse.json(
-            { success: false, error: "user_id required for analytics" },
-            { status: 400 }
-          );
-        }
-        if (analyticsUserId !== user.id && !hasAdminAccess) {
-          return NextResponse.json({ success: false, error: "Forbidden" }, { status: 403 });
-        }
-
-        const analytics = await EnhancedDatabaseService.getComplianceAnalytics(analyticsUserId);
-
-        return NextResponse.json({
-          success: true,
-          action: "analytics",
-          data: analytics,
-        });
-      }
-
-      default:
-        return NextResponse.json(
-          {
-            success: false,
-            error: "Invalid action. Available actions: dashboard, heatmap, refresh, analytics",
-          },
-          { status: 400 }
-        );
-    }
-  } catch (error) {
-    return apiError("enhanced.search_get_failed", "Enhanced search GET failed", 500, error);
   }
 }
