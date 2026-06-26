@@ -21,7 +21,7 @@ Reject spoofed evidence uploads before files reach storage or parsers by validat
 - [x] `app/api/evidence/extract-content/route.ts`
 - [x] `playwright/tests/evidence-errors.spec.ts`
 - [x] `plans/README.md`
-- [x] `plans/task-2026-06-26-evidence-file-signatures.md`
+- [x] `plans/archive/task-2026-06-26-evidence-file-signatures.md`
 
 ## Constraints
 
@@ -67,7 +67,7 @@ Reject spoofed evidence uploads before files reach storage or parsers by validat
 - [x] MIME/extension/signature mismatches are rejected with a safe user-facing error.
 - [x] Unit tests cover valid and spoofed files.
 - [x] Upload-flow tests cover spoofed file rejection.
-- [ ] GitHub issue #26 is closed after validated changes are pushed.
+- [x] GitHub issue #26 is closed after validated changes are pushed.
 
 ## Approval Gate
 
