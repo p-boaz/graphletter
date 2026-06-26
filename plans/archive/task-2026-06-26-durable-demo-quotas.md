@@ -20,7 +20,7 @@ Move unauthenticated `/try` demo quota tracking from per-process memory to Supab
 - [x] `app/api/try-it-out/demo/quota/route.ts`
 - [x] `supabase/migrations/20260626170000_create_demo_quota_hits.sql`
 - [x] `plans/README.md`
-- [x] `plans/task-2026-06-26-durable-demo-quotas.md`
+- [x] `plans/archive/task-2026-06-26-durable-demo-quotas.md`
 
 ## Constraints
 
@@ -72,7 +72,7 @@ Move unauthenticated `/try` demo quota tracking from per-process memory to Supab
 - [x] Demo run consumption is atomic under concurrent requests.
 - [x] Expired quota rows are cleaned up.
 - [x] Existing demo quota behavior has integration coverage.
-- [ ] GitHub issue #24 is closed after validated changes are pushed.
+- [x] GitHub issue #24 is closed after validated changes are pushed.
 
 ## Approval Gate
 
