@@ -58,7 +58,7 @@ test("generateGuidance: cache hit returns the cached row untouched", async (t) =
   });
 });
 
-test("generateGuidance: cached effort is only defaulted when falsy, not validated", async (t) => {
+test("generateGuidance: cached effort defaults when it is invalid", async (t) => {
   withSeams(t);
   const { client } = fakeSupabase({
     erl_guidance_cache: {
@@ -71,11 +71,7 @@ test("generateGuidance: cached effort is only defaulted when falsy, not validate
   });
 
   const result = await generateGuidance(client, request());
-  // CHARACTERIZATION: `(row.estimated_effort as ...) || "medium"` lets any
-  // truthy garbage value through the type assertion — only ""/null fall
-  // back to "medium". The AI path DOES validate (low|medium|high); the
-  // cache-read path does not.
-  assert.equal(result.estimatedEffort, "extreme");
+  assert.equal(result.estimatedEffort, "medium");
   assert.deepEqual(result.exampleSections, []);
 
   const { client: emptyClient } = fakeSupabase({
