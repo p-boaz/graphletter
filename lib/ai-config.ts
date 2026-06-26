@@ -7,6 +7,7 @@ const log = createLogger("lib/ai-config");
 export const AI_PROVIDERS = {
   OPENAI: "openai",
   ANTHROPIC: "anthropic",
+  OLLAMA: "ollama",
 } as const;
 
 export type AIProvider = (typeof AI_PROVIDERS)[keyof typeof AI_PROVIDERS];
@@ -18,49 +19,112 @@ export const AI_MODELS = {
   // Anthropic Models
   CLAUDE_3_7_SONNET: "claude-3-7-sonnet-latest",
   CLAUDE_3_HAIKU: "claude-3-haiku-20240307",
+
+  // Local/OpenAI-compatible Models
+  OLLAMA_LLAMA_3_1_8B: "llama3.1:8b",
 } as const;
 
-export type AIModel = (typeof AI_MODELS)[keyof typeof AI_MODELS];
+export type AIModel = (typeof AI_MODELS)[keyof typeof AI_MODELS] | (string & {});
 
-function resolveConfiguredModel(environmentVariable: string, fallback: AIModel): AIModel {
-  const configuredModel = process.env[environmentVariable]?.trim();
-  return (configuredModel && configuredModel.length > 0 ? configuredModel : fallback) as AIModel;
+function resolveConfiguredProvider(
+  environmentVariables: string[],
+  fallback: AIProvider
+): AIProvider {
+  for (const environmentVariable of environmentVariables) {
+    const configuredProvider = process.env[environmentVariable]?.trim().toLowerCase();
+    if (!configuredProvider) continue;
+
+    if (Object.values(AI_PROVIDERS).includes(configuredProvider as AIProvider)) {
+      return configuredProvider as AIProvider;
+    }
+
+    log.warn("ai_config.invalid_provider", {
+      detail: `${environmentVariable}=${configuredProvider} is not supported; using ${fallback}`,
+    });
+  }
+
+  return fallback;
 }
 
-// Default configuration for compliance analysis
-export const COMPLIANCE_AI_CONFIG = {
-  // Primary model for control mapping/classification
-  controlMapping: {
-    provider: AI_PROVIDERS.OPENAI,
-    model: resolveConfiguredModel("OPENAI_MODEL_CONTROL_MAPPING", AI_MODELS.GPT_5_4),
-    temperature: 0.1, // Low temperature for consistent analysis
-    maxTokens: 2000,
-  },
+function resolveConfiguredModel(environmentVariables: string[], fallback: AIModel): AIModel {
+  for (const environmentVariable of environmentVariables) {
+    const configuredModel = process.env[environmentVariable]?.trim();
+    if (configuredModel) {
+      return configuredModel as AIModel;
+    }
+  }
 
-  // Model for gap analysis and recommendations
-  gapAnalysis: {
-    provider: AI_PROVIDERS.ANTHROPIC,
-    model: AI_MODELS.CLAUDE_3_7_SONNET,
-    temperature: 0.2,
-    maxTokens: 3000,
-  },
+  return fallback;
+}
 
-  // Model for document parsing and ingestion
-  documentParsing: {
-    provider: AI_PROVIDERS.OPENAI,
-    model: resolveConfiguredModel("OPENAI_MODEL_DOCUMENT_PARSING", AI_MODELS.GPT_5_4),
-    temperature: 0,
-    maxTokens: 4000,
-  },
+function resolveControlMappingProvider(): AIProvider {
+  return resolveConfiguredProvider(
+    ["CONTROL_MAPPING_AI_PROVIDER", "AI_PROVIDER"],
+    AI_PROVIDERS.OPENAI
+  );
+}
 
-  // Model for remediation recommendations
-  recommendations: {
-    provider: AI_PROVIDERS.ANTHROPIC,
-    model: AI_MODELS.CLAUDE_3_7_SONNET,
-    temperature: 0.2,
-    maxTokens: 1500,
-  },
-} as const;
+function resolveControlMappingModel(provider: AIProvider): AIModel {
+  if (provider === AI_PROVIDERS.OLLAMA) {
+    return resolveConfiguredModel(
+      ["CONTROL_MAPPING_AI_MODEL", "AI_MODEL", "OLLAMA_MODEL"],
+      AI_MODELS.OLLAMA_LLAMA_3_1_8B
+    );
+  }
+
+  if (provider === AI_PROVIDERS.ANTHROPIC) {
+    return resolveConfiguredModel(
+      ["CONTROL_MAPPING_AI_MODEL", "AI_MODEL", "ANTHROPIC_MODEL_CONTROL_MAPPING"],
+      AI_MODELS.CLAUDE_3_7_SONNET
+    );
+  }
+
+  return resolveConfiguredModel(
+    ["CONTROL_MAPPING_AI_MODEL", "AI_MODEL", "OPENAI_MODEL_CONTROL_MAPPING"],
+    AI_MODELS.GPT_5_4
+  );
+}
+
+export function resolveComplianceAIConfig() {
+  const provider = resolveControlMappingProvider();
+
+  // Default configuration for compliance analysis
+  return {
+    // Primary model for control mapping/classification
+    controlMapping: {
+      provider,
+      model: resolveControlMappingModel(provider),
+      temperature: 0.1, // Low temperature for consistent analysis
+      maxTokens: 2000,
+    },
+
+    // Model for gap analysis and recommendations
+    gapAnalysis: {
+      provider: AI_PROVIDERS.ANTHROPIC,
+      model: AI_MODELS.CLAUDE_3_7_SONNET,
+      temperature: 0.2,
+      maxTokens: 3000,
+    },
+
+    // Model for document parsing and ingestion
+    documentParsing: {
+      provider: AI_PROVIDERS.OPENAI,
+      model: resolveConfiguredModel(["OPENAI_MODEL_DOCUMENT_PARSING"], AI_MODELS.GPT_5_4),
+      temperature: 0,
+      maxTokens: 4000,
+    },
+
+    // Model for remediation recommendations
+    recommendations: {
+      provider: AI_PROVIDERS.ANTHROPIC,
+      model: AI_MODELS.CLAUDE_3_7_SONNET,
+      temperature: 0.2,
+      maxTokens: 1500,
+    },
+  } as const;
+}
+
+export const COMPLIANCE_AI_CONFIG = resolveComplianceAIConfig();
 
 const OPENAI_REASONING_MODEL_PREFIXES = ["gpt-5", "o1", "o3", "o4", "o5"];
 
@@ -144,15 +208,18 @@ export function getOpenAIProviderOptions(
 export function validateAIEnvironment() {
   const openaiKey = process.env.OPENAI_API_KEY;
   const anthropicKey = process.env.ANTHROPIC_API_KEY;
+  const ollamaAvailable = isOllamaConfigured();
 
   log.info("AI environment check", {
     hasOpenAI: openaiKey ? "true" : "false",
     hasAnthropic: anthropicKey ? "true" : "false",
+    hasOllama: ollamaAvailable ? "true" : "false",
   });
 
-  if (!openaiKey && !anthropicKey) {
+  if (!openaiKey && !anthropicKey && !ollamaAvailable) {
     log.error("ai_config.no_providers_configured", {
-      detail: "No AI providers configured. Please add OPENAI_API_KEY or ANTHROPIC_API_KEY",
+      detail:
+        "No AI providers configured. Please add OPENAI_API_KEY, ANTHROPIC_API_KEY, or configure Ollama",
     });
     return false;
   }
@@ -169,7 +236,28 @@ export function validateAIEnvironment() {
     });
   }
 
+  if (!ollamaAvailable && COMPLIANCE_AI_CONFIG.controlMapping.provider === AI_PROVIDERS.OLLAMA) {
+    log.warn("ai_config.ollama_not_configured", {
+      detail: "Ollama selected but OLLAMA_BASE_URL is not configured.",
+    });
+  }
+
   return true;
+}
+
+export function getOllamaBaseUrl(): string {
+  return process.env.OLLAMA_BASE_URL?.trim() || "http://127.0.0.1:11434/v1";
+}
+
+export function getOllamaApiKey(): string {
+  return process.env.OLLAMA_API_KEY?.trim() || "ollama";
+}
+
+function isOllamaConfigured(): boolean {
+  return (
+    resolveControlMappingProvider() === AI_PROVIDERS.OLLAMA ||
+    Boolean(process.env.OLLAMA_BASE_URL?.trim())
+  );
 }
 
 // Get available providers based on environment variables
@@ -178,6 +266,7 @@ export function getAvailableProviders(): AIProvider[] {
 
   if (process.env.OPENAI_API_KEY) providers.push(AI_PROVIDERS.OPENAI);
   if (process.env.ANTHROPIC_API_KEY) providers.push(AI_PROVIDERS.ANTHROPIC);
+  if (isOllamaConfigured()) providers.push(AI_PROVIDERS.OLLAMA);
 
   return providers;
 }
@@ -204,6 +293,11 @@ export function getProviderConfig() {
     anthropic: {
       apiKey: process.env.ANTHROPIC_API_KEY,
       available: !!process.env.ANTHROPIC_API_KEY,
+    },
+    ollama: {
+      apiKey: getOllamaApiKey(),
+      baseURL: getOllamaBaseUrl(),
+      available: isOllamaConfigured(),
     },
   };
 }

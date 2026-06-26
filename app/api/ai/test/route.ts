@@ -35,6 +35,7 @@ export async function GET() {
     }> = [
       { key: "openai", provider: AI_PROVIDERS.OPENAI },
       { key: "anthropic", provider: AI_PROVIDERS.ANTHROPIC },
+      { key: "ollama", provider: AI_PROVIDERS.OLLAMA },
     ];
 
     const tests: Record<string, ProviderTestResult> = {};
@@ -45,8 +46,11 @@ export async function GET() {
       if (!providerConfig?.available) {
         tests[provider] = {
           success: false,
-          message: `${provider} API key not configured`,
-          error: "Missing API key",
+          message:
+            provider === AI_PROVIDERS.OLLAMA
+              ? "Ollama provider not configured"
+              : `${provider} API key not configured`,
+          error: provider === AI_PROVIDERS.OLLAMA ? "Missing base URL" : "Missing API key",
           durationMs: 0,
         };
         continue;

@@ -1,6 +1,6 @@
 // AI Client for Compliance Platform
 import { anthropic } from "@ai-sdk/anthropic";
-import { openai } from "@ai-sdk/openai";
+import { createOpenAI, openai } from "@ai-sdk/openai";
 import { generateObject, generateText, streamText } from "ai";
 import type { LanguageModel } from "ai";
 import { z } from "zod";
@@ -12,6 +12,8 @@ import {
   type AIProvider,
   COMPLIANCE_AI_CONFIG,
   getFallbackProvider,
+  getOllamaApiKey,
+  getOllamaBaseUrl,
   getOpenAIProviderOptions,
   getProviderConfig,
   getTemperatureSettings,
@@ -41,10 +43,12 @@ export function getModel(provider: AIProvider, model: AIModel) {
   let finalModel = model;
   if (fallbackProvider !== provider) {
     // If using fallback, adjust model accordingly
-    if (fallbackProvider === AI_PROVIDERS.ANTHROPIC && model.startsWith("gpt")) {
+    if (fallbackProvider === AI_PROVIDERS.ANTHROPIC) {
       finalModel = AI_MODELS.CLAUDE_3_7_SONNET;
-    } else if (fallbackProvider === AI_PROVIDERS.OPENAI && model.startsWith("claude")) {
+    } else if (fallbackProvider === AI_PROVIDERS.OPENAI) {
       finalModel = AI_MODELS.GPT_5_4;
+    } else if (fallbackProvider === AI_PROVIDERS.OLLAMA) {
+      finalModel = AI_MODELS.OLLAMA_LLAMA_3_1_8B;
     }
   }
 
@@ -59,6 +63,15 @@ export function getModel(provider: AIProvider, model: AIModel) {
       throw new Error("Anthropic API key not configured");
     }
     return anthropic(finalModel);
+  } else if (fallbackProvider === AI_PROVIDERS.OLLAMA) {
+    if (!config.ollama.available) {
+      throw new Error("Ollama provider not configured");
+    }
+    return createOpenAI({
+      name: AI_PROVIDERS.OLLAMA,
+      baseURL: getOllamaBaseUrl(),
+      apiKey: getOllamaApiKey(),
+    }).chat(finalModel);
   }
 
   throw new Error(`Provider ${fallbackProvider} not supported`);
@@ -87,9 +100,21 @@ export async function testProvider(
       };
     }
 
+    if (provider === AI_PROVIDERS.OLLAMA && !config.ollama.available) {
+      return {
+        success: false,
+        message: "Ollama provider not configured",
+        error: "Missing base URL",
+      };
+    }
+
     const model = getModel(
       provider,
-      provider === AI_PROVIDERS.OPENAI ? AI_MODELS.GPT_5_4 : AI_MODELS.CLAUDE_3_HAIKU
+      provider === AI_PROVIDERS.OPENAI
+        ? AI_MODELS.GPT_5_4
+        : provider === AI_PROVIDERS.ANTHROPIC
+          ? AI_MODELS.CLAUDE_3_HAIKU
+          : AI_MODELS.OLLAMA_LLAMA_3_1_8B
     );
 
     const { text } = await generateText({

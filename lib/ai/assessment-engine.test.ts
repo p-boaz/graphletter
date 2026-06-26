@@ -16,6 +16,16 @@ import {
   assessEvidenceAgainstObjectives,
   generateAssessmentSummary,
 } from "@/lib/ai/assessment-engine";
+import { getModel, setModelFactoryForTesting } from "@/lib/ai-client";
+import {
+  AI_MODELS,
+  AI_PROVIDERS,
+  getAvailableProviders,
+  getProviderConfig,
+  resolveComplianceAIConfig,
+  type AIModel,
+  type AIProvider,
+} from "@/lib/ai-config";
 import { installMockModel, mockObjectModel, resetMockModel } from "@/lib/ai/testing/mock-model";
 
 // ---------------------------------------------------------------------------
@@ -38,6 +48,35 @@ const OBJECTIVES = [
     expected_results: "Training completion records present",
   },
 ];
+
+async function withEnvironment<T>(
+  overrides: Record<string, string | undefined>,
+  action: () => Promise<T>
+): Promise<T> {
+  const previousValues = Object.fromEntries(
+    Object.keys(overrides).map((key) => [key, process.env[key]])
+  ) as Record<string, string | undefined>;
+
+  for (const [key, value] of Object.entries(overrides)) {
+    if (typeof value === "undefined") {
+      delete process.env[key];
+    } else {
+      process.env[key] = value;
+    }
+  }
+
+  try {
+    return await action();
+  } finally {
+    for (const [key, value] of Object.entries(previousValues)) {
+      if (typeof value === "undefined") {
+        delete process.env[key];
+      } else {
+        process.env[key] = value;
+      }
+    }
+  }
+}
 
 // ---------------------------------------------------------------------------
 // assessEvidenceAgainstObjectives
@@ -254,5 +293,65 @@ test("generateAssessmentSummary: model failure falls back gracefully", async () 
     assert.ok(Array.isArray(result.recommendations));
   } finally {
     resetMockModel();
+  }
+});
+
+// ---------------------------------------------------------------------------
+// Provider configuration seam
+// ---------------------------------------------------------------------------
+
+test("AI config defaults assessment routing to OpenAI", async () => {
+  await withEnvironment(
+    {
+      AI_PROVIDER: undefined,
+      CONTROL_MAPPING_AI_PROVIDER: undefined,
+      AI_MODEL: undefined,
+      CONTROL_MAPPING_AI_MODEL: undefined,
+      OPENAI_MODEL_CONTROL_MAPPING: undefined,
+      OLLAMA_MODEL: undefined,
+    },
+    async () => {
+      const aiConfig = resolveComplianceAIConfig();
+
+      assert.equal(aiConfig.controlMapping.provider, AI_PROVIDERS.OPENAI);
+      assert.equal(aiConfig.controlMapping.model, AI_MODELS.GPT_5_4);
+    }
+  );
+});
+
+test("AI config routes assessment calls to Ollama when AI_PROVIDER=ollama", async () => {
+  await withEnvironment(
+    {
+      AI_PROVIDER: "ollama",
+      CONTROL_MAPPING_AI_PROVIDER: undefined,
+      AI_MODEL: undefined,
+      CONTROL_MAPPING_AI_MODEL: undefined,
+      OLLAMA_MODEL: "llama3.1:8b",
+      OLLAMA_BASE_URL: "http://localhost:11434/v1",
+    },
+    async () => {
+      const aiConfig = resolveComplianceAIConfig();
+
+      assert.equal(aiConfig.controlMapping.provider, AI_PROVIDERS.OLLAMA);
+      assert.equal(aiConfig.controlMapping.model, "llama3.1:8b");
+      assert.ok(getAvailableProviders().includes(AI_PROVIDERS.OLLAMA));
+      assert.equal(getProviderConfig().ollama.baseURL, "http://localhost:11434/v1");
+    }
+  );
+});
+
+test("getModel passes Ollama provider and model through the test model factory", () => {
+  const calls: Array<{ provider: AIProvider; model: AIModel }> = [];
+  setModelFactoryForTesting((provider, model) => {
+    calls.push({ provider, model });
+    return mockObjectModel([{ ok: true }]);
+  });
+
+  try {
+    getModel(AI_PROVIDERS.OLLAMA, "llama3.1:8b");
+
+    assert.deepEqual(calls, [{ provider: AI_PROVIDERS.OLLAMA, model: "llama3.1:8b" }]);
+  } finally {
+    setModelFactoryForTesting(null);
   }
 });

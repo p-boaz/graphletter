@@ -11,7 +11,7 @@ If anything here is unclear or out of date, please [open an issue](https://githu
   running without Docker
 - A **[Supabase](https://supabase.com) project** if using hosted Supabase — the
   free tier is enough to evaluate
-- **At least one AI provider key**: OpenAI, Anthropic, or both
+- **An AI provider**: OpenAI, Anthropic, or local Ollama
 
 ## 2. Clone
 
@@ -30,13 +30,25 @@ verifies the seed counts, then starts the app on port 3000.
 cp .env.self-host.example .env
 ```
 
-Fill in at least one provider key in `.env`:
+Fill in at least one hosted provider key in `.env`:
 
 ```sh
 OPENAI_API_KEY=sk-...
 # or
 ANTHROPIC_API_KEY=sk-ant-...
 ```
+
+For no-data-egress assessments, run Ollama on the host and use the local
+provider instead:
+
+```sh
+AI_PROVIDER=ollama
+OLLAMA_BASE_URL=http://host.docker.internal:11434/v1
+OLLAMA_MODEL=llama3.1:8b
+```
+
+See [AI provider configuration](./AI_PROVIDERS.md) for the provider seam,
+override order, and local-provider limits.
 
 Then start the stack:
 
@@ -92,21 +104,26 @@ cp .env.example .env.local
 
 ### Required
 
-| Variable                                        | Where to get it                | Notes                                                                                            |
-| ----------------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `NEXT_PUBLIC_SUPABASE_URL`                      | Supabase → Settings → API      | Your project URL                                                                                 |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY`                 | Supabase → Settings → API Keys | Publishable key (safe in the browser)                                                            |
-| `SUPABASE_SERVICE_ROLE_KEY`                     | Supabase → Settings → API Keys | Secret — server-only                                                                             |
-| `OPENAI_API_KEY` **and/or** `ANTHROPIC_API_KEY` | Provider dashboard             | **At least one** is required; the app routes to whichever is configured (see `lib/ai-config.ts`) |
+| Variable                                        | Where to get it                | Notes                                                                                                                |
+| ----------------------------------------------- | ------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`                      | Supabase → Settings → API      | Your project URL                                                                                                     |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY`                 | Supabase → Settings → API Keys | Publishable key (safe in the browser)                                                                                |
+| `SUPABASE_SERVICE_ROLE_KEY`                     | Supabase → Settings → API Keys | Secret — server-only                                                                                                 |
+| `OPENAI_API_KEY` **and/or** `ANTHROPIC_API_KEY` | Provider dashboard             | Required for hosted providers; local Ollama can be used instead (see [AI provider configuration](./AI_PROVIDERS.md)) |
 
 ### Optional
 
-| Variable                          | Default                    | Purpose                                                                                                                              |
-| --------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `DATABASE_URL`                    | —                          | Direct Postgres URI. Only needed for `pnpm seed:reset` (shells out to `psql`). Use the session-pooler (port 5432) connection string. |
-| `SUPABASE_INTERNAL_URL`           | `NEXT_PUBLIC_SUPABASE_URL` | Server/container-only override for Supabase API calls when the browser URL and container URL differ.                                 |
-| `ADMIN_USER_IDS` / `ADMIN_EMAILS` | empty (admin disabled)     | Comma-separated allowlists that gate `/admin/*`. Accepts UUIDs, emails, or both.                                                     |
-| `LOG_LEVEL`                       | `info`                     | `debug` \| `info` \| `warn` \| `error`                                                                                               |
+| Variable                                | Default                     | Purpose                                                                                                                              |
+| --------------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `DATABASE_URL`                          | —                           | Direct Postgres URI. Only needed for `pnpm seed:reset` (shells out to `psql`). Use the session-pooler (port 5432) connection string. |
+| `SUPABASE_INTERNAL_URL`                 | `NEXT_PUBLIC_SUPABASE_URL`  | Server/container-only override for Supabase API calls when the browser URL and container URL differ.                                 |
+| `ADMIN_USER_IDS` / `ADMIN_EMAILS`       | empty (admin disabled)      | Comma-separated allowlists that gate `/admin/*`. Accepts UUIDs, emails, or both.                                                     |
+| `AI_PROVIDER`                           | `openai`                    | Set to `ollama` to route assessment/control-mapping calls to a local OpenAI-compatible provider.                                     |
+| `CONTROL_MAPPING_AI_PROVIDER`           | `AI_PROVIDER`               | More specific override for assessment/control-mapping calls.                                                                         |
+| `AI_MODEL` / `CONTROL_MAPPING_AI_MODEL` | provider default            | Optional model overrides. `CONTROL_MAPPING_AI_MODEL` wins for assessment calls.                                                      |
+| `OLLAMA_BASE_URL`                       | `http://127.0.0.1:11434/v1` | OpenAI-compatible Ollama endpoint. In Compose on macOS/Docker Desktop, use `http://host.docker.internal:11434/v1`.                   |
+| `OLLAMA_MODEL`                          | `llama3.1:8b`               | Local model used when assessment provider is `ollama`.                                                                               |
+| `LOG_LEVEL`                             | `info`                      | `debug` \| `info` \| `warn` \| `error`                                                                                               |
 
 ## 5. Set up the hosted database
 
@@ -152,7 +169,8 @@ project will work.
 ## Troubleshooting
 
 - **"Missing Supabase environment variables"** — `.env.local` isn't populated, or you started `pnpm dev` from a different directory. Confirm the three `*_SUPABASE_*` values are set.
-- **Assessments fail immediately** — no AI provider key is configured, or the key is invalid. At least one of `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` must be present.
+- **Assessments fail immediately** — no AI provider is configured, the hosted
+  key is invalid, or `AI_PROVIDER=ollama` cannot reach `OLLAMA_BASE_URL`.
 - **`supabase-bootstrap` cannot connect to Docker** — Docker Desktop or Colima is
   not running, or `/var/run/docker.sock` is unavailable to Compose. Start Docker
   and rerun `docker compose up --build`.
