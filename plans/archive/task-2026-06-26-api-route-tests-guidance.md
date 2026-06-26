@@ -20,7 +20,7 @@ Add representative hermetic route-level API tests and fix the guidance cache eff
 - [x] `lib/compliance/guidance-generator.ts`
 - [x] `lib/compliance/guidance-generator.test.ts`
 - [x] `plans/README.md`
-- [x] `plans/task-2026-06-26-api-route-tests-guidance.md`
+- [x] `plans/archive/task-2026-06-26-api-route-tests-guidance.md`
 
 ## Constraints
 
@@ -64,7 +64,7 @@ Add representative hermetic route-level API tests and fix the guidance cache eff
 - [x] Representative route-level tests cover auth, validation, success, and sanitized errors.
 - [x] `pnpm test:integration` runs the new route tests without real Supabase or AI calls.
 - [x] Cached guidance effort is constrained to `low`, `medium`, or `high`.
-- [ ] GitHub issue #23 is closed after validated changes are pushed.
+- [x] GitHub issue #23 is closed after validated changes are pushed.
 
 ## Approval Gate
 

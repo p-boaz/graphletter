@@ -6,10 +6,9 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                          | Status                    |
-| --------------------------------------------- | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md`          | Done; archive after merge |
-| `task-2026-06-26-api-route-tests-guidance.md` | Done; archive after merge |
+| Plan                                 | Status                    |
+| ------------------------------------ | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
 
 ## Product Backlog
 
@@ -25,12 +24,11 @@ index, not a second backlog.
 
 ## Engineering Backlog
 
-| Issue                                                  | Work                                                 |
-| ------------------------------------------------------ | ---------------------------------------------------- |
-| [#23](https://github.com/p-boaz/graphletter/issues/23) | Route-level API tests and guidance effort validation |
-| [#30](https://github.com/p-boaz/graphletter/issues/30) | Tailwind CSS v4 migration                            |
-| [#36](https://github.com/p-boaz/graphletter/issues/36) | Admin artifacts RBAC                                 |
-| [#37](https://github.com/p-boaz/graphletter/issues/37) | Supabase dashboard security configuration            |
+| Issue                                                  | Work                                      |
+| ------------------------------------------------------ | ----------------------------------------- |
+| [#30](https://github.com/p-boaz/graphletter/issues/30) | Tailwind CSS v4 migration                 |
+| [#36](https://github.com/p-boaz/graphletter/issues/36) | Admin artifacts RBAC                      |
+| [#37](https://github.com/p-boaz/graphletter/issues/37) | Supabase dashboard security configuration |
 
 ## Recent Reconciliation
 
@@ -42,6 +40,8 @@ index, not a second backlog.
   publishing: closed as completed on 2026-06-26.
 - [#15](https://github.com/p-boaz/graphletter/issues/15) Incident Response Plan
   classification: closed as completed on 2026-06-26.
+- [#23](https://github.com/p-boaz/graphletter/issues/23) route-level API tests:
+  closed as completed on 2026-06-26.
 - [#24](https://github.com/p-boaz/graphletter/issues/24) durable serverless demo
   quotas: closed as completed on 2026-06-26.
 - [#25](https://github.com/p-boaz/graphletter/issues/25) SheetJS dependency
