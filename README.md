@@ -97,6 +97,7 @@ pnpm dlx supabase db push
 
 ```sh
 pnpm audit --audit-level=high
+pnpm verify:sheetjs-provenance
 pnpm typecheck       # TypeScript strict check
 pnpm lint            # ESLint
 pnpm test:scf        # SCF parser unit tests
@@ -124,6 +125,10 @@ For the full coding standard, see [AGENTS.md](AGENTS.md).
 ## SCF data
 
 The repository includes Secure Controls Framework data (controls, frameworks, assessment objectives) under `data/`. SCF is publicly available from [securecontrolsframework.com](https://securecontrolsframework.com).
+
+Dependency provenance exceptions, including the direct SheetJS `xlsx` tarball pin
+used by the SCF extraction pipeline, are documented in
+[docs/DEPENDENCY_PROVENANCE.md](docs/DEPENDENCY_PROVENANCE.md).
 
 ## Contributing
 

@@ -30,6 +30,7 @@
     "schema:drift:check": "node scripts/schema-drift-check.js",
     "qa:user:ensure": "node --import tsx scripts/qa-user-ensure.ts",
     "verify:scf-extraction": "node --import tsx scripts/verify-scf-extraction.ts",
+    "verify:sheetjs-provenance": "node scripts/verify-sheetjs-provenance.js",
     "prepare": "husky"
   },
   "dependencies": {

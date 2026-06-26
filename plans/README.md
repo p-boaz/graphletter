@@ -6,9 +6,10 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                 | Status                    |
-| ------------------------------------ | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
+| Plan                                    | Status                    |
+| --------------------------------------- | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md`    | Done; archive after merge |
+| `task-2026-06-26-sheetjs-provenance.md` | In Progress               |
 
 ## Product Backlog
 
