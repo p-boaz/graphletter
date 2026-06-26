@@ -64,7 +64,7 @@ Run the artifact classifier evaluation harness in CI and publish the current hea
 - [x] CI runs the classifier eval on PRs.
 - [x] The current score is visible in `docs/EVAL.md`.
 - [x] A regression threshold fails the build.
-- [ ] GitHub issue #14 is closed after validated changes are pushed.
+- [x] GitHub issue #14 is closed after validated changes are pushed.
 
 ## Approval Gate
 

@@ -6,17 +6,15 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                             | Status                    |
-| ------------------------------------------------ | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md`             | Done; archive after merge |
-| `task-2026-06-26-artifact-classifier-eval-ci.md` | In Progress               |
+| Plan                                 | Status                    |
+| ------------------------------------ | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
 
 ## Product Backlog
 
 | Issue                                                  | Work                                   |
 | ------------------------------------------------------ | -------------------------------------- |
 | [#11](https://github.com/p-boaz/graphletter/issues/11) | Docker Compose self-hosting            |
-| [#14](https://github.com/p-boaz/graphletter/issues/14) | Publish classifier eval results in CI  |
 | [#16](https://github.com/p-boaz/graphletter/issues/16) | Framework filter on assessment results |
 | [#18](https://github.com/p-boaz/graphletter/issues/18) | Upload and results accessibility pass  |
 | [#19](https://github.com/p-boaz/graphletter/issues/19) | Local/OSS AI provider support          |
@@ -42,6 +40,8 @@ index, not a second backlog.
   closed as completed on 2026-06-13.
 - [#13](https://github.com/p-boaz/graphletter/issues/13) synthetic-document
   demo: closed as completed on 2026-06-13.
+- [#14](https://github.com/p-boaz/graphletter/issues/14) classifier eval CI
+  publishing: closed as completed on 2026-06-26.
 - [#15](https://github.com/p-boaz/graphletter/issues/15) Incident Response Plan
   classification: closed as completed on 2026-06-26.
 - [#25](https://github.com/p-boaz/graphletter/issues/25) SheetJS dependency
