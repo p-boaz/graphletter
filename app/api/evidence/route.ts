@@ -160,7 +160,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const fileValidationResult = validateEvidenceUploadFile(file);
+    const fileValidationResult = await validateEvidenceUploadFile(file);
     if (!fileValidationResult.isValid) {
       return NextResponse.json(
         {

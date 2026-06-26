@@ -10,6 +10,51 @@ import { DEFAULT_ARTIFACT_NAME, mockUploadWorkflowApis } from "../helpers/mocks"
 import { selectors } from "../helpers/selectors";
 
 test.describe("evidence pipeline error handling", () => {
+  test("shows safe error when file signature validation rejects a spoofed upload", async ({
+    page,
+  }, testInfo) => {
+    const observer = inspect_console_errors(page);
+    let report = observer.getReport();
+
+    try {
+      await mockUploadWorkflowApis(page, DEFAULT_ARTIFACT_NAME);
+
+      await page.route("**/api/evidence/extract-content", async (route) => {
+        await route.fulfill({
+          status: 400,
+          contentType: "application/json",
+          body: JSON.stringify({
+            error:
+              "File contents do not match the selected file type. Please upload a valid PDF, Word, Excel, text, or image file.",
+          }),
+        });
+      });
+
+      await login_test_user(page);
+
+      await page.getByTestId(selectors.upload.openSmartUploadButton).click();
+      await expect(page.getByTestId(selectors.upload.dialog)).toBeVisible();
+
+      await page.getByTestId(selectors.upload.documentationArtifactCombobox).click();
+      await page.getByRole("option", { name: DEFAULT_ARTIFACT_NAME }).click();
+
+      await page.getByTestId(selectors.upload.documentUploadInput).setInputFiles({
+        name: "spoofed.pdf",
+        mimeType: "application/pdf",
+        buffer: Buffer.from("not a real pdf"),
+      });
+
+      await expect(page.getByText(/contents do not match the selected file type/i)).toBeVisible({
+        timeout: 10_000,
+      });
+    } finally {
+      observer.stop();
+      report = observer.getReport();
+      await trace_failure(testInfo, report);
+      await take_snapshot(page, testInfo, "spoofed-file-rejection");
+    }
+  });
+
   test("shows rate limit error when assess-uploaded returns 429", async ({ page }, testInfo) => {
     const observer = inspect_console_errors(page);
     let report = observer.getReport();

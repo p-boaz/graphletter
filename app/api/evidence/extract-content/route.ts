@@ -4,12 +4,12 @@ import { checkRouteRateLimit } from "@/lib/api/rate-limiter";
 import { createLogger } from "@/lib/logger";
 import { createClient } from "@/lib/supabase/server";
 import { errorProgressSession, updateProgress } from "@/lib/progress/progress-store";
+import { validateEvidenceUploadFile } from "@/lib/services/evidence/upload-utils";
 import { getCurrentUser } from "@/utils/auth";
 
 const log = createLogger("evidence/extract-content");
 
 const EXTRACTION_TIMEOUT_MS = 90_000;
-const MAX_FILE_BYTES = 50 * 1024 * 1024; // 50MB
 const MAX_CONTENT_CHARS = 200_000;
 const EXTRACT_RATE_LIMIT = {
   namespace: "evidence_extract_content",
@@ -70,8 +70,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "File is required" }, { status: 400 });
     }
 
-    if (file.size > MAX_FILE_BYTES) {
-      return NextResponse.json({ error: "File exceeds 50MB limit" }, { status: 400 });
+    const fileValidationResult = await validateEvidenceUploadFile(file);
+    if (!fileValidationResult.isValid) {
+      return NextResponse.json(
+        { error: fileValidationResult.error || "Invalid evidence upload file" },
+        { status: 400 }
+      );
     }
 
     log.info("Extracting content", {
