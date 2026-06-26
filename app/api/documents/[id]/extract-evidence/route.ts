@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { apiError } from "@/lib/api/error-response";
+import { parseJsonBody } from "@/lib/api/json-body";
 import { chunkAndBootstrapDocument, resolveEvidenceContent } from "@/lib/graph/service";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/utils/auth";
@@ -16,6 +17,10 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     if (!id) {
       return NextResponse.json({ error: "Document ID is required" }, { status: 400 });
     }
+
+    const parsedBody = await parseJsonBody<ExtractEvidenceBody>(request, {});
+    if (!parsedBody.ok) return parsedBody.response;
+    const body = parsedBody.body;
 
     const supabase = await createClient();
     const user = await getCurrentUser(supabase);
@@ -38,8 +43,6 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     if (!document) {
       return NextResponse.json({ error: "Document not found" }, { status: 404 });
     }
-
-    const body = (await request.json().catch(() => ({}))) as ExtractEvidenceBody;
 
     let content = body.content ?? "";
     let scfControlId: string | null = null;

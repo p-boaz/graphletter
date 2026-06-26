@@ -1,7 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { apiError } from "@/lib/api/error-response";
+import { parseJsonBody } from "@/lib/api/json-body";
 import { type GapControl, resolveGapToErl } from "@/lib/compliance/gap-erl-resolver";
 import { supabaseAdmin } from "@/lib/database/supabase";
-import { apiError } from "@/lib/api/error-response";
 import { createLogger } from "@/lib/logger";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/utils/auth";
@@ -16,14 +17,16 @@ interface RequestBody {
 
 export async function POST(request: NextRequest) {
   try {
+    const parsedBody = await parseJsonBody<RequestBody>(request, {});
+    if (!parsedBody.ok) return parsedBody.response;
+    const body = parsedBody.body;
+
     const supabase = await createClient();
     const user = await getCurrentUser(supabase);
 
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-
-    const body = (await request.json().catch(() => ({}))) as RequestBody;
 
     let gapControls: GapControl[];
 

@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { apiError } from "@/lib/api/error-response";
+import { parseJsonBody } from "@/lib/api/json-body";
 import { computeControlGaps } from "@/lib/graph/gap-analysis";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/utils/auth";
@@ -135,6 +136,10 @@ async function resolveControlIds(
 
 export async function POST(request: NextRequest) {
   try {
+    const parsedBody = await parseJsonBody<CoverageRequestBody>(request, {});
+    if (!parsedBody.ok) return parsedBody.response;
+    const body = parsedBody.body;
+
     const supabase = await createClient();
     const user = await getCurrentUser(supabase);
 
@@ -142,7 +147,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const body = (await request.json().catch(() => ({}))) as CoverageRequestBody;
     const controlIds = await resolveControlIds(supabase, body.frameworkId, body.frameworkName);
 
     if (controlIds.length === 0) {

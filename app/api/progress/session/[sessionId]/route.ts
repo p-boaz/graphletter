@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { apiError } from "@/lib/api/error-response";
+import { parseJsonBody } from "@/lib/api/json-body";
 import {
   completeProgressSession,
   errorProgressSession,
@@ -54,16 +55,27 @@ export async function PATCH(
 ) {
   try {
     const { sessionId } = await params;
+    const parsedBody = await parseJsonBody<{
+      stage?: unknown;
+      message?: unknown;
+      metadata?: unknown;
+      status?: unknown;
+      progress?: unknown;
+    }>(request, {});
+    if (!parsedBody.ok) return parsedBody.response;
+    const body = parsedBody.body;
+
     const result = await ensureSessionOwner(sessionId);
     if (result.error || !result.session) return result.error;
     const { supabase, session } = result;
 
-    const body = await request.json().catch(() => ({}));
     const stage =
       typeof body.stage === "string" && body.stage.trim() !== "" ? body.stage.trim() : undefined;
     const message = typeof body.message === "string" ? body.message.trim() : undefined;
     const metadata =
-      typeof body.metadata === "object" && body.metadata !== null ? body.metadata : undefined;
+      typeof body.metadata === "object" && body.metadata !== null
+        ? (body.metadata as Record<string, unknown>)
+        : undefined;
     const status = body.status as "completed" | "error" | "active" | undefined;
 
     if (status === "completed") {

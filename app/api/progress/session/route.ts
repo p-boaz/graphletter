@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { apiError } from "@/lib/api/error-response";
+import { parseJsonBody } from "@/lib/api/json-body";
 import { createProgressSession } from "@/lib/progress/progress-store";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/utils/auth";
@@ -8,6 +9,10 @@ export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
+    const parsedBody = await parseJsonBody<{ operation?: unknown }>(request, {});
+    if (!parsedBody.ok) return parsedBody.response;
+    const body = parsedBody.body;
+
     const supabase = await createClient();
     const user = await getCurrentUser(supabase);
 
@@ -15,7 +20,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const body = await request.json().catch(() => ({}));
     const operation =
       typeof body.operation === "string" && body.operation.trim() !== ""
         ? body.operation.trim()
