@@ -37,6 +37,8 @@ For each uploaded document, the platform:
 
 The output is per-control verdicts grounded in your actual documents — not a checkbox survey. For the full field-by-field result schema and how to read confidence scores, see [docs/VERDICTS.md](docs/VERDICTS.md).
 
+Classifier quality gates are published in [docs/EVAL.md](docs/EVAL.md).
+
 ## Example output
 
 ```json
@@ -102,6 +104,7 @@ pnpm typecheck       # TypeScript strict check
 pnpm lint            # ESLint
 pnpm test:scf        # SCF parser unit tests
 pnpm test:integration  # Node integration tests
+EVAL_CATALOG_SOURCE=fixture EVAL_ACCURACY_FLOOR=1 pnpm eval:artifact-classifier
 pnpm build           # Production build
 ```
 

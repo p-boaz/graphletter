@@ -37,12 +37,27 @@ interface Row {
 }
 
 const csvPath = process.argv[2] ?? "./fixtures/classifier-mapping.csv";
+const CATALOG_SOURCE = process.env.EVAL_CATALOG_SOURCE ?? "supabase";
 // Empirical baseline ~52% on the validation set across runs; 45% gives
 // headroom for model nondeterminism. Many misses are judgment-call
 // disagreements on customer-specific labels (e.g. "Acceptable Use Policy"
 // → "Rules of Behavior").
 const ACCURACY_FLOOR = Number(process.env.EVAL_ACCURACY_FLOOR ?? 0.45);
 const CONCURRENCY = Number(process.env.EVAL_CONCURRENCY ?? 4);
+
+function catalogFromFixtureRows(rows: Row[]): Array<{ artifact: string; erlId: string }> {
+  const seen = new Set<string>();
+  const catalog: Array<{ artifact: string; erlId: string }> = [];
+
+  for (const row of rows) {
+    const artifact = row.documentation_artifact.trim();
+    if (!artifact || seen.has(artifact)) continue;
+    seen.add(artifact);
+    catalog.push({ artifact, erlId: row.erl_id.trim() });
+  }
+
+  return catalog;
+}
 
 async function main() {
   if (!fs.existsSync(csvPath)) {
@@ -58,8 +73,9 @@ async function main() {
   });
 
   const { classifyArtifactFromFilename, loadArtifactCatalog } = await getClassifier();
-  console.log(`Loading catalog...`);
-  const catalog = await loadArtifactCatalog();
+  console.log(`Loading catalog (${CATALOG_SOURCE})...`);
+  const catalog =
+    CATALOG_SOURCE === "fixture" ? catalogFromFixtureRows(rows) : await loadArtifactCatalog();
   console.log(`Catalog has ${catalog.length} artifacts.`);
   console.log(`Evaluating ${rows.length} rows from ${csvPath}\n`);
 

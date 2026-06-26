@@ -6,6 +6,9 @@ Synthetic inputs used by evaluation scripts. None of these files contain custome
 
 Drives `pnpm eval:artifact-classifier` (defined in `scripts/eval-artifact-classifier.ts`). Each row is a labelled example used to measure classifier accuracy against the few-shot prompt in `lib/artifact-classifier/classify.ts`.
 
+The current published score and CI threshold are tracked in
+[`docs/EVAL.md`](../docs/EVAL.md).
+
 ### Columns
 
 | column                   | meaning                                                                                                                      |
