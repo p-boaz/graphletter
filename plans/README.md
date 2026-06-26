@@ -19,9 +19,7 @@ index, not a second backlog.
 
 ## Engineering Backlog
 
-| Issue                                                  | Work                      |
-| ------------------------------------------------------ | ------------------------- |
-| [#30](https://github.com/p-boaz/graphletter/issues/30) | Tailwind CSS v4 migration |
+No open engineering backlog issues.
 
 ## Recent Reconciliation
 
@@ -55,6 +53,8 @@ index, not a second backlog.
   fallback metadata: closed as completed on 2026-06-26.
 - [#29](https://github.com/p-boaz/graphletter/issues/29) malformed JSON
   rejection: closed as completed on 2026-06-26.
+- [#30](https://github.com/p-boaz/graphletter/issues/30) Tailwind CSS v4
+  migration: closed as completed on 2026-06-26.
 - [#32](https://github.com/p-boaz/graphletter/issues/32) enhanced analytics
   API product surface: closed as completed on 2026-06-26.
 - [#34](https://github.com/p-boaz/graphletter/issues/34) Azure and GCP evidence
