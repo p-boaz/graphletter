@@ -12,10 +12,9 @@ index, not a second backlog.
 
 ## Product Backlog
 
-| Issue                                                  | Work                               |
-| ------------------------------------------------------ | ---------------------------------- |
-| [#31](https://github.com/p-boaz/graphletter/issues/31) | Bulk compliance spreadsheet import |
-| [#33](https://github.com/p-boaz/graphletter/issues/33) | Evidence approval workflow UI      |
+| Issue                                                  | Work                          |
+| ------------------------------------------------------ | ----------------------------- |
+| [#33](https://github.com/p-boaz/graphletter/issues/33) | Evidence approval workflow UI |
 
 ## Engineering Backlog
 
@@ -55,6 +54,8 @@ No open engineering backlog issues.
   rejection: closed as completed on 2026-06-26.
 - [#30](https://github.com/p-boaz/graphletter/issues/30) Tailwind CSS v4
   migration: closed as completed on 2026-06-26.
+- [#31](https://github.com/p-boaz/graphletter/issues/31) bulk compliance
+  spreadsheet import: closed as completed on 2026-06-26.
 - [#32](https://github.com/p-boaz/graphletter/issues/32) enhanced analytics
   API product surface: closed as completed on 2026-06-26.
 - [#34](https://github.com/p-boaz/graphletter/issues/34) Azure and GCP evidence
