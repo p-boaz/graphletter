@@ -21,7 +21,7 @@ Protect the administrative SCF artifact editing surface with server-side role au
 - [x] `tests/admin-artifacts-route.test.ts`
 - [x] `playwright/tests/admin-artifacts.spec.ts`
 - [x] `plans/README.md`
-- [x] `plans/task-2026-06-26-admin-artifacts-rbac.md`
+- [x] `plans/archive/task-2026-06-26-admin-artifacts-rbac.md`
 
 ## Constraints
 
@@ -72,7 +72,7 @@ Protect the administrative SCF artifact editing surface with server-side role au
 - [x] Admin artifact list, create, update, and delete operations are server-authorized.
 - [x] The client no longer writes directly to Supabase for this admin surface.
 - [x] Admin role assignment and privileges are documented.
-- [ ] GitHub issue #36 is closed after validated changes are pushed.
+- [x] GitHub issue #36 is closed after validated changes are pushed.
 
 ## Approval Gate
 

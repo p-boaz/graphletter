@@ -6,10 +6,9 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                      | Status                    |
-| ----------------------------------------- | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md`      | Done; archive after merge |
-| `task-2026-06-26-admin-artifacts-rbac.md` | Done; archive after merge |
+| Plan                                 | Status                    |
+| ------------------------------------ | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
 
 ## Product Backlog
 
@@ -26,7 +25,6 @@ index, not a second backlog.
 | Issue                                                  | Work                                      |
 | ------------------------------------------------------ | ----------------------------------------- |
 | [#30](https://github.com/p-boaz/graphletter/issues/30) | Tailwind CSS v4 migration                 |
-| [#36](https://github.com/p-boaz/graphletter/issues/36) | Admin artifacts RBAC                      |
 | [#37](https://github.com/p-boaz/graphletter/issues/37) | Supabase dashboard security configuration |
 
 ## Recent Reconciliation
@@ -61,6 +59,8 @@ index, not a second backlog.
   classification: closed as completed on 2026-06-26.
 - [#35](https://github.com/p-boaz/graphletter/issues/35) multi-framework
   impact previews: closed as completed on 2026-06-26.
+- [#36](https://github.com/p-boaz/graphletter/issues/36) admin artifacts
+  RBAC: closed as completed on 2026-06-26.
 - All task specs completed through 2026-06-12 are under `plans/archive/`.
 
 ## Rejected Findings
