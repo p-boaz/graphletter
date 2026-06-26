@@ -22,10 +22,9 @@ index, not a second backlog.
 
 ## Engineering Backlog
 
-| Issue                                                  | Work                                      |
-| ------------------------------------------------------ | ----------------------------------------- |
-| [#30](https://github.com/p-boaz/graphletter/issues/30) | Tailwind CSS v4 migration                 |
-| [#37](https://github.com/p-boaz/graphletter/issues/37) | Supabase dashboard security configuration |
+| Issue                                                  | Work                      |
+| ------------------------------------------------------ | ------------------------- |
+| [#30](https://github.com/p-boaz/graphletter/issues/30) | Tailwind CSS v4 migration |
 
 ## Recent Reconciliation
 
@@ -61,6 +60,8 @@ index, not a second backlog.
   impact previews: closed as completed on 2026-06-26.
 - [#36](https://github.com/p-boaz/graphletter/issues/36) admin artifacts
   RBAC: closed as completed on 2026-06-26.
+- [#37](https://github.com/p-boaz/graphletter/issues/37) Supabase dashboard
+  security configuration: closed as completed on 2026-06-26.
 - All task specs completed through 2026-06-12 are under `plans/archive/`.
 
 ## Rejected Findings
