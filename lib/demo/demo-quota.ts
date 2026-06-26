@@ -1,89 +1,112 @@
+import { createHash } from "node:crypto";
+import { createClient as createServiceClient, type SupabaseClient } from "@supabase/supabase-js";
+
 /**
- * Demo quota tracking for /try-it-out.
+ * Durable demo quota tracking for /try-it-out.
  *
  * Supports two operations:
  * - `getDemoQuota`: read-only peek (used by the UI badge).
- * - `consumeDemoQuota`: record a run and return updated remaining (used by the POST route).
+ * - `consumeDemoQuota`: atomically record a run and return updated remaining.
  *
- * We can't reuse `checkFixedWindowRateLimit` from `lib/security/rate-limit` directly — that
- * helper increments on every call. The UI needs to *peek* at remaining without burning a run.
- * A sliding-hits-per-window approach keeps the semantics clean.
- *
- * In-memory, per-process. Acceptable for the demo: this is already how the POST-side limit
- * works. If we ever need cross-instance quota, swap this to Supabase or Upstash.
+ * Quota keys are SHA-256 hashes of client identifiers, so the durable table
+ * never stores raw IP addresses.
  */
 
 export const DEMO_QUOTA_MAX = 3;
 export const DEMO_QUOTA_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 
-interface DemoQuotaRecord {
-  hits: number[];
+type DemoQuotaClient = Pick<SupabaseClient, "from" | "rpc">;
+
+interface DemoQuotaRpcResult {
+  ok: boolean;
+  remaining: number;
+  retry_after_seconds: number;
 }
 
-declare global {
-  var __demoQuotaStore__: Map<string, DemoQuotaRecord> | undefined;
+function createDemoQuotaClient(): DemoQuotaClient {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseUrl || !serviceRoleKey) {
+    throw new Error("Missing Supabase service-role configuration");
+  }
+
+  return createServiceClient(supabaseUrl, serviceRoleKey, {
+    auth: { autoRefreshToken: false, persistSession: false },
+  });
 }
 
-const globalState = globalThis as unknown as {
-  __demoQuotaStore__?: Map<string, DemoQuotaRecord>;
-};
-
-const store: Map<string, DemoQuotaRecord> =
-  globalState.__demoQuotaStore__ ?? new Map<string, DemoQuotaRecord>();
-
-if (!globalState.__demoQuotaStore__) {
-  globalState.__demoQuotaStore__ = store;
+function quotaKey(ip: string): string {
+  return createHash("sha256").update(ip).digest("hex");
 }
 
-function pruneHits(now: number, hits: number[]): number[] {
-  const cutoff = now - DEMO_QUOTA_WINDOW_MS;
-  return hits.filter((timestamp) => timestamp > cutoff);
+function cutoffIso(now = Date.now()): string {
+  return new Date(now - DEMO_QUOTA_WINDOW_MS).toISOString();
 }
 
-function snapshot(ip: string, now: number): DemoQuotaRecord {
-  const existing = store.get(ip) ?? { hits: [] };
-  const pruned = pruneHits(now, existing.hits);
-  const record = { hits: pruned };
-  store.set(ip, record);
-  return record;
+async function cleanupExpiredQuotaHits(client: DemoQuotaClient, cutoff: string): Promise<void> {
+  const { error } = await client.from("demo_quota_hits").delete().lte("consumed_at", cutoff);
+  if (error) {
+    throw new Error(`Failed to clean up demo quota hits: ${error.message}`);
+  }
 }
 
-export async function getDemoQuota(ip: string): Promise<{ remaining: number; max: number }> {
-  const now = Date.now();
-  const record = snapshot(ip, now);
+export async function getDemoQuota(
+  ip: string,
+  client: DemoQuotaClient = createDemoQuotaClient()
+): Promise<{ remaining: number; max: number }> {
+  const cutoff = cutoffIso();
+  await cleanupExpiredQuotaHits(client, cutoff);
+
+  const { data, error } = await client
+    .from("demo_quota_hits")
+    .select("consumed_at")
+    .eq("quota_key", quotaKey(ip))
+    .gt("consumed_at", cutoff)
+    .order("consumed_at", { ascending: true })
+    .limit(DEMO_QUOTA_MAX);
+
+  if (error) {
+    throw new Error(`Failed to read demo quota: ${error.message}`);
+  }
+
+  const hits = Array.isArray(data) ? data.length : 0;
   return {
-    remaining: Math.max(0, DEMO_QUOTA_MAX - record.hits.length),
+    remaining: Math.max(0, DEMO_QUOTA_MAX - hits),
     max: DEMO_QUOTA_MAX,
   };
 }
 
-export async function consumeDemoQuota(ip: string): Promise<{
+export async function consumeDemoQuota(
+  ip: string,
+  client: DemoQuotaClient = createDemoQuotaClient()
+): Promise<{
   ok: boolean;
   remaining: number;
   max: number;
   retryAfterSeconds: number;
 }> {
-  const now = Date.now();
-  const record = snapshot(ip, now);
+  const { data, error } = await client
+    .rpc("consume_demo_quota", {
+      p_quota_key: quotaKey(ip),
+      p_max_hits: DEMO_QUOTA_MAX,
+      p_window_seconds: Math.floor(DEMO_QUOTA_WINDOW_MS / 1000),
+    })
+    .single();
 
-  if (record.hits.length >= DEMO_QUOTA_MAX) {
-    const oldestHit = record.hits[0] ?? now;
-    const resetAt = oldestHit + DEMO_QUOTA_WINDOW_MS;
-    const retryAfterSeconds = Math.max(1, Math.ceil((resetAt - now) / 1000));
-    return {
-      ok: false,
-      remaining: 0,
-      max: DEMO_QUOTA_MAX,
-      retryAfterSeconds,
-    };
+  if (error) {
+    throw new Error(`Failed to consume demo quota: ${error.message}`);
   }
 
-  record.hits.push(now);
-  store.set(ip, record);
+  const result = data as DemoQuotaRpcResult | null;
+  if (!result) {
+    throw new Error("Failed to consume demo quota: empty response");
+  }
+
   return {
-    ok: true,
-    remaining: Math.max(0, DEMO_QUOTA_MAX - record.hits.length),
+    ok: result.ok,
+    remaining: result.remaining,
     max: DEMO_QUOTA_MAX,
-    retryAfterSeconds: 0,
+    retryAfterSeconds: result.retry_after_seconds,
   };
 }
