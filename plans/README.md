@@ -6,10 +6,9 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                            | Status                    |
-| ----------------------------------------------- | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md`            | Done; archive after merge |
-| `task-2026-06-26-enhanced-analytics-surface.md` | Done; archive after merge |
+| Plan                                 | Status                    |
+| ------------------------------------ | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
 
 ## Product Backlog
 
@@ -20,7 +19,6 @@ index, not a second backlog.
 | [#18](https://github.com/p-boaz/graphletter/issues/18) | Upload and results accessibility pass  |
 | [#19](https://github.com/p-boaz/graphletter/issues/19) | Local/OSS AI provider support          |
 | [#31](https://github.com/p-boaz/graphletter/issues/31) | Bulk compliance spreadsheet import     |
-| [#32](https://github.com/p-boaz/graphletter/issues/32) | Enhanced analytics API product surface |
 | [#33](https://github.com/p-boaz/graphletter/issues/33) | Evidence approval workflow UI          |
 
 ## Engineering Backlog
@@ -55,6 +53,8 @@ index, not a second backlog.
   fallback metadata: closed as completed on 2026-06-26.
 - [#29](https://github.com/p-boaz/graphletter/issues/29) malformed JSON
   rejection: closed as completed on 2026-06-26.
+- [#32](https://github.com/p-boaz/graphletter/issues/32) enhanced analytics
+  API product surface: closed as completed on 2026-06-26.
 - [#34](https://github.com/p-boaz/graphletter/issues/34) Azure and GCP evidence
   classification: closed as completed on 2026-06-26.
 - [#35](https://github.com/p-boaz/graphletter/issues/35) multi-framework

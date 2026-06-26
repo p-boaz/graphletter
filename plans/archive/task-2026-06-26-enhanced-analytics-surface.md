@@ -18,7 +18,7 @@ Resolve the enhanced analytics product-surface decision by preserving the active
 - [x] `lib/services/enhanced-database-service.ts`
 - [x] `lib/types.ts`
 - [x] `plans/README.md`
-- [x] `plans/task-2026-06-26-enhanced-analytics-surface.md`
+- [x] `plans/archive/task-2026-06-26-enhanced-analytics-surface.md`
 
 ## Constraints
 
@@ -68,7 +68,7 @@ The supported product surface remains `POST /api/enhanced/search` for controls, 
 - [x] Dead enhanced analytics service methods and types are removed.
 - [x] Active enhanced POST search behavior remains intact.
 - [x] The product-surface decision is documented.
-- [ ] GitHub issue #32 is closed after validated changes are pushed.
+- [x] GitHub issue #32 is closed after validated changes are pushed.
 
 ## Approval Gate
 
