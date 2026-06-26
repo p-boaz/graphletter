@@ -14,7 +14,6 @@ index, not a second backlog.
 
 | Issue                                                  | Work                                  |
 | ------------------------------------------------------ | ------------------------------------- |
-| [#11](https://github.com/p-boaz/graphletter/issues/11) | Docker Compose self-hosting           |
 | [#18](https://github.com/p-boaz/graphletter/issues/18) | Upload and results accessibility pass |
 | [#19](https://github.com/p-boaz/graphletter/issues/19) | Local/OSS AI provider support         |
 | [#31](https://github.com/p-boaz/graphletter/issues/31) | Bulk compliance spreadsheet import    |
@@ -28,6 +27,8 @@ index, not a second backlog.
 
 ## Recent Reconciliation
 
+- [#11](https://github.com/p-boaz/graphletter/issues/11) Docker Compose
+  self-hosting: closed as completed on 2026-06-26.
 - [#12](https://github.com/p-boaz/graphletter/issues/12) assessment export:
   closed as completed on 2026-06-13.
 - [#13](https://github.com/p-boaz/graphletter/issues/13) synthetic-document
