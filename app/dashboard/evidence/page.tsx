@@ -32,6 +32,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Textarea } from "@/components/ui/textarea";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 interface EvidenceRecord {
@@ -41,6 +42,11 @@ interface EvidenceRecord {
   evidence_type: string;
   evidence_status: string;
   submitted_at: string;
+  reviewed_by?: string | null;
+  reviewed_at?: string | null;
+  approved_by?: string | null;
+  approved_at?: string | null;
+  rejection_reason?: string | null;
   evidence_group_id?: string;
   erl_global_id?: string;
   metadata?: {
@@ -92,6 +98,12 @@ export default function EvidencePage() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [controlFilter, setControlFilter] = useState("all");
   const [selectedEvidenceGroup, setSelectedEvidenceGroup] = useState<EvidenceGroup | null>(null);
+  const [approvalBusy, setApprovalBusy] = useState(false);
+  const [approvalFeedback, setApprovalFeedback] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
+  const [rejectionReason, setRejectionReason] = useState("");
   const [importOpen, setImportOpen] = useState(false);
   const [importFileName, setImportFileName] = useState("");
   const [importContent, setImportContent] = useState("");
@@ -220,6 +232,98 @@ export default function EvidencePage() {
     },
     [importContent, importFormat, loadEvidenceData]
   );
+
+  const openEvidenceDetails = useCallback((group: EvidenceGroup) => {
+    setSelectedEvidenceGroup(group);
+    setApprovalFeedback(null);
+    setRejectionReason("");
+  }, []);
+
+  const submitEvidenceReview = useCallback(
+    async (action: "approve" | "reject") => {
+      const representative = selectedEvidenceGroup?.representative;
+      if (!representative) {
+        return;
+      }
+
+      const trimmedReason = rejectionReason.trim();
+      if (action === "reject" && !trimmedReason) {
+        setApprovalFeedback({
+          type: "error",
+          message: "Rejection reason is required.",
+        });
+        return;
+      }
+
+      setApprovalBusy(true);
+      setApprovalFeedback(null);
+
+      const reviewedAt = new Date().toISOString();
+      try {
+        const response = await fetch(`/api/evidence/${representative.id}/${action}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            reviewed_at: reviewedAt,
+            ...(action === "reject" ? { rejection_reason: trimmedReason } : {}),
+          }),
+        });
+        const data = (await response.json()) as { message?: string; error?: string };
+
+        if (!response.ok) {
+          setApprovalFeedback({
+            type: "error",
+            message: data.error || `Failed to ${action} evidence.`,
+          });
+          return;
+        }
+
+        const nextStatus = action === "approve" ? "approved" : "rejected";
+        setSelectedEvidenceGroup((current) =>
+          current
+            ? {
+                ...current,
+                representative: {
+                  ...current.representative,
+                  evidence_status: nextStatus,
+                  reviewed_by: "You",
+                  reviewed_at: reviewedAt,
+                  rejection_reason: action === "reject" ? trimmedReason : null,
+                },
+                records: current.records.map((record) => ({
+                  ...record,
+                  evidence_status: nextStatus,
+                  reviewed_by: "You",
+                  reviewed_at: reviewedAt,
+                  rejection_reason: action === "reject" ? trimmedReason : null,
+                })),
+              }
+            : current
+        );
+        setApprovalFeedback({
+          type: "success",
+          message: data.message || `Evidence ${nextStatus} successfully.`,
+        });
+        setRejectionReason("");
+        await loadEvidenceData();
+      } catch (error) {
+        setApprovalFeedback({
+          type: "error",
+          message: error instanceof Error ? error.message : `Failed to ${action} evidence.`,
+        });
+      } finally {
+        setApprovalBusy(false);
+      }
+    },
+    [loadEvidenceData, rejectionReason, selectedEvidenceGroup]
+  );
+
+  const formatDate = (value?: string | null) => {
+    if (!value) {
+      return "-";
+    }
+    return new Date(value).toISOString().split("T")[0];
+  };
 
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
@@ -498,7 +602,7 @@ export default function EvidencePage() {
                             size="sm"
                             data-testid="evidence-view-action"
                             aria-label={`View details for ${group.representative.file_name}`}
-                            onClick={() => setSelectedEvidenceGroup(group)}
+                            onClick={() => openEvidenceDetails(group)}
                           >
                             <Eye className="h-4 w-4" />
                           </Button>
@@ -655,6 +759,8 @@ export default function EvidencePage() {
         onOpenChange={(open) => {
           if (!open) {
             setSelectedEvidenceGroup(null);
+            setApprovalFeedback(null);
+            setRejectionReason("");
           }
         }}
       >
@@ -698,16 +804,89 @@ export default function EvidencePage() {
                 <div>
                   <p className="font-medium text-slate-900">Uploaded</p>
                   <p className="text-slate-700">
-                    {
-                      new Date(selectedEvidenceGroup.representative.submitted_at)
-                        .toISOString()
-                        .split("T")[0]
-                    }
+                    {formatDate(selectedEvidenceGroup.representative.submitted_at)}
                   </p>
                 </div>
                 <div>
                   <p className="font-medium text-slate-900">Uploads merged</p>
                   <p className="text-slate-700">{selectedEvidenceGroup.uploadCount}</p>
+                </div>
+                <div>
+                  <p className="font-medium text-slate-900">Reviewer</p>
+                  <p className="text-slate-700" data-testid="evidence-reviewer">
+                    {selectedEvidenceGroup.representative.reviewed_by ||
+                      selectedEvidenceGroup.representative.approved_by ||
+                      "-"}
+                  </p>
+                </div>
+                <div>
+                  <p className="font-medium text-slate-900">Reviewed</p>
+                  <p className="text-slate-700">
+                    {formatDate(
+                      selectedEvidenceGroup.representative.reviewed_at ||
+                        selectedEvidenceGroup.representative.approved_at
+                    )}
+                  </p>
+                </div>
+              </div>
+
+              {selectedEvidenceGroup.representative.rejection_reason && (
+                <div className="rounded-lg border border-red-100 bg-red-50 p-4">
+                  <p className="font-medium text-red-900">Rejection reason</p>
+                  <p className="mt-1 text-red-800" data-testid="evidence-rejection-reason">
+                    {selectedEvidenceGroup.representative.rejection_reason}
+                  </p>
+                </div>
+              )}
+
+              <div className="space-y-3 rounded-lg border p-4">
+                <div>
+                  <p className="font-medium text-slate-900">Review action</p>
+                  <p className="mt-1 text-slate-600">
+                    Approve the evidence group or reject it with a reason.
+                  </p>
+                </div>
+                {approvalFeedback && (
+                  <div
+                    className={
+                      approvalFeedback.type === "success"
+                        ? "rounded-md border border-green-200 bg-green-50 p-3 text-green-800"
+                        : "rounded-md border border-red-200 bg-red-50 p-3 text-red-800"
+                    }
+                    data-testid="evidence-review-feedback"
+                    role={approvalFeedback.type === "success" ? "status" : "alert"}
+                  >
+                    {approvalFeedback.message}
+                  </div>
+                )}
+                <div className="space-y-2">
+                  <Label htmlFor="evidence-rejection-input">Rejection reason</Label>
+                  <Textarea
+                    id="evidence-rejection-input"
+                    value={rejectionReason}
+                    onChange={(event) => setRejectionReason(event.target.value)}
+                    placeholder="Required when rejecting evidence"
+                    data-testid="evidence-rejection-input"
+                  />
+                </div>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <Button
+                    type="button"
+                    onClick={() => submitEvidenceReview("approve")}
+                    disabled={approvalBusy}
+                    data-testid="evidence-approve-button"
+                  >
+                    Approve evidence
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    onClick={() => submitEvidenceReview("reject")}
+                    disabled={approvalBusy || !rejectionReason.trim()}
+                    data-testid="evidence-reject-button"
+                  >
+                    Reject evidence
+                  </Button>
                 </div>
               </div>
 

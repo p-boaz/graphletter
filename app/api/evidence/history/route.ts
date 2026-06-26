@@ -44,7 +44,12 @@ export async function GET(request: NextRequest) {
         version,
         replaces_evidence_id,
         outdated_at,
-        outdated_by
+        outdated_by,
+        reviewed_by,
+        reviewed_at,
+        approved_by,
+        approved_at,
+        rejection_reason
       `
       )
       .eq("user_id", user.id)

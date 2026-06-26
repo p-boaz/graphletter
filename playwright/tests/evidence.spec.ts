@@ -187,3 +187,200 @@ test("bulk evidence import previews errors and commits valid rows", async ({ pag
 
   assert_no_browser_failures(report);
 });
+
+test("evidence detail dialog approves and rejects evidence", async ({ page }, testInfo) => {
+  const observer = inspect_console_errors(page);
+  let report = observer.getReport();
+  const approveCalls: string[] = [];
+  const rejectCalls: string[] = [];
+  let reviewState = {
+    status: "under_review",
+    reviewedBy: null as string | null,
+    reviewedAt: null as string | null,
+    rejectionReason: null as string | null,
+  };
+
+  const evidencePayload = () => ({
+    evidence: [
+      {
+        id: "review-evidence-1",
+        evidence_group_id: "review-group-1",
+        file_name: "vendor-risk-review.pdf",
+        scf_control_id: "TPM-11",
+        evidence_type: "document",
+        evidence_status: reviewState.status,
+        submitted_at: "2026-03-06T09:00:00.000Z",
+        reviewed_by: reviewState.reviewedBy,
+        reviewed_at: reviewState.reviewedAt,
+        rejection_reason: reviewState.rejectionReason,
+        metadata: {
+          documentation_artifact: "Vendor Risk Review",
+        },
+      },
+    ],
+  });
+
+  try {
+    await mockEvidencePageApis(page);
+    await page.route("**/api/evidence/history**", async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(evidencePayload()),
+      });
+    });
+    await page.route("**/api/evidence/**/approve", async (route) => {
+      approveCalls.push(route.request().url());
+      reviewState = {
+        status: "approved",
+        reviewedBy: "reviewer-user",
+        reviewedAt: "2026-06-26T18:00:00.000Z",
+        rejectionReason: null,
+      };
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          success: true,
+          message: "Evidence approved successfully",
+          updated_count: 1,
+        }),
+      });
+    });
+    await page.route("**/api/evidence/**/reject", async (route) => {
+      rejectCalls.push(route.request().postData() || "");
+      const body = JSON.parse(route.request().postData() || "{}") as {
+        rejection_reason?: string;
+      };
+      reviewState = {
+        status: "rejected",
+        reviewedBy: "reviewer-user",
+        reviewedAt: "2026-06-26T18:05:00.000Z",
+        rejectionReason: body.rejection_reason || null,
+      };
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          success: true,
+          message: "Evidence rejected successfully",
+          updated_count: 1,
+        }),
+      });
+    });
+
+    await login_test_user(page);
+    await open_local_app(page, "/dashboard/evidence");
+
+    await expect(page.getByTestId(selectors.evidence.row)).toHaveCount(1);
+    await page.getByTestId(selectors.evidence.viewAction).click();
+
+    const detailDialog = page.getByTestId(selectors.evidence.detailDialog);
+    await expect(detailDialog).toBeVisible();
+    await detailDialog.getByTestId(selectors.evidence.approveButton).click();
+
+    await expect(detailDialog.getByTestId(selectors.evidence.reviewFeedback)).toContainText(
+      "Evidence approved successfully"
+    );
+    await expect(detailDialog).toContainText("approved");
+    await expect(detailDialog.getByTestId(selectors.evidence.reviewer)).toHaveText("You");
+
+    await detailDialog.getByTestId(selectors.evidence.rejectionInput).fill("Evidence is stale.");
+    await expect(detailDialog.getByTestId(selectors.evidence.rejectButton)).toBeEnabled();
+    await detailDialog.getByTestId(selectors.evidence.rejectButton).click();
+
+    await expect(detailDialog.getByTestId(selectors.evidence.reviewFeedback)).toContainText(
+      "Evidence rejected successfully"
+    );
+    await expect(detailDialog).toContainText("rejected");
+    await expect(detailDialog.getByTestId(selectors.evidence.rejectionReason)).toContainText(
+      "Evidence is stale."
+    );
+    expect(approveCalls).toHaveLength(1);
+    expect(rejectCalls).toHaveLength(1);
+  } finally {
+    observer.stop();
+    report = observer.getReport();
+    await trace_failure(testInfo, report);
+    await take_snapshot(page, testInfo, "evidence-approval-actions");
+  }
+
+  assert_no_browser_failures(report);
+});
+
+test("evidence approval authorization failures stay visible", async ({ page }, testInfo) => {
+  const observer = inspect_console_errors(page);
+  let report = observer.getReport();
+
+  try {
+    await mockEvidencePageApis(page);
+    await page.route("**/api/evidence/history**", async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          evidence: [
+            {
+              id: "unauthorized-evidence-1",
+              evidence_group_id: "unauthorized-group-1",
+              file_name: "access-review.pdf",
+              scf_control_id: "AC-01",
+              evidence_type: "document",
+              evidence_status: "under_review",
+              submitted_at: "2026-03-06T09:00:00.000Z",
+              reviewed_by: null,
+              reviewed_at: null,
+              rejection_reason: null,
+              metadata: {
+                documentation_artifact: "Access Review",
+              },
+            },
+          ],
+        }),
+      });
+    });
+    await page.route("**/api/evidence/**/approve", async (route) => {
+      await route.fulfill({
+        status: 403,
+        contentType: "application/json",
+        body: JSON.stringify({ error: "Evidence not found or unauthorized" }),
+      });
+    });
+
+    await login_test_user(page);
+    await open_local_app(page, "/dashboard/evidence");
+
+    await expect(page.getByTestId(selectors.evidence.row)).toHaveCount(1);
+    await page.getByTestId(selectors.evidence.viewAction).click();
+
+    const detailDialog = page.getByTestId(selectors.evidence.detailDialog);
+    await expect(detailDialog).toBeVisible();
+    await detailDialog.getByTestId(selectors.evidence.approveButton).click();
+
+    await expect(detailDialog.getByTestId(selectors.evidence.reviewFeedback)).toContainText(
+      "Evidence not found or unauthorized"
+    );
+    await expect(detailDialog).toContainText("under review");
+    await expect(detailDialog.getByTestId(selectors.evidence.reviewer)).toHaveText("-");
+  } finally {
+    observer.stop();
+    report = observer.getReport();
+    await trace_failure(testInfo, report);
+    await take_snapshot(page, testInfo, "evidence-approval-authorization-failure");
+  }
+
+  const expectedForbiddenResponse = report.failedResponses.some(
+    (response) => response.status === 403 && response.url.includes("/api/evidence/")
+  );
+  expect(expectedForbiddenResponse).toBe(true);
+
+  assert_no_browser_failures({
+    ...report,
+    consoleErrors: report.consoleErrors.filter(
+      (error) => !error.includes("the server responded with a status of 403")
+    ),
+    failedResponses: report.failedResponses.filter(
+      (response) => !(response.status === 403 && response.url.includes("/api/evidence/"))
+    ),
+  });
+});
