@@ -6,10 +6,9 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                          | Status                    |
-| --------------------------------------------- | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md`          | Done; archive after merge |
-| `task-2026-06-26-malformed-json-rejection.md` | Done; archive after merge |
+| Plan                                 | Status                    |
+| ------------------------------------ | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
 
 ## Product Backlog
 
@@ -35,7 +34,6 @@ index, not a second backlog.
 | [#26](https://github.com/p-boaz/graphletter/issues/26) | Upload file-signature validation                     |
 | [#27](https://github.com/p-boaz/graphletter/issues/27) | Dead-code and unused-dependency cleanup              |
 | [#28](https://github.com/p-boaz/graphletter/issues/28) | Structured AI fallback metadata                      |
-| [#29](https://github.com/p-boaz/graphletter/issues/29) | Consistent malformed-JSON rejection                  |
 | [#30](https://github.com/p-boaz/graphletter/issues/30) | Tailwind CSS v4 migration                            |
 | [#34](https://github.com/p-boaz/graphletter/issues/34) | Azure and GCP evidence classification                |
 | [#35](https://github.com/p-boaz/graphletter/issues/35) | Multi-framework impact previews                      |
@@ -48,6 +46,8 @@ index, not a second backlog.
   closed as completed on 2026-06-13.
 - [#13](https://github.com/p-boaz/graphletter/issues/13) synthetic-document
   demo: closed as completed on 2026-06-13.
+- [#29](https://github.com/p-boaz/graphletter/issues/29) malformed JSON
+  rejection: closed as completed on 2026-06-26.
 - All task specs completed through 2026-06-12 are under `plans/archive/`.
 
 ## Rejected Findings
