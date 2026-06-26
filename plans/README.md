@@ -6,10 +6,9 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                                        | Status                    |
-| ----------------------------------------------------------- | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md`                        | Done; archive after merge |
-| `task-2026-06-26-custom-control-mapping-method-metadata.md` | Approved                  |
+| Plan                                 | Status                    |
+| ------------------------------------ | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
 
 ## Product Backlog
 
@@ -33,7 +32,6 @@ index, not a second backlog.
 | [#25](https://github.com/p-boaz/graphletter/issues/25) | SheetJS dependency provenance                        |
 | [#26](https://github.com/p-boaz/graphletter/issues/26) | Upload file-signature validation                     |
 | [#27](https://github.com/p-boaz/graphletter/issues/27) | Dead-code and unused-dependency cleanup              |
-| [#28](https://github.com/p-boaz/graphletter/issues/28) | Structured AI fallback metadata                      |
 | [#30](https://github.com/p-boaz/graphletter/issues/30) | Tailwind CSS v4 migration                            |
 | [#34](https://github.com/p-boaz/graphletter/issues/34) | Azure and GCP evidence classification                |
 | [#35](https://github.com/p-boaz/graphletter/issues/35) | Multi-framework impact previews                      |
@@ -48,6 +46,8 @@ index, not a second backlog.
   demo: closed as completed on 2026-06-13.
 - [#15](https://github.com/p-boaz/graphletter/issues/15) Incident Response Plan
   classification: closed as completed on 2026-06-26.
+- [#28](https://github.com/p-boaz/graphletter/issues/28) structured AI
+  fallback metadata: closed as completed on 2026-06-26.
 - [#29](https://github.com/p-boaz/graphletter/issues/29) malformed JSON
   rejection: closed as completed on 2026-06-26.
 - All task specs completed through 2026-06-12 are under `plans/archive/`.
