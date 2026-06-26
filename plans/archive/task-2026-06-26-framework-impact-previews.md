@@ -60,7 +60,7 @@ Populate remediation impact previews with per-framework score changes for affect
 - [x] Impact previews calculate per-framework score changes for affected controls.
 - [x] The response contract is documented.
 - [x] Tests cover controls mapped to one and multiple frameworks.
-- [ ] GitHub issue #35 is closed after validated changes are pushed.
+- [x] GitHub issue #35 is closed after validated changes are pushed.
 
 ## Approval Gate
 
