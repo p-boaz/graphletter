@@ -41,7 +41,7 @@ const nextConfig = {
 		unoptimized: true,
 	},
 	experimental: {
-		optimizePackageImports: ["lucide-react", "react-icons", "recharts"],
+		optimizePackageImports: ["lucide-react", "react-icons"],
 	},
 	// Exclude specific Node.js-dependent packages from Edge Runtime
 	serverExternalPackages: ["@supabase/supabase-js"],
