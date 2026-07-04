@@ -2,7 +2,11 @@
 
 AI-powered compliance assessment. Upload your evidence documents — policies, procedures, screenshots, audit reports — and get control-level verdicts across 79+ frameworks (SOC 2, ISO 27001, NIST CSF, PCI DSS, HIPAA, GDPR, and more).
 
+**[Try it live — no signup required](https://www.graphletter.com/try)** · [www.graphletter.com](https://www.graphletter.com)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![CI](https://github.com/p-boaz/graphletter/actions/workflows/ci.yml/badge.svg)](https://github.com/p-boaz/graphletter/actions/workflows/ci.yml)
+[![Prod Smoke](https://github.com/p-boaz/graphletter/actions/workflows/prod-smoke.yml/badge.svg)](https://github.com/p-boaz/graphletter/actions/workflows/prod-smoke.yml)
 [![Built with Next.js](https://img.shields.io/badge/Built%20with-Next.js-black)](https://nextjs.org)
 [![TypeScript strict](https://img.shields.io/badge/TypeScript-strict-blue)](tsconfig.json)
 
