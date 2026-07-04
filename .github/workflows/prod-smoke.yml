@@ -1,0 +1,86 @@
+name: Prod Smoke
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+  deployment_status:
+  pull_request:
+    paths:
+      - ".github/workflows/prod-smoke.yml"
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: prod-smoke-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  SITE_URL: https://www.graphletter.com
+
+jobs:
+  smoke:
+    # For deployment_status events, only run on successful production deploys.
+    if: >-
+      github.event_name != 'deployment_status' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment_status.environment == 'Production')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Homepage responds
+        run: |
+          code=$(curl -sSL -o /tmp/home.html -w "%{http_code}" --max-time 30 "$SITE_URL/")
+          echo "status: $code"
+          test "$code" = "200"
+          grep -qi "graphletter" /tmp/home.html
+
+      - name: Demo quota endpoint healthy
+        run: |
+          body=$(curl -sSL --max-time 30 "$SITE_URL/api/try-it-out/demo/quota")
+          echo "body: $body"
+          echo "$body" | jq -e 'has("remaining") and has("max")' > /dev/null
+
+      - name: Frameworks API returns data
+        run: |
+          count=$(curl -sSL --max-time 30 "$SITE_URL/api/scf/frameworks" | jq 'length')
+          echo "frameworks: $count"
+          test "$count" -gt 0
+
+      - name: Every repo migration is applied in the database
+        env:
+          SMOKE_DATABASE_URL: ${{ secrets.SMOKE_DATABASE_URL }}
+        run: |
+          applied=$(psql "$SMOKE_DATABASE_URL" -tA \
+            -c "select version from supabase_migrations.schema_migrations order by version")
+          echo "applied migrations: $(wc -l <<<"$applied")"
+          missing=0
+          for f in supabase/migrations/*.sql; do
+            v=$(basename "$f" | cut -d_ -f1)
+            if ! grep -qx "$v" <<<"$applied"; then
+              echo "::error file=$f::Migration $v exists in the repo but is not applied in the database. Run 'supabase db push'."
+              missing=1
+            fi
+          done
+          exit "$missing"
+
+      - name: File or update a GitHub issue on failure
+        if: failure() && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="Prod smoke check failed"
+          body="A production smoke check failed. See the run for which step broke: $RUN_URL
+
+          Checks: homepage, demo quota endpoint, frameworks API, migration parity."
+          existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open \
+            --search "\"$title\" in:title" --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "Still failing: $RUN_URL"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body"
+          fi
