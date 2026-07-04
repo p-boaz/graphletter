@@ -48,11 +48,11 @@ Commit 3 — first impressions (marketing/meta): DONE
 - [x] `app/security/page.tsx`
 - [x] `app/research/page.tsx`
 
-Commit 4 — dead code and mock data:
+Commit 4 — dead code and mock data: DONE
 
-- [ ] `components/dashboard-content.tsx` (delete)
-- [ ] `components/try-it-out/scenario-runner.tsx` (delete)
-- [ ] `app/assessments/page.tsx` (convert to redirect)
+- [x] `components/dashboard-content.tsx` (delete)
+- [x] `components/try-it-out/scenario-runner.tsx` (delete)
+- [x] `app/assessments/page.tsx` (convert to redirect)
 
 Plus: any Playwright specs under `playwright/tests/` that assert strings changed
 above (updated in the same commit as the string they assert).
