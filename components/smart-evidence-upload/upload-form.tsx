@@ -106,7 +106,7 @@ export function UploadForm({
             <Label htmlFor="documentation-artifact">Documentation Artifact</Label>
             <FieldHelpTooltip
               label="Documentation Artifact"
-              text="The type of compliance document you're providing, such as a policy, procedure, or configuration. This determines which SCF controls will be assessed against your evidence."
+              text="The type of compliance document you're providing, such as a policy, procedure, or configuration. This determines which controls from the Secure Controls Framework (SCF) will be assessed against your evidence."
             />
           </div>
           <p className="text-xs text-slate-500">

@@ -4,7 +4,7 @@
 
 - Date: 2026-07-04
 - Owner: agent (Claude Code), approval: Peter
-- Status: In Progress
+- Status: Done
 - Branch: `copy/dejargon-sweep`
 - Related issue/PR: —
 
@@ -184,7 +184,7 @@ String rewrites in `compliance-explainer.ts`:
 
 ## Test Plan
 
-- [ ] `pnpm lint` and `pnpm typecheck` clean after each commit.
+- [x] `pnpm lint` and `pnpm typecheck` clean after each commit.
 - [x] `grep -rn` for removed jargon strings ("evidence atoms", "graph-native",
       "SCF normalization", "GPT-5", "mapping polarity", "Graph-native coverage
       rank", "Documentation Artifact-Based") returns no hits in user-facing
@@ -192,27 +192,41 @@ String rewrites in `compliance-explainer.ts`:
       except the clearly labeled "Under the hood" docs section. (Verified
       2026-07-04; follow-up fix: extract-step whyItMatters and the Evidence
       Atom glossary entry had residual jargon, now reworded.)
-- [ ] `pnpm test:ui:bg` full suite green (copy assertions updated).
-- [ ] Dogfood in browser (per CLAUDE.md): load `/`, `/try` (run one demo),
-      `/docs`, `/frameworks`, `/security`, `/dashboard` (first-run + populated),
-      `/reports`, `/assessments` (redirects); confirm no console errors via
-      `playwright/helpers/observability.ts`.
-- [ ] Verify `/assessments` returns a redirect to `/dashboard/assessments`.
+- [x] `pnpm test:ui:bg` full suite green (copy assertions updated). Ran twice:
+      55 passed / 1 skipped both runs.
+- [x] Dogfood in browser: loaded `/`, `/try`, `/docs` (section order + new
+      labels verified), `/frameworks` (live "79 frameworks covered"),
+      `/security`, `/dashboard` (first-run hero), `/reports` (new evidence-
+      strength descriptions + "Coverage" badge live), `/dashboard/compliance-
+    posture`, `/assessments`. Only console error everywhere: pre-existing
+      dev-only CSP block of the Vercel Analytics debug script (plus expected
+      401s on protected pages while signed out).
+      **Demo run on `/try` could not complete — pre-existing infra bug, not
+      this change: `consume_demo_quota` from migration
+      `20260626170000_create_demo_quota_hits.sql` is missing from the linked
+      database (table exists, function doesn't). Confirmed broken in
+      production too (`https://www.graphletter.com/api/try-it-out/demo/quota`
+      → 500). Needs a `supabase db push` / migration repair under its own
+      task.**
+- [x] `/assessments` redirects to `/dashboard/assessments` (verified in
+      browser; lands on the real empty state).
+- [x] `pnpm build` passes.
 
 ## Acceptance Criteria
 
-- [ ] No user-facing surface outside the docs "Under the hood" section contains:
+- [x] No user-facing surface outside the docs "Under the hood" section contains:
       DB table names, "evidence atoms", "chunks", "polarity", "graph-native",
       "normalization/normalized", "LLM", model names, raw enum strings, or
-      "serverless/RLS/route handler" phrasing.
-- [ ] SCF is defined in one clause at first mention on: landing hero,
-      `/frameworks`, Framework Explorer, and the upload dialog.
-- [ ] ERL, ISMS, PHI expanded at first use wherever shown.
-- [ ] `components/dashboard-content.tsx` and
+      "serverless/RLS/route handler" phrasing. (Grep gate clean.)
+- [x] SCF is defined in one clause at first mention on: landing hero,
+      `/frameworks`, and the upload dialog tooltip. (Framework Explorer's
+      rewritten header no longer mentions SCF at all.)
+- [x] ERL, ISMS, PHI expanded at first use wherever shown.
+- [x] `components/dashboard-content.tsx` and
       `components/try-it-out/scenario-runner.tsx` no longer exist; build passes.
-- [ ] `/assessments` no longer shows fabricated data.
-- [ ] Hero/docs stats still read 79 / 1,468 / 34,619 and match the live DB.
-- [ ] Full Playwright suite green twice consecutively (flake gate).
+- [x] `/assessments` no longer shows fabricated data.
+- [x] Hero/docs stats still read 79 / 1,468 / 34,619 and match the live DB.
+- [x] Full Playwright suite green twice consecutively (flake gate).
 
 ## Approval Gate
 
