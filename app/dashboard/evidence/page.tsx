@@ -534,7 +534,7 @@ export default function EvidencePage() {
                 ) : filteredEvidenceGroups.length === 0 ? (
                   <TableRow>
                     <TableCell colSpan={7} className="py-8 text-center">
-                      No evidence groups found
+                      No evidence found
                     </TableCell>
                   </TableRow>
                 ) : (
@@ -634,7 +634,7 @@ export default function EvidencePage() {
             <DialogHeader>
               <DialogTitle>Bulk import evidence</DialogTitle>
               <DialogDescription>
-                Preview CSV or JSON evidence inventory rows before creating records.
+                Preview the rows in your CSV or JSON file before importing.
               </DialogDescription>
             </DialogHeader>
 

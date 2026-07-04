@@ -92,12 +92,10 @@ export function UploadForm({
       {/* Description */}
       <div className="rounded-lg bg-blue-50 p-4 text-center">
         <Brain className="mx-auto mb-2 h-8 w-8 text-blue-600" />
-        <h3 className="mb-1 font-medium text-blue-900">
-          Documentation Artifact-Based Evidence Upload
-        </h3>
+        <h3 className="mb-1 font-medium text-blue-900">Upload evidence</h3>
         <p className="text-blue-700 text-sm">
-          Select the documentation artifact you&apos;re providing evidence for, and AI will assess
-          compliance for all relevant SCF controls
+          Select the type of document you&apos;re providing, and AI will assess compliance for every
+          control it applies to
         </p>
       </div>
 
@@ -200,8 +198,7 @@ export function UploadForm({
           )}
           {!loadingArtifacts && artifacts.length === 0 && (
             <p className="text-amber-700 text-xs">
-              No documentation artifacts available. This usually means no active control mappings
-              exist yet.
+              No document types are available yet. Contact support if this persists.
             </p>
           )}
           {selectedArtifactControls.length > 0 && (
@@ -331,15 +328,15 @@ export function UploadForm({
 
       {/* How it works */}
       <div className="rounded-lg bg-gray-50 p-4">
-        <h4 className="mb-2 font-medium text-gray-900">How Artifact-Based Upload Works:</h4>
+        <h4 className="mb-2 font-medium text-gray-900">How this works:</h4>
         <div className="grid grid-cols-1 gap-3 text-sm md:grid-cols-3">
           <div className="flex items-start gap-2">
             <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 font-medium text-white text-xs">
               1
             </div>
             <div>
-              <p className="font-medium text-gray-900">Select Artifact</p>
-              <p className="text-gray-600">Choose from ERL documentation artifacts</p>
+              <p className="font-medium text-gray-900">Select Document Type</p>
+              <p className="text-gray-600">Choose the type of document you&apos;re uploading</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
@@ -348,7 +345,7 @@ export function UploadForm({
             </div>
             <div>
               <p className="font-medium text-gray-900">Upload Evidence</p>
-              <p className="text-gray-600">System knows exactly which controls to assess</p>
+              <p className="text-gray-600">Your document type tells us which controls to check</p>
             </div>
           </div>
           <div className="flex items-start gap-2">
