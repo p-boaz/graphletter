@@ -360,7 +360,7 @@ export default function CompliancePosturePage() {
               )}
               {posture.weightFallback && (
                 <div className="mt-2 text-amber-600 text-xs">
-                  Using equal weights (tier data unavailable)
+                  All security areas weighted equally
                 </div>
               )}
             </CardContent>
@@ -418,8 +418,8 @@ export default function CompliancePosturePage() {
               Domain Breakdown
             </CardTitle>
             <CardDescription className="ft-sans text-base text-slate-600">
-              Risk-weighted compliance by SCF domain. Critical domains (3x) impact the overall score
-              more than standard domains (1x).
+              Compliance by security area. Critical areas count more toward your overall score than
+              routine ones.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -442,14 +442,10 @@ export default function CompliancePosturePage() {
                             className={`rounded-full px-2 py-0.5 font-medium text-xs ${colors.badge}`}
                           >
                             {domain.tier}
-                            {domain.weight !== 1 && ` (${domain.weight}x)`}
                           </span>
                           <div>
                             <div className="font-semibold text-slate-900 text-sm">
                               {domain.domainName}
-                            </div>
-                            <div className="font-mono text-slate-500 text-xs">
-                              {domain.domainId}
                             </div>
                           </div>
                         </div>
@@ -492,8 +488,8 @@ export default function CompliancePosturePage() {
         <div className="rounded bg-slate-50 p-3 text-slate-500 text-xs">
           Score calculated at {new Date(posture.calculatedAt).toLocaleString()}.{" "}
           {posture.weightFallback
-            ? "Using equal domain weights (tier data unavailable)."
-            : `Using risk-weighted domain tiers (${posture.domains.filter((d) => d.tier === "critical").length} critical, ${posture.domains.filter((d) => d.tier === "high").length} high, ${posture.domains.filter((d) => d.tier === "standard").length} standard).`}
+            ? "All security areas weighted equally."
+            : `Weighted by risk: ${posture.domains.filter((d) => d.tier === "critical").length} critical, ${posture.domains.filter((d) => d.tier === "high").length} high, and ${posture.domains.filter((d) => d.tier === "standard").length} standard areas.`}
         </div>
       </div>
     </DashboardLayout>

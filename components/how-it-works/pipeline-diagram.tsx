@@ -1,10 +1,10 @@
 export function PipelineDiagram() {
   const steps = [
     { n: 1, t: "Upload", d: "A policy, procedure, or evidence file." },
-    { n: 2, t: "Extract", d: "Text extracted; graph built when reliable." },
-    { n: 3, t: "Map to SCF", d: "SCF controls scoped to the artifact." },
+    { n: 2, t: "Read", d: "We read your document and index every statement." },
+    { n: 3, t: "Match to controls", d: "Your document type tells us which controls to check." },
     { n: 4, t: "AI assess", d: "Objectives evaluated with reasoning." },
-    { n: 5, t: "Graph scoring", d: "Weak/moderate/strong support rolled up." },
+    { n: 5, t: "Score", d: "Evidence strength rolled up per control." },
     { n: 6, t: "Coverage report", d: "Gaps + recommendations per framework." },
   ];
   return (

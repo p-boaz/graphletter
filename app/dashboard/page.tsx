@@ -429,7 +429,7 @@ function ComplianceGaps() {
       setGapsData(graphDrivenGapsData);
     } catch (err) {
       console.error("Error loading gaps data:", err);
-      setError("Failed to load graph-based compliance coverage");
+      setError("Failed to load compliance coverage");
     } finally {
       setLoading(false);
     }
@@ -678,7 +678,7 @@ function ComplianceGaps() {
                         {framework.framework_version?.trim()
                           ? ` ${framework.framework_version.trim()}`
                           : ""}{" "}
-                        ({framework.total_mappings} mapping links)
+                        ({framework.total_mappings} linked controls)
                       </SelectItem>
                     ))}
                   </SelectContent>

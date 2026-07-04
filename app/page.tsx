@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 };
 
 const HERO_STATS = [
-  { value: "79", label: "Frameworks" },
-  { value: "1,468", label: "Controls" },
-  { value: "34,619", label: "Mappings" },
-  { value: "2026.1.1", label: "SCF Edition" },
+  { value: "79", label: "Frameworks covered" },
+  { value: "1,468", label: "Controls checked" },
+  { value: "34,619", label: "Cross-framework links" },
+  { value: "2026.1.1", label: "SCF edition" },
 ] as const;
 
 export default function HomePage() {
@@ -38,8 +38,9 @@ export default function HomePage() {
             Prove your policies meet the frameworks that matter.
           </h1>
           <p className="ft-serif mt-8 max-w-2xl text-xl italic leading-relaxed text-slate-600 lg:text-2xl">
-            Upload an evidence document. Graphletter reads it against 1,468 SCF controls and maps
-            the outcome to 79 frameworks, with AI reasoning quoted back to your source.
+            Upload an evidence document. Graphletter reads it against the Secure Controls Framework
+            — a master catalog of 1,468 controls that crosswalks to SOC 2, ISO 27001, NIST, and 76
+            more — with AI reasoning quoted back to your source.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <Button asChild size="lg" data-testid="hero-primary-cta">
