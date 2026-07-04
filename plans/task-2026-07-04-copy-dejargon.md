@@ -6,7 +6,7 @@
 - Owner: agent (Claude Code), approval: Peter
 - Status: Done
 - Branch: `copy/dejargon-sweep`
-- Related issue/PR: —
+- Related issue/PR: https://github.com/p-boaz/graphletter/pull/38
 
 ## Goal
 
@@ -198,7 +198,7 @@ String rewrites in `compliance-explainer.ts`:
       labels verified), `/frameworks` (live "79 frameworks covered"),
       `/security`, `/dashboard` (first-run hero), `/reports` (new evidence-
       strength descriptions + "Coverage" badge live), `/dashboard/compliance-
-    posture`, `/assessments`. Only console error everywhere: pre-existing
+  posture`, `/assessments`. Only console error everywhere: pre-existing
       dev-only CSP block of the Vercel Analytics debug script (plus expected
       401s on protected pages while signed out).
       **Demo run on `/try` could not complete — pre-existing infra bug, not
