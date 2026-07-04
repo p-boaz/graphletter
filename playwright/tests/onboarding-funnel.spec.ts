@@ -223,10 +223,10 @@ test.describe("docs page", () => {
     const diagram = page.getByTestId("pipeline-diagram");
     for (const label of [
       "Upload",
-      "Extract",
-      "Map to SCF",
+      "Read",
+      "Match to controls",
       "AI assess",
-      "Graph scoring",
+      "Score",
       "Coverage report",
     ]) {
       await expect(diagram).toContainText(label);

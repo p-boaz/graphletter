@@ -20,23 +20,23 @@ RLS, DB table names, raw enums) gets translated or moved into a clearly labeled
 
 ## Context Files
 
-Commit 1 — product surfaces (jargon that lands mid-task):
+Commit 1 — product surfaces (jargon that lands mid-task): DONE (50cd033)
 
-- [ ] `components/smart-evidence-upload/assessment-progress-view.tsx`
-- [ ] `components/smart-evidence-upload/upload-form.tsx`
-- [ ] `app/reports/page.tsx`
-- [ ] `app/dashboard/compliance-posture/page.tsx`
-- [ ] `app/dashboard/compliance-inbox/page.tsx`
-- [ ] `app/dashboard/analytics/page.tsx`
-- [ ] `app/dashboard/frameworks/page.tsx`
-- [ ] `app/dashboard/evidence/page.tsx`
-- [ ] `app/dashboard/page.tsx`
+- [x] `components/smart-evidence-upload/assessment-progress-view.tsx`
+- [x] `components/smart-evidence-upload/upload-form.tsx`
+- [x] `app/reports/page.tsx`
+- [x] `app/dashboard/compliance-posture/page.tsx`
+- [x] `app/dashboard/compliance-inbox/page.tsx`
+- [x] `app/dashboard/analytics/page.tsx`
+- [x] `app/dashboard/frameworks/page.tsx`
+- [x] `app/dashboard/evidence/page.tsx`
+- [x] `app/dashboard/page.tsx`
 
-Commit 2 — docs/explainer layer:
+Commit 2 — docs/explainer layer: DONE
 
-- [ ] `lib/content/compliance-explainer.ts`
-- [ ] `app/docs/page.tsx`
-- [ ] `components/how-it-works/pipeline-diagram.tsx`
+- [x] `lib/content/compliance-explainer.ts`
+- [x] `app/docs/page.tsx`
+- [x] `components/how-it-works/pipeline-diagram.tsx`
 
 Commit 3 — first impressions (marketing/meta):
 

@@ -27,7 +27,7 @@ export const metadata: Metadata = { title: pageTitle("Docs") };
 const GLOSSARY_TERMS_IN_PAGE_GLOSSARY = new Set([
   "SCF Control",
   "Coverage vs Gap",
-  "Framework Mapping (SCF Normalization)",
+  "One assessment, many frameworks",
 ]);
 
 type ScfStats = {
@@ -159,6 +159,133 @@ export default async function DocsPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="bg-ft-cream py-20">
+          <div className="ft-container">
+            <div className="mb-8 max-w-3xl">
+              <h2 className="ft-serif text-3xl font-bold text-ft-black">
+                Assessment Result States
+              </h2>
+              <p className="ft-sans mt-2 text-slate-600">
+                How each AI result translates into action. Coverage statuses (compliant, partial,
+                missing, conflicting) are explained in the Under the Hood section below.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {resultGuidance.map((item) => (
+                <div key={item.status} className="rounded-xl border border-slate-200 bg-white p-5">
+                  <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase text-slate-700">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                    {item.status.replace("_", " ")}
+                  </div>
+                  <p className="ft-sans text-sm text-slate-700 leading-relaxed">{item.meaning}</p>
+                  <p className="ft-sans mt-2 text-sm font-medium text-ft-black">
+                    Next: {item.nextAction}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="maturity-levels" className="scroll-mt-28 py-20">
+          <div className="ft-container">
+            <div className="mb-8 max-w-3xl">
+              <h2 className="ft-serif text-3xl font-bold text-ft-black">Maturity Levels</h2>
+              <p className="ft-sans mt-2 text-slate-600">
+                SCF uses a Cybersecurity &amp; Privacy Capability Maturity Model (C|P-CMM) with six
+                levels. Graphletter assesses your evidence against these levels for each control.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {maturityLevels.map((level) => (
+                <div key={level.level} className="rounded-xl border border-slate-200 bg-white p-5">
+                  <div className="mb-2 flex items-center gap-2">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-purple-100 text-sm font-bold text-purple-700">
+                      {level.level}
+                    </span>
+                    <span className="ft-serif text-base font-bold text-ft-black">
+                      {level.label}
+                    </span>
+                  </div>
+                  <p className="ft-sans text-sm text-slate-700 leading-relaxed">{level.summary}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 rounded-xl border border-purple-200 bg-purple-50 p-4">
+              <p className="ft-sans text-sm text-purple-900 leading-relaxed">
+                After assessment, each control shows its assessed maturity level, an optional target
+                level with gap analysis, and AI-generated recommendations for reaching the next
+                level.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20">
+          <div className="ft-container">
+            <div className="mb-8 max-w-3xl">
+              <h2 className="ft-serif text-3xl font-bold text-ft-black">Core Terms</h2>
+              <p className="ft-sans mt-2 text-slate-600">
+                Plain-language definitions with Graphletter context.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {Object.values(GLOSSARY).map((entry) => (
+                <div key={entry.term} className="rounded-xl border border-slate-200 bg-white p-4">
+                  <h3 className="ft-serif text-lg font-bold text-ft-black">{entry.term}</h3>
+                  <p className="mt-1 text-sm text-slate-600 leading-relaxed">{entry.def}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 mb-3">
+              <h3 className="ft-serif text-lg font-bold text-ft-black">Related assessment terms</h3>
+              <p className="ft-sans mt-1 text-sm text-slate-600">
+                Other vocabulary that shows up in Graphletter's assessment results.
+              </p>
+            </div>
+            <div className="grid gap-5 md:grid-cols-2">
+              {glossaryTerms
+                .filter((term) => !GLOSSARY_TERMS_IN_PAGE_GLOSSARY.has(term.term))
+                .map((term) => (
+                  <article
+                    key={term.id}
+                    id={term.id}
+                    className="scroll-mt-28 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                  >
+                    <h3 className="ft-serif text-xl font-bold text-ft-black">{term.term}</h3>
+                    <p className="ft-sans mt-3 text-sm text-slate-700 leading-relaxed">
+                      <span className="font-semibold text-ft-black">Definition:</span>{" "}
+                      {term.plainDefinition}
+                    </p>
+                    <p className="ft-sans mt-2 text-sm text-slate-700 leading-relaxed">
+                      <span className="font-semibold text-ft-black">In Graphletter:</span>{" "}
+                      {term.graphletterDefinition}
+                    </p>
+                    <p className="ft-sans mt-2 text-xs text-slate-500">
+                      Where you see it: {term.whereToFind}
+                    </p>
+                  </article>
+                ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t-2 border-slate-200 bg-white py-12">
+          <div className="ft-container max-w-4xl">
+            <span className="ft-sans inline-flex rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600">
+              Under the Hood
+            </span>
+            <h2 className="ft-serif mt-4 text-3xl font-bold text-ft-black">
+              For engineers and auditors who want to verify the mechanism
+            </h2>
+            <p className="ft-sans mt-2 text-slate-600 leading-relaxed">
+              Everything above is all you need to use Graphletter. The sections below document the
+              internal machinery — data structures, scoring rules, and the database schema — for
+              anyone who wants to inspect how results are produced.
+            </p>
           </div>
         </section>
 
@@ -365,118 +492,6 @@ export default async function DocsPage() {
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-ft-cream py-20">
-          <div className="ft-container">
-            <div className="mb-8 max-w-3xl">
-              <h2 className="ft-serif text-3xl font-bold text-ft-black">
-                Objective Result States (AI Layer)
-              </h2>
-              <p className="ft-sans mt-2 text-slate-600">
-                How objective-level AI outcomes translate into action. Graph coverage states
-                (compliant, partial, missing, conflicting) are computed separately in the Graph
-                Technique section above.
-              </p>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {resultGuidance.map((item) => (
-                <div key={item.status} className="rounded-xl border border-slate-200 bg-white p-5">
-                  <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase text-slate-700">
-                    <CheckCircle2 className="h-3.5 w-3.5" />
-                    {item.status.replace("_", " ")}
-                  </div>
-                  <p className="ft-sans text-sm text-slate-700 leading-relaxed">{item.meaning}</p>
-                  <p className="ft-sans mt-2 text-sm font-medium text-ft-black">
-                    Next: {item.nextAction}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="maturity-levels" className="scroll-mt-28 py-20">
-          <div className="ft-container">
-            <div className="mb-8 max-w-3xl">
-              <h2 className="ft-serif text-3xl font-bold text-ft-black">Maturity Levels</h2>
-              <p className="ft-sans mt-2 text-slate-600">
-                SCF uses a Cybersecurity &amp; Privacy Capability Maturity Model (C|P-CMM) with six
-                levels. Graphletter assesses your evidence against these levels for each control.
-              </p>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {maturityLevels.map((level) => (
-                <div key={level.level} className="rounded-xl border border-slate-200 bg-white p-5">
-                  <div className="mb-2 flex items-center gap-2">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-purple-100 text-sm font-bold text-purple-700">
-                      {level.level}
-                    </span>
-                    <span className="ft-serif text-base font-bold text-ft-black">
-                      {level.label}
-                    </span>
-                  </div>
-                  <p className="ft-sans text-sm text-slate-700 leading-relaxed">{level.summary}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-6 rounded-xl border border-purple-200 bg-purple-50 p-4">
-              <p className="ft-sans text-sm text-purple-900 leading-relaxed">
-                After assessment, each control shows its assessed maturity level, an optional target
-                level with gap analysis, and AI-generated recommendations for reaching the next
-                level.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-20">
-          <div className="ft-container">
-            <div className="mb-8 max-w-3xl">
-              <h2 className="ft-serif text-3xl font-bold text-ft-black">Core Terms</h2>
-              <p className="ft-sans mt-2 text-slate-600">
-                Plain-language definitions with Graphletter context.
-              </p>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {Object.values(GLOSSARY).map((entry) => (
-                <div key={entry.term} className="rounded-xl border border-slate-200 bg-white p-4">
-                  <h3 className="ft-serif text-lg font-bold text-ft-black">{entry.term}</h3>
-                  <p className="mt-1 text-sm text-slate-600 leading-relaxed">{entry.def}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-8 mb-3">
-              <h3 className="ft-serif text-lg font-bold text-ft-black">Related assessment terms</h3>
-              <p className="ft-sans mt-1 text-sm text-slate-600">
-                Other vocabulary that shows up in Graphletter's assessment results.
-              </p>
-            </div>
-            <div className="grid gap-5 md:grid-cols-2">
-              {glossaryTerms
-                .filter((term) => !GLOSSARY_TERMS_IN_PAGE_GLOSSARY.has(term.term))
-                .map((term) => (
-                  <article
-                    key={term.id}
-                    id={term.id}
-                    className="scroll-mt-28 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-                  >
-                    <h3 className="ft-serif text-xl font-bold text-ft-black">{term.term}</h3>
-                    <p className="ft-sans mt-3 text-sm text-slate-700 leading-relaxed">
-                      <span className="font-semibold text-ft-black">Definition:</span>{" "}
-                      {term.plainDefinition}
-                    </p>
-                    <p className="ft-sans mt-2 text-sm text-slate-700 leading-relaxed">
-                      <span className="font-semibold text-ft-black">In Graphletter:</span>{" "}
-                      {term.graphletterDefinition}
-                    </p>
-                    <p className="ft-sans mt-2 text-xs text-slate-500">
-                      Where you see it: {term.whereToFind}
-                    </p>
-                  </article>
-                ))}
             </div>
           </div>
         </section>
