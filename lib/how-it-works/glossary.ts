@@ -8,8 +8,8 @@ export const GLOSSARY = {
     def: "Evidence Requirement List — the evidence expected for a control.",
   },
   atom: {
-    term: "Evidence Atom",
-    def: "A single extracted assertion from your document that supports or contradicts a control.",
+    term: "Evidence claim",
+    def: "A single statement extracted from your document that supports or contradicts a control. Called an 'atom' in the technical sections below.",
   },
   mapping: {
     term: "Mapping",

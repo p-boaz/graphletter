@@ -69,7 +69,7 @@ export const workflowSteps: WorkflowStep[] = [
     whatHappens:
       "Graphletter reads your file and keeps track of where every statement came from, so findings can quote your document back to you.",
     whyItMatters:
-      "Reliable extraction is the foundation for both objective-level AI assessment and graph-native evidence mapping.",
+      "Reliable reading of your document is the foundation for every assessment and coverage result.",
     whereToFind: "Assessment progress and evidence history",
   },
   {

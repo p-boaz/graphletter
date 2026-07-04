@@ -185,11 +185,13 @@ String rewrites in `compliance-explainer.ts`:
 ## Test Plan
 
 - [ ] `pnpm lint` and `pnpm typecheck` clean after each commit.
-- [ ] `grep -rn` for removed jargon strings ("evidence atoms", "graph-native",
+- [x] `grep -rn` for removed jargon strings ("evidence atoms", "graph-native",
       "SCF normalization", "GPT-5", "mapping polarity", "Graph-native coverage
       rank", "Documentation Artifact-Based") returns no hits in user-facing
       files (`app/` non-api, `components/`, `lib/content/`, `lib/how-it-works/`)
-      except the clearly labeled "Under the hood" docs section.
+      except the clearly labeled "Under the hood" docs section. (Verified
+      2026-07-04; follow-up fix: extract-step whyItMatters and the Evidence
+      Atom glossary entry had residual jargon, now reworded.)
 - [ ] `pnpm test:ui:bg` full suite green (copy assertions updated).
 - [ ] Dogfood in browser (per CLAUDE.md): load `/`, `/try` (run one demo),
       `/docs`, `/frameworks`, `/security`, `/dashboard` (first-run + populated),
