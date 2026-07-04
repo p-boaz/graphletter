@@ -40,6 +40,10 @@ export default function ResearchPage() {
               directions inform the system&apos;s development and represent areas where the approach
               is still evolving.
             </p>
+            <p className="ft-sans text-sm text-slate-500 leading-relaxed">
+              This page documents the open technical questions behind Graphletter — it&apos;s for
+              the technically curious. No technical background is needed anywhere else on the site.
+            </p>
           </div>
         </div>
       </section>

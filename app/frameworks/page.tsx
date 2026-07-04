@@ -86,9 +86,8 @@ export default function FrameworksPage() {
               Compliance Frameworks
             </h1>
             <p className="ft-sans text-slate-600 text-xl max-w-3xl mx-auto">
-              Graphletter normalizes compliance requirements through the Secure Controls Framework
-              (SCF 2026.1.1). Each framework below is mapped to SCF controls, enabling
-              cross-framework traceability from a single evidence base.
+              Upload evidence once. Graphletter maps it to every framework below through the Secure
+              Controls Framework, so a SOC 2 policy also counts toward ISO 27001, NIST, and more.
             </p>
             <div className="flex justify-center">
               <Badge variant="outline" className="ft-sans" data-testid="framework-results-count">
@@ -97,7 +96,7 @@ export default function FrameworksPage() {
                   ? "Loading..."
                   : hasActiveSearch
                     ? `${filteredFrameworks.length} of ${frameworks.length} Frameworks`
-                    : `${frameworks.length} Frameworks indexed`}
+                    : `${frameworks.length} frameworks covered`}
               </Badge>
             </div>
           </div>
@@ -246,7 +245,7 @@ export default function FrameworksPage() {
                     No frameworks available
                   </h3>
                   <p className="ft-sans text-slate-600 mt-2">
-                    Framework data needs to be imported. Please contact your administrator.
+                    Framework data isn't available right now. Please try again later.
                   </p>
                 </div>
               )}

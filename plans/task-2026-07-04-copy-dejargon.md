@@ -38,15 +38,15 @@ Commit 2 — docs/explainer layer: DONE
 - [x] `app/docs/page.tsx`
 - [x] `components/how-it-works/pipeline-diagram.tsx`
 
-Commit 3 — first impressions (marketing/meta):
+Commit 3 — first impressions (marketing/meta): DONE
 
-- [ ] `app/layout.tsx`
-- [ ] `app/page.tsx`
-- [ ] `app/frameworks/page.tsx`
-- [ ] `app/frameworks/[id]/page.tsx`
-- [ ] `lib/content/framework-descriptions.ts`
-- [ ] `app/security/page.tsx`
-- [ ] `app/research/page.tsx`
+- [x] `app/layout.tsx`
+- [x] `app/page.tsx`
+- [x] `app/frameworks/page.tsx`
+- [x] `app/frameworks/[id]/page.tsx`
+- [x] `lib/content/framework-descriptions.ts`
+- [x] `app/security/page.tsx`
+- [x] `app/research/page.tsx`
 
 Commit 4 — dead code and mock data:
 

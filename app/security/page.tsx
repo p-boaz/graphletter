@@ -9,19 +9,19 @@ export default function SecurityPage() {
         "All data encrypted in transit (TLS 1.3) and at rest (AES-256). Database connections use SSL.",
     },
     {
-      title: "Row-Level Security",
+      title: "Data Isolation",
       description:
-        "Multi-tenant data isolation enforced at the database layer via Supabase RLS policies. Users can only access their own data.",
+        "Your organization's data is isolated from every other tenant at the database layer (Postgres row-level security). Users can only access their own data.",
     },
     {
-      title: "Ephemeral Processing",
+      title: "Documents Aren't Retained",
       description:
-        "Uploaded documents are processed in serverless functions and not retained beyond the assessment lifecycle. AI providers receive only extracted text, not raw files.",
+        "Uploaded documents are processed in short-lived compute and not kept beyond the assessment. AI providers receive only extracted text, never your raw files.",
     },
     {
       title: "Authentication",
       description:
-        "Supabase OAuth (Google, GitHub) with session management. Server-side auth guards verify the user on every protected route handler and server component.",
+        "Sign in with Google or GitHub. Every protected page and API call re-verifies your identity on the server.",
     },
     {
       title: "Vulnerability Disclosure",
