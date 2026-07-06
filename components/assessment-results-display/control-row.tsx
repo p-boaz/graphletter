@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import type { KeyboardEvent } from "react";
+import { InlineHelp } from "@/components/inline-help";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -299,14 +300,8 @@ export function ControlRow({
             </div>
             <p className="mt-1">
               Each objective is a testable checkpoint for the control.{" "}
-              <Link href="/docs#assessment-objectives" className="underline underline-offset-4">
-                Learn objective basics
-              </Link>{" "}
-              and{" "}
-              <Link href="/docs#result-states" className="underline underline-offset-4">
-                result states
-              </Link>
-              .
+              <InlineHelp termId="assessment-objectives">Learn objective basics</InlineHelp> and{" "}
+              <InlineHelp termId="result-states">result states</InlineHelp>.
             </p>
           </div>
           <div className="space-y-3">
@@ -340,10 +335,7 @@ export function ControlRow({
                   </div>
                   <p className="mb-2 text-xs text-slate-600">
                     {getObjectiveResultGuidance(enrichedObjective.result)}{" "}
-                    <Link href="/docs#result-states" className="underline underline-offset-4">
-                      See scoring guide
-                    </Link>
-                    .
+                    <InlineHelp termId="result-states">See scoring guide</InlineHelp>.
                   </p>
                   {enrichedObjective.assessment_objective && (
                     <div className="mb-2">
@@ -442,7 +434,12 @@ export function ControlRow({
                   </ol>
                   <p className="mt-1 text-xs text-slate-500">
                     See{" "}
-                    <Link href="/docs#maturity-levels" className="underline">
+                    <Link
+                      href="/docs#maturity-levels"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline"
+                    >
                       How It Works
                     </Link>{" "}
                     for detail.

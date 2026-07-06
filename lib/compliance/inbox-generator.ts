@@ -166,8 +166,16 @@ export async function generateInbox(
 
   // 3. Missing controls + high leverage uploads from gap data
   if (gapResult) {
-    const missingControls = gapResult.gaps.filter((g) => g.status === "missing");
-    const partialControls = gapResult.gaps.filter((g) => g.status === "partial");
+    // Gap data can repeat a control (e.g. one row per mapped framework); item
+    // ids are keyed by control id, so keep only the first occurrence of each.
+    const seenControlIds = new Set<string>();
+    const uniqueGaps = gapResult.gaps.filter((g) => {
+      if (seenControlIds.has(g.scf_control_id)) return false;
+      seenControlIds.add(g.scf_control_id);
+      return true;
+    });
+    const missingControls = uniqueGaps.filter((g) => g.status === "missing");
+    const partialControls = uniqueGaps.filter((g) => g.status === "partial");
 
     // Resolve top ERL artifacts for missing controls
     if (missingControls.length > 0) {

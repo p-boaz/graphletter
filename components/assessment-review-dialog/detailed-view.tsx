@@ -1,7 +1,7 @@
 "use client";
 
 import { AlertCircle, Bot, CheckCircle2, CircleHelp, Database, Gauge } from "lucide-react";
-import Link from "next/link";
+import { InlineHelp } from "@/components/inline-help";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import type { AssessmentReviewResult } from "./types";
@@ -32,14 +32,8 @@ export function DetailedView({ result }: DetailedViewProps) {
         </div>
         <p className="mt-1">
           Use the{" "}
-          <Link href="/docs#assessment-objectives" className="underline underline-offset-4">
-            assessment objective explainer
-          </Link>{" "}
-          and{" "}
-          <Link href="/docs#result-states" className="underline underline-offset-4">
-            result-state guide
-          </Link>
-          .
+          <InlineHelp termId="assessment-objectives">assessment objective explainer</InlineHelp> and{" "}
+          <InlineHelp termId="result-states">result-state guide</InlineHelp>.
         </p>
       </div>
       <div className="space-y-6">
@@ -192,12 +186,9 @@ export function DetailedView({ result }: DetailedViewProps) {
                           </div>
                           <p className="text-xs text-slate-600">
                             {getObjectiveResultGuidance(objective.result)}{" "}
-                            <Link
-                              href="/docs#result-states"
-                              className="underline underline-offset-4"
-                            >
+                            <InlineHelp termId="result-states">
                               See what this status means
-                            </Link>
+                            </InlineHelp>
                             .
                           </p>
                           {objective.assessment_objective && (
