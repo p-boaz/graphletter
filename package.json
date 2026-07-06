@@ -5,6 +5,7 @@
   "scripts": {
     "build": "next build --webpack",
     "build:strict": "ENFORCE_TYPECHECK=1 next build --webpack",
+    "check:copy": "node scripts/check-copy-jargon.js",
     "check:spec": "node scripts/check-spec.js",
     "dev": "next dev",
     "lint": "eslint . --quiet",
