@@ -194,7 +194,9 @@ test("upload flow skips graph mapping when extracted content is not usable", asy
   assert_no_browser_failures(report);
 });
 
-test("upload dialog artifact mapping link navigates to docs anchor", async ({ page }, testInfo) => {
+test("upload dialog artifact mapping help opens in-place without navigation", async ({
+  page,
+}, testInfo) => {
   const observer = inspect_console_errors(page);
   let report = observer.getReport();
 
@@ -205,8 +207,15 @@ test("upload dialog artifact mapping link navigates to docs anchor", async ({ pa
     await page.getByTestId(selectors.upload.openSmartUploadButton).click();
     await expect(page.getByTestId(selectors.upload.dialog)).toBeVisible();
 
+    const urlBeforeHelp = page.url();
     await page.getByTestId(selectors.upload.artifactMappingLink).click();
-    await expect(page).toHaveURL(/\/docs#artifacts-and-controls$/);
+
+    // Explainer opens in place: popover content visible, no navigation, dialog intact.
+    const helpContent = page.getByTestId(`${selectors.upload.artifactMappingLink}-content`);
+    await expect(helpContent).toBeVisible();
+    await expect(helpContent).toContainText("Document type (ERL artifact)");
+    expect(page.url()).toBe(urlBeforeHelp);
+    await expect(page.getByTestId(selectors.upload.dialog)).toBeVisible();
   } finally {
     observer.stop();
     report = observer.getReport();

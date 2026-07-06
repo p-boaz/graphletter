@@ -1,8 +1,8 @@
 "use client";
 
 import { Brain, Check, ChevronsUpDown, FileUp } from "lucide-react";
-import Link from "next/link";
 import type { DropzoneState } from "react-dropzone";
+import { InlineHelp } from "@/components/inline-help";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -111,13 +111,9 @@ export function UploadForm({
           </div>
           <p className="text-xs text-slate-500">
             Not sure which artifact to choose?{" "}
-            <Link
-              href="/docs#artifacts-and-controls"
-              data-testid="artifact-mapping-link"
-              className="font-medium underline underline-offset-4 hover:text-slate-700"
-            >
+            <InlineHelp termId="artifacts-and-controls" testId="artifact-mapping-link">
               See how artifacts map to controls
-            </Link>
+            </InlineHelp>
             .
           </p>
           <Popover open={artifactComboboxOpen} onOpenChange={onArtifactComboboxOpenChange}>

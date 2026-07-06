@@ -127,11 +127,11 @@ export function AuthForm({
               </Button>
               <p className="pt-1 text-[11px] text-slate-500" data-testid="signup-terms">
                 By creating an account you agree to our{" "}
-                <a className="underline" href="/terms">
+                <a className="underline" href="/terms" target="_blank" rel="noopener noreferrer">
                   Terms
                 </a>{" "}
                 and{" "}
-                <a className="underline" href="/privacy">
+                <a className="underline" href="/privacy" target="_blank" rel="noopener noreferrer">
                   Privacy Policy
                 </a>
                 .
