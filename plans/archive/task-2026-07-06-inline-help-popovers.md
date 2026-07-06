@@ -4,7 +4,7 @@
 
 - Date: 2026-07-06
 - Owner: agent (Claude Code), approved by Peter
-- Status: Approved
+- Status: Done
 - Branch: fix/inline-help-popovers
 - Related issue/PR: TBD (PR on completion)
 
