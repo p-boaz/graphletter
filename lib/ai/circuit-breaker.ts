@@ -4,7 +4,6 @@ import type { supabaseAdmin as SupabaseAdminType } from "@/lib/database/supabase
 // Lazy import so the module can be loaded without Supabase env vars.
 // The supabaseAdmin client is only needed on the real (non-test) code path.
 function getSupabaseAdmin(): typeof SupabaseAdminType {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports -- lazy load avoids module-load crash with no env
   return (require("@/lib/database/supabase") as { supabaseAdmin: typeof SupabaseAdminType })
     .supabaseAdmin;
 }

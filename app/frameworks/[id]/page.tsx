@@ -130,7 +130,7 @@ export default async function FrameworkDetailPage({ params }: FrameworkDetailPag
               Associated Control Mappings
             </h2>
             <p className="ft-sans mt-2 text-slate-600">
-              Each mapping shows which SCF control satisfies this framework's requirement.
+              Each mapping shows which SCF control satisfies this framework&apos;s requirement.
             </p>
           </div>
 

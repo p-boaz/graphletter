@@ -243,7 +243,7 @@ export default async function DocsPage() {
             <div className="mt-8 mb-3">
               <h3 className="ft-serif text-lg font-bold text-ft-black">Related assessment terms</h3>
               <p className="ft-sans mt-1 text-sm text-slate-600">
-                Other vocabulary that shows up in Graphletter's assessment results.
+                Other vocabulary that shows up in Graphletter&apos;s assessment results.
               </p>
             </div>
             <div className="grid gap-5 md:grid-cols-2">
