@@ -245,7 +245,7 @@ export default function FrameworksPage() {
                     No frameworks available
                   </h3>
                   <p className="ft-sans text-slate-600 mt-2">
-                    Framework data isn't available right now. Please try again later.
+                    Framework data isn&apos;t available right now. Please try again later.
                   </p>
                 </div>
               )}

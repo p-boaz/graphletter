@@ -236,7 +236,7 @@ export default function HomePage() {
               <dd className="mt-2">
                 <p className="ft-serif text-lg font-bold text-ft-black">Self-hostable</p>
                 <p className="ft-sans mt-2 text-sm leading-relaxed text-slate-600">
-                  Run it on your own infrastructure if you'd rather keep evidence inside your
+                  Run it on your own infrastructure if you&apos;d rather keep evidence inside your
                   perimeter.
                 </p>
               </dd>
