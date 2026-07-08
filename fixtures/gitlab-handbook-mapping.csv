@@ -1,0 +1,46 @@
+source_path,documentation_artifact,erl_id,confidence,notes
+gitlab-handbook/GitLab Cryptography Standard.md,Cryptographic Protections,E-CRY-01,,GitLab public handbook: security/policies_and_standards/cryptographic-standard.md
+gitlab-handbook/GitLab Data Classification Standard.md,Data Classification Scheme,E-DCH-01,,GitLab public handbook: security/policies_and_standards/data-classification-standard.md
+gitlab-handbook/GitLab Password Standards.md,Authenticator Types,E-IAM-13,0.6,GitLab public handbook: security/policies_and_standards/password-standard.md; password rules govern authenticators
+gitlab-handbook/Physical Security Standard for Company Assets.md,Physical Security Operations,E-PES-05,0.6,GitLab public handbook: security/policies_and_standards/physical-security-standard-for-company-assets.md
+gitlab-handbook/Records Retention & Disposal.md,Data Retention Program,E-AST-11,,GitLab public handbook: security/policies_and_standards/records-retention-deletion.md
+gitlab-handbook/GitLab Security Logging Standards.md,System Events To Be Logged,E-AST-30,0.6,GitLab public handbook: security/policies_and_standards/security-logging-standard.md
+gitlab-handbook/Software Development Lifecycle Standard.md,Secure Development Lifecycle (SDLC),E-PRM-03,,GitLab public handbook: security/policies_and_standards/software-development-lifecycle-standard.md
+gitlab-handbook/GitLab Token Management Standard.md,Authenticator Types,E-IAM-13,0.5,GitLab public handbook: security/policies_and_standards/token-management-standard.md; access tokens as authenticators; alt Cryptographic Key Management
+gitlab-handbook/GitLab Projects Baseline Requirements.md,Secure Baseline Configurations - Major Applications,E-AST-16,0.5,GitLab public handbook: security/policies_and_standards/gitlab_projects_baseline_requirements.md
+gitlab-handbook/Controlled Document Procedure.md,Cybersecurity & Data Protection Policies & Standards Reviews,E-GOV-12,0.6,GitLab public handbook: security/controlled-document-procedure.md; governs policy/standard lifecycle
+gitlab-handbook/Unified Security Risk Management (USRM) Program.md,Risk Management Program (RMP),E-RSK-01,0.8,GitLab public handbook: security/security-observations-risk-management.md
+gitlab-handbook/Access Review Procedure.md,Access Permission Review,E-IAM-01,,GitLab public handbook: security/security-assurance/security-compliance/access-reviews.md
+gitlab-handbook/Security Third Party Risk Management.md,Third-Party Service Reviews,E-TPM-03,0.5,GitLab public handbook: security/security-assurance/security-risk/third-party-risk-management.md; alt SCRM Plan
+gitlab-handbook/Technical and Organizational Security Measures for GitLab Cloud Services.md,Cybersecurity & Data Protection Controls,E-GOV-10,0.5,GitLab public handbook: security/security-assurance/technical-and-organizational-measures.md; GDPR Art.32 TOMs
+gitlab-handbook/Observation Management Procedure.md,Plan of Actions & Milestones (POA&M) / Risk Register,E-RSK-03,0.5,GitLab public handbook: security/security-assurance/observation-management-procedure.md; findings tracked to closure
+gitlab-handbook/Business Impact Analysis.md,Business Impact Analysis (BIA),E-CHG-01,,GitLab public handbook: security/security-assurance/security-risk/storm-program/business-impact-analysis.md
+gitlab-handbook/Critical System Tiering Methodology.md,COOP Criticality Analysis,E-BCM-08,0.6,GitLab public handbook: security/security-assurance/security-risk/storm-program/critical-systems.md
+gitlab-handbook/Security Awareness Training Program.md,Recurring User Training,E-SAT-04,0.5,GitLab public handbook: security/security-assurance/governance/sec-awareness-training.md; alt Training Materials
+gitlab-handbook/Phishing Program.md,Practical Exercises,E-SAT-03,0.5,GitLab public handbook: security/security-assurance/governance/phishing.md; phishing simulations
+gitlab-handbook/GitLab FedRAMP Authorization Program.md,Authorization Documentation,E-DCH-08,0.6,GitLab public handbook: security/security-assurance/security-compliance/fedramp-compliance.md; ATO program
+gitlab-handbook/Gap Analysis Program.md,Control Assessments,E-CPL-07,0.6,GitLab public handbook: security/security-assurance/security-compliance/gap-analysis-program.md
+gitlab-handbook/PCI Internal Control Review Procedures.md,Internal Audit (IA),E-CPL-04,0.5,GitLab public handbook: security/security-assurance/security-compliance/pci-internal-control-review.md
+gitlab-handbook/FedRAMP Vulnerability Deviation Request Procedure.md,Exception Management,E-GOV-18,0.7,GitLab public handbook: security/security-assurance/security-compliance/poam-deviation-request-procedure.md
+gitlab-handbook/GCF Security Control Lifecycle.md,Cybersecurity & Data Protection Controls,E-GOV-10,0.6,GitLab public handbook: security/security-assurance/security-compliance/security-control-lifecycle.md
+gitlab-handbook/Automated Evidence Collection and Control Testing.md,Control Assessments,E-CPL-07,0.5,GitLab public handbook: security/security-assurance/security-compliance/automated-control-testing.md; continuous control monitoring
+gitlab-handbook/SOX CUEC Mapping Procedure.md,Shared Responsibility Matrix (SRM) / Controls Responsibility Matrix (CRM),E-CPL-03,0.6,GitLab public handbook: security/security-assurance/security-risk/sox_cuec_mapping_procedure.md; complementary user entity controls
+gitlab-handbook/Technical Security Validation.md,Vulnerability Assessments,E-VPM-05,0.4,GitLab public handbook: security/security-assurance/technical-security-validation.md; hard case
+gitlab-handbook/Security Incident Response Guide.md,Incident Response Plan (IRP),E-IRO-01,,GitLab public handbook: security/security-operations/sirt/sec-incident-response.md
+gitlab-handbook/Security Incident Communications Plan.md,Incident Reporting Capability,E-IRO-11,0.5,GitLab public handbook: security/security-operations/sirt/security-incident-communication-plan.md
+gitlab-handbook/Security Incident Severity Matrix.md,Incident Tracking,E-IRO-03,0.4,GitLab public handbook: security/security-operations/sirt/severity-matrix.md; hard case; severity classification within IR
+gitlab-handbook/Engaging the Security Engineer On-Call.md,Incident Reporting Capability,E-IRO-11,0.5,GitLab public handbook: security/security-operations/sirt/engaging-security-on-call.md
+gitlab-handbook/Red Team Rules of Engagement.md,Red Team Testing,E-VPM-04,0.8,GitLab public handbook: security/security-operations/red-team/how-we-operate/rules-of-engagement.md
+gitlab-handbook/Critical Logging Tiering Methodology.md,System Events To Be Logged,E-AST-30,0.5,GitLab public handbook: security/security-operations/security-logging/critical-logging-methodology.md
+gitlab-handbook/Security Operations On-Call Guide.md,Security Operations Center (SOC),E-OPS-01,0.5,GitLab public handbook: security/security-operations/secops-oncall.md
+gitlab-handbook/Vulnerability Management.md,Vulnerability & Patch Management Program (VPMP),E-VPM-01,0.7,GitLab public handbook: security/product-security/vulnerability-management/_index.md
+gitlab-handbook/Encryption Policy.md,Cryptographic Protections,E-CRY-01,0.7,GitLab public handbook: security/product-security/vulnerability-management/encryption-policy.md
+gitlab-handbook/Vulnerability Resolution SLAs.md,Flaw Remediation Actions,E-VPM-09,0.4,GitLab public handbook: security/product-security/vulnerability-management/sla.md; hard case; alt Service Level Agreements (SLAs)
+gitlab-handbook/Infrastructure Vulnerability Management Procedure.md,Vulnerability Assessments,E-VPM-05,0.4,GitLab public handbook: security/product-security/vulnerability-management/infrastructure-vulnerability-procedure.md
+gitlab-handbook/Security Review Framework.md,Evidence of Cybersecurity / Data Privacy Reviews,E-CHG-04,0.5,GitLab public handbook: security/product-security/security-review-framework.md
+gitlab-handbook/Threat Modeling.md,Threat Analysis,E-THR-07,0.7,GitLab public handbook: security/product-security/.../application-security/threat-modeling/_index.md
+gitlab-handbook/Product Security Incident Response Team (PSIRT).md,Vulnerability Disclosure Program (VDP),E-TDA-16,0.5,GitLab public handbook: security/product-security/psirt/_index.md
+gitlab-handbook/Supply Chain Risk Management Strategy.md,Supply Chain Risk Management (SCRM) Plan,E-RSK-02,0.8,GitLab public handbook: security/product-security/supply-chain-risk-management/_index.md
+gitlab-handbook/Zero Trust.md,Zero Trust Architecture (ZTA),E-NET-05,0.9,GitLab public handbook: security/product-security/.../security-architecture/zero-trust.md
+gitlab-handbook/Application Vulnerability Management Procedure.md,Application Security Testing (AST),E-TDA-03,0.4,GitLab public handbook: security/product-security/.../application-security/vulnerability-management.md; hard case
+gitlab-handbook/GitLab Internal Acceptable Use Policy.md,Rules of Behavior,E-HRS-22,,GitLab public handbook: people-group/acceptable-use-policy.md

@@ -39,3 +39,30 @@ pnpm eval:artifact-classifier
 
 That default mode loads the artifact catalog from Supabase and is useful when
 the fixture set expands beyond deterministic classifier rules.
+
+## GitLab Public-Handbook Benchmark (local, non-CI)
+
+`fixtures/gitlab-handbook-mapping.csv` is a 45-row real-world benchmark built
+2026-07-08 from GitLab's public handbook (see `fixtures/README.md` for
+provenance). It replaces the lost InterVenn validation set as the "real
+corpus" measurement axis. It requires the live Supabase catalog and AI
+credentials, so it is local-only:
+
+```sh
+pnpm eval:artifact-classifier ./fixtures/gitlab-handbook-mapping.csv
+```
+
+| Metric        | 2026-07-08 baseline |
+| ------------- | ------------------- |
+| Rows          | 45                  |
+| Exact matches | 28                  |
+| Wrong picks   | 15                  |
+| No prediction | 2                   |
+| Accuracy      | 62.2%               |
+| Floor         | 45% (default)       |
+
+An earlier same-day run scored 60.0% (27/45) — expect run-to-run variance of
+a few rows from model nondeterminism. Prior InterVenn empirical baseline was
+~52%. Misses are dominated by judgment-call disagreements (e.g.
+`Authenticator Types` vs `System Authenticator Types`); roughly a third of
+misses match the documented alternative label in the row's `notes`.
