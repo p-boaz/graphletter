@@ -7,13 +7,10 @@ import { config as loadDotenv } from "dotenv";
 import { z } from "zod";
 import {
   ASSESSMENT_CONTRACT_VERSION,
+  EvidenceSpanSchema,
   buildAssessmentPromptCacheKey,
   verifiedEvidenceSpans,
 } from "@/lib/ai/assess-evidence/contract";
-import {
-  buildCandidateEvidenceSpans,
-  candidateSpanPrompt,
-} from "@/lib/ai/assess-evidence/objective-assessment";
 import type { AssessmentObjective, MaturityLevels } from "@/lib/ai/assess-evidence/types";
 import { buildEvidenceText } from "@/lib/ai/assess-evidence/utils";
 import { getModel } from "@/lib/ai-client";
@@ -60,14 +57,7 @@ const ContractObjectiveSchema = z.object({
   result: z.enum(["pass", "fail", "partial", "not_applicable"]),
   confidence: z.number().min(0).max(1),
   reasoning: z.string(),
-  evidence_quotes: z
-    .array(
-      z.object({
-        candidate_id: z.string(),
-        supports: z.string().default(""),
-      })
-    )
-    .default([]),
+  evidence_quotes: z.array(EvidenceSpanSchema).default([]),
 });
 
 const MaturitySchema = z.object({
@@ -112,7 +102,7 @@ function parseCsvLine(line: string): string[] {
 
 async function readProbeRows(): Promise<ProbeRow[]> {
   const csv = await readFile(
-    join(process.cwd(), "fixtures", "gitlab-handbook-mapping.csv"),
+    join(process.cwd(), "fixtures", "assessment-probe-manifest.csv"),
     "utf8"
   );
   const [headerLine, ...lines] = csv.trim().split(/\r?\n/);
@@ -231,84 +221,57 @@ async function runContractObjective(input: {
   const system =
     "You are a compliance assessment expert. Assess SCF objectives against the supplied evidence and return structured JSON. Use only the supplied document and visual evidence. Evidence quote offsets must exactly match DOCUMENT TEXT character offsets. Do not provide analysis outside the JSON object.";
   const evidenceText = buildEvidenceText(input.document, null);
-  const assessments = [];
-  let usage = { inputTokens: 0, cachedInputTokens: 0, outputTokens: 0, totalTokens: 0 };
   const startedAt = Date.now();
+  const promptCacheKey = buildAssessmentPromptCacheKey({
+    evidenceContentHash: input.evidenceContentHash,
+  });
 
-  for (const objective of input.objectives) {
-    const candidateSpans = buildCandidateEvidenceSpans(
-      input.document,
-      input.controlTitle,
-      input.controlDescription,
-      [objective]
-    );
-    const candidatesById = new Map(candidateSpans.map((span) => [span.id, span]));
-    const prompt = `${evidenceText}
+  const prompt = `${evidenceText}
 
 Control: ${input.controlTitle}
 Description: ${input.controlDescription}
 
-Objective ${objective.scf_ao_id} (ID: ${objective.id})
+Assessment Objectives:
+${input.objectives
+  .map(
+    (objective, index) => `${index + 1}. ${objective.scf_ao_id} (ID: ${objective.id})
 assessment_objective: ${objective.assessment_objective}
 assessment_procedure: ${objective.assessment_procedure || "[not supplied]"}
-expected_results: ${objective.expected_results || "[not supplied]"}
+expected_results: ${objective.expected_results || "[not supplied]"}`
+  )
+  .join("\n")}
 
-Candidate Evidence Spans:
-${candidateSpanPrompt(candidateSpans)}
-
-Determine result, confidence, one concise reasoning sentence, and 1-2 supporting candidate span references for pass or partial results. Each evidence_quotes item must include candidate_id and supports. Use an empty evidence_quotes array only for fail or not_applicable.
+For each objective, determine result, confidence, one concise reasoning sentence, and 1-2 supporting quotes for pass or partial results. Each evidence_quotes item must include start, end, text, and supports. Use an empty evidence_quotes array only for fail or not_applicable.
 
 Scoping rule: use not_applicable only when this artifact class could never evidence the objective. Use fail when this artifact class should evidence the objective but this document does not.
 
-Use the full document as the source of truth. Candidate spans are offset-verified helpers; cite their candidate_id instead of calculating offsets.`;
+Use the full document as the source of truth. Return a JSON object with an "assessments" array containing one assessment per objective.`;
 
-    const response = await generateObject({
-      model: getModel(
-        COMPLIANCE_AI_CONFIG.controlMapping.provider,
-        COMPLIANCE_AI_CONFIG.controlMapping.model
-      ),
-      maxOutputTokens: 6_000,
-      schema: ContractObjectiveSchema,
-      system,
-      prompt,
-      ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
-        reasoningEffort: "medium",
-        textVerbosity: "medium",
-        promptCacheKey: buildAssessmentPromptCacheKey({
-          evidenceContentHash: input.evidenceContentHash,
-          scfControlId: input.controlId,
-          role: "objectiveAssessor",
-          systemPrompt: system,
-        }),
-        promptCacheRetention: "24h",
-      }),
-    });
-
-    usage = addUsage(usage, usageFrom(response));
-    const evidenceQuotes = response.object.evidence_quotes.flatMap((quote) => {
-      const candidate = candidatesById.get(quote.candidate_id);
-      if (!candidate) return [];
-      return [
-        {
-          start: candidate.start,
-          end: candidate.end,
-          text: candidate.text,
-          supports: quote.supports,
-        },
-      ];
-    });
-    assessments.push({
-      objective_id: response.object.objective_id,
-      result: response.object.result,
-      confidence: response.object.confidence,
-      reasoning: response.object.reasoning,
-      evidence_quotes: verifiedEvidenceSpans(input.document, evidenceQuotes),
-    });
-  }
+  const response = await generateObject({
+    model: getModel(
+      COMPLIANCE_AI_CONFIG.controlMapping.provider,
+      COMPLIANCE_AI_CONFIG.controlMapping.model
+    ),
+    maxOutputTokens: 6_000,
+    schema: z.object({ assessments: z.array(ContractObjectiveSchema) }),
+    system,
+    prompt,
+    ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
+      reasoningEffort: "medium",
+      textVerbosity: "medium",
+      promptCacheKey,
+      promptCacheRetention: "24h",
+    }),
+  });
 
   return {
-    object: { assessments },
-    usage,
+    object: {
+      assessments: response.object.assessments.map((assessment) => ({
+        ...assessment,
+        evidence_quotes: verifiedEvidenceSpans(input.document, assessment.evidence_quotes),
+      })),
+    },
+    usage: usageFrom(response),
     latencyMs: Date.now() - startedAt,
   };
 }
@@ -378,9 +341,6 @@ Return JSON with assessed_level, confidence, rationale, recommended_actions, ref
         : {
             promptCacheKey: buildAssessmentPromptCacheKey({
               evidenceContentHash: input.evidenceContentHash,
-              scfControlId: input.controlId,
-              role: "maturityAssessor",
-              systemPrompt: system,
             }),
             promptCacheRetention: "24h" as const,
           }),
@@ -428,13 +388,6 @@ async function runVerifier(input: {
   objectiveResults: unknown;
 }) {
   const startedAt = Date.now();
-  const candidateSpans = buildCandidateEvidenceSpans(
-    input.document,
-    input.controlTitle,
-    input.controlDescription,
-    input.objectives
-  );
-  const candidatesById = new Map(candidateSpans.map((span) => [span.id, span]));
   const response = await generateObject({
     model: getModel(
       COMPLIANCE_AI_CONFIG.controlMapping.provider,
@@ -443,7 +396,7 @@ async function runVerifier(input: {
     maxOutputTokens: 6_000,
     schema: VerifierSchema,
     system:
-      "You are an adversarial compliance verifier. Preserve dissent when the assessment overclaims or misses material evidence. Cite candidate span IDs instead of calculating offsets.",
+      "You are an adversarial compliance verifier. Preserve dissent when the assessment overclaims or misses material evidence. Return missing or conflicting evidence as direct document offsets.",
     prompt: `DOCUMENT TEXT (character offsets start at 0):
 ${input.document}
 
@@ -452,10 +405,7 @@ Control ${input.controlId}: ${input.controlTitle}
 ASSESSMENT TO VERIFY:
 ${JSON.stringify(input.objectiveResults, null, 2)}
 
-Candidate Evidence Spans:
-${candidateSpanPrompt(candidateSpans)}
-
-Return whether the assessment is confirmed or dissent is required. Cite missing_or_conflicting_evidence_ids from candidate spans when dissent depends on specific document evidence.`,
+Return whether the assessment is confirmed or dissent is required.`,
     ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
       reasoningEffort: "medium",
       textVerbosity: "medium",
@@ -467,29 +417,11 @@ Return whether the assessment is confirmed or dissent is required. Cite missing_
     ),
   });
 
-  const missingOrConflictingEvidence = response.object.missing_or_conflicting_evidence_ids.flatMap(
-    (candidateId) => {
-      const candidate = candidatesById.get(candidateId);
-      if (!candidate) return [];
-      return [
-        {
-          start: candidate.start,
-          end: candidate.end,
-          text: candidate.text,
-          supports: "Verifier cited this candidate span as missing or conflicting evidence.",
-        },
-      ];
-    }
-  );
-
   return {
     object: {
       verdict: response.object.verdict,
       rationale: response.object.rationale,
-      missing_or_conflicting_evidence: verifiedEvidenceSpans(
-        input.document,
-        missingOrConflictingEvidence
-      ),
+      missing_or_conflicting_evidence: [],
     },
     usage: usageFrom(response),
     latencyMs: Date.now() - startedAt,

@@ -54,7 +54,9 @@ const LOG_CONTEXT = {
 // ---------------------------------------------------------------------------
 
 test("assessAgainstObjectives: happy path returns ObjectiveAssessmentResult[] with correct shape", async () => {
-  const cannedObjectiveOne = {
+  const document =
+    "Evidence content: access control policy v2.1\nSystem owners enforce access control.";
+  const cannedObjectives = {
     assessments: [
       {
         objective_id: "obj-1",
@@ -63,15 +65,13 @@ test("assessAgainstObjectives: happy path returns ObjectiveAssessmentResult[] wi
         reasoning: "Policy document clearly present",
         evidence_quotes: [
           {
-            candidate_id: "E1",
+            start: 0,
+            end: 44,
+            text: "Evidence content: access control policy v2.1",
             supports: "Shows a written access control policy exists",
           },
         ],
       },
-    ],
-  };
-  const cannedObjectiveTwo = {
-    assessments: [
       {
         objective_id: "obj-2",
         result: "fail",
@@ -83,10 +83,11 @@ test("assessAgainstObjectives: happy path returns ObjectiveAssessmentResult[] wi
   };
 
   setCircuitBreakerOverrideForTesting({ allowed: true });
-  installMockModel(mockObjectModel([cannedObjectiveOne, cannedObjectiveTwo]));
+  const model = mockObjectModel([cannedObjectives]);
+  installMockModel(model);
   try {
     const results = await assessAgainstObjectives(
-      "Evidence content: access control policy v2.1",
+      document,
       null, // no image
       OBJECTIVES,
       "Access Control",
@@ -95,6 +96,9 @@ test("assessAgainstObjectives: happy path returns ObjectiveAssessmentResult[] wi
     );
 
     assert.equal(results.length, 2, "one result per objective");
+    assert.equal(model.doGenerateCalls.length, 1, "all objectives are assessed in one call");
+    const prompt = JSON.stringify(model.doGenerateCalls[0]);
+    assert.equal(prompt.includes("Candidate Evidence Spans"), false);
 
     assert.equal(results[0].objective_id, "obj-1");
     assert.equal(results[0].result, "pass");

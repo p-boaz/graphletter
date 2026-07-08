@@ -180,6 +180,10 @@ import {
   buildEvidenceText,
   createControlRunKey,
 } from "@/lib/ai/assess-evidence/utils";
+import {
+  buildAssessmentPromptCacheKey,
+  verifiedEvidenceSpans,
+} from "@/lib/ai/assess-evidence/contract";
 
 test("withTimeout: resolves when promise settles before the deadline", async () => {
   const result = await withTimeout(Promise.resolve(42), 5_000, "should not fire");
@@ -252,4 +256,46 @@ test("createControlRunKey: produces a 64-char hex string deterministically", () 
   assert.equal(key1.length, 64); // sha256 hex
   assert.equal(key1, key2, "same inputs → same key");
   assert.notEqual(key1, key3, "different hash → different key");
+});
+
+test("createControlRunKey: separates contract and legacy evidence modes", () => {
+  const originalMode = process.env.ASSESSMENT_EVIDENCE_TRUNCATION_MODE;
+  delete process.env.ASSESSMENT_EVIDENCE_TRUNCATION_MODE;
+  const contractKey = createControlRunKey("ev-1", "SCF-AC-1", "hash-a");
+  process.env.ASSESSMENT_EVIDENCE_TRUNCATION_MODE = "legacy";
+  const legacyKey = createControlRunKey("ev-1", "SCF-AC-1", "hash-a");
+  if (originalMode == null) {
+    delete process.env.ASSESSMENT_EVIDENCE_TRUNCATION_MODE;
+  } else {
+    process.env.ASSESSMENT_EVIDENCE_TRUNCATION_MODE = originalMode;
+  }
+  assert.notEqual(contractKey, legacyKey);
+});
+
+test("buildAssessmentPromptCacheKey: shares cache across sibling controls and roles", () => {
+  const key1 = buildAssessmentPromptCacheKey({ evidenceContentHash: "hash-a" });
+  const key2 = buildAssessmentPromptCacheKey({ evidenceContentHash: "hash-a" });
+  const key3 = buildAssessmentPromptCacheKey({ evidenceContentHash: "hash-b" });
+  assert.equal(key1, key2);
+  assert.notEqual(key1, key3);
+});
+
+test("verifiedEvidenceSpans: relocates whitespace-only offset drift to exact canonical slice", () => {
+  const document = "First line\nSecond line\nThird line";
+  const spans = verifiedEvidenceSpans(document, [
+    {
+      start: 0,
+      end: 29,
+      text: "First line Second line",
+      supports: "CRLF-normalized quote",
+    },
+  ]);
+  assert.deepEqual(spans, [
+    {
+      start: 0,
+      end: 22,
+      text: "First line\nSecond line",
+      supports: "CRLF-normalized quote",
+    },
+  ]);
 });

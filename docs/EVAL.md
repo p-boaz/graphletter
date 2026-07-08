@@ -9,7 +9,7 @@ AI control assessments now use `assessment-evidence.v1` for full-document
 context, offset-verified objective evidence spans, prompt-cache metadata, and
 contract-versioned result reuse. The ADR-001 probe harness is
 `scripts/eval-assessment-probe.ts`; it writes JSONL plus a side-by-side review
-sheet under `scripts/out/`.
+sheet under `scripts/out/` and reads `fixtures/assessment-probe-manifest.csv`.
 
 ## Artifact Classifier
 
