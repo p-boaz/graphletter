@@ -54,6 +54,14 @@ test("upload flow runs end-to-end and posts expected graph payloads", async ({
       .filter({ hasText: "Assessment Review Required" });
     await expect(reviewDialog).toBeVisible();
 
+    await reviewDialog.getByRole("button", { name: "View Detailed Results" }).click();
+    const detailDialog = page.locator('[role="dialog"]').filter({ hasText: "Assessment Details" });
+    await expect(detailDialog.getByText("Verified Evidence")).toBeVisible();
+    await expect(detailDialog.getByText('"Access control policy"')).toBeVisible();
+    await expect(detailDialog.getByText("Offsets 0-21")).toBeVisible();
+    await expect(detailDialog.getByText("Documents the access control policy.")).toBeVisible();
+    await detailDialog.getByRole("button", { name: "Back to summary" }).click();
+
     await reviewDialog.getByTestId(selectors.upload.approveAssessmentButton).click();
     await expect(reviewDialog).toBeHidden();
     await expect(smartUploadDialog.getByText("Evidence Uploaded Successfully!")).toBeVisible();
