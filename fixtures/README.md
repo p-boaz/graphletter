@@ -20,3 +20,15 @@ The current published score and CI threshold are tracked in
 | `notes`                  | Free-text, optional. Reviewer commentary or edge-case justification.                                                         |
 
 The shipped row is empty (header only) — populate with synthetic examples mirroring the prefix conventions in `classify.ts` to evaluate locally.
+
+## `gitlab-handbook-mapping.csv`
+
+A 45-row real-world benchmark built from [GitLab's public handbook](https://gitlab.com/gitlab-com/content-sites/handbook) (security policies, standards, and procedures — public by design, no customer or confidential data). Filenames are the handbook pages' frontmatter titles; `notes` records each source path. Ground-truth labels were validated against the live SCF evidence-request-list catalog; judgment-call rows carry a `confidence` float and an alternative label in `notes`.
+
+Not used by CI (CI stays hermetic on `classifier-mapping.csv`). Run it locally against the live catalog:
+
+```sh
+pnpm eval:artifact-classifier ./fixtures/gitlab-handbook-mapping.csv
+```
+
+Baseline and history live in [`docs/EVAL.md`](../docs/EVAL.md).
