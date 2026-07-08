@@ -9,8 +9,9 @@ import {
   ASSESSMENT_CONTRACT_VERSION,
   EvidenceSpanSchema,
   buildAssessmentPromptCacheKey,
-  verifiedEvidenceSpans,
 } from "@/lib/ai/assess-evidence/contract";
+import { assessMaturityLevel } from "@/lib/ai/assess-evidence/maturity-assessment";
+import { assessAgainstObjectives } from "@/lib/ai/assess-evidence/objective-assessment";
 import type { AssessmentObjective, MaturityLevels } from "@/lib/ai/assess-evidence/types";
 import { buildEvidenceText } from "@/lib/ai/assess-evidence/utils";
 import { getModel } from "@/lib/ai-client";
@@ -50,14 +51,6 @@ const LegacyObjectiveSchema = z.object({
       reasoning: z.string(),
     })
   ),
-});
-
-const ContractObjectiveSchema = z.object({
-  objective_id: z.string(),
-  result: z.enum(["pass", "fail", "partial", "not_applicable"]),
-  confidence: z.number().min(0).max(1),
-  reasoning: z.string(),
-  evidence_quotes: z.array(EvidenceSpanSchema).default([]),
 });
 
 const MaturitySchema = z.object({
@@ -210,6 +203,44 @@ For each objective, determine result, confidence, and brief reasoning.`;
   };
 }
 
+// The contract_v1 cell MUST exercise the production functions — a probe that
+// reimplements the AI call proves nothing about the shipped pipeline (and the
+// 2026-07-08 medium-effort starvation bug hid here precisely because the probe
+// and production had drifted).
+const PROBE_EVIDENCE_ID = "00000000-0000-0000-0000-000000000000";
+const ASSESSMENT_LOG_PATH = join(process.cwd(), ".logs/ai-assessment/assessment-logs.jsonl");
+
+async function usageFromAssessmentLog(requestId: string, call: string) {
+  const zero = { inputTokens: 0, cachedInputTokens: 0, outputTokens: 0, totalTokens: 0 };
+  try {
+    const raw = await readFile(ASSESSMENT_LOG_PATH, "utf-8");
+    const lines = raw.trim().split("\n");
+    for (let i = lines.length - 1; i >= 0; i -= 1) {
+      let entry: {
+        requestId?: string;
+        metadata?: { call?: string };
+        response?: { usage?: Record<string, number | undefined> };
+      };
+      try {
+        entry = JSON.parse(lines[i]);
+      } catch {
+        continue;
+      }
+      if (entry.requestId !== requestId || entry.metadata?.call !== call) continue;
+      const usage = entry.response?.usage ?? {};
+      return {
+        inputTokens: usage.inputTokens ?? 0,
+        cachedInputTokens: usage.cachedInputTokens ?? 0,
+        outputTokens: usage.outputTokens ?? 0,
+        totalTokens: usage.totalTokens ?? 0,
+      };
+    }
+  } catch {
+    // fall through to zero usage — latency/verdict gates still apply
+  }
+  return zero;
+}
+
 async function runContractObjective(input: {
   document: string;
   evidenceContentHash: string;
@@ -218,60 +249,26 @@ async function runContractObjective(input: {
   controlTitle: string;
   controlDescription: string;
 }) {
-  const system =
-    "You are a compliance assessment expert. Assess SCF objectives against the supplied evidence and return structured JSON. Use only the supplied document and visual evidence. Evidence quote offsets must exactly match DOCUMENT TEXT character offsets. Do not provide analysis outside the JSON object.";
-  const evidenceText = buildEvidenceText(input.document, null);
+  const requestId = `probe-objectives-${input.controlId}-${Date.now()}`;
   const startedAt = Date.now();
-  const promptCacheKey = buildAssessmentPromptCacheKey({
-    evidenceContentHash: input.evidenceContentHash,
-  });
-
-  const prompt = `${evidenceText}
-
-Control: ${input.controlTitle}
-Description: ${input.controlDescription}
-
-Assessment Objectives:
-${input.objectives
-  .map(
-    (objective, index) => `${index + 1}. ${objective.scf_ao_id} (ID: ${objective.id})
-assessment_objective: ${objective.assessment_objective}
-assessment_procedure: ${objective.assessment_procedure || "[not supplied]"}
-expected_results: ${objective.expected_results || "[not supplied]"}`
-  )
-  .join("\n")}
-
-For each objective, determine result, confidence, one concise reasoning sentence, and 1-2 supporting quotes for pass or partial results. Each evidence_quotes item must include start, end, text, and supports. Use an empty evidence_quotes array only for fail or not_applicable.
-
-Scoping rule: use not_applicable only when this artifact class could never evidence the objective. Use fail when this artifact class should evidence the objective but this document does not.
-
-Use the full document as the source of truth. Return a JSON object with an "assessments" array containing one assessment per objective.`;
-
-  const response = await generateObject({
-    model: getModel(
-      COMPLIANCE_AI_CONFIG.controlMapping.provider,
-      COMPLIANCE_AI_CONFIG.controlMapping.model
-    ),
-    maxOutputTokens: 6_000,
-    schema: z.object({ assessments: z.array(ContractObjectiveSchema) }),
-    system,
-    prompt,
-    ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
-      reasoningEffort: "medium",
-      textVerbosity: "medium",
-      promptCacheKey,
-      promptCacheRetention: "24h",
-    }),
-  });
-
+  const assessments = await assessAgainstObjectives(
+    input.document,
+    null,
+    input.objectives,
+    input.controlTitle,
+    input.controlDescription,
+    {
+      requestId,
+      sessionId: "assessment-probe",
+      evidenceId: PROBE_EVIDENCE_ID,
+      evidenceContentHash: input.evidenceContentHash,
+      scfControlId: input.controlId,
+      objectiveIds: input.objectives.map((objective) => objective.id),
+    }
+  );
   return {
-    object: {
-      assessments: response.object.assessments.map((assessment) => ({
-        ...assessment,
-        evidence_quotes: verifiedEvidenceSpans(input.document, assessment.evidence_quotes),
-      })),
-    },
-    usage: usageFrom(response),
+    object: { assessments },
+    usage: await usageFromAssessmentLog(requestId, "assessAgainstObjectives"),
     latencyMs: Date.now() - startedAt,
   };
 }
@@ -286,6 +283,33 @@ async function runMaturity(input: {
   targetLevel: number | null;
   legacy: boolean;
 }) {
+  if (!input.legacy) {
+    // contract_v1 maturity goes through the production function, same rationale
+    // as runContractObjective.
+    const requestId = `probe-maturity-${input.controlId}-${Date.now()}`;
+    const startedAt = Date.now();
+    const result = await assessMaturityLevel(
+      input.document,
+      null,
+      input.controlId,
+      input.controlTitle,
+      input.controlDescription,
+      input.maturityLevels,
+      input.targetLevel,
+      {
+        requestId,
+        sessionId: "assessment-probe",
+        evidenceId: PROBE_EVIDENCE_ID,
+        evidenceContentHash: input.evidenceContentHash,
+        scfControlId: input.controlId,
+      }
+    );
+    return {
+      object: (result ?? null) as Record<string, unknown> | null,
+      usage: await usageFromAssessmentLog(requestId, "assessMaturityLevel"),
+      latencyMs: Date.now() - startedAt,
+    };
+  }
   const levelEntries = [
     { level: 0, description: input.maturityLevels.level_0_description },
     { level: 1, description: input.maturityLevels.level_1_description },
@@ -393,7 +417,9 @@ async function runVerifier(input: {
       COMPLIANCE_AI_CONFIG.controlMapping.provider,
       COMPLIANCE_AI_CONFIG.controlMapping.model
     ),
-    maxOutputTokens: 6_000,
+    // "medium" reasoning starves at small output budgets on gpt-5.4 (same
+    // failure as the production cells, measured 2026-07-08) — keep low/16k.
+    maxOutputTokens: 16_000,
     schema: VerifierSchema,
     system:
       "You are an adversarial compliance verifier. Preserve dissent when the assessment overclaims or misses material evidence. Return missing or conflicting evidence as direct document offsets.",
@@ -407,8 +433,8 @@ ${JSON.stringify(input.objectiveResults, null, 2)}
 
 Return whether the assessment is confirmed or dissent is required.`,
     ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
-      reasoningEffort: "medium",
-      textVerbosity: "medium",
+      reasoningEffort: "low",
+      textVerbosity: "low",
     }),
     ...getTemperatureSettings(
       COMPLIANCE_AI_CONFIG.controlMapping.provider,

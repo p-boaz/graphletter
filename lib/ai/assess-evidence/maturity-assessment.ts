@@ -111,7 +111,9 @@ ${
       schema: maturitySchema,
       system: systemPrompt,
       ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
-        reasoningEffort: legacyMode ? "low" : "medium",
+        // Same measured-and-rejected verdict as objective-assessment (2026-07-08):
+        // "medium" reasoning starves/overshoots the latency envelope on gpt-5.4.
+        reasoningEffort: "low",
         textVerbosity: legacyMode ? "low" : "medium",
         ...(promptCacheKey
           ? {

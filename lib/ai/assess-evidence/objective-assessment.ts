@@ -82,7 +82,10 @@ Use the full document as the source of truth. Return a JSON object with an "asse
     const aiCallStartedAt = Date.now();
     const generateObjectParams: Record<string, unknown> = {
       model: getAssessmentModel(),
-      maxOutputTokens: 6_000,
+      // Quote-bearing assessments emit ~11k output tokens (incl. ~10k reasoning)
+      // for an 8-objective control at reasoningEffort "low" (measured 2026-07-08).
+      // 6k starved the response and surfaced as AI_NoObjectGeneratedError.
+      maxOutputTokens: 16_000,
       schema: z.object({
         assessments: z.array(
           legacyMode
@@ -103,7 +106,10 @@ Use the full document as the source of truth. Return a JSON object with an "asse
       }),
       system: systemPrompt,
       ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
-        reasoningEffort: legacyMode ? "low" : "medium",
+        // "medium" is measured-and-rejected for contract_v1 (2026-07-08): it needs
+        // ~23k reasoning tokens (empty response below that budget) and 165s wall
+        // clock vs the 90s control timeout. ADR-001 bundled-fix #3 delta: measured.
+        reasoningEffort: "low",
         textVerbosity: legacyMode ? "low" : "medium",
         ...(promptCacheKey
           ? {
