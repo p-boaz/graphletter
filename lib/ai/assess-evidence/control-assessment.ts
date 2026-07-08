@@ -3,7 +3,7 @@ import { validateObjectiveAssessmentQuality } from "@/lib/ai/assessment-quality"
 import { COMPLIANCE_AI_CONFIG } from "@/lib/ai-config";
 import { createLogger } from "@/lib/logger";
 import { createBasicAssessment } from "./basic-assessment";
-import { assessmentContractMetadata } from "./contract";
+import { assessmentContractMetadata, assessmentTruncationKillSwitchEnabled } from "./contract";
 import { assessMaturityLevel } from "./maturity-assessment";
 import { assessAgainstObjectives } from "./objective-assessment";
 import type {
@@ -239,8 +239,8 @@ export async function runControlAssessment(
       return basicAssessment;
     }
 
-    // Run full objective-based assessment
-    const objectiveResults = await assessAgainstObjectives(
+    const legacyMode = assessmentTruncationKillSwitchEnabled();
+    const objectiveAssessmentPromise = assessAgainstObjectives(
       fileContent,
       imageData,
       objectives,
@@ -251,13 +251,8 @@ export async function runControlAssessment(
         objectiveIds: objectives.map((objective: AssessmentObjective) => objective.id),
       }
     );
-    const qualityCheck = validateObjectiveAssessmentQuality(objectiveResults, objectives.length);
-    if (!qualityCheck.isValid) {
-      throw new Error(`Quality gate failed for control ${scfControlId}: ${qualityCheck.reason}`);
-    }
-
-    const maturityAssessment: MaturityAssessmentResult | null = maturityLevels
-      ? await assessMaturityLevel(
+    const maturityAssessmentPromise: Promise<MaturityAssessmentResult | null> = maturityLevels
+      ? assessMaturityLevel(
           fileContent,
           imageData,
           scfControlId,
@@ -269,7 +264,19 @@ export async function runControlAssessment(
             : null,
           logContext
         )
-      : null;
+      : Promise.resolve(null);
+
+    const [objectiveResults, maturityAssessment] = await Promise.all([
+      objectiveAssessmentPromise,
+      maturityAssessmentPromise,
+    ]);
+
+    if (!legacyMode) {
+      const qualityCheck = validateObjectiveAssessmentQuality(objectiveResults, objectives.length);
+      if (!qualityCheck.isValid) {
+        throw new Error(`Quality gate failed for control ${scfControlId}: ${qualityCheck.reason}`);
+      }
+    }
 
     // Calculate overall result
     const passCount = objectiveResults.filter((r) => r.result === "pass").length;

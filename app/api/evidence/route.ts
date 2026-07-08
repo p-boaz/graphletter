@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { assessEvidence } from "@/lib/ai/assessment-engine";
 import { apiError } from "@/lib/api/error-response";
+import { extractFileContent } from "@/lib/evidence/content-extraction";
 import { createRequestLogger, getOrCreateRequestId } from "@/lib/observability/logger";
 import {
   createEvidenceServiceClient,
@@ -235,8 +236,6 @@ export async function POST(request: NextRequest) {
       if (!skipContentExtraction) {
         logger.info("evidence.post.extracting_content");
         try {
-          // Import and use the extractFileContent function from the extract-content API
-          const { extractFileContent } = await import("@/app/api/evidence/extract-content/route");
           extractedContent = await extractFileContent(file);
           contentExtractionStatus = "completed";
 

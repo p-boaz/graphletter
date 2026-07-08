@@ -9,7 +9,11 @@ import {
 } from "@/lib/ai/circuit-breaker";
 import { getModel } from "@/lib/ai-client";
 import { COMPLIANCE_AI_CONFIG } from "@/lib/ai-config";
-import { ASSESSMENT_CONTRACT_VERSION, assessmentTruncationKillSwitchEnabled } from "./contract";
+import {
+  ASSESSMENT_CONTRACT_VERSION,
+  assessmentEvidenceMode,
+  assessmentTruncationKillSwitchEnabled,
+} from "./contract";
 import type { AssessmentLogContext } from "./types";
 
 export { ProviderTrippedError } from "@/lib/ai/circuit-breaker";
@@ -18,6 +22,7 @@ export const AI_CALL_TIMEOUT_MS = 90_000;
 export const MAX_AI_CALL_ATTEMPTS = 3;
 const BACKOFF_DELAYS_MS = [1_000, 2_000, 4_000];
 export const CONTROL_REUSE_LOOKBACK_LIMIT = 50;
+export const DEFAULT_ASSESSMENT_MAX_CONTENT_CHARS = 150_000;
 
 export function getAssessmentModel() {
   return getModel(
@@ -51,8 +56,45 @@ export function createControlRunKey(
   evidenceContentHash: string
 ): string {
   return createHash("sha256")
-    .update(`${ASSESSMENT_CONTRACT_VERSION}:${evidenceId}:${scfControlId}:${evidenceContentHash}`)
+    .update(
+      `${ASSESSMENT_CONTRACT_VERSION}:${assessmentEvidenceMode()}:${evidenceId}:${scfControlId}:${evidenceContentHash}`
+    )
     .digest("hex");
+}
+
+export function assessmentMaxContentChars(): number {
+  const configured = Number(process.env.ASSESSMENT_EVIDENCE_MAX_CONTENT_CHARS);
+  return Number.isInteger(configured) && configured > 0
+    ? configured
+    : DEFAULT_ASSESSMENT_MAX_CONTENT_CHARS;
+}
+
+export function prepareAssessmentContent(content: string): {
+  content: string;
+  truncated: boolean;
+  originalLength: number;
+  maxChars: number;
+} {
+  const originalLength = content.length;
+  const maxChars = assessmentMaxContentChars();
+  if (assessmentTruncationKillSwitchEnabled()) {
+    const legacyMaxChars = 2_000;
+    return {
+      content: content.slice(0, legacyMaxChars),
+      truncated: originalLength > legacyMaxChars,
+      originalLength,
+      maxChars: legacyMaxChars,
+    };
+  }
+  if (originalLength <= maxChars) {
+    return { content, truncated: false, originalLength, maxChars };
+  }
+  return {
+    content: content.slice(0, maxChars),
+    truncated: true,
+    originalLength,
+    maxChars,
+  };
 }
 
 export function confidenceLevelToScore(level: string | null | undefined): number {
@@ -71,8 +113,8 @@ export function buildEvidenceText(
   imageData: { base64: string; mimeType: string } | null
 ): string {
   const textContent = assessmentTruncationKillSwitchEnabled()
-    ? content.substring(0, imageData ? 1500 : 2000)
-    : content;
+    ? content.slice(0, imageData ? 1500 : 2000)
+    : prepareAssessmentContent(content).content;
 
   return imageData
     ? `DOCUMENT TEXT (character offsets start at 0):

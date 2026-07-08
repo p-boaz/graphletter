@@ -8,7 +8,11 @@ import {
   getOpenAIProviderOptions,
   getTemperatureSettings,
 } from "@/lib/ai-config";
-import { assessmentContractMetadata, buildAssessmentPromptCacheKey } from "./contract";
+import {
+  assessmentContractMetadata,
+  assessmentTruncationKillSwitchEnabled,
+  buildAssessmentPromptCacheKey,
+} from "./contract";
 import { assessMaturityLevel } from "./maturity-assessment";
 import type {
   AssessmentLogContext,
@@ -46,13 +50,17 @@ export async function createBasicAssessment(
 ) {
   const systemPrompt = `You are a compliance assessment expert. Assess evidence against SCF controls and return structured results. You can analyze both text content and visual elements from images/screenshots to make comprehensive compliance assessments.`;
 
-  const evidenceText = buildEvidenceText(content, imageData);
+  const legacyMode = assessmentTruncationKillSwitchEnabled();
+  const evidenceText = legacyMode
+    ? `Evidence: ${content.substring(0, imageData ? 1500 : 2000)}`
+    : buildEvidenceText(content, imageData);
 
-  const userPrompt = `Assess this evidence against the SCF control:
+  const userPrompt = `${evidenceText}
+
+Assess this evidence against the SCF control:
 
 Control: ${controlData.title}
 Description: ${controlData.description}
-${evidenceText}
 
 Determine:
 - result: "pass", "partial", "fail", or "not_applicable"
@@ -63,12 +71,11 @@ Scoping rule: use not_applicable only when this artifact class could never evide
 
   try {
     const aiCallStartedAt = Date.now();
-    const promptCacheKey = buildAssessmentPromptCacheKey({
-      evidenceContentHash: logContext.evidenceContentHash,
-      scfControlId: logContext.scfControlId,
-      role: "basicAssessor",
-      systemPrompt,
-    });
+    const promptCacheKey = legacyMode
+      ? null
+      : buildAssessmentPromptCacheKey({
+          evidenceContentHash: logContext.evidenceContentHash,
+        });
     const generateObjectParams: Record<string, unknown> = {
       model: getAssessmentModel(),
       maxOutputTokens: 3_000,
@@ -79,10 +86,14 @@ Scoping rule: use not_applicable only when this artifact class could never evide
       }),
       system: systemPrompt,
       ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
-        reasoningEffort: "medium",
-        textVerbosity: "medium",
-        promptCacheKey,
-        promptCacheRetention: "24h",
+        reasoningEffort: legacyMode ? "low" : "medium",
+        textVerbosity: legacyMode ? "low" : "medium",
+        ...(promptCacheKey
+          ? {
+              promptCacheKey,
+              promptCacheRetention: "24h" as const,
+            }
+          : {}),
       }),
       ...getTemperatureSettings(
         COMPLIANCE_AI_CONFIG.controlMapping.provider,

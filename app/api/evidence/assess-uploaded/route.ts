@@ -1,9 +1,17 @@
 import { createClient as createServiceClient } from "@supabase/supabase-js";
 import { createHash } from "crypto";
 import { type NextRequest, NextResponse } from "next/server";
-import { ASSESSMENT_CONTRACT_VERSION } from "@/lib/ai/assess-evidence/contract";
+import {
+  ASSESSMENT_CONTRACT_VERSION,
+  assessmentEvidenceMode,
+} from "@/lib/ai/assess-evidence/contract";
 import { runControlAssessment } from "@/lib/ai/assess-evidence/control-assessment";
-import { confidenceLevelToScore, withTimeout } from "@/lib/ai/assess-evidence/utils";
+import {
+  confidenceLevelToScore,
+  prepareAssessmentContent,
+  withTimeout,
+} from "@/lib/ai/assess-evidence/utils";
+import { normalizeCanonicalText } from "@/lib/evidence/content-extraction";
 import { resolveEvidenceContent } from "@/lib/graph/service";
 
 const CONTROL_ASSESSMENT_TIMEOUT_MS = 90_000;
@@ -41,6 +49,9 @@ type EvidenceAssessmentRecord = {
   extracted_content?: string | null;
   processed_content?: string | null;
   evidence_data?: unknown;
+  file_type?: string | null;
+  file_path?: string | null;
+  storage_path?: string | null;
 };
 
 function metadataContentHash(metadata: Record<string, unknown> | null | undefined): string | null {
@@ -48,24 +59,45 @@ function metadataContentHash(metadata: Record<string, unknown> | null | undefine
   return typeof value === "string" && value.trim() ? value.trim() : null;
 }
 
+function metadataExtractedContentHash(
+  metadata: Record<string, unknown> | null | undefined
+): string | null {
+  const value = metadata?.extracted_content_hash;
+  return typeof value === "string" && value.trim() ? value.trim() : null;
+}
+
 async function resolveStoredAssessmentContent(input: {
   supabase: Awaited<ReturnType<typeof createClient>>;
   records: EvidenceAssessmentRecord[];
   primaryEvidence: EvidenceAssessmentRecord;
-}): Promise<{ content: string; contentHash: string; source: string }> {
-  const primaryContentHash = metadataContentHash(input.primaryEvidence.metadata);
-  const hashMatchedRecords = primaryContentHash
-    ? input.records.filter((record) => metadataContentHash(record.metadata) === primaryContentHash)
+}): Promise<{
+  content: string;
+  contentHash: string;
+  source: string;
+  truncated: boolean;
+  originalLength: number;
+  maxChars: number;
+}> {
+  const primaryExtractedContentHash =
+    metadataExtractedContentHash(input.primaryEvidence.metadata) ??
+    metadataContentHash(input.primaryEvidence.metadata);
+  const hashMatchedRecords = primaryExtractedContentHash
+    ? input.records.filter(
+        (record) =>
+          (metadataExtractedContentHash(record.metadata) ??
+            metadataContentHash(record.metadata)) === primaryExtractedContentHash
+      )
     : [input.primaryEvidence];
   const candidateRecords =
     hashMatchedRecords.length > 0 ? hashMatchedRecords : [input.primaryEvidence];
 
   for (const record of candidateRecords) {
-    const content = resolveEvidenceContent(record).trim();
+    const content = normalizeCanonicalText(resolveEvidenceContent(record)).trim();
     if (content) {
+      const prepared = prepareAssessmentContent(content);
       return {
-        content,
-        contentHash: primaryContentHash ?? createHash("sha256").update(content).digest("hex"),
+        ...prepared,
+        contentHash: createHash("sha256").update(prepared.content).digest("hex"),
         source: "evidence",
       };
     }
@@ -89,7 +121,7 @@ async function resolveStoredAssessmentContent(input: {
 
   const { data: chunks, error: chunksError } = await input.supabase
     .from("document_chunks")
-    .select("content")
+    .select("content, char_start, char_end")
     .eq("document_id", document.id)
     .order("chunk_index", { ascending: true });
 
@@ -97,21 +129,73 @@ async function resolveStoredAssessmentContent(input: {
     throw new Error(`Failed to read stored assessment document chunks: ${chunksError.message}`);
   }
 
-  const content = (chunks ?? [])
-    .map((chunk) => (typeof chunk.content === "string" ? chunk.content : ""))
-    .join("\n")
-    .trim();
+  const content = normalizeCanonicalText(rebuildDocumentFromChunks(chunks ?? [])).trim();
   if (!content) {
     throw new Error("Stored assessment document has no extractable text");
   }
+  const prepared = prepareAssessmentContent(content);
 
   return {
-    content,
-    contentHash:
-      typeof document.source_hash === "string" && document.source_hash.trim()
-        ? document.source_hash
-        : createHash("sha256").update(content).digest("hex"),
+    ...prepared,
+    contentHash: createHash("sha256").update(prepared.content).digest("hex"),
     source: "document_chunks",
+  };
+}
+
+function rebuildDocumentFromChunks(
+  chunks: Array<{ content?: string | null; char_start?: number | null; char_end?: number | null }>
+): string {
+  const ordered = chunks
+    .filter((chunk) => typeof chunk.content === "string" && chunk.content.length > 0)
+    .sort((left, right) => (left.char_start ?? 0) - (right.char_start ?? 0));
+  if (
+    ordered.every((chunk) => Number.isInteger(chunk.char_start) && Number.isInteger(chunk.char_end))
+  ) {
+    let content = "";
+    for (const chunk of ordered) {
+      const chunkStart = chunk.char_start ?? content.length;
+      const chunkEnd = chunk.char_end ?? chunkStart + (chunk.content?.length ?? 0);
+      const expectedLength = Math.max(0, chunkEnd - chunkStart);
+      const chunkContent = normalizeCanonicalText(chunk.content ?? "").slice(0, expectedLength);
+      if (chunkStart > content.length) {
+        content += " ".repeat(chunkStart - content.length);
+      }
+      const appendFrom = Math.max(0, content.length - chunkStart);
+      content += chunkContent.slice(appendFrom);
+    }
+    return content;
+  }
+  return ordered.map((chunk) => normalizeCanonicalText(chunk.content ?? "")).join("");
+}
+
+async function resolveStoredImageData(input: {
+  serviceSupabase: {
+    storage: {
+      from(bucket: string): {
+        download(path: string): Promise<{ data: Blob | null; error: { message?: string } | null }>;
+      };
+    };
+  };
+  evidence: EvidenceAssessmentRecord;
+}): Promise<{ base64: string; mimeType: string } | null> {
+  if (!input.evidence.file_type?.includes("image/")) return null;
+  const storagePath =
+    input.evidence.storage_path ||
+    input.evidence.file_path ||
+    (typeof input.evidence.metadata?.storage_path === "string"
+      ? input.evidence.metadata.storage_path
+      : null);
+  if (!storagePath) return null;
+
+  const { data, error } = await input.serviceSupabase.storage
+    .from("compliance-documents")
+    .download(storagePath);
+  if (error || !data) {
+    throw new Error(`Failed to load stored image evidence: ${error?.message ?? "no data"}`);
+  }
+  return {
+    base64: Buffer.from(await data.arrayBuffer()).toString("base64"),
+    mimeType: input.evidence.file_type,
   };
 }
 
@@ -133,7 +217,7 @@ export async function POST(request: NextRequest) {
     if (rateLimitResponse) return rateLimitResponse;
 
     const sessionId = request.headers.get("x-progress-session");
-    const { evidenceIds, imageData } = await request.json();
+    const { evidenceIds } = await request.json();
 
     if (!evidenceIds || !Array.isArray(evidenceIds) || evidenceIds.length === 0) {
       return NextResponse.json({ error: "Evidence IDs required" }, { status: 400 });
@@ -227,12 +311,6 @@ export async function POST(request: NextRequest) {
         completedControls += 1;
         continue;
       }
-      const storedAssessmentContent = await resolveStoredAssessmentContent({
-        supabase,
-        records: evidenceRecords as EvidenceAssessmentRecord[],
-        primaryEvidence,
-      });
-
       await emitAssessmentProgress(
         "assessing-control",
         `Assessing ${controlId}... (${controlNumber}/${totalControls})`,
@@ -264,8 +342,16 @@ export async function POST(request: NextRequest) {
           typeof existingMetadata?.assessment_contract_version === "string"
             ? existingMetadata.assessment_contract_version
             : null;
+        const existingEvidenceMode =
+          typeof existingMetadata?.assessment_evidence_mode === "string"
+            ? existingMetadata.assessment_evidence_mode
+            : null;
 
-        if (existingAssessment && existingContractVersion === ASSESSMENT_CONTRACT_VERSION) {
+        if (
+          existingAssessment &&
+          existingContractVersion === ASSESSMENT_CONTRACT_VERSION &&
+          existingEvidenceMode === assessmentEvidenceMode()
+        ) {
           const reusedConfidence = confidenceLevelToScore(existingAssessment.confidence_level);
 
           assessmentResults.push({
@@ -283,7 +369,6 @@ export async function POST(request: NextRequest) {
             scope: "control_assessment",
             status: "success",
             evidenceId: primaryEvidence.id,
-            evidenceContentHash: storedAssessmentContent.contentHash,
             scfControlId: controlId,
             modelProvider: COMPLIANCE_AI_CONFIG.controlMapping.provider,
             modelName: COMPLIANCE_AI_CONFIG.controlMapping.model,
@@ -336,12 +421,30 @@ export async function POST(request: NextRequest) {
       log.info("Running assessment for control", { controlId });
 
       try {
+        const storedAssessmentContent = await resolveStoredAssessmentContent({
+          supabase,
+          records: evidenceRecords as EvidenceAssessmentRecord[],
+          primaryEvidence,
+        });
+        if (storedAssessmentContent.truncated) {
+          log.warn("evidence.assess_uploaded.content_truncated", {
+            controlId,
+            source: storedAssessmentContent.source,
+            originalLength: storedAssessmentContent.originalLength,
+            maxChars: storedAssessmentContent.maxChars,
+            assessedLength: storedAssessmentContent.content.length,
+          });
+        }
+        const serverImageData = await resolveStoredImageData({
+          serviceSupabase,
+          evidence: primaryEvidence,
+        });
         const assessment = await withTimeout(
           runControlAssessment(
             primaryEvidence.id,
             controlId,
             storedAssessmentContent.content,
-            imageData,
+            serverImageData,
             supabase,
             serviceSupabase,
             user.id,

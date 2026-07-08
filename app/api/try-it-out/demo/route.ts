@@ -214,9 +214,6 @@ export async function POST(request: NextRequest) {
       const userPrompt = `Assess this evidence against the SCF control:\n\nControl: ${controlData.title}\nDescription: ${controlData.description}\n${evidenceText}\n\nDetermine:\n- result: "pass", "partial", "fail", or "not_applicable"\n- confidence: number between 0.0 and 1.0\n- reasoning: explain the assessment against the control\n\nScoping rule: use not_applicable only when this artifact class could never evidence the control. Use fail when this artifact class should evidence the control but this document does not.`;
       const promptCacheKey = buildAssessmentPromptCacheKey({
         evidenceContentHash,
-        scfControlId: sample.scfControlId,
-        role: "basicAssessor",
-        systemPrompt,
       });
 
       const generateObjectParams: Record<string, unknown> = {

@@ -16,6 +16,7 @@ import {
 import type { AssessmentLogContext, MaturityAssessmentResult, MaturityLevels } from "./types";
 import {
   buildGenerateObjectImageParams,
+  buildEvidenceText,
   generateObjectWithRetry,
   getAssessmentModel,
 } from "./utils";
@@ -47,30 +48,25 @@ export async function assessMaturityLevel(
     .map((entry) => `Level ${entry.level}: ${entry.description?.trim()}`)
     .join("\n\n");
 
-  const assessmentContent = assessmentTruncationKillSwitchEnabled()
-    ? content.substring(0, imageData ? 1500 : 2000)
-    : content;
-
-  const evidenceText = imageData
-    ? `DOCUMENT TEXT (character offsets start at 0):
-${assessmentContent}
-
-Additionally, analyze the visual context of the provided image/screenshot for maturity indicators.`
-    : `DOCUMENT TEXT (character offsets start at 0):
-${assessmentContent}`;
+  const legacyMode = assessmentTruncationKillSwitchEnabled();
+  const evidenceText = legacyMode
+    ? `Evidence: ${content.substring(0, imageData ? 1500 : 2000)}`
+    : buildEvidenceText(content, imageData);
 
   const targetText =
     typeof targetLevel === "number" && targetLevel >= 0 && targetLevel <= 5
       ? `Target maturity level for this control: ${targetLevel}. Determine if current evidence meets, exceeds, or falls short of this target.`
-      : "No explicit target maturity level is configured for this control. Do not return target_level, target_met, or target_gap.";
+      : legacyMode
+        ? "No explicit target maturity level provided; determine the most appropriate level based on benchmarks."
+        : "No explicit target maturity level is configured for this control. Do not return target_level, target_met, or target_gap.";
 
   const systemPrompt = `You are a compliance maturity assessment expert. Evaluate evidence against capability maturity benchmarks.`;
 
-  const userPrompt = `Assess the maturity level for control ${controlId} - ${controlTitle}.
+  const userPrompt = `${evidenceText}
+
+Assess the maturity level for control ${controlId} - ${controlTitle}.
 
 Control description: ${controlDescription}
-
-${evidenceText}
 
 Maturity benchmarks:
 ${benchmarkSummary}
@@ -86,7 +82,9 @@ Return JSON with:
 ${
   typeof targetLevel === "number" && targetLevel >= 0 && targetLevel <= 5
     ? "- target_level (must equal the provided target)\n- target_met (boolean)\n- target_gap (integer assessed_level minus target_level)"
-    : "- omit target_level, target_met, and target_gap"
+    : legacyMode
+      ? "- target_level (optional)\n- target_met (optional)\n- target_gap (optional)"
+      : "- omit target_level, target_met, and target_gap"
 }`;
 
   const maturitySchema = z.object({
@@ -102,22 +100,25 @@ ${
 
   try {
     const aiCallStartedAt = Date.now();
-    const promptCacheKey = buildAssessmentPromptCacheKey({
-      evidenceContentHash: logContext.evidenceContentHash,
-      scfControlId: logContext.scfControlId,
-      role: "maturityAssessor",
-      systemPrompt,
-    });
+    const promptCacheKey = legacyMode
+      ? null
+      : buildAssessmentPromptCacheKey({
+          evidenceContentHash: logContext.evidenceContentHash,
+        });
     const generateObjectParams: Record<string, unknown> = {
       model: getAssessmentModel(),
       maxOutputTokens: 6_000,
       schema: maturitySchema,
       system: systemPrompt,
       ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
-        reasoningEffort: "medium",
-        textVerbosity: "medium",
-        promptCacheKey,
-        promptCacheRetention: "24h",
+        reasoningEffort: legacyMode ? "low" : "medium",
+        textVerbosity: legacyMode ? "low" : "medium",
+        ...(promptCacheKey
+          ? {
+              promptCacheKey,
+              promptCacheRetention: "24h" as const,
+            }
+          : {}),
       }),
       ...getTemperatureSettings(
         COMPLIANCE_AI_CONFIG.controlMapping.provider,
@@ -193,6 +194,7 @@ ${
         ...assessmentContractMetadata(),
         call: "assessMaturityLevel",
         includesImage: Boolean(imageData),
+        legacyMode,
         modelVersion: COMPLIANCE_AI_CONFIG.controlMapping.model,
         promptCacheKey,
         promptTokens: aiResponse.usage?.inputTokens ?? null,
@@ -222,6 +224,7 @@ ${
         ...assessmentContractMetadata(),
         call: "assessMaturityLevel",
         includesImage: Boolean(imageData),
+        legacyMode,
         modelVersion: COMPLIANCE_AI_CONFIG.controlMapping.model,
       },
     });

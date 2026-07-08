@@ -11,8 +11,10 @@ import {
 import type { AssessmentLogContext, AssessmentObjective, ObjectiveAssessmentResult } from "./types";
 import {
   assessmentContractMetadata,
+  assessmentTruncationKillSwitchEnabled,
   buildAssessmentPromptCacheKey,
   verifiedEvidenceSpans,
+  EvidenceSpanSchema,
 } from "./contract";
 import {
   buildEvidenceText,
@@ -20,188 +22,6 @@ import {
   generateObjectWithRetry,
   getAssessmentModel,
 } from "./utils";
-
-const DEFAULT_OBJECTIVE_BATCH_SIZE = 1;
-const DEFAULT_OBJECTIVE_BATCH_CONCURRENCY = 1;
-const MAX_CANDIDATE_SPANS = 12;
-const MAX_CANDIDATE_PROMPT_CHARS = 700;
-const TERM_STOP_WORDS = new Set([
-  "the",
-  "and",
-  "for",
-  "with",
-  "that",
-  "this",
-  "shall",
-  "must",
-  "are",
-  "from",
-  "into",
-  "each",
-  "when",
-  "will",
-  "all",
-  "have",
-  "has",
-  "not",
-  "but",
-  "their",
-  "they",
-  "them",
-  "system",
-  "systems",
-  "organization",
-  "organizational",
-]);
-const SECURITY_CITATION_TERMS = [
-  "access",
-  "account",
-  "approval",
-  "auth",
-  "authentication",
-  "authenticated",
-  "authorization",
-  "confidential",
-  "control",
-  "data",
-  "identity",
-  "mfa",
-  "okta",
-  "password",
-  "policy",
-  "procedure",
-  "review",
-  "risk",
-  "saml",
-  "security",
-  "sso",
-  "user",
-  "users",
-  "2fa",
-];
-
-export type CandidateEvidenceSpan = {
-  id: string;
-  start: number;
-  end: number;
-  text: string;
-  score: number;
-};
-
-function readPositiveIntegerEnv(name: string, fallback: number): number {
-  const value = Number(process.env[name]);
-  return Number.isInteger(value) && value > 0 ? value : fallback;
-}
-
-function chunkObjectives(
-  objectives: AssessmentObjective[],
-  batchSize: number
-): AssessmentObjective[][] {
-  const chunks: AssessmentObjective[][] = [];
-  for (let index = 0; index < objectives.length; index += batchSize) {
-    chunks.push(objectives.slice(index, index + batchSize));
-  }
-  return chunks;
-}
-
-function extractCitationTerms(value: string): string[] {
-  const terms = value.toLowerCase().match(/[a-z0-9]{3,}/g) ?? [];
-  return [...new Set(terms.filter((term) => !TERM_STOP_WORDS.has(term)))];
-}
-
-function extractTextBlocks(document: string): Array<{ start: number; end: number; text: string }> {
-  const blocks: Array<{ start: number; end: number; text: string }> = [];
-  let searchStart = 0;
-
-  for (const rawBlock of document.split(/\n{2,}/)) {
-    const rawStart = document.indexOf(rawBlock, searchStart);
-    if (rawStart === -1) continue;
-    searchStart = rawStart + rawBlock.length;
-
-    const leadingWhitespace = rawBlock.match(/^\s*/)?.[0].length ?? 0;
-    const text = rawBlock.trim();
-    if (text.length < 20) continue;
-
-    const start = rawStart + leadingWhitespace;
-    blocks.push({
-      start,
-      end: start + text.length,
-      text,
-    });
-  }
-
-  return blocks;
-}
-
-export function buildCandidateEvidenceSpans(
-  document: string,
-  controlTitle: string,
-  controlDescription: string,
-  objectives: AssessmentObjective[]
-): CandidateEvidenceSpan[] {
-  const objectiveText = objectives
-    .map(
-      (objective) =>
-        `${objective.scf_ao_id} ${objective.assessment_objective} ${objective.assessment_procedure ?? ""} ${objective.expected_results ?? ""}`
-    )
-    .join(" ");
-  const terms = [
-    ...new Set([
-      ...extractCitationTerms(`${controlTitle} ${controlDescription} ${objectiveText}`),
-      ...SECURITY_CITATION_TERMS,
-    ]),
-  ];
-
-  return extractTextBlocks(document)
-    .map((block) => {
-      const lowerText = block.text.toLowerCase();
-      const score = terms.reduce((sum, term) => sum + (lowerText.includes(term) ? 1 : 0), 0);
-      return { ...block, id: "", score };
-    })
-    .filter((block) => block.score > 0)
-    .sort((a, b) => b.score - a.score || a.start - b.start)
-    .slice(0, MAX_CANDIDATE_SPANS)
-    .map((block, index) => ({
-      ...block,
-      id: `E${index + 1}`,
-    }));
-}
-
-export function candidateSpanPrompt(candidateSpans: CandidateEvidenceSpan[]): string {
-  if (candidateSpans.length === 0) {
-    return "No candidate spans were precomputed. Return empty evidence_quotes unless the objective is fail or not_applicable.";
-  }
-
-  return candidateSpans
-    .map((span) => {
-      const preview =
-        span.text.length > MAX_CANDIDATE_PROMPT_CHARS
-          ? `${span.text.slice(0, MAX_CANDIDATE_PROMPT_CHARS)}...`
-          : span.text;
-      return `${span.id} [${span.start}-${span.end}]: ${preview}`;
-    })
-    .join("\n\n");
-}
-
-async function mapWithConcurrency<T, R>(
-  items: T[],
-  concurrency: number,
-  mapper: (item: T, index: number) => Promise<R>
-): Promise<R[]> {
-  const results: R[] = [];
-  let nextIndex = 0;
-
-  async function worker() {
-    while (nextIndex < items.length) {
-      const currentIndex = nextIndex;
-      nextIndex += 1;
-      results[currentIndex] = await mapper(items[currentIndex], currentIndex);
-    }
-  }
-
-  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, () => worker()));
-  return results;
-}
 
 export async function assessAgainstObjectives(
   content: string,
@@ -214,40 +34,32 @@ export async function assessAgainstObjectives(
   const systemPrompt = `You are a compliance assessment expert. Assess SCF objectives against the supplied evidence and return structured JSON. Use only the supplied document and visual evidence. Evidence quote offsets must exactly match DOCUMENT TEXT character offsets. Do not provide analysis outside the JSON object.`;
 
   const evidenceText = buildEvidenceText(content, imageData);
-  const objectiveBatchSize = readPositiveIntegerEnv(
-    "ASSESSMENT_OBJECTIVE_BATCH_SIZE",
-    DEFAULT_OBJECTIVE_BATCH_SIZE
-  );
-  const objectiveBatchConcurrency = readPositiveIntegerEnv(
-    "ASSESSMENT_OBJECTIVE_BATCH_CONCURRENCY",
-    DEFAULT_OBJECTIVE_BATCH_CONCURRENCY
-  );
-  const objectiveBatches = chunkObjectives(objectives, objectiveBatchSize);
-  const promptCacheKey = buildAssessmentPromptCacheKey({
-    evidenceContentHash: logContext.evidenceContentHash,
-    scfControlId: logContext.scfControlId,
-    role: "objectiveAssessor",
-    systemPrompt,
-  });
+  const legacyMode = assessmentTruncationKillSwitchEnabled();
+  const promptCacheKey = legacyMode
+    ? null
+    : buildAssessmentPromptCacheKey({
+        evidenceContentHash: logContext.evidenceContentHash,
+      });
+  const userPrompt = legacyMode
+    ? `Assess this evidence against SCF assessment objectives:
 
-  const assessBatch = async (
-    objectiveBatch: AssessmentObjective[],
-    batchIndex: number
-  ): Promise<ObjectiveAssessmentResult[]> => {
-    const candidateSpans = buildCandidateEvidenceSpans(
-      content,
-      controlTitle,
-      controlDescription,
-      objectiveBatch
-    );
-    const candidatesById = new Map(candidateSpans.map((span) => [span.id, span]));
-    const userPrompt = `${evidenceText}
+Control: ${controlTitle}
+Description: ${controlDescription}
+Evidence: ${content.substring(0, imageData ? 1500 : 2000)}
+
+Assessment Objectives:
+${objectives
+  .map((obj, i) => `${i + 1}. ${obj.scf_ao_id} (ID: ${obj.id}): ${obj.assessment_objective}`)
+  .join("\n")}
+
+For each objective, determine result, confidence, and brief reasoning. Return a JSON object with an "assessments" array containing one assessment per objective.`
+    : `${evidenceText}
 
 Control: ${controlTitle}
 Description: ${controlDescription}
 
 Assessment Objectives:
-${objectiveBatch
+${objectives
   .map(
     (obj, i) => `${i + 1}. ${obj.scf_ao_id} (ID: ${obj.id})
 assessment_objective: ${obj.assessment_objective}
@@ -256,47 +68,49 @@ expected_results: ${obj.expected_results || "[not supplied]"}`
   )
   .join("\n")}
 
-Candidate Evidence Spans:
-${candidateSpanPrompt(candidateSpans)}
-
 For each objective, determine:
 - result: "pass", "fail", "partial", or "not_applicable"
 - confidence: number between 0.0 and 1.0
 - reasoning: one concise sentence tied to the objective, procedure, and expected results${imageData ? " (consider both text and visual elements)" : ""}
-- evidence_quotes: 1-2 supporting candidate span references for pass or partial results. Each item must include candidate_id and supports. Use an empty array only for fail or not_applicable.
+- evidence_quotes: 1-2 supporting quotes for pass or partial results. Each quote must include start, end, text, and supports. start/end are character offsets into DOCUMENT TEXT and must satisfy DOCUMENT_TEXT.slice(start,end) === text. Use an empty array only for fail or not_applicable.
 
 Scoping rule: use not_applicable only when this artifact class could never evidence the objective. Use fail when this artifact class should evidence the objective but this document does not.
 
-Use the full document as the source of truth. Candidate spans are offset-verified helpers; cite their candidate_id instead of calculating offsets. Return a JSON object with an "assessments" array containing one assessment per objective.`;
+Use the full document as the source of truth. Return a JSON object with an "assessments" array containing one assessment per objective.`;
 
+  try {
     const aiCallStartedAt = Date.now();
     const generateObjectParams: Record<string, unknown> = {
       model: getAssessmentModel(),
       maxOutputTokens: 6_000,
       schema: z.object({
         assessments: z.array(
-          z.object({
-            objective_id: z.string(),
-            result: z.enum(["pass", "fail", "partial", "not_applicable"]),
-            confidence: z.number().min(0).max(1),
-            reasoning: z.string(),
-            evidence_quotes: z
-              .array(
-                z.object({
-                  candidate_id: z.string(),
-                  supports: z.string().default(""),
-                })
-              )
-              .default([]),
-          })
+          legacyMode
+            ? z.object({
+                objective_id: z.string(),
+                result: z.enum(["pass", "fail", "partial", "not_applicable"]),
+                confidence: z.number().min(0).max(1),
+                reasoning: z.string(),
+              })
+            : z.object({
+                objective_id: z.string(),
+                result: z.enum(["pass", "fail", "partial", "not_applicable"]),
+                confidence: z.number().min(0).max(1),
+                reasoning: z.string(),
+                evidence_quotes: z.array(EvidenceSpanSchema).default([]),
+              })
         ),
       }),
       system: systemPrompt,
       ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
-        reasoningEffort: "medium",
-        textVerbosity: "medium",
-        promptCacheKey,
-        promptCacheRetention: "24h",
+        reasoningEffort: legacyMode ? "low" : "medium",
+        textVerbosity: legacyMode ? "low" : "medium",
+        ...(promptCacheKey
+          ? {
+              promptCacheKey,
+              promptCacheRetention: "24h" as const,
+            }
+          : {}),
       }),
       ...getTemperatureSettings(
         COMPLIANCE_AI_CONFIG.controlMapping.provider,
@@ -313,7 +127,7 @@ Use the full document as the source of truth. Candidate spans are offset-verifie
 
     const aiResponse = await generateObjectWithRetry(
       generateObjectParams as Parameters<typeof import("ai").generateObject>[0],
-      { ...logContext, objectiveIds: objectiveBatch.map((objective) => objective.id) },
+      { ...logContext, objectiveIds: objectives.map((objective) => objective.id) },
       "assessAgainstObjectives"
     );
     const typedObject = aiResponse.object as {
@@ -322,23 +136,24 @@ Use the full document as the source of truth. Candidate spans are offset-verifie
         result: "pass" | "fail" | "partial" | "not_applicable";
         confidence: number;
         reasoning: string;
-        evidence_quotes?: Array<{ candidate_id: string; supports?: string }>;
+        evidence_quotes?: Array<{
+          start: number;
+          end: number;
+          text: string;
+          supports?: string;
+        }>;
       }>;
     };
 
     const mappedAssessments = (typedObject.assessments || []).map((assessment) => {
-      const evidenceQuotes = (assessment.evidence_quotes ?? []).flatMap((quote) => {
-        const candidate = candidatesById.get(quote.candidate_id);
-        if (!candidate) return [];
-        return [
-          {
-            start: candidate.start,
-            end: candidate.end,
-            text: candidate.text,
-            supports: quote.supports ?? "",
-          },
-        ];
-      });
+      const evidenceQuotes = legacyMode
+        ? []
+        : (assessment.evidence_quotes ?? []).map((span) => ({
+            start: span.start,
+            end: span.end,
+            text: span.text,
+            supports: span.supports ?? "",
+          }));
       const verifiedQuotes = verifiedEvidenceSpans(content, evidenceQuotes);
       return {
         objective_id: assessment.objective_id,
@@ -360,7 +175,7 @@ Use the full document as the source of truth. Candidate spans are offset-verifie
       evidenceId: logContext.evidenceId,
       evidenceContentHash: logContext.evidenceContentHash,
       scfControlId: logContext.scfControlId,
-      objectiveIds: objectiveBatch.map((objective) => objective.id),
+      objectiveIds: objectives.map((objective) => objective.id),
       modelProvider: COMPLIANCE_AI_CONFIG.controlMapping.provider,
       modelName: COMPLIANCE_AI_CONFIG.controlMapping.model,
       latencyMs: Date.now() - aiCallStartedAt,
@@ -377,12 +192,12 @@ Use the full document as the source of truth. Candidate spans are offset-verifie
       metadata: {
         ...assessmentContractMetadata(),
         call: "assessAgainstObjectives",
-        objectiveCount: objectiveBatch.length,
-        objectiveBatchIndex: batchIndex,
-        objectiveBatchCount: objectiveBatches.length,
-        objectiveBatchSize,
-        objectiveBatchConcurrency,
-        candidateSpanCount: candidateSpans.length,
+        objectiveCount: objectives.length,
+        objectiveBatchIndex: 0,
+        objectiveBatchCount: 1,
+        objectiveBatchSize: objectives.length,
+        objectiveBatchConcurrency: 1,
+        legacyMode,
         includesImage: Boolean(imageData),
         modelVersion: COMPLIANCE_AI_CONFIG.controlMapping.model,
         mappedAssessments,
@@ -394,15 +209,6 @@ Use the full document as the source of truth. Candidate spans are offset-verifie
     });
 
     return mappedAssessments;
-  };
-
-  try {
-    const batchResults = await mapWithConcurrency(
-      objectiveBatches,
-      objectiveBatchConcurrency,
-      assessBatch
-    );
-    return batchResults.flat();
   } catch (error) {
     log.error("objective_assessment.failed", {
       detail: error instanceof Error ? error.message : String(error),
@@ -418,14 +224,15 @@ Use the full document as the source of truth. Candidate spans are offset-verifie
       objectiveIds: logContext.objectiveIds,
       modelProvider: COMPLIANCE_AI_CONFIG.controlMapping.provider,
       modelName: COMPLIANCE_AI_CONFIG.controlMapping.model,
-      prompt: { system: systemPrompt, user: "[batched objective assessment prompts]" },
+      prompt: { system: systemPrompt, user: userPrompt },
       error: error instanceof Error ? error.message : "Objective AI assessment failed",
       metadata: {
         ...assessmentContractMetadata(),
         call: "assessAgainstObjectives",
         objectiveCount: objectives.length,
-        objectiveBatchSize,
-        objectiveBatchConcurrency,
+        objectiveBatchSize: objectives.length,
+        objectiveBatchConcurrency: 1,
+        legacyMode,
         includesImage: Boolean(imageData),
         modelVersion: COMPLIANCE_AI_CONFIG.controlMapping.model,
       },

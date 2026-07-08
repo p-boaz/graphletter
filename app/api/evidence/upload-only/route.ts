@@ -3,6 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { apiError } from "@/lib/api/error-response";
 import { checkRouteRateLimit } from "@/lib/api/rate-limiter";
 import { supabaseAdmin } from "@/lib/database/supabase";
+import { extractFileContent, normalizeCanonicalText } from "@/lib/evidence/content-extraction";
 import { createRequestLogger, getOrCreateRequestId } from "@/lib/observability/logger";
 import {
   createEvidenceServiceClient,
@@ -428,6 +429,8 @@ export async function POST(request: NextRequest) {
       // Upload evidence file to storage
       logger.info("upload_only.uploading_file");
       const serviceSupabase = createEvidenceServiceClient();
+      const extractedContent = normalizeCanonicalText(await extractFileContent(file));
+      const contentExtractedAt = new Date().toISOString();
 
       const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
       const fileExtension = file.name.split(".").pop();
@@ -489,6 +492,9 @@ export async function POST(request: NextRequest) {
           evidence_status: "submitted",
           submitted_at: new Date().toISOString(),
           replaces_evidence_id: isVersionReplacement ? replacesEvidenceId : null,
+          extracted_content: extractedContent,
+          content_extracted_at: contentExtractedAt,
+          content_extraction_status: extractedContent.trim() ? "completed" : "failed",
           metadata: {
             original_filename: file.name,
             upload_only: true,
@@ -498,6 +504,8 @@ export async function POST(request: NextRequest) {
             awaiting_assessment: true,
             idempotency_key: idempotencyKey,
             content_hash: contentHash,
+            extracted_content_hash: createHash("sha256").update(extractedContent).digest("hex"),
+            extracted_content_normalization: "lf",
             storage_path: uploadData.path, // Add storage path to metadata
             storage_bucket: "compliance-documents",
             version: newVersion,

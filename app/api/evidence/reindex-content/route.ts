@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { extractFileContent } from "@/app/api/evidence/extract-content/route";
 import { apiError } from "@/lib/api/error-response";
+import { extractFileContent } from "@/lib/evidence/content-extraction";
 import { createRequestLogger, getOrCreateRequestId } from "@/lib/observability/logger";
 import { createEvidenceServiceClient } from "@/lib/services/evidence/upload-utils";
 import { createClient } from "@/lib/supabase/server";
