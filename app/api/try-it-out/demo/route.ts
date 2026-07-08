@@ -2,6 +2,10 @@ import { createClient as createServiceClient } from "@supabase/supabase-js";
 import { createHash, randomUUID } from "crypto";
 import { readFile } from "fs/promises";
 import { type NextRequest, NextResponse } from "next/server";
+import {
+  assessmentContractMetadata,
+  buildAssessmentPromptCacheKey,
+} from "@/lib/ai/assess-evidence/contract";
 import { join } from "path";
 import { assessMaturityLevel } from "@/lib/ai/assess-evidence/maturity-assessment";
 import { assessAgainstObjectives } from "@/lib/ai/assess-evidence/objective-assessment";
@@ -72,7 +76,7 @@ export async function POST(request: NextRequest) {
         .from("scf_controls")
         .select(
           `id, title, description, guidance_micro, guidance_small, guidance_medium,
-					domain_id, scf_domains!domain_id (id, name)`
+					target_maturity_level, domain_id, scf_domains!domain_id (id, name)`
         )
         .eq("id", sample.scfControlId)
         .single(),
@@ -141,7 +145,9 @@ export async function POST(request: NextRequest) {
             controlData.title,
             controlData.description,
             maturityLevels,
-            null,
+            typeof controlData.target_maturity_level === "number"
+              ? controlData.target_maturity_level
+              : null,
             logContext
           )
         : null;
@@ -172,6 +178,7 @@ export async function POST(request: NextRequest) {
           result: result.result,
           confidence: result.confidence,
           reasoning: result.reasoning,
+          evidence_quotes: result.evidence_quotes,
         };
       });
 
@@ -204,10 +211,17 @@ export async function POST(request: NextRequest) {
       const evidenceText = buildEvidenceText(fileContent, null);
       const systemPrompt =
         "You are a compliance assessment expert. Assess evidence against SCF controls and return structured results.";
-      const userPrompt = `Assess this evidence against the SCF control:\n\nControl: ${controlData.title}\nDescription: ${controlData.description}\n${evidenceText}\n\nDetermine:\n- result: "pass", "partial", "fail", or "not_applicable"\n- confidence: number between 0.0 and 1.0\n- reasoning: brief explanation of your assessment`;
+      const userPrompt = `Assess this evidence against the SCF control:\n\nControl: ${controlData.title}\nDescription: ${controlData.description}\n${evidenceText}\n\nDetermine:\n- result: "pass", "partial", "fail", or "not_applicable"\n- confidence: number between 0.0 and 1.0\n- reasoning: explain the assessment against the control\n\nScoping rule: use not_applicable only when this artifact class could never evidence the control. Use fail when this artifact class should evidence the control but this document does not.`;
+      const promptCacheKey = buildAssessmentPromptCacheKey({
+        evidenceContentHash,
+        scfControlId: sample.scfControlId,
+        role: "basicAssessor",
+        systemPrompt,
+      });
 
       const generateObjectParams: Record<string, unknown> = {
         model: getAssessmentModel(),
+        maxOutputTokens: 3_000,
         schema: z.object({
           result: z.enum(["pass", "partial", "fail", "not_applicable"]),
           confidence: z.number().min(0).max(1),
@@ -216,8 +230,10 @@ export async function POST(request: NextRequest) {
         system: systemPrompt,
         prompt: userPrompt,
         ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
-          reasoningEffort: "low",
-          textVerbosity: "low",
+          reasoningEffort: "medium",
+          textVerbosity: "medium",
+          promptCacheKey,
+          promptCacheRetention: "24h",
         }),
         ...getTemperatureSettings(
           COMPLIANCE_AI_CONFIG.controlMapping.provider,
@@ -246,7 +262,9 @@ export async function POST(request: NextRequest) {
             controlData.title,
             controlData.description,
             maturityLevels,
-            null,
+            typeof controlData.target_maturity_level === "number"
+              ? controlData.target_maturity_level
+              : null,
             logContext
           )
         : null;
@@ -266,6 +284,7 @@ export async function POST(request: NextRequest) {
         summary: result.reasoning,
         maturity_assessment: maturityAssessment,
         maturity_levels: maturityLevels,
+        metadata: assessmentContractMetadata(),
       };
     }
 

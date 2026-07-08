@@ -227,14 +227,21 @@ test("isTimeoutError: true for messages containing 'timed out', false otherwise"
 
 test("buildEvidenceText: without image wraps content in 'Evidence:' prefix", () => {
   const text = buildEvidenceText("my evidence", null);
-  assert.ok(text.startsWith("Evidence:"));
+  assert.ok(text.startsWith("DOCUMENT TEXT"));
   assert.ok(text.includes("my evidence"));
 });
 
 test("buildEvidenceText: with image prepends OCR label and includes original content", () => {
   const text = buildEvidenceText("ocr text", { base64: "abc", mimeType: "image/png" });
-  assert.ok(text.includes("OCR"));
+  assert.ok(text.includes("DOCUMENT TEXT"));
   assert.ok(text.includes("ocr text"));
+});
+
+test("buildEvidenceText: includes full content by default", () => {
+  const marker = "OKTA_SAML_2FA_AFTER_2000";
+  const content = `${"a".repeat(2500)}${marker}`;
+  const text = buildEvidenceText(content, null);
+  assert.ok(text.includes(marker));
 });
 
 test("createControlRunKey: produces a 64-char hex string deterministically", () => {

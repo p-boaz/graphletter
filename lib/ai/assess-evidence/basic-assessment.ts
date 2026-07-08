@@ -8,6 +8,7 @@ import {
   getOpenAIProviderOptions,
   getTemperatureSettings,
 } from "@/lib/ai-config";
+import { assessmentContractMetadata, buildAssessmentPromptCacheKey } from "./contract";
 import { assessMaturityLevel } from "./maturity-assessment";
 import type {
   AssessmentLogContext,
@@ -33,6 +34,7 @@ export async function createBasicAssessment(
     guidance_micro?: string | null;
     guidance_small?: string | null;
     guidance_medium?: string | null;
+    target_maturity_level?: number | null;
     scf_domains?: { name?: string | null } | Array<{ name?: string | null }> | null;
   },
   serviceSupabase: ServiceSupabaseClient,
@@ -55,12 +57,21 @@ ${evidenceText}
 Determine:
 - result: "pass", "partial", "fail", or "not_applicable"
 - confidence: number between 0.0 and 1.0
-- reasoning: brief explanation of your assessment${imageData ? " (consider both text and visual elements)" : ""}`;
+- reasoning: explain the assessment against the control${imageData ? " (consider both text and visual elements)" : ""}
+
+Scoping rule: use not_applicable only when this artifact class could never evidence the control. Use fail when this artifact class should evidence the control but this document does not.`;
 
   try {
     const aiCallStartedAt = Date.now();
+    const promptCacheKey = buildAssessmentPromptCacheKey({
+      evidenceContentHash: logContext.evidenceContentHash,
+      scfControlId: logContext.scfControlId,
+      role: "basicAssessor",
+      systemPrompt,
+    });
     const generateObjectParams: Record<string, unknown> = {
       model: getAssessmentModel(),
+      maxOutputTokens: 3_000,
       schema: z.object({
         result: z.enum(["pass", "partial", "fail", "not_applicable"]),
         confidence: z.number().min(0).max(1),
@@ -68,8 +79,10 @@ Determine:
       }),
       system: systemPrompt,
       ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
-        reasoningEffort: "low",
-        textVerbosity: "low",
+        reasoningEffort: "medium",
+        textVerbosity: "medium",
+        promptCacheKey,
+        promptCacheRetention: "24h",
       }),
       ...getTemperatureSettings(
         COMPLIANCE_AI_CONFIG.controlMapping.provider,
@@ -118,10 +131,15 @@ Determine:
         warnings: aiResponse.warnings,
       },
       metadata: {
+        ...assessmentContractMetadata(),
         call: "createBasicAssessment",
         includesImage: Boolean(imageData),
         modelVersion: COMPLIANCE_AI_CONFIG.controlMapping.model,
         controlRunKey,
+        promptCacheKey,
+        promptTokens: aiResponse.usage?.inputTokens ?? null,
+        cachedPromptTokens: aiResponse.usage?.cachedInputTokens ?? null,
+        outputTokens: aiResponse.usage?.outputTokens ?? null,
       },
     });
 
@@ -133,7 +151,9 @@ Determine:
           controlData.title,
           controlData.description,
           maturityLevels,
-          null,
+          typeof controlData.target_maturity_level === "number"
+            ? controlData.target_maturity_level
+            : null,
           logContext
         )
       : null;
@@ -155,6 +175,7 @@ Determine:
         evidence_id: evidenceId,
         ai_reasoning: result.reasoning,
         metadata: {
+          ...assessmentContractMetadata(),
           ai_generated: true,
           manual_assessment: true,
           assessment_run_key: controlRunKey,
@@ -207,6 +228,7 @@ Determine:
       prompt: { system: systemPrompt, user: userPrompt },
       error: error instanceof Error ? error.message : "Basic assessment AI call failed",
       metadata: {
+        ...assessmentContractMetadata(),
         call: "createBasicAssessment",
         includesImage: Boolean(imageData),
         modelVersion: COMPLIANCE_AI_CONFIG.controlMapping.model,

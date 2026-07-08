@@ -3,6 +3,7 @@ import { validateObjectiveAssessmentQuality } from "@/lib/ai/assessment-quality"
 import { COMPLIANCE_AI_CONFIG } from "@/lib/ai-config";
 import { createLogger } from "@/lib/logger";
 import { createBasicAssessment } from "./basic-assessment";
+import { assessmentContractMetadata } from "./contract";
 import { assessMaturityLevel } from "./maturity-assessment";
 import { assessAgainstObjectives } from "./objective-assessment";
 import type {
@@ -47,6 +48,7 @@ export async function runControlAssessment(
           guidance_micro,
           guidance_small,
           guidance_medium,
+          target_maturity_level,
           domain_id,
           scf_domains!domain_id (
             id,
@@ -262,7 +264,9 @@ export async function runControlAssessment(
           controlData.title,
           controlData.description,
           maturityLevels,
-          null,
+          typeof controlData.target_maturity_level === "number"
+            ? controlData.target_maturity_level
+            : null,
           logContext
         )
       : null;
@@ -349,6 +353,7 @@ export async function runControlAssessment(
           evidence_id: evidenceId,
           ai_reasoning: result.reasoning,
           metadata: {
+            ...assessmentContractMetadata(),
             ai_generated: true,
             manual_assessment: true,
             assessment_run_key: controlRunKey,
@@ -357,6 +362,8 @@ export async function runControlAssessment(
             assessment_objective: objective.assessment_objective,
             assessment_procedure: objective.assessment_procedure,
             expected_results: objective.expected_results,
+            evidence_quotes: result.evidence_quotes,
+            rejected_evidence_quotes: result.rejected_evidence_quotes,
             overall_summary: `Assessment: ${passCount}/${totalCount} objectives passed`,
             assessment_timestamp: new Date().toISOString(),
           },
@@ -391,6 +398,7 @@ export async function runControlAssessment(
         result: result.result,
         confidence: result.confidence,
         reasoning: result.reasoning,
+        evidence_quotes: result.evidence_quotes,
       };
     });
 
@@ -422,6 +430,7 @@ export async function runControlAssessment(
           evidence_id: evidenceId,
           ai_reasoning: `Overall assessment based on ${objectives.length} objectives`,
           metadata: {
+            ...assessmentContractMetadata(),
             ai_generated: true,
             manual_assessment: true,
             assessment_run_key: controlRunKey,
@@ -460,6 +469,7 @@ export async function runControlAssessment(
       modelProvider: COMPLIANCE_AI_CONFIG.controlMapping.provider,
       modelName: COMPLIANCE_AI_CONFIG.controlMapping.model,
       metadata: {
+        ...assessmentContractMetadata(),
         controlTitle: controlData.title,
         objectiveCount: objectives.length,
         controlRunKey,

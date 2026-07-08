@@ -131,7 +131,10 @@ const OPENAI_REASONING_MODEL_PREFIXES = ["gpt-5", "o1", "o3", "o4", "o5"];
 export function isOpenAIReasoningModel(model: string): boolean {
   const normalized = model.trim().toLowerCase();
   return OPENAI_REASONING_MODEL_PREFIXES.some(
-    (prefix) => normalized === prefix || normalized.startsWith(`${prefix}-`)
+    (prefix) =>
+      normalized === prefix ||
+      normalized.startsWith(`${prefix}-`) ||
+      normalized.startsWith(`${prefix}.`)
   );
 }
 
@@ -159,6 +162,8 @@ interface OpenAIProviderOptionOverrides {
   reasoningEffort?: OpenAIReasoningEffort;
   textVerbosity?: OpenAITextVerbosity;
   strictJsonSchema?: boolean;
+  promptCacheKey?: string;
+  promptCacheRetention?: "24h";
 }
 
 export function getOpenAIProviderOptions(
@@ -170,6 +175,8 @@ export function getOpenAIProviderOptions(
       reasoningEffort?: OpenAIReasoningEffort;
       textVerbosity?: OpenAITextVerbosity;
       strictJsonSchema?: boolean;
+      promptCacheKey?: string;
+      promptCacheRetention?: "24h";
     };
   };
 } {
@@ -181,6 +188,8 @@ export function getOpenAIProviderOptions(
     reasoningEffort?: OpenAIReasoningEffort;
     textVerbosity?: OpenAITextVerbosity;
     strictJsonSchema?: boolean;
+    promptCacheKey?: string;
+    promptCacheRetention?: "24h";
   } = {};
 
   if (options.reasoningEffort) {
@@ -191,6 +200,12 @@ export function getOpenAIProviderOptions(
   }
   if (typeof options.strictJsonSchema === "boolean") {
     openaiOptions.strictJsonSchema = options.strictJsonSchema;
+  }
+  if (options.promptCacheKey) {
+    openaiOptions.promptCacheKey = options.promptCacheKey;
+  }
+  if (options.promptCacheRetention) {
+    openaiOptions.promptCacheRetention = options.promptCacheRetention;
   }
 
   if (Object.keys(openaiOptions).length === 0) {

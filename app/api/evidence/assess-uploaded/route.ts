@@ -1,8 +1,10 @@
 import { createClient as createServiceClient } from "@supabase/supabase-js";
 import { createHash } from "crypto";
 import { type NextRequest, NextResponse } from "next/server";
+import { ASSESSMENT_CONTRACT_VERSION } from "@/lib/ai/assess-evidence/contract";
 import { runControlAssessment } from "@/lib/ai/assess-evidence/control-assessment";
 import { confidenceLevelToScore, withTimeout } from "@/lib/ai/assess-evidence/utils";
+import { resolveEvidenceContent } from "@/lib/graph/service";
 
 const CONTROL_ASSESSMENT_TIMEOUT_MS = 90_000;
 
@@ -31,6 +33,88 @@ const ASSESS_RATE_LIMIT = {
   message: "Rate limit exceeded for assessment. Please retry shortly.",
 } as const;
 
+type EvidenceAssessmentRecord = {
+  id: string;
+  user_id: string;
+  scf_control_id: string;
+  metadata?: Record<string, unknown> | null;
+  extracted_content?: string | null;
+  processed_content?: string | null;
+  evidence_data?: unknown;
+};
+
+function metadataContentHash(metadata: Record<string, unknown> | null | undefined): string | null {
+  const value = metadata?.content_hash;
+  return typeof value === "string" && value.trim() ? value.trim() : null;
+}
+
+async function resolveStoredAssessmentContent(input: {
+  supabase: Awaited<ReturnType<typeof createClient>>;
+  records: EvidenceAssessmentRecord[];
+  primaryEvidence: EvidenceAssessmentRecord;
+}): Promise<{ content: string; contentHash: string; source: string }> {
+  const primaryContentHash = metadataContentHash(input.primaryEvidence.metadata);
+  const hashMatchedRecords = primaryContentHash
+    ? input.records.filter((record) => metadataContentHash(record.metadata) === primaryContentHash)
+    : [input.primaryEvidence];
+  const candidateRecords =
+    hashMatchedRecords.length > 0 ? hashMatchedRecords : [input.primaryEvidence];
+
+  for (const record of candidateRecords) {
+    const content = resolveEvidenceContent(record).trim();
+    if (content) {
+      return {
+        content,
+        contentHash: primaryContentHash ?? createHash("sha256").update(content).digest("hex"),
+        source: "evidence",
+      };
+    }
+  }
+
+  const sourceEvidenceIds = candidateRecords.map((record) => record.id);
+  const { data: documents, error: documentsError } = await input.supabase
+    .from("documents")
+    .select("id, source_hash, source_evidence_id")
+    .in("source_evidence_id", sourceEvidenceIds)
+    .limit(1);
+
+  if (documentsError) {
+    throw new Error(`Failed to read stored assessment document: ${documentsError.message}`);
+  }
+
+  const document = documents?.[0];
+  if (!document?.id) {
+    throw new Error("Stored assessment content not found for evidence");
+  }
+
+  const { data: chunks, error: chunksError } = await input.supabase
+    .from("document_chunks")
+    .select("content")
+    .eq("document_id", document.id)
+    .order("chunk_index", { ascending: true });
+
+  if (chunksError) {
+    throw new Error(`Failed to read stored assessment document chunks: ${chunksError.message}`);
+  }
+
+  const content = (chunks ?? [])
+    .map((chunk) => (typeof chunk.content === "string" ? chunk.content : ""))
+    .join("\n")
+    .trim();
+  if (!content) {
+    throw new Error("Stored assessment document has no extractable text");
+  }
+
+  return {
+    content,
+    contentHash:
+      typeof document.source_hash === "string" && document.source_hash.trim()
+        ? document.source_hash
+        : createHash("sha256").update(content).digest("hex"),
+    source: "document_chunks",
+  };
+}
+
 export async function POST(request: NextRequest) {
   const requestId = getOrCreateRequestId(request);
   const logger = createRequestLogger(requestId);
@@ -49,14 +133,10 @@ export async function POST(request: NextRequest) {
     if (rateLimitResponse) return rateLimitResponse;
 
     const sessionId = request.headers.get("x-progress-session");
-    const { evidenceIds, fileContent, imageData } = await request.json();
+    const { evidenceIds, imageData } = await request.json();
 
     if (!evidenceIds || !Array.isArray(evidenceIds) || evidenceIds.length === 0) {
       return NextResponse.json({ error: "Evidence IDs required" }, { status: 400 });
-    }
-
-    if (!fileContent) {
-      return NextResponse.json({ error: "File content required for assessment" }, { status: 400 });
     }
 
     log.info("Starting assessment", { evidenceCount: evidenceIds.length });
@@ -81,7 +161,6 @@ export async function POST(request: NextRequest) {
     const assessmentResults = [];
     const failedControls: Array<{ control_id: string; error: string }> = [];
     const uniqueControlIds = [...new Set(evidenceRecords.map((e) => e.scf_control_id))];
-    const evidenceContentHash = createHash("sha256").update(fileContent).digest("hex");
     const totalControls = uniqueControlIds.length;
     let completedControls = 0;
     const assessmentStartedAtMs = Date.now();
@@ -130,7 +209,6 @@ export async function POST(request: NextRequest) {
         {
           controlCount: uniqueControlIds.length,
           totalControls,
-          completedControls,
           phase: "assessment-started",
           ...buildTimingMetadata(),
         }
@@ -140,7 +218,20 @@ export async function POST(request: NextRequest) {
     for (const [index, controlId] of uniqueControlIds.entries()) {
       const controlNumber = index + 1;
       const controlEvidenceRecords = evidenceRecords.filter((e) => e.scf_control_id === controlId);
-      const primaryEvidence = controlEvidenceRecords[0];
+      const primaryEvidence = controlEvidenceRecords[0] as EvidenceAssessmentRecord | undefined;
+      if (!primaryEvidence) {
+        failedControls.push({
+          control_id: controlId,
+          error: "Evidence record not found for control",
+        });
+        completedControls += 1;
+        continue;
+      }
+      const storedAssessmentContent = await resolveStoredAssessmentContent({
+        supabase,
+        records: evidenceRecords as EvidenceAssessmentRecord[],
+        primaryEvidence,
+      });
 
       await emitAssessmentProgress(
         "assessing-control",
@@ -165,7 +256,16 @@ export async function POST(request: NextRequest) {
           .eq("id", primaryEvidence.metadata.assessment_id)
           .maybeSingle();
 
-        if (existingAssessment) {
+        const existingMetadata =
+          existingAssessment?.metadata && typeof existingAssessment.metadata === "object"
+            ? (existingAssessment.metadata as Record<string, unknown>)
+            : null;
+        const existingContractVersion =
+          typeof existingMetadata?.assessment_contract_version === "string"
+            ? existingMetadata.assessment_contract_version
+            : null;
+
+        if (existingAssessment && existingContractVersion === ASSESSMENT_CONTRACT_VERSION) {
           const reusedConfidence = confidenceLevelToScore(existingAssessment.confidence_level);
 
           assessmentResults.push({
@@ -177,18 +277,13 @@ export async function POST(request: NextRequest) {
             reused: true,
           });
 
-          const existingMetadata =
-            existingAssessment.metadata && typeof existingAssessment.metadata === "object"
-              ? (existingAssessment.metadata as Record<string, unknown>)
-              : null;
-
           await appendAIAssessmentLog({
             requestId,
             sessionId,
             scope: "control_assessment",
             status: "success",
             evidenceId: primaryEvidence.id,
-            evidenceContentHash,
+            evidenceContentHash: storedAssessmentContent.contentHash,
             scfControlId: controlId,
             modelProvider: COMPLIANCE_AI_CONFIG.controlMapping.provider,
             modelName: COMPLIANCE_AI_CONFIG.controlMapping.model,
@@ -245,7 +340,7 @@ export async function POST(request: NextRequest) {
           runControlAssessment(
             primaryEvidence.id,
             controlId,
-            fileContent,
+            storedAssessmentContent.content,
             imageData,
             supabase,
             serviceSupabase,
@@ -255,7 +350,7 @@ export async function POST(request: NextRequest) {
               sessionId,
               evidenceId: primaryEvidence.id,
               scfControlId: controlId,
-              evidenceContentHash,
+              evidenceContentHash: storedAssessmentContent.contentHash,
             }
           ),
           CONTROL_ASSESSMENT_TIMEOUT_MS,
@@ -382,7 +477,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     logger.error("assess_uploaded.failed", {
-      message: error instanceof Error ? error.message : "unknown",
+      detail: error instanceof Error ? error.message : "unknown",
     });
     const sessionId = request.headers.get("x-progress-session");
     if (sessionId) {

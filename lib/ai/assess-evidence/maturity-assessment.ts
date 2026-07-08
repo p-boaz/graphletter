@@ -8,6 +8,11 @@ import {
   getOpenAIProviderOptions,
   getTemperatureSettings,
 } from "@/lib/ai-config";
+import {
+  assessmentContractMetadata,
+  assessmentTruncationKillSwitchEnabled,
+  buildAssessmentPromptCacheKey,
+} from "./contract";
 import type { AssessmentLogContext, MaturityAssessmentResult, MaturityLevels } from "./types";
 import {
   buildGenerateObjectImageParams,
@@ -42,16 +47,22 @@ export async function assessMaturityLevel(
     .map((entry) => `Level ${entry.level}: ${entry.description?.trim()}`)
     .join("\n\n");
 
+  const assessmentContent = assessmentTruncationKillSwitchEnabled()
+    ? content.substring(0, imageData ? 1500 : 2000)
+    : content;
+
   const evidenceText = imageData
-    ? `Text content extracted via OCR: ${content.substring(0, 1500)}
+    ? `DOCUMENT TEXT (character offsets start at 0):
+${assessmentContent}
 
 Additionally, analyze the visual context of the provided image/screenshot for maturity indicators.`
-    : `Evidence: ${content.substring(0, 2000)}`;
+    : `DOCUMENT TEXT (character offsets start at 0):
+${assessmentContent}`;
 
   const targetText =
     typeof targetLevel === "number" && targetLevel >= 0 && targetLevel <= 5
       ? `Target maturity level for this control: ${targetLevel}. Determine if current evidence meets, exceeds, or falls short of this target.`
-      : "No explicit target maturity level provided; determine the most appropriate level based on benchmarks.";
+      : "No explicit target maturity level is configured for this control. Do not return target_level, target_met, or target_gap.";
 
   const systemPrompt = `You are a compliance maturity assessment expert. Evaluate evidence against capability maturity benchmarks.`;
 
@@ -69,12 +80,14 @@ ${targetText}
 Return JSON with:
 - assessed_level (integer 0-5)
 - confidence (0.0-1.0)
-- rationale (concise explanation referencing benchmarks)
+- rationale (explanation referencing benchmarks and document evidence)
 - recommended_actions (optional array of up to 5 specific next steps if improvement is needed)
 - referenced_level_description (optional excerpt from the benchmark that best matches the evidence)
-- target_level (optional if different from provided target)
-- target_met (optional boolean)
-- target_gap (optional integer assessed_level minus target_level)`;
+${
+  typeof targetLevel === "number" && targetLevel >= 0 && targetLevel <= 5
+    ? "- target_level (must equal the provided target)\n- target_met (boolean)\n- target_gap (integer assessed_level minus target_level)"
+    : "- omit target_level, target_met, and target_gap"
+}`;
 
   const maturitySchema = z.object({
     assessed_level: z.number().int().min(0).max(5),
@@ -89,13 +102,22 @@ Return JSON with:
 
   try {
     const aiCallStartedAt = Date.now();
+    const promptCacheKey = buildAssessmentPromptCacheKey({
+      evidenceContentHash: logContext.evidenceContentHash,
+      scfControlId: logContext.scfControlId,
+      role: "maturityAssessor",
+      systemPrompt,
+    });
     const generateObjectParams: Record<string, unknown> = {
       model: getAssessmentModel(),
+      maxOutputTokens: 6_000,
       schema: maturitySchema,
       system: systemPrompt,
       ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
-        reasoningEffort: "low",
-        textVerbosity: "low",
+        reasoningEffort: "medium",
+        textVerbosity: "medium",
+        promptCacheKey,
+        promptCacheRetention: "24h",
       }),
       ...getTemperatureSettings(
         COMPLIANCE_AI_CONFIG.controlMapping.provider,
@@ -121,38 +143,30 @@ Return JSON with:
     const confidence = Math.max(0, Math.min(1, typedObject.confidence));
 
     const normalizedTargetLevel =
-      typeof targetLevel === "number" && targetLevel >= 0 && targetLevel <= 5
-        ? targetLevel
-        : typeof typedObject.target_level === "number"
-          ? Math.max(0, Math.min(5, Math.round(typedObject.target_level)))
-          : null;
+      typeof targetLevel === "number" && targetLevel >= 0 && targetLevel <= 5 ? targetLevel : null;
 
-    let targetGap: number | null = null;
-    let targetMet: boolean | null = null;
+    let targetGap: number | undefined;
+    let targetMet: boolean | undefined;
 
     if (normalizedTargetLevel !== null) {
       targetGap = assessedLevel - normalizedTargetLevel;
       targetMet = assessedLevel >= normalizedTargetLevel;
-    } else if (typeof typedObject.target_gap === "number") {
-      targetGap = Math.max(-5, Math.min(5, Math.round(typedObject.target_gap)));
-    }
-
-    if (targetMet === null && typeof typedObject.target_met === "boolean") {
-      targetMet = typedObject.target_met;
     }
 
     const maturityResult: MaturityAssessmentResult = {
       assessed_level: assessedLevel,
       confidence,
       rationale: typedObject.rationale,
-      target_level: normalizedTargetLevel,
-      target_met: targetMet,
-      target_gap: targetGap,
       referenced_level_description: typedObject.referenced_level_description || null,
       recommended_actions: typedObject.recommended_actions
         ?.filter((action: string) => action?.trim())
         ?.slice(0, 5),
     };
+    if (normalizedTargetLevel !== null) {
+      maturityResult.target_level = normalizedTargetLevel;
+      maturityResult.target_met = targetMet;
+      maturityResult.target_gap = targetGap;
+    }
 
     await appendAIAssessmentLog({
       requestId: logContext.requestId,
@@ -176,9 +190,14 @@ Return JSON with:
         warnings: aiResponse.warnings,
       },
       metadata: {
+        ...assessmentContractMetadata(),
         call: "assessMaturityLevel",
         includesImage: Boolean(imageData),
         modelVersion: COMPLIANCE_AI_CONFIG.controlMapping.model,
+        promptCacheKey,
+        promptTokens: aiResponse.usage?.inputTokens ?? null,
+        cachedPromptTokens: aiResponse.usage?.cachedInputTokens ?? null,
+        outputTokens: aiResponse.usage?.outputTokens ?? null,
       },
     });
 
@@ -200,6 +219,7 @@ Return JSON with:
       prompt: { system: systemPrompt, user: userPrompt },
       error: error instanceof Error ? error.message : "Maturity assessment AI call failed",
       metadata: {
+        ...assessmentContractMetadata(),
         call: "assessMaturityLevel",
         includesImage: Boolean(imageData),
         modelVersion: COMPLIANCE_AI_CONFIG.controlMapping.model,
