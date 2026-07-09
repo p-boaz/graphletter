@@ -264,7 +264,12 @@ export default function AnalyticsPage() {
     count: maturityAssessments.filter((item) => item.assessed_level === level).length,
   }));
 
-  const maxMaturityCount = Math.max(1, ...maturityLevelDistribution.map((entry) => entry.count));
+  // Bars are share-of-total: max-normalizing rendered a count of 1 as a
+  // full-width bar whenever it happened to be the max (QA 2026-07-09 ISSUE-009).
+  const totalMaturityScored = Math.max(
+    1,
+    maturityLevelDistribution.reduce((sum, entry) => sum + entry.count, 0)
+  );
 
   const graphCoveredControls =
     coverageSummary?.covered_controls ??
@@ -445,7 +450,7 @@ export default function AnalyticsPage() {
                             <div
                               className="h-full rounded-full bg-purple-500"
                               style={{
-                                width: `${(entry.count / maxMaturityCount) * 100}%`,
+                                width: `${(entry.count / totalMaturityScored) * 100}%`,
                               }}
                             ></div>
                           </div>
@@ -537,9 +542,12 @@ export default function AnalyticsPage() {
                 coverage.
               </div>
             ) : (
-              <div className="overflow-x-auto" data-testid="analytics-domain-coverage-table">
+              <div
+                className="max-h-[32rem] overflow-x-auto overflow-y-auto"
+                data-testid="analytics-domain-coverage-table"
+              >
                 <table className="min-w-full border-collapse text-sm">
-                  <thead>
+                  <thead className="sticky top-0 z-10 bg-white">
                     <tr className="border-slate-200 border-b text-left text-slate-600">
                       <th className="px-3 py-2 font-medium">Domain</th>
                       <th className="px-3 py-2 font-medium">Description</th>

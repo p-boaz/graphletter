@@ -837,6 +837,7 @@ export default function EvidencePage() {
                     variant="destructive"
                     onClick={() => submitEvidenceReview("reject")}
                     disabled={approvalBusy || !rejectionReason.trim()}
+                    className="disabled:bg-slate-200 disabled:text-slate-500"
                     data-testid="evidence-reject-button"
                   >
                     Reject evidence

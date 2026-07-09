@@ -115,7 +115,9 @@ function TrendArrow({ current, previous }: { current: number; previous: number }
 }
 
 function TrendTimeline({ history }: { history: HistoryPoint[] }) {
-  if (history.length < 3) {
+  // Two snapshots already draw a meaningful line; only a single point can't
+  // show a trend (QA 2026-07-09 ISSUE-009 — "2 snapshots so far" plotted nothing).
+  if (history.length < 2) {
     return (
       <div className="flex h-40 items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50 px-4 text-center text-slate-600 text-sm">
         <div>

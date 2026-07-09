@@ -539,7 +539,7 @@ function MappingExplorerContent({
                 Showing {safeToLocaleString(Math.min(visibleControlCount, controls.length))} of{" "}
                 {safeToLocaleString(controls.length)}
               </Badge>
-              {allControls.length > 0 && (
+              {allControls.length > 0 && controls.length !== allControls.length && (
                 <Badge variant="outline" className="ml-1 text-xs">
                   {safeToLocaleString(allControls.length)} total
                 </Badge>

@@ -1,6 +1,7 @@
 "use client";
 
 import { Check, ChevronsUpDown, FileSearch, FileUp } from "lucide-react";
+import { useRef, useState } from "react";
 import type { DropzoneState } from "react-dropzone";
 import { InlineHelp } from "@/components/inline-help";
 import { Badge } from "@/components/ui/badge";
@@ -86,6 +87,10 @@ export function UploadForm({
   uploading,
   processingStage,
 }: UploadFormProps) {
+  const artifactSearchInputRef = useRef<HTMLInputElement | null>(null);
+  // Callback-ref state (not a ref) so the portal container is a render-safe value.
+  const [artifactField, setArtifactField] = useState<HTMLDivElement | null>(null);
+
   const { getRootProps, getInputProps, isDragActive } = dropzone;
   const uploadDisabled = uploading || (showVersionDialog && !versionAction);
   const groupedArtifacts = artifacts.reduce(
@@ -113,7 +118,7 @@ export function UploadForm({
     <div className="space-y-6">
       {/* Evidence Details */}
       <div className="space-y-4">
-        <div className="space-y-2">
+        <div ref={setArtifactField} className="space-y-2">
           <div className="flex items-center gap-1.5">
             <Label htmlFor="documentation-artifact">Documentation Artifact</Label>
             <FieldHelpTooltip
@@ -128,7 +133,10 @@ export function UploadForm({
             </InlineHelp>
             .
           </p>
-          <Popover open={artifactComboboxOpen} onOpenChange={onArtifactComboboxOpenChange}>
+          {/* modal: this popover lives inside the upload dialog; without it the
+              dialog's focus trap steals focus back from the portaled listbox,
+              so typing/Enter never reach the search input (QA ISSUE-009). */}
+          <Popover modal open={artifactComboboxOpen} onOpenChange={onArtifactComboboxOpenChange}>
             <PopoverTrigger asChild>
               <Button
                 id="documentation-artifact"
@@ -149,13 +157,25 @@ export function UploadForm({
                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
+            <PopoverContent
+              className="w-[--radix-popover-trigger-width] p-0"
+              align="start"
+              container={artifactField}
+              onOpenAutoFocus={(event) => {
+                // Focus the search input directly; the default focuses the
+                // content wrapper (QA ISSUE-009).
+                event.preventDefault();
+                requestAnimationFrame(() => {
+                  artifactSearchInputRef.current?.focus();
+                });
+              }}
+            >
               <Command
                 filter={(value, search) =>
                   value.toLowerCase().includes(search.toLowerCase()) ? 1 : 0
                 }
               >
-                <CommandInput placeholder="Search artifacts..." />
+                <CommandInput ref={artifactSearchInputRef} placeholder="Search artifacts..." />
                 <CommandList
                   onWheel={(e) => {
                     e.currentTarget.scrollTop += e.deltaY;

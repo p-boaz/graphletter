@@ -26,7 +26,7 @@ hydration, cosmetic/UX nits).
 - [x] ISSUE-006 — paginated resolveControlIds (shared lib), verdict overlay in run-gap-analysis, posture scope filter + paginated reads, "mappings" label
 - [x] ISSUE-007 — template-literal banners (controlsfor ×2), real space before (+x%)
 - [x] ISSUE-008 — auth context paints from getSession, background getUser validation, no getUser without session (kills pre-login 401); Try link hidden on app routes
-- [ ] app/dashboard/analytics/page.tsx, compliance-posture page, evidence detail dialog, mapping-explorer badges (ISSUE-009 nits)
+- [x] ISSUE-009 — level bars share-of-total; trend renders from 2 snapshots; sticky domain-table header; muted disabled reject; total-badge only when filtered; artifact picker keyboard selection fixed (popover portaled into dialog + explicit input focus). Tab-bar scroll affordance already existed (gradient fades) — no change. aria-hidden dialog warning: Radix-internal focus timing, deferred.
 
 ## Constraints
 
