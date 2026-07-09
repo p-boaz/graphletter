@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { EnhancedControlCard } from "@/components/enhanced-control-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -158,6 +158,7 @@ function MappingExplorerContent({
   const [selectedControl, setSelectedControl] = useState<SCFControl | null>(null);
   const [selectedControlDetail, setSelectedControlDetail] = useState<ControlDetail | null>(null);
   const [detailLoading, setDetailLoading] = useState(false);
+  const detailPanelRef = useRef<HTMLDivElement | null>(null);
 
   const updateURL = (params: Record<string, string>) => {
     const newSearchParams = new URLSearchParams(searchParams.toString());
@@ -326,8 +327,13 @@ function MappingExplorerContent({
     }
   };
 
-  const navigateToControl = (controlId: string) => {
-    router.push(`/control/${controlId}`);
+  const openControlDetail = (control: SCFControl) => {
+    void loadControlDetails(control);
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    detailPanelRef.current?.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start",
+    });
   };
 
   const domains = useMemo(
@@ -588,7 +594,7 @@ function MappingExplorerContent({
                           <Button
                             variant="ghost"
                             size="sm"
-                            onClick={() => navigateToControl(control.id)}
+                            onClick={() => openControlDetail(control)}
                           >
                             <ExternalLink className="h-4 w-4" />
                             <span className="sr-only">Open control detail</span>
@@ -622,7 +628,7 @@ function MappingExplorerContent({
           </CardContent>
         </Card>
 
-        <div className="space-y-4">
+        <div ref={detailPanelRef} className="scroll-mt-4 space-y-4">
           <Card className="border-slate-200 bg-white/80 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
