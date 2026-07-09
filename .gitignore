@@ -61,3 +61,4 @@ Thumbs.db
 # Stray root-level image dropped by browser drag-in (keep locally, don't track)
 /jpeg
 .env*.local
+.gstack/
