@@ -1,7 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { apiError } from "@/lib/api/error-response";
 import { parseJsonBody } from "@/lib/api/json-body";
-import { computeControlGaps } from "@/lib/graph/gap-analysis";
+import { fetchReviewedVerdicts } from "@/lib/graph/assessment-verdicts";
+import { resolveControlIds } from "@/lib/graph/control-id-resolver";
+import { applyAssessmentVerdicts, computeControlGaps } from "@/lib/graph/gap-analysis";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/utils/auth";
 
@@ -11,14 +13,6 @@ interface GapAnalysisRequestBody {
   frameworkId?: string;
   frameworkName?: string;
   analysisVersion?: string;
-}
-
-interface ControlMappingRow {
-  control_id: string;
-}
-
-interface ControlRow {
-  id: string;
 }
 
 async function resolveFrameworkId(
@@ -45,48 +39,6 @@ async function resolveFrameworkId(
   }
 
   return (data?.id as string | undefined) ?? null;
-}
-
-async function resolveControlIds(
-  supabase: SupabaseClient,
-  frameworkId?: string,
-  frameworkName?: string
-): Promise<string[]> {
-  if (frameworkId) {
-    const { data, error } = await supabase
-      .from("scf_control_mappings")
-      .select("control_id")
-      .eq("framework_id", frameworkId);
-
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    const rows = (data || []) as ControlMappingRow[];
-    return [...new Set(rows.map((row) => row.control_id))];
-  }
-
-  if (frameworkName) {
-    const { data, error } = await supabase
-      .from("scf_control_mappings")
-      .select("control_id, scf_frameworks!inner(framework_name)")
-      .eq("scf_frameworks.framework_name", frameworkName);
-
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    const rows = (data || []) as ControlMappingRow[];
-    return [...new Set(rows.map((row) => row.control_id))];
-  }
-
-  const { data, error } = await supabase.from("scf_controls").select("id");
-
-  if (error) {
-    throw new Error(error.message);
-  }
-
-  return ((data || []) as ControlRow[]).map((row) => row.id);
 }
 
 export async function POST(request: NextRequest) {
@@ -134,7 +86,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: mappingsError.message }, { status: 500 });
     }
 
-    const computedGaps = computeControlGaps(
+    const graphGaps = computeControlGaps(
       controlIds,
       (mappings || []) as Array<{
         scf_control_id: string;
@@ -143,6 +95,12 @@ export async function POST(request: NextRequest) {
         mapping_polarity?: string | null;
       }>
     );
+
+    // Same verdict overlay as build-coverage, so the materialized snapshot
+    // (read by Compliance Posture) agrees with the live Overview numbers.
+    const verdictByControl = await fetchReviewedVerdicts(supabase, user.id);
+    const computedGaps = applyAssessmentVerdicts(graphGaps, verdictByControl);
+
     const inserts = computedGaps.map((gap) => ({
       user_id: user.id,
       framework_id: frameworkId,

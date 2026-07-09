@@ -23,7 +23,7 @@ hydration, cosmetic/UX nits).
 - [x] components/gap-remediation/gap-remediation-panel.tsx (ISSUE-003) — paged list, 10 per page
 - [x] lib/ai/circuit-breaker.ts (ISSUE-004) — dynamic import() replaces broken require()
 - [x] lib/graph/gap-analysis.ts + app/api/controls/build-coverage/route.ts (ISSUE-005) — verdict overlay, regression tests in lib/graph/gap-analysis.test.ts
-- [ ] app/dashboard/compliance-posture/page.tsx + its data source (ISSUE-006, 1000-row cap suspicion)
+- [x] ISSUE-006 — paginated resolveControlIds (shared lib), verdict overlay in run-gap-analysis, posture scope filter + paginated reads, "mappings" label
 - [ ] components/smart-evidence-upload/\* (ISSUE-007 copy strings)
 - [ ] components/dashboard-layout.tsx / header component (ISSUE-008)
 - [ ] app/dashboard/analytics/page.tsx, compliance-posture page, evidence detail dialog, mapping-explorer badges (ISSUE-009 nits)

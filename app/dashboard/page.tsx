@@ -683,7 +683,7 @@ function ComplianceGaps() {
                         {framework.framework_version?.trim()
                           ? ` ${framework.framework_version.trim()}`
                           : ""}{" "}
-                        ({framework.total_mappings} linked controls)
+                        ({framework.total_mappings} mappings)
                       </SelectItem>
                     ))}
                   </SelectContent>
