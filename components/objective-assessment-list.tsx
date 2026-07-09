@@ -152,15 +152,10 @@ export function ObjectiveAssessmentList({
                     <p className="ft-eyebrow text-[11px] text-slate-600">Verified Evidence</p>
                   </div>
                   <div className="space-y-3">
+                    {/* quote.supports renders once, as the specimen's figcaption —
+                        repeating it here printed every explanation twice. */}
                     {objective.evidenceQuotes.map((quote, quoteIndex) => (
-                      <div key={`${objectiveId}-quote-${quoteIndex}`} className="space-y-2">
-                        <EvidenceSpecimen quote={quote} />
-                        {quote.supports?.trim() && (
-                          <p className="px-1 text-slate-600 text-xs leading-relaxed">
-                            {quote.supports}
-                          </p>
-                        )}
-                      </div>
+                      <EvidenceSpecimen key={`${objectiveId}-quote-${quoteIndex}`} quote={quote} />
                     ))}
                   </div>
                 </div>

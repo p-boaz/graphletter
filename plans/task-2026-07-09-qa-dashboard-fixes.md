@@ -57,6 +57,11 @@ keyboard question unless it reproduces (verify first, report if not).
 7. ISSUE-008: header account-menu hydration.
 8. ISSUE-009: nits (bar scaling, trend line, reject-button style, redundant badge, sticky header, aria-hidden/inert, tab affordance).
 
+### Round 2 (Peter's follow-up findings, same day)
+
+- [x] Duplicate evidence explanation in assessment details — objective-assessment-list rendered quote.supports twice (figcaption + trailing paragraph); paragraph removed.
+- [x] Off-system gradient buttons — smart-upload trigger, start-assessment, and demo run buttons dropped the blue→indigo gradient for the standard primary token. (components/control-mapping.tsx also has gradients but is dead code — not imported anywhere; left for a dead-code sweep.)
+
 ## Test Plan
 
 - [ ] pnpm lint && pnpm typecheck per commit
