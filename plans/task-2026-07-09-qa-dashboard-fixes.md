@@ -61,7 +61,7 @@ keyboard question unless it reproduces (verify first, report if not).
 
 - [x] components/ui/stat-tile.tsx — shared stat tile in landing vocabulary (black serif number, orange mono eyebrow, white card, hairline border; tone colors number only)
 - [x] app/dashboard/analytics/page.tsx — 10 pastel tiles → StatTile; purple bars → ft-pink on ft-grey-1; purple empty state → slate; blue spinner → ft-pink
-- [ ] Sweep remaining decorative blue/indigo/purple on overview, assessments explainer, upload dialog, mapping explorer, posture trend line
+- [x] Full sweep: overview (focus mode, walkthrough card, coverage number, links), assessments explainer, posture trend line + spinners, compliance-inbox page, and 23 components (mapping explorer, impact cascade, upload flow, assessment views, demo/try surfaces). Zero decorative cool hues remain on live surfaces; only dead control-mapping.tsx untouched. Semantic green/amber/red kept for state.
 
 ### Round 2 (Peter's follow-up findings, same day)
 

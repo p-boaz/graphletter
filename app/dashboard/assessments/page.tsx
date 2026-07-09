@@ -124,7 +124,7 @@ export default function AssessmentsPage() {
             </div>
           )}
 
-          <div className="mb-4 rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm text-blue-900">
+          <div className="mb-4 rounded-lg border border-slate-200 bg-ft-cream/50 p-3 text-sm text-slate-800">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p>Need a quick explanation of SCF assessment objectives and result states?</p>
               <button
@@ -145,23 +145,23 @@ export default function AssessmentsPage() {
 
           {showExplainer && (
             <div
-              className="mb-4 space-y-4 rounded-lg border border-indigo-200 bg-indigo-50 p-4"
+              className="mb-4 space-y-4 rounded-lg border border-slate-200 bg-ft-cream/50 p-4"
               data-testid="assessments-inline-explainer"
             >
-              <div className="flex items-center gap-2 text-indigo-900">
+              <div className="ft-serif flex items-center gap-2 text-ft-black">
                 <CircleHelp className="h-4 w-4" />
                 <h4 className="font-semibold text-sm">In-context assessment explainer</h4>
               </div>
               <div className="grid gap-3 md:grid-cols-2">
-                <div className="rounded-md border border-indigo-100 bg-white p-3">
-                  <p className="font-semibold text-indigo-900 text-xs">SCF Assessment Objectives</p>
-                  <p className="mt-1 text-indigo-800 text-xs leading-relaxed">
+                <div className="rounded-md border border-slate-200 bg-white p-3">
+                  <p className="ft-eyebrow text-[11px]">SCF Assessment Objectives</p>
+                  <p className="mt-1 text-slate-600 text-xs leading-relaxed">
                     {objectiveExplainer?.graphletterDefinition}
                   </p>
                 </div>
-                <div className="rounded-md border border-indigo-100 bg-white p-3">
-                  <p className="font-semibold text-indigo-900 text-xs">Result States</p>
-                  <p className="mt-1 text-indigo-800 text-xs leading-relaxed">
+                <div className="rounded-md border border-slate-200 bg-white p-3">
+                  <p className="ft-eyebrow text-[11px]">Result States</p>
+                  <p className="mt-1 text-slate-600 text-xs leading-relaxed">
                     {resultStateExplainer?.plainDefinition}
                   </p>
                 </div>
@@ -170,12 +170,10 @@ export default function AssessmentsPage() {
                 {resultGuidance.map((item) => (
                   <div
                     key={item.status}
-                    className="rounded-md border border-indigo-100 bg-white p-3"
+                    className="rounded-md border border-slate-200 bg-white p-3"
                   >
-                    <p className="font-semibold text-indigo-900 text-xs uppercase">
-                      {item.status.replace("_", " ")}
-                    </p>
-                    <p className="mt-1 text-indigo-800 text-xs">{item.meaning}</p>
+                    <p className="ft-eyebrow text-[11px]">{item.status.replace("_", " ")}</p>
+                    <p className="mt-1 text-slate-600 text-xs">{item.meaning}</p>
                   </div>
                 ))}
               </div>

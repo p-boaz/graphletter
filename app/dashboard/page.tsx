@@ -522,7 +522,7 @@ function ComplianceGaps() {
       case "no_assessment":
         return {
           label: "Needs Assessment",
-          color: "bg-blue-100 text-blue-800 border-blue-200",
+          color: "bg-slate-100 text-slate-800 border-slate-200",
           icon: <Clock className="h-4 w-4" />,
           priority: "Medium",
         };
@@ -569,7 +569,7 @@ function ComplianceGaps() {
       <Card>
         <CardContent className="p-6">
           <div className="text-center">
-            <div className="mx-auto h-8 w-8 animate-spin rounded-full border-blue-600 border-b-2"></div>
+            <div className="mx-auto h-8 w-8 animate-spin rounded-full border-ft-pink border-b-2"></div>
             <p className="mt-2 text-gray-600 text-sm">Loading compliance gaps...</p>
           </div>
         </CardContent>
@@ -618,11 +618,7 @@ function ComplianceGaps() {
     <div className="space-y-6">
       <Card
         data-testid="dashboard-overview-card"
-        className={cn(
-          "border-slate-200",
-          isFrameworkFiltered &&
-            "border-indigo-200 bg-gradient-to-r from-indigo-50 via-white to-blue-50 shadow-[0_8px_30px_rgba(79,70,229,0.08)]"
-        )}
+        className={cn("border-slate-200", isFrameworkFiltered && "border-slate-200 bg-ft-cream/50")}
       >
         <CardHeader className="space-y-4">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
@@ -633,14 +629,14 @@ function ComplianceGaps() {
                 className={cn(
                   "w-fit uppercase tracking-wide",
                   isFrameworkFiltered
-                    ? "border-indigo-200 bg-indigo-100 text-indigo-700"
+                    ? "border-ft-pink bg-ft-cream text-ft-black"
                     : "border-slate-200 text-slate-600"
                 )}
               >
                 {isFrameworkFiltered ? "Framework focus mode" : "SCF coverage"}
               </Badge>
               <CardTitle className="flex items-center gap-2" data-testid="dashboard-overview-title">
-                <Target className={cn("h-5 w-5", isFrameworkFiltered && "text-indigo-600")} />
+                <Target className={cn("h-5 w-5", isFrameworkFiltered && "text-ft-pink")} />
                 {isFrameworkFiltered ? `${frameworkDisplayName} Focus` : "Compliance Overview"}
               </CardTitle>
               <CardDescription>
@@ -705,12 +701,12 @@ function ComplianceGaps() {
         </CardHeader>
         <CardContent className="space-y-6">
           {isFrameworkFiltered && (
-            <div className="flex flex-col gap-4 rounded-xl border border-indigo-200 bg-white/70 p-4 shadow-sm backdrop-blur-sm lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white/70 p-4 shadow-sm backdrop-blur-sm lg:flex-row lg:items-center lg:justify-between">
               <div className="space-y-1">
-                <h3 className="text-sm font-semibold text-indigo-800">
+                <h3 className="ft-serif text-sm font-semibold text-ft-black">
                   Focused SCF control roadmap
                 </h3>
-                <p className="text-sm text-indigo-700">
+                <p className="text-sm text-slate-600">
                   Work through the prioritized controls and recommended evidence to close this
                   framework efficiently.
                 </p>
@@ -718,7 +714,7 @@ function ComplianceGaps() {
               <div className="flex flex-col gap-2 sm:flex-row">
                 <Button
                   data-testid="dashboard-upload-evidence-button"
-                  className="bg-indigo-600 text-white hover:bg-indigo-700"
+                  className=""
                   onClick={() => {
                     setUploadDefaults({
                       description: `Evidence for ${frameworkDisplayName}`,
@@ -733,7 +729,7 @@ function ComplianceGaps() {
                 <Button
                   data-testid="view-priority-controls-button"
                   variant="outline"
-                  className="border-indigo-200 text-indigo-700 hover:bg-indigo-50"
+                  className="border-slate-200 text-slate-700 hover:bg-slate-50"
                   onClick={() => {
                     const prioritySection = document.getElementById("framework-priority-controls");
                     prioritySection?.scrollIntoView({ behavior: "smooth" });
@@ -748,14 +744,14 @@ function ComplianceGaps() {
 
           {!isFrameworkFiltered && featuredFrameworks.length > 0 && (
             <div
-              className="rounded-xl border border-indigo-200 bg-gradient-to-r from-indigo-50 via-white to-blue-50 p-5 shadow-sm"
+              className="rounded-xl border border-slate-200 bg-ft-cream/50 p-5 shadow-sm"
               data-testid="framework-chip-picker"
             >
               <div className="space-y-1">
-                <h3 className="font-semibold text-indigo-900 text-sm">
+                <h3 className="ft-serif font-semibold text-ft-black text-sm">
                   Focus on the framework you actually need to satisfy
                 </h3>
-                <p className="text-indigo-700 text-xs">
+                <p className="text-slate-600 text-xs">
                   Pick one to see only the SCF controls mapped to it — e.g. CCPA surfaces just the
                   privacy controls, PCI DSS just the payment-card controls.
                 </p>
@@ -768,13 +764,13 @@ function ComplianceGaps() {
                     size="sm"
                     data-testid={`framework-chip-${fw.id}`}
                     onClick={() => changeFramework(fw.id)}
-                    className="border-indigo-200 bg-white text-indigo-800 hover:bg-indigo-100 hover:text-indigo-900"
+                    className="border-slate-200 bg-white text-slate-800 hover:bg-ft-cream hover:text-ft-black"
                     title={`${fw.framework_name}${
                       fw.framework_version ? ` ${fw.framework_version}` : ""
                     } — ${fw.total_mappings.toLocaleString()} mappings`}
                   >
                     <span className="font-medium">{fw.displayLabel}</span>
-                    <span className="ml-2 text-indigo-500 text-xs">
+                    <span className="ft-mono ml-2 text-slate-500 text-xs">
                       {fw.total_mappings.toLocaleString()}
                     </span>
                   </Button>
@@ -790,7 +786,7 @@ function ComplianceGaps() {
                     trigger?.scrollIntoView({ behavior: "smooth", block: "center" });
                     trigger?.click();
                   }}
-                  className="text-indigo-700 hover:bg-indigo-100 hover:text-indigo-900"
+                  className="text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 >
                   All {frameworks.length} frameworks ↓
                 </Button>
@@ -802,7 +798,7 @@ function ComplianceGaps() {
             className="rounded-lg border border-slate-200 bg-white p-4 text-center shadow-sm"
             data-testid="coverage-summary-card"
           >
-            <div className="font-bold text-3xl text-blue-600">
+            <div className="ft-serif font-bold text-3xl text-ft-black">
               {overall_stats.passed_assessments}/{overall_stats.total_controls}
             </div>
             <p className="mt-1 text-gray-600 text-sm">Controls Covered</p>
@@ -815,16 +811,13 @@ function ComplianceGaps() {
       </Card>
 
       {isFrameworkFiltered && actionableGaps.length > 0 && (
-        <Card
-          id="framework-priority-controls"
-          className="border-indigo-200 bg-white shadow-[0_12px_30px_rgba(79,70,229,0.05)]"
-        >
+        <Card id="framework-priority-controls" className="border-slate-200 bg-white shadow-sm">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-indigo-900">
+            <CardTitle className="ft-serif flex items-center gap-2 text-ft-black">
               <Target className="h-5 w-5" />
               {frameworkDisplayName} Priority Controls
             </CardTitle>
-            <CardDescription className="text-indigo-700">
+            <CardDescription className="text-slate-600">
               We’ve surfaced the highest-impact SCF controls mapped to this framework. Close these
               gaps first to unlock the biggest compliance gains.
             </CardDescription>
@@ -859,7 +852,7 @@ function ComplianceGaps() {
             })}
 
             {actionableGaps.length > 8 && (
-              <p className="text-xs text-indigo-700">
+              <p className="text-xs text-slate-600">
                 Showing the top 8 controls. Switch back to “All SCF Controls” to explore the full
                 library or adjust your framework selection for a different roadmap.
               </p>
@@ -922,26 +915,26 @@ function ComplianceGaps() {
       {selectedFramework !== "all" &&
         (gapsData?.artifact_recommendations ? (
           artifact_recommendations && artifact_recommendations.artifacts.length > 0 ? (
-            <Card className="border-blue-200 bg-blue-50/50">
+            <Card className="border-slate-200 bg-ft-cream/40">
               <CardHeader>
-                <CardTitle className="flex items-center text-blue-900">
+                <CardTitle className="ft-serif flex items-center text-ft-black">
                   <BookOpen className="mr-2 h-5 w-5" />
                   Evidence Artifacts Needed for {frameworkDisplayName} Compliance
                 </CardTitle>
-                <CardDescription className="text-blue-700">
+                <CardDescription className="text-slate-600">
                   Upload these documentation artifacts to improve your {frameworkDisplayName}{" "}
                   compliance coverage. Artifacts are prioritized by impact and number of controls
                   they address.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="mb-4 rounded-lg bg-blue-100 p-3">
+                <div className="mb-4 rounded-lg bg-ft-cream p-3">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-blue-800">
+                    <span className="text-slate-800">
                       <strong>{artifact_recommendations.total_gap_controls}</strong> controls need
                       attention
                     </span>
-                    <span className="text-blue-600">
+                    <span className="text-ft-pink">
                       <strong>{artifact_recommendations.total_recommendations}</strong> artifacts
                       recommended
                     </span>
@@ -953,10 +946,10 @@ function ComplianceGaps() {
                     (artifact, index) => (
                       <div
                         key={artifact.erl_id}
-                        className="flex items-start space-x-4 rounded-lg border border-blue-200 bg-white p-4 transition-shadow hover:shadow-sm"
+                        className="flex items-start space-x-4 rounded-lg border border-slate-200 bg-white p-4 transition-shadow hover:shadow-sm"
                       >
                         <div className="flex-shrink-0">
-                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 font-medium text-sm text-white">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-ft-pink font-medium text-sm text-white">
                             {index + 1}
                           </div>
                         </div>
@@ -1011,7 +1004,7 @@ function ComplianceGaps() {
                             <div className="ml-4 flex-shrink-0">
                               <Button
                                 size="sm"
-                                className="bg-blue-600 text-white hover:bg-blue-700"
+                                className=""
                                 onClick={() => {
                                   setUploadDefaults({
                                     artifact: artifact.artifact_name,
@@ -1127,8 +1120,8 @@ function ComplianceGaps() {
                   )}
                 </div>
 
-                <div className="mt-6 rounded-lg bg-blue-100 p-3 text-center">
-                  <p className="text-blue-800 text-sm">
+                <div className="mt-6 rounded-lg bg-slate-50 p-3 text-center">
+                  <p className="text-slate-700 text-sm">
                     💡 <strong>Pro Tip:</strong> Upload artifacts in priority order to maximize your{" "}
                     {frameworkDisplayName} compliance improvement. Each artifact addresses multiple
                     controls and gaps.
@@ -1232,7 +1225,7 @@ function InboxSummary() {
   const priorityBorder: Record<string, string> = {
     critical: "border-l-red-500",
     high: "border-l-amber-500",
-    medium: "border-l-blue-500",
+    medium: "border-l-slate-400",
     low: "border-l-slate-300",
   };
 
@@ -1246,7 +1239,7 @@ function InboxSummary() {
           </CardTitle>
           <Link
             href="/dashboard/compliance-inbox"
-            className="text-blue-600 text-sm hover:underline"
+            className="font-medium text-ft-black text-sm underline decoration-slate-300 hover:text-ft-pink"
           >
             View all →
           </Link>

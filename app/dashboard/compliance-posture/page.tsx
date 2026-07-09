@@ -163,7 +163,7 @@ function TrendTimeline({ history }: { history: HistoryPoint[] }) {
           {/* Line */}
           <polyline
             fill="none"
-            stroke="#3b82f6"
+            stroke="hsl(25 100% 65%)"
             strokeWidth="2"
             points={history
               .map((h, i) => {
@@ -178,7 +178,15 @@ function TrendTimeline({ history }: { history: HistoryPoint[] }) {
             const x = i * 60 + 30;
             const y = 150 - ((h.score - minScore) / range) * 140;
             return (
-              <circle key={i} cx={x} cy={y} r="4" fill="#3b82f6" stroke="white" strokeWidth="2">
+              <circle
+                key={i}
+                cx={x}
+                cy={y}
+                r="4"
+                fill="hsl(25 100% 65%)"
+                stroke="white"
+                strokeWidth="2"
+              >
                 <title>
                   {new Date(h.createdAt).toLocaleDateString()}: {h.score.toFixed(1)}%
                 </title>
@@ -279,7 +287,7 @@ export default function CompliancePosturePage() {
         <Card>
           <CardContent className="p-6">
             <div className="text-center">
-              <div className="mx-auto h-8 w-8 animate-spin rounded-full border-blue-600 border-b-2" />
+              <div className="mx-auto h-8 w-8 animate-spin rounded-full border-ft-pink border-b-2" />
               <p className="mt-2 text-gray-600 text-sm">Calculating compliance posture...</p>
             </div>
           </CardContent>

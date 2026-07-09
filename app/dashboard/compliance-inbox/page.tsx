@@ -69,7 +69,7 @@ export default function ComplianceInboxPage() {
         <Card>
           <CardContent className="p-6">
             <div className="text-center">
-              <div className="mx-auto h-8 w-8 animate-spin rounded-full border-blue-600 border-b-2" />
+              <div className="mx-auto h-8 w-8 animate-spin rounded-full border-ft-pink border-b-2" />
               <p className="mt-2 text-gray-600 text-sm">Generating compliance inbox...</p>
             </div>
           </CardContent>
@@ -114,7 +114,10 @@ export default function ComplianceInboxPage() {
               <p className="font-medium text-lg">All clear!</p>
               <p className="mt-1 text-sm">
                 No pending compliance actions.{" "}
-                <Link href="/dashboard/frameworks" className="text-blue-600 underline">
+                <Link
+                  href="/dashboard/frameworks"
+                  className="text-ft-black underline hover:text-ft-pink"
+                >
                   Select frameworks to track
                 </Link>{" "}
                 to populate your inbox.
