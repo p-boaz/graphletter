@@ -143,7 +143,7 @@ export function FrameworkImpactCascade({
   if (loading) {
     return (
       <div className="flex items-center justify-center gap-2 rounded-lg bg-slate-50 p-6">
-        <Loader2 className="h-5 w-5 animate-spin text-blue-600" />
+        <Loader2 className="h-5 w-5 animate-spin text-ft-pink" />
         <span className="text-slate-600 text-sm">Computing cross-framework impact...</span>
       </div>
     );
@@ -159,19 +159,19 @@ export function FrameworkImpactCascade({
   return (
     <div className="space-y-4">
       {/* The headline number */}
-      <div className="rounded-xl bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-50 border border-indigo-100 p-5">
+      <div className="rounded-xl border border-slate-200 bg-ft-cream/50 p-5">
         <div className="flex items-start gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ft-pink">
             <Sparkles className="h-5 w-5 text-white" />
           </div>
           <div className="min-w-0">
             <div className="flex items-baseline gap-2 flex-wrap">
-              <span className="font-semibold text-2xl text-indigo-900 tabular-nums">
+              <span className="ft-serif font-bold text-2xl text-ft-black tabular-nums">
                 {displayedTotal}
               </span>
-              <span className="text-indigo-700 text-sm">compliance frameworks advanced</span>
+              <span className="text-slate-600 text-sm">compliance frameworks advanced</span>
             </div>
-            <p className="mt-1 text-indigo-600/80 text-xs leading-relaxed">
+            <p className="mt-1 text-slate-500 text-xs leading-relaxed">
               {passCount > 0 && (
                 <span>
                   {passCount} control{passCount !== 1 ? "s" : ""} passed
@@ -199,8 +199,8 @@ export function FrameworkImpactCascade({
                 "rounded-lg border p-2.5 transition-all duration-300",
                 !isVisible && "scale-95 opacity-0",
                 isVisible && "scale-100 opacity-100",
-                tier === "major" && "border-indigo-200 bg-indigo-50/80",
-                tier === "notable" && "border-blue-200 bg-blue-50/60",
+                tier === "major" && "border-slate-300 bg-ft-cream/70",
+                tier === "notable" && "border-slate-200 bg-slate-50",
                 tier === "standard" && "border-slate-200 bg-slate-50/60"
               )}
             >
@@ -208,24 +208,22 @@ export function FrameworkImpactCascade({
                 <span
                   className={cn(
                     "font-medium text-xs leading-tight",
-                    tier === "major" && "text-indigo-900",
-                    tier === "notable" && "text-blue-900",
+                    tier === "major" && "text-ft-black",
+                    tier === "notable" && "text-slate-800",
                     tier === "standard" && "text-slate-700"
                   )}
                 >
                   {getDisplayName(fw.framework_name)}
                 </span>
-                {tier === "major" && (
-                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-indigo-500" />
-                )}
+                {tier === "major" && <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-ft-pink" />}
               </div>
               <div className="mt-1.5 flex items-center gap-1.5">
                 <Badge
                   variant="secondary"
                   className={cn(
                     "px-1.5 py-0 text-[10px] font-medium",
-                    tier === "major" && "bg-indigo-100 text-indigo-700",
-                    tier === "notable" && "bg-blue-100 text-blue-700",
+                    tier === "major" && "bg-ft-cream text-ft-black",
+                    tier === "notable" && "bg-slate-100 text-slate-700",
                     tier === "standard" && "bg-slate-100 text-slate-600"
                   )}
                 >

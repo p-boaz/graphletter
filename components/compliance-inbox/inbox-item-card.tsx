@@ -17,7 +17,7 @@ const PRIORITY_BORDER: Record<InboxItemPriority, string> = {
 const PRIORITY_BADGE: Record<InboxItemPriority, string> = {
   critical: "bg-red-100 text-red-800",
   high: "bg-amber-100 text-amber-800",
-  medium: "bg-blue-100 text-blue-800",
+  medium: "bg-slate-100 text-slate-800",
   low: "bg-slate-100 text-slate-700",
 };
 
@@ -26,7 +26,7 @@ const TYPE_ICON: Record<InboxItemType, React.ReactNode> = {
   expiring_evidence: <Clock className="h-4 w-4 text-amber-500" />,
   missing_control: <Shield className="h-4 w-4 text-amber-600" />,
   partial_control: <Shield className="h-4 w-4 text-slate-400" />,
-  high_leverage_upload: <TrendingUp className="h-4 w-4 text-blue-500" />,
+  high_leverage_upload: <TrendingUp className="h-4 w-4 text-slate-500" />,
 };
 
 interface InboxItemCardProps {

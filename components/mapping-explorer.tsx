@@ -390,7 +390,7 @@ function MappingExplorerContent({
               {stats.totalFrameworks} frameworks.
             </p>
           </div>
-          <Badge variant="outline" className="bg-blue-50 text-blue-700">
+          <Badge variant="outline" className="bg-ft-cream text-ft-black">
             <Database className="mr-2 h-3 w-3" />
             {safeToLocaleString(stats.totalMappings)} mappings
           </Badge>
@@ -398,17 +398,11 @@ function MappingExplorerContent({
       )}
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <Card
-          className={
-            embedded
-              ? "border-slate-200 bg-white"
-              : "bg-gradient-to-r from-blue-500 to-blue-600 text-white"
-          }
-        >
+        <Card className={embedded ? "border-slate-200 bg-white" : "bg-ft-navy text-white"}>
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className={embedded ? "ft-eyebrow text-slate-500" : "text-blue-100 text-sm"}>
+                <p className={embedded ? "ft-eyebrow text-slate-500" : "text-slate-300 text-sm"}>
                   Total Controls
                 </p>
                 <p
@@ -419,21 +413,15 @@ function MappingExplorerContent({
                   {safeToLocaleString(allControls.length)}
                 </p>
               </div>
-              <Shield className={embedded ? "h-8 w-8 text-slate-300" : "h-8 w-8 text-blue-200"} />
+              <Shield className={embedded ? "h-8 w-8 text-slate-300" : "h-8 w-8 text-slate-400"} />
             </div>
           </CardContent>
         </Card>
-        <Card
-          className={
-            embedded
-              ? "border-slate-200 bg-white"
-              : "bg-gradient-to-r from-emerald-500 to-emerald-600 text-white"
-          }
-        >
+        <Card className={embedded ? "border-slate-200 bg-white" : "bg-ft-navy text-white"}>
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className={embedded ? "ft-eyebrow text-slate-500" : "text-emerald-100 text-sm"}>
+                <p className={embedded ? "ft-eyebrow text-slate-500" : "text-slate-300 text-sm"}>
                   Frameworks
                 </p>
                 <p
@@ -445,22 +433,16 @@ function MappingExplorerContent({
                 </p>
               </div>
               <BookOpen
-                className={embedded ? "h-8 w-8 text-slate-300" : "h-8 w-8 text-emerald-200"}
+                className={embedded ? "h-8 w-8 text-slate-300" : "h-8 w-8 text-slate-400"}
               />
             </div>
           </CardContent>
         </Card>
-        <Card
-          className={
-            embedded
-              ? "border-slate-200 bg-white"
-              : "bg-gradient-to-r from-purple-500 to-purple-600 text-white"
-          }
-        >
+        <Card className={embedded ? "border-slate-200 bg-white" : "bg-ft-navy text-white"}>
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className={embedded ? "ft-eyebrow text-slate-500" : "text-purple-100 text-sm"}>
+                <p className={embedded ? "ft-eyebrow text-slate-500" : "text-slate-300 text-sm"}>
                   Cross-Mappings
                 </p>
                 <p
@@ -471,7 +453,7 @@ function MappingExplorerContent({
                   {safeToLocaleString(stats.totalMappings)}
                 </p>
               </div>
-              <Target className={embedded ? "h-8 w-8 text-slate-300" : "h-8 w-8 text-purple-200"} />
+              <Target className={embedded ? "h-8 w-8 text-slate-300" : "h-8 w-8 text-slate-400"} />
             </div>
           </CardContent>
         </Card>
@@ -533,7 +515,7 @@ function MappingExplorerContent({
         <Card className="border-slate-200 bg-white/80 backdrop-blur-sm lg:col-span-2">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Shield className="h-5 w-5 text-blue-600" />
+              <Shield className="h-5 w-5 text-ft-pink" />
               SCF Controls
               <Badge variant="secondary" className="ml-1">
                 Showing {safeToLocaleString(Math.min(visibleControlCount, controls.length))} of{" "}
@@ -553,7 +535,7 @@ function MappingExplorerContent({
             <div className="max-h-[28rem] overflow-y-auto">
               {loadingControls ? (
                 <div className="flex flex-col items-center justify-center gap-2 py-12 text-sm text-slate-500">
-                  <Loader2 className="h-6 w-6 animate-spin text-blue-500" />
+                  <Loader2 className="h-6 w-6 animate-spin text-ft-pink" />
                   Loading controls...
                 </div>
               ) : controls.length === 0 ? (
@@ -569,7 +551,7 @@ function MappingExplorerContent({
                       <div
                         key={control.id}
                         className={`border-b border-slate-100 p-4 transition-colors hover:bg-slate-50 ${
-                          isActive ? "bg-blue-50/60" : ""
+                          isActive ? "bg-ft-cream/60" : ""
                         }`}
                       >
                         <div className="flex items-start justify-between gap-3">
@@ -632,7 +614,7 @@ function MappingExplorerContent({
           <Card className="border-slate-200 bg-white/80 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Target className="h-5 w-5 text-purple-600" />
+                <Target className="h-5 w-5 text-ft-pink" />
                 Framework Mappings
               </CardTitle>
               <CardDescription>

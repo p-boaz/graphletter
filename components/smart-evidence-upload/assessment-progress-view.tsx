@@ -132,21 +132,21 @@ export function AssessmentProgressView({
       </Card>
 
       {/* Assessment Action */}
-      <div className="rounded-lg bg-blue-50 p-6 text-center">
-        <Target className="mx-auto mb-3 h-10 w-10 text-blue-600" />
-        <h3 className="mb-2 font-medium text-blue-900">
+      <div className="rounded-lg bg-ft-cream/60 p-6 text-center">
+        <Target className="mx-auto mb-3 h-10 w-10 text-ft-pink" />
+        <h3 className="ft-serif mb-2 font-semibold text-ft-black">
           {assessing ? "Assessment in progress" : "Ready to assess"}
         </h3>
         {assessing ? (
           <div className="mx-auto mt-4 max-w-2xl space-y-3 text-left">
-            <div className="rounded-lg border border-blue-200 bg-white p-4">
+            <div className="rounded-lg border border-slate-200 bg-white p-4">
               <div className="mb-2 flex items-center justify-between gap-3">
-                <p className="font-medium text-blue-900 text-sm">
+                <p className="font-medium text-slate-900 text-sm">
                   {liveAssessmentProgress.currentControlId
                     ? `Assessing ${liveAssessmentProgress.currentControlId}`
                     : "Preparing first control assessment..."}
                 </p>
-                <span className="font-semibold text-blue-700 text-sm">
+                <span className="ft-mono font-semibold text-slate-700 text-sm">
                   {liveAssessmentProgress.completedControls}/{totalControlCount}
                 </span>
               </div>
@@ -156,22 +156,22 @@ export function AssessmentProgressView({
                     (liveAssessmentProgress.completedControls / totalControlCount) * 100
                   ) || 0
                 }
-                className="h-2 bg-blue-100"
+                className="h-2 bg-ft-grey-1"
               />
-              <div className="mt-2 flex items-center justify-between text-blue-700 text-xs">
+              <div className="mt-2 flex items-center justify-between text-slate-600 text-xs">
                 <span>
                   {liveAssessmentProgress.completedControls} of{" "}
                   {pluralize(totalControlCount, "control")} complete
                 </span>
                 <span>{formatEta(liveAssessmentProgress.estimatedRemainingMs)}</span>
               </div>
-              {processingStage && <p className="mt-2 text-blue-600 text-xs">{processingStage}</p>}
+              {processingStage && <p className="mt-2 text-slate-500 text-xs">{processingStage}</p>}
             </div>
 
-            <div className="rounded-lg border border-blue-200 bg-white p-4">
-              <p className="mb-2 font-medium text-blue-900 text-sm">Per-control outcomes</p>
+            <div className="rounded-lg border border-slate-200 bg-white p-4">
+              <p className="ft-eyebrow mb-2 text-[11px]">Per-control outcomes</p>
               {liveAssessmentProgress.results.length === 0 ? (
-                <p className="text-blue-700 text-xs">
+                <p className="text-slate-600 text-xs">
                   Pass/fail outcomes will appear here as each control completes.
                 </p>
               ) : (
@@ -182,9 +182,9 @@ export function AssessmentProgressView({
                     .map((controlResult) => (
                       <div
                         key={controlResult.controlId}
-                        className="flex items-center justify-between rounded border border-blue-100 bg-blue-50/40 px-2 py-1"
+                        className="flex items-center justify-between rounded border border-slate-200 bg-slate-50 px-2 py-1"
                       >
-                        <span className="font-mono text-[11px] text-blue-900">
+                        <span className="font-mono text-[11px] text-slate-800">
                           {controlResult.controlId}
                         </span>
                         <div className="flex items-center gap-1.5">
@@ -212,7 +212,7 @@ export function AssessmentProgressView({
           </div>
         ) : (
           <>
-            <p className="mb-4 text-blue-700 text-sm">
+            <p className="mb-4 text-slate-600 text-sm">
               Click the button below to run AI assessment against all{" "}
               {pluralize(uploadOnlyResult.discovered_controls.length, "relevant SCF control")}
             </p>

@@ -184,7 +184,7 @@ export function GapRemediationPanel({
                   </div>
                   <p className="mt-0.5 text-slate-500 text-xs">{rem.areaOfFocus}</p>
                   <div className="mt-2 flex flex-wrap items-center gap-2">
-                    <Badge variant="secondary" className="bg-blue-50 text-blue-700 text-xs">
+                    <Badge variant="secondary" className="bg-ft-cream text-ft-black text-xs">
                       {rem.controlsOverlap} gap control
                       {rem.controlsOverlap !== 1 ? "s" : ""}
                     </Badge>

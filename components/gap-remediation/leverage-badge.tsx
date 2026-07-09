@@ -71,7 +71,7 @@ export function LeverageBadge({ controlIds }: LeverageBadgeProps) {
   if (!impact || impact.total_frameworks_impacted === 0) return null;
 
   return (
-    <Badge variant="secondary" className="gap-1 bg-purple-50 text-purple-700 text-xs">
+    <Badge variant="secondary" className="gap-1 bg-ft-cream text-ft-black text-xs">
       <Layers className="h-3 w-3" />
       {impact.total_frameworks_impacted} framework
       {impact.total_frameworks_impacted !== 1 ? "s" : ""}

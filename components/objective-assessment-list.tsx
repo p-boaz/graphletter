@@ -67,7 +67,7 @@ function DetailBlock({
   const toneClasses = {
     slate: "border-l-slate-300 text-slate-600",
     green: "border-l-green-500 text-green-700",
-    blue: "border-l-blue-500 text-blue-700",
+    blue: "border-l-slate-400 text-slate-700",
     amber: "border-l-amber-500 text-amber-700",
     red: "border-l-red-500 text-red-700",
   };

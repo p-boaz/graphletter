@@ -147,7 +147,7 @@ export function ControlRow({
                       </p>
                     )}
                     {topRecommendation && (
-                      <p className="text-emerald-700 text-xs">
+                      <p className="text-green-700 text-xs">
                         <span className="font-medium">Top recommendation:</span> {topRecommendation}
                       </p>
                     )}
@@ -233,12 +233,12 @@ export function ControlRow({
       {hasObjectives && isExpanded && (
         <div className={`${hideSummary ? "" : "border-t "}bg-slate-50 p-4`}>
           <div className="mb-3 flex items-center gap-2">
-            <Target className="h-4 w-4 text-blue-600" />
+            <Target className="h-4 w-4 text-ft-pink" />
             <h5 className="font-semibold text-sm text-gray-900">
               Assessment Objectives ({control.objectives.length})
             </h5>
           </div>
-          <div className="mb-3 rounded-md border border-blue-200 bg-blue-50 p-2 text-xs text-blue-900">
+          <div className="mb-3 rounded-md border border-slate-200 bg-ft-cream/50 p-2 text-xs text-slate-800">
             <div className="flex items-center gap-1">
               <CircleHelp className="h-3.5 w-3.5" />
               <span className="font-medium">What this section means</span>
@@ -259,9 +259,9 @@ export function ControlRow({
                 : objective;
 
               return (
-                <div key={idx} className="bg-white border border-blue-200 rounded-lg p-3">
+                <div key={idx} className="bg-white border border-slate-200 rounded-lg p-3">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-blue-900 font-mono">
+                    <span className="text-sm font-medium text-slate-900 font-mono">
                       {enrichedObjective.scf_ao_id || `OBJ-${idx + 1}`}
                     </span>
                     <div className="flex items-center gap-2">
@@ -313,7 +313,7 @@ export function ControlRow({
                   <div>
                     <div className="rounded-md border-l-2 border-l-blue-500 bg-white p-2">
                       <div className="flex items-center gap-2 mb-1">
-                        <p className="ft-eyebrow text-[11px] text-blue-700">Reasoning</p>
+                        <p className="ft-eyebrow text-[11px]">Reasoning</p>
                       </div>
                       <p className="text-sm text-slate-700">{enrichedObjective.reasoning}</p>
                     </div>
@@ -348,11 +348,11 @@ export function ControlRow({
 
       {/* Expanded Maturity View */}
       {maturityAssessment && isExpanded && (
-        <div className="border-t bg-purple-50 p-4">
+        <div className="border-t bg-slate-50 p-4">
           <div className="flex items-center justify-between gap-2 mb-3">
             <div className="flex items-center gap-2">
-              <Gauge className="h-4 w-4 text-purple-600" />
-              <h5 className="font-semibold text-sm text-purple-900">Maturity Assessment</h5>
+              <Gauge className="h-4 w-4 text-ft-pink" />
+              <h5 className="ft-serif font-semibold text-sm text-ft-black">Maturity Assessment</h5>
             </div>
             <TooltipProvider>
               <Tooltip>

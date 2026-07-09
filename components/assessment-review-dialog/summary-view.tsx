@@ -120,7 +120,7 @@ export function SummaryView({
                             </p>
                           )}
                           {topRecommendation && (
-                            <p className="text-emerald-700 text-xs">
+                            <p className="text-green-700 text-xs">
                               <span className="font-medium">Top recommendation:</span>{" "}
                               {topRecommendation}
                             </p>
