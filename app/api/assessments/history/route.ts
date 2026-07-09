@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
       `
       )
       .eq("user_id", user.id)
-      .eq("assessment_status", "completed")
+      .in("assessment_status", ["completed", "under_review", "approved"])
       .order("completed_at", { ascending: false });
 
     // Only apply pagination if we have specific filters, otherwise return all for dashboard stats

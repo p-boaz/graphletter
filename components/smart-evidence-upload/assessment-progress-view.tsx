@@ -1,13 +1,14 @@
 "use client";
 
-import { AlertCircle, Brain, CheckCircle2, FileText, RefreshCw, Target, Zap } from "lucide-react";
+import { AlertCircle, CheckCircle2, FileText, Play, RefreshCw, Target } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { AssessmentStatusBadge } from "@/components/ui/status-badge";
 import type { UploadOnlyResult } from "@/lib/client/smart-evidence-workflow";
 import type { LiveAssessmentProgress } from "./types";
-import { formatEta, formatResultLabel, getResultBadgeClasses } from "./utils";
+import { formatEta, formatResultLabel, pluralize } from "./utils";
 
 interface AssessmentProgressViewProps {
   uploadOnlyResult: UploadOnlyResult;
@@ -37,6 +38,10 @@ function describeSkipReason(reason: string | null): string | null {
   return SKIP_REASON_DESCRIPTIONS[reason] ?? null;
 }
 
+function formatEvidenceStatus(status: string) {
+  return status.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
 export function AssessmentProgressView({
   uploadOnlyResult,
   assessing,
@@ -63,7 +68,8 @@ export function AssessmentProgressView({
         <CheckCircle2 className="mx-auto mb-2 h-8 w-8 text-green-600" />
         <h3 className="mb-1 font-medium text-green-900">Evidence Uploaded Successfully!</h3>
         <p className="text-green-700 text-sm">
-          Found {uploadOnlyResult.discovered_controls.length} relevant controls for &quot;
+          Found {pluralize(uploadOnlyResult.discovered_controls.length, "relevant control")} for
+          &quot;
           {uploadOnlyResult.documentation_artifact}
           &quot;
         </p>
@@ -100,8 +106,7 @@ export function AssessmentProgressView({
             {uploadOnlyResult.evidence.file_name}
           </CardTitle>
           <CardDescription>
-            Status: {uploadOnlyResult.evidence.evidence_status.replace("_", " ")} • Ready for
-            assessment
+            {formatEvidenceStatus(uploadOnlyResult.evidence.evidence_status)} — ready for assessment
           </CardDescription>
         </CardHeader>
       </Card>
@@ -131,9 +136,9 @@ export function AssessmentProgressView({
 
       {/* Assessment Action */}
       <div className="rounded-lg bg-blue-50 p-6 text-center">
-        <Brain className="mx-auto mb-3 h-10 w-10 text-blue-600" />
+        <Target className="mx-auto mb-3 h-10 w-10 text-blue-600" />
         <h3 className="mb-2 font-medium text-blue-900">
-          {assessing ? "AI Assessment In Progress" : "Ready to Start AI Assessment"}
+          {assessing ? "Assessment in progress" : "Ready to assess"}
         </h3>
         {assessing ? (
           <div className="mx-auto mt-4 max-w-2xl space-y-3 text-left">
@@ -141,10 +146,7 @@ export function AssessmentProgressView({
               <div className="mb-2 flex items-center justify-between gap-3">
                 <p className="font-medium text-blue-900 text-sm">
                   {liveAssessmentProgress.currentControlId
-                    ? `Assessing ${liveAssessmentProgress.currentControlId}... (${Math.max(
-                        1,
-                        liveAssessmentProgress.currentControlNumber
-                      )}/${totalControlCount})`
+                    ? `Assessing ${liveAssessmentProgress.currentControlId}`
                     : "Preparing first control assessment..."}
                 </p>
                 <span className="font-semibold text-blue-700 text-sm">
@@ -161,8 +163,8 @@ export function AssessmentProgressView({
               />
               <div className="mt-2 flex items-center justify-between text-blue-700 text-xs">
                 <span>
-                  {liveAssessmentProgress.completedControls} of {totalControlCount} controls
-                  complete
+                  {liveAssessmentProgress.completedControls} of{" "}
+                  {pluralize(totalControlCount, "control")} complete
                 </span>
                 <span>{formatEta(liveAssessmentProgress.estimatedRemainingMs)}</span>
               </div>
@@ -189,12 +191,16 @@ export function AssessmentProgressView({
                           {controlResult.controlId}
                         </span>
                         <div className="flex items-center gap-1.5">
-                          <Badge
-                            variant="outline"
-                            className={`text-[10px] ${getResultBadgeClasses(controlResult.result)}`}
-                          >
-                            {formatResultLabel(controlResult.result)}
-                          </Badge>
+                          {controlResult.result === "error" ? (
+                            <Badge variant="destructive" className="text-[10px]">
+                              {formatResultLabel(controlResult.result)}
+                            </Badge>
+                          ) : (
+                            <AssessmentStatusBadge
+                              status={controlResult.result}
+                              className="text-[10px]"
+                            />
+                          )}
                           {typeof controlResult.confidence === "number" && (
                             <Badge variant="outline" className="text-[10px]">
                               {Math.round(controlResult.confidence * 100)}%
@@ -211,7 +217,7 @@ export function AssessmentProgressView({
           <>
             <p className="mb-4 text-blue-700 text-sm">
               Click the button below to run AI assessment against all{" "}
-              {uploadOnlyResult.discovered_controls.length} relevant SCF controls
+              {pluralize(uploadOnlyResult.discovered_controls.length, "relevant SCF control")}
             </p>
             <Button
               onClick={onStartAssessment}
@@ -219,8 +225,8 @@ export function AssessmentProgressView({
               data-testid="start-ai-assessment-button"
               className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
             >
-              <Zap className="mr-2 h-4 w-4" />
-              Start AI Assessment
+              <Play className="mr-2 h-4 w-4" />
+              Start assessment
             </Button>
           </>
         )}

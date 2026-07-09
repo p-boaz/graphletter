@@ -47,7 +47,7 @@ export interface SmartEvidenceUploadProps {
   onOpenChange?: (open: boolean) => void;
   /** Hide the built-in trigger button. Useful when the parent opens the dialog programmatically. */
   hideTrigger?: boolean;
-  /** Override the default dialog title ("Smart Evidence Upload & Assessment"). */
+  /** Override the default dialog title ("Upload evidence"). */
   dialogTitle?: ReactNode;
 }
 

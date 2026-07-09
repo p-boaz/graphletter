@@ -4,6 +4,7 @@ import type { MaturityAssessment, MaturityLevels } from "@/lib/client/smart-evid
 export interface UnifiedAssessmentResult {
   id: string;
   scf_control_id: string;
+  assessment_status?: string;
   overall_result: string;
   overall_confidence: number;
   summary: string;
@@ -21,6 +22,12 @@ export interface UnifiedAssessmentResult {
     result: string;
     confidence: number;
     reasoning: string;
+    evidence_quotes?: Array<{
+      start?: number;
+      end?: number;
+      text: string;
+      supports?: string;
+    }>;
     gaps?: string[];
     recommendations?: string[];
   }>;
@@ -67,6 +74,7 @@ export type ControlGroup = {
   control_guidance?: string;
   domain_name?: string;
   completed_at?: string;
+  assessment_status?: string;
   ai_generated?: boolean;
   linked_evidence?: UnifiedAssessmentResult["linked_evidence"];
   evidenceByAssessmentId: Record<string, UnifiedAssessmentResult["linked_evidence"]>;

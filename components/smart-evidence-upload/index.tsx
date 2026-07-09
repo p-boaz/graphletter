@@ -1,6 +1,6 @@
 "use client";
 
-import { Brain } from "lucide-react";
+import { FileUp } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -712,7 +713,7 @@ export function SmartEvidenceUpload({
             data-testid="open-smart-upload-button"
             aria-controls={SMART_UPLOAD_DIALOG_ID}
           >
-            <Brain className="mr-2 h-4 w-4" />
+            <FileUp className="mr-2 h-4 w-4" />
             Upload Evidence
           </Button>
         </DialogTrigger>
@@ -722,7 +723,6 @@ export function SmartEvidenceUpload({
           id={SMART_UPLOAD_DIALOG_ID}
           className="max-h-[90vh] max-w-3xl overflow-y-auto"
           data-testid="smart-upload-dialog"
-          aria-describedby={undefined}
           onOpenAutoFocus={(event) => {
             event.preventDefault();
             const artifactTrigger = document.getElementById("documentation-artifact");
@@ -733,9 +733,12 @@ export function SmartEvidenceUpload({
         >
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2" data-testid="smart-upload-title">
-              <Brain className="h-5 w-5 text-blue-600" />
-              {dialogTitle ?? "Smart Evidence Upload & Assessment"}
+              {dialogTitle ?? "Upload evidence"}
             </DialogTitle>
+            <DialogDescription>
+              Select the document you&apos;re providing, then Graphletter will assess the controls
+              it applies to.
+            </DialogDescription>
           </DialogHeader>
 
           {showUploadForm && (

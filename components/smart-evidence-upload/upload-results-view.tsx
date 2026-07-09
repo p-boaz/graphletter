@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import type { SmartUploadResult } from "./types";
+import { pluralize } from "./utils";
 
 interface FrameworkImpact {
   total_frameworks_impacted: number;
@@ -123,9 +124,9 @@ export function UploadResultsView({
       {/* Success Header */}
       <div className="rounded-lg bg-green-50 p-4 text-center">
         <CheckCircle2 className="mx-auto mb-2 h-8 w-8 text-green-600" />
-        <h3 className="mb-1 font-medium text-green-900">Evidence Uploaded Successfully!</h3>
+        <h3 className="mb-1 font-medium text-green-900">Assessment approved</h3>
         <p className="text-green-700 text-sm">
-          Assessed {uploadResult.discovered_controls.length} controls for &quot;
+          Assessed {pluralize(uploadResult.discovered_controls.length, "control")} for &quot;
           {uploadResult.documentation_artifact}
           &quot;
         </p>

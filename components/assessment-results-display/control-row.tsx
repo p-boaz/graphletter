@@ -1,9 +1,6 @@
 "use client";
 
 import {
-  AlertCircle,
-  Bot,
-  Brain,
   CheckCircle2,
   ChevronDown,
   ChevronRight,
@@ -19,6 +16,7 @@ import type { KeyboardEvent } from "react";
 import { InlineHelp } from "@/components/inline-help";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { AssessmentStatusBadge, ConfidenceBadge } from "@/components/ui/status-badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import type { ControlGroup, ControlObjective, ObjectiveDetail } from "./types";
 import {
@@ -59,6 +57,7 @@ export function ControlRow({
   const { topGap, topRecommendation } = getTopGapAndRecommendation(control.objectives);
   const isLowConfidence = overallConfidence < 0.6;
   const rowIsInteractive = enableRowDetailDialog;
+  const reviewState = control.assessment_status === "approved" ? "approved" : "awaiting_review";
   const openDetails = () => onSelectControl(control.control_id);
   const handleRowKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (!rowIsInteractive) return;
@@ -118,24 +117,16 @@ export function ControlRow({
       {!hideSummary && (
         <div
           className={`flex items-center justify-between p-4 ${
-            overallResult === "pass"
+            reviewState === "approved"
               ? "border-l-4 border-l-green-500"
-              : overallResult === "fail"
-                ? "border-l-4 border-l-red-500"
-                : overallResult === "partial"
-                  ? "border-l-4 border-l-yellow-500"
-                  : "border-l-4 border-l-gray-400"
+              : "border-l-4 border-l-amber-500"
           }`}
         >
           <div className="flex items-center space-x-3">
-            {overallResult === "pass" ? (
+            {reviewState === "approved" ? (
               <CheckCircle2 className="h-5 w-5 text-green-600" />
-            ) : overallResult === "fail" ? (
-              <AlertCircle className="h-5 w-5 text-red-600" />
-            ) : overallResult === "partial" ? (
-              <Clock className="h-5 w-5 text-yellow-600" />
             ) : (
-              <Target className="h-5 w-5 text-gray-600" />
+              <Clock className="h-5 w-5 text-amber-600" />
             )}
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-1">
@@ -143,12 +134,6 @@ export function ControlRow({
                 {control.domain_name && (
                   <Badge variant="outline" className="text-xs font-mono">
                     {control.domain_name}
-                  </Badge>
-                )}
-                {control.ai_generated && (
-                  <Badge variant="secondary" className="text-xs">
-                    <Brain className="h-3 w-3 mr-1" />
-                    AI Generated
                   </Badge>
                 )}
               </div>
@@ -171,10 +156,7 @@ export function ControlRow({
               {(formattedDate || showLinkedEvidence || maturityAssessment) && (
                 <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500">
                   {formattedDate && showCompletedDate && (
-                    <span className="flex items-center">
-                      <Clock className="h-3 w-3 mr-1" />
-                      {formattedDate}
-                    </span>
+                    <span className="flex items-center">{formattedDate}</span>
                   )}
                   {showLinkedEvidence &&
                     control.linked_evidence &&
@@ -186,11 +168,11 @@ export function ControlRow({
                       </span>
                     )}
                   {maturityAssessment && (
-                    <span className="flex items-center text-purple-700">
+                    <span className="flex items-center text-slate-600">
                       <Gauge className="h-3 w-3 mr-1" />
                       Level {maturityAssessment.assessed_level}
                       {typeof maturityAssessment.target_level === "number" && (
-                        <span className="ml-1 text-purple-600">
+                        <span className="ml-1 text-slate-500">
                           (target {maturityAssessment.target_level}
                           {typeof maturityAssessment.target_gap === "number"
                             ? `, gap ${maturityAssessment.target_gap}`
@@ -206,56 +188,19 @@ export function ControlRow({
           </div>
           <div className="flex items-center space-x-3">
             <div className="text-right">
-              <Badge
-                variant={
-                  overallConfidence > 0.8
-                    ? "default"
-                    : overallConfidence > 0.6
-                      ? "secondary"
-                      : "destructive"
-                }
-                className="text-xs mb-1"
-              >
-                {Math.round(overallConfidence * 100)}% confidence
-              </Badge>
+              <ConfidenceBadge confidence={overallConfidence} className="mb-1 text-xs" />
               {isLowConfidence && (
                 <Badge variant="destructive" className="text-[10px] mb-1">
                   Low confidence
                 </Badge>
               )}
-              <div className="text-gray-500 text-[10px] uppercase tracking-wide">Verdict</div>
-              <div
+              <AssessmentStatusBadge
+                status={overallResult}
+                className="justify-center text-xs"
                 data-testid="assessment-result-verdict"
-                className={`font-semibold text-sm ${
-                  overallResult === "pass"
-                    ? "text-green-600"
-                    : overallResult === "fail"
-                      ? "text-red-600"
-                      : overallResult === "partial"
-                        ? "text-yellow-700"
-                        : "text-gray-600"
-                }`}
-              >
-                {overallResultLabel}
-              </div>
+              />
             </div>
-            {enableRowDetailDialog && (
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                data-row-action="details"
-                data-testid="assessment-row-detail-button"
-                aria-label={`View assessment details for ${control.control_id}`}
-                onClick={(event) => {
-                  event.preventDefault();
-                  event.stopPropagation();
-                  openDetails();
-                }}
-              >
-                View details
-              </Button>
-            )}
+            {enableRowDetailDialog && <ChevronRight className="h-4 w-4 text-slate-400" />}
             {hasObjectives && (
               <Button
                 variant="ghost"
@@ -321,16 +266,15 @@ export function ControlRow({
                     </span>
                     <div className="flex items-center gap-2">
                       {enrichedObjective.confidence && (
-                        <Badge variant="outline" className="text-xs">
-                          {Math.round(enrichedObjective.confidence * 100)}%
-                        </Badge>
+                        <ConfidenceBadge
+                          confidence={enrichedObjective.confidence}
+                          className="text-xs"
+                        />
                       )}
-                      <Badge
-                        variant={enrichedObjective.result === "pass" ? "default" : "destructive"}
+                      <AssessmentStatusBadge
+                        status={enrichedObjective.result}
                         className="text-xs"
-                      >
-                        {enrichedObjective.result.toUpperCase()}
-                      </Badge>
+                      />
                     </div>
                   </div>
                   <p className="mb-2 text-xs text-slate-600">
@@ -339,40 +283,39 @@ export function ControlRow({
                   </p>
                   {enrichedObjective.assessment_objective && (
                     <div className="mb-2">
-                      <div className="bg-green-50 rounded-md p-2 border border-green-200">
+                      <div className="rounded-md border-l-2 border-l-green-500 bg-white p-2">
                         <div className="flex items-center gap-2 mb-1">
                           <Database className="h-3 w-3 text-green-600" />
-                          <p className="text-sm font-medium text-green-900">
+                          <p className="ft-eyebrow text-[11px] text-green-700">
                             SCF Assessment Objective
                           </p>
                         </div>
-                        <p className="text-sm text-green-800">
+                        <p className="text-sm text-slate-700">
                           {enrichedObjective.assessment_objective}
                         </p>
                       </div>
                     </div>
                   )}
                   {enrichedObjective.assessment_procedure && (
-                    <div className="mb-2 rounded-md border border-amber-200 bg-amber-50 p-2">
+                    <div className="mb-2 rounded-md border-l-2 border-l-amber-500 bg-white p-2">
                       <p className="text-xs font-medium text-amber-900">Assessment Procedure</p>
-                      <p className="text-xs text-amber-800">
+                      <p className="text-xs text-slate-700">
                         {enrichedObjective.assessment_procedure}
                       </p>
                     </div>
                   )}
                   {enrichedObjective.expected_results && (
-                    <div className="mb-2 rounded-md border border-teal-200 bg-teal-50 p-2">
-                      <p className="text-xs font-medium text-teal-900">Expected Results</p>
-                      <p className="text-xs text-teal-800">{enrichedObjective.expected_results}</p>
+                    <div className="mb-2 rounded-md border-l-2 border-l-slate-300 bg-white p-2">
+                      <p className="text-xs font-medium text-slate-900">Expected Results</p>
+                      <p className="text-xs text-slate-700">{enrichedObjective.expected_results}</p>
                     </div>
                   )}
                   <div>
-                    <div className="bg-blue-50 rounded-md p-2 border border-blue-200">
+                    <div className="rounded-md border-l-2 border-l-blue-500 bg-white p-2">
                       <div className="flex items-center gap-2 mb-1">
-                        <Bot className="h-3 w-3 text-blue-600" />
-                        <p className="text-sm font-medium text-blue-900">AI Assessment</p>
+                        <p className="ft-eyebrow text-[11px] text-blue-700">Reasoning</p>
                       </div>
-                      <p className="text-sm text-blue-800">{enrichedObjective.reasoning}</p>
+                      <p className="text-sm text-slate-700">{enrichedObjective.reasoning}</p>
                     </div>
                   </div>
                   {enrichedObjective.gaps && enrichedObjective.gaps.length > 0 && (
@@ -449,12 +392,11 @@ export function ControlRow({
             </TooltipProvider>
           </div>
 
-          <div className="bg-blue-50 rounded-md p-3 border border-blue-200 mb-3">
+          <div className="rounded-md border border-slate-200 bg-white p-3 mb-3">
             <div className="flex items-center gap-2 mb-2">
-              <Bot className="h-4 w-4 text-blue-600" />
-              <span className="font-semibold text-blue-900 text-sm">AI Assessment</span>
+              <span className="font-semibold text-slate-900 text-sm">Assessment</span>
             </div>
-            <div className="grid gap-2 text-xs text-blue-800 sm:grid-cols-2 mb-3">
+            <div className="grid gap-2 text-xs text-slate-700 sm:grid-cols-2 mb-3">
               <div>
                 <span className="font-semibold">Assessed Level:</span>{" "}
                 {maturityAssessment.assessed_level}
@@ -486,16 +428,16 @@ export function ControlRow({
               )}
             </div>
             <div>
-              <p className="text-sm font-medium text-blue-900 mb-1">AI Rationale</p>
-              <p className="text-sm text-blue-800 bg-white/70 p-2 rounded">
+              <p className="text-sm font-medium text-slate-900 mb-1">Rationale</p>
+              <p className="text-sm text-slate-700 bg-slate-50 p-2 rounded">
                 {maturityAssessment.rationale}
               </p>
             </div>
             {maturityAssessment.recommended_actions &&
               maturityAssessment.recommended_actions.length > 0 && (
                 <div className="mt-2">
-                  <p className="text-sm font-medium text-blue-900 mb-1">AI Recommendations</p>
-                  <ul className="space-y-1 text-sm text-blue-800 list-disc list-inside">
+                  <p className="text-sm font-medium text-slate-900 mb-1">Recommendations</p>
+                  <ul className="space-y-1 text-sm text-slate-700 list-disc list-inside">
                     {maturityAssessment.recommended_actions.map((action, idx) => (
                       <li key={idx}>{action}</li>
                     ))}
@@ -505,14 +447,14 @@ export function ControlRow({
           </div>
 
           {maturityAssessment.referenced_level_description && (
-            <div className="bg-green-50 rounded-md p-3 border border-green-200">
+            <div className="rounded-md border-l-2 border-l-green-500 bg-white p-3">
               <div className="flex items-center gap-2 mb-2">
                 <Database className="h-4 w-4 text-green-600" />
                 <span className="font-semibold text-green-900 text-sm">
                   SCF Framework Reference
                 </span>
               </div>
-              <p className="text-sm text-green-800">
+              <p className="text-sm text-slate-700">
                 {maturityAssessment.referenced_level_description}
               </p>
             </div>

@@ -74,6 +74,7 @@ export default function AssessmentsPage() {
     return records.map((record) => ({
       id: record.id,
       scf_control_id: record.scf_control_id,
+      assessment_status: record.assessment_status,
       overall_result: record.assessment_result,
       overall_confidence: record.metadata?.confidence || 0,
       summary: record.assessment_notes,
