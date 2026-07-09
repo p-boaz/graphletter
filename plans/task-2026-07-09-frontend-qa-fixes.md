@@ -15,6 +15,7 @@ Fix design and browser issues found during authenticated QA: signed-in dashboard
 ## Context Files
 
 - [x] components/dashboard-layout.tsx
+- [x] components/navigation.tsx
 - [x] next.config.mjs
 - [x] playwright/tests/dashboard-navigation.spec.ts
 
@@ -42,7 +43,8 @@ Fix design and browser issues found during authenticated QA: signed-in dashboard
 1. Make the dashboard header stack on mobile and wrap actions.
 2. Keep dashboard tabs inside an internal horizontal scroller instead of widening the document.
 3. Add the Vercel Analytics script origin to the existing CSP.
-4. Add Playwright coverage for mobile document overflow and the CSP header.
+4. Mark the above-the-fold navigation logo as priority-loaded.
+5. Add Playwright coverage for mobile document overflow and the CSP header.
 
 ## Test Plan
 
@@ -55,6 +57,7 @@ Fix design and browser issues found during authenticated QA: signed-in dashboard
 
 - [x] `/dashboard`, `/dashboard/evidence`, `/dashboard/assessments`, `/dashboard/analytics`, and `/dashboard/compliance-inbox` report no document-level horizontal overflow at 390px width.
 - [x] Fresh browser console on `/dashboard` has no CSP error for Vercel Analytics.
+- [x] Dev server no longer warns that the above-the-fold logo image should load eagerly.
 - [x] Focused Playwright regression is green.
 
 ## Approval Gate
