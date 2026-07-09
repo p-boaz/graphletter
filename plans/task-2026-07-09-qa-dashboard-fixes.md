@@ -4,7 +4,7 @@
 
 - Date: 2026-07-09
 - Owner: agent (Claude Code), directed by Peter ("fix everything you noted")
-- Status: Approved
+- Status: Done
 - Branch: main (sequential atomic commits, ≤15 files each)
 - Related issue/PR: `.gstack/qa-reports/qa-report-graphletter-2026-07-09.md`
 

@@ -206,15 +206,20 @@ test("generateInbox: result is cached per user until invalidated", async () => {
     scf_control_evidence_mappings: { data: [] },
   });
 
+  // Each uncached generateInbox reads control_gap_analysis twice: once for
+  // the inbox itself and once inside calculatePostureScore (paginated since
+  // the QA 2026-07-09 ISSUE-006 fix, so both reads now use .range).
+  const GAP_FETCHES_PER_GENERATE = 2;
+
   const first = await generateInbox(client, userId);
   const second = await generateInbox(client, userId);
   assert.equal(second, first);
-  assert.equal(gapFetches, 1);
+  assert.equal(gapFetches, GAP_FETCHES_PER_GENERATE);
 
   invalidateInboxCache(userId);
   const third = await generateInbox(client, userId);
   assert.notEqual(third, first);
-  assert.equal(gapFetches, 2);
+  assert.equal(gapFetches, GAP_FETCHES_PER_GENERATE * 2);
 });
 
 test("generateInbox: items sort by priority, leverage, then title", async () => {

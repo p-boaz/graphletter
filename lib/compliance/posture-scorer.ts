@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { chunkArray, IN_CHUNK_SIZE, selectAllRows } from "@/lib/database/paged-select";
 import { createLogger } from "@/lib/logger";
 
 const log = createLogger("posture-scorer");
@@ -94,41 +95,27 @@ export async function calculatePostureScore(
   // silently truncates at PostgREST's 1000-row default, which made the
   // posture page report "of 1000 total" against a 1,468-control catalog
   // (QA 2026-07-09 ISSUE-006).
-  const gapRows: ControlGapRow[] = [];
-  const GAP_PAGE_SIZE = 1000;
-  let gapOffset = 0;
+  let gapRows: ControlGapRow[];
+  try {
+    gapRows = await selectAllRows<ControlGapRow>(() => {
+      const gapQuery = supabase
+        .from("control_gap_analysis")
+        .select("scf_control_id, status")
+        .eq("user_id", userId)
+        .order("scf_control_id");
 
-  while (true) {
-    let gapQuery = supabase
-      .from("control_gap_analysis")
-      .select("scf_control_id, status")
-      .eq("user_id", userId)
-      .order("scf_control_id")
-      .range(gapOffset, gapOffset + GAP_PAGE_SIZE - 1);
-
-    // Snapshots are keyed by framework scope (run-gap-analysis deletes and
-    // rewrites per scope). Without this filter the unscoped read mixes in
-    // framework-scoped rows and double-counts those controls.
-    if (frameworkId) {
-      gapQuery = gapQuery.eq("framework_id", frameworkId);
-    } else {
-      gapQuery = gapQuery.is("framework_id", null);
-    }
-
-    const { data: gapPage, error: gapError } = await gapQuery;
-
-    if (gapError) {
-      log.error("posture_scorer.gap_data_error", { error: gapError.message });
-      return null;
-    }
-
-    const rows = (gapPage || []) as ControlGapRow[];
-    gapRows.push(...rows);
-
-    if (rows.length < GAP_PAGE_SIZE) {
-      break;
-    }
-    gapOffset += GAP_PAGE_SIZE;
+      // Snapshots are keyed by framework scope (run-gap-analysis deletes and
+      // rewrites per scope). Without this filter the unscoped read mixes in
+      // framework-scoped rows and double-counts those controls.
+      return frameworkId
+        ? gapQuery.eq("framework_id", frameworkId)
+        : gapQuery.is("framework_id", null);
+    });
+  } catch (gapError) {
+    log.error("posture_scorer.gap_data_error", {
+      error: gapError instanceof Error ? gapError.message : String(gapError),
+    });
+    return null;
   }
 
   if (!gapRows.length) {
@@ -140,11 +127,9 @@ export async function calculatePostureScore(
   // with 1,468 ids risks both the URL length limit and the same 1000-row
   // response cap as above.
   const controlIds = [...new Set(gapRows.map((r) => r.scf_control_id))];
-  const CATALOG_CHUNK = 500;
   const controlDomainMap = new Map<string, ControlCatalogRow>();
 
-  for (let i = 0; i < controlIds.length; i += CATALOG_CHUNK) {
-    const chunk = controlIds.slice(i, i + CATALOG_CHUNK);
+  for (const chunk of chunkArray(controlIds, IN_CHUNK_SIZE)) {
     const { data: catalogRows, error: catalogError } = await supabase
       .from("scf_controls")
       .select("id, domain_id, scf_domains(name)")
