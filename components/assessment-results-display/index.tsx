@@ -69,7 +69,7 @@ export function AssessmentResultsDisplay({
   if (loading) {
     return (
       <div className="py-8 text-center">
-        <div className="mx-auto mb-2 h-8 w-8 animate-spin rounded-full border-2 border-blue-600 border-t-transparent" />
+        <div className="mx-auto mb-2 h-8 w-8 animate-spin rounded-full border-2 border-ft-pink border-t-transparent" />
         <span className="text-gray-600 text-sm">Loading assessment results...</span>
       </div>
     );

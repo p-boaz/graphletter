@@ -204,8 +204,10 @@ export function AssessmentExecution({ controlId }: AssessmentExecutionProps) {
         <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
           <Card>
             <CardContent className="p-4 text-center">
-              <div className="mb-1 font-bold text-2xl text-blue-700">{stats.total_assessments}</div>
-              <div className="text-blue-600 text-sm">Total Assessments</div>
+              <div className="ft-serif mb-1 font-bold text-2xl text-ft-black">
+                {stats.total_assessments}
+              </div>
+              <div className="text-slate-600 text-sm">Total Assessments</div>
             </CardContent>
           </Card>
 
@@ -236,10 +238,10 @@ export function AssessmentExecution({ controlId }: AssessmentExecutionProps) {
 
           <Card>
             <CardContent className="p-4 text-center">
-              <div className="mb-1 font-bold text-2xl text-purple-700">
+              <div className="ft-serif mb-1 font-bold text-2xl text-ft-black">
                 {stats.implementation_rate}%
               </div>
-              <div className="text-purple-600 text-sm">Implementation</div>
+              <div className="text-slate-600 text-sm">Implementation</div>
             </CardContent>
           </Card>
         </div>
@@ -460,7 +462,7 @@ export function AssessmentExecution({ controlId }: AssessmentExecutionProps) {
                                 started_at: new Date().toISOString(),
                               })
                             }
-                            className="bg-blue-600 hover:bg-blue-700"
+                            className=""
                           >
                             <Play className="mr-1 h-4 w-4" />
                             Start

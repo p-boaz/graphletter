@@ -119,7 +119,7 @@ export function AssessmentReviewDialog({
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
                 <span className="flex items-center gap-2">
-                  <Eye className="h-5 w-5 text-blue-600" />
+                  <Eye className="h-5 w-5 text-ft-pink" />
                   Assessment Details
                 </span>
               </>

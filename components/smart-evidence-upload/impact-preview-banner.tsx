@@ -57,10 +57,10 @@ export function ImpactPreviewBanner({ controlIds, frameworkId }: ImpactPreviewBa
   if (loading) {
     return (
       <div
-        className="animate-pulse rounded-lg border border-blue-100 bg-blue-50 p-3"
+        className="animate-pulse rounded-lg border border-slate-200 bg-slate-50 p-3"
         data-testid="impact-preview-banner"
       >
-        <div className="h-4 w-3/4 rounded bg-blue-100" />
+        <div className="h-4 w-3/4 rounded bg-slate-200" />
       </div>
     );
   }

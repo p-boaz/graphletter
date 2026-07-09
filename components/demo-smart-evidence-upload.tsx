@@ -161,17 +161,17 @@ export function DemoSmartEvidenceUpload() {
     return (
       <div className="space-y-6">
         {/* Context: what problem does this solve? */}
-        <div className="space-y-3 rounded-lg bg-blue-50 p-5">
-          <h3 className="font-semibold text-blue-900">
+        <div className="space-y-3 rounded-lg bg-ft-cream/60 p-5">
+          <h3 className="ft-serif font-semibold text-ft-black">
             Does your documentation actually meet compliance requirements?
           </h3>
-          <p className="text-blue-800 text-sm leading-relaxed">
+          <p className="text-slate-700 text-sm leading-relaxed">
             Organizations maintain policies, procedures, and other documents to satisfy security and
             privacy frameworks (NIST, ISO 27001, SOC 2, GDPR, etc.). But proving that a specific
             document actually addresses a specific control requirement usually means hours of manual
             review.
           </p>
-          <p className="text-blue-800 text-sm leading-relaxed">
+          <p className="text-slate-700 text-sm leading-relaxed">
             <strong>Graphletter automates this.</strong> Upload a document, and AI reads it against
             the relevant compliance requirements — then tells you exactly what passes, what fails,
             and why.
@@ -276,10 +276,10 @@ export function DemoSmartEvidenceUpload() {
   if (step === "running") {
     return (
       <div className="space-y-6">
-        <div className="rounded-lg bg-blue-50 p-4 text-center">
-          <Loader2 className="mx-auto mb-2 h-8 w-8 animate-spin text-blue-600" />
-          <h3 className="mb-1 font-medium text-blue-900">Processing Your Document</h3>
-          <p className="text-blue-700 text-sm">
+        <div className="rounded-lg bg-ft-cream/60 p-4 text-center">
+          <Loader2 className="mx-auto mb-2 h-8 w-8 animate-spin text-ft-pink" />
+          <h3 className="ft-serif mb-1 font-semibold text-ft-black">Processing Your Document</h3>
+          <p className="text-slate-600 text-sm">
             AI is reading &quot;{selectedSample?.label}&quot; and checking it against compliance
             requirements
           </p>
@@ -303,13 +303,13 @@ export function DemoSmartEvidenceUpload() {
           </CardContent>
         </Card>
 
-        <div className="rounded-lg border border-blue-200 bg-white p-4">
+        <div className="rounded-lg border border-slate-200 bg-white p-4">
           <div className="mb-2 flex items-center justify-between gap-3">
-            <p className="font-medium text-blue-900 text-sm">{progressMsg}</p>
-            <span className="font-semibold text-blue-700 text-sm">{progressPct}%</span>
+            <p className="font-medium text-slate-900 text-sm">{progressMsg}</p>
+            <span className="ft-mono font-semibold text-slate-700 text-sm">{progressPct}%</span>
           </div>
-          <Progress value={progressPct} className="h-2 bg-blue-100" />
-          <p className="mt-2 text-blue-600 text-xs">
+          <Progress value={progressPct} className="h-2 bg-ft-grey-1" />
+          <p className="mt-2 text-slate-500 text-xs">
             This is real AI analysis — typically takes 20-40 seconds
           </p>
         </div>
@@ -483,10 +483,10 @@ function SamplePreview({ sample }: { sample: DemoSample }) {
   const wordCount = content ? content.trim().split(/\s+/).length : null;
 
   return (
-    <Card className="border-blue-200 bg-blue-50/30">
+    <Card className="border-slate-200 bg-ft-cream/40">
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center gap-2 text-sm">
-          <FileText className="h-4 w-4 text-blue-600" />
+          <FileText className="h-4 w-4 text-ft-pink" />
           {sample.label}
           <Badge variant="outline" className="ml-auto text-[10px]">
             {sample.evidenceType}
@@ -505,16 +505,16 @@ function SamplePreview({ sample }: { sample: DemoSample }) {
           </Badge>
         </div>
 
-        <div className="rounded-md border border-blue-100 bg-white/80">
+        <div className="rounded-md border border-slate-200 bg-white/80">
           <button
             type="button"
             onClick={toggle}
             aria-expanded={expanded}
             data-testid="demo-sample-expand"
-            className="flex w-full items-center justify-between gap-2 px-3 py-2 text-left text-slate-700 text-xs transition-colors hover:bg-blue-50"
+            className="flex w-full items-center justify-between gap-2 px-3 py-2 text-left text-slate-700 text-xs transition-colors hover:bg-ft-cream/60"
           >
             <span className="flex items-center gap-2">
-              <FileText className="h-3.5 w-3.5 text-blue-600" />
+              <FileText className="h-3.5 w-3.5 text-ft-pink" />
               <span className="font-medium">
                 {expanded ? "Hide full document" : "View full document"}
               </span>
@@ -527,7 +527,7 @@ function SamplePreview({ sample }: { sample: DemoSample }) {
             )}
           </button>
           {expanded && (
-            <div className="border-blue-100 border-t">
+            <div className="border-slate-200 border-t">
               {loading && (
                 <div className="flex items-center gap-2 px-3 py-4 text-slate-600 text-xs">
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -537,7 +537,7 @@ function SamplePreview({ sample }: { sample: DemoSample }) {
               {fetchError && <div className="px-3 py-3 text-red-700 text-xs">{fetchError}</div>}
               {content && !loading && !fetchError && (
                 <>
-                  <div className="flex items-center justify-between gap-2 border-blue-100 border-b bg-blue-50/40 px-3 py-1.5 text-[10px] text-slate-600">
+                  <div className="flex items-center justify-between gap-2 border-slate-200 border-b bg-slate-50 px-3 py-1.5 text-[10px] text-slate-600">
                     <span>This is the exact text the AI reads during assessment.</span>
                     {lineCount !== null && wordCount !== null && (
                       <span className="font-medium">
@@ -572,7 +572,7 @@ function StepIndicator({
 }) {
   return (
     <div className="flex items-start gap-2">
-      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white">
+      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ft-pink text-white">
         {icon}
       </div>
       <div>

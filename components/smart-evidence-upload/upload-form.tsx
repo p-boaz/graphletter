@@ -353,7 +353,7 @@ export function UploadForm({
         })}
         className={cn(
           "cursor-pointer rounded-lg border-2 border-dashed p-8 text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2",
-          isDragActive ? "border-blue-400 bg-blue-50" : "border-gray-300 hover:border-gray-400",
+          isDragActive ? "border-ft-pink bg-ft-cream/60" : "border-gray-300 hover:border-gray-400",
           uploadDisabled ? "cursor-not-allowed opacity-50" : ""
         )}
       >
@@ -368,7 +368,7 @@ export function UploadForm({
         />
         {uploading ? (
           <div className="flex flex-col items-center gap-2">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-600 border-t-transparent" />
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-ft-pink border-t-transparent" />
             <span className="font-medium text-gray-600 text-sm">{processingStage}</span>
             <span className="text-gray-500 text-xs">This may take a few moments</span>
           </div>
@@ -404,7 +404,7 @@ export function UploadForm({
         <h4 className="mb-2 font-medium text-gray-900">How this works:</h4>
         <div className="grid grid-cols-1 gap-3 text-sm md:grid-cols-3">
           <div className="flex items-start gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 font-medium text-white text-xs">
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-ft-pink font-medium text-white text-xs">
               1
             </div>
             <div>
@@ -413,7 +413,7 @@ export function UploadForm({
             </div>
           </div>
           <div className="flex items-start gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 font-medium text-white text-xs">
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-ft-pink font-medium text-white text-xs">
               2
             </div>
             <div>
@@ -422,7 +422,7 @@ export function UploadForm({
             </div>
           </div>
           <div className="flex items-start gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 font-medium text-white text-xs">
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-ft-pink font-medium text-white text-xs">
               3
             </div>
             <div>
