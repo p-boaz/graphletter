@@ -3,9 +3,12 @@ import type { supabaseAdmin as SupabaseAdminType } from "@/lib/database/supabase
 
 // Lazy import so the module can be loaded without Supabase env vars.
 // The supabaseAdmin client is only needed on the real (non-test) code path.
-function getSupabaseAdmin(): typeof SupabaseAdminType {
-  return (require("@/lib/database/supabase") as { supabaseAdmin: typeof SupabaseAdminType })
-    .supabaseAdmin;
+// Must be a dynamic import(): CJS require() of the path-aliased ESM module
+// resolved to undefined in the bundled Next runtime, leaving the breaker
+// permanently fail-open (QA 2026-07-09 ISSUE-004).
+async function getSupabaseAdmin(): Promise<typeof SupabaseAdminType> {
+  const mod = await import("@/lib/database/supabase");
+  return mod.supabaseAdmin;
 }
 
 const log = createLogger("circuit-breaker");
@@ -35,7 +38,7 @@ export function setCircuitBreakerOverrideForTesting(result: { allowed: boolean }
 export async function checkCircuitBreaker(provider: string): Promise<{ allowed: boolean }> {
   if (testOverride !== null) return testOverride;
   try {
-    const { data, error } = await getSupabaseAdmin()
+    const { data, error } = await (await getSupabaseAdmin())
       .from("ai_provider_health")
       .select("consecutive_failures, tripped_at")
       .eq("provider", provider)
@@ -54,7 +57,7 @@ export async function checkCircuitBreaker(provider: string): Promise<{ allowed: 
       const trippedAtMs = new Date(data.tripped_at).getTime();
       if (Date.now() - trippedAtMs >= RESET_AFTER_MS) {
         log.info("circuit_breaker.auto_reset", { provider });
-        await getSupabaseAdmin()
+        await (await getSupabaseAdmin())
           .from("ai_provider_health")
           .update({ consecutive_failures: 0, tripped_at: null })
           .eq("provider", provider);
@@ -86,7 +89,7 @@ export async function checkCircuitBreaker(provider: string): Promise<{ allowed: 
  */
 export async function recordSuccess(provider: string): Promise<void> {
   try {
-    await getSupabaseAdmin().from("ai_provider_health").upsert(
+    await (await getSupabaseAdmin()).from("ai_provider_health").upsert(
       {
         provider,
         consecutive_failures: 0,
@@ -109,7 +112,7 @@ export async function recordSuccess(provider: string): Promise<void> {
 export async function recordFailure(provider: string): Promise<void> {
   try {
     // Fetch current state
-    const { data } = await getSupabaseAdmin()
+    const { data } = await (await getSupabaseAdmin())
       .from("ai_provider_health")
       .select("consecutive_failures")
       .eq("provider", provider)
@@ -118,17 +121,15 @@ export async function recordFailure(provider: string): Promise<void> {
     const newCount = (data?.consecutive_failures ?? 0) + 1;
     const now = new Date().toISOString();
 
-    await getSupabaseAdmin()
-      .from("ai_provider_health")
-      .upsert(
-        {
-          provider,
-          consecutive_failures: newCount,
-          last_failure_at: now,
-          tripped_at: newCount >= TRIP_THRESHOLD ? now : null,
-        },
-        { onConflict: "provider" }
-      );
+    await (await getSupabaseAdmin()).from("ai_provider_health").upsert(
+      {
+        provider,
+        consecutive_failures: newCount,
+        last_failure_at: now,
+        tripped_at: newCount >= TRIP_THRESHOLD ? now : null,
+      },
+      { onConflict: "provider" }
+    );
 
     if (newCount >= TRIP_THRESHOLD) {
       log.warn("circuit_breaker.tripped_by_failure", {

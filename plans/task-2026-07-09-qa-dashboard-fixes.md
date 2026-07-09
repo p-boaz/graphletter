@@ -21,7 +21,7 @@ hydration, cosmetic/UX nits).
 - [x] components/mapping-explorer.tsx (ISSUE-001 broken /control/ link) — fixed in a37ffb5
 - [x] components/gap-remediation/leverage-badge.tsx (ISSUE-002 request storm) — module cache + in-flight dedupe
 - [x] components/gap-remediation/gap-remediation-panel.tsx (ISSUE-003) — paged list, 10 per page
-- [ ] lib/ai/circuit-breaker.ts (ISSUE-004 lazy require broken)
+- [x] lib/ai/circuit-breaker.ts (ISSUE-004) — dynamic import() replaces broken require()
 - [x] lib/graph/gap-analysis.ts + app/api/controls/build-coverage/route.ts (ISSUE-005) — verdict overlay, regression tests in lib/graph/gap-analysis.test.ts
 - [ ] app/dashboard/compliance-posture/page.tsx + its data source (ISSUE-006, 1000-row cap suspicion)
 - [ ] components/smart-evidence-upload/\* (ISSUE-007 copy strings)
