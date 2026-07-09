@@ -126,9 +126,7 @@ export function UploadResultsView({
         <CheckCircle2 className="mx-auto mb-2 h-8 w-8 text-green-600" />
         <h3 className="mb-1 font-medium text-green-900">Assessment approved</h3>
         <p className="text-green-700 text-sm">
-          Assessed {pluralize(uploadResult.discovered_controls.length, "control")} for &quot;
-          {uploadResult.documentation_artifact}
-          &quot;
+          {`Assessed ${pluralize(uploadResult.discovered_controls.length, "control")} for "${uploadResult.documentation_artifact}"`}
         </p>
 
         {/* One Upload, Many Frameworks badge */}

@@ -24,8 +24,8 @@ hydration, cosmetic/UX nits).
 - [x] lib/ai/circuit-breaker.ts (ISSUE-004) — dynamic import() replaces broken require()
 - [x] lib/graph/gap-analysis.ts + app/api/controls/build-coverage/route.ts (ISSUE-005) — verdict overlay, regression tests in lib/graph/gap-analysis.test.ts
 - [x] ISSUE-006 — paginated resolveControlIds (shared lib), verdict overlay in run-gap-analysis, posture scope filter + paginated reads, "mappings" label
-- [ ] components/smart-evidence-upload/\* (ISSUE-007 copy strings)
-- [ ] components/dashboard-layout.tsx / header component (ISSUE-008)
+- [x] ISSUE-007 — template-literal banners (controlsfor ×2), real space before (+x%)
+- [x] ISSUE-008 — auth context paints from getSession, background getUser validation, no getUser without session (kills pre-login 401); Try link hidden on app routes
 - [ ] app/dashboard/analytics/page.tsx, compliance-posture page, evidence detail dialog, mapping-explorer badges (ISSUE-009 nits)
 
 ## Constraints

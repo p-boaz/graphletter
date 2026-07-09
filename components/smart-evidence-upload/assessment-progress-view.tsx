@@ -68,10 +68,7 @@ export function AssessmentProgressView({
         <CheckCircle2 className="mx-auto mb-2 h-8 w-8 text-green-600" />
         <h3 className="mb-1 font-medium text-green-900">Evidence Uploaded Successfully!</h3>
         <p className="text-green-700 text-sm">
-          Found {pluralize(uploadOnlyResult.discovered_controls.length, "relevant control")} for
-          &quot;
-          {uploadOnlyResult.documentation_artifact}
-          &quot;
+          {`Found ${pluralize(uploadOnlyResult.discovered_controls.length, "relevant control")} for "${uploadOnlyResult.documentation_artifact}"`}
         </p>
       </div>
 

@@ -84,8 +84,8 @@ export function ImpactPreviewBanner({ controlIds, frameworkId }: ImpactPreviewBa
             <span className="font-semibold" data-testid="impact-preview-score">
               {impact.currentScore.toFixed(1)}%
             </span>{" "}
-            to <span className="font-semibold">{impact.projectedScore.toFixed(1)}%</span>
-            <span className="ml-1 font-medium text-slate-700">
+            to <span className="font-semibold">{impact.projectedScore.toFixed(1)}%</span>{" "}
+            <span className="font-medium text-slate-700">
               (+{impact.improvementPct.toFixed(1)}%)
             </span>
           </p>

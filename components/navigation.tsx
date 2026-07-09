@@ -70,6 +70,9 @@ export function Navigation() {
 
   const showAuthLoadingState = loading || awaitingAuthCarryover || (isProtectedRoute && !user);
 
+  // Marketing links don't belong inside the signed-in app surface.
+  const visibleNavigationItems = isProtectedRoute ? [] : NAVIGATION_ITEMS;
+
   const handleSignOut = async () => {
     await supabase.auth.signOut();
   };
@@ -102,7 +105,7 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center space-x-6 md:flex">
-            {NAVIGATION_ITEMS.map((item) => (
+            {visibleNavigationItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -197,7 +200,7 @@ export function Navigation() {
                 className="w-[300px] rounded-l-2xl border-l-2 border-ft-pink bg-white px-6 py-8 shadow-lg sm:w-[400px]"
               >
                 <nav className="mt-8 flex flex-col space-y-6">
-                  {NAVIGATION_ITEMS.map((item) => (
+                  {visibleNavigationItems.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
