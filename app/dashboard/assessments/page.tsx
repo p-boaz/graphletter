@@ -117,7 +117,7 @@ export default function AssessmentsPage() {
       showUploadButton={true}
     >
       <Card className="ft-card">
-        <CardContent>
+        <CardContent className="pt-6">
           {assessmentRecords.length > 0 && (
             <div className="mb-4 flex justify-end">
               <AssessmentExportMenu />

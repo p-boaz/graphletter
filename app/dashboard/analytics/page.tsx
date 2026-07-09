@@ -527,15 +527,15 @@ export default function AnalyticsPage() {
                 data-testid="analytics-domain-coverage-table"
               >
                 <table className="min-w-full border-collapse text-sm">
-                  <thead className="sticky top-0 z-10 bg-white">
-                    <tr className="border-slate-200 border-b text-left text-slate-600">
-                      <th className="px-3 py-2 font-medium">Domain</th>
-                      <th className="px-3 py-2 font-medium">Description</th>
-                      <th className="px-3 py-2 text-right font-medium">Fully Covered</th>
-                      <th className="px-3 py-2 text-right font-medium">Partially Covered</th>
-                      <th className="px-3 py-2 text-right font-medium">No Evidence</th>
-                      <th className="px-3 py-2 text-right font-medium">Conflicting</th>
-                      <th className="px-3 py-2 text-right font-medium">Coverage</th>
+                  <thead className="sticky top-0 z-10 border-black/40 border-t-2 bg-white">
+                    <tr className="border-slate-300 border-b text-left font-mono text-[11px] text-slate-500 uppercase tracking-[0.14em]">
+                      <th className="px-3 py-2.5 font-medium">Domain</th>
+                      <th className="px-3 py-2.5 font-medium">Description</th>
+                      <th className="px-3 py-2.5 text-right font-medium">Fully Covered</th>
+                      <th className="px-3 py-2.5 text-right font-medium">Partially Covered</th>
+                      <th className="px-3 py-2.5 text-right font-medium">No Evidence</th>
+                      <th className="px-3 py-2.5 text-right font-medium">Conflicting</th>
+                      <th className="px-3 py-2.5 text-right font-medium">Coverage</th>
                     </tr>
                   </thead>
                   <tbody>

@@ -63,6 +63,12 @@ keyboard question unless it reproduces (verify first, report if not).
 - [x] app/dashboard/analytics/page.tsx — 10 pastel tiles → StatTile; purple bars → ft-pink on ft-grey-1; purple empty state → slate; blue spinner → ft-pink
 - [x] Full sweep: overview (focus mode, walkthrough card, coverage number, links), assessments explainer, posture trend line + spinners, compliance-inbox page, and 23 components (mapping explorer, impact cascade, upload flow, assessment views, demo/try surfaces). Zero decorative cool hues remain on live surfaces; only dead control-mapping.tsx untouched. Semantic green/amber/red kept for state. (Components batches A+B committed.)
 
+### Round 4 (Peter: tables basic/ugly, missing top padding)
+
+- [x] components/ui/table.tsx — FT treatment at the primitive: strong black rule above header, mono uppercase tracking column labels, hairline slate row dividers, cream row hover, tabular numerals
+- [x] Evidence + Assessments pages — bare CardContent (which defaults to pt-0, expecting a CardHeader) got pt-6; toolbar no longer flush against card top
+- [x] Evidence "Uploaded" column in ft-mono; analytics raw domain table header matched to the primitive style
+
 ### Round 2 (Peter's follow-up findings, same day)
 
 - [x] Duplicate evidence explanation in assessment details — objective-assessment-list rendered quote.supports twice (figcaption + trailing paragraph); paragraph removed.

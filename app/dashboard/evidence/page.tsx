@@ -416,7 +416,9 @@ export default function EvidencePage() {
       showUploadButton={true}
     >
       <Card className="ft-card">
-        <CardContent>
+        {/* CardContent defaults to pt-0 (expects a CardHeader); without one the
+            toolbar sat flush against the card's top edge. */}
+        <CardContent className="pt-6">
           {/* Filters */}
           <div className="mb-6 flex flex-col gap-4 sm:flex-row">
             <div className="flex-1">
@@ -545,7 +547,7 @@ export default function EvidencePage() {
                         <TableCell>
                           <EvidenceStatusBadge status={group.representative.evidence_status} />
                         </TableCell>
-                        <TableCell>
+                        <TableCell className="ft-mono whitespace-nowrap text-slate-600 text-xs">
                           {new Date(group.representative.submitted_at).toISOString().split("T")[0]}
                         </TableCell>
                         <TableCell>

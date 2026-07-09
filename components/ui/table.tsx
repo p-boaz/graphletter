@@ -5,7 +5,14 @@ import { cn } from "@/lib/utils";
 const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
   ({ className, ...props }, ref) => (
     <div className="relative w-full overflow-auto">
-      <table ref={ref} className={cn("w-full caption-bottom text-sm", className)} {...props} />
+      <table
+        ref={ref}
+        className={cn(
+          "w-full caption-bottom text-sm [font-variant-numeric:tabular-nums]",
+          className
+        )}
+        {...props}
+      />
     </div>
   )
 );
@@ -15,7 +22,15 @@ const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-  <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props} />
+  <thead
+    ref={ref}
+    className={cn(
+      // FT-style header: strong rule above, hairline below, no hover wash.
+      "border-black/40 border-t-2 [&_tr]:border-slate-300 [&_tr]:border-b [&_tr]:hover:bg-transparent",
+      className
+    )}
+    {...props}
+  />
 ));
 TableHeader.displayName = "TableHeader";
 
@@ -44,7 +59,7 @@ const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTML
     <tr
       ref={ref}
       className={cn(
-        "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+        "border-slate-200 border-b transition-colors hover:bg-ft-cream/40 data-[state=selected]:bg-ft-cream/60",
         className
       )}
       {...props}
@@ -60,7 +75,7 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+      "h-11 px-4 text-left align-middle font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500 [&:has([role=checkbox])]:pr-0",
       className
     )}
     {...props}
