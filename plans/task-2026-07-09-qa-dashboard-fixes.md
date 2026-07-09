@@ -60,7 +60,7 @@ keyboard question unless it reproduces (verify first, report if not).
 ### Round 2 (Peter's follow-up findings, same day)
 
 - [x] Duplicate evidence explanation in assessment details — objective-assessment-list rendered quote.supports twice (figcaption + trailing paragraph); paragraph removed.
-- [x] Off-system gradient buttons — smart-upload trigger, start-assessment, and demo run buttons dropped the blue→indigo gradient for the standard primary token. (components/control-mapping.tsx also has gradients but is dead code — not imported anywhere; left for a dead-code sweep.)
+- [x] Off-system gradient buttons — smart-upload trigger, start-assessment, and demo run buttons dropped the blue→indigo gradient for the standard primary token — verified solid rgb(15,23,42) in browser. (components/control-mapping.tsx also has gradients but is dead code — not imported anywhere; left for a dead-code sweep.)
 
 ## Test Plan
 

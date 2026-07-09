@@ -220,7 +220,6 @@ export function AssessmentProgressView({
               onClick={onStartAssessment}
               disabled={assessing}
               data-testid="start-ai-assessment-button"
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
             >
               <Play className="mr-2 h-4 w-4" />
               Start assessment

@@ -708,11 +708,7 @@ export function SmartEvidenceUpload({
     >
       {!hideTrigger && (
         <DialogTrigger asChild>
-          <Button
-            className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
-            data-testid="open-smart-upload-button"
-            aria-controls={SMART_UPLOAD_DIALOG_ID}
-          >
+          <Button data-testid="open-smart-upload-button" aria-controls={SMART_UPLOAD_DIALOG_ID}>
             <FileUp className="mr-2 h-4 w-4" />
             Upload Evidence
           </Button>

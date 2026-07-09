@@ -220,7 +220,7 @@ export function DemoSmartEvidenceUpload() {
               onClick={runDemo}
               disabled={!selectedSample}
               data-testid="demo-run-button"
-              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+              className="w-full"
             >
               <Upload className="mr-2 h-4 w-4" />
               Upload Document & Assess Compliance
