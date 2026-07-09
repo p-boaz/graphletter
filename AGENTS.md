@@ -97,6 +97,12 @@ Artifacts land in `playwright/artifacts/`.
 
 Key Playwright helpers: `browser-skills.ts` (agent-style wrappers), `selectors.ts`, `observability.ts`, `mocks.ts`.
 
+When QA-ing UI, verify **state coherence**, not just function (lesson from 2026-07-09):
+
+- Actions offered in a dialog/panel must match the record's state in the list you came from — never offer "Approve" on an already-approved record.
+- No two adjacent affordances may share a glyph but differ in behavior (e.g., two chevrons, one expands and one navigates).
+- Status indicators must agree across list, detail, and summary surfaces for the same record.
+
 ## Schema / migration work
 
 <important if="you are changing the Supabase schema">
