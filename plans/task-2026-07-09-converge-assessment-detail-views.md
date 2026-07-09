@@ -4,7 +4,7 @@
 
 - Date: 2026-07-09
 - Owner: agent
-- Status: Draft
+- Status: Done
 - Branch: refactor/converge-assessment-detail-views
 - Related issue/PR: Frontend-design vetting pass, 2026-07-09
 

@@ -14,28 +14,28 @@ index, not a second backlog.
 
 Findings from the authenticated frontend-design vetting pass (full upload →
 assess → review → approve walkthrough plus all dashboard surfaces, desktop and
-mobile). All specs are Draft pending approval. Suggested sequencing notes are
+mobile). All specs are implemented; archive after merge. Suggested sequencing notes are
 in each spec's Constraints.
 
 | Plan                                                  | Theme                                                           | Status |
 | ----------------------------------------------------- | --------------------------------------------------------------- | ------ |
-| `task-2026-07-09-dashboard-copy-plural-spacing.md`    | Copy: plural/spacing/verb bugs in upload flow                   | Draft  |
-| `task-2026-07-09-status-color-system.md`              | One semantic status color system across all surfaces            | Draft  |
-| `task-2026-07-09-ai-text-neutral-ink.md`              | Long-form AI/objective text in neutral ink                      | Draft  |
-| `task-2026-07-09-dedupe-repeated-statements.md`       | State each fact once; fix contradictory progress counters       | Draft  |
-| `task-2026-07-09-posture-early-state-tone.md`         | Posture zero-state as starting line; `<1%` rounding; trend      | Draft  |
-| `task-2026-07-09-remove-system-jargon.md`             | No offsets/UUIDs/raw-JSON links/ERL in user chrome              | Draft  |
-| `task-2026-07-09-converge-assessment-detail-views.md` | One shared objective-detail presentation                        | Draft  |
-| `task-2026-07-09-upload-dialog-simplification.md`     | Grouped artifact picker, recommendations, controls-based impact | Draft  |
-| `task-2026-07-09-assessment-list-cleanup.md`          | One affordance per row; real review-state indicators            | Draft  |
-| `task-2026-07-09-inbox-ranking-grouping.md`           | Rank inbox by leverage; group domain walls                      | Draft  |
-| `task-2026-07-09-analytics-dedup.md`                  | Remove Posture duplication; fix level bars; drop purpose box    | Draft  |
-| `task-2026-07-09-framework-explorer-dashboard-fit.md` | Single header, house styling, virtualized control list          | Draft  |
-| `task-2026-07-09-dashboard-tabs-scroll-affordance.md` | Mobile tab-bar scroll affordance                                | Draft  |
-| `task-2026-07-09-dialog-aria-hidden-inert.md`         | Fix aria-hidden-on-focused-ancestor dialog warning              | Draft  |
-| `task-2026-07-09-evidence-specimen-signature.md`      | Evidence quotes as document specimens (design signature)        | Draft  |
-| `task-2026-07-09-ai-chrome-debranding.md`             | Retire brain icons, "Smart" naming, stacked AI labels           | Draft  |
-| `task-2026-07-09-evidence-records-table-polish.md`    | Evidence table: unexplained dot, dead Type column, eye label    | Draft  |
+| `task-2026-07-09-dashboard-copy-plural-spacing.md`    | Copy: plural/spacing/verb bugs in upload flow                   | Done   |
+| `task-2026-07-09-status-color-system.md`              | One semantic status color system across all surfaces            | Done   |
+| `task-2026-07-09-ai-text-neutral-ink.md`              | Long-form AI/objective text in neutral ink                      | Done   |
+| `task-2026-07-09-dedupe-repeated-statements.md`       | State each fact once; fix contradictory progress counters       | Done   |
+| `task-2026-07-09-posture-early-state-tone.md`         | Posture zero-state as starting line; `<1%` rounding; trend      | Done   |
+| `task-2026-07-09-remove-system-jargon.md`             | No offsets/UUIDs/raw-JSON links/ERL in user chrome              | Done   |
+| `task-2026-07-09-converge-assessment-detail-views.md` | One shared objective-detail presentation                        | Done   |
+| `task-2026-07-09-upload-dialog-simplification.md`     | Grouped artifact picker, recommendations, controls-based impact | Done   |
+| `task-2026-07-09-assessment-list-cleanup.md`          | One affordance per row; real review-state indicators            | Done   |
+| `task-2026-07-09-inbox-ranking-grouping.md`           | Rank inbox by leverage; group domain walls                      | Done   |
+| `task-2026-07-09-analytics-dedup.md`                  | Remove Posture duplication; fix level bars; drop purpose box    | Done   |
+| `task-2026-07-09-framework-explorer-dashboard-fit.md` | Single header, house styling, virtualized control list          | Done   |
+| `task-2026-07-09-dashboard-tabs-scroll-affordance.md` | Mobile tab-bar scroll affordance                                | Done   |
+| `task-2026-07-09-dialog-aria-hidden-inert.md`         | Fix aria-hidden-on-focused-ancestor dialog warning              | Done   |
+| `task-2026-07-09-evidence-specimen-signature.md`      | Evidence quotes as document specimens (design signature)        | Done   |
+| `task-2026-07-09-ai-chrome-debranding.md`             | Retire brain icons, "Smart" naming, stacked AI labels           | Done   |
+| `task-2026-07-09-evidence-records-table-polish.md`    | Evidence table: unexplained dot, dead Type column, eye label    | Done   |
 
 ## Product Backlog
 
