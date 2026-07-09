@@ -575,6 +575,14 @@ export async function mockUploadWorkflowApis(
     });
   });
 
+  await page.route("**/api/artifacts/classify", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ artifact: artifactName }),
+    });
+  });
+
   await page.route("**/api/progress/session", async (route) => {
     if (route.request().method() !== "POST") {
       await route.continue();

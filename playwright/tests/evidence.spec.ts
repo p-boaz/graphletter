@@ -360,7 +360,7 @@ test("evidence approval authorization failures stay visible", async ({ page }, t
     await expect(detailDialog.getByTestId(selectors.evidence.reviewFeedback)).toContainText(
       "Evidence not found or unauthorized"
     );
-    await expect(detailDialog).toContainText("under review");
+    await expect(detailDialog).toContainText("Under review");
     await expect(detailDialog.getByTestId(selectors.evidence.reviewer)).toHaveText("-");
   } finally {
     observer.stop();

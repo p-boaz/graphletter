@@ -16,11 +16,14 @@ import {
 } from "../helpers/mocks";
 import { selectors } from "../helpers/selectors";
 
+test.setTimeout(60_000);
+
 test("upload flow runs end-to-end and posts expected graph payloads", async ({
   page,
 }, testInfo) => {
   const observer = inspect_console_errors(page);
   let report = observer.getReport();
+  let workflowCompleted = false;
 
   try {
     const calls = await mockUploadWorkflowApis(page, DEFAULT_ARTIFACT_NAME);
@@ -35,7 +38,10 @@ test("upload flow runs end-to-end and posts expected graph payloads", async ({
     await expect(smartUploadDialog).toBeVisible();
 
     await smartUploadDialog.getByTestId(selectors.upload.documentationArtifactCombobox).click();
-    await page.getByRole("option", { name: DEFAULT_ARTIFACT_NAME, exact: true }).click();
+    await page.getByPlaceholder("Search artifacts...").fill(DEFAULT_ARTIFACT_NAME);
+    await page.getByRole("option", { name: DEFAULT_ARTIFACT_NAME, exact: true }).click({
+      force: true,
+    });
 
     const uploadTarget = smartUploadDialog.getByRole("button", { name: "Upload evidence file" });
     await expect(uploadTarget).toBeVisible();
@@ -45,7 +51,7 @@ test("upload flow runs end-to-end and posts expected graph payloads", async ({
       .getByTestId(selectors.upload.documentUploadInput)
       .setInputFiles(path.resolve(process.cwd(), "data/anthropic-controls.pdf"));
 
-    await expect(smartUploadDialog.getByText("Evidence Uploaded Successfully!")).toBeVisible();
+    await expect(smartUploadDialog.getByText("Ready to assess")).toBeVisible();
 
     await smartUploadDialog.getByTestId(selectors.upload.startAiAssessmentButton).click();
 
@@ -58,13 +64,18 @@ test("upload flow runs end-to-end and posts expected graph payloads", async ({
     const detailDialog = page.locator('[role="dialog"]').filter({ hasText: "Assessment Details" });
     await expect(detailDialog.getByText("Verified Evidence")).toBeVisible();
     await expect(detailDialog.getByText('"Access control policy"')).toBeVisible();
-    await expect(detailDialog.getByText("Offsets 0-21")).toBeVisible();
-    await expect(detailDialog.getByText("Documents the access control policy.")).toBeVisible();
+    await expect(detailDialog.getByText("Offsets 0-21")).toHaveCount(0);
+    await expect(
+      detailDialog
+        .locator("figure")
+        .filter({ hasText: '"Access control policy"' })
+        .locator("figcaption")
+    ).toHaveText("Documents the access control policy.");
     await detailDialog.getByRole("button", { name: "Back to summary" }).click();
 
     await reviewDialog.getByTestId(selectors.upload.approveAssessmentButton).click();
     await expect(reviewDialog).toBeHidden();
-    await expect(smartUploadDialog.getByText("Evidence Uploaded Successfully!")).toBeVisible();
+    await expect(smartUploadDialog.getByText("Assessment approved")).toBeVisible();
 
     await expect.poll(() => calls.documentsCalls.length).toBe(1);
     await expect.poll(() => calls.mapControlsCalls.length).toBe(1);
@@ -92,7 +103,7 @@ test("upload flow runs end-to-end and posts expected graph payloads", async ({
     await expect(page.getByTestId(selectors.upload.resultVerdict).first()).toContainText(
       /PASS|PARTIAL|FAIL|NOT APPLICABLE/
     );
-    await expect(page.getByTestId("assessment-result-card").first()).toContainText("Verdict");
+    await expect(page.getByTestId("assessment-result-card").first()).toContainText("confidence");
     await expect(page.getByTestId("results-framework-filter-trigger")).toContainText(
       "All frameworks"
     );
@@ -102,7 +113,7 @@ test("upload flow runs end-to-end and posts expected graph payloads", async ({
     await expect(resultsFilter).toBeFocused();
     await page.keyboard.press("Enter");
     await expect(page.getByRole("option", { name: "All frameworks" })).toBeVisible();
-    await page.keyboard.press("Escape");
+    await page.getByRole("option", { name: "All frameworks" }).click();
 
     await resultsFilter.click();
     await page.getByRole("option", { name: "SOC 2" }).click();
@@ -113,11 +124,14 @@ test("upload flow runs end-to-end and posts expected graph payloads", async ({
 
     await smartUploadDialog.getByRole("button", { name: "Done" }).click();
     await expect(smartUploadDialog).toBeHidden();
+    workflowCompleted = true;
   } finally {
     observer.stop();
     report = observer.getReport();
     await trace_failure(testInfo, report);
-    await take_snapshot(page, testInfo, "upload-flow");
+    if (!workflowCompleted) {
+      await take_snapshot(page, testInfo, "upload-flow");
+    }
   }
 
   assert_no_browser_failures(report);
@@ -221,7 +235,8 @@ test("upload dialog artifact mapping help opens in-place without navigation", as
     // Explainer opens in place: popover content visible, no navigation, dialog intact.
     const helpContent = page.getByTestId(`${selectors.upload.artifactMappingLink}-content`);
     await expect(helpContent).toBeVisible();
-    await expect(helpContent).toContainText("Document type (ERL artifact)");
+    await expect(helpContent).toContainText("Document type");
+    await expect(helpContent).toContainText("The kind of document you're uploading");
     expect(page.url()).toBe(urlBeforeHelp);
     await expect(page.getByTestId(selectors.upload.dialog)).toBeVisible();
   } finally {

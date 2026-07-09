@@ -44,7 +44,7 @@ test("assessments page keeps explainer in-context and opens row details without 
     await expect(firstAssessmentRow.getByTestId(selectors.assessments.rowVerdict)).toContainText(
       /PASS|PARTIAL|FAIL|NOT APPLICABLE/
     );
-    await expect(firstAssessmentRow).toContainText("Verdict");
+    await expect(firstAssessmentRow).toContainText("confidence");
     await firstAssessmentRow.focus();
     await expect(firstAssessmentRow).toBeFocused();
     await page.keyboard.press("Enter");

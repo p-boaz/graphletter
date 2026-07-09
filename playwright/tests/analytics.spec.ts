@@ -22,10 +22,8 @@ test("analytics page is drill-down focused and avoids overview duplication", asy
     await open_local_app(page, "/dashboard/analytics");
 
     await expect(page).toHaveURL(/\/dashboard\/analytics(?:\?|$)/);
-    await expect(page.getByTestId(selectors.dashboard.analyticsPurposeCard)).toBeVisible();
-    await expect(page.getByTestId(selectors.dashboard.analyticsPurposeCard)).toContainText(
-      "Use Analytics for deep drill-down metrics"
-    );
+    await expect(page.getByTestId(selectors.dashboard.analyticsPurposeCard)).toHaveCount(0);
+    await expect(page.getByText("Purpose of this page")).toHaveCount(0);
 
     await expect(page.getByText("Control Coverage Overview")).toHaveCount(0);
     await expect(page.getByText("Assessment Details")).toHaveCount(0);
