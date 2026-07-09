@@ -16,6 +16,7 @@ interface EvidenceLookupRow {
   id: string;
   file_name: string;
   evidence_type: string | null;
+  evidence_status: string | null;
 }
 
 export async function GET(request: NextRequest) {
@@ -93,7 +94,7 @@ export async function GET(request: NextRequest) {
     if (evidenceIds.length > 0) {
       const { data: evidenceRows, error: evidenceLookupError } = await supabase
         .from("evidence")
-        .select("id, file_name, evidence_type")
+        .select("id, file_name, evidence_type, evidence_status")
         .eq("user_id", user.id)
         .in("id", evidenceIds);
 
@@ -121,6 +122,7 @@ export async function GET(request: NextRequest) {
                 id: linkedEvidence.id,
                 file_name: linkedEvidence.file_name,
                 evidence_type: linkedEvidence.evidence_type || "uploaded",
+                evidence_status: linkedEvidence.evidence_status,
               },
             ]
           : [],

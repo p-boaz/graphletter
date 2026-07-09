@@ -63,6 +63,14 @@ keyboard question unless it reproduces (verify first, report if not).
 - [x] app/dashboard/analytics/page.tsx — 10 pastel tiles → StatTile; purple bars → ft-pink on ft-grey-1; purple empty state → slate; blue spinner → ft-pink
 - [x] Full sweep: overview (focus mode, walkthrough card, coverage number, links), assessments explainer, posture trend line + spinners, compliance-inbox page, and 23 components (mapping explorer, impact cascade, upload flow, assessment views, demo/try surfaces). Zero decorative cool hues remain on live surfaces; only dead control-mapping.tsx untouched. Semantic green/amber/red kept for state. (Components batches A+B committed.)
 
+### Round 5 (Peter: UX state-coherence audit)
+
+- [x] Evidence dialog offered Approve/Reject on already-approved records — review panel now renders only for submitted/under_review; reviewed records get a clear note
+- [x] Assessment rows had two identical chevrons with different behaviors — row + single chevron now toggle the inline objectives view; the full-record dialog is a labeled "Open full record" button inside the expanded panel
+- [x] Assessment rows showed amber "awaiting review" forever — approval updates evidence, not assessments, so the stripe now derives from linked evidence status (11 green / 3 amber, matching reality)
+- [x] Reviewer field showed a raw UUID — now resolves to the signed-in user's email
+- [x] State-coherence checklist codified in AGENTS.md dogfooding section
+
 ### Round 4 (Peter: tables basic/ugly, missing top padding)
 
 - [x] components/ui/table.tsx — FT treatment at the primitive: strong black rule above header, mono uppercase tracking column labels, hairline slate row dividers, cream row hover, tabular numerals

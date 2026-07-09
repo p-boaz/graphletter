@@ -35,6 +35,7 @@ export interface UnifiedAssessmentResult {
     id: string;
     file_name: string;
     evidence_type: string;
+    evidence_status?: string | null;
   }>;
   maturity_assessment?: MaturityAssessment | null;
   maturity_levels?: MaturityLevels | null;

@@ -56,9 +56,31 @@ export function ControlRow({
   const maturityAssessment = control.maturity_assessment;
   const { topGap, topRecommendation } = getTopGapAndRecommendation(control.objectives);
   const isLowConfidence = overallConfidence < 0.6;
-  const rowIsInteractive = enableRowDetailDialog;
-  const reviewState = control.assessment_status === "approved" ? "approved" : "awaiting_review";
+  // One affordance per gesture: the row (and its single chevron) toggles the
+  // inline objectives view; the full-record dialog is a labeled action inside
+  // the expanded panel. Two adjacent chevrons doing different things confused
+  // users (QA 2026-07-09 round 5).
+  const rowIsInteractive = hasObjectives || enableRowDetailDialog;
+  // "Approve Assessment" approves the underlying evidence, not the assessment
+  // row, so key the review stripe on the linked evidence status too — rows
+  // stayed amber forever otherwise (QA 2026-07-09 round 5).
+  const hasApprovedEvidence = control.linked_evidence?.some(
+    (evidence) => evidence.evidence_status === "approved"
+  );
+  const reviewState =
+    control.assessment_status === "approved" || hasApprovedEvidence
+      ? "approved"
+      : "awaiting_review";
   const openDetails = () => onSelectControl(control.control_id);
+  const handleRowActivate = () => {
+    if (hasObjectives) {
+      onToggleExpand(control.control_id);
+      return;
+    }
+    if (enableRowDetailDialog) {
+      openDetails();
+    }
+  };
   const handleRowKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (!rowIsInteractive) return;
     if (event.key !== "Enter" && event.key !== " ") return;
@@ -72,7 +94,7 @@ export function ControlRow({
     }
 
     event.preventDefault();
-    openDetails();
+    handleRowActivate();
   };
   const formattedDate = control.completed_at
     ? new Date(control.completed_at).toLocaleDateString("en-US", {
@@ -91,12 +113,15 @@ export function ControlRow({
       tabIndex={rowIsInteractive ? 0 : undefined}
       aria-label={
         rowIsInteractive
-          ? `Open assessment details for ${control.control_id}, verdict ${overallResultLabel}`
+          ? hasObjectives
+            ? `${isExpanded ? "Collapse" : "Expand"} assessment objectives for ${control.control_id}, verdict ${overallResultLabel}`
+            : `Open assessment details for ${control.control_id}, verdict ${overallResultLabel}`
           : undefined
       }
+      aria-expanded={hasObjectives ? isExpanded : undefined}
       onKeyDown={handleRowKeyDown}
       onClick={(event) => {
-        if (!enableRowDetailDialog) {
+        if (!rowIsInteractive) {
           return;
         }
         const target = event.target as HTMLElement;
@@ -106,7 +131,7 @@ export function ControlRow({
         ) {
           return;
         }
-        openDetails();
+        handleRowActivate();
       }}
       className={`border border-gray-200 rounded-lg bg-white shadow-sm ${
         rowIsInteractive
@@ -200,7 +225,6 @@ export function ControlRow({
                 data-testid="assessment-result-verdict"
               />
             </div>
-            {enableRowDetailDialog && <ChevronRight className="h-4 w-4 text-slate-400" />}
             {hasObjectives && (
               <Button
                 variant="ghost"
@@ -232,11 +256,28 @@ export function ControlRow({
       {/* Expanded Objectives View */}
       {hasObjectives && isExpanded && (
         <div className={`${hideSummary ? "" : "border-t "}bg-slate-50 p-4`}>
-          <div className="mb-3 flex items-center gap-2">
-            <Target className="h-4 w-4 text-ft-pink" />
-            <h5 className="font-semibold text-sm text-gray-900">
-              Assessment Objectives ({control.objectives.length})
-            </h5>
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <Target className="h-4 w-4 text-ft-pink" />
+              <h5 className="font-semibold text-sm text-gray-900">
+                Assessment Objectives ({control.objectives.length})
+              </h5>
+            </div>
+            {enableRowDetailDialog && (
+              <Button
+                variant="outline"
+                size="sm"
+                type="button"
+                data-row-action="details"
+                data-testid="open-full-assessment-record"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  openDetails();
+                }}
+              >
+                Open full record
+              </Button>
+            )}
           </div>
           <div className="mb-3 rounded-md border border-slate-200 bg-ft-cream/50 p-2 text-xs text-slate-800">
             <div className="flex items-center gap-1">

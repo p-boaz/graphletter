@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useAuth } from "@/lib/auth/auth-context";
 import {
   Select,
   SelectContent,
@@ -100,6 +101,7 @@ export default function EvidencePage() {
   const [controlFilter, setControlFilter] = useState("all");
   const [selectedEvidenceGroup, setSelectedEvidenceGroup] = useState<EvidenceGroup | null>(null);
   const [approvalBusy, setApprovalBusy] = useState(false);
+  const { user: currentUser } = useAuth();
   const [approvalFeedback, setApprovalFeedback] = useState<{
     type: "success" | "error";
     message: string;
@@ -770,9 +772,16 @@ export default function EvidencePage() {
                 <div>
                   <p className="font-medium text-slate-900">Reviewer</p>
                   <p className="text-slate-700" data-testid="evidence-reviewer">
-                    {selectedEvidenceGroup.representative.reviewed_by ||
-                      selectedEvidenceGroup.representative.approved_by ||
-                      "-"}
+                    {(() => {
+                      const reviewerId =
+                        selectedEvidenceGroup.representative.reviewed_by ||
+                        selectedEvidenceGroup.representative.approved_by;
+                      if (!reviewerId) return "-";
+                      // Raw account UUIDs mean nothing to a human reviewer.
+                      return reviewerId === currentUser?.id
+                        ? currentUser?.email || "You"
+                        : reviewerId;
+                    })()}
                   </p>
                 </div>
                 <div>
@@ -795,57 +804,73 @@ export default function EvidencePage() {
                 </div>
               )}
 
-              <div className="space-y-3 rounded-lg border p-4">
-                <div>
-                  <p className="font-medium text-slate-900">Review action</p>
-                  <p className="mt-1 text-slate-600">
-                    Approve the evidence group or reject it with a reason.
-                  </p>
-                </div>
-                {approvalFeedback && (
-                  <div
-                    className={
-                      approvalFeedback.type === "success"
-                        ? "rounded-md border border-green-200 bg-green-50 p-3 text-green-800"
-                        : "rounded-md border border-red-200 bg-red-50 p-3 text-red-800"
-                    }
-                    data-testid="evidence-review-feedback"
-                    role={approvalFeedback.type === "success" ? "status" : "alert"}
-                  >
-                    {approvalFeedback.message}
+              {/* Only records still awaiting review get review actions — offering
+                  "Approve" on an already-approved record reads as a bug
+                  (QA 2026-07-09 round 5). */}
+              {["submitted", "under_review"].includes(
+                selectedEvidenceGroup.representative.evidence_status
+              ) ? (
+                <div className="space-y-3 rounded-lg border p-4">
+                  <div>
+                    <p className="font-medium text-slate-900">Review action</p>
+                    <p className="mt-1 text-slate-600">
+                      Approve the evidence group or reject it with a reason.
+                    </p>
                   </div>
-                )}
-                <div className="space-y-2">
-                  <Label htmlFor="evidence-rejection-input">Rejection reason</Label>
-                  <Textarea
-                    id="evidence-rejection-input"
-                    value={rejectionReason}
-                    onChange={(event) => setRejectionReason(event.target.value)}
-                    placeholder="Required when rejecting evidence"
-                    data-testid="evidence-rejection-input"
-                  />
+                  {approvalFeedback && (
+                    <div
+                      className={
+                        approvalFeedback.type === "success"
+                          ? "rounded-md border border-green-200 bg-green-50 p-3 text-green-800"
+                          : "rounded-md border border-red-200 bg-red-50 p-3 text-red-800"
+                      }
+                      data-testid="evidence-review-feedback"
+                      role={approvalFeedback.type === "success" ? "status" : "alert"}
+                    >
+                      {approvalFeedback.message}
+                    </div>
+                  )}
+                  <div className="space-y-2">
+                    <Label htmlFor="evidence-rejection-input">Rejection reason</Label>
+                    <Textarea
+                      id="evidence-rejection-input"
+                      value={rejectionReason}
+                      onChange={(event) => setRejectionReason(event.target.value)}
+                      placeholder="Required when rejecting evidence"
+                      data-testid="evidence-rejection-input"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2 sm:flex-row">
+                    <Button
+                      type="button"
+                      onClick={() => submitEvidenceReview("approve")}
+                      disabled={approvalBusy}
+                      data-testid="evidence-approve-button"
+                    >
+                      Approve evidence
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      onClick={() => submitEvidenceReview("reject")}
+                      disabled={approvalBusy || !rejectionReason.trim()}
+                      className="disabled:bg-slate-200 disabled:text-slate-500"
+                      data-testid="evidence-reject-button"
+                    >
+                      Reject evidence
+                    </Button>
+                  </div>
                 </div>
-                <div className="flex flex-col gap-2 sm:flex-row">
-                  <Button
-                    type="button"
-                    onClick={() => submitEvidenceReview("approve")}
-                    disabled={approvalBusy}
-                    data-testid="evidence-approve-button"
-                  >
-                    Approve evidence
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    onClick={() => submitEvidenceReview("reject")}
-                    disabled={approvalBusy || !rejectionReason.trim()}
-                    className="disabled:bg-slate-200 disabled:text-slate-500"
-                    data-testid="evidence-reject-button"
-                  >
-                    Reject evidence
-                  </Button>
+              ) : (
+                <div
+                  className="rounded-lg border bg-slate-50 p-4 text-slate-600"
+                  data-testid="evidence-review-complete-note"
+                >
+                  {selectedEvidenceGroup.representative.evidence_status === "approved"
+                    ? "This evidence group has been reviewed and approved. Upload a new version to supersede it."
+                    : "This evidence group was rejected. Upload a revised version to restart review."}
                 </div>
-              </div>
+              )}
 
               <div className="rounded-lg border p-4">
                 <p className="font-medium text-slate-900">Mapped controls</p>
