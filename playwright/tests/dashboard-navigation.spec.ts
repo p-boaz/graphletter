@@ -85,3 +85,38 @@ test.describe("dashboard first-run", () => {
     await expect(page.getByTestId("first-run-upload-cta")).toBeVisible();
   });
 });
+
+test.describe("dashboard responsive shell", () => {
+  test("keeps signed-in dashboard pages within the mobile viewport", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await mockDashboardApis(page);
+    await login_test_user(page);
+
+    for (const route of [
+      "/dashboard",
+      "/dashboard/evidence",
+      "/dashboard/assessments",
+      "/dashboard/analytics",
+      "/dashboard/compliance-inbox",
+    ]) {
+      await page.goto(route, { waitUntil: "networkidle" });
+
+      const viewport = await page.evaluate(() => ({
+        scrollWidth: document.documentElement.scrollWidth,
+        clientWidth: document.documentElement.clientWidth,
+      }));
+
+      expect(viewport.scrollWidth, `${route} should not create document-level x overflow`).toBe(
+        viewport.clientWidth
+      );
+    }
+  });
+});
+
+test("CSP allows the Vercel Analytics script host", async ({ request }) => {
+  const response = await request.get("/dashboard");
+  const csp = response.headers()["content-security-policy"] ?? "";
+
+  expect(csp).toContain("script-src");
+  expect(csp).toContain("https://va.vercel-scripts.com");
+});

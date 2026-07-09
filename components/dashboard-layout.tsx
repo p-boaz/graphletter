@@ -204,14 +204,14 @@ export function DashboardLayout({
 
       <div className="ft-container space-y-8 py-8">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="ft-serif font-bold text-4xl text-ft-black leading-tight lg:text-5xl">
               {title}
             </h1>
             <p className="ft-sans mt-2 text-slate-600 text-xl leading-relaxed">{description}</p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex w-full flex-wrap items-center gap-3 sm:w-auto sm:justify-end">
             {showUploadButton && <SmartEvidenceUpload onEvidenceProcessed={loadEvidenceData} />}
             {/* <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -237,7 +237,7 @@ export function DashboardLayout({
         </div>
 
         {/* Dashboard Navigation */}
-        <div className="flex items-center gap-4 border-b border-slate-200 pb-4">
+        <div className="flex max-w-full items-center gap-2 overflow-x-auto border-b border-slate-200 pb-4">
           {dashboardNavItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
@@ -248,7 +248,7 @@ export function DashboardLayout({
                 href={item.href}
                 data-testid={item.testId}
                 aria-current={isActive ? "page" : undefined}
-                className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+                className={`flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                   isActive
                     ? "bg-slate-100 text-slate-900"
                     : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
