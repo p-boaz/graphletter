@@ -18,9 +18,9 @@ hydration, cosmetic/UX nits).
 
 ## Context Files
 
-- [ ] components/mapping-explorer.tsx (ISSUE-001 broken /control/ link)
-- [ ] components/gap-remediation/leverage-badge.tsx (ISSUE-002 request storm)
-- [ ] components/gap-remediation/\* (ISSUE-003 unbounded card list — locate renderer)
+- [x] components/mapping-explorer.tsx (ISSUE-001 broken /control/ link) — fixed in a37ffb5
+- [x] components/gap-remediation/leverage-badge.tsx (ISSUE-002 request storm) — module cache + in-flight dedupe
+- [x] components/gap-remediation/gap-remediation-panel.tsx (ISSUE-003) — paged list, 10 per page
 - [ ] lib/ai/circuit-breaker.ts (ISSUE-004 lazy require broken)
 - [ ] Coverage bucketing source — locate (ISSUE-005 FAIL counted as covered)
 - [ ] app/dashboard/compliance-posture/page.tsx + its data source (ISSUE-006, 1000-row cap suspicion)
