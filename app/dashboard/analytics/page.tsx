@@ -7,6 +7,7 @@ import { DashboardLayout } from "@/components/dashboard-layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { StatTile } from "@/components/ui/stat-tile";
 import { exportGraphComplianceReport } from "@/lib/client/graph-report-export";
 
 const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
@@ -355,7 +356,7 @@ export default function AnalyticsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="text-center">
-              <div className="mx-auto h-8 w-8 animate-spin rounded-full border-blue-600 border-b-2"></div>
+              <div className="mx-auto h-8 w-8 animate-spin rounded-full border-ft-pink border-b-2"></div>
               <p className="mt-2 text-gray-600 text-sm">Loading analytics...</p>
             </div>
           </CardContent>
@@ -405,50 +406,39 @@ export default function AnalyticsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               {totalMaturityAssessments === 0 ? (
-                <div className="rounded-lg border border-dashed border-purple-200 bg-purple-50/60 p-6 text-center text-purple-700 text-sm">
+                <div className="rounded-lg border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-slate-600 text-sm">
                   Run an AI assessment to populate maturity benchmarks and target tracking.
                 </div>
               ) : (
                 <>
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="rounded-lg border border-purple-200 bg-purple-50 p-4 text-center">
-                      <div className="font-bold text-2xl text-purple-700">
-                        {totalMaturityAssessments}
-                      </div>
-                      <div className="text-purple-600 text-sm">Maturity-Scored Controls</div>
-                    </div>
-                    <div className="rounded-lg border border-purple-200 bg-purple-50 p-4 text-center">
-                      <div className="font-bold text-2xl text-purple-700">
-                        {Math.round(avgMaturityLevel * 10) / 10}
-                      </div>
-                      <div className="text-purple-600 text-sm">Average Level</div>
-                    </div>
-                    <div className="rounded-lg border border-green-200 bg-green-50 p-4 text-center">
-                      <div className="font-bold text-2xl text-green-700">{onTargetCount}</div>
-                      <div className="text-green-600 text-sm">On Target</div>
-                    </div>
-                    <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-center">
-                      <div className="font-bold text-2xl text-amber-700">
-                        {needsImprovementCount}
-                      </div>
-                      <div className="text-amber-600 text-sm">Needs Improvement</div>
-                    </div>
+                    <StatTile value={totalMaturityAssessments} label="Maturity-Scored Controls" />
+                    <StatTile
+                      value={Math.round(avgMaturityLevel * 10) / 10}
+                      label="Average Level"
+                    />
+                    <StatTile value={onTargetCount} label="On Target" tone="success" />
+                    <StatTile
+                      value={needsImprovementCount}
+                      label="Needs Improvement"
+                      tone="warning"
+                    />
                   </div>
 
                   <div>
-                    <h4 className="mb-2 font-semibold text-purple-900 text-sm">
+                    <h4 className="mb-2 font-semibold text-slate-900 text-sm">
                       Level Distribution
                     </h4>
                     <div className="space-y-2">
                       {maturityLevelDistribution.map((entry) => (
                         <div key={entry.level} className="space-y-1">
-                          <div className="flex items-center justify-between text-purple-700 text-xs">
+                          <div className="ft-mono flex items-center justify-between text-slate-600 text-xs">
                             <span>Level {entry.level}</span>
                             <span>{entry.count}</span>
                           </div>
-                          <div className="h-2 rounded-full bg-purple-100">
+                          <div className="h-2 rounded-full bg-ft-grey-1">
                             <div
-                              className="h-full rounded-full bg-purple-500"
+                              className="h-full rounded-full bg-ft-pink"
                               style={{
                                 width: `${(entry.count / totalMaturityScored) * 100}%`,
                               }}
@@ -478,49 +468,39 @@ export default function AnalyticsPage() {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-center">
-                  <div className="font-bold text-2xl text-blue-700">{recentUploadGroups}</div>
-                  <div className="text-blue-600 text-sm">Recent Uploads</div>
-                  <div className="mt-1 text-blue-500 text-xs">Last 7 days</div>
-                </div>
-                <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 text-center">
-                  <div className="font-bold text-2xl text-gray-700">{totalEvidenceFiles}</div>
-                  <div className="text-gray-600 text-sm">Evidence Files</div>
-                  <div className="mt-1 text-gray-500 text-xs">
-                    Linked to {totalEvidenceRecords} controls
-                  </div>
-                </div>
-                <div className="rounded-lg border border-indigo-200 bg-indigo-50 p-4 text-center">
-                  <div className="font-bold text-2xl text-indigo-700">{smartUploadGroups}</div>
-                  <div className="text-indigo-600 text-sm">AI-Processed Files</div>
-                  <div className="mt-1 text-indigo-500 text-xs">Smart uploads</div>
-                </div>
-                <div
-                  className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-center"
+                <StatTile
+                  value={recentUploadGroups}
+                  label="Recent Uploads"
+                  sublabel="Last 7 days"
+                />
+                <StatTile
+                  value={totalEvidenceFiles}
+                  label="Evidence Files"
+                  sublabel={`Linked to ${totalEvidenceRecords} controls`}
+                />
+                <StatTile
+                  value={smartUploadGroups}
+                  label="AI-Processed Files"
+                  sublabel="Smart uploads"
+                />
+                <StatTile
+                  value={graphControlsWithEvidence}
+                  label="Fully or Partially Covered"
+                  sublabel="Controls with any evidence"
+                  tone="success"
                   data-testid="analytics-controls-with-evidence-card"
-                >
-                  <div className="font-bold text-2xl text-emerald-700">
-                    {graphControlsWithEvidence}
-                  </div>
-                  <div className="text-emerald-600 text-sm">Fully or Partially Covered</div>
-                  <div className="mt-1 text-emerald-500 text-xs">Controls with any evidence</div>
-                </div>
-                <div className="rounded-lg border border-orange-200 bg-orange-50 p-4 text-center">
-                  <div className="font-bold text-2xl text-orange-700">
-                    {Math.max(graphTotalControls - graphControlsWithEvidence, 0)}
-                  </div>
-                  <div className="text-orange-600 text-sm">No Evidence</div>
-                  <div className="mt-1 text-orange-500 text-xs">Controls without any evidence</div>
-                </div>
-                <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-center">
-                  <div className="font-bold text-2xl text-slate-700">
-                    {completedAssessmentsCount}
-                  </div>
-                  <div className="text-slate-600 text-sm">Completed Objectives</div>
-                  <div className="mt-1 text-slate-500 text-xs">
-                    Across {uniqueControlsAssessed} controls
-                  </div>
-                </div>
+                />
+                <StatTile
+                  value={Math.max(graphTotalControls - graphControlsWithEvidence, 0)}
+                  label="No Evidence"
+                  sublabel="Controls without any evidence"
+                  tone="warning"
+                />
+                <StatTile
+                  value={completedAssessmentsCount}
+                  label="Completed Objectives"
+                  sublabel={`Across ${uniqueControlsAssessed} controls`}
+                />
               </div>
             </CardContent>
           </Card>

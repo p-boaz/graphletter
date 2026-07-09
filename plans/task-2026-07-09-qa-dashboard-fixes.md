@@ -57,6 +57,12 @@ keyboard question unless it reproduces (verify first, report if not).
 7. ISSUE-008: header account-menu hydration.
 8. ISSUE-009: nits (bar scaling, trend line, reject-button style, redundant badge, sticky header, aria-hidden/inert, tab affordance).
 
+### Round 3 (Peter: landing-page palette everywhere)
+
+- [x] components/ui/stat-tile.tsx — shared stat tile in landing vocabulary (black serif number, orange mono eyebrow, white card, hairline border; tone colors number only)
+- [x] app/dashboard/analytics/page.tsx — 10 pastel tiles → StatTile; purple bars → ft-pink on ft-grey-1; purple empty state → slate; blue spinner → ft-pink
+- [ ] Sweep remaining decorative blue/indigo/purple on overview, assessments explainer, upload dialog, mapping explorer, posture trend line
+
 ### Round 2 (Peter's follow-up findings, same day)
 
 - [x] Duplicate evidence explanation in assessment details — objective-assessment-list rendered quote.supports twice (figcaption + trailing paragraph); paragraph removed.
