@@ -729,7 +729,23 @@ export async function mockUploadWorkflowApis(
             overall_confidence: 0.94,
             summary: "Control evidence is sufficient",
             control_title: "Access control policy",
-            objective_results: [],
+            objective_results: [
+              {
+                scf_ao_id: "AC-01.A1",
+                assessment_objective: "Verify access control policy is documented.",
+                result: "pass",
+                confidence: 0.94,
+                reasoning: "The uploaded policy states the access control requirement.",
+                evidence_quotes: [
+                  {
+                    start: 0,
+                    end: 21,
+                    text: "Access control policy",
+                    supports: "Documents the access control policy.",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "assessment-2",

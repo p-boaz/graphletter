@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertCircle, Bot, CheckCircle2, CircleHelp, Database, Gauge } from "lucide-react";
+import { AlertCircle, Bot, CheckCircle2, CircleHelp, Database, Gauge, Quote } from "lucide-react";
 import { InlineHelp } from "@/components/inline-help";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -213,6 +213,32 @@ export function DetailedView({ result }: DetailedViewProps) {
                             </div>
                             <p className="text-xs text-blue-800">{objective.reasoning}</p>
                           </div>
+                          {objective.evidence_quotes && objective.evidence_quotes.length > 0 && (
+                            <div className="bg-white rounded-md p-2 border border-slate-300">
+                              <div className="flex items-center gap-2 mb-2">
+                                <Quote className="h-3 w-3 text-slate-600" />
+                                <span className="font-semibold text-slate-900 text-xs">
+                                  Verified Evidence
+                                </span>
+                              </div>
+                              <div className="space-y-2">
+                                {objective.evidence_quotes.map((quote, quoteIdx) => (
+                                  <figure
+                                    key={`${objective.scf_ao_id || idx}-quote-${quote.start}-${quote.end}-${quoteIdx}`}
+                                    className="rounded border border-slate-200 bg-slate-50 p-2"
+                                  >
+                                    <blockquote className="text-xs leading-relaxed text-slate-800">
+                                      &quot;{quote.text}&quot;
+                                    </blockquote>
+                                    <figcaption className="mt-1 text-[11px] text-slate-500">
+                                      Offsets {quote.start}-{quote.end}
+                                      {quote.supports ? ` - ${quote.supports}` : ""}
+                                    </figcaption>
+                                  </figure>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>

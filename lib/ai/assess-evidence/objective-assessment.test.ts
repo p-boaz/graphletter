@@ -54,28 +54,40 @@ const LOG_CONTEXT = {
 // ---------------------------------------------------------------------------
 
 test("assessAgainstObjectives: happy path returns ObjectiveAssessmentResult[] with correct shape", async () => {
-  const canned = {
+  const document =
+    "Evidence content: access control policy v2.1\nSystem owners enforce access control.";
+  const cannedObjectives = {
     assessments: [
       {
         objective_id: "obj-1",
         result: "pass",
         confidence: 0.95,
         reasoning: "Policy document clearly present",
+        evidence_quotes: [
+          {
+            start: 0,
+            end: 44,
+            text: "Evidence content: access control policy v2.1",
+            supports: "Shows a written access control policy exists",
+          },
+        ],
       },
       {
         objective_id: "obj-2",
         result: "fail",
         confidence: 0.8,
         reasoning: "No enforcement evidence found",
+        evidence_quotes: [],
       },
     ],
   };
 
   setCircuitBreakerOverrideForTesting({ allowed: true });
-  installMockModel(mockObjectModel([canned]));
+  const model = mockObjectModel([cannedObjectives]);
+  installMockModel(model);
   try {
     const results = await assessAgainstObjectives(
-      "Evidence content: access control policy v2.1",
+      document,
       null, // no image
       OBJECTIVES,
       "Access Control",
@@ -84,12 +96,23 @@ test("assessAgainstObjectives: happy path returns ObjectiveAssessmentResult[] wi
     );
 
     assert.equal(results.length, 2, "one result per objective");
+    assert.equal(model.doGenerateCalls.length, 1, "all objectives are assessed in one call");
+    const prompt = JSON.stringify(model.doGenerateCalls[0]);
+    assert.equal(prompt.includes("Candidate Evidence Spans"), false);
 
     assert.equal(results[0].objective_id, "obj-1");
     assert.equal(results[0].result, "pass");
     assert.equal(results[0].confidence, 0.95);
     assert.equal(typeof results[0].reasoning, "string");
     assert.ok(results[0].reasoning.length > 0);
+    assert.deepEqual(results[0].evidence_quotes, [
+      {
+        start: 0,
+        end: 44,
+        text: "Evidence content: access control policy v2.1",
+        supports: "Shows a written access control policy exists",
+      },
+    ]);
 
     assert.equal(results[1].objective_id, "obj-2");
     assert.equal(results[1].result, "fail");
@@ -117,6 +140,7 @@ test("assessAgainstObjectives: schema-violating model output (bad confidence) â€
         result: "pass",
         confidence: 2.0, // violates Zod max(1)
         reasoning: "Over-confident",
+        evidence_quotes: [],
       },
     ],
   };

@@ -8,6 +8,11 @@ import {
   getOpenAIProviderOptions,
   getTemperatureSettings,
 } from "@/lib/ai-config";
+import {
+  assessmentContractMetadata,
+  assessmentTruncationKillSwitchEnabled,
+  buildAssessmentPromptCacheKey,
+} from "./contract";
 import { assessMaturityLevel } from "./maturity-assessment";
 import type {
   AssessmentLogContext,
@@ -33,6 +38,7 @@ export async function createBasicAssessment(
     guidance_micro?: string | null;
     guidance_small?: string | null;
     guidance_medium?: string | null;
+    target_maturity_level?: number | null;
     scf_domains?: { name?: string | null } | Array<{ name?: string | null }> | null;
   },
   serviceSupabase: ServiceSupabaseClient,
@@ -44,23 +50,35 @@ export async function createBasicAssessment(
 ) {
   const systemPrompt = `You are a compliance assessment expert. Assess evidence against SCF controls and return structured results. You can analyze both text content and visual elements from images/screenshots to make comprehensive compliance assessments.`;
 
-  const evidenceText = buildEvidenceText(content, imageData);
+  const legacyMode = assessmentTruncationKillSwitchEnabled();
+  const evidenceText = legacyMode
+    ? `Evidence: ${content.substring(0, imageData ? 1500 : 2000)}`
+    : buildEvidenceText(content, imageData);
 
-  const userPrompt = `Assess this evidence against the SCF control:
+  const userPrompt = `${evidenceText}
+
+Assess this evidence against the SCF control:
 
 Control: ${controlData.title}
 Description: ${controlData.description}
-${evidenceText}
 
 Determine:
 - result: "pass", "partial", "fail", or "not_applicable"
 - confidence: number between 0.0 and 1.0
-- reasoning: brief explanation of your assessment${imageData ? " (consider both text and visual elements)" : ""}`;
+- reasoning: explain the assessment against the control${imageData ? " (consider both text and visual elements)" : ""}
+
+Scoping rule: use not_applicable only when this artifact class could never evidence the control. Use fail when this artifact class should evidence the control but this document does not.`;
 
   try {
     const aiCallStartedAt = Date.now();
+    const promptCacheKey = legacyMode
+      ? null
+      : buildAssessmentPromptCacheKey({
+          evidenceContentHash: logContext.evidenceContentHash,
+        });
     const generateObjectParams: Record<string, unknown> = {
       model: getAssessmentModel(),
+      maxOutputTokens: 3_000,
       schema: z.object({
         result: z.enum(["pass", "partial", "fail", "not_applicable"]),
         confidence: z.number().min(0).max(1),
@@ -68,8 +86,14 @@ Determine:
       }),
       system: systemPrompt,
       ...getOpenAIProviderOptions(COMPLIANCE_AI_CONFIG.controlMapping.provider, {
-        reasoningEffort: "low",
-        textVerbosity: "low",
+        reasoningEffort: legacyMode ? "low" : "medium",
+        textVerbosity: legacyMode ? "low" : "medium",
+        ...(promptCacheKey
+          ? {
+              promptCacheKey,
+              promptCacheRetention: "24h" as const,
+            }
+          : {}),
       }),
       ...getTemperatureSettings(
         COMPLIANCE_AI_CONFIG.controlMapping.provider,
@@ -118,10 +142,15 @@ Determine:
         warnings: aiResponse.warnings,
       },
       metadata: {
+        ...assessmentContractMetadata(),
         call: "createBasicAssessment",
         includesImage: Boolean(imageData),
         modelVersion: COMPLIANCE_AI_CONFIG.controlMapping.model,
         controlRunKey,
+        promptCacheKey,
+        promptTokens: aiResponse.usage?.inputTokens ?? null,
+        cachedPromptTokens: aiResponse.usage?.cachedInputTokens ?? null,
+        outputTokens: aiResponse.usage?.outputTokens ?? null,
       },
     });
 
@@ -133,7 +162,9 @@ Determine:
           controlData.title,
           controlData.description,
           maturityLevels,
-          null,
+          typeof controlData.target_maturity_level === "number"
+            ? controlData.target_maturity_level
+            : null,
           logContext
         )
       : null;
@@ -155,6 +186,7 @@ Determine:
         evidence_id: evidenceId,
         ai_reasoning: result.reasoning,
         metadata: {
+          ...assessmentContractMetadata(),
           ai_generated: true,
           manual_assessment: true,
           assessment_run_key: controlRunKey,
@@ -207,6 +239,7 @@ Determine:
       prompt: { system: systemPrompt, user: userPrompt },
       error: error instanceof Error ? error.message : "Basic assessment AI call failed",
       metadata: {
+        ...assessmentContractMetadata(),
         call: "createBasicAssessment",
         includesImage: Boolean(imageData),
         modelVersion: COMPLIANCE_AI_CONFIG.controlMapping.model,

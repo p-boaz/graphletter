@@ -1,0 +1,6 @@
+slug,title,raw_url,control_id,required
+password-standard,GitLab Password Standard,https://gitlab.com/gitlab-com/content-sites/handbook/-/raw/4759e452ee34f9ffe1d1e4621264a067a9c01fea/content/handbook/security/password-standard.md,IAC-02,true
+data-classification-standard,GitLab Data Classification Standard,https://gitlab.com/gitlab-com/content-sites/handbook/-/raw/938e37dc3b6df36c20e4823cc27fe0d14707a06c/content/handbook/security/data-classification-standard.md,DCH-01,false
+access-reviews,GitLab Access Reviews,https://gitlab.com/gitlab-com/content-sites/handbook/-/raw/03493b869d08279e5584cd33747b8aedbdb37ff1/content/handbook/security/security-assurance/security-compliance/access-reviews.md,IAC-05,false
+security-incident-response,GitLab Security Incident Response Guide,https://gitlab.com/gitlab-com/content-sites/handbook/-/raw/5995bc19dfe47280c05bedf2955c06b4b06a7af2/content/handbook/security/security-operations/sirt/sec-incident-response.md,IRO-01,false
+records-retention-deletion,GitLab Records Retention and Deletion,https://gitlab.com/gitlab-com/content-sites/handbook/-/raw/65c4933cd8f1854aeed540c50f93ba5ad84b4e35/content/handbook/security/records-retention-deletion.md,DCH-06,false
