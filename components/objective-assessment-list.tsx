@@ -2,7 +2,6 @@
 
 import { Database, Quote } from "lucide-react";
 import type React from "react";
-import { InlineHelp } from "@/components/inline-help";
 import { AssessmentStatusBadge, ConfidenceBadge } from "@/components/ui/status-badge";
 import { cn } from "@/lib/utils";
 
@@ -28,7 +27,6 @@ export type ObjectiveAssessmentItem = {
 
 interface ObjectiveAssessmentListProps {
   objectives: ObjectiveAssessmentItem[];
-  getGuidance: (result: string) => string;
   className?: string;
   emptyMessage?: string;
 }
@@ -82,7 +80,6 @@ function DetailBlock({
 
 export function ObjectiveAssessmentList({
   objectives,
-  getGuidance,
   className,
   emptyMessage = "No objective-level details are available yet.",
 }: ObjectiveAssessmentListProps) {
@@ -108,10 +105,6 @@ export function ObjectiveAssessmentList({
             <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
               <div>
                 <p className="font-mono text-slate-700 text-xs">{objectiveId}</p>
-                <p className="mt-1 text-slate-600 text-xs">
-                  {getGuidance(result)}{" "}
-                  <InlineHelp termId="result-states">See scoring guide</InlineHelp>.
-                </p>
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 {typeof objective.confidence === "number" && (

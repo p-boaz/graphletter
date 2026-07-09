@@ -126,13 +126,6 @@ export function UploadForm({
               text="The type of compliance document you're providing, such as a policy, procedure, or configuration. This determines which controls from the Secure Controls Framework (SCF) will be assessed against your evidence."
             />
           </div>
-          <p className="text-xs text-slate-500">
-            Not sure which artifact to choose?{" "}
-            <InlineHelp termId="artifacts-and-controls" testId="artifact-mapping-link">
-              See how artifacts map to controls
-            </InlineHelp>
-            .
-          </p>
           {/* modal: this popover lives inside the upload dialog; without it the
               dialog's focus trap steals focus back from the portaled listbox,
               so typing/Enter never reach the search input (QA ISSUE-009). */}
@@ -397,40 +390,6 @@ export function UploadForm({
             </div>
           </div>
         )}
-      </div>
-
-      {/* How it works */}
-      <div className="rounded-lg bg-gray-50 p-4">
-        <h4 className="mb-2 font-medium text-gray-900">How this works:</h4>
-        <div className="grid grid-cols-1 gap-3 text-sm md:grid-cols-3">
-          <div className="flex items-start gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-ft-pink font-medium text-white text-xs">
-              1
-            </div>
-            <div>
-              <p className="font-medium text-gray-900">Select Document Type</p>
-              <p className="text-gray-600">Choose the type of document you&apos;re uploading</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-ft-pink font-medium text-white text-xs">
-              2
-            </div>
-            <div>
-              <p className="font-medium text-gray-900">Upload Evidence</p>
-              <p className="text-gray-600">Your document type tells us which controls to check</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-ft-pink font-medium text-white text-xs">
-              3
-            </div>
-            <div>
-              <p className="font-medium text-gray-900">Assessment</p>
-              <p className="text-gray-600">Evaluates evidence against all relevant objectives</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -9,7 +9,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { ControlGroup, ControlObjective } from "./types";
-import { getObjectiveResultGuidance } from "./utils";
 
 export interface AssessmentGroup {
   assessmentId: string;
@@ -65,7 +64,7 @@ export function ControlDetailDialog({
             </div>
 
             {selectedControl.objectives.length === 0 ? (
-              <ObjectiveAssessmentList objectives={[]} getGuidance={getObjectiveResultGuidance} />
+              <ObjectiveAssessmentList objectives={[]} />
             ) : (
               <div className="space-y-3">
                 {assessmentGroups.map((group, groupIndex) => (
@@ -105,7 +104,6 @@ export function ControlDetailDialog({
                         gaps: objective.gaps,
                         recommendations: objective.recommendations,
                       }))}
-                      getGuidance={getObjectiveResultGuidance}
                     />
                   </div>
                 ))}

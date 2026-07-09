@@ -1,7 +1,6 @@
 "use client";
 
-import { CircleHelp, Gauge } from "lucide-react";
-import { InlineHelp } from "@/components/inline-help";
+import { Gauge } from "lucide-react";
 import { ObjectiveAssessmentList } from "@/components/objective-assessment-list";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,7 +10,7 @@ import {
   MaturityBadge,
 } from "@/components/ui/status-badge";
 import type { AssessmentReviewResult } from "./types";
-import { getAssessmentConfidence, getObjectiveResultGuidance, getOverallScore } from "./utils";
+import { getAssessmentConfidence, getOverallScore } from "./utils";
 
 interface DetailedViewProps {
   result: AssessmentReviewResult;
@@ -23,17 +22,6 @@ export function DetailedView({ result }: DetailedViewProps) {
       <div className="rounded-lg border border-slate-200 bg-white p-3 text-sm text-slate-700">
         Review the AI&apos;s reasoning and evidence for each control assessment. Weighted overall
         score: <span className="font-bold text-slate-900">{getOverallScore(result)}%</span>
-      </div>
-      <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700">
-        <div className="flex items-center gap-1">
-          <CircleHelp className="h-4 w-4 text-slate-600" />
-          <span className="font-medium text-slate-900">Need a quick refresher?</span>
-        </div>
-        <p className="mt-1">
-          Use the{" "}
-          <InlineHelp termId="assessment-objectives">assessment objective explainer</InlineHelp> and{" "}
-          <InlineHelp termId="result-states">result-state guide</InlineHelp>.
-        </p>
       </div>
       <div className="space-y-6">
         {result.assessments.map((assessment) => {
@@ -141,7 +129,6 @@ export function DetailedView({ result }: DetailedViewProps) {
                     gaps: objective.gaps,
                     recommendations: objective.recommendations,
                   }))}
-                  getGuidance={getObjectiveResultGuidance}
                 />
               </CardContent>
             </Card>

@@ -10,7 +10,7 @@ import {
 import { mockAssessmentsPageApis, mockDashboardApis } from "../helpers/mocks";
 import { selectors } from "../helpers/selectors";
 
-test("assessments page keeps explainer in-context and opens row details without upload modal", async ({
+test("assessments page expands row objectives inline and opens the full record dialog", async ({
   page,
 }, testInfo) => {
   const observer = inspect_console_errors(page);
@@ -24,20 +24,6 @@ test("assessments page keeps explainer in-context and opens row details without 
 
     await expect(page).toHaveURL(/\/dashboard\/assessments(?:\?|$)/);
 
-    const explainerButton = page.getByTestId(selectors.assessments.openExplainerButton);
-    const inlineExplainer = page.getByTestId(selectors.assessments.inlineExplainer);
-    await expect(explainerButton).toBeVisible();
-    // A click can land before Next dev finishes hydrating and get lost
-    // (the old single re-click still flaked under load) — retry the
-    // toggle until the explainer actually opens.
-    await expect(async () => {
-      if (!(await inlineExplainer.isVisible())) {
-        await explainerButton.click();
-      }
-      await expect(inlineExplainer).toBeVisible({ timeout: 1_000 });
-    }).toPass({ timeout: 10_000 });
-    await expect(page).toHaveURL(/\/dashboard\/assessments(?:\?|$)/);
-
     const firstAssessmentRow = page.getByTestId(selectors.assessments.controlRow).first();
     await expect(firstAssessmentRow).toBeVisible();
     await expect(firstAssessmentRow).toHaveAttribute("role", "button");
@@ -47,7 +33,11 @@ test("assessments page keeps explainer in-context and opens row details without 
     await expect(firstAssessmentRow).toContainText("confidence");
     await firstAssessmentRow.focus();
     await expect(firstAssessmentRow).toBeFocused();
+    // Enter toggles the inline objectives view; the full-record dialog opens
+    // from the labeled button inside the expanded panel.
     await page.keyboard.press("Enter");
+    await expect(firstAssessmentRow).toContainText("Assessment Objectives");
+    await firstAssessmentRow.getByTestId("open-full-assessment-record").click();
 
     await expect(page.getByTestId(selectors.assessments.detailDialog)).toBeVisible();
     await expect(page.getByTestId(selectors.assessments.detailDialog)).toContainText(

@@ -4,7 +4,6 @@ import {
   CheckCircle2,
   ChevronDown,
   ChevronRight,
-  CircleHelp,
   Clock,
   Database,
   FileText,
@@ -13,7 +12,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import type { KeyboardEvent } from "react";
-import { InlineHelp } from "@/components/inline-help";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AssessmentStatusBadge, ConfidenceBadge } from "@/components/ui/status-badge";
@@ -22,7 +20,6 @@ import type { ControlGroup, ControlObjective, ObjectiveDetail } from "./types";
 import {
   getControlOverallConfidence,
   getControlOverallResult,
-  getObjectiveResultGuidance,
   getTopGapAndRecommendation,
 } from "./utils";
 
@@ -279,17 +276,6 @@ export function ControlRow({
               </Button>
             )}
           </div>
-          <div className="mb-3 rounded-md border border-slate-200 bg-ft-cream/50 p-2 text-xs text-slate-800">
-            <div className="flex items-center gap-1">
-              <CircleHelp className="h-3.5 w-3.5" />
-              <span className="font-medium">What this section means</span>
-            </div>
-            <p className="mt-1">
-              Each objective is a testable checkpoint for the control.{" "}
-              <InlineHelp termId="assessment-objectives">Learn objective basics</InlineHelp> and{" "}
-              <InlineHelp termId="result-states">result states</InlineHelp>.
-            </p>
-          </div>
           <div className="space-y-3">
             {control.objectives.map((objective, idx) => {
               const enrichedObjective = objective.scf_ao_id
@@ -318,10 +304,6 @@ export function ControlRow({
                       />
                     </div>
                   </div>
-                  <p className="mb-2 text-xs text-slate-600">
-                    {getObjectiveResultGuidance(enrichedObjective.result)}{" "}
-                    <InlineHelp termId="result-states">See scoring guide</InlineHelp>.
-                  </p>
                   {enrichedObjective.assessment_objective && (
                     <div className="mb-2">
                       <div className="rounded-md border-l-2 border-l-green-500 bg-white p-2">

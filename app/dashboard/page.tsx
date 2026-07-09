@@ -639,31 +639,11 @@ function ComplianceGaps() {
                 <Target className={cn("h-5 w-5", isFrameworkFiltered && "text-ft-pink")} />
                 {isFrameworkFiltered ? `${frameworkDisplayName} Focus` : "Compliance Overview"}
               </CardTitle>
-              <CardDescription>
-                {isFrameworkFiltered
-                  ? `You’re viewing the SCF controls mapped to ${frameworkDisplayName}. Prioritize these items to advance this program.`
-                  : "Use this page for current status and next actions. Use Analytics for domain drill-down, maturity trends, and exports."}
-              </CardDescription>
-              <p className="text-xs text-slate-600">
-                New to this workflow?{" "}
-                <Link
-                  href="/docs#workflow"
-                  className="font-medium underline underline-offset-4 hover:text-slate-900"
-                >
-                  See the evidence-to-insight walkthrough
-                </Link>
-                .
-              </p>
-              <p className="text-xs text-slate-600">
-                Need deeper metrics?{" "}
-                <Link
-                  href="/dashboard/analytics"
-                  className="font-medium underline underline-offset-4 hover:text-slate-900"
-                >
-                  Open Analytics drill-down
-                </Link>
-                .
-              </p>
+              {isFrameworkFiltered && (
+                <CardDescription>
+                  {`Showing the SCF controls mapped to ${frameworkDisplayName}.`}
+                </CardDescription>
+              )}
             </div>
             <div className="flex w-full flex-col gap-2 sm:max-w-sm sm:flex-row sm:items-center sm:justify-end">
               <div className="w-full">
@@ -751,10 +731,6 @@ function ComplianceGaps() {
                 <h3 className="ft-serif font-semibold text-ft-black text-sm">
                   Focus on the framework you actually need to satisfy
                 </h3>
-                <p className="text-slate-600 text-xs">
-                  Pick one to see only the SCF controls mapped to it — e.g. CCPA surfaces just the
-                  privacy controls, PCI DSS just the payment-card controls.
-                </p>
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
                 {featuredFrameworks.map((fw) => (

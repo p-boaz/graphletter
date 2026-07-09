@@ -32,8 +32,6 @@ export const selectors = {
     analyticsExportCard: "analytics-export-card",
   },
   assessments: {
-    openExplainerButton: "assessments-open-explainer",
-    inlineExplainer: "assessments-inline-explainer",
     controlRow: "assessment-result-card",
     rowDetailButton: "assessment-row-detail-button",
     rowVerdict: "assessment-result-verdict",
@@ -78,7 +76,6 @@ export const selectors = {
     startAiAssessmentButton: "start-ai-assessment-button",
     approveAssessmentButton: "approve-assessment-button",
     rejectAssessmentButton: "reject-assessment-button",
-    artifactMappingLink: "artifact-mapping-link",
     retryFailedControlsButton: "retry-failed-controls-button",
   },
   public: {

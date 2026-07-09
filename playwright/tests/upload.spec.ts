@@ -215,36 +215,3 @@ test("upload flow skips graph mapping when extracted content is not usable", asy
 
   assert_no_browser_failures(report);
 });
-
-test("upload dialog artifact mapping help opens in-place without navigation", async ({
-  page,
-}, testInfo) => {
-  const observer = inspect_console_errors(page);
-  let report = observer.getReport();
-
-  try {
-    await mockUploadWorkflowApis(page, DEFAULT_ARTIFACT_NAME);
-    await login_test_user(page);
-
-    await page.getByTestId(selectors.upload.openSmartUploadButton).click();
-    await expect(page.getByTestId(selectors.upload.dialog)).toBeVisible();
-
-    const urlBeforeHelp = page.url();
-    await page.getByTestId(selectors.upload.artifactMappingLink).click();
-
-    // Explainer opens in place: popover content visible, no navigation, dialog intact.
-    const helpContent = page.getByTestId(`${selectors.upload.artifactMappingLink}-content`);
-    await expect(helpContent).toBeVisible();
-    await expect(helpContent).toContainText("Document type");
-    await expect(helpContent).toContainText("The kind of document you're uploading");
-    expect(page.url()).toBe(urlBeforeHelp);
-    await expect(page.getByTestId(selectors.upload.dialog)).toBeVisible();
-  } finally {
-    observer.stop();
-    report = observer.getReport();
-    await trace_failure(testInfo, report);
-    await take_snapshot(page, testInfo, "upload-artifact-link");
-  }
-
-  assert_no_browser_failures(report);
-});
