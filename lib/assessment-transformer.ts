@@ -187,9 +187,12 @@ export async function transformAssessmentsForReview(
 }
 
 /**
- * Calculate overall result for a control based on individual assessment results
+ * Calculate overall result for a control based on individual assessment results.
+ * Exported so coverage aggregation uses the same rule as the review UI.
  */
-function calculateOverallResult(results: string[]): "pass" | "fail" | "partial" | "not_applicable" {
+export function calculateOverallResult(
+  results: string[]
+): "pass" | "fail" | "partial" | "not_applicable" {
   if (results.length === 0) return "not_applicable";
 
   const uniqueResults = Array.from(new Set(results));
