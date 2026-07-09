@@ -3,7 +3,7 @@
 import { BarChart3, CheckCircle, FileText, GitBranch, Shield } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { EvidenceSummaryCard } from "@/components/evidence-summary-card";
 import { Navigation } from "@/components/navigation";
 import { SmartEvidenceUpload } from "@/components/smart-evidence-upload";
@@ -75,6 +75,11 @@ export function DashboardLayout({
   const router = useRouter();
   const [evidenceRecords, setEvidenceRecords] = useState<EvidenceRecord[]>([]);
   const [assessmentRecords, setAssessmentRecords] = useState<AssessmentRecord[]>([]);
+  const tabScrollerRef = useRef<HTMLDivElement | null>(null);
+  const [tabScrollState, setTabScrollState] = useState({
+    canScrollLeft: false,
+    canScrollRight: false,
+  });
 
   const loadEvidenceData = useCallback(async () => {
     try {
@@ -198,6 +203,32 @@ export function DashboardLayout({
     },
   ] as const;
 
+  const updateTabScrollState = useCallback(() => {
+    const scroller = tabScrollerRef.current;
+    if (!scroller) return;
+
+    const maxScrollLeft = scroller.scrollWidth - scroller.clientWidth;
+    setTabScrollState({
+      canScrollLeft: scroller.scrollLeft > 2,
+      canScrollRight: scroller.scrollLeft < maxScrollLeft - 2,
+    });
+  }, []);
+
+  useEffect(() => {
+    const scroller = tabScrollerRef.current;
+    if (!scroller) return;
+
+    const activeTab = scroller.querySelector<HTMLElement>("[data-active-tab='true']");
+    activeTab?.scrollIntoView({ block: "nearest", inline: "center" });
+
+    const frame = window.requestAnimationFrame(updateTabScrollState);
+    window.addEventListener("resize", updateTabScrollState);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("resize", updateTabScrollState);
+    };
+  }, [pathname, updateTabScrollState]);
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -237,35 +268,57 @@ export function DashboardLayout({
         </div>
 
         {/* Dashboard Navigation */}
-        <div className="flex max-w-full items-center gap-2 overflow-x-auto border-b border-slate-200 pb-4">
-          {dashboardNavItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = pathname === item.href;
+        <div className="relative border-b border-slate-200">
+          <div
+            ref={tabScrollerRef}
+            className="flex max-w-full items-center gap-2 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            onScroll={updateTabScrollState}
+            data-testid="dashboard-tab-scroller"
+          >
+            {dashboardNavItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = pathname === item.href;
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                data-testid={item.testId}
-                aria-current={isActive ? "page" : undefined}
-                className={`flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                  isActive
-                    ? "bg-slate-100 text-slate-900"
-                    : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-                }`}
-                onClick={(event) => {
-                  if (pathname === item.href) {
-                    return;
-                  }
-                  event.preventDefault();
-                  router.push(item.href);
-                }}
-              >
-                <Icon className="h-4 w-4" />
-                {item.label}
-              </Link>
-            );
-          })}
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  data-testid={item.testId}
+                  data-active-tab={isActive ? "true" : undefined}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+                    isActive
+                      ? "bg-slate-100 text-slate-900"
+                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                  }`}
+                  onClick={(event) => {
+                    if (pathname === item.href) {
+                      return;
+                    }
+                    event.preventDefault();
+                    router.push(item.href);
+                  }}
+                >
+                  <Icon className="h-4 w-4" />
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+          <div
+            aria-hidden="true"
+            data-testid="dashboard-tab-left-fade"
+            className={`pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-white to-transparent transition-opacity md:hidden ${
+              tabScrollState.canScrollLeft ? "opacity-100" : "opacity-0"
+            }`}
+          />
+          <div
+            aria-hidden="true"
+            data-testid="dashboard-tab-right-fade"
+            className={`pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white to-transparent transition-opacity md:hidden ${
+              tabScrollState.canScrollRight ? "opacity-100" : "opacity-0"
+            }`}
+          />
         </div>
 
         {/* Stats Cards */}

@@ -267,11 +267,11 @@ export const glossaryTerms: GlossaryTerm[] = [
   },
   {
     id: "artifacts-and-controls",
-    term: "Document type (ERL artifact)",
+    term: "Document type",
     plainDefinition:
-      "A defined evidence artifact type that indicates what documentation is expected.",
+      "The kind of document you're uploading. Graphletter uses it to pick which controls to assess.",
     graphletterDefinition:
-      "Selecting an artifact helps Graphletter identify relevant controls to assess first.",
+      "Selecting a document type helps Graphletter identify relevant controls to assess first.",
     whereToFind: "Upload Evidence > Documentation Artifact",
   },
   {

@@ -1,12 +1,13 @@
 "use client";
 
-import { AlertTriangle, CheckCircle, Clock, Eye, FileUp, Search, XCircle } from "lucide-react";
+import { Eye, FileUp, Search } from "lucide-react";
 import { type ChangeEvent, useCallback, useEffect, useState } from "react";
 import { DashboardLayout } from "@/components/dashboard-layout";
 import { EvidenceFreshnessDot } from "@/components/evidence-freshness-dot";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { EvidenceStatusBadge } from "@/components/ui/status-badge";
 import {
   Dialog,
   DialogContent,
@@ -33,7 +34,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface EvidenceRecord {
   id: string;
@@ -325,48 +326,6 @@ export default function EvidencePage() {
     return new Date(value).toISOString().split("T")[0];
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status.toLowerCase()) {
-      case "pass":
-        return "bg-green-100 text-green-800 border-green-200";
-      case "fail":
-        return "bg-red-100 text-red-800 border-red-200";
-      case "partial":
-        return "bg-yellow-100 text-yellow-800 border-yellow-200";
-      case "completed":
-        return "bg-blue-100 text-blue-800 border-blue-200";
-      case "under_review":
-        return "bg-amber-100 text-amber-800 border-amber-200";
-      case "assessed":
-        return "bg-indigo-100 text-indigo-800 border-indigo-200";
-      case "submitted":
-        return "bg-gray-100 text-gray-800 border-gray-200";
-      case "outdated":
-        return "bg-slate-100 text-slate-700 border-slate-200";
-      default:
-        return "bg-gray-100 text-gray-800 border-gray-200";
-    }
-  };
-
-  const getStatusIcon = (status: string) => {
-    switch (status.toLowerCase()) {
-      case "pass":
-        return <CheckCircle className="h-4 w-4" />;
-      case "fail":
-        return <XCircle className="h-4 w-4" />;
-      case "partial":
-        return <AlertTriangle className="h-4 w-4" />;
-      case "completed":
-        return <CheckCircle className="h-4 w-4" />;
-      case "under_review":
-        return <AlertTriangle className="h-4 w-4" />;
-      case "assessed":
-        return <CheckCircle className="h-4 w-4" />;
-      default:
-        return <Clock className="h-4 w-4" />;
-    }
-  };
-
   // First group by upload group id
   const evidenceGroupsMap = new Map<string, EvidenceRecord[]>();
   evidenceRecords.forEach((evidence) => {
@@ -518,7 +477,6 @@ export default function EvidencePage() {
                   <TableHead>File Name</TableHead>
                   <TableHead>Document Artifact</TableHead>
                   <TableHead>Controls Mapped</TableHead>
-                  <TableHead>Type</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Uploaded</TableHead>
                   <TableHead>Actions</TableHead>
@@ -527,13 +485,13 @@ export default function EvidencePage() {
               <TableBody>
                 {loading ? (
                   <TableRow>
-                    <TableCell colSpan={7} className="py-8 text-center">
+                    <TableCell colSpan={6} className="py-8 text-center">
                       Loading evidence records...
                     </TableCell>
                   </TableRow>
                 ) : filteredEvidenceGroups.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={7} className="py-8 text-center">
+                    <TableCell colSpan={6} className="py-8 text-center">
                       No evidence found
                     </TableCell>
                   </TableRow>
@@ -584,28 +542,29 @@ export default function EvidencePage() {
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell>{group.representative.evidence_type}</TableCell>
                         <TableCell>
-                          <Badge className={getStatusColor(group.representative.evidence_status)}>
-                            {getStatusIcon(group.representative.evidence_status)}
-                            <span className="ml-1 capitalize">
-                              {group.representative.evidence_status.replace("_", " ")}
-                            </span>
-                          </Badge>
+                          <EvidenceStatusBadge status={group.representative.evidence_status} />
                         </TableCell>
                         <TableCell>
                           {new Date(group.representative.submitted_at).toISOString().split("T")[0]}
                         </TableCell>
                         <TableCell>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            data-testid="evidence-view-action"
-                            aria-label={`View details for ${group.representative.file_name}`}
-                            onClick={() => openEvidenceDetails(group)}
-                          >
-                            <Eye className="h-4 w-4" />
-                          </Button>
+                          <TooltipProvider delayDuration={0}>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  data-testid="evidence-view-action"
+                                  aria-label={`View evidence details for ${group.representative.file_name}`}
+                                  onClick={() => openEvidenceDetails(group)}
+                                >
+                                  <Eye className="h-4 w-4" />
+                                </Button>
+                              </TooltipTrigger>
+                              <TooltipContent>View evidence details</TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
                         </TableCell>
                       </TableRow>
                     );
@@ -792,14 +751,9 @@ export default function EvidencePage() {
                 </div>
                 <div>
                   <p className="font-medium text-slate-900">Status</p>
-                  <Badge
-                    className={getStatusColor(selectedEvidenceGroup.representative.evidence_status)}
-                  >
-                    {getStatusIcon(selectedEvidenceGroup.representative.evidence_status)}
-                    <span className="ml-1 capitalize">
-                      {selectedEvidenceGroup.representative.evidence_status.replace("_", " ")}
-                    </span>
-                  </Badge>
+                  <EvidenceStatusBadge
+                    status={selectedEvidenceGroup.representative.evidence_status}
+                  />
                 </div>
                 <div>
                   <p className="font-medium text-slate-900">Uploaded</p>

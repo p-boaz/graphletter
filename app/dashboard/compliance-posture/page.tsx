@@ -81,13 +81,20 @@ const TIER_COLORS = {
 function scoreColor(score: number): string {
   if (score >= 80) return "text-green-700";
   if (score >= 60) return "text-amber-700";
+  if (score === 0) return "text-slate-700";
   return "text-red-700";
 }
 
 function scoreBgColor(score: number): string {
   if (score >= 80) return "bg-green-50 border-green-200";
   if (score >= 60) return "bg-amber-50 border-amber-200";
+  if (score === 0) return "bg-slate-50 border-slate-200";
   return "bg-red-50 border-red-200";
+}
+
+function formatCoveragePercent(value: number): string {
+  if (value > 0 && value < 1) return "<1%";
+  return `${value.toFixed(1)}%`;
 }
 
 function TrendArrow({ current, previous }: { current: number; previous: number }) {
@@ -108,10 +115,18 @@ function TrendArrow({ current, previous }: { current: number; previous: number }
 }
 
 function TrendTimeline({ history }: { history: HistoryPoint[] }) {
-  if (history.length < 2) {
+  if (history.length < 3) {
     return (
-      <div className="flex h-40 items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50 text-slate-500 text-sm">
-        Need at least 2 snapshots for trend data. Scores are captured after each assessment.
+      <div className="flex h-40 items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50 px-4 text-center text-slate-600 text-sm">
+        <div>
+          <p className="font-medium text-slate-900">
+            {history.length} snapshot{history.length === 1 ? "" : "s"} so far
+          </p>
+          <p className="mt-1">
+            The trend fills in as assessments complete. Scores are captured after each assessment.
+          </p>
+          <div className="mt-4 h-px w-48 bg-slate-300" />
+        </div>
       </div>
     );
   }
@@ -316,6 +331,11 @@ export default function CompliancePosturePage() {
   }
 
   const previousScore = history.length >= 2 ? history[history.length - 2].score : null;
+  const sortedDomains = [...posture.domains].sort((a, b) => {
+    if (b.rawScore !== a.rawScore) return b.rawScore - a.rawScore;
+    return a.domainName.localeCompare(b.domainName);
+  });
+  const hasDifferentiatedTiers = new Set(posture.domains.map((domain) => domain.tier)).size > 1;
 
   return (
     <DashboardLayout
@@ -350,7 +370,7 @@ export default function CompliancePosturePage() {
           >
             <CardContent className="p-6 text-center">
               <div className={`font-bold text-4xl ${scoreColor(posture.overallScore)}`}>
-                {posture.overallScore.toFixed(1)}%
+                {formatCoveragePercent(posture.overallScore)}
               </div>
               <div className="mt-1 text-slate-600 text-sm">Overall Posture Score</div>
               {previousScore !== null && (
@@ -382,14 +402,14 @@ export default function CompliancePosturePage() {
             </CardContent>
           </Card>
 
-          <Card className="border border-red-200 bg-red-50">
+          <Card className="border border-slate-200 bg-slate-50">
             <CardContent className="p-6 text-center">
-              <div className="font-bold text-3xl text-red-700">{posture.missingControls}</div>
-              <div className="text-red-600 text-sm">Missing</div>
-              <div className="mt-1 text-red-500 text-xs">
+              <div className="font-bold text-3xl text-slate-800">{posture.missingControls}</div>
+              <div className="text-slate-600 text-sm">No evidence yet</div>
+              <div className="mt-1 text-slate-500 text-xs">
                 {posture.conflictingControls > 0
                   ? `+ ${posture.conflictingControls} conflicting`
-                  : "No evidence"}
+                  : "Start with the next highest-impact upload"}
               </div>
             </CardContent>
           </Card>
@@ -418,8 +438,10 @@ export default function CompliancePosturePage() {
               Domain Breakdown
             </CardTitle>
             <CardDescription className="ft-sans text-base text-slate-600">
-              Compliance by security area. Critical areas count more toward your overall score than
-              routine ones.
+              Compliance by security area.
+              {hasDifferentiatedTiers
+                ? " Critical areas count more toward your overall score than routine ones."
+                : " Domains with progress are shown first."}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -429,20 +451,25 @@ export default function CompliancePosturePage() {
               </div>
             ) : (
               <div className="space-y-3">
-                {posture.domains.map((domain) => {
+                {sortedDomains.map((domain) => {
                   const colors = TIER_COLORS[domain.tier];
+                  const untouched = domain.rawScore === 0 && domain.conflictingControls === 0;
                   return (
                     <div
                       key={domain.domainId}
-                      className={`rounded-lg border p-4 ${colors.bg} ${colors.border}`}
+                      className={`rounded-lg border p-4 ${
+                        untouched ? "border-slate-200 bg-white" : `${colors.bg} ${colors.border}`
+                      }`}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <span
-                            className={`rounded-full px-2 py-0.5 font-medium text-xs ${colors.badge}`}
-                          >
-                            {domain.tier}
-                          </span>
+                          {hasDifferentiatedTiers && (
+                            <span
+                              className={`rounded-full px-2 py-0.5 font-medium text-xs ${colors.badge}`}
+                            >
+                              {domain.tier}
+                            </span>
+                          )}
                           <div>
                             <div className="font-semibold text-slate-900 text-sm">
                               {domain.domainName}
@@ -451,7 +478,7 @@ export default function CompliancePosturePage() {
                         </div>
                         <div className="text-right">
                           <div className={`font-bold text-lg ${scoreColor(domain.rawScore)}`}>
-                            {domain.rawScore.toFixed(1)}%
+                            {formatCoveragePercent(domain.rawScore)}
                           </div>
                           <div className="text-slate-500 text-xs">
                             {domain.compliantControls}/{domain.totalControls} compliant
@@ -466,8 +493,10 @@ export default function CompliancePosturePage() {
                           {domain.partialControls > 0 && (
                             <span className="text-amber-600">{domain.partialControls} partial</span>
                           )}
-                          {domain.missingControls > 0 && (
-                            <span className="text-red-600">{domain.missingControls} missing</span>
+                          {domain.missingControls > 0 && !untouched && (
+                            <span className="text-slate-600">
+                              {domain.missingControls} no evidence yet
+                            </span>
                           )}
                           {domain.conflictingControls > 0 && (
                             <span className="text-orange-600">

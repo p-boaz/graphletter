@@ -14,7 +14,7 @@ export default function FrameworkExplorerPage() {
     >
       <div className="space-y-12">
         <section className="space-y-6">
-          <MappingExplorer />
+          <MappingExplorer embedded />
         </section>
         <section className="space-y-6">
           <FrameworkCrosswalk />

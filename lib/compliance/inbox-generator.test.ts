@@ -23,7 +23,7 @@ const CATALOG: TableHandler = {
   ],
 };
 
-test("generateInbox: gap data alone yields missing/partial items and a posture summary", async () => {
+test("generateInbox: gap data alone groups missing controls by domain and keeps partial items", async () => {
   // evidence + ERL tables are unhandled → freshness scans empty and ERL
   // resolution throws (both degraded paths the generator handles).
   const { client } = fakeSupabase({
@@ -42,17 +42,17 @@ test("generateInbox: gap data alone yields missing/partial items and a posture s
 
   assert.deepEqual(
     result.items.map((i) => i.type),
-    ["missing_control", "missing_control", "partial_control"]
+    ["missing_control", "partial_control"]
   );
   assert.deepEqual(
     result.items.map((i) => i.priority),
-    ["high", "high", "low"]
+    ["medium", "low"]
   );
-  assert.equal(result.items[0].title, "Missing: AC-01 — Access control policy");
+  assert.equal(result.items[0].title, "IAC: 2 controls missing");
   assert.equal(result.items[0].actionLabel, "Upload Evidence");
-  assert.deepEqual(result.items[0].context?.controlIds, ["AC-01"]);
-  assert.equal(result.items[2].title, "Strengthen: AC-03 — Account management");
-  assert.equal(result.totalItems, 3);
+  assert.deepEqual(result.items[0].context?.controlIds, ["AC-01", "AC-02"]);
+  assert.equal(result.items[1].title, "Strengthen: AC-03 — Account management");
+  assert.equal(result.totalItems, 2);
 
   // Posture computes from the same gap data (weight fallback path)
   assert.ok(result.postureSummary);
@@ -109,7 +109,7 @@ test("generateInbox: stale and expiring evidence become critical/high items", as
   assert.equal(result.postureSummary, undefined);
 });
 
-test("generateInbox: missing items cap at 10, partial at 5", async () => {
+test("generateInbox: missing items group by domain and partial items cap at 5", async () => {
   const gaps = [
     ...Array.from({ length: 12 }, (_, i) => ({
       scf_control_id: `MISS-${String(i + 1).padStart(2, "0")}`,
@@ -131,11 +131,12 @@ test("generateInbox: missing items cap at 10, partial at 5", async () => {
 
   const result = await generateInbox(client, nextUser());
   const byType = (type: string) => result.items.filter((i) => i.type === type);
-  assert.equal(byType("missing_control").length, 10);
+  assert.equal(byType("missing_control").length, 1);
+  assert.equal(byType("missing_control")[0].metadata.groupedCount, 12);
   assert.equal(byType("partial_control").length, 5);
 });
 
-test("generateInbox: ERL resolution produces ranked medium-priority upload items", async () => {
+test("generateInbox: ERL resolution ranks multi-control uploads above single-control gaps", async () => {
   const { client } = fakeSupabase({
     control_gap_analysis: {
       data: [
@@ -178,16 +179,18 @@ test("generateInbox: ERL resolution produces ranked medium-priority upload items
   assert.equal(leverage.length, 2);
   // Ranked by overlap descending: ERL-01 covers 2 controls
   assert.equal(leverage[0].id, "leverage-ERL-01");
-  assert.equal(leverage[0].priority, "medium");
+  assert.equal(leverage[0].priority, "high");
   assert.equal(leverage[0].title, "Upload: Access Control Policy");
   assert.ok(leverage[0].description.startsWith("Covers 2 missing controls."));
   assert.deepEqual(leverage[0].context?.controlIds, ["AC-01", "AC-02"]);
   assert.equal(leverage[1].id, "leverage-ERL-02");
+  assert.equal(leverage[1].priority, "medium");
   assert.ok(leverage[1].description.startsWith("Covers 1 missing control."));
 
-  // Sort characterization: high (missing) before medium (leverage)
-  const priorities = result.items.map((i) => i.priority);
-  assert.deepEqual(priorities, ["high", "high", "medium", "medium"]);
+  assert.deepEqual(
+    result.items.map((i) => i.title),
+    ["Upload: Access Control Policy", "IAC: 2 controls missing", "Upload: Account Review Records"]
+  );
 });
 
 test("generateInbox: result is cached per user until invalidated", async () => {
@@ -214,7 +217,7 @@ test("generateInbox: result is cached per user until invalidated", async () => {
   assert.equal(gapFetches, 2);
 });
 
-test("generateInbox: items sort by priority then title within a priority", async () => {
+test("generateInbox: items sort by priority, leverage, then title", async () => {
   const { client } = fakeSupabase({
     evidence: {
       data: [
@@ -246,9 +249,10 @@ test("generateInbox: items sort by priority then title within a priority", async
   const result = await generateInbox(client, nextUser());
 
   // All three are "high"; expiring item ("Expiring in…") sorts before
-  // "Missing: AC-01" alphabetically, and AC-01 before AC-02.
+  // the grouped missing item because freshness urgency wins. Missing controls
+  // are grouped by domain instead of alphabetized as singleton rows.
   assert.deepEqual(
     result.items.map((i) => i.title),
-    ["Expiring in 10d: zzz-last.pdf", "Missing: AC-01", "Missing: AC-02"]
+    ["Expiring in 10d: zzz-last.pdf", "Other: 2 controls missing"]
   );
 });

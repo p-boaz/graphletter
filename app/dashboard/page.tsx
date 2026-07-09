@@ -201,6 +201,11 @@ const graphStatusPriority: Record<TopGap["gap_type"], number> = {
   compliant: 5,
 };
 
+const formatCoveragePercent = (value: number) => {
+  if (value > 0 && value < 1) return "<1%";
+  return `${value}%`;
+};
+
 function RedirectHandler() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -803,7 +808,7 @@ function ComplianceGaps() {
             <p className="mt-1 text-gray-600 text-sm">Controls Covered</p>
             <Progress value={overall_stats.coverage_percentage} className="mt-3" />
             <p className="mt-2 text-gray-500 text-xs">
-              {overall_stats.coverage_percentage}% Coverage
+              {formatCoveragePercent(overall_stats.coverage_percentage)} Coverage
             </p>
           </div>
         </CardContent>
@@ -893,10 +898,10 @@ function ComplianceGaps() {
               </div>
             </div>
 
-            <div className="flex items-center space-x-3 rounded-lg bg-red-50 p-3">
-              <FileX className="h-8 w-8 text-red-600" />
+            <div className="flex items-center space-x-3 rounded-lg bg-slate-50 p-3">
+              <FileX className="h-8 w-8 text-slate-500" />
               <div>
-                <div className="font-bold text-2xl text-red-600">{gap_summary.no_evidence}</div>
+                <div className="font-bold text-2xl text-slate-700">{gap_summary.no_evidence}</div>
                 <div className="text-gray-600 text-sm">No Evidence</div>
               </div>
             </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { AlertTriangle, Download, FileText } from "lucide-react";
-import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { DashboardLayout } from "@/components/dashboard-layout";
@@ -117,6 +116,10 @@ interface DomainCoverageRow {
 function normalizeDomainInfo(value: ScfControlCatalogItem["scf_domains"]): ScfDomainInfo | null {
   if (!value) return null;
   return Array.isArray(value) ? (value[0] ?? null) : value;
+}
+
+function zeroMutedClass(value: number, colorClass: string) {
+  return value === 0 ? "text-slate-400" : colorClass;
 }
 
 export default function AnalyticsPage() {
@@ -385,26 +388,6 @@ export default function AnalyticsPage() {
       showUploadButton={true}
     >
       <div className="space-y-6">
-        <Card data-testid="analytics-purpose-card" className="border-slate-200">
-          <CardHeader>
-            <CardTitle className="ft-serif font-bold text-2xl text-ft-black">
-              Purpose of this page
-            </CardTitle>
-            <CardDescription className="ft-sans text-base text-slate-600 leading-relaxed">
-              Use Analytics for deep drill-down metrics. For at-a-glance status, use Overview. For
-              control-by-control objective evidence, use Assessment Results.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-wrap gap-3">
-            <Button asChild variant="outline" className="border-slate-300">
-              <Link href="/dashboard">Open Overview</Link>
-            </Button>
-            <Button asChild variant="outline" className="border-slate-300">
-              <Link href="/dashboard/assessments">Open Assessment Results</Link>
-            </Button>
-          </CardContent>
-        </Card>
-
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <Card className="ft-card" data-testid="analytics-maturity-card">
             <CardHeader>
@@ -575,18 +558,43 @@ export default function AnalyticsPage() {
                           <div className="font-mono text-slate-500 text-xs">{domain.domain_id}</div>
                         </td>
                         <td className="max-w-xl px-3 py-3 text-slate-600 text-xs leading-relaxed">
-                          {domain.domain_description}
+                          <details>
+                            <summary className="line-clamp-1 cursor-pointer list-none">
+                              {domain.domain_description}
+                            </summary>
+                            <p className="mt-2">{domain.domain_description}</p>
+                          </details>
                         </td>
-                        <td className="px-3 py-3 text-right text-green-700">
+                        <td
+                          className={`px-3 py-3 text-right ${zeroMutedClass(
+                            domain.compliant_controls,
+                            "text-green-700"
+                          )}`}
+                        >
                           {domain.compliant_controls}
                         </td>
-                        <td className="px-3 py-3 text-right text-yellow-700">
+                        <td
+                          className={`px-3 py-3 text-right ${zeroMutedClass(
+                            domain.partial_controls,
+                            "text-amber-700"
+                          )}`}
+                        >
                           {domain.partial_controls}
                         </td>
-                        <td className="px-3 py-3 text-right text-red-700">
+                        <td
+                          className={`px-3 py-3 text-right ${zeroMutedClass(
+                            domain.missing_controls,
+                            "text-slate-700"
+                          )}`}
+                        >
                           {domain.missing_controls}
                         </td>
-                        <td className="px-3 py-3 text-right text-orange-700">
+                        <td
+                          className={`px-3 py-3 text-right ${zeroMutedClass(
+                            domain.conflicting_controls,
+                            "text-orange-700"
+                          )}`}
+                        >
                           {domain.conflicting_controls}
                         </td>
                         <td className="px-3 py-3 text-right">

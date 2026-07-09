@@ -71,6 +71,12 @@ const PRIORITY_ORDER: Record<InboxItemPriority, number> = {
   low: 3,
 };
 
+function getLeverageScore(item: InboxItem): number {
+  const explicit = item.metadata.leverageScore;
+  if (typeof explicit === "number") return explicit;
+  return item.context?.controlIds?.length || 1;
+}
+
 interface GapRow {
   scf_control_id: string;
   status: string;
@@ -190,10 +196,11 @@ export async function generateInbox(
 
         // Top N as high-leverage upload items
         for (const erl of erlRemediations.slice(0, MAX_HIGH_LEVERAGE_ITEMS)) {
+          const leverageScore = erl.controlsOverlap;
           items.push({
             id: `leverage-${erl.erlId}`,
             type: "high_leverage_upload",
-            priority: "medium",
+            priority: leverageScore >= 2 ? "high" : "medium",
             title: `Upload: ${erl.artifact}`,
             description: `Covers ${erl.controlsOverlap} missing control${erl.controlsOverlap !== 1 ? "s" : ""}. ${erl.artifactDescription || erl.areaOfFocus}`,
             actionLabel: "Upload Evidence",
@@ -206,6 +213,7 @@ export async function generateInbox(
             metadata: {
               erlId: erl.erlId,
               controlsOverlap: erl.controlsOverlap,
+              leverageScore,
               priority: erl.priority,
             },
           });
@@ -217,24 +225,48 @@ export async function generateInbox(
       }
     }
 
-    // Missing controls in critical domains (high priority)
-    for (const gap of missingControls.slice(0, 10)) {
-      const control = gapResult.controlDetails.get(gap.scf_control_id);
+    // Missing controls grouped by domain so the inbox stays action-oriented.
+    const missingByDomain = new Map<string, GapRow[]>();
+    for (const gap of missingControls) {
+      const domainId = gapResult.controlDetails.get(gap.scf_control_id)?.domain_id || "Other";
+      const group = missingByDomain.get(domainId) || [];
+      group.push(gap);
+      missingByDomain.set(domainId, group);
+    }
+
+    const groupedMissing = Array.from(missingByDomain.entries()).sort((a, b) => {
+      const countDiff = b[1].length - a[1].length;
+      if (countDiff !== 0) return countDiff;
+      return a[0].localeCompare(b[0]);
+    });
+
+    for (const [domainId, gaps] of groupedMissing.slice(0, 10)) {
+      const firstControl = gapResult.controlDetails.get(gaps[0].scf_control_id);
+      const controlIds = gaps.map((gap) => gap.scf_control_id).sort();
+      const title =
+        gaps.length === 1
+          ? `Missing: ${controlIds[0]}${firstControl?.title ? ` — ${firstControl.title}` : ""}`
+          : `${domainId}: ${gaps.length} controls missing`;
       items.push({
-        id: `missing-${gap.scf_control_id}`,
+        id: gaps.length === 1 ? `missing-${controlIds[0]}` : `missing-domain-${domainId}`,
         type: "missing_control",
-        priority: "high",
-        title: `Missing: ${gap.scf_control_id}${control?.title ? ` — ${control.title}` : ""}`,
-        description: `No evidence uploaded for this control. Upload documentation to close this gap.`,
+        priority: "medium",
+        title,
+        description:
+          gaps.length === 1
+            ? `Upload evidence for ${controlIds[0]} to close this gap.`
+            : `Start with the highest-coverage artifact for this domain, then review ${gaps.length} missing controls.`,
         actionLabel: "Upload Evidence",
         actionUrl: "/dashboard",
         context: {
-          controlIds: [gap.scf_control_id],
+          controlIds,
           frameworkId: frameworkId || undefined,
         },
         metadata: {
-          controlId: gap.scf_control_id,
-          domainId: control?.domain_id,
+          controlId: gaps.length === 1 ? controlIds[0] : undefined,
+          domainId,
+          groupedCount: gaps.length,
+          leverageScore: gaps.length,
         },
       });
     }
@@ -266,6 +298,8 @@ export async function generateInbox(
   items.sort((a, b) => {
     const pDiff = PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority];
     if (pDiff !== 0) return pDiff;
+    const leverageDiff = getLeverageScore(b) - getLeverageScore(a);
+    if (leverageDiff !== 0) return leverageDiff;
     return a.title.localeCompare(b.title);
   });
 

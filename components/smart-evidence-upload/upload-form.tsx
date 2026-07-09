@@ -1,6 +1,6 @@
 "use client";
 
-import { Brain, Check, ChevronsUpDown, FileUp } from "lucide-react";
+import { Check, ChevronsUpDown, FileSearch, FileUp } from "lucide-react";
 import type { DropzoneState } from "react-dropzone";
 import { InlineHelp } from "@/components/inline-help";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
+  CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
@@ -26,6 +27,7 @@ import { cn } from "@/lib/utils";
 import { FieldHelpTooltip } from "./field-help-tooltip";
 import { ImpactPreviewBanner } from "./impact-preview-banner";
 import type { DocumentationArtifact, ExistingEvidence } from "./types";
+import { pluralize } from "./utils";
 import { VersionDialog } from "./version-dialog";
 
 interface UploadFormProps {
@@ -86,19 +88,29 @@ export function UploadForm({
 }: UploadFormProps) {
   const { getRootProps, getInputProps, isDragActive } = dropzone;
   const uploadDisabled = uploading || (showVersionDialog && !versionAction);
+  const groupedArtifacts = artifacts.reduce(
+    (groups, artifact) => {
+      const firstControl = artifact.controls[0]?.scf_control_id || "Other";
+      const groupName = firstControl.includes("-") ? firstControl.split("-")[0] : "Other";
+      if (!groups[groupName]) groups[groupName] = [];
+      groups[groupName].push(artifact);
+      return groups;
+    },
+    {} as Record<string, DocumentationArtifact[]>
+  );
+  const recommendedArtifacts = [...artifacts]
+    .sort((a, b) => b.controls.length - a.controls.length || a.artifact.localeCompare(b.artifact))
+    .slice(0, 5);
+  const recommendedArtifactNames = new Set(
+    recommendedArtifacts.map((artifact) => artifact.artifact)
+  );
+  const selectArtifact = (artifactName: string) => {
+    onDocumentationArtifactChange(artifactName);
+    onArtifactComboboxOpenChange(false);
+  };
 
   return (
     <div className="space-y-6">
-      {/* Description */}
-      <div className="rounded-lg bg-blue-50 p-4 text-center">
-        <Brain className="mx-auto mb-2 h-8 w-8 text-blue-600" />
-        <h3 className="mb-1 font-medium text-blue-900">Upload evidence</h3>
-        <p className="text-blue-700 text-sm">
-          Select the type of document you&apos;re providing, and AI will assess compliance for every
-          control it applies to
-        </p>
-      </div>
-
       {/* Evidence Details */}
       <div className="space-y-4">
         <div className="space-y-2">
@@ -152,24 +164,69 @@ export function UploadForm({
                   <CommandEmpty>
                     {artifacts.length === 0 ? "No artifacts available" : "No artifacts found."}
                   </CommandEmpty>
-                  {artifacts.map((artifact) => (
-                    <CommandItem
-                      key={`${artifact.erl_id || "unknown"}_${artifact.artifact}`}
-                      value={artifact.artifact}
-                      onSelect={() => {
-                        onDocumentationArtifactChange(artifact.artifact);
-                        onArtifactComboboxOpenChange(false);
-                      }}
-                    >
-                      <Check
-                        className={cn(
-                          "mr-2 h-4 w-4",
-                          documentationArtifact === artifact.artifact ? "opacity-100" : "opacity-0"
-                        )}
-                      />
-                      <span className="truncate">{artifact.artifact}</span>
-                    </CommandItem>
-                  ))}
+                  {recommendedArtifacts.length > 0 && (
+                    <CommandGroup heading="Recommended for you">
+                      {recommendedArtifacts.map((artifact) => (
+                        <CommandItem
+                          key={`recommended_${artifact.erl_id || "unknown"}_${artifact.artifact}`}
+                          value={artifact.artifact}
+                          aria-label={artifact.artifact}
+                          onClick={() => selectArtifact(artifact.artifact)}
+                          onSelect={() => selectArtifact(artifact.artifact)}
+                        >
+                          <Check
+                            className={cn(
+                              "mr-2 h-4 w-4",
+                              documentationArtifact === artifact.artifact
+                                ? "opacity-100"
+                                : "opacity-0"
+                            )}
+                          />
+                          <span className="min-w-0 flex-1 truncate">{artifact.artifact}</span>
+                          <span className="ml-2 shrink-0 text-muted-foreground text-xs">
+                            {pluralize(artifact.controls.length, "control")}
+                          </span>
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  )}
+                  {Object.entries(groupedArtifacts)
+                    .map(
+                      ([groupName, groupArtifacts]) =>
+                        [
+                          groupName,
+                          groupArtifacts.filter(
+                            (artifact) => !recommendedArtifactNames.has(artifact.artifact)
+                          ),
+                        ] as const
+                    )
+                    .filter(([, groupArtifacts]) => groupArtifacts.length > 0)
+                    .sort(([a], [b]) => a.localeCompare(b))
+                    .map(([groupName, groupArtifacts]) => (
+                      <CommandGroup key={groupName} heading={groupName}>
+                        {groupArtifacts
+                          .sort((a, b) => a.artifact.localeCompare(b.artifact))
+                          .map((artifact) => (
+                            <CommandItem
+                              key={`${artifact.erl_id || "unknown"}_${artifact.artifact}`}
+                              value={artifact.artifact}
+                              aria-label={artifact.artifact}
+                              onClick={() => selectArtifact(artifact.artifact)}
+                              onSelect={() => selectArtifact(artifact.artifact)}
+                            >
+                              <Check
+                                className={cn(
+                                  "mr-2 h-4 w-4",
+                                  documentationArtifact === artifact.artifact
+                                    ? "opacity-100"
+                                    : "opacity-0"
+                                )}
+                              />
+                              <span className="truncate">{artifact.artifact}</span>
+                            </CommandItem>
+                          ))}
+                      </CommandGroup>
+                    ))}
                 </CommandList>
               </Command>
             </PopoverContent>
@@ -179,7 +236,7 @@ export function UploadForm({
               className="flex items-center gap-1.5 text-slate-600 text-xs"
               data-testid="artifact-classifying"
             >
-              <Brain className="h-3 w-3 animate-pulse text-blue-600" />
+              <FileSearch className="h-3 w-3 animate-pulse text-slate-600" />
               <span>Analyzing filename to suggest an artifact…</span>
             </p>
           )}
@@ -188,8 +245,8 @@ export function UploadForm({
               className="flex items-center gap-1.5 text-slate-600 text-xs"
               data-testid="artifact-ai-suggested"
             >
-              <Brain className="h-3 w-3 text-blue-600" />
-              <span>AI-suggested from filename. Use the picker above to change.</span>
+              <FileSearch className="h-3 w-3 text-slate-600" />
+              <span>Suggested from filename. Use the picker above to change.</span>
             </p>
           )}
           {!loadingArtifacts && artifacts.length === 0 && (
@@ -349,7 +406,7 @@ export function UploadForm({
               3
             </div>
             <div>
-              <p className="font-medium text-gray-900">AI Assessment</p>
+              <p className="font-medium text-gray-900">Assessment</p>
               <p className="text-gray-600">Evaluates evidence against all relevant objectives</p>
             </div>
           </div>
