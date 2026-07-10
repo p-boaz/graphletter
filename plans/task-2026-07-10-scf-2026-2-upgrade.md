@@ -47,6 +47,8 @@ workbook column 34) to the mapped framework set. Reseed local, then production.
 - [ ] scripts/import-scf-data.js
 - [ ] tests/scripts/seed-erl.test.ts
 - [ ] tests/scripts/seed-assessment-objectives.test.ts
+- [ ] app/frameworks/[id]/page.tsx (version chip double-v fix)
+- [ ] playwright/tests/public-pages.spec.ts (vv regression assertion)
 - [ ] SEEDING.md
 - [ ] plans/README.md (index entry)
 

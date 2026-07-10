@@ -66,7 +66,11 @@ test("public pages: dogfood report regressions are covered", async ({ page }, te
 
     await frameworkCardLinks.first().click();
     await expect(page).toHaveURL(/\/frameworks\/[^/]+$/, { timeout: 20_000 });
-    await expect(page.getByTestId(selectors.public.frameworkDetailHeading)).toBeVisible();
+    const detailHeading = page.getByTestId(selectors.public.frameworkDetailHeading);
+    await expect(detailHeading).toBeVisible();
+    // Versions are stored "v2017"-style; formatFrameworkVersion must not
+    // double the prefix into "vv2017" on the detail heading.
+    await expect(detailHeading).not.toContainText(/vv\d/i);
     await expect(page.getByTestId(selectors.public.frameworkDetailMappings)).toBeVisible();
 
     await open_local_app(page, "/try");
