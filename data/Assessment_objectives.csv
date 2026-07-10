@@ -37,6 +37,13 @@ AAT-01.4,AAT-01.4_A04,"the organization tracks decommissioned AI models and AI a
 (1) ownership;
 (2) intended purpose; and
 (3) date of decommissioning.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-01.5,AAT-01.5_A01,"mechanisms exist to assign defined classes to Artificial Intelligence and Autonomous Technologies (AAT) and AI agents based on their characteristics (e.g., intended use, autonomy, access, potential impact and risk).",Process,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-01.5,AAT-01.5_A02,the assigned class determines applicable approval requirements.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-01.5,AAT-01.5_A03,"the assigned class determines applicable security, compliance and/or resilience controls.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-01.5,AAT-01.5_A04,the assigned class determines applicable testing rigor.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-01.5,AAT-01.5_A05,the assigned class determines applicable monitoring requirements.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-01.5,AAT-01.5_A06,the assigned class determines applicable supporting documentation.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-01.5,AAT-01.5_A07,the assigned class determines applicable oversight requirements.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-02,AAT-02_A01,an inventory of systems and system components that is at the level of granularity deemed necessary for tracking and reporting is documented.,Process,53A_R5_CM-08a.04,,1,,,,x,,,,,,,,,,,
 AAT-02.1,AAT-02.1_A01,a risk catalog of Artificial Intelligence (AI) and Autonomous Technologies (AAT)-specific risks is documented.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-02.1,AAT-02.1_A02,"a compliance catalog of Artificial Intelligence (AI) and Autonomous Technologies (AAT)-specific laws, regulations and contractual obligations are documented.",Process,SCF Created,,1,,,,,,,,,,,,,,,
@@ -155,7 +162,7 @@ AAT-11.1,AAT-11.1_A02,"Individual Contributor (IC) performance reviews cover how
 AAT-11.2,AAT-11.2_A01,"independent assessors and/or internal stakeholders, who did not serve as front-line developers, are utilized for regular assessments and updates of deployed Artificial Intelligence (AI) and Autonomous Technologies (AAT).",Process,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-11.3,AAT-11.3_A01,the organization collects feedback from end users and impacted communities into Artificial Intelligence (AI) and Autonomous Technologies (AAT)-related system evaluation metrics.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-11.3,AAT-11.3_A02,evaluation metrics from end users and impacted communities are integrated into Artificial Intelligence (AI) and Autonomous Technologies (AAT) developments.,Process,SCF Created,,1,,,,,,,,,,,,,,,
-AAT-11.4,AAT-11.4_A01,"pertinent information from Artificial Intelligence (AI) and Autonomous Technologies (AAT)-related incidents and/or errors are communicated to relevant stakeholders, including affected communities. ",Process,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-11.4,AAT-11.4_A01,"pertinent information from Artificial Intelligence (AI) and Autonomous Technologies (AAT)-related incidents and/or errors are communicated to relevant stakeholders, including affected communities.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-12,AAT-12_A01,"an executive steering committee, or advisory board, evaluates business practices that want to or currently use Artificial Intelligence (AI) and Autonomous Technologies (AAT).",Process,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-12,AAT-12_A02,"measures exist for the executive steering committee, or advisory board, to proactively identify and evaluate third-party Intellectual Property (IP) infringement risks from Artificial Intelligence (AI) and Autonomous Technologies (AAT) usage.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-12,AAT-12_A03,actions are taken to prevent and/or block Artificial Intelligence (AI) and Autonomous Technologies (AAT) capabilities that infringe upon another party's Intellectual Property (IP).,Process,SCF Created,,1,,,,,,,,,,,,,,,
@@ -166,6 +173,8 @@ AAT-12.3,AAT-12.3_A01,the organization publicly discloses information about Arti
 AAT-12.3,AAT-12.3_A02,the organization publicly discloses information about Artificial Intelligence and Autonomous Technologies (AAT) in sufficient detail to assess the origin of data used by the AAT.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-12.4,AAT-12.4_A01,Artificial Intelligence and Autonomous Technologies (AAT) are configured to enable auditing of content modifications.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-12.4,AAT-12.4_A02,Artificial Intelligence and Autonomous Technologies (AAT) are configured to generate event logs for content-related changes.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-12.5,AAT-12.5_A01,"the reliability, accuracy and integrity of training data used by Artificial Intelligence and Autonomous Technologies (AAT) is validated.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-12.6,AAT-12.6_A01,"Artificial Intelligence and Autonomous Technologies (AAT) is prohibited from training, fine-tuning and/or improving capabilities using organizational data without prior, explicit consent from applicable data owner(s).",Technology,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-13,AAT-13_A01,"stakeholder competencies, skills and capacities incorporate demographic diversity.",People,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-13,AAT-13_A02,"stakeholder competencies, skills and capacities incorporate broad domain expertise.",People,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-13,AAT-13_A03,"stakeholder competencies, skills and capacities incorporate broad user experience expertise.",People,SCF Created,,1,,,,,,,,,,,,,,,
@@ -372,6 +381,10 @@ AAT-29.21,AAT-29.21_A02,end users are able to contest AI agent-generated outcome
 AAT-29.22,AAT-29.22_A01,"the organization has the capability to identify unfair, unethical or biased AI agent actions.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-29.23,AAT-29.23_A01,AI agent-generated outputs are validated through content scanning.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-29.23,AAT-29.23_A02,"AI agent-generated outputs are validated through output vetting that uses human approvals, where appropriate.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-29.24,AAT-29.24_A01,automated mechanisms enforce resource limits for Artificial Intelligence (AI) and Autonomous Technologies (AAT).,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-29.24,AAT-29.24_A02,enforced resource limits address energy consumption.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-29.24,AAT-29.24_A03,enforced resource limits address processing capacity.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-29.24,AAT-29.24_A04,"enforced resource limits address financial consumption (e.g., allocated budget).",Technology,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-30,AAT-30_A01,AI agent actions include non-repudiation to determine accountability.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-30,AAT-30_A02,AI agent actions are able to be forensically examined to determine accountability.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-30.1,AAT-30.1_A01,event logs are generated in an industry-supported format for Artificial Intelligence (AI) and Autonomous Technologies (AAT) actions.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
@@ -382,6 +395,10 @@ AAT-31,AAT-31_A01,risk-based prioritization is implemented to prevent cognitive 
 AAT-32,AAT-32_A01,"Robotic Process Automation (RPA) is implemented to improve efficiency, accuracy and speed in instances of high-volume, repetitive and rules-based business processes.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-32.1,AAT-32.1_A01,business process task activities that can be executed both manually and in an automated fashion are identified.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 AAT-32.1,AAT-32.1_A02,business process task activities that can be executed both manually and in an automated fashion are categorized.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-33,AAT-33_A01,"a Release Owner Gate (ROG), or similar function, prohibits the external release of AI-augmented content without formal Subject Matter Expert (SME) review and Line of Business (LOB) approval.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-33,AAT-33_A02,the review and approval process validates material facts.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-33,AAT-33_A03,the review and approval process validates citations.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+AAT-33,AAT-33_A04,the review and approval process validates other relevant content that could discredit the organization.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 AST-01,AST-01_A01,an authoritative source and repository are established to provide a trusted source and accountability for approved and implemented systems and system components.,Process,"172A_3.4.1e[c]
 172A_3.4.1e[d]",,1,,,,,,,x,,,,,,,,
 AST-01,AST-01_A02,the frequency at which to review / update the system and system component inventory is defined.,Process,53A_R5_CM-08_ODP[02],,1,at least annually,,,x,,,,,,,,,,,
@@ -503,6 +520,9 @@ AST-04.3,AST-04.3_A01,"an inventory of systems, applications and services exists
 AST-04.3,AST-04.3_A02,"inventories of systems, applications and services are kept current for each specific statutory, regulatory and/or contractual compliance obligations that provides sufficient detail to determine control applicability, based on asset scope categorization.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 AST-05,AST-05_A01,strict control is maintained over the internal or external distribution of any kind of sensitive / regulated media.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 AST-05.1,AST-05.1_A01,written management approval is obtained prior to the transfer of any sensitive / regulated media outside of the organization's facilities.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+AST-05.2,AST-05.2_A01,reasonable physical security protections for storage are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+AST-05.2,AST-05.2_A02,"processes exist to define criteria for Technology Assets, Applications, Services and/or Data (TAASD) storage",Process,SCF Created,,1,,,,,,,,,,,,,,,
+AST-05.2,AST-05.2_A03,"Technology Assets, Applications, Services and/or Data (TAASD) are stored in rooms and/or facilities with reasonable physical security protections.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 AST-06,AST-06_A01,enhanced protection measures for unattended systems are implemented to protect against tampering and unauthorized access.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 AST-06.1,AST-06.1_A01,"users are educated on the need to physically secure laptops and other mobile devices out of site when traveling, preferably in the trunk of a vehicle.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 AST-07,AST-07_A01,devices that capture sensitive / regulated data via direct physical interaction are appropriately protected from tampering and substitution.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
@@ -676,10 +696,8 @@ BCD-06,BCD-06_A29,lessons learned from contingency plan training or actual conti
 BCD-06,BCD-06_A30,the contingency plan is protected from unauthorized disclosure.,Technology,53A_R5_CP-02h.[01],,3,,,,x,,,,,,,,,,,
 BCD-06,BCD-06_A31,the contingency plan is protected from unauthorized modification.,Technology,53A_R5_CP-02h.[02],,3,,,,x,,,,,,,,,,,
 BCD-06.1,BCD-06.1_A01,"the organization identifies components that, if changed, potentially impact the organization's ability to execute contingency plans.",Process,SCF Created,,1,,,,,,,,,,,,,,,
-BCD-06.2,BCD-06.2_A01,"stakeholders for contingency plans are identified.
-",Process,SCF Created,,1,,,,,,,,,,,,,,,
-BCD-06.2,BCD-06.2_A02,"stakeholders are informed of changes to contingency plans.
-",Process,SCF Created,,1,,,,,,,,,,,,,,,
+BCD-06.2,BCD-06.2_A01,stakeholders for contingency plans are identified.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+BCD-06.2,BCD-06.2_A02,stakeholders are informed of changes to contingency plans.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 BCD-07,BCD-07_A01,alternative or supplemental security mechanisms are defined.,Process,53A_R5_CP-13_ODP[01],,1,,,,x,,,,,,,,,,,
 BCD-07,BCD-07_A02,alternative or supplemental security mechanisms are employed for satisfying security functions when the primary means of implementing the security function is unavailable or compromised.,Process,53A_R5_CP-13,,1,,,,x,,,,,,,,,,,
 BCD-07,BCD-07_A03,security functions are defined.,Process,53A_R5_CP-13_ODP[02],,3,,,,x,,,,,,,,,,,
@@ -798,7 +816,7 @@ CAP-03,CAP-03_A01,capacity planning is conducted so that the necessary capacity 
 CAP-03,CAP-03_A02,capacity planning is conducted so that the necessary capacity exists during contingency operations for telecommunications.,Process,53A_R5_CP-02(02)[02],,3,,,,x,,,,,,,,,,,
 CAP-03,CAP-03_A03,capacity planning is conducted so that the necessary capacity exists during contingency operations for environmental support.,Process,53A_R5_CP-02(02)[03],,3,,,,x,,,,,,,,,,,
 CAP-04,CAP-04_A01,"the operating state and health status of critical systems, applications and services is centrally-monitored.",Process,SCF Created,,1,,,,,,,,,,,,,,,
-CAP-05,CAP-05_A01,"resources needing dynamic expansion (e.g., elasticity) are defined. ",Process,SCF Created,,1,,,,,,,,,,,,,,,
+CAP-05,CAP-05_A01,"resources needing dynamic expansion (e.g., elasticity) are defined.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 CAP-05,CAP-05_A02,"applicable services are configured to dynamically expand the resources available for services, as demand conditions change.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
 CAP-06,CAP-06_A01,business processes requiring regional delivery of technological services are identified.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 CAP-06,CAP-06_A02,applicable services are configured to support geographically dispersed business processes requiring regional delivery of technological services.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
@@ -1042,6 +1060,13 @@ CFG-08,CFG-08_A01,information types requiring restricted access to data reposito
 CFG-08,CFG-08_A02,access to data repositories containing organization-defined information types is restricted.,Technology,53A_R5_AC-03(11),,1,,,,x,,,,,,,,,,,
 CFG-08,CFG-08_A03,approved authorizations for logical access to CUI are enforced in accordance with applicable access control policies.,Data,171A_R3_A.03.01.02[01],,NIST 800-171,,,,,,x,,,,,,,,,
 CFG-08.1,CFG-08.1_A01,"an automated mechanism generates event logs whenever sensitive / regulated data is collected, created, updated, deleted and/or archived.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
+CFG-09,CFG-09_A01,an authoritative repository for production software is established.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+CFG-09.1,CFG-09.1_A01,the use and import of third-party libraries and/or software components to trustworthy sources is restricted.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+CFG-09.2,CFG-09.2_A01,software repositories are protected from importing untrusted and/or malicious software artifacts.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+CFG-09.2,CFG-09.2_A02,software artifacts are scanned for malicious content.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+CFG-09.2,CFG-09.2_A03,a digital signature or secure hash provided over a secure channel is verified.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+CFG-09.2,CFG-09.2_A04,software artifacts are scanned to identify plain text or encoded secrets and keys.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+CFG-09.3,CFG-09.3_A01,an authoritative repository for software development activities is maintained that is separate from production software.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 CHG-01,CHG-01_A01,configuration change control activities are coordinated and overseen by organization-defined configuration change control element.,Technology,53A_R5_CM-03g.[01],,1,,,,x,,,,,,,,,,,
 CHG-01,CHG-01_A02,configuration change decisions associated with the system are documented.,Process,53A_R5_CM-03c.,,1,,,,x,,,,,,,,,,,
 CHG-01,CHG-01_A03,approved configuration-controlled changes to the system are implemented.,Process,53A_R5_CM-03d.,,1,,,,x,,,,,,,,,,,
@@ -1058,7 +1083,7 @@ CHG-01,CHG-01_A12,activities associated with configuration-controlled changes to
 171A_R3_A.03.04.03.d[01]",,2,,,,x,,x,,,,,,,,,
 CHG-01,CHG-01_A13,activities associated with configuration-controlled changes to the system are reviewed.,Process,"53A_R5_CM-03f.[02]
 171A_R3_A.03.04.03.d[02]",,2,,,,x,,x,,,,,,,,,
-CHG-01,CHG-01_A14,the configuration control element convenes organization-defined criteria. ,Technology,53A_R5_CM-03g.[02],,3,,,,x,,,,,,,,,,,
+CHG-01,CHG-01_A14,the configuration control element convenes organization-defined criteria.,Technology,53A_R5_CM-03g.[02],,3,,,,x,,,,,,,,,,,
 CHG-01,CHG-01_A15,"change management operations are conducted according to documented policies, standards, procedures and/or other organizational directives.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 CHG-01,CHG-01_A16,"adequate resources (e.g., people, processes, technologies, data and/or facilities) are provided to support change management operations.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 CHG-01,CHG-01_A17,responsibility and authority for the performance of change management-related activities are assigned to designated personnel.,People,SCF Created,,1,,,,,,,,,,,,,,,
@@ -1235,8 +1260,8 @@ CPL-01.6,CPL-01.6_A01,"based on the scope of an audit/assessment, necessary subj
 CPL-01.6,CPL-01.6_A02,minimum professional qualifications to participate in an audit and/or assessment are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 CPL-01.6,CPL-01.6_A03,auditors/assessors are evaluated for necessary subject matter expertise to perform an audit/assessment.,People,SCF Created,,1,,,,,,,,,,,,,,,
 CPL-01.6,CPL-01.6_A04,auditors/assessors are required to have minimum professional qualifications to participate in an audit/assessment.,People,SCF Created,,1,,,,,,,,,,,,,,,
-CPL-01.7,CPL-01.7_A01,a designate an individual is assigned authority to make statements of conformity on behalf of the organization. ,People,SCF Created,,1,,,,,,,,,,,,,,,
-CPL-01.7,CPL-01.7_A02,the designated individual is provided formal guidance on the limitations of statements of conformity that can be made on behalf of the organization. ,People,SCF Created,,1,,,,,,,,,,,,,,,
+CPL-01.7,CPL-01.7_A01,a designate an individual is assigned authority to make statements of conformity on behalf of the organization.,People,SCF Created,,1,,,,,,,,,,,,,,,
+CPL-01.7,CPL-01.7_A02,the designated individual is provided formal guidance on the limitations of statements of conformity that can be made on behalf of the organization.,People,SCF Created,,1,,,,,,,,,,,,,,,
 CPL-01.8,CPL-01.8_A01,the process for the certifying official to attest to the accuracy of conformity attestations is defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 CPL-01.8,CPL-01.8_A02,"the certifying official attests to the accuracy of conformity attestations, based on applicable laws, regulations and/or contractual criteria.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 CPL-02,CPL-02_A01,"a compliance catalog of applicable laws, regulations and contractual obligations are documented.",Process,SCF Created,,1,,,,,,,,,,,,,,,
@@ -1313,6 +1338,8 @@ CPL-03.4,CPL-03.4_A01,acceptable methods to conduct a cybersecurity and/or data 
 CPL-03.5,CPL-03.5_A01,the level of assessment rigor necessary to conduct a cybersecurity and/or data protection assessment is defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 CPL-03.6,CPL-03.6_A01,an Evidence Request List (ERL) prior to the start of a cybersecurity and/or data protection assessment is defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 CPL-03.7,CPL-03.7_A01,evidence sampling criteria for cybersecurity and/or data protection assessments are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+CPL-03.8,CPL-03.8_A01,Continuous Control Monitoring (CCM) scoping is defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+CPL-03.8,CPL-03.8_A02,"automated mechanisms exist to perform Continuous Control Monitoring (CCM) to assess and report the conformity status of the organization's Technology Assets, Applications, Services and Data (TAASD) against applicable security, compliance and resilience controls.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 CPL-04,CPL-04_A01,an internal audit function formally defines audit-related priorities for the organization.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 CPL-04,CPL-04_A02,audits are thoughtfully planned to minimize the impact of audit-related activities on business operations.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 CPL-05,CPL-05_A01,"a formal process exists to intake requests, document the request and determine whether a government agency has an applicable and valid legal basis to request data from the organization.",Process,SCF Created,,1,,,,,,,,,,,,,,,
@@ -1375,8 +1402,8 @@ CRY-01,CRY-01_A13,cryptographic mechanisms are implemented to prevent the unauth
 CRY-01,CRY-01_A14,cryptographic mechanisms are implemented to prevent the unauthorized disclosure of CUI while in storage.,Data,171A_R3_A.03.13.08[02],,NIST 800-171,,,,,,x,,,,,,,,,
 CRY-01,CRY-01_A15,the types of cryptography for protecting the confidentiality of CUI are defined.,Process,171A_R3_A.03.13.11.ODP[01],,NIST 800-171,,,,,,x,,,,,,,,,
 CRY-01,CRY-01_A16,the following types of cryptography are implemented to protect the confidentiality of CUI: <A.03.13.11.ODP[01]: types of cryptography>.,Data,171A_R3_A.03.13.11,"US DoD ODP Value: FIPS Validated Cryptography
-(https://csrc.nist.gov/Projects/Cryptographic-ModuleValidation-Program/Validated-Modules) ",NIST 800-171,"FIPS Validated Cryptography
-(https://csrc.nist.gov/Projects/Cryptographic-ModuleValidation-Program/Validated-Modules) ",,,,,x,,,,,,,,,
+(https://csrc.nist.gov/Projects/Cryptographic-ModuleValidation-Program/Validated-Modules)",NIST 800-171,"FIPS Validated Cryptography
+(https://csrc.nist.gov/Projects/Cryptographic-ModuleValidation-Program/Validated-Modules)",,,,,x,,,,,,,,,
 CRY-01,CRY-01_A17,"cryptographic protections management operations are conducted according to documented policies, standards, procedures and/or other organizational directives.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 CRY-01,CRY-01_A18,"adequate resources (e.g., people, processes, technologies, data and/or facilities) are provided to support cryptographic protections management operations.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 CRY-01,CRY-01_A19,responsibility and authority for the performance of cryptographic protections management-related activities are assigned to designated personnel.,People,SCF Created,,1,,,,,,,,,,,,,,,
@@ -1411,8 +1438,8 @@ CRY-03,CRY-03_A03,organization-defined types of cryptography are implemented to 
 CRY-03,CRY-03_A04,cryptographic mechanisms are implemented to prevent the unauthorized disclosure of CUI during transmission.,Data,171A_R3_A.03.13.08[01],,NIST 800-171,,,,,,x,,,,,,,,,
 CRY-03,CRY-03_A05,the types of cryptography for protecting the confidentiality of CUI are defined.,Process,171A_R3_A.03.13.11.ODP[01],,NIST 800-171,,,,,,x,,,,,,,,,
 CRY-03,CRY-03_A06,the following types of cryptography are implemented to protect the confidentiality of CUI: <A.03.13.11.ODP[01]: types of cryptography>.,Data,171A_R3_A.03.13.11,"US DoD ODP Value: FIPS Validated Cryptography
-(https://csrc.nist.gov/Projects/Cryptographic-ModuleValidation-Program/Validated-Modules) ",NIST 800-171,"FIPS Validated Cryptography
-(https://csrc.nist.gov/Projects/Cryptographic-ModuleValidation-Program/Validated-Modules) ",,,,,x,,,,,,,,,
+(https://csrc.nist.gov/Projects/Cryptographic-ModuleValidation-Program/Validated-Modules)",NIST 800-171,"FIPS Validated Cryptography
+(https://csrc.nist.gov/Projects/Cryptographic-ModuleValidation-Program/Validated-Modules)",,,,,x,,,,,,,,,
 CRY-04,CRY-04_A01,the integrity of transmitted information is/are protected.,Technology,"53A_R5_SC-08
 53A_R5_SC-08_ODP",,1,,,,x,,,,,,,,,,,
 CRY-04,CRY-04_A02,cryptographic uses are defined.,Process,53A_R5_SC-13_ODP[01],,3,,,,x,,,,,,,,,,,
@@ -1435,8 +1462,8 @@ CRY-05,CRY-05_A07,organization-defined types of cryptography are implemented to 
 CRY-05,CRY-05_A08,cryptographic mechanisms are implemented to prevent the unauthorized disclosure of CUI while in storage.,Data,171A_R3_A.03.13.08[02],,NIST 800-171,,,,,,x,,,,,,,,,
 CRY-05,CRY-05_A09,the types of cryptography for protecting the confidentiality of CUI are defined.,Process,171A_R3_A.03.13.11.ODP[01],,NIST 800-171,,,,,,x,,,,,,,,,
 CRY-05,CRY-05_A10,the following types of cryptography are implemented to protect the confidentiality of CUI: <A.03.13.11.ODP[01]: types of cryptography>.,Data,171A_R3_A.03.13.11,"US DoD ODP Value: FIPS Validated Cryptography
-(https://csrc.nist.gov/Projects/Cryptographic-ModuleValidation-Program/Validated-Modules) ",NIST 800-171,"FIPS Validated Cryptography
-(https://csrc.nist.gov/Projects/Cryptographic-ModuleValidation-Program/Validated-Modules) ",,,,,x,,,,,,,,,
+(https://csrc.nist.gov/Projects/Cryptographic-ModuleValidation-Program/Validated-Modules)",NIST 800-171,"FIPS Validated Cryptography
+(https://csrc.nist.gov/Projects/Cryptographic-ModuleValidation-Program/Validated-Modules)",,,,,x,,,,,,,,,
 CRY-05.1,CRY-05.1_A01,storage media types are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 CRY-05.1,CRY-05.1_A02,cryptographic mechanisms protect the confidentiality and integrity of the sensitive data residing on storage media.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 CRY-05.2,CRY-05.2_A01,persistent organizational storage locations are identified.,Process,172A_3.14.5e[a],,1,,,,,,,x,,,,,,,,
@@ -2064,7 +2091,7 @@ END-04.5,END-04.5_A04,the associated incident reporting occurs.,Technology,53A_R
 END-04.6,END-04.6_A01,system components that require diversity are defined.,Process,172A_3.13.1e_ODP[1],,1,,,,,,,x,,,,,,,,
 END-04.6,END-04.6_A02,diversity in system components is created to reduce the extent of malicious code propagation.,Technology,172A_3.13.1e[a],,1,,,,,,,x,,,,,,,,
 END-04.7,END-04.7_A01,"malicious code protection mechanisms are configured to perform real-time scans of files from external sources as the files are downloaded, opened or executed.",Technology,"53A_R5_SI-03c.01[02]
-171A_3.14.5[c] ",,1,,,,x,x,,,,,,,,,,
+171A_3.14.5[c]",,1,,,,x,x,,,,,,,,,,
 END-04.7,END-04.7_A02,malicious code protection mechanisms are configured to perform scans of the system per an organization-defined frequency.,Technology,SCF Created,,3,at least weekly,,,,,,,,,,,,,,
 END-04.7,END-04.7_A03,"malicious code protection mechanisms are configured to perform real-time scans of files from external sources at endpoints or system entry and exit points as the files are downloaded, opened, or executed.",Technology,171A_R3_A.03.14.02.c.01[02],,2,,,,,,x,,,,,,,,,
 END-04.7,END-04.7_A04,malicious code protection mechanisms are configured to perform scans of the system <A.03.14.02.ODP[01]: frequency>.,Technology,171A_R3_A.03.14.02.c.01[01],US DoD ODP Value: at least weekly,NIST 800-171,at least weekly,,,,,x,,,,,,,,,
@@ -2268,6 +2295,8 @@ GOV-01.1,GOV-01.1_A01,"an executive steering committee, or advisory board, is fo
 GOV-01.1,GOV-01.1_A02,"the executive steering committee, or advisory board, coordinates cybersecurity, technology, risk, privacy and business alignment through recurring, formal meetings.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 GOV-01.2,GOV-01.2_A01,"the executive steering committee, or advisory board, makes executive decisions about matters considered material to the organization's cybersecurity / data privacy program.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 GOV-01.3,GOV-01.3_A01,the organization commits appropriate financial resources needed for continual improvement of the organization's cybersecurity & data privacy program.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-01.4,GOV-01.4_A01,"the organization's Security, Compliance & Resilience Program (SCRP) is aligned with one or more industry-recognized frameworks.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-01.4,GOV-01.4_A02,the framework alignment provides defensible justification for secure practices.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 GOV-02,GOV-02_A01,cybersecurity / data privacy policies are developed and documented.,Process,"53A_R5_AC-01a.[01]
 53A_R5_AT-01a.[01]
 53A_R5_AU-01a.[01]
@@ -2652,6 +2681,8 @@ GOV-10,GOV-10_A03,the data integrity board/function conducts an annual review of
 GOV-10,GOV-10_A04,the roles of the organization's data governance body are defined.,Process,53A_R5_PM-23_ODP[01],,3,,,,x,,,,,,,,,,,
 GOV-10,GOV-10_A05,the responsibilities of the organization's data governance body are defined.,Process,53A_R5_PM-23_ODP[02],,3,,,,x,,,,,,,,,,,
 GOV-10,GOV-10_A06,the organization's data governance body has defined roles with established responsibilities.,Process,53A_R5_PM-23,,3,,,,x,,,,,,,,,,,
+GOV-10.1,GOV-10.1_A01,a data catalog exists.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-10.1,GOV-10.1_A02,data is cataloged in a structured format to document each significant data asset.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 GOV-11,GOV-11_A01,systems or system components supporting mission-essential services or functions are defined.,Process,53A_R5_PM-32_ODP,,1,,,,x,,,,,,,,,,,
 GOV-11,GOV-11_A02,systems or system components supporting mission-essential services or functions are analyzed to ensure that the information resources are being used in a manner that is consistent with their intended purpose.,Process,53A_R5_PM-32,,1,,,,x,,,,,,,,,,,
 GOV-12,GOV-12_A01,"an executive steering committee, or advisory board, evaluates business practices for possible forced exfiltration of sensitive / regulated information (e.g., Intellectual Property (IP)) to a host government for purposes of market access or market management practices.",Process,SCF Created,,1,,,,,,,,,,,,,,,
@@ -2666,7 +2697,7 @@ GOV-14,GOV-14_A03,"identified deficiencies of cybersecurity / data privacy princ
 GOV-15,GOV-15_A01,"roles and responsibilities exist to compel data and/or process owners to operationalize cybersecurity / data privacy practices for each system, application and/or service under their control.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 GOV-15,GOV-15_A02,"Individual Contributor (IC) performance reviews cover how data and/or process owners operationalized cybersecurity / data privacy practices for each system, application and/or service under their control.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 GOV-15,GOV-15_A03,organization-defined systems security engineering principles are applied to the development or modification of the system and system components.,Process,SCF Created,,3,,,,,,,,,,,,,,,
-GOV-15,GOV-15_A04,<A.03.16.01.ODP[01]: systems security engineering principles> are applied to the development or modification of the system and system components.,Process,171A_R3_A.03.16.01,"US DoD ODP Value: Guidance: At a minimum, documentation that provides user and administrator guidance for the implementation and operation of controls. The level of detail required in such documentation should be based on the degree to which organizations depend on the capabilities, functions, or mechanisms to meet risk response expectations. Requirements can include mandated configuration settings that specify allowed functions, ports, protocols, and services. Acceptance criteria for systems, system components, and system services are defined in the same manner as the criteria for any organizational acquisition or procurement. ",NIST 800-171,"Guidance: At a minimum, documentation that provides user and administrator guidance for the implementation and operation of controls. The level of detail required in such documentation should be based on the degree to which organizations depend on the capabilities, functions, or mechanisms to meet risk response expectations. Requirements can include mandated configuration settings that specify allowed functions, ports, protocols, and services. Acceptance criteria for systems, system components, and system services are defined in the same manner as the criteria for any organizational acquisition or procurement. ",,,,,x,,,,,,,,,
+GOV-15,GOV-15_A04,<A.03.16.01.ODP[01]: systems security engineering principles> are applied to the development or modification of the system and system components.,Process,171A_R3_A.03.16.01,"US DoD ODP Value: Guidance: At a minimum, documentation that provides user and administrator guidance for the implementation and operation of controls. The level of detail required in such documentation should be based on the degree to which organizations depend on the capabilities, functions, or mechanisms to meet risk response expectations. Requirements can include mandated configuration settings that specify allowed functions, ports, protocols, and services. Acceptance criteria for systems, system components, and system services are defined in the same manner as the criteria for any organizational acquisition or procurement.",NIST 800-171,"Guidance: At a minimum, documentation that provides user and administrator guidance for the implementation and operation of controls. The level of detail required in such documentation should be based on the degree to which organizations depend on the capabilities, functions, or mechanisms to meet risk response expectations. Requirements can include mandated configuration settings that specify allowed functions, ports, protocols, and services. Acceptance criteria for systems, system components, and system services are defined in the same manner as the criteria for any organizational acquisition or procurement.",,,,,x,,,,,,,,,
 GOV-15.1,GOV-15.1_A01,"roles and responsibilities exist to compel data and/or process owners to select required cybersecurity / data privacy controls for each system, application and/or service under their control.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 GOV-15.1,GOV-15.1_A02,"Individual Contributor (IC) performance reviews cover how data and/or process owners select required cybersecurity / data privacy controls for each system, application and/or service under their control.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 GOV-15.2,GOV-15.2_A01,"roles and responsibilities exist to compel data and/or process owners to implement required cybersecurity / data privacy controls for each system, application and/or service under their control.",Process,SCF Created,,1,,,,,,,,,,,,,,,
@@ -2691,8 +2722,19 @@ GOV-19.1,GOV-19.1_A02,Assurance Levels (AL) define depth criteria to addresses t
 GOV-19.1,GOV-19.1_A03,Assurance Levels (AL) define coverage criteria to address the scope and breadth of an assessment.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 GOV-19.2,GOV-19.2_A01,defined Assessment Objectives (AO) are identified.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 GOV-19.2,GOV-19.2_A02,"AOs are used to assess the implementation of requirements, when available.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-19.3,GOV-19.3_A01,"organizations involved in developing, implementing and/or maintaining Technology Assets, Applications and/or Services (TAAS) provide assurance of internal oversight capabilities.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-19.3,GOV-19.3_A02,the internal oversight capabilities demonstrate governance of internal controls.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-19.3,GOV-19.3_A03,"the internal oversight capabilities demonstrate risk management, including analysis and mitigation activities.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-19.3,GOV-19.3_A04,"the internal oversight capabilities demonstrate compliance with applicable laws, regulations and contractual obligations.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 GOV-20,GOV-20_A01,"standardized practices to conduct Mergers, Acquisitions and Divestiture (MA&D) activities are defined.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 GOV-20.1,GOV-20.1_A01,"a Virtual Data Room (VDR), or similar technology, is securely provisioned to share documentation among stakeholders to conduct MA&D activities.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-21,GOV-21_A01,A High Value Assets (HVAs) catalog is created.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-21,GOV-21_A02,"criteria are defined for high-value Intellectual Property (IP) to be categorized as a ""crown jewel.""",Technology,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-21,GOV-21_A03,"criteria are defined for Technology Assets, Applications and Services (TAAS) to be categorized as a ""crown jewel,"" based on business process criticality or dependency relationships.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-21,GOV-21_A04,the physical and/or logical location of HVAs are documented.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-21,GOV-21_A05,assigned owners are defined for HVAs,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-21,GOV-21_A06,minimum protection mechanisms for HVAs are defined.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+GOV-21,GOV-21_A07,assurance requirements for HVAs are defined.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 HRS-01,HRS-01_A01,personnel security procedures to facilitate the implementation of the personnel security policy and associated personnel security controls are developed and documented.,Process,53A_R5_PS-01a.[03],,1,,,,x,,,,,,,,,,,
 HRS-01,HRS-01_A02,an official to manage the personnel security policy and procedures is defined.,People,"53A_R5_PS-01_ODP[03]
 53A_R5_PS-01_ODP[04]",,1,,,,x,,,,,,,,,,,
@@ -2746,7 +2788,7 @@ HRS-03,HRS-03_A01,cybersecurity / data privacy roles and responsibilities are in
 HRS-03,HRS-03_A02,the incident response plan is protected from unauthorized disclosure.,Process,171A_R3_A.03.06.05.d,,2,,,,,,x,,,,,,,,,
 HRS-03.1,HRS-03.1_A01,users are formally made aware of their roles and responsibilities to maintain a safe and secure working environment.,People,SCF Created,,1,,,,,,,,,,,,,,,
 HRS-03.1,HRS-03.1_A02,acknowledgement of user awareness is maintained by the organization.,People,SCF Created,,1,,,,,,,,,,,,,,,
-HRS-03.2,HRS-03.2_A01,defined competency requirements ensure that all cybersecurity / data privacy-related positions are staffed by qualified individuals who have the necessary skill set. ,People,SCF Created,,1,,,,,,,,,,,,,,,
+HRS-03.2,HRS-03.2_A01,defined competency requirements ensure that all cybersecurity / data privacy-related positions are staffed by qualified individuals who have the necessary skill set.,People,SCF Created,,1,,,,,,,,,,,,,,,
 HRS-03.2,HRS-03.2_A02,a risk designation is assigned to all organizational positions.,People,53A_R5_PS-02a.,,3,,,,x,,,,,,,,,,,
 HRS-03.2,HRS-03.2_A03,the frequency at which to review / update position risk designations is defined.,Process,53A_R5_PS-02_ODP,,3,at least every three years,,,x,,,,,,,,,,,
 HRS-03.2,HRS-03.2_A04,screening criteria are established for individuals filling organizational positions.,Process,53A_R5_PS-02b.,,3,,,,x,,,,,,,,,,,
@@ -2931,7 +2973,7 @@ HRS-13.3,HRS-13.3_A02,redundancy for vital cybersecurity / data privacy staff is
 HRS-13.4,HRS-13.4_A01,succession planning for vital cybersecurity / data privacy roles is performed.,People,SCF Created,,1,,,,,,,,,,,,,,,
 HRS-14,HRS-14_A01,authorized working locations which are not on organization-controlled premises are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 HRS-14.1,HRS-14.1_A01,authorized working locations are communicated to personnel.,People,SCF Created,,1,,,,,,,,,,,,,,,
-HRS-15,HRS-15_A01,personnel are empowered to efficiently report suspicious activities and/or behavior without fear of recrimination. ,Process,SCF Created,,3,,,,,,,,,,,,,,,
+HRS-15,HRS-15_A01,personnel are empowered to efficiently report suspicious activities and/or behavior without fear of recrimination.,Process,SCF Created,,3,,,,,,,,,,,,,,,
 HRS-15,HRS-15_A02,personnel are provided with an anonymous means to report suspicious activities and/or behavior.,Process,SCF Created,,3,,,,,,,,,,,,,,,
 IAC-01,IAC-01_A01,a capability to govern logical identification and access management controls is implemented.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 IAC-01,IAC-01_A02,the Identity & Access Management (IAM) program is organization-wide.,Process,53A_R5_AC-01_ODP[03],,1,,,,x,,,,,,,,,,,
@@ -2952,6 +2994,9 @@ IAC-01.2,IAC-01.2_A06,"contracts with External Service Providers (ESPs) contain 
 IAC-01.2,IAC-01.2_A07,access to the system is authorized based on intended system usage.,Technology,171A_R3_A.03.01.01.d.02,,2,,,,,,x,,,,,,,,,
 IAC-01.2,IAC-01.2_A08,each type of wireless access to the system is authorized prior to establishing such connections.,Technology,171A_R3_A.03.01.16.b,,2,,,,,,x,,,,,,,,,
 IAC-01.3,IAC-01.3_A01,a current list of authorized users and services is maintained.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+IAC-01.4,IAC-01.4_A01,"identity providers and authorization servers are employed to manage user, device and Non-Person Entity (NPE) identities, attributes and access rights that support authentication and authorization decisions.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
+IAC-01.4,IAC-01.4_A02,authentication and authorization decisions are made in accordance with organization-defined identification and authentication policy.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+IAC-01.4,IAC-01.4_A03,authentication and authorization decisions use organization-defined mechanisms.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 IAC-02,IAC-02_A01,"system, application and service users are identified.",Process,"171A_3.5.1[a]
 53A_R5_IA-02[01]",,1,,,IA.L1-B.1.V[a],x,x,,,,,,,,,,
 IAC-02,IAC-02_A02,the identity of each user is authenticated or verified as a prerequisite to system access.,Technology,"171A_3.5.2[a]
@@ -3106,7 +3151,7 @@ IAC-08,IAC-08_A07,changes to roles or attributes are monitored.,Process,53A_R5_A
 IAC-08,IAC-08_A08,access is revoked when privileged role or attribute assignments are no longer appropriate.,Technology,53A_R5_AC-02(07)(d),,3,,,,x,,,,,,,,,,,
 IAC-08,IAC-08_A09,security functions for authorized access are defined.,Process,171A_R3_A.03.01.05.ODP[01],,2,,,,,,x,,,,,,,,,
 IAC-08,IAC-08_A10,security-relevant information for authorized access is defined.,Process,171A_R3_A.03.01.05.ODP[02],,2,,,,,,x,,,,,,,,,
-IAC-08,IAC-08_A11,access to <A.03.01.05.ODP[01]: security functions> is authorized.,Technology,171A_R3_A.03.01.05.b[01],"US DoD ODP Value: at a minimum and if applicable: establishing system accounts and assigning privileges, configuring access authorizations, configuring settings for events to be audited, establishing vulnerability scanning parameters, establishing intrusion detection parameters, and managing audit information ",NIST 800-171,"at a minimum and if applicable: establishing system accounts and assigning privileges, configuring access authorizations, configuring settings for events to be audited, establishing vulnerability scanning parameters, establishing intrusion detection parameters, and managing audit information ",,,,,x,,,,,,,,,
+IAC-08,IAC-08_A11,access to <A.03.01.05.ODP[01]: security functions> is authorized.,Technology,171A_R3_A.03.01.05.b[01],"US DoD ODP Value: at a minimum and if applicable: establishing system accounts and assigning privileges, configuring access authorizations, configuring settings for events to be audited, establishing vulnerability scanning parameters, establishing intrusion detection parameters, and managing audit information",NIST 800-171,"at a minimum and if applicable: establishing system accounts and assigning privileges, configuring access authorizations, configuring settings for events to be audited, establishing vulnerability scanning parameters, establishing intrusion detection parameters, and managing audit information",,,,,x,,,,,,,,,
 IAC-08,IAC-08_A12,access to <A.03.01.05.ODP[02]: security-relevant information> is authorized.,Technology,171A_R3_A.03.01.05.b[02],"US DoD ODP Value: at a minimum and if applicable: threat and vulnerability information, filtering rules for routers or firewalls, configuration parameters for security services, cryptographic key management information, security architecture, access control lists, and audit information",NIST 800-171,"at a minimum and if applicable: threat and vulnerability information, filtering rules for routers or firewalls, configuration parameters for security services, cryptographic key management information, security architecture, access control lists, and audit information",,,,,x,,,,,,,,,
 IAC-08,IAC-08_A13,logical access restrictions associated with changes to the system are defined and documented.,Process,171A_R3_A.03.04.05[04],,2,,,,,,x,,,,,,,,,
 IAC-08,IAC-08_A14,the incident response plan is protected from unauthorized disclosure.,Technology,171A_R3_A.03.06.05.d,,2,,,,,,x,,,,,,,,,
@@ -3351,6 +3396,7 @@ IAC-15.8,IAC-15.8_A02,system accounts subject to enforcement of circumstances an
 IAC-15.8,IAC-15.8_A03,organization-defined system accounts are enforced.,Technology,53A_R5_AC-02(11),,1,,,,x,,,,,,,,,,,
 IAC-15.9,IAC-15.9_A01,"a process exists to establish ""emergency access only"" accounts.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 IAC-15.9,IAC-15.9_A02,"""emergency access only"" accounts are controlled.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
+IAC-15.10,IAC-15.10_A01,non-privileged accounts are separated between infrastructure environments to reduce the risk that a compromise in one infrastructure environment laterally affects another infrastructure environment.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 IAC-16,IAC-16_A01,privileged access rights for users and services are restricted based on roles.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 IAC-16,IAC-16_A02,privileged access rights for users and services are controlled.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 IAC-16.1,IAC-16.1_A01,all privileged accounts are inventoried.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
@@ -3383,7 +3429,7 @@ IAC-20,IAC-20_A09,systems and system components included in the scope of the spe
 IAC-20,IAC-20_A10,systems and system components are included in the scope of the specified enhanced security requirements.,Process,172A_3.14.3e[a],,3,,,,,,,x,,,,,,,,
 IAC-20,IAC-20_A11,systems and system components that are not included in systems and system components are segregated in purpose-specific networks.,Technology,172A_3.14.3e[b],,3,,,,,,,x,,,,,,,,
 IAC-20.1,IAC-20.1_A01,access to sensitive / regulated data is restricted to only those individuals whose job requires such access.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
-IAC-20.1,IAC-20.1_A02,access to <A.03.01.05.ODP[01]: security functions> is authorized.,Technology,171A_R3_A.03.01.05.b[01],"US DoD ODP Value: at a minimum and if applicable: establishing system accounts and assigning privileges, configuring access authorizations, configuring settings for events to be audited, establishing vulnerability scanning parameters, establishing intrusion detection parameters, and managing audit information ",NIST 800-171,"at a minimum and if applicable: establishing system accounts and assigning privileges, configuring access authorizations, configuring settings for events to be audited, establishing vulnerability scanning parameters, establishing intrusion detection parameters, and managing audit information ",,,,,x,,,,,,,,,
+IAC-20.1,IAC-20.1_A02,access to <A.03.01.05.ODP[01]: security functions> is authorized.,Technology,171A_R3_A.03.01.05.b[01],"US DoD ODP Value: at a minimum and if applicable: establishing system accounts and assigning privileges, configuring access authorizations, configuring settings for events to be audited, establishing vulnerability scanning parameters, establishing intrusion detection parameters, and managing audit information",NIST 800-171,"at a minimum and if applicable: establishing system accounts and assigning privileges, configuring access authorizations, configuring settings for events to be audited, establishing vulnerability scanning parameters, establishing intrusion detection parameters, and managing audit information",,,,,x,,,,,,,,,
 IAC-20.1,IAC-20.1_A03,access to <A.03.01.05.ODP[02]: security-relevant information> is authorized.,Technology,171A_R3_A.03.01.05.b[02],"US DoD ODP Value: at a minimum and if applicable: threat and vulnerability information, filtering rules for routers or firewalls, configuration parameters for security services, cryptographic key management information, security architecture, access control lists, and audit information",NIST 800-171,"at a minimum and if applicable: threat and vulnerability information, filtering rules for routers or firewalls, configuration parameters for security services, cryptographic key management information, security architecture, access control lists, and audit information",,,,,x,,,,,,,,,
 IAC-20.1,IAC-20.1_A04,the incident response plan is protected from unauthorized disclosure.,Technology,171A_R3_A.03.06.05.d,,2,,,,x,,x,,,,,,,,,
 IAC-20.2,IAC-20.2_A01,access to database containing sensitive / regulated data is restricted to only necessary services or those individuals whose job requires such access.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
@@ -3459,7 +3505,7 @@ IAC-22,IAC-22_A07,delay algorithm for the next logon prompt is defined.,Process,
 IAC-22,IAC-22_A08,other action to be taken when the maximum number of unsuccessful attempts is exceeded is defined.,Process,"53A_R5_AC-07_ODP[03]
 53A_R5_AC-07_ODP[06]",,3,,,,x,,,,,,,,,,,
 IAC-22,IAC-22_A09,a limit of <A.03.01.08.ODP[01]: number> consecutive invalid logon attempts by a user during <A.03.01.08.ODP[02]: time period> is enforced.,Technology,"53A_R5_AC-07a.
-171A_R3_A.03.01.08.a","US DoD ODP Values:  
+171A_R3_A.03.01.08.a","US DoD ODP Values: 
 [01] - at most five (5)
 [02] - period of five (5) minutes",NIST 800-171,"SDP values:
 [01] - at most five (5)
@@ -4402,25 +4448,25 @@ MON-03,MON-03_A10,"audit records, once created, contain the defined content.",Te
 171A_3.3.2[b]",,2,,,,,x,,,,,,,,,,
 MON-03,MON-03_A11,the frequency of event types selected for logging are reviewed / updated.,Process,53A_R5_AU-02_ODP[04],,3,at least weekly,,,x,,,,,,,,,,,
 MON-03,MON-03_A12,event types selected for logging within the system are defined.,Process,171A_R3_A.03.03.01.ODP[01],,2,,,,,,x,,,,,,,,,
-MON-03,MON-03_A13,the following event types are specified for logging within the system: <A.03.03.01.ODP[01]: event types>.,Process,171A_R3_A.03.03.01.a,"US DoD ODP Values:  at a minimum and where applicable:
+MON-03,MON-03_A13,the following event types are specified for logging within the system: <A.03.03.01.ODP[01]: event types>.,Process,171A_R3_A.03.03.01.a,"US DoD ODP Values: at a minimum and where applicable:
 (1) Authentication events:
-  (a) Logons (Success/Failure)
-  (b) Logoffs (Success)
+ (a) Logons (Success/Failure)
+ (b) Logoffs (Success)
 (2) Security Relevant File and Objects events:
-  (a) Create (Success/Failure)
-  (b) Access (Success/Failure)
-  (c) Delete (Success/Failure)
-  (d) Modify (Success/Failure)
-  (e) Permission Modification (Success/Failure)
-  (f) Ownership Modification (Success/Failure)
+ (a) Create (Success/Failure)
+ (b) Access (Success/Failure)
+ (c) Delete (Success/Failure)
+ (d) Modify (Success/Failure)
+ (e) Permission Modification (Success/Failure)
+ (f) Ownership Modification (Success/Failure)
 (3) Export/Writes/downloads to devices/digital media (e.g., CD/DVD, USB, SD) (Success/Failure)
 (4) Import/Uploads from devices/digital media (e.g., CD/DVD, USB, SD) (Success/Failure)
 (5) User and Group Management events:
-  (a) User add, delete, modify, disable, lock (Success/Failure)
-  (b) Group/Role add, delete, modify (Success/Failure)
+ (a) User add, delete, modify, disable, lock (Success/Failure)
+ (b) Group/Role add, delete, modify (Success/Failure)
 6) Use of Privileged/Special Rights events:
-  (a) Security or audit policy changes (Success/Failure)
-  (b) Configuration changes (Success/Failure)
+ (a) Security or audit policy changes (Success/Failure)
+ (b) Configuration changes (Success/Failure)
 (7) Admin or root-level access (Success/Failure)
 (8) Privilege/Role escalation (Success/Failure)
 (9) Audit and security relevant log data accesses (Success/Failure)
@@ -4432,23 +4478,23 @@ MON-03,MON-03_A13,the following event types are specified for logging within the
 For additional guidance, see: OMB21-31 ML 1",NIST 800-171,"SDP values:
 at a minimum and where applicable:
 (1) Authentication events:
-  (a) Logons (Success/Failure)
-  (b) Logoffs (Success)
+ (a) Logons (Success/Failure)
+ (b) Logoffs (Success)
 (2) Security Relevant File and Objects events:
-  (a) Create (Success/Failure)
-  (b) Access (Success/Failure)
-  (c) Delete (Success/Failure)
-  (d) Modify (Success/Failure)
-  (e) Permission Modification (Success/Failure)
-  (f) Ownership Modification (Success/Failure)
+ (a) Create (Success/Failure)
+ (b) Access (Success/Failure)
+ (c) Delete (Success/Failure)
+ (d) Modify (Success/Failure)
+ (e) Permission Modification (Success/Failure)
+ (f) Ownership Modification (Success/Failure)
 (3) Export/Writes/downloads to devices/digital media (e.g., CD/DVD, USB, SD) (Success/Failure)
 (4) Import/Uploads from devices/digital media (e.g., CD/DVD, USB, SD) (Success/Failure)
 (5) User and Group Management events:
-  (a) User add, delete, modify, disable, lock (Success/Failure)
-  (b) Group/Role add, delete, modify (Success/Failure)
+ (a) User add, delete, modify, disable, lock (Success/Failure)
+ (b) Group/Role add, delete, modify (Success/Failure)
 6) Use of Privileged/Special Rights events:
-  (a) Security or audit policy changes (Success/Failure)
-  (b) Configuration changes (Success/Failure)
+ (a) Security or audit policy changes (Success/Failure)
+ (b) Configuration changes (Success/Failure)
 (7) Admin or root-level access (Success/Failure)
 (8) Privilege/Role escalation (Success/Failure)
 (9) Audit and security relevant log data accesses (Success/Failure)
@@ -4985,6 +5031,10 @@ NET-06.6,NET-06.6_A01,microsegmentation is implemented to divide the network acc
 NET-06.7,NET-06.7_A01,"automated mechanisms implement dynamic, policy-driven network segmentation.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
 NET-06.7,NET-06.7_A02,"automated mechanisms implement dynamic, policy-driven access controls.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
 NET-06.7,NET-06.7_A03,"automated mechanisms implement dynamic, policy-driven network traffic management.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
+NET-06.8,NET-06.8_A01,"automated mechanisms separate network appliance functions (e.g., management, control and data planes).",Technology,SCF Created,,1,,,,,,,,,,,,,,,
+NET-06.8,NET-06.8_A02,separation prevents ordinary traffic from accessing functions that manage network appliances.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+NET-06.8,NET-06.8_A03,separation prevents ordinary traffic from accessing functions that affect network operations.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+NET-06.9,NET-06.9_A01,"subnetworks are physically or logically separate to isolate organization-defined Technology Assets, Applications, Services and/or Data (TAASD).",Technology,SCF Created,,1,,,,,,,,,,,,,,,
 NET-07,NET-07_A01,a period of inactivity to terminate network connections associated with communications sessions is defined.,Process,"171A_3.13.9[a]
 53A_R5_SC-10_ODP",,1,no longer than ten (10) minutes for privileged sessions and no longer than fifteen (15) minutes for user sessions,,,x,x,,,,,,,,,,
 NET-07,NET-07_A02,network connections associated with communications sessions are terminated at the end of the sessions.,Technology,"171A_3.13.9[b]
@@ -5156,8 +5206,7 @@ NET-20.1,NET-20.1_A02,processes exist to monitor the organization's email domain
 NET-20.2,NET-20.2_A01,"a set of denylisted senders, domains and/or email servers is documented.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 NET-20.2,NET-20.2_A02,"email systems are configured to prevent the reception of email from denylisted senders, domains and/or email servers.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
 NET-20.3,NET-20.3_A01,"email systems are configured to utilize an authenticated received chain that allows for an intermediary to sign its own authentication of the original email, allowing downstream entities to accept the intermediary’s authentication even if the email was changed.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
-NET-20.4,NET-20.4_A01,"domain signature verification protections are implemented to authenticate incoming email according to the Domain-based Message Authentication Reporting and Conformance (DMARC).
-",Technology,SCF Created,,1,,,,,,,,,,,,,,,
+NET-20.4,NET-20.4_A01,domain signature verification protections are implemented to authenticate incoming email according to the Domain-based Message Authentication Reporting and Conformance (DMARC).,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 NET-20.5,NET-20.5_A01,"email systems are configured to enable users to digitally sign their emails, allowing external parties to authenticate the email’s sender and its contents according to the Domain-based Message Authentication Reporting and Conformance (DMARC) email authentication protocol.",Technology,SCF Created,,1,,,,,,,,,,,,,,,
 NET-20.6,NET-20.6_A01,email systems are configured to enable the encryption of outgoing emails.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 NET-20.7,NET-20.7_A01,email systems are configured to utilize adaptive email protections that involve employing risk-based analysis in the application and enforcement of email protections.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
@@ -5343,7 +5392,7 @@ OPS-05,OPS-05_A01,"guidelines and recommendations for the secure use of products
 OPS-06,OPS-06_A01,"Security Orchestration, Automation and Response (SOAR) tools are used to define, prioritize and automate responses to security incidents.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 OPS-07,OPS-07_A01,"organizational policy prohibits unauthorized software, systems and services in use by the organization (e.g., shadow IT).",Process,SCF Created,,1,,,,,,,,,,,,,,,
 OPS-07,OPS-07_A02,"no less than annually, financial expenditures are reviewed for instances of unauthorized software, systems and services in use by the organization (e.g., shadow IT).",Process,SCF Created,,1,,,,,,,,,,,,,,,
-OPS-07,OPS-07_A03," instances of unauthorized software, systems and services in use by the organization (e.g., shadow IT) are investigated as cybersecurity incidents.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+OPS-07,OPS-07_A03,"instances of unauthorized software, systems and services in use by the organization (e.g., shadow IT) are investigated as cybersecurity incidents.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 OPS-07,OPS-07_A04,"personnel responsible for unauthorized software, systems and services are held accountable per the organization's disciplinary processes.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 PES-01,PES-01_A01,the physical facility where organizational systems reside is protected.,Facility,171A_3.10.2[a],,1,,,,,x,,,,,,,,,,
 PES-01,PES-01_A02,the location or site of the facility where the system resides is planned considering physical and environmental hazards.,Facility,53A_R5_PE-23a.,,1,,,,x,,,,,,,,,,,
@@ -5628,6 +5677,8 @@ PRI-01.10,PRI-01.10_A01,"any financial incentives offered to data subjects for P
 PRI-01.11,PRI-01.11_A01,"reasonable consumer expectations are defined for what is necessary and proportionate for collecting, receiving, processing, storage, transmission, sharing, updating and/or disposal of Personal Data (PD).",Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRI-01.11,PRI-01.11_A02,"organization-specific practices are defined to limit the collection, receiving, processing, storage, transmission, sharing, updating and/or disposal of Personal Data (PD) according to reasonable consumer expectations for what is necessary and proportionate.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRI-01.11,PRI-01.11_A03,"the collection, receiving, processing, storage, transmission, sharing, updating and/or disposal of Personal Data (PD) is limited to reasonable consumer expectations for what is necessary and proportionate.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+PRI-01.12,PRI-01.12_A01,the organization's data privacy principles are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+PRI-01.12,PRI-01.12_A02,"the organization's data privacy principles are formally incorporated into engineering, product and model design requirements to ensure data privacy is built in by default and by design.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRI-02,PRI-02_A01,privacy notice(s) are developed and posted on all external-facing websites.,Technology,53A_R5_PM-20(01)[01],,1,,,,x,,,,,,,,,,,
 PRI-02,PRI-02_A02,privacy notice(s) are developed and posted on all mobile applications.,Technology,53A_R5_PM-20(01)[02],,1,,,,x,,,,,,,,,,,
 PRI-02,PRI-02_A03,privacy notice(s) are developed and posted on all other digital services.,Technology,53A_R5_PM-20(01)[03],,1,,,,x,,,,,,,,,,,
@@ -5685,7 +5736,7 @@ PRI-02.10,PRI-02.10_A02,symmetry in choice are implemented.,Process,SCF Created,
 PRI-02.11,PRI-02.11_A01,choice architecture that enables data subjects to make well-informed choices is defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRI-02.11,PRI-02.11_A02,choice architecture that supports data subjects' ability to make well-informed choices is implemented.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRI-02.12,PRI-02.12_A01,methods to perform testing of choice architecture to ensure it does not undermine a consumer’s ability to submit choice selections are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
-PRI-02.12,PRI-02.12_A02,testing of choice architecture is performed to ensure it does not undermine a consumer’s ability to submit choice selections. ,Process,SCF Created,,1,,,,,,,,,,,,,,,
+PRI-02.12,PRI-02.12_A02,testing of choice architecture is performed to ensure it does not undermine a consumer’s ability to submit choice selections.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRI-02.13,PRI-02.13_A01,data privacy notices alert data subjects to their right to limit the use and disclosure of their sensitive Personal Data (sPD).,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 PRI-02.13,PRI-02.13_A02,data privacy notices alert data subjects to methods available to exercise that right to limit the use and disclosure of their sensitive Personal Data (sPD).,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 PRI-02.14,PRI-02.14_A01,alternative methods to deliver a data privacy notice are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
@@ -5986,7 +6037,7 @@ PRI-15,PRI-15_A01,a list of Data Authorities that require database registration 
 PRI-15,PRI-15_A02,"as required by a law or regulation, databases containing Personal Data (PD) are registered with the appropriate Data Authority.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRI-16,PRI-16_A01,"executive leadership, along with legal counsel, formally identifies risks associated with non-compliance (e.g., fines, operational impacts, etc.).",Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRI-16,PRI-16_A02,"executive leadership, along with legal counsel, formally identifies primary risks associated with compliance (e.g., loss of confidentiality and/or integrity considerations with data governance).",Process,SCF Created,,1,,,,,,,,,,,,,,,
-PRI-16,PRI-16_A03,"executive leadership, along with legal counsel, formally identifies secondary risks associated with compliance (e.g., non-compliance with other laws, regulations and contractual agreements). ",Process,SCF Created,,1,,,,,,,,,,,,,,,
+PRI-16,PRI-16_A03,"executive leadership, along with legal counsel, formally identifies secondary risks associated with compliance (e.g., non-compliance with other laws, regulations and contractual agreements).",Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRI-16,PRI-16_A04,"executive leadership, along with legal counsel, formally identifies tertiary risks associated with compliance (e.g., human rights abuses, theft of intellectual property, espionage, etc.).",Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRI-17,PRI-17_A01,disclosures and communications to data subjects are made easily accessible.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRI-17,PRI-17_A02,"disclosures and communications to data subjects are written in a manner that is concise, unambiguous and understandable by a reasonable person.",Process,SCF Created,,1,,,,,,,,,,,,,,,
@@ -6058,7 +6109,7 @@ PRM-02,PRM-02_A01,the resources needed to implement the cybersecurity / data pri
 53A_R5_PM-03a.[02]",,1,,,,x,,,,,,,,,,,
 PRM-02,PRM-02_A02,"the documentation required for addressing the cybersecurity / data privacy program in capital planning and investment requests is prepared in accordance with applicable laws, executive orders, directives, policies, regulations, standards.",Process,"53A_R5_PM-03b.[01]
 53A_R5_PM-03b.[02]",,1,,,,x,,,,,,,,,,,
-PRM-02,PRM-02_A03, cybersecurity / data privacy resources are made available for expenditure as planned.,Process,"53A_R5_PM-03c.[01]
+PRM-02,PRM-02_A03,cybersecurity / data privacy resources are made available for expenditure as planned.,Process,"53A_R5_PM-03c.[01]
 53A_R5_PM-03c.[02]",,1,,,,x,,,,,,,,,,,
 PRM-02.1,PRM-02.1_A01,foundational cybersecurity practices are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRM-02.1,PRM-02.1_A02,foundational cybersecurity practices are integrated with advanced technologies to maintain situation awareness of and minimize the organization's exposure to evolving risks and threats.,Process,SCF Created,,1,,,,,,,,,,,,,,,
@@ -6106,6 +6157,111 @@ PRM-07,PRM-07_A08,systems or system components implement the security design pri
 PRM-08,PRM-08_A01,critical organizational knowledge is defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRM-08,PRM-08_A02,organizational knowledge of the cybersecurity / data privacy staff is documented.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 PRM-08,PRM-08_A03,cross-training is performed to maintain organizational knowledge.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01,QTS-01_A01,an executive-sponsored quantum risk governance structure is established that institutionalizes quantum risk in the same manner as other enterprise risks.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01,QTS-01_A02,a named migration lead with defined authority is assigned.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01,QTS-01_A03,quantum risk is treated as a standing agenda item in Board of Directors and/or executive leadership meetings.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01.1,QTS-01.1_A01,"a formal, documented quantum security policy is established.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01.1,QTS-01.1_A02,the quantum security policy conveys executive management's intent.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01.1,QTS-01.1_A03,the quantum security policy provides organizational direction and expected behaviors.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01.1,QTS-01.1_A04,the quantum security policy is reviewed at least annually.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01.1,QTS-01.1_A05,"the quantum security policy is updated, as necessary, to adapt to evolving risks, threats and other changes that affect the organization.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01.2,QTS-01.2_A01,a classification scheme exists to determine confidentiality shelf-life.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01.2,QTS-01.2_A02,"the shelf-life classification is used as a direct input to Post-Quantum Cryptography (PQC) migration prioritization, including prioritizing data with a shelf-life exceeding the expected PQC arrival horizon.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01.3,QTS-01.3_A01,"Technology Assets, Applications, Services and Data (TAASD) are classified according to confidentiality shelf-life.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01.4,QTS-01.4_A01,"Harvest Now, Decrypt Later (HNDL) risk is mitigated through Zero Trust Network Access (ZTNA).",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01.4,QTS-01.4_A02,ZTNA enforces continuous authentication.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01.4,QTS-01.4_A03,ZTNA enforces data microsegmentation.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01.4,QTS-01.4_A04,ZTNA enforces least privilege.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-01.4,QTS-01.4_A05,ZTNA enforces identity-based access control.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-02,QTS-02_A01,a Cryptographic Agility Risk Assessment (CARA) methodology is defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-02,QTS-02_A02,"a CARA is performed to map Technology Assets, Applications, Services and Data (TAASD).",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-02,QTS-02_A03,the CARA identifies TAASD most vulnerable to quantum-enabled cryptanalytic threats.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-02,QTS-02_A04,the CARA prioritizes TAASD based on potential business impact.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-02.1,QTS-02.1_A01,each Post-Quantum Cryptography (PQC) deviation is governed through a formal cryptographic exception register.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-02.1,QTS-02.1_A02,the exception register contains the asset and/or process owner(s).,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-02.1,QTS-02.1_A03,the exception register contains compensating control(s).,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-02.1,QTS-02.1_A04,the exception register contains the planned remediation date.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-02.1,QTS-02.1_A05,the exception register contains the re-evaluation date.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-02.2,QTS-02.2_A01,"short-term compensating measures are implemented for Technology Assets, Applications and Services (TAAS) that cannot be migrated to Post-Quantum Cryptography (PQC) on the planned schedule (e.g., network segmentation, additional pre-shared-key layers, reduced key lifetimes, out-of-band key transport and data minimization).",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-02.3,QTS-02.3_A01,progress is measured in adopting cryptographic agility using defined maturity criteria to support resilience against evolving Post-Quantum Cryptography (PQC) requirements and threats.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-03,QTS-03_A01,a risk-prioritized Post-Quantum Cryptography Agility Plan (PQCAP) is developed.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-03,QTS-03_A02,the PQCAP enables cryptographic agility.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-03,QTS-03_A03,the PQCAP aligns with evolving security standards.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-03,QTS-03_A04,the PQCAP defines the approach for selecting and implementing PQC algorithms.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-03.1,QTS-03.1_A01,"sufficient resources are allocated to transition legacy Technology Assets, Applications and/or Services (TAAS) to Post-Quantum Cryptography (PQC) algorithms.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-03.1,QTS-03.1_A02,"hybrid cryptography is supported during a defined transition period, if applicable.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-03.2,QTS-03.2_A01,reportable metrics for Post-Quantum Cryptography (PQC) migration are established.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-03.2,QTS-03.2_A02,the metrics measure migration progress against the Post-Quantum Cryptography Agility Plan (PQCAP).,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-03.2,QTS-03.2_A03,the metrics report progress periodically to executive leadership.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-03.3,QTS-03.3_A01,vendors are required to disclose Post-Quantum Cryptography (PQC) support roadmaps.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-03.3,QTS-03.3_A02,the roadmaps include identification of PQC-related limitations.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-03.3,QTS-03.3_A03,"the roadmaps include supported upgrade paths to ensure long-lived devices (e.g., OT, IoT and embedded systems) can support PQC capabilities.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-03.4,QTS-03.4_A01,"vendors are contractually obligated to support Post-Quantum Cryptography (PQC) migration, including flow-down requirements to subcontractors, suppliers and third-party components.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04,QTS-04_A01,means to gain situational awareness into the organization's current cryptographic landscape through a formal discovery process are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04,QTS-04_A02,the discovery process uses available tools to generate situational awareness.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.1,QTS-04.1_A01,a current inventory of cryptographic assets is maintained.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.1,QTS-04.1_A02,the inventory includes algorithms (asymmetric and symmetric).,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.1,QTS-04.1_A03,the inventory includes key lengths.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.1,QTS-04.1_A04,the inventory includes libraries.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.1,QTS-04.1_A05,the inventory includes protocols.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.1,QTS-04.1_A06,"the inventory includes associated Technology Assets, Applications and/or Services (TAAS) utilizing the cryptography.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.1,QTS-04.1_A07,"the inventory includes Federal Information Processing Standards (FIPS) validation status from the Cryptographic Module Validation Program (CMVP), including certificate number, if applicable.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.2,QTS-04.2_A01,a Cryptographic Bill of Materials (CBOM) is maintained to analyze the organization's cryptographic architecture.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.2,QTS-04.2_A02,the CBOM includes hardware.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.2,QTS-04.2_A03,the CBOM includes firmware.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.2,QTS-04.2_A04,the CBOM includes software modules.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.2,QTS-04.2_A05,the CBOM includes communication protocols.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.3,QTS-04.3_A01,"a current inventory of Technology Assets, Applications and/or Services (TAAS) with Post-Quantum Cryptography (PQC) exposure is maintained.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.3,QTS-04.3_A02,the inventory includes public key algorithms vulnerable to Cryptographically Relevant Quantum Computers (CRQCs).,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.3,QTS-04.3_A03,"the inventory includes long-lived keys and certificates (e.g., CA roots, firmware signing keys, etc.).",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-04.3,QTS-04.3_A04,"the inventory includes TAAS that cannot easily adopt PQC upgrades (e.g., embedded, RTOS, etc.).",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-05,QTS-05_A01,differentiated quantum security training content is developed.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-05,QTS-05_A02,differentiated quantum security awareness training to the general workforce.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-05,QTS-05_A03,differentiated quantum security awareness training to technical roles.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-05,QTS-05_A04,differentiated quantum security awareness training to leadership roles.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-05.1,QTS-05.1_A01,a quantum threat intelligence function is established.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-05.1,QTS-05.1_A02,the function monitors cryptanalytic threat developments.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-05.1,QTS-05.1_A03,the function monitors quantum computing capability advances.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-05.1,QTS-05.1_A04,the function monitors NIST and/or regulatory updates to approved algorithm lists.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-05.2,QTS-05.2_A01,stakeholders participation in sector-appropriate quantum security forums.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06,QTS-06_A01,"design-level cryptographic agility across protocols, libraries, kernels and hardware to ensure Technology Assets, Applications and/or Services (TAAS) is validated to support larger Post-Quantum Cryptography (PQC) key, signature and ciphertext sizes.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.1,QTS-06.1_A01,validated entropy sources and random bit generators comply with NIST SP 800-90B.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.1,QTS-06.1_A02,the entropy sources support Post-Quantum Cryptography (PQC) key generation.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.1,QTS-06.1_A03,the entropy sources support nonce generation.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.1,QTS-06.1_A04,the entropy sources support probabilistic algorithm inputs.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.1,QTS-06.1_A05,the entropy sources support key validation.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.2,QTS-06.2_A01,stateful hash-based signature schemes conform with NIST SP 800-208.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.2,QTS-06.2_A02,state-management controls necessary to prevent one-time key reuse are required.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.2,QTS-06.2_A03,stateful hash-based signatures are enforced for firmware signing.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.2,QTS-06.2_A04,stateful hash-based signatures are enforced for secure boot signing.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.2,QTS-06.2_A05,stateful hash-based signatures are enforced for other long-lifetime code-signing use cases.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.3,QTS-06.3_A01,Post-Quantum Cryptography (PQC) algorithms are approved.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.3,QTS-06.3_A02,"required validation levels for approved algorithms (e.g., FIPS 140-3 validated) are defined.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.4,QTS-06.4_A01,"Technology Assets, Applications and/or Services (TAAS) are configured to use FIPS 140-3 validated cryptographic modules, where applicable.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.5,QTS-06.5_A01,quantum-vulnerable and otherwise deprecated cryptographic algorithms are prohibited from being used.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.6,QTS-06.6_A01,cryptographic keys and certificates are managed in a manner that supports Post-Quantum Cryptography (PQC) transition.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.6,QTS-06.6_A02,validity periods for quantum-vulnerable certificates are shortened to reduce exposure.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.6,QTS-06.6_A03,Public Key Infrastructure (PKI) is prepared for PQC roots of trust or dual-root hybrid trust models.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.6,QTS-06.6_A04,key generation uses quantum-safe entropy sources.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.7,QTS-06.7_A01,Public Key Infrastructure (PKI) trust anchors are transitioned to quantum-safe algorithms.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.8,QTS-06.8_A01,"Technology Assets, Applications and/or Services (TAAS) are configured to prevent attackers from forcing quantum-vulnerable algorithms.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.8,QTS-06.8_A02,"integrity-protected algorithm negotiation is used (e.g., TLS 1.3 handshake transcript).",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.8,QTS-06.8_A03,negotiation of classical-only cipher suites is disallowed once Post-Quantum Cryptography (PQC) is deployed.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.8,QTS-06.8_A04,downgrade attempts are monitored.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.9,QTS-06.9_A01,"hybrid/composite algorithms are leveraged as a transition path to Post-Quantum Cryptography (PQC) solutions, where applicable.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.9,QTS-06.9_A02,"solutions support hybrid signatures (e.g., ECDSA + ML-DSA) and hybrid Key Encapsulation Mechanisms (KEMs) (e.g., ECDH + ML-KEM).",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.9,QTS-06.9_A03,"certificate formats, Public Key Infrastructure (PKI) and trust anchors can support dual-key or dual-certificate models.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.9,QTS-06.9_A04,plans exist for eventual removal of classical algorithms once PQC confidence is sufficient.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-06.10,QTS-06.10_A01,universal interface is used to bridge established cryptographic Application Programming Interface (API) frameworks by abstracting complex cryptographic operations to support cryptographic agility.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-07,QTS-07_A01,capability exists to respond to the compromise or disallowance of a Post-Quantum Cryptography (PQC) or classical algorithm on a compressed timeline.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-07,QTS-07_A02,pre-identified algorithm alternates are established.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-07,QTS-07_A03,tested rollback and roll-forward procedures are established.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-07,QTS-07_A04,customer and/or counterparty communication templates are established.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-07,QTS-07_A05,incident response rehearsals against defined scenarios are conducted.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-08,QTS-08_A01,Post-Quantum Cryptography (PQC) implementations are validated for functional and cryptographic requirements.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-08,QTS-08_A02,each PQC implementation is interoperable with counterparties and successors.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-08,QTS-08_A03,each PQC implementation meets performance criteria for its use case.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+QTS-08,QTS-08_A04,test results and exceptions are documented.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 RSK-01,RSK-01_A01,"a comprehensive strategy is developed to manage cybersecurity / data privacy risk to organizational operations and assets, individuals and other organizations associated with the operation and use of organizational systems.",Process,"53A_R5_PM-09a.01
 53A_R5_PM-09a.02",,1,,,,x,,,,,,,,,,,
 RSK-01,RSK-01_A02,the risk management strategy is implemented consistently across the organization.,Process,53A_R5_PM-09b.,,1,,,,x,,,,,,,,,,,
@@ -6118,7 +6274,7 @@ RSK-01,RSK-01_A08,a risk executive function is established.,Process,53A_R5_PM-29
 RSK-01,RSK-01_A09,a risk executive function views and analyzes risk from an organization-wide perspective.,Process,53A_R5_PM-29b.[02],,3,,,,x,,,,,,,,,,,
 RSK-01,RSK-01_A10,a risk executive function ensures that the management of risk is consistent across the organization.,Process,53A_R5_PM-29b.[03],,3,,,,x,,,,,,,,,,,
 RSK-01,RSK-01_A11,"organization-defined security requirements are enforced to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences of supply chain-related events.",Process,SCF Created,,3,,,,,,,,,,,,,,,
-RSK-01,RSK-01_A12,"the following security requirements are enforced to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences of supply chain-related events: <A.03.17.03.ODP[01]: security requirements>.",Process,171A_R3_A.03.17.03.b,"US DoD ODP Value: at a minimum, integrate Supply Chain Risk Management (SCRM) into  acquisition/procurement policies, provide adequate SCRM resources, define the SCRM control baseline, establish processes to ensure suppliers disclose significant vulnerabilities and significant incidents",NIST 800-171,"at a minimum, integrate Supply Chain Risk Management (SCRM) into  acquisition/procurement policies, provide adequate SCRM resources, define the SCRM control baseline, establish processes to ensure suppliers disclose significant vulnerabilities and significant incidents",,,,,x,,,,,,,,,
+RSK-01,RSK-01_A12,"the following security requirements are enforced to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences of supply chain-related events: <A.03.17.03.ODP[01]: security requirements>.",Process,171A_R3_A.03.17.03.b,"US DoD ODP Value: at a minimum, integrate Supply Chain Risk Management (SCRM) into acquisition/procurement policies, provide adequate SCRM resources, define the SCRM control baseline, establish processes to ensure suppliers disclose significant vulnerabilities and significant incidents",NIST 800-171,"at a minimum, integrate Supply Chain Risk Management (SCRM) into acquisition/procurement policies, provide adequate SCRM resources, define the SCRM control baseline, establish processes to ensure suppliers disclose significant vulnerabilities and significant incidents",,,,,x,,,,,,,,,
 RSK-01,RSK-01_A13,"risk management operations are conducted according to documented policies, standards, procedures and/or other organizational directives.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 RSK-01,RSK-01_A14,"adequate resources (e.g., people, processes, technologies, data and/or facilities) are provided to support risk management operations.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 RSK-01,RSK-01_A15,responsibility and authority for the performance of risk management-related activities are assigned to designated personnel.,People,SCF Created,,1,,,,,,,,,,,,,,,
@@ -6155,6 +6311,7 @@ RSK-03,RSK-03_A04,"the risk (including supply chain risk) of unauthorized disclo
 RSK-03.1,RSK-03.1_A01,"a risk catalog, or similar solution, exists that keeps current a catalog of applicable risks associated with the organization's business operations and technologies in use.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 RSK-03.1,RSK-03.1_A02,"the risk (including supply chain risk) of unauthorized disclosure resulting from the processing, storage, or transmission of sensitive / regulated data is assessed.",Process,SCF Created,,3,,,,,,,,,,,,,,,
 RSK-03.1,RSK-03.1_A03,"the risk (including supply chain risk) of unauthorized disclosure resulting from the processing, storage, or transmission of CUI is assessed.",Data,171A_R3_A.03.11.01.a,,NIST 800-171,,,,,,x,,,,,,,,,
+RSK-03.2,RSK-03.2_A01,a risk owner is identified for each item in the risk register to ensure clear accountability for unremediated risks.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 RSK-04,RSK-04_A01,"the frequency to assess risk to organizational operations, organizational assets and individuals is defined.",Process,"171A_3.11.1[a]
 172A_3.11.5e_ODP[1]",,1,at least annually,,,,x,,x,,,,,,,,
 RSK-04,RSK-04_A02,a document in which risk assessment results are to be documented (if not documented in the cybersecurity / data privacy plans or risk assessment report) is defined.,Process,"53A_R5_RA-03_ODP[01]
@@ -6191,7 +6348,7 @@ RSK-04.4,RSK-04.4_A02,identified stakeholders are involved in the risk assessmen
 RSK-04.4,RSK-04.4_A03,"identified stakeholders are provided with results of the risk assessment, upon completion.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 RSK-05,RSK-05_A01,newly discovered risks are ranked based on industry-recognized practices.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 RSK-06,RSK-06_A01,a defined risk threshold exists to determine what risk is and is not acceptable.,Process,SCF Created,,1,,,,,,,,,,,,,,,
-RSK-06,RSK-06_A02,data / process owners are held accountable to remediate risks to an acceptable level. ,Process,SCF Created,,1,,,,,,,,,,,,,,,
+RSK-06,RSK-06_A02,data / process owners are held accountable to remediate risks to an acceptable level.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 RSK-06,RSK-06_A03,the organization utilizes compensating controls to remediate control deficiencies to an acceptable level.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 RSK-06.1,RSK-06.1_A01,findings from security assessments are responded to in accordance with organizational risk tolerance.,Process,53A_R5_RA-07[01],,1,,,,x,,,,,,,,,,,
 RSK-06.1,RSK-06.1_A02,findings from security assessments are responded to.,Process,"53A_R5_RA-07[02]
@@ -6277,7 +6434,7 @@ RSK-09,RSK-09_A27,a process for addressing weaknesses or deficiencies in the sup
 RSK-09,RSK-09_A28,"the risk (including supply chain risk) of unauthorized disclosure resulting from the processing, storage, or transmission of CUI is assessed.",Data,171A_R3_A.03.11.01.a,,NIST 800-171,,,,,,x,,,,,,,,,
 RSK-09,RSK-09_A29,the SCRM plan is reviewed <A.03.17.01.ODP[01]: frequency>.,Process,171A_R3_A.03.17.01.b[01],"US DoD ODP Value: at least every 12 months, or when there are significant incidents or significant changes to risks",NIST 800-171,"at least every 12 months, or when there are significant incidents or significant changes to risks",,,,,x,,,,,,,,,
 RSK-09,RSK-09_A30,the SCRM plan is updated <A.03.17.01.ODP[01]: frequency>.,Process,171A_R3_A.03.17.01.b[02],"US DoD ODP Value: at least every 12 months, or when there are significant incidents or significant changes to risks",NIST 800-171,"at least every 12 months, or when there are significant incidents or significant changes to risks",,,,,x,,,,,,,,,
-RSK-09,RSK-09_A31,"the following security requirements are enforced to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences of supply chain-related events: <A.03.17.03.ODP[01]: security requirements>.",Process,171A_R3_A.03.17.03.b,"US DoD ODP Value: at a minimum, integrate Supply Chain Risk Management (SCRM) into  acquisition/procurement policies, provide adequate SCRM resources, define the SCRM control baseline, establish processes to ensure suppliers disclose significant vulnerabilities and significant incidents",NIST 800-171,"at a minimum, integrate Supply Chain Risk Management (SCRM) into  acquisition/procurement policies, provide adequate SCRM resources, define the SCRM control baseline, establish processes to ensure suppliers disclose significant vulnerabilities and significant incidents",,,,,x,,,,,,,,,
+RSK-09,RSK-09_A31,"the following security requirements are enforced to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences of supply chain-related events: <A.03.17.03.ODP[01]: security requirements>.",Process,171A_R3_A.03.17.03.b,"US DoD ODP Value: at a minimum, integrate Supply Chain Risk Management (SCRM) into acquisition/procurement policies, provide adequate SCRM resources, define the SCRM control baseline, establish processes to ensure suppliers disclose significant vulnerabilities and significant incidents",NIST 800-171,"at a minimum, integrate Supply Chain Risk Management (SCRM) into acquisition/procurement policies, provide adequate SCRM resources, define the SCRM control baseline, establish processes to ensure suppliers disclose significant vulnerabilities and significant incidents",,,,,x,,,,,,,,,
 RSK-09.1,RSK-09.1_A01,supply chain risks associated with organizational systems and system components are identified.,Process,"172A_3.11.6e[a]
 53A_R5_RA-03(01)_ODP[01]",,1,,,,x,,,x,,,,,,,,
 RSK-09.1,RSK-09.1_A02,supply chain risks associated with organizational systems and system components are assessed.,Process,"172A_3.11.6e[b]
@@ -6435,13 +6592,14 @@ SAT-04,SAT-04_A01,"cybersecurity / data privacy training activities, including c
 SAT-04,SAT-04_A02,time period for retaining individual training records is defined.,Process,53A_R5_AT-04_ODP,,1,,,,x,,,,,,,,,,,
 SAT-04,SAT-04_A03,individual training records are retained for organization-defined time period.,Data,53A_R5_AT-04b.,,1,five (5) years or 5 years after completion of a specific training program,,,x,,,,,,,,,,,
 SAT-04,SAT-04_A04,"cybersecurity / data privacy training activities, including cybersecurity / data privacy awareness training and specific role-based cybersecurity / data privacy training, are monitored.",Process,53A_R5_AT-04a.[02],,3,,,,x,,,,,,,,,,,
+SAT-04.1,SAT-04.1_A01,individual training results are monitored.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+SAT-04.1,SAT-04.1_A02,training results are reported to applicable stakeholders.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 SAT-05,SAT-05_A01,a process to improve cybersecurity and data protection knowledge sharing across security personnel is defined.,Process,SCF Created,,3,,,,,,,,,,,,,,,
 SAT-05,SAT-05_A02,cybersecurity and data protection knowledge sharing is implemented across security personnel allowing for more rapid and effective response to incidents.,Process,SCF Created,,3,,,,,,,,,,,,,,,
 SEA-01,SEA-01_A01,secure engineering principles are defined.,Process,53A_R5_SA-08_ODP[01],,1,,,,x,,,,,,,,,,,
 SEA-01,SEA-01_A02,data privacy engineering principles are defined.,Process,53A_R5_SA-08_ODP[02],,1,,,,x,,,,,,,,,,,
 SEA-01,SEA-01_A03,architectural designs that promote effective cybersecurity / data privacy are identified.,Process,171A_3.13.2[a],,1,,,,,x,,,,,,,,,,
-SEA-01,SEA-01_A04,systems engineering principles that promote effective cybersecurity / data privacy are identified.,Process,"171A_3.13.2[c]
-",,1,,,,,x,,,,,,,,,,
+SEA-01,SEA-01_A04,systems engineering principles that promote effective cybersecurity / data privacy are identified.,Process,171A_3.13.2[c],,1,,,,,x,,,,,,,,,,
 SEA-01,SEA-01_A05,identified architectural designs that promote effective cybersecurity / data privacy are employed.,Process,171A_3.13.2[d],,1,,,,,x,,,,,,,,,,
 SEA-01,SEA-01_A06,identified systems engineering principles that promote effective cybersecurity / data privacy are employed.,Process,171A_3.13.2[f],,1,,,,,x,,,,,,,,,,
 SEA-01,SEA-01_A07,systems security engineering principles to be applied to the development or modification of the system and system components are defined.,Process,171A_R3_A.03.16.01.ODP[01],,2,,,,,,x,,,,,,,,,
@@ -6469,11 +6627,14 @@ SEA-01.2,SEA-01.2_A02,solutions exist to achieve resilience requirements in norm
 SEA-01.2,SEA-01.2_A03,solutions exist to achieve resilience requirements in adverse situations.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 SEA-01.3,SEA-01.3_A01,cybersecurity and data protection controls are designed and implemented to provide resistance to unintentional errors (by users or software).,Process,SCF Created,,1,,,,,,,,,,,,,,,
 SEA-01.3,SEA-01.3_A02,cybersecurity and data protection controls are designed and implemented to provide resistance to intentional attack or circumvention.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+SEA-01.4,SEA-01.4_A01,security architecture principles are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+SEA-01.4,SEA-01.4_A02,"security, compliance and resilience capabilities are designed and maintained in alignment with security architecture principles.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+SEA-01.5,SEA-01.5_A01,"secure architecture principles are incorporated into engineering, product and model design requirements to ensure security, compliance and resilience are built in by default and by design.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 SEA-02,SEA-02_A01,an enterprise architecture is developed with consideration for cybersecurity / data privacy.,Process,"53A_R5_PM-07[01]
 53A_R5_PM-07[03]",,1,,,,x,,,,,,,,,,,
 SEA-02,SEA-02_A02,an enterprise architecture is maintained with consideration for cybersecurity / data privacy.,Process,"53A_R5_PM-07[02]
 53A_R5_PM-07[04]",,1,,,,x,,,,,,,,,,,
-SEA-02,SEA-02_A03,"an enterprise architecture is developed with consideration for the resulting risk to organizational operations and assets, individuals and other organizations. ",Process,53A_R5_PM-07[05],,1,,,,x,,,,,,,,,,,
+SEA-02,SEA-02_A03,"an enterprise architecture is developed with consideration for the resulting risk to organizational operations and assets, individuals and other organizations.",Process,53A_R5_PM-07[05],,1,,,,x,,,,,,,,,,,
 SEA-02,SEA-02_A04,"an enterprise architecture is maintained with consideration for the resulting risk to organizational operations and assets, individuals and other organizations.",Process,53A_R5_PM-07[06],,1,,,,x,,,,,,,,,,,
 SEA-02,SEA-02_A05,frequency for review / update to reflect changes in the enterprise architecture.,Process,53A_R5_PL-08_ODP,,3,"at least every 12 months, or when there are significant
 incidents or significant changes to risks",,,x,,,,,,,,,,,
@@ -6564,6 +6725,9 @@ SEA-08.1,SEA-08.1_A09,"systems and system components to refresh from a known, tr
 SEA-08.1,SEA-08.1_A10,the frequency to refresh systems and systems components is defined.,Process,172A_3.14.4e_ODP[2],,3,,,,,,,x,,,,,,,,
 SEA-08.1,SEA-08.1_A11,"a known, trusted state is identified for systems and system components.",Process,172A_3.14.4e[a],,3,,,,,,,x,,,,,,,,
 SEA-08.1,SEA-08.1_A12,"systems and system components are refreshed from a known, trusted state per an organization-defined frequency.",Process,172A_3.14.4e[b],,3,,,,,,,x,,,,,,,,
+SEA-08.2,SEA-08.2_A01,a frequency is defined for information to be regenerated or refreshed.,Data,SCF Created,,1,,,,,,,,,,,,,,,
+SEA-08.2,SEA-08.2_A02,information is generated or refreshed per an organization-defined frequency.,Data,SCF Created,,1,,,,,,,,,,,,,,,
+SEA-08.2,SEA-08.2_A03,mechanisms exist to delete information when no longer needed.,Data,SCF Created,,1,,,,,,,,,,,,,,,
 SEA-09,SEA-09_A01,software programs and/or applications whose information output requires validation are defined.,Process,53A_R5_SI-15_ODP,,1,,,,x,,,,,,,,,,,
 SEA-09,SEA-09_A02,information output from organization-defined software programs and/or applications is validated to ensure that the information is consistent with the expected content.,Technology,53A_R5_SI-15,,1,,,,x,,,,,,,,,,,
 SEA-09.1,SEA-09.1_A01,the dissemination of Personal Data (PD) is restricted to organization-defined elements identified in the Data Protection Impact Assessment (DPIA) and consistent with authorized purposes.,Process,SCF Created,,1,,,,,,,,,,,,,,,
@@ -6720,7 +6884,7 @@ TDA-02.3,TDA-02.3_A05,"the developer of the system, system component or system s
 53A_R5_SA-04(03)(b)
 53A_R5_SA-04(03)(c)",,1,,,,x,,,,,,,,,,,
 TDA-02.3,TDA-02.3_A06,systems security engineering principles to be applied to the development or modification of the system and system components are defined.,Process,171A_R3_A.03.16.01.ODP[01],,2,,,,,,x,,,,,,,,,
-TDA-02.3,TDA-02.3_A07,<A.03.16.01.ODP[01]: systems security engineering principles> are applied to the development or modification of the system and system components.,Process,171A_R3_A.03.16.01,"US DoD ODP Value: Guidance: At a minimum, documentation that provides user and administrator guidance for the implementation and operation of controls. The level of detail required in such documentation should be based on the degree to which organizations depend on the capabilities, functions, or mechanisms to meet risk response expectations. Requirements can include mandated configuration settings that specify allowed functions, ports, protocols, and services. Acceptance criteria for systems, system components, and system services are defined in the same manner as the criteria for any organizational acquisition or procurement. ",NIST 800-171,"Guidance: At a minimum, documentation that provides user and administrator guidance for the implementation and operation of controls. The level of detail required in such documentation should be based on the degree to which organizations depend on the capabilities, functions, or mechanisms to meet risk response expectations. Requirements can include mandated configuration settings that specify allowed functions, ports, protocols, and services. Acceptance criteria for systems, system components, and system services are defined in the same manner as the criteria for any organizational acquisition or procurement. ",,,,,x,,,,,,,,,
+TDA-02.3,TDA-02.3_A07,<A.03.16.01.ODP[01]: systems security engineering principles> are applied to the development or modification of the system and system components.,Process,171A_R3_A.03.16.01,"US DoD ODP Value: Guidance: At a minimum, documentation that provides user and administrator guidance for the implementation and operation of controls. The level of detail required in such documentation should be based on the degree to which organizations depend on the capabilities, functions, or mechanisms to meet risk response expectations. Requirements can include mandated configuration settings that specify allowed functions, ports, protocols, and services. Acceptance criteria for systems, system components, and system services are defined in the same manner as the criteria for any organizational acquisition or procurement.",NIST 800-171,"Guidance: At a minimum, documentation that provides user and administrator guidance for the implementation and operation of controls. The level of detail required in such documentation should be based on the degree to which organizations depend on the capabilities, functions, or mechanisms to meet risk response expectations. Requirements can include mandated configuration settings that specify allowed functions, ports, protocols, and services. Acceptance criteria for systems, system components, and system services are defined in the same manner as the criteria for any organizational acquisition or procurement.",,,,,x,,,,,,,,,
 TDA-02.4,TDA-02.4_A01,"pre-established security configurations for the system, component or service are defined.",Process,53A_R5_SA-04(05)_ODP,,1,,,,x,,,,,,,,,,,
 TDA-02.4,TDA-02.4_A02,"the developer of the system, system component or system service is required to deliver the system, component or service with pre-established security configurations implemented.",Process,53A_R5_SA-04(05)(a),,1,,,,x,,,,,,,,,,,
 TDA-02.4,TDA-02.4_A03,"the pre-established configurations are used as the default for any subsequent system, component or service reinstallation or upgrade.",Technology,53A_R5_SA-04(05)(b),,1,,,,x,,,,,,,,,,,
@@ -6747,7 +6911,7 @@ TDA-02.12,TDA-02.12_A01,a categorization scheme for products and/or services wit
 TDA-02.12,TDA-02.12_A02,products and/or services with digital elements are categorized according to applicable security and resiliency requirements.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 TDA-02.13,TDA-02.13_A01,"applicable stakeholders are notified about potentially exploitable vulnerabilities in organization-developed products and/or services, as required by statutory, regulatory and/or contractual obligations.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 TDA-02.14,TDA-02.14_A01,industry-defined secure logging formats are used to generate event logs.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
-TDA-03,TDA-03_A01,the organization only uses Commercial Off-the-Shelf (COTS) security products. ,Process,SCF Created,,1,,,,,,,,,,,,,,,
+TDA-03,TDA-03_A01,the organization only uses Commercial Off-the-Shelf (COTS) security products.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 TDA-03,TDA-03_A02,"for classified environments, only Government Off-The-Shelf (GOTS)or Commercial Off-The-Shelf (COTS) information assurance and information assurance-enabled information technology products that compose an NSA-approved solution are employed.",Technology,53A_R5_SA-04(06)(a),,3,,,,x,,,,,,,,,,,
 TDA-03,TDA-03_A03,"for classified environments, GOTS and COTS products have been evaluated and/or validated by NSA or in accordance with NSA-approved procedures.",Process,53A_R5_SA-04(06)(b),,3,,,,x,,,,,,,,,,,
 TDA-03.1,TDA-03.1_A01,system components with a diverse set of sources are defined.,Process,53A_R5_SR-03(01)_ODP[01],,1,,,,x,,,,,,,,,,,
@@ -6835,6 +6999,8 @@ TDA-06.5,TDA-06.5_A01,an independent review of the software design confirms that
 TDA-06.6,TDA-06.6_A01,software design processes include conducting Root Cause Analysis (RCA) to identify the underlying causes of issues or failures.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 TDA-06.6,TDA-06.6_A02,software design processes include developing actions to address the root cause of the issue or failure.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 TDA-06.6,TDA-06.6_A03,software design processes include implementing the actions and monitor the implementation for effectiveness.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+TDA-06.7,TDA-06.7_A01,organization-approved programming language(s) for software development are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+TDA-06.7,TDA-06.7_A02,the justification for program language alignment selection decisions are documented.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 TDA-07,TDA-07_A01,"system pre-production environments are protected commensurate with risk throughout the system development life cycle for the system, system component or system service.",Technology,53A_R5_SA-03(01),,1,,,,x,,,,,,,,,,,
 TDA-08,TDA-08_A01,changes to the system are analyzed in a separate test environment before implementation in an operational environment.,Process,53A_R5_CM-04(01)[01],,1,,,,x,,,,,,,,,,,
 TDA-08,TDA-08_A02,changes to the system are analyzed for cybersecurity / data privacy impacts due to flaws.,Process,"53A_R5_CM-04(01)[02]
@@ -6926,6 +7092,9 @@ TDA-13,TDA-13_A01,"the system, systems component or system service that the deve
 TDA-13,TDA-13_A02,official duties assigned to the developer are defined.,Process,53A_R5_SA-21_ODP[02],,1,,,,x,,,,,,,,,,,
 TDA-13,TDA-13_A03,additional personnel screening criteria for the developer are defined.,Process,"53A_R5_SA-21_ODP[03]
 172A_3.9.1e_ODP[1]",,1,,,,x,,,x,,,,,,,,
+TDA-13.1,TDA-13.1_A01,a cybersecurity knowledge and skills register for developers is maintained.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+TDA-13.2,TDA-13.2_A01,requisite skillsets for developers for Secure Software Development Practices (SSDP) are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+TDA-13.2,TDA-13.2_A02,"developers of Technology Assets, Applications and/or Services (TAAS) who lack the requisite skillset receive suitable training on Secure Software Development Practices (SSDP) are trained.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 TDA-14,TDA-14_A01,"the developer of system, systems component or system service is required to have appropriate access authorizations as determined by assigned official duties.",People,53A_R5_SA-21a.,,1,,,,x,,,,,,,,,,,
 TDA-14,TDA-14_A02,configuration items under configuration management are defined.,Process,"53A_R5_SA-10_ODP[01]
 53A_R5_SA-10_ODP[02]",,1,,,,x,,,,,,,,,,,
@@ -6994,6 +7163,8 @@ TDA-18,TDA-18_A03,approved authorizations for logical access to information and 
 TDA-19,TDA-19_A01,personnel or roles to whom error messages are to be revealed is/are defined.,Process,53A_R5_SI-11_ODP,,1,,,,x,,,,,,,,,,,
 TDA-19,TDA-19_A02,error messages that provide the information necessary for corrective actions are generated without revealing information that could be exploited.,Technology,53A_R5_SI-11a.,,1,,,,x,,,,,,,,,,,
 TDA-19,TDA-19_A03,error messages are revealed only to organization-defined personnel or roles.,Technology,53A_R5_SI-11b.,,1,,,,x,,,,,,,,,,,
+TDA-19.1,TDA-19.1_A01,personnel and/or role(s) authorized to receive security-relevant error messages are defined.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+TDA-19.1,TDA-19.1_A02,access to error messages are restricted to authorized personnel and/or role(s).,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 TDA-20,TDA-20_A01,"organization-defined criteria for security-relevant information pertaining to external system interfaces, high-level design, low-level design, source code or hardware schematics and design and implementation information are documented in a System Security Plan (SSP).",Process,53A_R5_SA-04(02)_ODP[01],,1,,,,x,,,,,,,,,,,
 TDA-20,TDA-20_A04,"the developer of the system, system component or system service is required to provide design and implementation information for the controls that includes using at level of detail.",Process,53A_R5_SA-04(02),,1,,,,x,,,,,,,,,,,
 TDA-20.1,TDA-20.1_A01,integrity verification information is published for software releases.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
@@ -7022,6 +7193,8 @@ THR-01,THR-01_A12,"threat management operations are conducted according to docum
 THR-01,THR-01_A13,"adequate resources (e.g., people, processes, technologies, data and/or facilities) are provided to support threat management operations.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 THR-01,THR-01_A14,responsibility and authority for the performance of threat management-related activities are assigned to designated personnel.,People,SCF Created,,1,,,,,,,,,,,,,,,
 THR-01,THR-01_A15,personnel performing threat management-related activities have the skills and knowledge needed to perform their assigned duties.,People,SCF Created,,2,,,,,,,,,,,,,,,
+THR-01.1,THR-01.1_A01,ongoing awareness of the current cyber threat environment is maintained as part of the Threat Intelligence Program (TIP).,Process,SCF Created,,1,,,,,,,,,,,,,,,
+THR-01.2,THR-01.2_A01,"advanced automation and analytics capabilities are implemented to predict and identify risks to Technology Assets, Applications, Services and/or Data (TAASD).",Technology,SCF Created,,1,,,,,,,,,,,,,,,
 THR-02,THR-02_A01,Indicators of Exposure (IOE) exist for personnel to understand the potential attack vectors that attackers could use to attack the organization.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 THR-03,THR-03_A01,"external organizations from whom system security alerts, advisories and directives are to be received on an ongoing basis are defined.",Process,"53A_R5_SI-05_ODP[01]
 172A_3.14.6e_ODP[1]",,1,,,,x,,,x,,,,,,,,
@@ -7080,7 +7253,7 @@ THR-10,THR-10_A01,"on at least an annual basis, a threat assessment is performed
 THR-10,THR-10_A02,a threat catalog captures applicable internal and external threats from the threat assessment.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 THR-10,THR-10_A03,"each item in the threat catalog is prioritized, based on the potential threat to the organization.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 THR-11,THR-11_A01,baselines are captured to establish behavioral baselines about user and entity behavior.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
-THR-11,THR-11_A02, behavioral baselines about user and entity behavior are leveraged for dynamic threat discovery purposes.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
+THR-11,THR-11_A02,behavioral baselines about user and entity behavior are leveraged for dynamic threat discovery purposes.,Technology,SCF Created,,1,,,,,,,,,,,,,,,
 TPM-01,TPM-01_A01,"security requirements to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences from supply chain-related events are defined.",Process,171A_R3_A.03.17.03.ODP[01],,1,,,,,,x,,,,,,,,,
 TPM-01,TPM-01_A02,"cybersecurity / data privacy functional requirements, descriptions and criteria are included explicitly or by reference using in the acquisition contract for the system, system component or system service.",Process,"53A_R5_SA-04a.[01]
 53A_R5_SA-04a.[02]",,1,,,,x,,,,,,,,,,,
@@ -7178,12 +7351,12 @@ TPM-05,TPM-05_A03,security requirements to be satisfied by external system servi
 TPM-05,TPM-05_A04,"the providers of external system services used for the processing, storage, or transmission of sensitive / regulated data comply with organization-defined security requirements.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 TPM-05,TPM-05_A05,"the providers of external system services used for the processing, storage, or transmission of CUI comply with the following security requirements: <A.03.16.03.ODP[01]: security requirements>.",Data,171A_R3_A.03.16.03.a,"US DoD ODP Values: 
 (1) For cloud service providers:
-  (i) FedRAMP Authorized at the FedRAMP Moderate (or higher) baseline in accordance with the FedRAMP Marketplace; or
-  (ii) meets security requirements established by the government equivalent to the FedRAMP Moderate (or higher) baseline.
+ (i) FedRAMP Authorized at the FedRAMP Moderate (or higher) baseline in accordance with the FedRAMP Marketplace; or
+ (ii) meets security requirements established by the government equivalent to the FedRAMP Moderate (or higher) baseline.
 (2) All other external service providers must meet NIST SP 800-171 R2.",NIST 800-171,"SDP values: 
 (1) For cloud service providers:
-  (i) FedRAMP Authorized at the FedRAMP Moderate (or higher) baseline in accordance with the FedRAMP Marketplace; or
-  (ii) meets security requirements established by the government equivalent to the FedRAMP Moderate (or higher) baseline.
+ (i) FedRAMP Authorized at the FedRAMP Moderate (or higher) baseline in accordance with the FedRAMP Marketplace; or
+ (ii) meets security requirements established by the government equivalent to the FedRAMP Moderate (or higher) baseline.
 (2) All other external service providers must meet NIST SP 800-171 R2.",,,,,x,,,,,,,,,
 TPM-05.1,TPM-05.1_A01,security requirements to be satisfied by external system service providers are defined.,Process,"53A_R5_SR-08_ODP[01]
 53A_R5_SR-08_ODP[02]",,1,notification of supply chain compromises and results of assessment or audits,,,x,,,,,,,,,,,
@@ -7222,7 +7395,7 @@ TPM-12,TPM-12_A02,Supply Chain Risk Management (SCRM) practices exist to minimiz
 TPM-12.1,TPM-12.1_A01,"External Service Providers (ESP) are periodically reviewed for changes that affect Foreign Ownership, Control or Influence (FOCI).",Process,SCF Created,,1,,,,,,,,,,,,,,,
 TPM-12.2,TPM-12.2_A01,"contracts with third-parties contractually impose safeguards (e.g., additional controls, access modification, contract termination, etc.) from Foreign Ownership, Control or Influence (FOCI) concerns to ensure that unauthorized access to sensitive and/or regulated data is prevented.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 TPM-12.2,TPM-12.2_A02,"contracts with third-parties contractually impose safeguards (e.g., additional controls, access modification, contract termination, etc.) from FOCI concerns to ensure that performance of contracts is not adversely affected.",Process,SCF Created,,1,,,,,,,,,,,,,,,
-VPM-01,VPM-01_A01,an organization-wide vulnerability and patch management program is developed and implemented to proactively identify and remediation vulnerabilities. ,Process,SCF Created,,1,,,,,,,,,,,,,,,
+VPM-01,VPM-01_A01,an organization-wide vulnerability and patch management program is developed and implemented to proactively identify and remediation vulnerabilities.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 VPM-01,VPM-01_A02,the time within which to identify system flaws is specified.,Process,171A_3.14.1[a],,1,,,SI.L1-B.1.XII[a],,x,,,,,,,,,,
 VPM-01,VPM-01_A03,system flaws are identified within the specified time frame.,Process,"171A_3.14.1[b]
 53A_R5_SI-02a.[01]",,1,,,SI.L1-B.1.XII[b],x,x,,,,,,,,,,
@@ -7258,6 +7431,9 @@ VPM-01.1,VPM-01.1_A09,the system is monitored for vulnerabilities <A.03.11.02.OD
 VPM-02,VPM-02_A01,vulnerabilities are identified.,Process,171A_3.11.3[a],,1,,,,,x,,,,,,,,,,
 VPM-02,VPM-02_A02,response times to remediate system vulnerabilities are defined.,Process,171A_R3_A.03.11.02.ODP[03],,1,,,,,,x,,,,,,,,,
 VPM-02,VPM-02_A03,vulnerabilities are remediated in accordance with risk assessments.,Process,171A_3.11.3[b],,1,,,,,x,,,,,,,,,,
+VPM-02.1,VPM-02.1_A01,remediation and mitigation of Known Exploited Vulnerabilities (KEV) is prioritized.,Process,SCF Created,,1,,,,,,,,,,,,,,,
+VPM-02.1,VPM-02.1_A02,"KEV remediation efforts reduce or remove public exposure to exploitation, if applicable.",Process,SCF Created,,1,,,,,,,,,,,,,,,
+VPM-02.1,VPM-02.1_A03,"KEV remediation efforts expedite patch deployment actions, if applicable.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 VPM-03,VPM-03_A01,a risk ranking methodology is utilized to prioritize newly discovered security vulnerabilities.,Process,SCF Created,,1,,,,,,,,,,,,,,,
 VPM-03.1,VPM-03.1_A01,"on at least an annual basis, a threat assessment is performed to identify and assess applicable internal and external threats.",Process,SCF Created,,1,,,,,,,,,,,,,,,
 VPM-03.1,VPM-03.1_A02,a threat catalog captures applicable internal and external threats from the threat assessment.,Process,SCF Created,,1,,,,,,,,,,,,,,,

@@ -3,43 +3,43 @@
 "noun A situation where someone or something valued is exposed to danger, harm or loss.**",,,** Harm: material / physical damage,,,,,
 "verb To expose someone or something valued to danger, harm or loss.",,,"** Loss: destruction, deprivation or inability to use",,,,,
 Risk Grouping,Risk #,"Risk*
-Note - Some of these risks may indicate a deficiency that could be considered a failure to meet ""reasonable security practices"" ",Description of Possible Risk Due To Control Deficiency,"NIST CSF 
+Note - Some of these risks may indicate a deficiency that could be considered a failure to meet ""reasonable security practices""",Description of Possible Risk Due To Control Deficiency,"NIST CSF 
 Function","Materiality Considerations
 If this risk materialized, would it potentially exceed the following financial impacts for the organization?",,,
 ,,,"IF THE CONTROL FAILS, RISK THAT THE ORGANIZATION IS EXPOSED TO IS:",,≥ 5% of pre-tax income,≥ 0.5% of total assets,≥ 1% of total equity,≥ 0.5% of total revenue
-Access Control,R-AC-1,Inability to maintain individual accountability,"The inability to maintain accountability (e.g., asset ownership, non-repudiation of actions or inactions, etc.). ",Protect,Unknown,Unknown,Unknown,Unknown
-,R-AC-2,Improper assignment of privileged functions,"The inability to implement least privileges (e.g., Role-Based Access Control (RBAC), Privileged Account Management (PAM), etc.). ",Protect,Unknown,Unknown,Unknown,Unknown
+Access Control,R-AC-1,Inability to maintain individual accountability,"The inability to maintain accountability (e.g., asset ownership, non-repudiation of actions or inactions, etc.).",Protect,Unknown,Unknown,Unknown,Unknown
+,R-AC-2,Improper assignment of privileged functions,"The inability to implement least privileges (e.g., Role-Based Access Control (RBAC), Privileged Account Management (PAM), etc.).",Protect,Unknown,Unknown,Unknown,Unknown
 ,R-AC-3,Privilege escalation,The inability to restrict access to privileged functions.,Protect,Unknown,Unknown,Unknown,Unknown
-,R-AC-4,Unauthorized access ,"The inability to restrict access to only authorized individuals, groups or services.",Protect,Unknown,Unknown,Unknown,Unknown
+,R-AC-4,Unauthorized access,"The inability to restrict access to only authorized individuals, groups or services.",Protect,Unknown,Unknown,Unknown,Unknown
 Asset Management,R-AM-1,"Lost, damaged or stolen asset(s)","Lost, damaged or stolen assets.",Protect,Unknown,Unknown,Unknown,Unknown
-,R-AM-2,Loss of integrity through unauthorized changes ,Unauthorized changes that corrupt the integrity of the system / application / service.,Protect,Unknown,Unknown,Unknown,Unknown
+,R-AM-2,Loss of integrity through unauthorized changes,Unauthorized changes that corrupt the integrity of the system / application / service.,Protect,Unknown,Unknown,Unknown,Unknown
 ,R-AM-3,Emergent properties and/or unintended consequences,Emergent properties and/or unintended consequences from Artificial Intelligence & Autonomous Technologies (AAT).,Protect,Unknown,Unknown,Unknown,Unknown
-Business Continuity,R-BC-1,Business interruption ,"Increased latency, or a service outage, that negatively impact business operations.",Recover,Unknown,Unknown,Unknown,Unknown
-,R-BC-2,Data loss / corruption ,The inability to maintain the confidentiality of the data (compromise) or prevent data corruption (loss).,Recover,Unknown,Unknown,Unknown,Unknown
+Business Continuity,R-BC-1,Business interruption,"Increased latency, or a service outage, that negatively impact business operations.",Recover,Unknown,Unknown,Unknown,Unknown
+,R-BC-2,Data loss / corruption,The inability to maintain the confidentiality of the data (compromise) or prevent data corruption (loss).,Recover,Unknown,Unknown,Unknown,Unknown
 ,R-BC-3,Reduction in productivity,Diminished user productivity.,Protect,Unknown,Unknown,Unknown,Unknown
 ,R-BC-4,Information loss / corruption or system compromise due to technical attack,"A technical attack that compromises data, systems, applications or services (e.g., malware, phishing, hacking, etc.).",Protect,Unknown,Unknown,Unknown,Unknown
-,R-BC-5,Information loss / corruption or system compromise due to non‐technical attack ,"A non-technical attack that compromises data, systems, applications or services (e.g., social engineering, sabotage, etc.).",Protect,Unknown,Unknown,Unknown,Unknown
-Exposure,R-EX-1,Loss of revenue ,"A negative impact on the ability to generate revenue (e.g., a loss of clients or an inability to generate future revenue).",Recover,Unknown,Unknown,Unknown,Unknown
-,R-EX-2,Cancelled contract ,"A cancelled contract with a client or other entity for cause (e.g., failure to fulfill obligations for secure practices).",Recover,Unknown,Unknown,Unknown,Unknown
+,R-BC-5,Information loss / corruption or system compromise due to non‐technical attack,"A non-technical attack that compromises data, systems, applications or services (e.g., social engineering, sabotage, etc.).",Protect,Unknown,Unknown,Unknown,Unknown
+Exposure,R-EX-1,Loss of revenue,"A negative impact on the ability to generate revenue (e.g., a loss of clients or an inability to generate future revenue).",Recover,Unknown,Unknown,Unknown,Unknown
+,R-EX-2,Cancelled contract,"A cancelled contract with a client or other entity for cause (e.g., failure to fulfill obligations for secure practices).",Recover,Unknown,Unknown,Unknown,Unknown
 ,R-EX-3,Diminished competitive advantage,"Diminished competitive advantage (e.g., lose market share, internal dysfunction, etc.).",Recover,Unknown,Unknown,Unknown,Unknown
-,R-EX-4,Diminished reputation ,"Diminished brand value (e.g., tarnished reputation).",Recover,Unknown,Unknown,Unknown,Unknown
-,R-EX-5,Fines and judgements ,Financial damages due to fines and/or judgements from statutory / regulatory / contractual non-compliance.,Recover,Unknown,Unknown,Unknown,Unknown
-,R-EX-6,Unmitigated vulnerabilities ,Unmitigated technical vulnerabilities that lack compensating controls or other mitigation actions.,Protect,Unknown,Unknown,Unknown,Unknown
-,R-EX-7,System compromise ,"A compromise of a system, application or service that affects confidentiality, integrity, availability and/or safety.",Protect,Unknown,Unknown,Unknown,Unknown
-Governance,R-GV-1,Inability to support business processes,Insufficient cybersecurity and/or privacy practices that cannot securely support the organization's technologies & processes. ,Protect,Unknown,Unknown,Unknown,Unknown
+,R-EX-4,Diminished reputation,"Diminished brand value (e.g., tarnished reputation).",Recover,Unknown,Unknown,Unknown,Unknown
+,R-EX-5,Fines and judgements,Financial damages due to fines and/or judgements from statutory / regulatory / contractual non-compliance.,Recover,Unknown,Unknown,Unknown,Unknown
+,R-EX-6,Unmitigated vulnerabilities,Unmitigated technical vulnerabilities that lack compensating controls or other mitigation actions.,Protect,Unknown,Unknown,Unknown,Unknown
+,R-EX-7,System compromise,"A compromise of a system, application or service that affects confidentiality, integrity, availability and/or safety.",Protect,Unknown,Unknown,Unknown,Unknown
+Governance,R-GV-1,Inability to support business processes,Insufficient cybersecurity and/or privacy practices that cannot securely support the organization's technologies & processes.,Protect,Unknown,Unknown,Unknown,Unknown
 ,R-GV-2,Incorrect controls scoping,Missing or incorrect cybersecurity and/or privacy controls due to incorrect or inadequate control scoping practices.,Identify,Unknown,Unknown,Unknown,Unknown
-,R-GV-3,Lack of roles & responsibilities ,Insufficient cybersecurity and/or privacy roles & responsibilities that cannot securely support the organization's technologies & processes. ,Identify,Unknown,Unknown,Unknown,Unknown
-,R-GV-4,Inadequate internal practices ,Insufficient cybersecurity and/or privacy practices that can securely support the organization's technologies & processes. ,Protect,Unknown,Unknown,Unknown,Unknown
-,R-GV-5,Inadequate third-party practices ,Insufficient Cybersecurity Supply Chain Risk Management (C-SCRM) practices that cannot securely support the organization's technologies & processes. ,Protect,Unknown,Unknown,Unknown,Unknown
-,R-GV-6,Lack of oversight of internal controls ,The inability to demonstrate appropriate evidence of due diligence and due care in overseeing the organization's internal cybersecurity and/or privacy controls. ,Identify,Unknown,Unknown,Unknown,Unknown
-,R-GV-7,Lack of oversight of third-party controls ,The inability to demonstrate appropriate evidence of due diligence and due care in overseeing third-party cybersecurity and/or privacy controls.,Identify,Unknown,Unknown,Unknown,Unknown
-,R-GV-8,Illegal content or abusive action ,"Disruptive content or actions that negatively affect business operations (e.g., abusive content, harmful speech, threats of violence, illegal content, etc.). ",Identify,Unknown,Unknown,Unknown,Unknown
-Incident Response,R-IR-1,Inability to investigate / prosecute incidents,"Insufficient incident response practices that prevent the organization from investigating and/or prosecuting incidents (e.g., chain of custody corruption, available sources of evidence, etc.). ",Respond,Unknown,Unknown,Unknown,Unknown
-,R-IR-2,Improper response to incidents ,The inability to appropriately respond to incidents in a timely manner.,Respond,Unknown,Unknown,Unknown,Unknown
-,R-IR-3,Ineffective remediation actions ,The inability to ensure incident response actions were correct and/or effective.,Protect,Unknown,Unknown,Unknown,Unknown
+,R-GV-3,Lack of roles & responsibilities,Insufficient cybersecurity and/or privacy roles & responsibilities that cannot securely support the organization's technologies & processes.,Identify,Unknown,Unknown,Unknown,Unknown
+,R-GV-4,Inadequate internal practices,Insufficient cybersecurity and/or privacy practices that can securely support the organization's technologies & processes.,Protect,Unknown,Unknown,Unknown,Unknown
+,R-GV-5,Inadequate third-party practices,Insufficient Cybersecurity Supply Chain Risk Management (C-SCRM) practices that cannot securely support the organization's technologies & processes.,Protect,Unknown,Unknown,Unknown,Unknown
+,R-GV-6,Lack of oversight of internal controls,The inability to demonstrate appropriate evidence of due diligence and due care in overseeing the organization's internal cybersecurity and/or privacy controls.,Identify,Unknown,Unknown,Unknown,Unknown
+,R-GV-7,Lack of oversight of third-party controls,The inability to demonstrate appropriate evidence of due diligence and due care in overseeing third-party cybersecurity and/or privacy controls.,Identify,Unknown,Unknown,Unknown,Unknown
+,R-GV-8,Illegal content or abusive action,"Disruptive content or actions that negatively affect business operations (e.g., abusive content, harmful speech, threats of violence, illegal content, etc.).",Identify,Unknown,Unknown,Unknown,Unknown
+Incident Response,R-IR-1,Inability to investigate / prosecute incidents,"Insufficient incident response practices that prevent the organization from investigating and/or prosecuting incidents (e.g., chain of custody corruption, available sources of evidence, etc.).",Respond,Unknown,Unknown,Unknown,Unknown
+,R-IR-2,Improper response to incidents,The inability to appropriately respond to incidents in a timely manner.,Respond,Unknown,Unknown,Unknown,Unknown
+,R-IR-3,Ineffective remediation actions,The inability to ensure incident response actions were correct and/or effective.,Protect,Unknown,Unknown,Unknown,Unknown
 ,R-IR-4,Expense associated with managing a loss event,Financial repercussions from responding to an incident or loss.,Respond,Unknown,Unknown,Unknown,Unknown
-Situational Awareness,R-SA-1,Inability to maintain situational awareness ,"The inability to detect cybersecurity and/or privacy incidents (e.g., a lack of situational awareness).",Detect,Unknown,Unknown,Unknown,Unknown
-,R-SA-2,Lack of a security-minded workforce ,The inability to appropriately educate and train personnel to foster a security-minded workforce.,Protect,Unknown,Unknown,Unknown,Unknown
+Situational Awareness,R-SA-1,Inability to maintain situational awareness,"The inability to detect cybersecurity and/or privacy incidents (e.g., a lack of situational awareness).",Detect,Unknown,Unknown,Unknown,Unknown
+,R-SA-2,Lack of a security-minded workforce,The inability to appropriately educate and train personnel to foster a security-minded workforce.,Protect,Unknown,Unknown,Unknown,Unknown
 Supply Chain,R-SC-1,Third-party cybersecurity exposure,"Loss of Confidentiality, Integrity, Availability and/or Safety (CIAS) from third-party cybersecurity practices, vulnerabilities and/or incidents that affects the supply chain through impacted products and/or services.",Protect,Unknown,Unknown,Unknown,Unknown
 ,R-SC-2,Third-party physical security exposure,"Loss of Confidentiality, Integrity, Availability and/or Safety (CIAS) from physical security exposure of third-party structures, facilities and/or other physical assets that affects the supply chain through impacted products and/or services.",Protect,Unknown,Unknown,Unknown,Unknown
 ,R-SC-3,"Third-party supply chain relationships, visibility and controls","Loss of Confidentiality, Integrity, Availability and/or Safety (CIAS) from ""downstream"" third-party relationships, visibility and controls that affect the supply chain through impacted products and/or services.",Protect,Unknown,Unknown,Unknown,Unknown

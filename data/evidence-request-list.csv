@@ -361,13 +361,13 @@ IAO-01.1",
 DCH-08
 DCH-09
 DCH-09.1",
-34,E-AST-04,Asset Management,Asset Inventories - Hardware,Documented evidence of an inventory of the organization's technology hardware assets. ,AST-02,"CM.L2-3.4.1
+34,E-AST-04,Asset Management,Asset Inventories - Hardware,Documented evidence of an inventory of the organization's technology hardware assets.,AST-02,"CM.L2-3.4.1
 SI.L2-3.14.6
 SI.L2-3.14.7"
-35,E-AST-05,Asset Management,Asset Inventories - Software,Documented evidence of an inventory of the organization's software assets. ,AST-02,"CM.L2-3.4.1
+35,E-AST-05,Asset Management,Asset Inventories - Software,Documented evidence of an inventory of the organization's software assets.,AST-02,"CM.L2-3.4.1
 SI.L2-3.14.6
 SI.L2-3.14.7"
-36,E-AST-06,Asset Management,Asset Inventories - Cloud Service Provider (CSP),"Documented evidence of an inventory of the organization's cloud-based services (e.g., SaaS, IaaS, PaaS, etc.). ","CLD-01
+36,E-AST-06,Asset Management,Asset Inventories - Cloud Service Provider (CSP),"Documented evidence of an inventory of the organization's cloud-based services (e.g., SaaS, IaaS, PaaS, etc.).","CLD-01
 CLD-09
 TPM-01.1",CM.L2-3.4.1
 37,E-AST-07,Asset Management,Cyber-Physical Systems (CPS),Documented evidence of an inventory of the organization's physical assets that process functions based on software and networks.,"AST-02
@@ -1026,7 +1026,8 @@ IA.L2-3.5.5
 SI.L1-3.14.1"
 90,E-CHG-06,Change Management,Stakeholder Notification of Changes,Documented evidence of stakeholder notification communications for proposed changes.,CHG-05,
 91,E-CPL-01,Compliance,"Statutory, Regulatory & Contractual Obligations","Documented evidence of applicable statutory, regulatory and/or contractual obligations for cybersecurity & data privacy controls.","CPL-01
-MON-03",
+MON-03
+QTS-03.4",
 92,E-CPL-02,Compliance,Defined Compliance Scope (DCS),"Documented evidence of a formal scoping document that identifies applicable statutory, regulatory and/or contractual obligations for the organization. Defines the affected Lines of Business (LOB), internal / external stakeholders and facilities for the specific scope of compliance obligations.","AST-04.1
 AST-04.2
 AST-04.3
@@ -1117,6 +1118,7 @@ SAT-04
 HRS-05.7
 THR-05",
 123,E-SAT-05,Education,Role-Based Training,"Documented evidence of specialized user training for privileged users, executives, individuals who handle sensitive/regulated data, etc.","DCH-14
+QTS-05
 SAT-01
 SAT-03
 SAT-03.4
@@ -1231,7 +1233,7 @@ SI.L2-3.14.6"
 136,E-MON-11,Event Log Monitoring,System Authenticator Types,Documented evidence of the list of authorized system authenticator types.,IAC-01,"IA.L1-3.5.2
 IA.L2-3.5.10
 IA.L2-3.5.5"
-137,E-HRS-01,Human Resources,Position Categorization,"Documented evidence of a discrete roles for cybersecurity & data privacy functions (e.g., position categorization). ","GOV-04
+137,E-HRS-01,Human Resources,Position Categorization,"Documented evidence of a discrete roles for cybersecurity & data privacy functions (e.g., position categorization).","GOV-04
 HRS-01
 HRS-02
 HRS-03
@@ -1274,7 +1276,7 @@ GOV-04.1
 GOV-04.2
 HRS-01
 OPS-01",
-152,E-HRS-16,Human Resources,Access Agreements ,Documented evidence of personnel management practices protecting sensitive/regulated data through formal access agreements.,"HRS-03.1
+152,E-HRS-16,Human Resources,Access Agreements,Documented evidence of personnel management practices protecting sensitive/regulated data through formal access agreements.,"HRS-03.1
 HRS-05
 HRS-06
 HRS-10",
@@ -1299,7 +1301,7 @@ IAC-07.2",
 157,E-HRS-21,Human Resources,Position Competency Requirements,Documented evidence of personnel management practices to define minimum competency requirements for cybersecurity & data privacy-related roles.,"HRS-03.2
 HRS-04
 HRS-04.1",
-158,E-HRS-22,Human Resources,Rules of Behavior,"Documented evidence of personnel management practices to define ""acceptable use"" or ""rules of behavior"" criteria that specify acceptable and unacceptable user behaviors. ","HRS-02
+158,E-HRS-22,Human Resources,Rules of Behavior,"Documented evidence of personnel management practices to define ""acceptable use"" or ""rules of behavior"" criteria that specify acceptable and unacceptable user behaviors.","HRS-02
 HRS-02.1
 HRS-03
 HRS-05
@@ -1473,31 +1475,31 @@ PES-09",
 214,E-PES-02,Physical Security,Visitor Logbook,Documented evidence of a visitor management and logging visitor activities.,"PES-03.3
 PES-06
 PES-06.4",
-215,E-PES-03,Physical Security ,Defined Physical Security Roles,Documented evidence of defined physical access control-specific roles that limit physical access to rooms and/or facilities.,"PES-02
+215,E-PES-03,Physical Security,Defined Physical Security Roles,Documented evidence of defined physical access control-specific roles that limit physical access to rooms and/or facilities.,"PES-02
 PES-02.1",
-216,E-PES-04,Physical Security ,Physical Security Plan,Documented evidence of a physical security plan.,PES-01.1,"SI.L2-3.14.6
+216,E-PES-04,Physical Security,Physical Security Plan,Documented evidence of a physical security plan.,PES-01.1,"SI.L2-3.14.6
 SI.L2-3.14.7"
-217,E-PES-05,Physical Security ,Physical Security Operations,Documented evidence of the organization's physical security capabilities as it pertains to operating and monitoring Physical Access Control (PAC) mechanisms.,"PES-01
+217,E-PES-05,Physical Security,Physical Security Operations,Documented evidence of the organization's physical security capabilities as it pertains to operating and monitoring Physical Access Control (PAC) mechanisms.,"PES-01
 PES-02
 PES-02.1
 PES-03
 PES-05",
-218,E-PES-06,Physical Security ,Physical Access Control Logs,Documented evidence of physical access control logs or records.,PES-03,"IA.L2-3.5.6
+218,E-PES-06,Physical Security,Physical Access Control Logs,Documented evidence of physical access control logs or records.,PES-03,"IA.L2-3.5.6
 MP.L2-3.8.1
 PE.L1-3.10.3
 PE.L1-3.10.4
 PE.L1-3.10.5"
-219,E-PES-07,Physical Security ,Physical Access Control Devices,Documented evidence of Physical Access Control (PAC) mechanisms.,PES-03,"PE.L1-3.10.3
+219,E-PES-07,Physical Security,Physical Access Control Devices,Documented evidence of Physical Access Control (PAC) mechanisms.,PES-03,"PE.L1-3.10.3
 PE.L1-3.10.4
 PE.L1-3.10.5"
-220,E-PES-08,Physical Security ,Physical Access Control Device Inventories,Documented evidence of inventory records of physical access control devices.,PES-03,
-221,E-PES-09,Physical Security ,Key & Combination Changes,Documented evidence of key and lock combination changes.,PES-03,"PE.L1-3.10.3
+220,E-PES-08,Physical Security,Physical Access Control Device Inventories,Documented evidence of inventory records of physical access control devices.,PES-03,
+221,E-PES-09,Physical Security,Key & Combination Changes,Documented evidence of key and lock combination changes.,PES-03,"PE.L1-3.10.3
 PE.L1-3.10.4
 PE.L1-3.10.5"
-222,E-PES-10,Physical Security ,Physical Access Authorizations,"Documented evidence of physical access authorization activities (e.g., list reviews, termination changes, etc.).","PES-02
+222,E-PES-10,Physical Security,Physical Access Authorizations,"Documented evidence of physical access authorization activities (e.g., list reviews, termination changes, etc.).","PES-02
 PES-02.1",
-223,E-PES-11,Physical Security ,Physical Security Zones,Documented evidence of security safeguards controlling access to designated physical security zones within facilities.,PES-01.2,
-224,E-PES-12,Physical Security ,Entry and Exist Points,Documented evidence of physical entry and exit points.,PES-03.1,"PE.L1-3.10.3
+223,E-PES-11,Physical Security,Physical Security Zones,Documented evidence of security safeguards controlling access to designated physical security zones within facilities.,PES-01.2,
+224,E-PES-12,Physical Security,Entry and Exist Points,Documented evidence of physical entry and exit points.,PES-03.1,"PE.L1-3.10.3
 PE.L1-3.10.4
 PE.L1-3.10.5"
 225,E-PRI-01,Privacy,Accounting of Disclosures,Documented evidence of accounting for privacy-related disclosures.,PRI-14.1,
@@ -1530,7 +1532,7 @@ PRM-05
 PRM-06
 PRM-07",
 236,E-PRM-04,Resource Management,Targeted Maturity Level,Documented evidence of a targeted level of control maturity from a Capability Maturity Model (CMM).,PRM-01.2,
-237,E-PRM-05,Resource Management,System Design Document (SDD) ,"Documented evidence of a System Design Document (SDD) focuses on how a Technology Asset, Application and/or Service (TAAS) is built (e.g., architecture, components, data flow, functions, etc.).","PRM-04
+237,E-PRM-05,Resource Management,System Design Document (SDD),"Documented evidence of a System Design Document (SDD) focuses on how a Technology Asset, Application and/or Service (TAAS) is built (e.g., architecture, components, data flow, functions, etc.).","PRM-04
 PRM-05
 PRM-06
 PRM-07","AC.L1-3.1.1
@@ -1590,7 +1592,7 @@ SI.L2-3.14.7"
 RSK-01.1
 RSK-02
 RSK-12",
-240,E-RSK-02,Risk Management,Supply Chain Risk Management (SCRM) Plan,"Documented evidence of a Supply Chain Risk Management (SCRM) Plan. This is program-level documentation in the form of a playbook, concept of operations or a similar format provides guidance on organizational practices that support existing policies and standards. ","IRO-10.4
+240,E-RSK-02,Risk Management,Supply Chain Risk Management (SCRM) Plan,"Documented evidence of a Supply Chain Risk Management (SCRM) Plan. This is program-level documentation in the form of a playbook, concept of operations or a similar format provides guidance on organizational practices that support existing policies and standards.","IRO-10.4
 RSK-09
 TPM-03
 TPM-05
@@ -1627,11 +1629,11 @@ RSK-13.2",
 251,E-RSK-13,Risk Management,Risk Treatment Options,Documented evidence of organization-approved risk treatment options.,RSK-06.3,
 252,E-RSK-14,Risk Management,Risk Treatment Plan,Documented Risk Treatment Plan (RTP) for applicable stakeholders to utilize in remediating identified risks according to a defined timeline.,RSK-06.4,
 253,E-RSK-15,Risk Management,Instances Requiring A Risk Assessment,Documented criteria that define instances requiring a risk assessment to be performed.,RSK-04.3,
-254,E-SEA-01,Secure Engineering & Architecture ,Logon Banner,Documented evidence of a system use notification message or logon banner.,"SEA-18
+254,E-SEA-01,Secure Engineering & Architecture,Logon Banner,Documented evidence of a system use notification message or logon banner.,"SEA-18
 SEA-18.1
 SEA-18.2","AC.L2-3.1.7
 AC.L2-3.1.9"
-255,E-SEA-02,Secure Engineering & Architecture ,Security Architecture,Documented evidence of security architecture-related documentation.,"SEA-01
+255,E-SEA-02,Secure Engineering & Architecture,Security Architecture,Documented evidence of security architecture-related documentation.,"SEA-01
 SEA-02","SC.L1-3.13.1
 SC.L2-3.13.2
 SC.L1-3.13.5"
@@ -1788,7 +1790,8 @@ CA.L2-3.12.4
 SC.L2-3.13.2"
 275,E-THR-01,Threat Management,Indicators of Exposure (IOE),Documented evidence of defined Indicators of Exposure (IOE).,THR-02,
 276,E-THR-02,Threat Management,Industry Associations / Memberships,Documented evidence of industry associations the organization utilizes to maintain situational awareness of evolving threats and trends.,GOV-07,
-277,E-THR-03,Threat Management,Threat Intelligence Feeds (TIF),Documented evidence of threat intelligence feeds.,THR-03,SI.L2-3.14.3
+277,E-THR-03,Threat Management,Threat Intelligence Feeds (TIF),Documented evidence of threat intelligence feeds.,"QTS-05.1
+THR-03",SI.L2-3.14.3
 278,E-THR-04,Threat Management,Threat Intelligence Program (TIP),Documented evidence of a formal capability that intakes and analysis threat information to determine specific threat to the organization and necessary actions to mitigate the threat(s).,"THR-01
 THR-04
 THR-05",
@@ -1872,3 +1875,23 @@ SI.L1-3.14.5"
 303,E-END-03,Endpoint Security,Antimalware Scanning Results,Documented evidence of scan results from malicious code protection mechanisms.,"END-04.3
 MON-01.4","SI.L1-3.14.4
 SI.L1-3.14.5"
+304,E-QTS-01,Quantum Security,Quantum Risk Governance Charter,Documented evidence of a quantum risk governance charter with named lead and steering committee.,QTS-01,
+304,E-QTS-02,Quantum Security,Post-Quantum Cryptography (PQC)-Specific Status Reporting,"Documented evidence of a Post-Quantum Cryptography (PQC)-specific board / risk committee reporting pack (e.g., status, metrics/analytics, exceptions, etc.).",QTS-01,
+305,E-QTS-03,Quantum Security,Long-Lived Data Identification,Documented evidence of a data classifications by the usable lifespan of the data that can be used to prioritize Post-Quantum Cryptography (PQC) remediation efforts.,QTS-01.3,
+306,E-QTS-04,Quantum Security,Cryptographic Asset Inventory,Documented evidence of a cryptographic asset inventory.,"CRY-01.5
+QTS-03.3
+QTS-04
+QTS-04.1",
+307,E-QTS-05,Quantum Security,Cryptographic Bill of Materials (CBOM),Documented evidence of a Cryptographic Bill of Materials (CBOM).,QTS-04.2,
+308,E-QTS-06,Quantum Security,Cryptographic Agility Risk Assessment (CARA) Methodology,Documented evidence of a Cryptographic Agility Risk Assessment (CARA) methodology.,QTS-02,
+309,E-QTS-07,Quantum Security,Cryptographic Exception Register,Documented evidence of a formal cryptographic exception register.,QTS-02.1,
+310,E-QTS-08,Quantum Security,Approved / Deprecated Algorithm List,Documented evidence of an approved / deprecated algorithm list.,"QTS-06.3
+QTS-06.5",
+311,E-QTS-09,Quantum Security,Zero Trust Network Architecture (ZTNA),"Documented evidence of Zero Trust Network Architecture (ZTNA) (e.g., architecture diagrams, segmentation matrices,  access policies, etc.).",QTS-01.4,
+312,E-QTS-10,Quantum Security,Cryptographic Telemetry,"Documented evidence of situational awareness dashboards for cryptographic telemetry (e.g., SIEM/XDR dashboards).","QTS-04.3
+QTS-05.1",
+313,E-QTS-11,Quantum Security,Interoperability Test Records,"Documented evidence of cryptographic algorithm interoperability, performance and rollback tests.",QTS-03.1,
+314,E-QTS-12,Quantum Security,Cryptographic Incident Playbooks,Documented evidence of incident playbooks and exercise records for cryptographic scenarios.,QTS-07,
+315,E-QTS-13,Quantum Security,Post-Quantum Cryptography (PQC)-Specific Vendor Roadmaps,"Documented evidence of a vendor-related Post-Quantum Cryptography (PQC) roadmaps, contract clauses, and attestations.","QTS-02.2
+QTS-03.1
+QTS-03.3",
