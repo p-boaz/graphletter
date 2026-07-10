@@ -90,7 +90,7 @@ export async function writeParsedSCF(
     // Upsert (not insert): the baseline migration pre-seeds 23 domain rows
     // (scf_version='seed') that are FK targets of domain_tier_weights. Upserting
     // on PK preserves those FK references while updating name/description with
-    // the fresh 2026.1.1 values.
+    // the fresh seed-version values.
     const { error: domainsError } = await supabase
       .from("scf_domains")
       .upsert(domainsData, { onConflict: "id" });

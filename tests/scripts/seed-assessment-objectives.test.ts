@@ -61,7 +61,7 @@ test("seedAssessmentObjectives upserts every AO row with FK + origin field", asy
       "Determine if the organization establishes a governance program."
     );
     assert.equal(rows[0].origin, "SCF Baseline");
-    assert.equal(rows[0].scf_version, "2026.1.1");
+    assert.equal(rows[0].scf_version, "2026.2");
 
     const opts = upsert!.args[1] as { onConflict: string };
     assert.equal(opts.onConflict, "scf_ao_id");

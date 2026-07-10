@@ -114,7 +114,7 @@ already idempotent.
   unless `ALLOW_PROD_SEED=1` is set. Only `pnpm seed:reset` sets that flag, and only after the
   operator has typed the hostname confirmation token.
 - The service-role key is read from env only; it is NEVER committed.
-- Seed writes are scoped to `scf_version='2026.1.1' AND import_id IS NULL` to leave any app-uploaded
+- Seed writes are scoped to `scf_version='2026.2' AND import_id IS NULL` to leave any app-uploaded
   rows alone — but `pnpm seed:reset` deliberately wipes everything, since `TRUNCATE … CASCADE`
   recursively clears any customer rows that FK into `scf_*` tables. Always take a Supabase
   point-in-time snapshot before running `seed:reset` against a database that holds real data.

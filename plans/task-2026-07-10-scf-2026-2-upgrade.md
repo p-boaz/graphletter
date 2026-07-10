@@ -111,9 +111,9 @@ workbook column 34) to the mapped framework set. Reseed local, then production.
 
 ## Test Plan
 
-- [ ] `pnpm test:scf` green (incl. new header-guard test)
-- [ ] `pnpm verify:scf-extraction` green
-- [ ] `pnpm typecheck` + `pnpm lint` green
+- [x] `pnpm test:scf` green (incl. new header-guard test)
+- [x] `pnpm verify:scf-extraction` green
+- [x] `pnpm typecheck` + `pnpm lint` green
 - [ ] Local `pnpm seed && pnpm seed:verify` green
 - [ ] SQL spot-checks: GOV-01 ISO 27001 mappings are clause numbers (4.4, 5.1…);
       HIPAA mappings are §164.xxx; SOC 2 (AICPA TSC) rows exist; QTS domain

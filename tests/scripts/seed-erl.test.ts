@@ -69,7 +69,7 @@ test("seedERL upserts every ERL row with control mappings parsed into text[]", a
     assert.deepEqual(rows[2].scf_control_mappings, ["ACC-01", "ACC-02", "ACC-03"]);
     assert.equal(rows[0].area_of_focus, "Cybersecurity & Data Protection Management");
     assert.equal(rows[0].documentation_artifact, "Charter - Cybersecurity Program");
-    assert.equal(rows[0].scf_version, "2026.1.1");
+    assert.equal(rows[0].scf_version, "2026.2");
 
     const opts = upsertCall!.args[1] as { onConflict: string };
     assert.equal(opts.onConflict, "erl_id,import_id");
@@ -78,7 +78,7 @@ test("seedERL upserts every ERL row with control mappings parsed into text[]", a
       (c) => c.table === "scf_evidence_request_list" && c.method === "delete.eq"
     );
     assert.ok(delEqCall, "delete.eq call must exist");
-    assert.deepEqual(delEqCall!.args, ["scf_version", "2026.1.1"]);
+    assert.deepEqual(delEqCall!.args, ["scf_version", "2026.2"]);
 
     const delIsCall = calls.find(
       (c) => c.table === "scf_evidence_request_list" && c.method === "delete.is"

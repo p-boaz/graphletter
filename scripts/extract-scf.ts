@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Deterministic XLSX → canonical CSV extractor for SCF 2026.1.1.
+ * Deterministic XLSX → canonical CSV extractor for the vendored SCF workbook (version per data/PROVENANCE.json).
  * Library entry: extractWorkbookToCsvs() — pure, used by tests + CLI + verifier.
- * CLI entry: reads data/secure-controls-framework-scf-2026-1-1.xlsx and writes
+ * CLI entry: reads the workbook named in data/PROVENANCE.json and writes
  * the CSVs listed in data/PROVENANCE.json, then rewrites PROVENANCE.json with
  * the freshly computed sha256s.
  */

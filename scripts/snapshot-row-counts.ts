@@ -53,7 +53,7 @@ async function main(): Promise<void> {
   // sandbox/prod refs into git. The capture date + SCF version are sufficient.
   const snapshot = {
     capturedAt: new Date().toISOString(),
-    scfVersion: "2026.1.1",
+    scfVersion: "2026.2",
     tables,
   };
   await writeFile(outPath, JSON.stringify(snapshot, null, 2) + "\n", "utf8");
