@@ -4,7 +4,7 @@
 
 - Date: 2026-07-10
 - Owner: agent (Claude), approved interactively by Peter
-- Status: Approved
+- Status: Done (pending PR merge)
 - Branch: feat/scf-2026-2-upgrade
 - Related issue/PR: —
 
@@ -120,17 +120,17 @@ workbook column 34) to the mapped framework set. Reseed local, then production.
 - [x] SQL spot-checks: GOV-01 ISO 27001 mappings are clause numbers (4.4, 5.1…);
       HIPAA mappings are §164.xxx; SOC 2 (AICPA TSC) rows exist; QTS domain
       controls present (23 expected)
-- [ ] Prod smoke workflow green after reseed
-- [ ] Browser: Framework Explorer lists SOC 2; control detail shows correct
+- [x] Prod smoke workflow green after reseed
+- [x] Browser: Framework Explorer lists SOC 2; control detail shows correct
       ISO/HIPAA citations
 
 ## Acceptance Criteria
 
-- [ ] `scf_imports.scf_version` = 2026.2 in prod
-- [ ] Every FRAMEWORK_COLUMNS entry's expectedHeader matches the live CSV header
-- [ ] SOC 2 framework queryable with >0 control mappings
-- [ ] No framework row carries another framework's identifiers (spot-check set)
-- [ ] Row-count baseline updated and seed:verify passes at ±1%
+- [x] `scf_imports.scf_version` = 2026.2 in prod
+- [x] Every FRAMEWORK_COLUMNS entry's expectedHeader matches the live CSV header
+- [x] SOC 2 framework queryable with >0 control mappings (1478)
+- [x] No framework row carries another framework's identifiers (spot-check set)
+- [x] Row-count baseline updated and seed:verify passes at ±1%
 
 ## Approval Gate
 
