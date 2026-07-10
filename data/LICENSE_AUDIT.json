@@ -82,6 +82,13 @@
       "reason": "Deterministically extracted from sheet \"Data Privacy Mgmt Principles\" of the vendored XLSX."
     },
     {
+      "file": "full_scf_rev.csv",
+      "authoringSource": "upstream-scf",
+      "classification": "upstream-extract",
+      "sha256": "87e9690fdc4c971c53033d13370fc07e949bd83ce0e2c8c5d7369e92b4522191",
+      "reason": "Deterministic column projection of sheet \"SCF 2026.2\" of the vendored XLSX (SCF #, SCR-CMM levels, risk/threat block)."
+    },
+    {
       "file": "anthropic-controls.pdf",
       "authoringSource": "graphletter",
       "classification": "graphletter-authored",

@@ -114,8 +114,8 @@ workbook column 34) to the mapped framework set. Reseed local, then production.
 - [x] `pnpm test:scf` green (incl. new header-guard test)
 - [x] `pnpm verify:scf-extraction` green
 - [x] `pnpm typecheck` + `pnpm lint` green
-- [ ] Local `pnpm seed && pnpm seed:verify` green
-- [ ] SQL spot-checks: GOV-01 ISO 27001 mappings are clause numbers (4.4, 5.1…);
+- [x] Local `pnpm seed && pnpm seed:verify` green
+- [x] SQL spot-checks: GOV-01 ISO 27001 mappings are clause numbers (4.4, 5.1…);
       HIPAA mappings are §164.xxx; SOC 2 (AICPA TSC) rows exist; QTS domain
       controls present (23 expected)
 - [ ] Prod smoke workflow green after reseed

@@ -82,5 +82,13 @@
     "data/scf_import_usage_guide.md",
     "data/README.md",
     "data/PROVENANCE.json"
+  ],
+  "derived": [
+    {
+      "sourceSheet": "SCF 2026.2",
+      "csv": "data/full_scf_rev.csv",
+      "consumer": "graphletter:import-scf-data (maturity levels + control risk/threat mappings)",
+      "sha256": "87e9690fdc4c971c53033d13370fc07e949bd83ce0e2c8c5d7369e92b4522191"
+    }
   ]
 }

@@ -16,21 +16,22 @@ The XLSX is shipped verbatim. All CSV files are produced by a deterministic extr
 
 ## Per-file classification
 
-| File                                        | Authoring     | Classification       | sha256          | Reason                                                                                      |
-| ------------------------------------------- | ------------- | -------------------- | --------------- | ------------------------------------------------------------------------------------------- |
-| `secure-controls-framework-scf-2026-2.xlsx` | upstream-scf  | upstream-verbatim    | `9e0a4df49937…` | Vendored verbatim from SCF download under CC BY-ND 4.0.                                     |
-| `controls.csv`                              | upstream-scf  | upstream-extract     | `66516e011455…` | Deterministically extracted from sheet "SCF 2026.2" of the vendored XLSX.                   |
-| `Authoritative Sources.csv`                 | upstream-scf  | upstream-extract     | `5a325bba1bca…` | Deterministically extracted from sheet "Focal Documents" of the vendored XLSX.              |
-| `Domains and Principles.csv`                | upstream-scf  | upstream-extract     | `68bbbd285c97…` | Deterministically extracted from sheet "SCF Domains & Principles" of the vendored XLSX.     |
-| `Assessment_objectives.csv`                 | upstream-scf  | upstream-extract     | `7034fc739dd0…` | Deterministically extracted from sheet "Assessment Objectives 2026.2" of the vendored XLSX. |
-| `threats.csv`                               | upstream-scf  | upstream-extract     | `0096af29342b…` | Deterministically extracted from sheet "Threat Catalog" of the vendored XLSX.               |
-| `risks.csv`                                 | upstream-scf  | upstream-extract     | `6b253c4a557d…` | Deterministically extracted from sheet "Risk Catalog" of the vendored XLSX.                 |
-| `evidence-request-list.csv`                 | upstream-scf  | upstream-extract     | `db3dc338c511…` | Deterministically extracted from sheet "Evidence Request List 2026.2" of the vendored XLSX. |
-| `compensating-controls.csv`                 | upstream-scf  | upstream-extract     | `530cae66e3a0…` | Deterministically extracted from sheet "Compensating Controls 2026.2" of the vendored XLSX. |
-| `data-privacy-principles.csv`               | upstream-scf  | upstream-extract     | `835d57e157d4…` | Deterministically extracted from sheet "Data Privacy Mgmt Principles" of the vendored XLSX. |
-| `anthropic-controls.pdf`                    | graphletter   | graphletter-authored | —               | Authored in graphletter (not derived from the SCF upstream).                                |
-| `eu-ai-act`                                 | graphletter   | graphletter-authored | —               | Authored in graphletter (not derived from the SCF upstream).                                |
-| `scf_data_import_strategy.md`               | documentation | documentation        | —               | Documentation; not subject to SCF redistribution rules.                                     |
-| `scf_import_usage_guide.md`                 | documentation | documentation        | —               | Documentation; not subject to SCF redistribution rules.                                     |
-| `README.md`                                 | documentation | documentation        | —               | Documentation; not subject to SCF redistribution rules.                                     |
-| `PROVENANCE.json`                           | documentation | documentation        | —               | Documentation; not subject to SCF redistribution rules.                                     |
+| File                                        | Authoring     | Classification       | sha256          | Reason                                                                                                                 |
+| ------------------------------------------- | ------------- | -------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `secure-controls-framework-scf-2026-2.xlsx` | upstream-scf  | upstream-verbatim    | `9e0a4df49937…` | Vendored verbatim from SCF download under CC BY-ND 4.0.                                                                |
+| `controls.csv`                              | upstream-scf  | upstream-extract     | `66516e011455…` | Deterministically extracted from sheet "SCF 2026.2" of the vendored XLSX.                                              |
+| `Authoritative Sources.csv`                 | upstream-scf  | upstream-extract     | `5a325bba1bca…` | Deterministically extracted from sheet "Focal Documents" of the vendored XLSX.                                         |
+| `Domains and Principles.csv`                | upstream-scf  | upstream-extract     | `68bbbd285c97…` | Deterministically extracted from sheet "SCF Domains & Principles" of the vendored XLSX.                                |
+| `Assessment_objectives.csv`                 | upstream-scf  | upstream-extract     | `7034fc739dd0…` | Deterministically extracted from sheet "Assessment Objectives 2026.2" of the vendored XLSX.                            |
+| `threats.csv`                               | upstream-scf  | upstream-extract     | `0096af29342b…` | Deterministically extracted from sheet "Threat Catalog" of the vendored XLSX.                                          |
+| `risks.csv`                                 | upstream-scf  | upstream-extract     | `6b253c4a557d…` | Deterministically extracted from sheet "Risk Catalog" of the vendored XLSX.                                            |
+| `evidence-request-list.csv`                 | upstream-scf  | upstream-extract     | `db3dc338c511…` | Deterministically extracted from sheet "Evidence Request List 2026.2" of the vendored XLSX.                            |
+| `compensating-controls.csv`                 | upstream-scf  | upstream-extract     | `530cae66e3a0…` | Deterministically extracted from sheet "Compensating Controls 2026.2" of the vendored XLSX.                            |
+| `data-privacy-principles.csv`               | upstream-scf  | upstream-extract     | `835d57e157d4…` | Deterministically extracted from sheet "Data Privacy Mgmt Principles" of the vendored XLSX.                            |
+| `full_scf_rev.csv`                          | upstream-scf  | upstream-extract     | `87e9690fdc4c…` | Deterministic column projection of sheet "SCF 2026.2" of the vendored XLSX (SCF #, SCR-CMM levels, risk/threat block). |
+| `anthropic-controls.pdf`                    | graphletter   | graphletter-authored | —               | Authored in graphletter (not derived from the SCF upstream).                                                           |
+| `eu-ai-act`                                 | graphletter   | graphletter-authored | —               | Authored in graphletter (not derived from the SCF upstream).                                                           |
+| `scf_data_import_strategy.md`               | documentation | documentation        | —               | Documentation; not subject to SCF redistribution rules.                                                                |
+| `scf_import_usage_guide.md`                 | documentation | documentation        | —               | Documentation; not subject to SCF redistribution rules.                                                                |
+| `README.md`                                 | documentation | documentation        | —               | Documentation; not subject to SCF redistribution rules.                                                                |
+| `PROVENANCE.json`                           | documentation | documentation        | —               | Documentation; not subject to SCF redistribution rules.                                                                |

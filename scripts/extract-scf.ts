@@ -96,6 +96,74 @@ export async function extractWorkbookToCsvs(opts: ExtractOptions): Promise<Extra
   return results;
 }
 
+/**
+ * Derive data/full_scf_rev.csv: a deterministic column projection of the
+ * controls sheet consumed by scripts/import-scf-data.js (maturity levels +
+ * control-risk/threat mappings). Columns are located by header text, never by
+ * position, so upstream column inserts cannot silently shift the projection.
+ * Projected columns: SCF #, SCR-CMM Level 0–5, then the contiguous
+ * Risk/Threat block ("Risk Threat Summary" … last "Threat" column).
+ */
+export async function deriveFullScfRev(opts: {
+  readonly xlsxPath: string;
+  readonly controlsSheet: string;
+  readonly outPath: string;
+}): Promise<{ sha256: string; rows: number; bytes: number }> {
+  const xlsxBuf = await readFile(opts.xlsxPath);
+  const wb = XLSX.read(xlsxBuf, { type: "buffer", cellDates: false, cellNF: false });
+  const ws = wb.Sheets[opts.controlsSheet];
+  if (!ws) {
+    throw new Error(`deriveFullScfRev: sheet not found: ${opts.controlsSheet}`);
+  }
+  const rows = rowsFromSheet(ws);
+  const headers = rows[0];
+
+  const findHeader = (label: string, predicate: (h: string) => boolean): number => {
+    const idx = headers.findIndex(predicate);
+    if (idx < 0) throw new Error(`deriveFullScfRev: header not found: ${label}`);
+    return idx;
+  };
+
+  const idCol = findHeader("SCF #", (h) => h.trim() === "SCF #");
+  const cmmCols = [0, 1, 2, 3, 4, 5].map((n) =>
+    findHeader(`SCR-CMM Level ${n}`, (h) => h.startsWith(`SCR-CMM Level ${n}`))
+  );
+  const riskStart = findHeader("Risk Threat Summary", (h) => h.startsWith("Risk Threat Summary"));
+  let riskEnd = riskStart;
+  for (let i = riskStart; i < headers.length; i++) {
+    const h = headers[i];
+    if (
+      h.startsWith("Risk Threat Summary") ||
+      h.startsWith("Control Threat Summary") ||
+      h.startsWith("Risk\n") ||
+      h.startsWith("Threat\n")
+    ) {
+      riskEnd = i;
+    } else {
+      break;
+    }
+  }
+
+  const cols = [idCol, ...cmmCols];
+  for (let i = riskStart; i <= riskEnd; i++) cols.push(i);
+
+  const projected = rows.map((row) => cols.map((c) => row[c] ?? ""));
+  const csvText = stringify(projected, {
+    quoted_string: false,
+    quoted_empty: false,
+    record_delimiter: "\n",
+    eof: true,
+  });
+  const buf = Buffer.from(csvText, "utf8");
+  await mkdir(dirname(opts.outPath), { recursive: true });
+  await writeFile(opts.outPath, new Uint8Array(buf));
+  return {
+    sha256: createHash("sha256").update(new Uint8Array(buf)).digest("hex"),
+    rows: projected.length,
+    bytes: buf.length,
+  };
+}
+
 interface Manifest {
   scfVersion: string;
   license: string;
@@ -104,6 +172,7 @@ interface Manifest {
   xlsx: { path: string; sha256: string; bytes: number };
   extraction: Record<string, unknown>;
   sheets: Array<{ sheet: string; csv: string; consumer: string; sha256: string | null }>;
+  derived?: Array<{ sourceSheet: string; csv: string; consumer: string; sha256: string | null }>;
   graphletterAuthored: string[];
   documentation: string[];
 }
@@ -138,6 +207,19 @@ async function runCli(): Promise<void> {
     const r = bySheet.get(entry.sheet);
     if (r) entry.sha256 = r.sha256;
   }
+
+  for (const entry of manifest.derived ?? []) {
+    const d = await deriveFullScfRev({
+      xlsxPath: xlsxAbs,
+      controlsSheet: entry.sourceSheet,
+      outPath: join(repoRoot, entry.csv),
+    });
+    entry.sha256 = d.sha256;
+    console.log(
+      `  ${entry.csv.replace(/^data\//, "").padEnd(40)} rows=${String(d.rows).padStart(6)}  sha256=${d.sha256.slice(0, 12)}… (derived)`
+    );
+  }
+
   await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + "\n", "utf8");
 
   console.log(`extracted ${results.length} sheet(s) from ${manifest.xlsx.path}:`);
