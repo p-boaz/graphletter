@@ -1,19 +1,19 @@
 {
-  "capturedAt": "2026-06-08T17:09:03.379Z",
-  "scfVersion": "2026.1.1",
+  "capturedAt": "2026-07-10T20:49:14.181Z",
+  "scfVersion": "2026.2",
   "tables": {
-    "scf_principles": 33,
-    "scf_domains": 33,
-    "scf_authoritative_sources": 159,
-    "scf_frameworks": 79,
-    "scf_controls": 1468,
-    "scf_control_mappings": 34619,
+    "scf_principles": 34,
+    "scf_domains": 34,
+    "scf_authoritative_sources": 252,
+    "scf_frameworks": 66,
+    "scf_controls": 1534,
+    "scf_control_mappings": 25736,
     "scf_risks": 39,
-    "scf_threats": 41,
-    "scf_maturity_levels": 1264,
-    "scf_evidence_request_list": 303,
-    "scf_assessment_objectives": 5776,
-    "scf_control_evidence_mappings": 774,
+    "scf_threats": 42,
+    "scf_maturity_levels": 1533,
+    "scf_evidence_request_list": 316,
+    "scf_assessment_objectives": 5956,
+    "scf_control_evidence_mappings": 797,
     "scf_control_integrations": 4
   }
 }

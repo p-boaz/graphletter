@@ -10,7 +10,7 @@ import { dirname, resolve } from "node:path";
 import { parse } from "csv-parse/sync";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-const SCF_VERSION = "2026.1.1";
+const SCF_VERSION = "2026.2";
 
 export interface ERLSeedSummary {
   inserted: number;
@@ -44,7 +44,7 @@ export async function seedERL(supabase: SupabaseClient, csvPath: string): Promis
     scf_version: SCF_VERSION,
   }));
 
-  // Clear prior 2026.1.1 rows (only those with no import_id, i.e. seed-owned).
+  // Clear prior seed-version rows (only those with no import_id, i.e. seed-owned).
   // We can't simply truncate because the app-uploaded rows have import_id set
   // and we leave them alone.
   const { error: delError } = await supabase

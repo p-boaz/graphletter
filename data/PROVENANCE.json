@@ -1,16 +1,16 @@
 {
-  "scfVersion": "2026.1.1",
+  "scfVersion": "2026.2",
   "license": "CC BY-ND 4.0",
   "licenseUrl": "https://creativecommons.org/licenses/by-nd/4.0/",
   "source": {
     "publisher": "Secure Controls Framework Council",
     "url": "https://securecontrolsframework.com/free-content/scf-download",
-    "downloadedAt": "2026-05-11"
+    "downloadedAt": "2026-07-10"
   },
   "xlsx": {
-    "path": "data/secure-controls-framework-scf-2026-1-1.xlsx",
-    "sha256": "e95e59bd70dd4177b1b607c2d3e399a2e123ff615b23063bfa7e3ea9b66d766d",
-    "bytes": 5093536
+    "path": "data/secure-controls-framework-scf-2026-2.xlsx",
+    "sha256": "9e0a4df4993726c95e636f04b3028d8b5edeba2bda45d16ed6722b13540e6835",
+    "bytes": 4522269
   },
   "extraction": {
     "encoding": "utf-8",
@@ -22,58 +22,58 @@
   },
   "sheets": [
     {
-      "sheet": "SCF 2026.1",
+      "sheet": "SCF 2026.2",
       "csv": "data/controls.csv",
       "consumer": "graphletter:scf_controls",
-      "sha256": "e3b4402cd0978d19c2202674bf442d7b23bd18fc8d72c47f2803a31e95c41b06"
+      "sha256": "66516e01145554bbb1a6cf598a6bdd5ca428c6b20516515fcf253fdf239c5ef1"
     },
     {
-      "sheet": "Authoritative Sources",
+      "sheet": "Focal Documents",
       "csv": "data/Authoritative Sources.csv",
       "consumer": "graphletter:scf_authoritative_sources",
-      "sha256": "cfdff3f343b23db62ab5545139a3244f021e861a1f2b04889e96578fffe3b8dc"
+      "sha256": "5a325bba1bcacc771f2b6aefb2b95df3d8f3fd8951bbce00dd1c5b1d1c6d9df1"
     },
     {
       "sheet": "SCF Domains & Principles",
       "csv": "data/Domains and Principles.csv",
       "consumer": "graphletter:scf_domains_principles",
-      "sha256": "08f96d686df942913b5891a7e686168d28e3c9ecf9ded2c1ac84ca4fdc560221"
+      "sha256": "68bbbd285c970d53f750375b70a074b8934b090661b995b0b958289b23bd1c86"
     },
     {
-      "sheet": "Assessment Objectives 2026.1",
+      "sheet": "Assessment Objectives 2026.2",
       "csv": "data/Assessment_objectives.csv",
       "consumer": "graphletter:scf_assessment_objectives",
-      "sha256": "8eceb040e4d6a1459e9ac5e0868d4f2b8408b537c55bfc70b41be2fdc4c6fcb9"
+      "sha256": "7034fc739dd0832aeb9277940455e7ff2d85d01bcafd32ec05057ffa8f58465d"
     },
     {
       "sheet": "Threat Catalog",
       "csv": "data/threats.csv",
       "consumer": "graphletter:scf_threats",
-      "sha256": "762c146a5ac08614e9c1e3f74b8583c5d069aeec4c36b0f118fc84ca6bed2f69"
+      "sha256": "0096af29342bd6a68eac702574e8df87b5279a78999b0a7c67b1452cab58923e"
     },
     {
       "sheet": "Risk Catalog",
       "csv": "data/risks.csv",
       "consumer": "graphletter:scf_risks",
-      "sha256": "6ff135294d007bf156fdc342c0228713f5e3eff56dac7feb2d1dd506c3aacc92"
+      "sha256": "6b253c4a557d2e3c2a735858a2af0a0fe416cc9d7f70519ac00f1bd55ce68ea6"
     },
     {
-      "sheet": "Evidence Request List 2026.1",
+      "sheet": "Evidence Request List 2026.2",
       "csv": "data/evidence-request-list.csv",
       "consumer": "graphletter:scf_evidence_requests",
-      "sha256": "f7a3057db9a34d04ff0e4c464b7a05f293a400450665da99cb37714b79f16063"
+      "sha256": "db3dc338c511fbf363008e36902b783ab081a6521111179f9ff143dfb8485375"
     },
     {
-      "sheet": "Compensating Controls 2026.1",
+      "sheet": "Compensating Controls 2026.2",
       "csv": "data/compensating-controls.csv",
       "consumer": "deferred:phase4",
-      "sha256": "d5afbf8b06ec4c53a67deb5b060de89c53934b47276caba36ec206d5f8edec12"
+      "sha256": "530cae66e3a0c9391dc1f60348dbe0b2ad8c972a9f73578a2694a332c3d36a3f"
     },
     {
       "sheet": "Data Privacy Mgmt Principles",
       "csv": "data/data-privacy-principles.csv",
       "consumer": "deferred:phase4",
-      "sha256": "7c605271f671c88d980f5967bc12b085c9e59313729c83e8407d2f165310cbc4"
+      "sha256": "835d57e157d40c58c31b05e1c713d5b01d0357bb9182bef76e11db7cd639ee44"
     }
   ],
   "graphletterAuthored": ["data/anthropic-controls.pdf", "data/eu-ai-act/"],
@@ -82,5 +82,13 @@
     "data/scf_import_usage_guide.md",
     "data/README.md",
     "data/PROVENANCE.json"
+  ],
+  "derived": [
+    {
+      "sourceSheet": "SCF 2026.2",
+      "csv": "data/full_scf_rev.csv",
+      "consumer": "graphletter:import-scf-data (maturity levels + control risk/threat mappings)",
+      "sha256": "87e9690fdc4c971c53033d13370fc07e949bd83ce0e2c8c5d7369e92b4522191"
+    }
   ]
 }

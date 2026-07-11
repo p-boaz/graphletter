@@ -145,7 +145,7 @@ export interface ControlMapping {
 export type OrganizationSize = "micro" | "small" | "medium" | "large" | "enterprise";
 
 // Geography types for authoritative sources
-export type SCFGeography = "Universal" | "US" | "EMEA" | "APAC" | "Americas";
+export type SCFGeography = "General" | "US" | "EMEA" | "APAC" | "Americas";
 
 // SCF domain categories
 export const SCF_DOMAINS = [

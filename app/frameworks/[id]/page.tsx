@@ -6,6 +6,7 @@ import { Navigation } from "@/components/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getFrameworkDescription } from "@/lib/content/framework-descriptions";
+import { formatFrameworkVersion } from "@/lib/frameworks/format-version";
 import { supabase } from "@/lib/database/supabase";
 
 type FrameworkDetailPageProps = {
@@ -101,9 +102,9 @@ export default async function FrameworkDetailPage({ params }: FrameworkDetailPag
               data-testid="framework-detail-heading"
             >
               {framework.framework_name}
-              {framework.framework_version && (
+              {formatFrameworkVersion(framework.framework_version) && (
                 <span className="text-slate-500 text-xl font-normal ml-3">
-                  v{framework.framework_version}
+                  {formatFrameworkVersion(framework.framework_version)}
                 </span>
               )}
             </h1>

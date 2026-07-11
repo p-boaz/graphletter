@@ -18,7 +18,7 @@ export const RESEARCH_TOPICS: ResearchTopic[] = [
     summary:
       "Modeling relationships between SCF controls, assessment objectives, and cross-framework mappings as a navigable graph structure.",
     bullets: [
-      "SCF 2026.1.1 normalization across 79+ frameworks.",
+      "SCF 2026.2 normalization across 79+ frameworks.",
       "Hierarchical domain → control → objective → evidence relationships.",
       "Cross-framework traceability — one evidence base, many framework views.",
       "Graph-based gap propagation: a gap on one control surfaces across every framework it maps to.",

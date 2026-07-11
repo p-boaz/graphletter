@@ -10,7 +10,7 @@ import { dirname, resolve } from "node:path";
 import { parse } from "csv-parse/sync";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-const SCF_VERSION = "2026.1.1";
+const SCF_VERSION = "2026.2";
 
 export interface AOSeedSummary {
   inserted: number;

@@ -23,463 +23,473 @@ interface FrameworkColumnConfig {
   columnIndex: number;
   frameworkName: string;
   frameworkVersion?: string;
+  /**
+   * Exact header cell expected at columnIndex in controls.csv. Validated at
+   * parse time — column positions shift between SCF releases, and a silent
+   * shift mislabels every mapping (this happened in the 2026.1.1 pivot).
+   */
+  expectedHeader: string;
   mappingType: "direct" | "partial" | "derived";
 }
 
-// Static mapping of framework columns based on CSV analysis
+// Static mapping of framework columns, derived from the vendored SCF 2026.2
+// workbook. Regenerate against the new controls sheet on every SCF version
+// bump — indices shift when upstream inserts columns. expectedHeader makes a
+// stale map a hard failure instead of silently mislabeled mappings.
 const FRAMEWORK_COLUMNS: FrameworkColumnConfig[] = [
   {
-    columnIndex: 29,
+    columnIndex: 34,
+    frameworkName: "SOC 2",
+    frameworkVersion: "v2017",
+    expectedHeader: "AICPA\nTSC 2017:2022 (used for SOC 2)",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 37,
     frameworkName: "CIS Controls",
     frameworkVersion: "v8.1",
+    expectedHeader: "CIS\nCSC\n8.1",
     mappingType: "direct",
   },
   {
-    columnIndex: 30,
+    columnIndex: 38,
     frameworkName: "CIS Controls IG1",
     frameworkVersion: "v8.1",
+    expectedHeader: "CIS\nCSC 8.1\nIG1",
     mappingType: "direct",
   },
   {
-    columnIndex: 31,
+    columnIndex: 39,
     frameworkName: "CIS Controls IG2",
     frameworkVersion: "v8.1",
+    expectedHeader: "CIS\nCSC 8.1\nIG2",
     mappingType: "direct",
   },
   {
-    columnIndex: 32,
+    columnIndex: 40,
     frameworkName: "CIS Controls IG3",
     frameworkVersion: "v8.1",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 34,
-    frameworkName: "COSO",
-    frameworkVersion: "v2017",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 35,
-    frameworkName: "CSA CCM",
-    frameworkVersion: "v4",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 36,
-    frameworkName: "CSA IoT SCF",
-    frameworkVersion: "v2",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 41,
-    frameworkName: "ISO/SAE 21434",
-    frameworkVersion: "v2021",
+    expectedHeader: "CIS\nCSC 8.1\nIG3",
     mappingType: "direct",
   },
   {
     columnIndex: 42,
-    frameworkName: "ISO 22301",
-    frameworkVersion: "v2019",
+    frameworkName: "COSO",
+    frameworkVersion: "v2013",
+    expectedHeader: "COSO\n2013",
     mappingType: "direct",
   },
   {
     columnIndex: 43,
-    frameworkName: "ISO 27001",
-    frameworkVersion: "v2013",
+    frameworkName: "CSA CCM",
+    frameworkVersion: "v4.1.0",
+    expectedHeader: "CSA\nCCM\n4.1.0",
     mappingType: "direct",
   },
   {
     columnIndex: 44,
-    frameworkName: "ISO 27001",
-    frameworkVersion: "v2022",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 45,
-    frameworkName: "ISO 27002",
-    frameworkVersion: "v2013",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 46,
-    frameworkName: "ISO 27002",
-    frameworkVersion: "v2022",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 47,
-    frameworkName: "ISO 27017",
-    frameworkVersion: "v2015",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 48,
-    frameworkName: "ISO 27018",
-    frameworkVersion: "v2014",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 49,
-    frameworkName: "ISO 27701",
-    frameworkVersion: "v2019",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 50,
-    frameworkName: "ISO 29100",
-    frameworkVersion: "v2011",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 51,
-    frameworkName: "ISO 31000",
-    frameworkVersion: "v2009",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 52,
-    frameworkName: "ISO 31010",
-    frameworkVersion: "v2009",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 53,
-    frameworkName: "ISO 42001",
-    frameworkVersion: "v2023",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 57,
-    frameworkName: "NIST AI RMF",
-    frameworkVersion: "v1.0",
+    frameworkName: "CSA IoT SCF",
+    frameworkVersion: "v2",
+    expectedHeader: "CSA\nIoT SCF\n2",
     mappingType: "direct",
   },
   {
     columnIndex: 58,
-    frameworkName: "NIST Privacy Framework",
-    frameworkVersion: "v1.0",
+    frameworkName: "ISO/SAE 21434",
+    frameworkVersion: "v2021",
+    expectedHeader: "ISO/SAE\n21434\n2021",
     mappingType: "direct",
   },
   {
     columnIndex: 59,
-    frameworkName: "NIST 800-37",
-    frameworkVersion: "rev2",
+    frameworkName: "ISO 22301",
+    frameworkVersion: "v2019",
+    expectedHeader: "ISO\n22301\n2019",
     mappingType: "direct",
   },
-  { columnIndex: 60, frameworkName: "NIST 800-39", mappingType: "direct" },
+  {
+    columnIndex: 60,
+    frameworkName: "ISO 27001",
+    frameworkVersion: "v2022",
+    expectedHeader: "ISO\n27001\n2022",
+    mappingType: "direct",
+  },
   {
     columnIndex: 61,
-    frameworkName: "NIST 800-53",
-    frameworkVersion: "rev4",
+    frameworkName: "ISO 27002",
+    frameworkVersion: "v2022",
+    expectedHeader: "ISO\n27002\n2022",
     mappingType: "direct",
   },
   {
     columnIndex: 62,
-    frameworkName: "NIST 800-53 Low",
-    frameworkVersion: "rev4",
+    frameworkName: "ISO 27017",
+    frameworkVersion: "v2015",
+    expectedHeader: "ISO \n27017\n2015",
     mappingType: "direct",
   },
   {
     columnIndex: 63,
-    frameworkName: "NIST 800-53 Moderate",
-    frameworkVersion: "rev4",
+    frameworkName: "ISO 27018",
+    frameworkVersion: "v2025",
+    expectedHeader: "ISO \n27018\n2025",
     mappingType: "direct",
   },
   {
     columnIndex: 64,
-    frameworkName: "NIST 800-53 High",
-    frameworkVersion: "rev4",
+    frameworkName: "ISO 27701",
+    frameworkVersion: "v2025",
+    expectedHeader: "ISO\n27701 \n2025",
     mappingType: "direct",
   },
   {
     columnIndex: 65,
-    frameworkName: "NIST 800-53",
-    frameworkVersion: "rev5",
+    frameworkName: "ISO 29100",
+    frameworkVersion: "v2024",
+    expectedHeader: "ISO\n29100\n2024",
     mappingType: "direct",
   },
   {
     columnIndex: 66,
-    frameworkName: "NIST 800-53B Privacy",
-    frameworkVersion: "rev5",
+    frameworkName: "ISO 31000",
+    frameworkVersion: "v2018",
+    expectedHeader: "ISO\n31000\n2018",
     mappingType: "direct",
   },
   {
     columnIndex: 67,
-    frameworkName: "NIST 800-53B Low",
-    frameworkVersion: "rev5",
+    frameworkName: "ISO 31010",
+    frameworkVersion: "v2009",
+    expectedHeader: "ISO\n31010\n2009",
     mappingType: "direct",
   },
   {
     columnIndex: 68,
-    frameworkName: "NIST 800-53B Moderate",
-    frameworkVersion: "rev5",
+    frameworkName: "ISO 42001",
+    frameworkVersion: "v2023",
+    expectedHeader: "ISO\n42001\n2023",
     mappingType: "direct",
-  },
-  {
-    columnIndex: 69,
-    frameworkName: "NIST 800-53B High",
-    frameworkVersion: "rev5",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 70,
-    frameworkName: "NIST 800-53 NOC",
-    frameworkVersion: "rev5",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 71,
-    frameworkName: "NIST 800-63B",
-    mappingType: "partial",
   },
   {
     columnIndex: 72,
-    frameworkName: "NIST 800-82 Low OT",
-    frameworkVersion: "rev3",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 73,
-    frameworkName: "NIST 800-82 Moderate OT",
-    frameworkVersion: "rev3",
+    frameworkName: "NIST AI RMF",
+    frameworkVersion: "v1.0",
+    expectedHeader: "NIST\nAI 100-1 (AI RMF)\n1.0",
     mappingType: "direct",
   },
   {
     columnIndex: 74,
-    frameworkName: "NIST 800-82 High OT",
-    frameworkVersion: "rev3",
+    frameworkName: "NIST Privacy Framework",
+    frameworkVersion: "v1.0",
+    expectedHeader: "NIST Privacy Framework\n1.0",
     mappingType: "direct",
   },
   {
     columnIndex: 75,
-    frameworkName: "NIST 800-160",
+    frameworkName: "NIST 800-37",
+    frameworkVersion: "vR2",
+    expectedHeader: "NIST\n800-37 \nR2",
     mappingType: "direct",
   },
   {
     columnIndex: 76,
-    frameworkName: "NIST 800-161",
-    frameworkVersion: "rev1",
+    frameworkName: "NIST 800-39",
+    expectedHeader: "NIST\n800-39",
     mappingType: "direct",
   },
   {
     columnIndex: 77,
-    frameworkName: "NIST 800-161 C-SCRM",
-    frameworkVersion: "rev1",
+    frameworkName: "NIST 800-53",
+    frameworkVersion: "vR4",
+    expectedHeader: "NIST\n800-53\nR4",
     mappingType: "direct",
   },
   {
     columnIndex: 78,
-    frameworkName: "NIST 800-161 Flow Down",
-    frameworkVersion: "rev1",
+    frameworkName: "NIST 800-53",
+    frameworkVersion: "vR5",
+    expectedHeader: "NIST\n800-53\nR5",
     mappingType: "direct",
   },
   {
     columnIndex: 79,
-    frameworkName: "NIST 800-161 Level 1",
-    frameworkVersion: "rev1",
+    frameworkName: "NIST 800-53B Privacy",
+    frameworkVersion: "vR5",
+    expectedHeader: "NIST\n800-53B R5\n(privacy)",
     mappingType: "direct",
   },
   {
     columnIndex: 80,
-    frameworkName: "NIST 800-161 Level 2",
-    frameworkVersion: "rev1",
+    frameworkName: "NIST 800-53B Low",
+    frameworkVersion: "vR5",
+    expectedHeader: "NIST\n800-53B R5\n(low)",
     mappingType: "direct",
   },
   {
     columnIndex: 81,
-    frameworkName: "NIST 800-161 Level 3",
-    frameworkVersion: "rev1",
+    frameworkName: "NIST 800-53B Moderate",
+    frameworkVersion: "vR5",
+    expectedHeader: "NIST\n800-53B R5\n(moderate)",
     mappingType: "direct",
   },
   {
     columnIndex: 82,
-    frameworkName: "NIST 800-171",
-    frameworkVersion: "rev2",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 83,
-    frameworkName: "NIST 800-171A",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 84,
-    frameworkName: "NIST 800-171",
-    frameworkVersion: "rev3",
+    frameworkName: "NIST 800-53B High",
+    frameworkVersion: "vR5",
+    expectedHeader: "NIST\n800-53B R5\n(high)",
     mappingType: "direct",
   },
   {
     columnIndex: 85,
-    frameworkName: "NIST 800-171A",
-    frameworkVersion: "rev3",
+    frameworkName: "NIST 800-82 Low OT",
+    frameworkVersion: "vR3",
+    expectedHeader: "NIST\n800-82 R3\nLOW \nOT Overlay",
     mappingType: "direct",
   },
   {
     columnIndex: 86,
-    frameworkName: "NIST 800-172",
+    frameworkName: "NIST 800-82 Moderate OT",
+    frameworkVersion: "vR3",
+    expectedHeader: "NIST\n800-82 R3\nMODERATE\nOT Overlay",
     mappingType: "direct",
   },
   {
     columnIndex: 87,
-    frameworkName: "NIST 800-207",
+    frameworkName: "NIST 800-82 High OT",
+    frameworkVersion: "vR3",
+    expectedHeader: "NIST\n800-82 R3\nHIGH \nOT Overlay",
     mappingType: "direct",
   },
   {
     columnIndex: 88,
-    frameworkName: "NIST 800-218 SSDF",
-    frameworkVersion: "v1.1",
+    frameworkName: "NIST 800-160",
+    frameworkVersion: "vVol2R1",
+    expectedHeader: "NIST\n800-160 Vol2 R1",
     mappingType: "direct",
   },
   {
     columnIndex: 89,
-    frameworkName: "NIST CSF",
-    frameworkVersion: "v1.1",
+    frameworkName: "NIST 800-161",
+    frameworkVersion: "vR1",
+    expectedHeader: "NIST\n800-161\nR1",
     mappingType: "direct",
   },
   {
     columnIndex: 90,
-    frameworkName: "NIST CSF",
-    frameworkVersion: "v2.0",
+    frameworkName: "NIST 800-161 C-SCRM",
+    frameworkVersion: "vR1",
+    expectedHeader: "NIST\n800-161 R1\nC-SCRM Baseline",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 91,
+    frameworkName: "NIST 800-161 Flow Down",
+    frameworkVersion: "vR1",
+    expectedHeader: "NIST\n800-161 R1\nFlow Down",
     mappingType: "direct",
   },
   {
     columnIndex: 92,
-    frameworkName: "PCI DSS",
-    frameworkVersion: "v3.2",
+    frameworkName: "NIST 800-161 Level 1",
+    frameworkVersion: "vR1",
+    expectedHeader: "NIST\n800-161 R1\nLevel 1",
     mappingType: "direct",
   },
   {
     columnIndex: 93,
-    frameworkName: "PCI DSS",
-    frameworkVersion: "v4.0.1",
+    frameworkName: "NIST 800-161 Level 2",
+    frameworkVersion: "vR1",
+    expectedHeader: "NIST\n800-161 R1\nLevel 2",
     mappingType: "direct",
   },
   {
     columnIndex: 94,
-    frameworkName: "PCI DSS SAQ A",
-    frameworkVersion: "v4.0.1",
+    frameworkName: "NIST 800-161 Level 3",
+    frameworkVersion: "vR1",
+    expectedHeader: "NIST\n800-161 R1\nLevel 3",
     mappingType: "direct",
   },
   {
     columnIndex: 95,
-    frameworkName: "PCI DSS SAQ A-EP",
-    frameworkVersion: "v4.0.1",
+    frameworkName: "NIST 800-171",
+    frameworkVersion: "vR2",
+    expectedHeader: "NIST\n800-171\nR2",
     mappingType: "direct",
   },
   {
     columnIndex: 96,
-    frameworkName: "PCI DSS SAQ B",
-    frameworkVersion: "v4.0.1",
+    frameworkName: "NIST 800-171",
+    frameworkVersion: "vR3",
+    expectedHeader: "NIST\n800-171\nR3",
     mappingType: "direct",
   },
   {
     columnIndex: 97,
-    frameworkName: "PCI DSS SAQ B-IP",
-    frameworkVersion: "v4.0.1",
+    frameworkName: "NIST 800-171A",
+    expectedHeader: "NIST\n800-171A",
     mappingType: "direct",
   },
   {
     columnIndex: 98,
-    frameworkName: "PCI DSS SAQ C",
-    frameworkVersion: "v4.0.1",
+    frameworkName: "NIST 800-171A",
+    frameworkVersion: "vR3",
+    expectedHeader: "NIST\n800-171A\nR3",
     mappingType: "direct",
   },
   {
     columnIndex: 99,
-    frameworkName: "PCI DSS SAQ C-VT",
-    frameworkVersion: "v4.0.1",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 100,
-    frameworkName: "PCI DSS SAQ D Merchant",
-    frameworkVersion: "v4.0.1",
+    frameworkName: "NIST 800-172",
+    frameworkVersion: "vR3",
+    expectedHeader: "NIST\n800-172 R3",
     mappingType: "direct",
   },
   {
     columnIndex: 101,
-    frameworkName: "PCI DSS SAQ D Service Provider",
-    frameworkVersion: "v4.0.1",
+    frameworkName: "NIST 800-207",
+    expectedHeader: "NIST\n800-207",
     mappingType: "direct",
   },
   {
     columnIndex: 102,
-    frameworkName: "PCI DSS SAQ P2PE",
+    frameworkName: "NIST 800-218 SSDF",
+    expectedHeader: "NIST\n800-218",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 103,
+    frameworkName: "NIST CSF",
+    frameworkVersion: "v2.0",
+    expectedHeader: "NIST\nCSF\n2.0",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 107,
+    frameworkName: "PCI DSS",
     frameworkVersion: "v4.0.1",
+    expectedHeader: "PCI DSS\n4.0.1",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 108,
+    frameworkName: "PCI DSS SAQ A",
+    frameworkVersion: "v4.0.1",
+    expectedHeader: "PCI DSS\n4.0.1\nSAQ A",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 109,
+    frameworkName: "PCI DSS SAQ A-EP",
+    frameworkVersion: "v4.0.1",
+    expectedHeader: "PCI DSS\n4.0.1\nSAQ A-EP",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 110,
+    frameworkName: "PCI DSS SAQ B",
+    frameworkVersion: "v4.0.1",
+    expectedHeader: "PCI DSS\n4.0.1\nSAQ B",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 111,
+    frameworkName: "PCI DSS SAQ B-IP",
+    frameworkVersion: "v4.0.1",
+    expectedHeader: "PCI DSS\n4.0.1\nSAQ B-IP",
     mappingType: "direct",
   },
   {
     columnIndex: 112,
+    frameworkName: "PCI DSS SAQ C",
+    frameworkVersion: "v4.0.1",
+    expectedHeader: "PCI DSS\n4.0.1\nSAQ C",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 113,
+    frameworkName: "PCI DSS SAQ C-VT",
+    frameworkVersion: "v4.0.1",
+    expectedHeader: "PCI DSS\n4.0.1\nSAQ C-VT",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 114,
+    frameworkName: "PCI DSS SAQ D Merchant",
+    frameworkVersion: "v4.0.1",
+    expectedHeader: "PCI DSS\n4.0.1\nSAQ D Merchant",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 115,
+    frameworkName: "PCI DSS SAQ D Service Provider",
+    frameworkVersion: "v4.0.1",
+    expectedHeader: "PCI DSS\n4.0.1\nSAQ D Service Provider",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 116,
+    frameworkName: "PCI DSS SAQ P2PE",
+    frameworkVersion: "v4.0.1",
+    expectedHeader: "PCI DSS\n4.0.1\nSAQ P2PE",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 128,
+    frameworkName: "US DHS CISA SSDAF",
+    expectedHeader: "US\nDHS CISA\nSSDAF",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 129,
+    frameworkName: "US DHS CISA TIC",
+    frameworkVersion: "v3.0",
+    expectedHeader: "US\nDHS CISA\nTIC 3.0",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 130,
     frameworkName: "US CISA CPG",
     frameworkVersion: "v2022",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 122,
-    frameworkName: "US DHS CISA TIC",
-    frameworkVersion: "3.0",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 123,
-    frameworkName: "US DHS CISA CPG",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 124,
-    frameworkName: "US DHS CISA SSDAF",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 146,
-    frameworkName: "US HIPAA Administrative",
-    frameworkVersion: "2013",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 147,
-    frameworkName: "US HIPAA Security Rule",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 148,
-    frameworkName: "US HIPAA HICP Small",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 149,
-    frameworkName: "US HIPAA HICP Medium",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 150,
-    frameworkName: "US HIPAA HICP Large",
+    expectedHeader: "US\nCISA\nCPG\n2022",
     mappingType: "direct",
   },
   {
     columnIndex: 159,
-    frameworkName: "US SOX",
+    frameworkName: "US HIPAA Administrative",
+    frameworkVersion: "v2013",
+    expectedHeader: "US\nHIPAA Administrative Simplification\n2013",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 160,
+    frameworkName: "US HIPAA Security Rule",
+    expectedHeader: "US\nHIPAA\nSecurity Rule / NIST SP 800-66 R2",
     mappingType: "direct",
   },
   {
     columnIndex: 167,
+    frameworkName: "US SOX",
+    expectedHeader: "US\nSOX",
+    mappingType: "direct",
+  },
+  {
+    columnIndex: 171,
     frameworkName: "US-CA CCPA/CPRA",
-    frameworkVersion: "Nov 2022",
+    frameworkVersion: "v2025",
+    expectedHeader: "US - CA\nCCPA\n2025",
     mappingType: "direct",
   },
   {
-    columnIndex: 191,
+    columnIndex: 200,
     frameworkName: "EMEA EU GDPR",
+    frameworkVersion: "v2016",
+    expectedHeader: "EMEA\nEU\nGDPR\n2016",
     mappingType: "direct",
   },
   {
-    columnIndex: 198,
+    columnIndex: 207,
     frameworkName: "EMEA Germany BAIT",
-    mappingType: "direct",
-  },
-  {
-    columnIndex: 235,
-    frameworkName: "EMEA UK GDPR",
+    frameworkVersion: "v2017",
+    expectedHeader: "EMEA\nGermany\nBAIT\n2017",
     mappingType: "direct",
   },
 ];
@@ -665,7 +675,7 @@ export class SCFParser {
           totalDomains: domains.length,
           totalFrameworks: frameworks.length,
           totalMappings,
-          version: "2026.1.1",
+          version: "2026.2",
         },
         controls,
         domains,
@@ -686,7 +696,7 @@ export class SCFParser {
           totalDomains: 0,
           totalFrameworks: 0,
           totalMappings: 0,
-          version: "2026.1.1",
+          version: "2026.2",
         },
         controls: [],
         domains: [],
@@ -910,7 +920,7 @@ export class SCFParser {
       assessmentObjectives: [],
       evidenceRequests,
       mappings,
-      version: "2026.1.1",
+      version: "2026.2",
       lastUpdated: new Date(),
     };
   }
@@ -1039,7 +1049,7 @@ export class SCFParser {
           domainName: domainName.trim(),
           principleName: principleName.trim(),
           principleIntent: principleIntent.trim(),
-          version: "2026.1.1",
+          version: "2026.2",
         };
 
         principles.push(principle);
@@ -1081,34 +1091,38 @@ export class SCFParser {
 
       log.info("Processing authoritative source rows", { count: rows.length });
 
-      // Upstream column order (Authoritative Sources.csv, SCF 2026.1.1):
-      //  0: Geography
+      // Upstream column order ("Focal Documents" sheet, SCF 2026.2 — the FDT
+      // short-name column was removed upstream in 2026.2):
+      //  0: Geography                   ("General" for globally applicable)
       //  1: SCF Column Header           → mappingColumnHeader
       //  2: Focal Document Identifier   → id slug (canonical upstream key)
-      //  3: Source                      → sourceOrganization (Federal/State/etc.)
-      //  4: Focal Document Name         → authoritativeSource (short, unique-ish)
-      //  5: Focal Document Title        → (dropped; full title is in upstream CSV)
-      //  6: Focal Document Source URL   → sourceUrl
-      //  7: Set Theory Relationship Map → strmUrl
+      //  3: Source                      → sourceOrganization
+      //  4: Focal Document Name         → authoritativeSource
+      //  5: Focal Document Source URL   → sourceUrl
+      //  6: Set Theory Relationship Map → strmUrl
       rows.forEach((row, index) => {
-        if (row.length < 8) {
+        if (row.length < 7) {
           log.warn("Row insufficient columns", {
             row: index + 1,
             columns: row.length,
-            expected: 8,
+            expected: 7,
           });
           return;
         }
 
-        const [geography, mappingColumnHeader, fdi, sourceOrg, fdn, , sourceUrl, strmUrl] = row;
+        const [geography, mappingColumnHeader, fdi, sourceOrg, fdn, sourceUrl, strmUrl] = row;
 
         if (!geography || !mappingColumnHeader || !fdn) {
           log.warn("Row missing required data", { row: index + 1 });
           return;
         }
 
-        // Validate geography
-        const validGeographies = ["Universal", "US", "EMEA", "APAC", "Americas"];
+        // Upstream uses these as status markers, not geographies — skip quietly.
+        if (geography === "Deleted" || geography === "Not Complete") {
+          return;
+        }
+
+        const validGeographies = ["General", "US", "EMEA", "APAC", "Americas"];
         if (!validGeographies.includes(geography)) {
           log.warn("Row invalid geography", { row: index + 1, geography });
           return;
@@ -1124,7 +1138,7 @@ export class SCFParser {
           authoritativeSource: fdn,
           strmUrl: strmUrl || undefined,
           sourceUrl: sourceUrl || undefined,
-          version: "2026.1.1",
+          version: "2026.2",
         };
 
         sources.push(source);
@@ -1160,7 +1174,7 @@ export class SCFParser {
         totalMappings: 0,
         totalPrinciples: 0,
         totalAuthoritativeSources: 0,
-        version: "2026.1.1",
+        version: "2026.2",
       },
       controls: [],
       domains: [],
@@ -1222,7 +1236,7 @@ export class SCFParser {
         totalMappings: controlResult.summary.totalMappings,
         totalPrinciples: principles.length,
         totalAuthoritativeSources: authoritativeSources.length,
-        version: "2026.1.1",
+        version: "2026.2",
       },
       controls: controlResult.controls,
       domains: domains.length > 0 ? domains : controlResult.domains,
@@ -1237,11 +1251,41 @@ export class SCFParser {
   }
 
   // New method to parse control mappings from controls.csv
+  /**
+   * Verify every FRAMEWORK_COLUMNS entry still points at the header it was
+   * derived from. Whitespace is normalized on both sides; any mismatch is a
+   * hard error — mapping from a shifted column silently corrupts every
+   * framework label downstream.
+   */
+  private static assertFrameworkColumnAlignment(headers: string[]): void {
+    const normalize = (s: string) => s.replace(/\s+/g, " ").trim();
+    const misaligned = FRAMEWORK_COLUMNS.filter(
+      (config) => normalize(headers[config.columnIndex] ?? "") !== normalize(config.expectedHeader)
+    );
+    if (misaligned.length > 0) {
+      const detail = misaligned
+        .map(
+          (c) =>
+            `${c.frameworkName} @ column ${c.columnIndex}: expected "${normalize(c.expectedHeader)}", found "${normalize(headers[c.columnIndex] ?? "(missing)")}"`
+        )
+        .join("; ");
+      throw new Error(
+        `FRAMEWORK_COLUMNS is misaligned with the controls CSV header (${misaligned.length} column(s)). ` +
+          `The SCF workbook layout changed — regenerate FRAMEWORK_COLUMNS. ${detail}`
+      );
+    }
+  }
+
   static parseControlMappings(csvData: string): ControlMapping[] {
     log.info("Starting Control Mappings parsing");
 
+    // Deliberately outside the try below: a misaligned column map must abort
+    // the import loudly, never degrade to an empty mapping set.
+    const parsed = SCFParser.parseCSVContent(csvData);
+    SCFParser.assertFrameworkColumnAlignment(parsed.headers);
+
     try {
-      const { rows } = SCFParser.parseCSVContent(csvData);
+      const { rows } = parsed;
       const mappings: ControlMapping[] = [];
 
       log.info("Processing control rows for mappings", { count: rows.length });

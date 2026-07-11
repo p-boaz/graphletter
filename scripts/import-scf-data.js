@@ -196,7 +196,8 @@ async function importMaturityLevels() {
     const records = parse(csvData, {
       columns: false, // Don't use headers since they're complex
       skip_empty_lines: true,
-      from_line: 85, // Start where actual control data begins
+      // No from_line: the header is one multi-line quoted record and the
+      // control-ID regex below filters every non-data record.
       relax_column_count: true,
     });
 
@@ -274,7 +275,8 @@ async function createControlRiskMappings() {
     const records = parse(csvData, {
       columns: false, // Don't use headers since they're complex
       skip_empty_lines: true,
-      from_line: 85, // Start where actual control data begins
+      // No from_line: the header is one multi-line quoted record and the
+      // control-ID regex below filters every non-data record.
       relax_column_count: true,
     });
 
@@ -358,7 +360,8 @@ async function createControlThreatMappings() {
     const records = parse(csvData, {
       columns: false, // Don't use headers since they're complex
       skip_empty_lines: true,
-      from_line: 85, // Start where actual control data begins
+      // No from_line: the header is one multi-line quoted record and the
+      // control-ID regex below filters every non-data record.
       relax_column_count: true,
     });
 

@@ -67,7 +67,7 @@ const fixtureParseResult: SCFImportResult = {
     totalMappings: 0,
     totalPrinciples: 1,
     totalAuthoritativeSources: 1,
-    version: "2026.1.1",
+    version: "2026.2",
   },
   controls: [
     {
@@ -113,7 +113,7 @@ const fixtureParseResult: SCFImportResult = {
       authoritativeSource: "SP 800-53 R5",
       strmUrl: "",
       sourceUrl: "https://nist.gov",
-      version: "2026.1.1",
+      version: "2026.2",
     } as any,
   ],
   risks: [],
@@ -234,5 +234,5 @@ test("writeParsedSCF maps camelCase parseResult fields to snake_case DB columns 
   assert.equal(row.applies_to_governance, false);
   assert.deepEqual(row.risk_ids, ["R-AC-1"]);
   assert.deepEqual(row.assessment_objectives, ["AO-1"]);
-  assert.equal(row.scf_version, "2026.1.1");
+  assert.equal(row.scf_version, "2026.2");
 });

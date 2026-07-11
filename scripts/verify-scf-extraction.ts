@@ -15,10 +15,17 @@ import { join, resolve, dirname, basename } from "node:path";
 import { createHash } from "node:crypto";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import prettier from "prettier";
-import { extractWorkbookToCsvs, type SheetMapping } from "./extract-scf";
+import { extractWorkbookToCsvs, deriveFullScfRev, type SheetMapping } from "./extract-scf";
 
 interface ManifestSheet {
   sheet: string;
+  csv: string;
+  consumer: string;
+  sha256: string | null;
+}
+
+interface ManifestDerived {
+  sourceSheet: string;
   csv: string;
   consumer: string;
   sha256: string | null;
@@ -32,6 +39,7 @@ interface Manifest {
   xlsx: { path: string; sha256: string; bytes: number };
   extraction: Record<string, unknown>;
   sheets: ManifestSheet[];
+  derived?: ManifestDerived[];
   graphletterAuthored: string[];
   documentation: string[];
 }
@@ -106,6 +114,30 @@ export async function verifyExtraction(opts: { repoRoot: string }): Promise<Veri
         });
       }
     }
+    for (const entry of manifest.derived ?? []) {
+      const freshDerived = await deriveFullScfRev({
+        xlsxPath: xlsxAbs,
+        controlsSheet: entry.sourceSheet,
+        outPath: join(tmp, basename(entry.csv)),
+      });
+      const committedPath = join(opts.repoRoot, entry.csv);
+      if (!existsSync(committedPath)) {
+        mismatches.push({ csv: entry.csv, reason: "committed derived CSV is missing on disk" });
+        continue;
+      }
+      const committedSha = await sha256OfFile(committedPath);
+      if (committedSha !== freshDerived.sha256) {
+        mismatches.push({
+          csv: entry.csv,
+          reason: `sha256 mismatch vs fresh derivation: committed=${committedSha.slice(0, 12)} fresh=${freshDerived.sha256.slice(0, 12)}`,
+        });
+      } else if (entry.sha256 !== null && entry.sha256 !== committedSha) {
+        mismatches.push({
+          csv: entry.csv,
+          reason: `manifest sha256 stale: manifest=${entry.sha256.slice(0, 12)} committed=${committedSha.slice(0, 12)}`,
+        });
+      }
+    }
   } finally {
     await rm(tmp, { recursive: true, force: true });
   }
@@ -115,7 +147,11 @@ export async function verifyExtraction(opts: { repoRoot: string }): Promise<Veri
     await regenerateLicenseDocs(opts.repoRoot, manifest);
   }
 
-  return { ok: mismatches.length === 0, mismatches, checked: manifest.sheets.length };
+  return {
+    ok: mismatches.length === 0,
+    mismatches,
+    checked: manifest.sheets.length + (manifest.derived?.length ?? 0),
+  };
 }
 
 /**
@@ -176,6 +212,16 @@ async function regenerateLicenseDocs(repoRoot: string, manifest: Manifest): Prom
       classification: "upstream-extract",
       sha256: s.sha256,
       reason: `Deterministically extracted from sheet "${s.sheet}" of the vendored XLSX.`,
+    });
+  }
+
+  for (const d of manifest.derived ?? []) {
+    entries.push({
+      file: basename(d.csv),
+      authoringSource: "upstream-scf",
+      classification: "upstream-extract",
+      sha256: d.sha256,
+      reason: `Deterministic column projection of sheet "${d.sourceSheet}" of the vendored XLSX (SCF #, SCR-CMM levels, risk/threat block).`,
     });
   }
 
