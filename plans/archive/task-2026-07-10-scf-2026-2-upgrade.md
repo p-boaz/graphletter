@@ -4,9 +4,9 @@
 
 - Date: 2026-07-10
 - Owner: agent (Claude), approved interactively by Peter
-- Status: Done (pending PR merge)
+- Status: Done (PR #46 merged 2026-07-11; prod reseed + live-proof complete)
 - Branch: feat/scf-2026-2-upgrade
-- Related issue/PR: —
+- Related issue/PR: https://github.com/p-boaz/graphletter/pull/46
 
 ## Goal
 
@@ -51,6 +51,8 @@ workbook column 34) to the mapped framework set. Reseed local, then production.
 - [ ] playwright/tests/public-pages.spec.ts (vv regression assertion)
 - [ ] SEEDING.md
 - [ ] plans/README.md (index entry)
+- [ ] scripts/verify-scf-extraction.ts (spec expansion 2026-07-11 — see below)
+- [ ] data/full_scf_rev.csv (spec expansion 2026-07-11 — see below)
 
 ## Constraints
 
@@ -141,3 +143,28 @@ workbook column 34) to the mapped framework set. Reseed local, then production.
 - [x] Acceptance criteria measurable
 - [x] Human approved (AskUserQuestion 2026-07-10: SOC 2 in scope; run all the
       way to prod. Column-scramble discovery reported in-session before start.)
+
+## Spec Expansion (2026-07-11, recorded retroactively)
+
+Mid-flight, `data/full_scf_rev.csv` was found to sit outside the PROVENANCE
+manifest while still carrying pre-2026.2 data. Commit 7d736ee added a
+deterministic derivation (`deriveFullScfRev` in `scripts/extract-scf.ts`, plus
+a `Manifest.derived` field) and a derived-CSV verification loop in
+`scripts/verify-scf-extraction.ts`, regenerating `data/full_scf_rev.csv`. The
+work was necessary and correct (sha256 verified against PROVENANCE.json), but
+the two files above were not added to Context Files at the time, violating the
+AGENTS.md scope rule. This expansion closes that gap; flagged by post-hoc code
+review on PR #46. Lesson: amend the spec at discovery time, not after merge.
+
+## Post-merge verification record (2026-07-11)
+
+- Prod reseed executed per step 9: pg_dump backup → `pnpm seed:reset --yes` →
+  `seed:verify` green (13 tables ±1%) → SQL + browser live-proof. Evidence:
+  PR #46 comment thread.
+- Framework-count audit: 2026.2 workbook has 252 framework mapping columns;
+  FRAMEWORK_COLUMNS maps 66 (was 79). All 14 dropped entries were verified
+  stale — absent from BOTH the 2026.1.1 and 2026.2 workbook headers (phantom
+  entries from the misalignment era, or superseded versions whose replacements
+  were already mapped: 800-53B baselines, US CISA CPG). No real coverage was
+  lost; SOC 2 was added. Actual QTS control count: 34 (spec's test plan said
+  23 expected; PR description said ~60 — both wrong, workbook has 34).
