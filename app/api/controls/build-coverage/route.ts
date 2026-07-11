@@ -7,8 +7,6 @@ import { applyAssessmentVerdicts, computeControlGaps } from "@/lib/graph/gap-ana
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/utils/auth";
 
-type SupabaseClient = Awaited<ReturnType<typeof createClient>>;
-
 interface CoverageRequestBody {
   frameworkId?: string;
   frameworkName?: string;

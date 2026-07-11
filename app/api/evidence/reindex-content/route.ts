@@ -238,10 +238,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET(request: NextRequest) {
-  const requestId = getOrCreateRequestId(request);
-  const logger = createRequestLogger(requestId);
-
+export async function GET() {
   try {
     const supabase = await createClient();
     const user = await getCurrentUser(supabase);
