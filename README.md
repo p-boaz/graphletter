@@ -1,6 +1,8 @@
 # Graphletter
 
-AI-powered compliance assessment. Upload your evidence documents — policies, procedures, screenshots, audit reports — and get control-level verdicts across 79+ frameworks (SOC 2, ISO 27001, NIST CSF, PCI DSS, HIPAA, GDPR, and more).
+<!-- 66 = MAPPED_FRAMEWORK_COUNT in lib/scf-parser.ts — update together -->
+
+AI-powered compliance assessment. Upload your evidence documents — policies, procedures, screenshots, audit reports — and get control-level verdicts across 66 frameworks (SOC 2, ISO 27001, NIST CSF, PCI DSS, HIPAA, GDPR, and more).
 
 **[Try it live — no signup required](https://www.graphletter.com/try)** · [www.graphletter.com](https://www.graphletter.com)
 
@@ -22,7 +24,7 @@ Graphletter is the open alternative to all three:
 
 - **MIT-licensed and self-hostable.** Clone it, bring your own Supabase project and AI keys, and run the whole assessment pipeline on infrastructure you control. Your evidence never has to leave it.
 - **Grounded, not black-box.** Every verdict ships with a confidence score, plain-language reasoning, and the **quoted sentence from your own document** that supports it. The reasoning is the product, not a byproduct.
-- **Open control data.** Assessment runs against the [Secure Controls Framework](https://securecontrolsframework.com) — a publicly available, openly cross-mapped control library spanning 79+ frameworks — so the mapping layer is inspectable rather than proprietary.
+- **Open control data.** Assessment runs against the [Secure Controls Framework](https://securecontrolsframework.com) — a publicly available control library openly cross-mapped to hundreds of laws and standards — so the mapping layer is inspectable rather than proprietary.
 
 The goal is to make "see roughly where you stand against a control framework" a thing any team can do for the cost of an API call, with full transparency into how the answer was reached — and to give the GRC ecosystem a reference implementation it can read, fork, and improve.
 
@@ -30,7 +32,7 @@ The goal is to make "see roughly where you stand against a control framework" a 
 
 ## What it does
 
-Graphletter takes real compliance evidence and evaluates it against the [Secure Controls Framework (SCF)](https://securecontrolsframework.com), a unified control library that cross-maps to 79+ frameworks.
+Graphletter takes real compliance evidence and evaluates it against the [Secure Controls Framework (SCF)](https://securecontrolsframework.com), a unified control library cross-mapped to hundreds of laws and standards — Graphletter maps 66 of them today.
 
 For each uploaded document, the platform:
 

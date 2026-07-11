@@ -494,6 +494,12 @@ const FRAMEWORK_COLUMNS: FrameworkColumnConfig[] = [
   },
 ];
 
+// Single source of truth for "how many frameworks does Graphletter map".
+// Public copy must stay consistent with this — surfaces that can't import it
+// (client bundles, markdown) hardcode the number with a comment pointing here.
+// See plans/task-2026-07-11-framework-count-truth-line.md.
+export const MAPPED_FRAMEWORK_COUNT = FRAMEWORK_COLUMNS.length;
+
 export class SCFParser {
   static parseCSVData(csvData: string): SCFImportResult {
     log.info("Starting CSV parsing");

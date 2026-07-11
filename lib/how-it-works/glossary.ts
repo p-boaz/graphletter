@@ -1,7 +1,8 @@
 export const GLOSSARY = {
   scf: {
     term: "SCF",
-    def: "Secure Controls Framework — a meta-framework with ~1,500 controls that map to 79+ regulatory standards.",
+    // 66 = MAPPED_FRAMEWORK_COUNT (lib/scf-parser.ts); hardcoded to keep the parser table out of client bundles
+    def: "Secure Controls Framework — a meta-framework with ~1,500 controls cross-mapped to hundreds of laws and standards; Graphletter maps 66 of them today.",
   },
   erl: {
     term: "ERL",

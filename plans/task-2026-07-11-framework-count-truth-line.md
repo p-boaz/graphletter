@@ -3,8 +3,8 @@
 ## Metadata
 
 - Date: 2026-07-11
-- Owner: agent (Claude), pending Peter's approval
-- Status: Draft
+- Owner: agent (Claude); approved by Peter 2026-07-11 ("go on both")
+- Status: Implemented — PR open
 - Branch: fix/framework-count-copy
 - Related issue/PR: surfaced during PR #46 live-proof (see PR comment thread)
 
@@ -97,9 +97,15 @@ components lib README.md AGENTS.md` returns nothing.
 
 ## Test Plan
 
-- [ ] Grep gate clean (no "79+" / "76 other" outside plans/ and git history)
-- [ ] Playwright meta-description assertion green
-- [ ] `pnpm lint` / `typecheck` green
+- [x] Grep gate clean (no "79+" / "76 other" outside plans/ and git history)
+- [x] Playwright meta-description assertion green
+- [x] `pnpm lint` / `typecheck` green
+
+Note: the pre-existing `public pages: dogfood report regressions are covered`
+test fails on `open-smart-upload-button` (/try) on a CLEAN main checkout too —
+verified by stash + re-run, unrelated to this change; needs its own follow-up.
+Also fixed in passing (same docs block as the flagged line): stale
+"1,468 controls across 33 domains" → 1,534 / 34.
 
 ## Acceptance Criteria
 
@@ -109,9 +115,9 @@ components lib README.md AGENTS.md` returns nothing.
 
 ## Approval Gate
 
-- [ ] Goal is clear
-- [ ] Context files listed
-- [ ] Constraints explicit
-- [ ] Test plan defined
-- [ ] Acceptance criteria measurable
-- [ ] Human approved
+- [x] Goal is clear
+- [x] Context files listed
+- [x] Constraints explicit
+- [x] Test plan defined
+- [x] Acceptance criteria measurable
+- [x] Human approved (Peter, 2026-07-11: "go on both")

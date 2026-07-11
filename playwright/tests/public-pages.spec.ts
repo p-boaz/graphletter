@@ -89,3 +89,13 @@ test("public pages: dogfood report regressions are covered", async ({ page }, te
 
   assert_no_browser_failures(report);
 });
+
+test("public pages: meta-description framework count stays truthful", async ({ page }) => {
+  // Truth line (plans/task-2026-07-11-framework-count-truth-line.md): the
+  // description's "60+" is a durable floor for MAPPED_FRAMEWORK_COUNT; the
+  // stale "76 other" / "79+" claims must never come back.
+  await open_local_app(page, "/");
+  const description = await page.locator('meta[name="description"]').getAttribute("content");
+  expect(description).toContain("60+ other frameworks");
+  expect(description).not.toMatch(/7[69]\+? other/);
+});

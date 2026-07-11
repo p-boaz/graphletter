@@ -414,9 +414,10 @@ export function DemoSmartEvidenceUpload() {
           <h3 className="ft-serif mb-2 text-lg font-bold text-ft-black">
             Ready to assess your own documents?
           </h3>
+          {/* "60+" = durable floor for MAPPED_FRAMEWORK_COUNT (lib/scf-parser.ts); client bundle can't import the parser table */}
           <p className="mb-4 text-slate-600 text-sm">
             Upload your actual policies, procedures, and evidence. Graphletter assesses them against
-            all relevant controls across 79+ frameworks — not just one.
+            all relevant controls across 60+ frameworks — not just one.
           </p>
           <div className="flex items-center justify-center gap-3">
             <Button asChild>
