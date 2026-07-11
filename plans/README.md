@@ -6,11 +6,9 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                            | Status                    |
-| ----------------------------------------------- | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md`            | Done; archive after merge |
-| `task-2026-07-11-domain-control-count.md`       | Implemented; PR #48 open  |
-| `task-2026-07-11-framework-count-truth-line.md` | Implemented; PR #49 open  |
+| Plan                                 | Status                    |
+| ------------------------------------ | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
 
 ## Product Backlog
 

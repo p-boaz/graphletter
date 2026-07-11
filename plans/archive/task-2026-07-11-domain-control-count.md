@@ -4,7 +4,7 @@
 
 - Date: 2026-07-11
 - Owner: agent (Claude); approved by Peter 2026-07-11 ("go on both")
-- Status: Implemented (Option A) — PR open
+- Status: Done (PR #48 merged 2026-07-11; prod backfill run and verified)
 - Branch: fix/domain-control-count
 - Related issue/PR: surfaced during PR #46 live-proof (see PR comment thread)
 

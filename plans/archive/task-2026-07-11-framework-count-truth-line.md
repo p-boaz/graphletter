@@ -4,7 +4,7 @@
 
 - Date: 2026-07-11
 - Owner: agent (Claude); approved by Peter 2026-07-11 ("go on both")
-- Status: Implemented — PR open
+- Status: Done (PR #49 merged 2026-07-11; live meta description verified)
 - Branch: fix/framework-count-copy
 - Related issue/PR: surfaced during PR #46 live-proof (see PR comment thread)
 
