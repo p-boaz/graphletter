@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer";
 import { PipelineDiagram } from "@/components/how-it-works/pipeline-diagram";
 import { Navigation } from "@/components/navigation";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { MAPPED_FRAMEWORK_COUNT } from "@/lib/scf-parser";
 import { pageTitle } from "@/lib/seo/page-title";
 import {
   analysisLayers,
@@ -509,12 +510,12 @@ export default async function DocsPage() {
                 <h3 className="ft-serif font-bold text-lg text-ft-black">SCF Catalog</h3>
                 <ul className="ft-sans text-slate-600 space-y-1.5 text-sm">
                   <li>
-                    <span className="font-mono text-slate-500">scf_controls</span> — 1,468 controls
-                    across 33 domains
+                    <span className="font-mono text-slate-500">scf_controls</span> — 1,534 controls
+                    across 34 domains
                   </li>
                   <li>
-                    <span className="font-mono text-slate-500">scf_frameworks</span> — 79+
-                    regulatory standards
+                    <span className="font-mono text-slate-500">scf_frameworks</span> —{" "}
+                    {MAPPED_FRAMEWORK_COUNT} mapped regulatory standards
                   </li>
                   <li>
                     <span className="font-mono text-slate-500">scf_control_mappings</span> —
