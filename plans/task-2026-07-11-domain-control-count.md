@@ -3,8 +3,8 @@
 ## Metadata
 
 - Date: 2026-07-11
-- Owner: agent (Claude), pending Peter's approval
-- Status: Draft
+- Owner: agent (Claude); approved by Peter 2026-07-11 ("go on both")
+- Status: Implemented (Option A) — PR open
 - Branch: fix/domain-control-count
 - Related issue/PR: surfaced during PR #46 live-proof (see PR comment thread)
 
@@ -89,10 +89,11 @@ mapping at `lib/scf/writer.ts:85` touches it).
 
 ## Test Plan
 
-- [ ] `writer.test.ts`: domain upsert carries computed `control_count`
-- [ ] Local seed: all 23 domains have `control_count > 0`; sum equals
-      `select count(*) from scf_controls`
-- [ ] `pnpm test:scf` / `typecheck` / `lint` green
+- [x] `writer.test.ts`: domain upsert carries computed `control_count`
+- [x] Local seed: all **34** domains (2026.2 has 34, not the baseline 23) have
+      `control_count > 0`; sum = 1534 = `select count(*) from scf_controls`;
+      Quantum Security = 34
+- [x] `pnpm test:scf` / `typecheck` / `lint` green
 
 ## Acceptance Criteria
 
@@ -102,9 +103,9 @@ mapping at `lib/scf/writer.ts:85` touches it).
 
 ## Approval Gate
 
-- [ ] Goal is clear
-- [ ] Context files listed
-- [ ] Constraints explicit
-- [ ] Test plan defined
-- [ ] Acceptance criteria measurable
-- [ ] Human approved
+- [x] Goal is clear
+- [x] Context files listed
+- [x] Constraints explicit
+- [x] Test plan defined
+- [x] Acceptance criteria measurable
+- [x] Human approved (Peter, 2026-07-11: "go on both")

@@ -236,3 +236,27 @@ test("writeParsedSCF maps camelCase parseResult fields to snake_case DB columns 
   assert.deepEqual(row.assessment_objectives, ["AO-1"]);
   assert.equal(row.scf_version, "2026.2");
 });
+
+test("writeParsedSCF derives scf_domains.control_count from parsed controls, not the hardcoded 0", async () => {
+  const { supabase, calls } = makeMockSupabase();
+  // The Domains-and-Principles parse path hardcodes controlCount: 0 (that 0
+  // was what every prod domain carried until 2026-07). The writer must
+  // override it with a count derived from the controls actually parsed.
+  const parseResult: SCFImportResult = {
+    ...fixtureParseResult,
+    controls: [
+      { ...(fixtureParseResult.controls[0] as any), id: "ACC-01" },
+      { ...(fixtureParseResult.controls[0] as any), id: "ACC-02" },
+    ],
+    domains: [{ ...(fixtureParseResult.domains[0] as any), id: "ACC", controlCount: 0 }],
+  };
+
+  await writeParsedSCF(supabase, parseResult, undefined, "11111111-1111-1111-1111-111111111111");
+
+  const domainsUpsert = calls.find((c) => c.table === "scf_domains" && c.method === "upsert");
+  assert.ok(domainsUpsert, "scf_domains.upsert call must exist");
+  const rows = domainsUpsert!.args[0] as Array<Record<string, unknown>>;
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].id, "ACC");
+  assert.equal(rows[0].control_count, 2, "control_count must be derived from parsed controls");
+});

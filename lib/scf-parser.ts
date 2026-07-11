@@ -964,7 +964,9 @@ export class SCFParser {
     });
   }
 
-  private static extractDomainId(controlId: string): string {
+  // Public: the writer derives per-domain control counts with the same
+  // id→domain rule the parser uses, so the two can never disagree.
+  static extractDomainId(controlId: string): string {
     const match = controlId.match(/^([A-Z]+)-/);
     return match ? match[1] : controlId.substring(0, 3).toUpperCase();
   }

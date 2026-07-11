@@ -76,13 +76,23 @@ export async function writeParsedSCF(
   // path. Upserting domains before principles makes the writer correct
   // for both fresh-install and post-wipe environments.
   if (parseResult.domains && parseResult.domains.length > 0) {
+    // These domains come from the Domains-and-Principles CSV parse path, which
+    // has no visibility into controls and hardcodes controlCount: 0. Derive
+    // real counts from the parsed controls, keyed by domain id — the two CSVs
+    // are not guaranteed to agree on display-name spelling.
+    const controlCountByDomainId = new Map<string, number>();
+    for (const control of parseResult.controls ?? []) {
+      const domainId = SCFParser.extractDomainId(control.id);
+      controlCountByDomainId.set(domainId, (controlCountByDomainId.get(domainId) ?? 0) + 1);
+    }
+
     const domainsData = parseResult.domains.map((domain) => ({
       id: domain.id,
       name: domain.name,
       description: domain.description,
       principles: domain.principles,
       principle_intent: domain.principleIntent, // Map camelCase to snake_case
-      control_count: domain.controlCount, // Map camelCase to snake_case
+      control_count: controlCountByDomainId.get(domain.id) ?? domain.controlCount,
       scf_version: parseResult.summary.version,
       import_id: importId,
     }));
