@@ -1,12 +1,24 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/database/supabase";
+import {
+  mappingSearchFilter,
+  parseBoundedInt,
+  sanitizeMappingQuery,
+} from "@/lib/frameworks/mapping-query";
 import { createLogger } from "@/lib/logger";
 
 const log = createLogger("api/scf/frameworks");
 
-export async function GET(_request: Request, { params }: { params: Promise<{ id: string }> }) {
+const DEFAULT_LIMIT = 50;
+const MAX_LIMIT = 200;
+
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id: frameworkId } = await params;
+    const searchParams = new URL(request.url).searchParams;
+    const limit = parseBoundedInt(searchParams.get("limit"), DEFAULT_LIMIT, 1, MAX_LIMIT);
+    const offset = parseBoundedInt(searchParams.get("offset"), 0, 0, Number.MAX_SAFE_INTEGER);
+    const q = sanitizeMappingQuery(searchParams.get("q"));
 
     // Get framework details. Only publicly-exposable tiers are served:
     // exposure_status gates licensing, visibility gates curation — a
@@ -26,35 +38,61 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
       return NextResponse.json({ error: "Framework not found" }, { status: 404 });
     }
 
-    // Get all control mappings for this framework with control details
-    const { data: mappings, error: mappingsError } = await supabase
+    // Count first, then fetch one page — an offset past the end returns an
+    // empty page with the honest total instead of a PostgREST 416.
+    let countQuery = supabase
       .from("scf_control_mappings")
-      .select(
-        `
-        id,
-        control_id,
-        framework_control_id,
-        mapping_type,
-        confidence_score,
-        scf_controls (
-          id,
-          title,
-          description,
-          domain_id,
-          scf_version
-        )
-      `
-      )
-      .eq("framework_id", frameworkId)
-      .order("control_id");
+      .select("id", { count: "exact", head: true })
+      .eq("framework_id", frameworkId);
+    if (q) {
+      countQuery = countQuery.or(mappingSearchFilter(q));
+    }
+    const { count, error: countError } = await countQuery;
+    if (countError) {
+      throw countError;
+    }
+    const total = count ?? 0;
 
-    if (mappingsError) {
-      throw mappingsError;
+    let mappings: unknown[] = [];
+    if (offset < total) {
+      let pageQuery = supabase
+        .from("scf_control_mappings")
+        .select(
+          `
+          id,
+          control_id,
+          framework_control_id,
+          mapping_type,
+          confidence_score,
+          scf_controls (
+            id,
+            title,
+            description,
+            domain_id,
+            scf_version
+          )
+        `
+        )
+        .eq("framework_id", frameworkId);
+      if (q) {
+        pageQuery = pageQuery.or(mappingSearchFilter(q));
+      }
+      const { data, error: mappingsError } = await pageQuery
+        .order("control_id")
+        .range(offset, offset + limit - 1);
+
+      if (mappingsError) {
+        throw mappingsError;
+      }
+      mappings = data || [];
     }
 
     return NextResponse.json({
       framework,
-      mappings: mappings || [],
+      mappings,
+      total,
+      limit,
+      offset,
     });
   } catch (error) {
     log.error("frameworks.fetch_details_failed", {

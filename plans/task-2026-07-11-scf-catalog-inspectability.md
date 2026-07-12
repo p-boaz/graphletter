@@ -4,7 +4,7 @@
 
 - Date: 2026-07-11
 - Owner: agent (Claude Code), reviewed by Peter
-- Status: Draft
+- Status: Done (implemented 2026-07-11; archive after merge)
 - Branch: feat/scf-catalog-inspectability
 - Related issue/PR: roadmap `plans/scf-catalog-roadmap.md` stage 5; builds on PRs #51/#52
 
@@ -19,11 +19,11 @@ in the sandbox.
 
 ## Context Files
 
-- [ ] `app/frameworks/[id]/page.tsx` — server-side pagination (`?page=`), mapping search (`?q=`), "Showing X–Y of Z" range, prev/next links; visibility/exposure gating to match the API (direct DB query is currently ungated); hardcoded "Active" badge replaced by tier badge (Supported/Preview)
-- [ ] `app/api/scf/frameworks/[id]/route.ts` — mappings paginated (`?limit=` default 50 max 200, `?offset=`), `?q=` filter, response gains `total`/`limit`/`offset` (mappings array shape unchanged)
-- [ ] `playwright/helpers/selectors.ts` — testids for pagination controls, range label, search input, tier badge
-- [ ] `playwright/tests/public-pages.spec.ts` — detail-page assertions: range label honest, page-through works, search narrows, deep page loads
-- [ ] `lib/frameworks/format-version.ts` — read-only reference
+- [x] `app/frameworks/[id]/page.tsx` — server-side pagination (`?page=`), mapping search (`?q=`), "Showing X–Y of Z" range, prev/next links; visibility/exposure gating to match the API (direct DB query is currently ungated); hardcoded "Active" badge replaced by tier badge (Supported/Preview)
+- [x] `app/api/scf/frameworks/[id]/route.ts` — mappings paginated (`?limit=` default 50 max 200, `?offset=`), `?q=` filter, response gains `total`/`limit`/`offset` (mappings array shape unchanged)
+- [x] `playwright/helpers/selectors.ts` — testids for pagination controls, range label, search input, tier badge
+- [x] `playwright/tests/public-pages.spec.ts` — detail-page assertions: range label honest, page-through works, search narrows, deep page loads
+- [x] `lib/frameworks/format-version.ts` — read-only reference
 
 ## Constraints
 
@@ -83,27 +83,49 @@ in the sandbox.
 6. Live proof post-merge: SOC 2 detail page in prod — page through, search,
    verify range totals match `total_mappings`.
 
+## Sandbox proof (2026-07-11, local stack with 249-framework catalog)
+
+Flipped `usa-federal-gsa-fedramp-5-mod` (US FedRAMP R5 moderate, 711
+mappings — a stage-7 cohort candidate) to `exposure_status='public'` in the
+sandbox DB, then reverted after proof:
+
+- Detail page rendered with **Preview** tier badge and "Showing 1–24 of 711"
+  — 24 mappings loaded, never the full set.
+- API detail: `limit=999` clamped to 200; `?q=AC-2` narrowed to 28/711 with
+  every row matching; `offset=99999` returned an empty page with the honest
+  total (no PostgREST 416).
+- Appeared in `?scope=catalog` list (67 rows) while default scope stayed 66.
+- A still-non-public preview framework: API 404, page renders the 404
+  boundary (dev server streams HTTP 200 for the not-found boundary — the
+  production build returns a real 404 status; verify post-merge).
+- Playwright `framework detail: mappings paginate honestly and search
+narrows` green against SOC 2 (1,478 mappings): range labels, page 2
+  distinct, search narrowing, out-of-range empty state.
+- New local-only ignore pattern in `playwright/helpers/observability.ts`:
+  the local stack's plain-http Supabase URL violates the https-only CSP —
+  environment artifact, scoped to `127.0.0.1:54321`.
+
 ## Test Plan
 
-- [ ] Playwright: SOC 2 range label shows 24-per-page and total 1,478; page 2 loads distinct mappings; `?q=` narrows results and range label updates
-- [ ] Playwright: out-of-range page renders empty state with honest total (no 500)
-- [ ] API: `limit` clamped to 200; `total` equals `total_mappings`; `q` filter returns subset
-- [ ] Sandbox: public-flipped preview framework renders paginated detail with Preview badge; non-public preview 404s on page AND API
-- [ ] All existing gates green (lint, typecheck, test:scf, test:integration, manifest:check)
+- [x] Playwright: SOC 2 range label shows 24-per-page and total 1,478; page 2 loads distinct mappings; `?q=` narrows results and range label updates
+- [x] Playwright: out-of-range page renders empty state with honest total (no 500)
+- [x] API: `limit` clamped to 200; `total` equals `total_mappings`; `q` filter returns subset
+- [x] Sandbox: public-flipped preview framework renders paginated detail with Preview badge; non-public preview 404s on page AND API
+- [x] All existing gates green (lint, typecheck, test:scf, test:integration, manifest:check)
 
 ## Acceptance Criteria
 
-- [ ] No framework detail response or page render ever loads more than one page of mappings
-- [ ] Range/total displayed is exact for every framework, matching `total_mappings`
-- [ ] Page and API agree on gating for all four tier×exposure combinations
-- [ ] Search works server-side on both surfaces
-- [ ] Sandbox preview-inspection proof recorded in this spec
+- [x] No framework detail response or page render ever loads more than one page of mappings
+- [x] Range/total displayed is exact for every framework, matching `total_mappings`
+- [x] Page and API agree on gating for all four tier×exposure combinations
+- [x] Search works server-side on both surfaces
+- [x] Sandbox preview-inspection proof recorded in this spec
 
 ## Approval Gate
 
-- [ ] Goal is clear
-- [ ] Context files listed
-- [ ] Constraints explicit
-- [ ] Test plan defined
-- [ ] Acceptance criteria measurable
-- [ ] Human approved
+- [x] Goal is clear
+- [x] Context files listed
+- [x] Constraints explicit
+- [x] Test plan defined
+- [x] Acceptance criteria measurable
+- [x] Human approved

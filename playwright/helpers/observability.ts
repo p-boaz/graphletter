@@ -25,6 +25,9 @@ const IGNORABLE_REQUEST_PATTERNS = [
   // Vercel Analytics — blocked by CSP in local dev, generates a spurious
   // csp failed-request entry that is not a test concern.
   /va\.vercel-scripts\.com/i,
+  // Local Supabase stack (http://127.0.0.1:54321) blocked by the https-only
+  // CSP — local-stack runs only; prod project URL is https.
+  /127\.0\.0\.1:54321/i,
 ];
 const IGNORABLE_CONSOLE_ERROR_PATTERNS = [
   /Progress EventSource error/i,
@@ -32,6 +35,10 @@ const IGNORABLE_CONSOLE_ERROR_PATTERNS = [
   // Vercel Analytics script is blocked by the app's CSP in local dev — not
   // a test concern; ignore the resulting console error and failed request.
   /va\.vercel-scripts\.com/i,
+  // Local Supabase stack is plain http://127.0.0.1:54321, which the app's
+  // https-only connect-src CSP blocks. Only occurs in local-stack runs (the
+  // real project URL is https and passes CSP) — not a test concern.
+  /127\.0\.0\.1:54321\/auth\/v1/i,
   // supabase auth-js getUser() aborted by a test navigation while in flight
   // (e.g. login lands on /dashboard, the spec immediately navigates away).
   // The matching request shows up as net::ERR_ABORTED, which is also ignored.
