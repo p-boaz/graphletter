@@ -32,7 +32,9 @@
     "qa:user:ensure": "node --import tsx scripts/qa-user-ensure.ts",
     "verify:scf-extraction": "node --import tsx scripts/verify-scf-extraction.ts",
     "verify:sheetjs-provenance": "node scripts/verify-sheetjs-provenance.js",
-    "prepare": "husky"
+    "prepare": "husky",
+    "manifest:generate": "node --import tsx scripts/generate-framework-manifest.ts",
+    "manifest:check": "node --import tsx scripts/generate-framework-manifest.ts --check"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "2.0.56",

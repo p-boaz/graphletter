@@ -19,7 +19,7 @@ export interface ControlMapping {
   mappingType: "direct" | "partial" | "derived";
 }
 
-interface FrameworkColumnConfig {
+export interface FrameworkColumnConfig {
   columnIndex: number;
   frameworkName: string;
   frameworkVersion?: string;
@@ -36,7 +36,8 @@ interface FrameworkColumnConfig {
 // workbook. Regenerate against the new controls sheet on every SCF version
 // bump — indices shift when upstream inserts columns. expectedHeader makes a
 // stale map a hard failure instead of silently mislabeled mappings.
-const FRAMEWORK_COLUMNS: FrameworkColumnConfig[] = [
+// Exported for the framework-manifest consistency gate (tests/framework-manifest.test.ts).
+export const FRAMEWORK_COLUMNS: FrameworkColumnConfig[] = [
   {
     columnIndex: 34,
     frameworkName: "SOC 2",
