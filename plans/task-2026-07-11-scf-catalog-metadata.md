@@ -120,6 +120,8 @@ becomes a metadata flip, not a parser change.
 ## Commit log
 
 - `a1ad78e` — pipeline + schema (commit 1 of the sequence in Constraints)
+- `d4f9446` — visibility-filtered APIs + supported-only denominators (commit 2)
+- tests: writer scope (66 supported / 249 catalog vs real controls.csv), family bucket stability, exposure defaults (commit 3)
 
 ## Test Plan
 
