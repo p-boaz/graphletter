@@ -197,8 +197,8 @@ test("validateOverrides rejects unknown keys, bad enums, and excluded-without-re
   const valid = new Set(["known"]);
   const errors = validateOverrides(
     {
-      // @ts-expect-error deliberately invalid kind to exercise validation
       known: {
+        // @ts-expect-error deliberately invalid kind to exercise validation
         kind: "bogus",
         visibility: "excluded",
         exposureStatus: "non-public",

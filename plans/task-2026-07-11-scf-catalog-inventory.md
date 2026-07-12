@@ -118,6 +118,9 @@ a completeness invariant, and consistency-checked against the parser's
 - [x] Gate: freshness — regeneration is byte-identical to the committed manifest
 - [x] `pnpm test:scf` green (parser behavior unchanged)
 - [x] `pnpm lint` + `pnpm typecheck` clean
+- [x] Post-commit fix: pre-commit prettier reformat displaced a
+      `@ts-expect-error` in `tests/framework-manifest.test.ts`; moved inline,
+      all gates re-verified green
 
 ## Acceptance Criteria
 
