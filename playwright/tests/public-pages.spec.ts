@@ -155,6 +155,50 @@ test("framework detail: mappings paginate honestly and search narrows", async ({
   assert_no_browser_failures(report);
 });
 
+test("stage-7 cohort: promoted frameworks are listed and badged Supported", async ({
+  page,
+}, testInfo) => {
+  test.setTimeout(60_000);
+
+  const observer = inspect_console_errors(page);
+  let report = observer.getReport();
+
+  try {
+    // First preview → supported promotion (plans/task-2026-07-11-scf-cohort-1-promotion.md):
+    // the FedRAMP ×4 / GovRAMP ×6 / NIST-profile ×5 cohort must surface in the
+    // public catalog as full supported-tier members, not previews.
+    await open_local_app(page, "/frameworks");
+    const searchInput = page.getByTestId(selectors.public.frameworkSearchInput);
+    const cardLinks = page.getByTestId(selectors.public.frameworkCardLink);
+    const cardTitles = page.getByTestId(selectors.public.frameworkCardTitle);
+
+    await searchInput.fill("FedRAMP");
+    await expect(cardTitles.first()).toContainText("FedRAMP");
+    expect(await cardLinks.count()).toBeGreaterThanOrEqual(4);
+
+    await cardLinks.first().click();
+    await expect(page).toHaveURL(/\/frameworks\/[^/]+$/, { timeout: 20_000 });
+    // Exactly "Supported" — a "Preview" badge here means the promotion did
+    // not reach the serving path.
+    await expect(page.getByTestId(selectors.public.frameworkTierBadge)).toHaveText("Supported");
+    await expect(page.getByTestId(selectors.public.frameworkMappingsRange)).toContainText(
+      /Showing 1–\d+ of \d+/
+    );
+
+    await open_local_app(page, "/frameworks");
+    await searchInput.fill("GovRAMP");
+    await expect(cardTitles.first()).toContainText("GovRAMP");
+    expect(await cardLinks.count()).toBeGreaterThanOrEqual(6);
+  } finally {
+    observer.stop();
+    report = observer.getReport();
+    await trace_failure(testInfo, report);
+    await take_snapshot(page, testInfo, "stage-7-cohort");
+  }
+
+  assert_no_browser_failures(report);
+});
+
 test("public pages: meta-description framework count stays truthful", async ({ page }) => {
   // Truth line (plans/task-2026-07-11-framework-count-truth-line.md): the
   // description's "60+" is a durable floor for MAPPED_FRAMEWORK_COUNT; the

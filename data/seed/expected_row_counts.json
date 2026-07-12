@@ -1,13 +1,13 @@
 {
-  "capturedAt": "2026-07-10T20:49:14.181Z",
+  "capturedAt": "2026-07-12T04:56:12.332Z",
   "scfVersion": "2026.2",
   "tables": {
     "scf_principles": 34,
     "scf_domains": 34,
     "scf_authoritative_sources": 252,
-    "scf_frameworks": 66,
+    "scf_frameworks": 81,
     "scf_controls": 1534,
-    "scf_control_mappings": 25736,
+    "scf_control_mappings": 32646,
     "scf_risks": 39,
     "scf_threats": 42,
     "scf_maturity_levels": 1533,
