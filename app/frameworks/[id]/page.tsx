@@ -95,7 +95,12 @@ export default async function FrameworkDetailPage({
   if (q) {
     countQuery = countQuery.or(mappingSearchFilter(q));
   }
-  const { count } = await countQuery;
+  const { count, error: countError } = await countQuery;
+  if (countError) {
+    // Fail visibly: rendering "No mappings" on a query error would present a
+    // false total on a page whose whole point is honest ranges.
+    throw new Error(`Failed to count framework mappings: ${countError.message}`);
+  }
   const total = count ?? 0;
 
   let mappings: MappingRecord[] = [];
@@ -121,9 +126,15 @@ export default async function FrameworkDetailPage({
     if (q) {
       pageQuery = pageQuery.or(mappingSearchFilter(q));
     }
-    const { data } = await pageQuery
+    // Secondary order on id: control_id repeats within a framework; ties
+    // without a deterministic tie-break can shuffle rows between requests.
+    const { data, error: pageError } = await pageQuery
       .order("control_id")
+      .order("id")
       .range(offset, offset + MAPPINGS_PAGE_SIZE - 1);
+    if (pageError) {
+      throw new Error(`Failed to load framework mappings: ${pageError.message}`);
+    }
     mappings = (data ?? []) as MappingRecord[];
   }
 

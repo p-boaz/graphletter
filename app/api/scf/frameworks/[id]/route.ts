@@ -9,6 +9,11 @@ import { createLogger } from "@/lib/logger";
 
 const log = createLogger("api/scf/frameworks");
 
+// Responses are intentionally bounded (stage-5 acceptance criterion: no
+// framework detail response ever loads the complete mapping set). This is a
+// deliberate semantic change from the pre-pagination behavior; the route has
+// no internal consumers (verified 2026-07-11) — external callers page via
+// limit/offset and read `total`.
 const DEFAULT_LIMIT = 50;
 const MAX_LIMIT = 200;
 
@@ -77,8 +82,12 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
       if (q) {
         pageQuery = pageQuery.or(mappingSearchFilter(q));
       }
+      // Secondary order on id: control_id repeats within a framework, and
+      // ties without a deterministic tie-break can shuffle rows between
+      // requests — duplicating or dropping mappings across pages.
       const { data, error: mappingsError } = await pageQuery
         .order("control_id")
+        .order("id")
         .range(offset, offset + limit - 1);
 
       if (mappingsError) {

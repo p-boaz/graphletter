@@ -39,8 +39,11 @@ in the sandbox.
   `control_id`) server-side; no client-side full-list filtering.
 - Invalid `?page`/`?q` degrade gracefully (clamp/ignore, never 500).
   Out-of-range page shows the empty state with the honest total.
-- API `mappings` array shape unchanged for backward compatibility; new fields
-  are additive.
+- API `mappings` array shape unchanged; `total`/`limit`/`offset` are new
+  fields. **The bounded default (50/page) is a deliberate semantic change**
+  from the old return-everything behavior — required by the acceptance
+  criterion below and safe because the route has zero internal consumers
+  (verified by grep 2026-07-11; the detail page queries the DB directly).
 - Production behavior for the current 66 frameworks changes only in that >24
   mappings now page instead of truncating at 20 — an improvement to the same
   surface, no copy/count changes elsewhere.
@@ -104,6 +107,19 @@ narrows` green against SOC 2 (1,478 mappings): range labels, page 2
 - New local-only ignore pattern in `playwright/helpers/observability.ts`:
   the local stack's plain-http Supabase URL violates the https-only CSP —
   environment artifact, scoped to `127.0.0.1:54321`.
+
+## PR #53 review fixes (Codex, 2026-07-11)
+
+- Ordering made deterministic: `.order("control_id").order("id")` on both
+  the API and page queries — `control_id` repeats within a framework, and
+  unbroken ties can shuffle rows between requests (duplicate/dropped rows
+  across pages). Proven: 3 pages × 2 identical runs → 600 unique ids.
+- Page-side count/page query errors now throw (error boundary) instead of
+  silently rendering "No mappings" — a false total on a page whose point is
+  honest ranges.
+- Bounded-default finding resolved as intentional-and-documented (see
+  Constraints): zero consumers exist, and unbounded responses are exactly
+  what stage 5 removes.
 
 ## Test Plan
 
