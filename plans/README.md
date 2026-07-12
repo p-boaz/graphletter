@@ -9,6 +9,7 @@ index, not a second backlog.
 | Plan                                       | Status                    |
 | ------------------------------------------ | ------------------------- |
 | `task-2026-06-13-backlog-hygiene.md`       | Done; archive after merge |
+| `task-2026-07-11-scf-catalog-metadata.md`  | Draft — awaiting approval |
 | `task-2026-07-11-scf-catalog-inventory.md` | Done; archive after merge |
 
 ## Roadmaps
