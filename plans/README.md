@@ -6,10 +6,11 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                       | Status                    |
-| ------------------------------------------ | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md`       | Done; archive after merge |
-| `task-2026-07-11-scf-catalog-inventory.md` | Done; archive after merge |
+| Plan                                            | Status                    |
+| ----------------------------------------------- | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md`            | Done; archive after merge |
+| `task-2026-07-11-scf-catalog-inspectability.md` | Draft — awaiting approval |
+| `task-2026-07-11-scf-catalog-inventory.md`      | Done; archive after merge |
 
 ## Roadmaps
 
