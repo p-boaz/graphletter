@@ -55,5 +55,6 @@ is not itself a spec and holds no implementation detail.
 - [x] Stages 1–2: merged 2026-07-11 (PR #51; spec archived) — 252 mapping columns inventoried, 0 unresolved, gates in CI
 - [x] Stages 3–4: merged 2026-07-11 (PR #52; spec archived) — manifest-driven import, catalog metadata schema, visibility-filtered APIs; prod migration applied + verified; sandbox rehearsal green (249 fw / 69,791 mappings / 17s seed)
 - [x] Stage 5: merged 2026-07-11 (PR #53; spec archived) — detail pagination + mapping search + tier coherence; preview inspectability sandbox-proven (FedRAMP mod, 711 mappings, one page loaded)
+- [ ] Stage 6: review prepared 2026-07-11 — `docs/FRAMEWORK_EXPOSURE_REVIEW.md` covers all 183 preview frameworks (176 EXPOSE, 2 pending manual check, 4 CAUTION, 1 NON-PUBLIC); awaiting disposition decisions; stage 7 cohort fully cleared
 - [ ] Stage 7: not yet specced
 - [ ] Stage 8: not yet specced
