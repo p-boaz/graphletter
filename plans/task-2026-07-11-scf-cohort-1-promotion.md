@@ -127,6 +127,47 @@ openly downloadable baselines whose identifiers are public-domain citations.
 9. Record rehearsal results in this spec; commit sequence (≤15 files each);
    push; open PR.
 
+## Sandbox rehearsal results (2026-07-11, local stack)
+
+Full reseed at default `supported` scope after `supabase db reset` (all
+migrations), on the branch at commit `1d9d6d3`:
+
+| Measurement                       | Result                                          | Stage-4 threshold                   | Verdict |
+| --------------------------------- | ----------------------------------------------- | ----------------------------------- | ------- |
+| Frameworks imported               | 81 (all supported; 15 cohort members present)   | must equal manifest supported count | ✅      |
+| Mapping rows                      | 32,646 — exact match to hand-derived prediction | ±1% of estimate                     | ✅      |
+| Seed duration (full pipeline)     | 15.5s wall                                      | < 120s                              | ✅      |
+| `scf_control_mappings` size       | 7 MB                                            | < 500 MB                            | ✅      |
+| Whole DB size after seed          | 42 MB                                           | < 2 GB                              | ✅      |
+| `framework_crosswalk` rows        | 2,729,356 (was 1,698,008 at 66 fw); 0 leaks     | 0 leaks, refresh completes          | ✅      |
+| Crosswalk refresh duration        | 41.5s (plain, locking refresh — see ceremony)   | completes                           | ✅      |
+| Supported-frameworks SQL query    | 1.0 ms                                          | < 50 ms                             | ✅      |
+| Per-cohort DB mapping rows        | all 15 exact matches to hand-counted fixtures   | exact                               | ✅      |
+| `pnpm seed:verify` (re-baselined) | 13 tables within ±1%                            | green                               | ✅      |
+
+Old-baseline `seed:verify` failed on exactly `scf_frameworks` (66→81) and
+`scf_control_mappings` (25,736→32,646) and nothing else — a clean
+demonstration that the drift guard sees precisely this change.
+
+Live API (dev server on the seeded stack): `/api/scf/frameworks` → 81 rows,
+cohort served with `visibility: "supported"` + family/kind metadata;
+`/api/scf/stats` → 81 frameworks / 32,646 mappings; FedRAMP High detail:
+total 791, two full paginated walks byte-identical (determinism), `q=AC-2`
+narrows 791 → 31.
+
+Browser (Playwright headless, seeded stack): new stage-7 cohort spec green —
+FedRAMP search ≥4 cards, GovRAMP ≥6, cohort detail badge exactly
+"Supported", range label rendering; framework-detail pagination spec and
+meta-description truth-line spec green. The `public-pages` dogfood test
+fails identically on clean `main` against the same stack (attempt 1: dev-mode
+duplicate `primary-navigation` node on /docs; retry: the documented /try
+upload-button auth flake, memory `scf-data-pipeline`) — pre-existing,
+unrelated to this change.
+
+**Verdict: promotion is a pure metadata flip, proven end-to-end in sandbox.**
+Zero application-code changes were needed (constraint held); stage 8 can
+proceed as batched flips under a standing checklist.
+
 ## Rollback boundary
 
 - **Before merge**: close the PR; nothing has touched production.
@@ -148,29 +189,32 @@ openly downloadable baselines whose identifiers are public-domain citations.
    `PATH="/opt/homebrew/opt/libpq/bin:$PATH"`).
 2. Merge deploys the copy + manifest; then `pnpm seed:reset` (reads
    `.env.local`, typed hostname confirmation) → wipe + reseed + verify.
-3. Live proof on production: `/docs` truth line (81), `/frameworks` list shows
+3. `SELECT refresh_framework_crosswalk();` via psql — the seeder does NOT
+   refresh the materialized view. Plain (locking) refresh, ~40–60s at 81
+   frameworks: crosswalk reads block for the duration. Expect ~2.73M rows.
+4. Live proof on production: `/docs` truth line (81), `/frameworks` list shows
    cohort with "Supported" badges, one FedRAMP + one GovRAMP + one NIST detail
    page (range labels, two identical paginated API walks, search narrowing),
    `/api/scf/stats` → 81.
-4. Prod Smoke workflow green post-deploy.
+5. Prod Smoke workflow green post-deploy.
 
 ## Test Plan
 
-- [ ] `pnpm manifest:check` — byte-fresh after regeneration
-- [ ] NEW `tests/framework-cohort1-fixtures.test.ts` — hand-verified mapping triples for FedRAMP High/Low, GovRAMP Moderate/High, NIST 800-82 R3 + CSWP 39 (at minimum); plus per-column identifier-shape assertions
-- [ ] `pnpm test:scf` + `pnpm test:integration` — all green (visibility/manifest suites already derive from generated columns; family-bucket stability holds for the 15 new members — verified: NIST names bucket to NIST by name, GovRAMP/FedRAMP to Other both paths)
-- [ ] `pnpm lint` && `pnpm typecheck` — clean
-- [ ] Sandbox rehearsal measurements within stage-4 thresholds
-- [ ] `pnpm seed:verify` green against the re-baselined counts
-- [ ] Playwright `public-pages.spec.ts` — count floor + no non-public leakage
+- [x] `pnpm manifest:check` — byte-fresh after regeneration
+- [x] NEW `tests/framework-cohort1-fixtures.test.ts` — hand-verified mapping triples for FedRAMP High/Low, GovRAMP Moderate/High, NIST 800-82 R3 + CSWP 39 (at minimum); plus per-column identifier-shape assertions
+- [x] `pnpm test:scf` + `pnpm test:integration` (241/241) — all green (visibility/manifest suites already derive from generated columns; family-bucket stability holds for the 15 new members — verified: NIST names bucket to NIST by name, GovRAMP/FedRAMP to Other both paths)
+- [x] `pnpm lint` && `pnpm typecheck` — clean
+- [x] Sandbox rehearsal measurements within stage-4 thresholds (see results table)
+- [x] `pnpm seed:verify` green against the re-baselined counts
+- [x] Playwright `public-pages.spec.ts` — stage-7 cohort + pagination + truth-line specs green (dogfood test fails identically on clean main; pre-existing flake)
 
 ## Acceptance Criteria
 
-- [ ] Manifest summary: `imported: 81`; tier counts 81 supported/public, 163 preview/public, 5 preview/non-public, 3 excluded/non-public
-- [ ] `MAPPED_FRAMEWORK_COUNT === 81` with no edit to `lib/scf-parser.ts`
-- [ ] Zero diff outside: overrides, generated files, 3 copy sites, new fixture test, seed baseline, plans/docs
-- [ ] Sandbox: 81 frameworks, 32,646 mapping rows (exact), seed < 120s, crosswalk refresh completes with 0 preview leaks
-- [ ] Semantic fixtures pass and were verified against raw CSV cells, not parser output alone
+- [x] Manifest summary: `imported: 81`; tier counts 81 supported/public, 163 preview/public, 5 preview/non-public, 3 excluded/non-public
+- [x] `MAPPED_FRAMEWORK_COUNT === 81` with no edit to `lib/scf-parser.ts`
+- [x] Zero diff outside: overrides, generated files, 3 copy sites, new fixture test, seed baseline, plans/docs
+- [x] Sandbox: 81 frameworks, 32,646 mapping rows (exact), seed < 120s, crosswalk refresh completes with 0 preview leaks
+- [x] Semantic fixtures pass and were verified against raw CSV cells, not parser output alone
 - [ ] Production (post-merge): live proof walk complete, Prod Smoke green
 
 ## Approval Gate
