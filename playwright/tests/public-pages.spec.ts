@@ -90,6 +90,71 @@ test("public pages: dogfood report regressions are covered", async ({ page }, te
   assert_no_browser_failures(report);
 });
 
+test("framework detail: mappings paginate honestly and search narrows", async ({
+  page,
+}, testInfo) => {
+  test.setTimeout(60_000);
+
+  const observer = inspect_console_errors(page);
+  let report = observer.getReport();
+
+  try {
+    // SOC 2 is the largest supported framework (1,478 mappings in 2026.2) —
+    // the real test of the old first-20 cutoff this replaced.
+    await open_local_app(page, "/frameworks");
+    await page.getByTestId(selectors.public.frameworkSearchInput).fill("SOC 2");
+    const cardLink = page.getByTestId(selectors.public.frameworkCardLink).first();
+    await expect(cardLink).toBeVisible();
+    await cardLink.click();
+    await expect(page).toHaveURL(/\/frameworks\/[^/]+$/, { timeout: 20_000 });
+    const detailUrl = page.url();
+
+    const range = page.getByTestId(selectors.public.frameworkMappingsRange);
+    await expect(range).toContainText(/Showing 1–24 of \d+/);
+    const totalText = (await range.innerText()).match(/of (\d+)/)?.[1];
+    expect(Number(totalText)).toBeGreaterThan(48);
+
+    // Tier badge states the actual catalog tier, never a generic "Active".
+    await expect(page.getByTestId(selectors.public.frameworkTierBadge)).toHaveText(
+      /Supported|Preview/
+    );
+
+    // Page 2 is a distinct window onto the same total.
+    const firstCardPage1 = await page
+      .getByTestId(selectors.public.frameworkDetailMappings)
+      .locator("span")
+      .first()
+      .innerText();
+    await page.getByTestId(selectors.public.frameworkMappingsNext).click();
+    await expect(range).toContainText(new RegExp(`Showing 25–48 of ${totalText}`));
+    const firstCardPage2 = await page
+      .getByTestId(selectors.public.frameworkDetailMappings)
+      .locator("span")
+      .first()
+      .innerText();
+    expect(firstCardPage2).not.toBe(firstCardPage1);
+
+    // Server-side search narrows the range and the result set together.
+    await page.getByTestId(selectors.public.frameworkMappingSearchInput).fill("CC1");
+    await page.getByTestId(selectors.public.frameworkMappingSearchInput).press("Enter");
+    await expect(range).toContainText(/matching "CC1"/);
+    const narrowedTotal = (await range.innerText()).match(/of (\d+)/)?.[1];
+    expect(Number(narrowedTotal)).toBeLessThan(Number(totalText));
+
+    // Out-of-range page degrades to the empty state with the honest total.
+    await page.goto(`${detailUrl}?page=9999`);
+    await expect(page.getByTestId(selectors.public.frameworkMappingsRange)).toBeVisible();
+    await expect(page.getByText(/out of range/)).toBeVisible();
+  } finally {
+    observer.stop();
+    report = observer.getReport();
+    await trace_failure(testInfo, report);
+    await take_snapshot(page, testInfo, "framework-detail-pagination");
+  }
+
+  assert_no_browser_failures(report);
+});
+
 test("public pages: meta-description framework count stays truthful", async ({ page }) => {
   // Truth line (plans/task-2026-07-11-framework-count-truth-line.md): the
   // description's "60+" is a durable floor for MAPPED_FRAMEWORK_COUNT; the

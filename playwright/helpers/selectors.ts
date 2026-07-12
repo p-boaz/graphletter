@@ -90,6 +90,11 @@ export const selectors = {
     frameworkCardDescription: "framework-card-description",
     frameworkDetailHeading: "framework-detail-heading",
     frameworkDetailMappings: "framework-detail-mappings",
+    frameworkTierBadge: "framework-tier-badge",
+    frameworkMappingsRange: "framework-mappings-range",
+    frameworkMappingSearchInput: "framework-mapping-search-input",
+    frameworkMappingsPrev: "framework-mappings-prev",
+    frameworkMappingsNext: "framework-mappings-next",
   },
   inbox: {
     page: "compliance-inbox-page",
