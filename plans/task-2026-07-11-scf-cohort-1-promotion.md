@@ -74,9 +74,14 @@ openly downloadable baselines whose identifiers are public-domain citations.
   `Implements: plans/task-2026-07-11-scf-cohort-1-promotion.md`.
 - 8 GB machine: sandbox rehearsal runs serially — one local stack, no
   parallel heavy agents, no concurrent build/test fan-out.
-- **Production reseed happens only after merge**, with a fresh pg_dump backup
-  first (see Production ceremony). Shared prod/dev DB — reseed is
-  prod-affecting (memory `graphletter-prod-ops`).
+- **Production reseed runs from the approved branch BEFORE merge** (ordering
+  rationale in Production ceremony), with a fresh pg_dump backup first.
+  Shared prod/dev DB — reseed is prod-affecting (memory
+  `graphletter-prod-ops`).
+- **Destructive-reseed tripwire**: `pnpm seed:reset` TRUNCATEs with CASCADE,
+  wiping every row that FKs into `scf_*` tables. The ceremony's step 0 query
+  must show zero non-regenerable customer rows or the ceremony ABORTS — see
+  "Customer-data blast radius".
 
 ## Scope
 
@@ -187,6 +192,47 @@ proceed as batched flips under a standing checklist.
   tables — customer rows with foreign keys into the `scf_*` tables are wiped
   by `TRUNCATE … CASCADE` (see SEEDING.md, Safety).
 
+## Customer-data blast radius (verified live against prod, 2026-07-11)
+
+`pnpm seed:reset` → `TRUNCATE … RESTART IDENTITY CASCADE` recursively clears
+every table with an inbound FK to `scf_*` (scripts/wipe-scf-data.sql;
+SEEDING.md Safety). Codex review flagged this as a blocker; the live facts:
+
+- FK-dependent customer tables and their prod row counts right now:
+  `assessments` 0, `evidence` 0, `evidence_control_map` 0,
+  `compliance_drift_events` 0, `control_gap_analysis` **1,534**.
+- The 1,534 `control_gap_analysis` rows all belong to boaz@hey.com (dogfood
+  account) and are a derived artifact — the run-gap-analysis route
+  regenerates them per user on demand (delete by `user_id` + insert). No
+  external account holds any FK-dependent row.
+- Precedent: the identical ceremony ran against prod on 2026-07-10 for the
+  2026.2 upgrade.
+
+So for stage 7 the wipe destroys nothing irreplaceable, and the full-DB
+`pg_dump -Fc` taken in step 1 contains `control_gap_analysis` regardless.
+**This holds only while prod has no real user data.** Two guards:
+
+1. Ceremony step 0 re-runs the blast-radius query; any non-zero count in a
+   non-regenerable table (`assessments`, `evidence`, `evidence_control_map`,
+   `compliance_drift_events`) or any `control_gap_analysis` rows owned by a
+   non-dogfood user → **ABORT, do not reseed**.
+
+   ```sql
+   SELECT 'assessments' t, count(*) FROM assessments
+   UNION ALL SELECT 'evidence', count(*) FROM evidence
+   UNION ALL SELECT 'evidence_control_map', count(*) FROM evidence_control_map
+   UNION ALL SELECT 'compliance_drift_events', count(*) FROM compliance_drift_events;
+   SELECT u.email, count(*) FROM control_gap_analysis g
+   JOIN auth.users u ON u.id = g.user_id GROUP BY u.email;
+   ```
+
+2. **Stage 8 hard precondition**: before any further promotion, build the
+   non-destructive additive promotion path (insert missing supported
+   frameworks + their mappings; no wipe — a cohort flip never needs to touch
+   `scf_controls`). `seed:reset` then remains reserved for SCF version
+   upgrades on an empty-of-customers DB. This is recorded in Follow-ups as
+   item 3 and must land in the stage 8 spec.
+
 ## Production ceremony (operator: Peter or agent with release authority)
 
 Ordering matters: **reseed from the approved branch BEFORE merging.** The
@@ -197,9 +243,13 @@ detail pages; it also means `pnpm seed:verify` and the stage-7 Playwright
 spec are green from the moment their 81-expectations land on main. Run the
 whole ceremony in one sitting after PR approval:
 
+0. **Blast-radius check (ABORT gate)**: run the FK-dependent row-count query
+   from "Customer-data blast radius". Non-regenerable customer rows present →
+   stop; the non-destructive path (Follow-ups item 3) must be built first.
 1. `pg_dump -Fc` backup to `~/Backups/graphletter-prod-stage7-<ts>.dump`
    (convention: memory `scf-data-pipeline`; psql/pg_dump via
-   `PATH="/opt/homebrew/opt/libpq/bin:$PATH"`).
+   `PATH="/opt/homebrew/opt/libpq/bin:$PATH"`). Full-DB dump — includes the
+   `control_gap_analysis` rows the wipe will clear.
 2. From the approved branch checkout: `pnpm seed:reset` (reads `.env.local`,
    typed hostname confirmation) → wipe + reseed + verify against the
    re-baselined counts (81 / 32,646).
@@ -211,7 +261,11 @@ whole ceremony in one sitting after PR approval:
    cohort with "Supported" badges, one FedRAMP + one GovRAMP + one NIST detail
    page (range labels, two identical paginated API walks, search narrowing),
    `/api/scf/stats` → 81.
-6. Prod Smoke workflow green post-deploy.
+6. Re-run the blast-radius query and compare to step 0: the only acceptable
+   delta is `control_gap_analysis` (wiped by CASCADE). Regenerate it by
+   re-running gap analysis as the dogfood user, or restore that table from
+   the step-1 dump.
+7. Prod Smoke workflow green post-deploy.
 
 ## Test Plan
 
@@ -257,6 +311,14 @@ whole ceremony in one sitting after PR approval:
    every promotion. Stage 8 spec should have `manifest:generate` emit a tiny
    client-safe count constant that the two lib copy sites import, leaving only
    the markdown blurbs manual — and add a grep-based count-consistency gate.
+3. **[BLOCKING for stage 8] Non-destructive promotion path** (Codex review,
+   2026-07-11): cohort promotion is purely additive (new framework rows + new
+   mapping rows; `scf_controls` untouched), yet the only seeding path today is
+   `seed:reset`'s TRUNCATE CASCADE — and plain `pnpm seed` fails against a DB
+   with FK-dependent rows (NO ACTION FKs block the writer's
+   delete-by-scf-version). Build an additive promote mode (insert missing
+   supported frameworks + their mappings, verify counts, no deletes) before
+   any promotion after this one; required the moment real user data exists.
 
 ## Approval Gate
 
