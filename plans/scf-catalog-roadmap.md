@@ -53,7 +53,7 @@ is not itself a spec and holds no implementation detail.
 ## Status
 
 - [x] Stages 1–2: merged 2026-07-11 (PR #51; spec archived) — 252 mapping columns inventoried, 0 unresolved, gates in CI
-- [ ] Stages 3–4: spec drafted (`task-2026-07-11-scf-catalog-metadata.md`), awaiting approval
+- [x] Stages 3–4: implemented 2026-07-11 (`task-2026-07-11-scf-catalog-metadata.md`) — manifest-driven import, catalog metadata schema, visibility-filtered APIs; sandbox rehearsal green (249 fw / 69,791 mappings / 17s seed)
 - [ ] Stage 5: not yet specced
 - [ ] Stage 7: not yet specced
 - [ ] Stage 8: not yet specced

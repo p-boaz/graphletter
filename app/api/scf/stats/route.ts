@@ -9,7 +9,10 @@ export async function GET() {
     // Get counts for all tables
     const [controlsResult, frameworksResult, mappingsResult] = await Promise.all([
       supabase.from("scf_controls").select("id", { count: "exact", head: true }),
-      supabase.from("scf_frameworks").select("id", { count: "exact", head: true }),
+      supabase
+        .from("scf_frameworks")
+        .select("id", { count: "exact", head: true })
+        .eq("visibility", "supported"),
       supabase.from("scf_control_mappings").select("id", { count: "exact", head: true }),
     ]);
 

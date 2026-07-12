@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { FRAMEWORK_COLUMNS } from "@/lib/scf-parser";
+import { FRAMEWORK_COLUMNS, MAPPED_FRAMEWORK_COUNT } from "@/lib/scf-parser";
 import {
   buildManifest,
   countMappings,
@@ -8,7 +8,9 @@ import {
   findMappingRange,
   generate,
   joinFocalDocumentsToColumns,
+  readCommittedGeneratedColumns,
   readCommittedManifest,
+  serializeGeneratedColumns,
   serializeManifest,
   validateOverrides,
   type FocalDocumentRecord,
@@ -24,6 +26,14 @@ test("freshness gate: committed manifest is byte-identical to regeneration", () 
     readCommittedManifest(),
     serializeManifest(regenerated),
     "data/framework-manifest.json is stale — run `pnpm manifest:generate` and review the diff"
+  );
+});
+
+test("freshness gate: committed generated columns module is byte-identical to regeneration", () => {
+  assert.equal(
+    readCommittedGeneratedColumns(),
+    serializeGeneratedColumns(regenerated),
+    "lib/scf/__generated__/framework-columns.ts is stale — run `pnpm manifest:generate`"
   );
 });
 
@@ -78,30 +88,28 @@ test("completeness gate: every mapping column is resolved", () => {
   assert.equal(summary.exceptions, exceptions.length);
 });
 
-test("consistency gate: FRAMEWORK_COLUMNS and the manifest cannot drift", () => {
-  const importedEntries = regenerated.entries.filter((e) => e.currentlyImported);
+test("consistency gate: derived FRAMEWORK_COLUMNS ≡ manifest non-excluded entries", () => {
+  // The parser config is generated from the manifest, so the gate now proves
+  // the derivation is faithful: same entries, same order, same identity — and
+  // the supported subset is exactly what MAPPED_FRAMEWORK_COUNT reports.
+  const nonExcluded = regenerated.entries.filter((e) => e.visibility !== "excluded");
+  assert.equal(FRAMEWORK_COLUMNS.length, nonExcluded.length);
+
+  nonExcluded.forEach((entry, i) => {
+    const config = FRAMEWORK_COLUMNS[i];
+    assert.equal(config.catalogKey, entry.key);
+    assert.equal(config.columnIndex, entry.columnIndex);
+    assert.equal(config.expectedHeader, entry.upstreamHeader);
+    assert.equal(config.frameworkName, entry.displayName);
+    assert.equal(config.visibility, entry.visibility);
+    assert.equal(config.exposureStatus, entry.exposureStatus);
+  });
+
+  const supported = FRAMEWORK_COLUMNS.filter((c) => c.visibility === "supported");
+  assert.equal(supported.length, MAPPED_FRAMEWORK_COUNT);
   assert.equal(
-    importedEntries.length,
-    FRAMEWORK_COLUMNS.length,
-    "every parser framework must appear in the manifest exactly once"
-  );
-
-  const manifestByHeader = new Map(importedEntries.map((e) => [e.upstreamHeader, e]));
-  for (const config of FRAMEWORK_COLUMNS) {
-    const entry = manifestByHeader.get(config.expectedHeader);
-    assert.ok(entry, `FRAMEWORK_COLUMNS "${config.frameworkName}" has no manifest entry`);
-    assert.equal(
-      entry.columnIndex,
-      config.columnIndex,
-      `column index drift for "${config.frameworkName}": parser=${config.columnIndex} manifest=${entry.columnIndex}`
-    );
-    assert.equal(entry.importedName, config.frameworkName);
-  }
-
-  assert.deepEqual(
-    regenerated.exceptions.filter((e) => e.type === "imported-without-focal-doc"),
-    [],
-    "parser frameworks missing from Focal Documents"
+    regenerated.entries.filter((e) => e.currentlyImported).length,
+    MAPPED_FRAMEWORK_COUNT
   );
 });
 

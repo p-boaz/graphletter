@@ -70,6 +70,7 @@ async function resolveFrameworkFilter(
       .from("scf_frameworks")
       .select("id, framework_name")
       .eq("id", frameworkId)
+      .eq("visibility", "supported")
       .maybeSingle();
 
     if (error) throw new Error(error.message);
@@ -84,6 +85,7 @@ async function resolveFrameworkFilter(
       .from("scf_frameworks")
       .select("id, framework_name")
       .eq("framework_name", frameworkName)
+      .eq("visibility", "supported")
       .maybeSingle();
 
     if (error) throw new Error(error.message);

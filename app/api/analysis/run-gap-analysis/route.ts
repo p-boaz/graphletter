@@ -32,6 +32,7 @@ async function resolveFrameworkId(
     .from("scf_frameworks")
     .select("id")
     .eq("framework_name", frameworkName)
+    .eq("visibility", "supported")
     .maybeSingle();
 
   if (error) {
