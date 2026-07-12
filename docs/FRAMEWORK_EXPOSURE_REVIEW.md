@@ -1,7 +1,7 @@
 # Framework Mapping-Identifier Exposure Review (Catalog Roadmap Stage 6)
 
 - **Date:** 2026-07-11
-- **Status:** Awaiting disposition decisions (Peter)
+- **Status:** **Decided 2026-07-11 (Peter): expose everything except the 4 CAUTION and 1 NON-PUBLIC keeps.** 178 frameworks flipped to `public` (including SWIFT and MPA, accepted without the manual terms check); COBIT, CR-CMM, SACS-002, ISMAP, and Shared Assessments SIG remain `non-public`. Applied to `data/framework-manifest.overrides.json` the same day.
 - **Scope:** All 183 `visibility: preview` frameworks in `data/framework-manifest.json` (SCF 2026.2)
 - **Question under review:** For each framework, may Graphletter **publicly display the SCF crosswalk's mapping identifiers** (e.g., `ECC 2-1-1`, `SR 1.1`, `B-13 §3.1.2`) next to SCF controls?
 - **Decision artifact:** approving a disposition here means flipping `exposureStatus` in `data/framework-manifest.overrides.json` (see §7 Mechanics). Exposure is **not** visibility promotion — a framework can be exposure-cleared and remain `preview` (roadmap principle 4).

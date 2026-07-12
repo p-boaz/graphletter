@@ -152,11 +152,37 @@ test("writer scope 'catalog' persists the full non-excluded catalog", async () =
 
   const previews = recorder.frameworks.filter((fw) => fw.visibility === "preview");
   assert.equal(previews.length, CATALOG_FRAMEWORK_COLUMNS.length - SUPPORTED.length);
+
+  // Exposure is a per-framework licensing decision carried by the manifest
+  // (docs/FRAMEWORK_EXPOSURE_REVIEW.md), not a blanket preview default.
+  const expectedExposure = new Map(
+    CATALOG_FRAMEWORK_COLUMNS.map((c) => [c.catalogKey, c.exposureStatus])
+  );
   for (const fw of previews) {
+    assert.ok(fw.catalog_key, `framework "${fw.framework_name}" missing catalog_key`);
+    assert.equal(
+      fw.exposure_status,
+      expectedExposure.get(fw.catalog_key),
+      `preview framework "${fw.framework_name}" must persist its reviewed exposure status`
+    );
+  }
+
+  // The 2026-07-11 review keeps: these must stay non-public until their
+  // dispositions change in data/framework-manifest.overrides.json.
+  const reviewKeeps = [
+    "general-cobit-2019",
+    "general-cr-cmm-2026",
+    "general-shared-assessments-sig-2025",
+    "emea-sau-sacs-002-2022",
+    "apac-jpn-ismap",
+  ];
+  for (const key of reviewKeeps) {
+    const fw = previews.find((p) => p.catalog_key === key);
+    assert.ok(fw, `review keep "${key}" missing from persisted preview tier`);
     assert.equal(
       fw.exposure_status,
       "non-public",
-      `preview framework "${fw.framework_name}" must default non-public pending licensing review`
+      `review keep "${key}" must remain non-public per exposure review`
     );
   }
 });

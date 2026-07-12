@@ -32,7 +32,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "AICPA",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.aicpa-cima.com/resources/download/privacy-management-framework"
   },
   {
@@ -57,7 +57,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "APEC",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.apec.org/docs/default-source/publications/2017/8/apec-privacy-framework-(2015)/217_ecsg_2015-apec-privacy-framework.pdf?sfvrsn=1fe93b6b_1"
   },
   {
@@ -69,7 +69,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "BSI",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/IT-Grundschutz/BSI-Standards/BSI-Standard-200-1-Managementsysteme-fuer-Informationssicherheit/bsi-standard-200-1-managementsysteme-fuer-informationssicherheit_node.html"
   },
   {
@@ -196,7 +196,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "GovRAMP",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://govramp.org/documents/"
   },
   {
@@ -208,7 +208,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "GovRAMP",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://govramp.org/documents/"
   },
   {
@@ -220,7 +220,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "GovRAMP",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://govramp.org/documents/"
   },
   {
@@ -232,7 +232,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "GovRAMP",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://govramp.org/documents/"
   },
   {
@@ -244,7 +244,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "GovRAMP",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://govramp.org/documents/"
   },
   {
@@ -256,7 +256,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "GovRAMP",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://govramp.org/documents/"
   },
   {
@@ -268,7 +268,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "IEC",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://webstore.iec.ch/publication/64703"
   },
   {
@@ -280,7 +280,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "IEC",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://webstore.iec.ch/en/publication/62883"
   },
   {
@@ -292,7 +292,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "IEC",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://webstore.iec.ch/en/publication/7033"
   },
   {
@@ -304,7 +304,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "IEC",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://webstore.iec.ch/en/publication/33615"
   },
   {
@@ -316,7 +316,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "IEC",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://webstore.ansi.org/standards/iec/iec62443ed2019"
   },
   {
@@ -328,7 +328,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "IMO",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://wwwcdn.imo.org/localresources/en/OurWork/Facilitation/FAL%20related%20nonmandatory%20documents/MSC-FAL.1-Circ.3-Rev.3.pdf"
   },
   {
@@ -483,7 +483,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "MITRE",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://center-for-threat-informed-defense.github.io/mappings-explorer/external/nist/"
   },
   {
@@ -495,7 +495,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "MPA",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ttpn.org/wp-content/uploads/2025/08/MPA-Content-Security-Best-Practices-v5.3.1_August-7-2025_English.xlsx"
   },
   {
@@ -507,7 +507,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "NAIC",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://content.naic.org/sites/default/files/model-law-668.pdf"
   },
   {
@@ -532,7 +532,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "NIST",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://doi.org/10.6028/NIST.AI.600-1"
   },
   {
@@ -660,7 +660,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "NIST",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://csrc.nist.gov/pubs/sp/800/66/r2/final"
   },
   {
@@ -672,7 +672,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "NIST",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
   },
   {
@@ -878,7 +878,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "NIST",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://csrc.nist.gov/pubs/sp/800/172/a/r3/final"
   },
   {
@@ -927,7 +927,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "NIST",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.39.pdf"
   },
   {
@@ -939,7 +939,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "OECD",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://oecdprivacy.org/"
   },
   {
@@ -951,7 +951,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "OWASP",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://owasp.org/Top10/2025/"
   },
   {
@@ -1105,7 +1105,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "SPARTA",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://sparta.aerospace.org/countermeasures/SPARTA"
   },
   {
@@ -1117,7 +1117,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "SWIFT",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www2.swift.com/knowledgecentre/publications/cscf_dd/70.0"
   },
   {
@@ -1129,7 +1129,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "TISAX",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://portal.enx.com/en-US/TISAX/downloads/"
   },
   {
@@ -1141,7 +1141,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "UL",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.shopulstandards.com/ProductDetail.aspx?productId=UL2900-1_2_S_20231213"
   },
   {
@@ -1153,7 +1153,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "UL",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://webstore.ansi.org/standards/ul/ul2900ed2016-1660595"
   },
   {
@@ -1165,7 +1165,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "United Nations",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://unece.org/transport/documents/2021/03/standards/un-regulation-no-155-cyber-security-and-cyber-security"
   },
   {
@@ -1177,7 +1177,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "United Nations",
     "geography": "General",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://unece.org/fileadmin/DAM/trans/doc/2020/wp29/ECE-TRANS-WP29-2020-079e.pdf"
   },
   {
@@ -1189,7 +1189,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.sei.cmu.edu/library/cert-resilience-management-model-cert-rmm-version-12/"
   },
   {
@@ -1201,7 +1201,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.govinfo.gov/content/pkg/USCODE-2024-title15/pdf/USCODE-2024-title15-chap91-sec6502.pdf"
   },
   {
@@ -1251,7 +1251,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://le.fbi.gov/cjis-division/cjis-security-policy-resource-center"
   },
   {
@@ -1263,7 +1263,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://c2m2.doe.gov/"
   },
   {
@@ -1275,7 +1275,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://dowcio.war.gov/CMMC/Resources-Documentation/"
   },
   {
@@ -1287,7 +1287,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://dodcio.defense.gov/Portals/0/Documents/CMMC/AG_Level1_V2.0_FinalDraft_20211210_508.pdf"
   },
   {
@@ -1299,7 +1299,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://dowcio.war.gov/CMMC/Resources-Documentation/"
   },
   {
@@ -1311,7 +1311,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://dowcio.war.gov/CMMC/Resources-Documentation/"
   },
   {
@@ -1323,7 +1323,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.dataprivacyframework.gov/Program-Overview"
   },
   {
@@ -1335,7 +1335,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://dodcio.defense.gov/Portals/0/Documents/Library/ZT-CapabilitiesActivities.pdf"
   },
   {
@@ -1347,7 +1347,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://dodcio.defense.gov/Portals/0/Documents/Library/(U)ZT_RA_v2.0(U)_Sep22.pdf"
   },
   {
@@ -1359,7 +1359,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.acq.osd.mil/dpap/dars/dfars/html/current/252204.htm"
   },
   {
@@ -1371,7 +1371,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.federalregister.gov/documents/2021/05/17/2021-10460/improving-the-nations-cybersecurity"
   },
   {
@@ -1383,7 +1383,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ftc.gov/system/files/ftc_gov/pdf/fcra-may2023-508.pdf"
   },
   {
@@ -1395,7 +1395,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.acquisition.gov/far/52.204-21"
   },
   {
@@ -1407,7 +1407,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.acquisition.gov/far/52.204-25"
   },
   {
@@ -1419,7 +1419,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.acquisition.gov/far/52.204-27"
   },
   {
@@ -1431,7 +1431,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.federalregister.gov/documents/2023/12/11/2023-27102/cyber-risk-management#sectno-citation-609.905"
   },
   {
@@ -1443,7 +1443,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.govinfo.gov/content/pkg/CFR-2025-title21-vol1/pdf/CFR-2025-title21-vol1-part11.pdf"
   },
   {
@@ -1455,7 +1455,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.fedramp.gov/"
   },
   {
@@ -1467,7 +1467,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.fedramp.gov/"
   },
   {
@@ -1479,7 +1479,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.fedramp.gov/"
   },
   {
@@ -1491,7 +1491,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.fedramp.gov/"
   },
   {
@@ -1503,7 +1503,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ecfr.gov/current/title-33/chapter-I/subchapter-H/part-101/subpart-F"
   },
   {
@@ -1515,7 +1515,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.govinfo.gov/content/pkg/USCODE-2024-title20/pdf/USCODE-2024-title20-chap31-subchapIII-part4.pdf"
   },
   {
@@ -1527,7 +1527,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.finra.org/rules-guidance/key-topics/cybersecurity#rules"
   },
   {
@@ -1539,7 +1539,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.fpc.gov/resources/fipps/"
   },
   {
@@ -1551,7 +1551,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ftc.gov/legal-library/browse/statutes/federal-trade-commission-act"
   },
   {
@@ -1563,7 +1563,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-C/part-314"
   },
   {
@@ -1575,7 +1575,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.govinfo.gov/content/pkg/CFR-2016-title45-vol1/pdf/CFR-2016-title45-vol1-sec155-260.pdf"
   },
   {
@@ -1612,7 +1612,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.irs.gov/pub/irs-pdf/p1075.pdf"
   },
   {
@@ -1624,7 +1624,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.cms.gov/CCIIO/Resources/Regulations-and-Guidance/Downloads/3-MARS-E-v2-0-Catalog-of-Security-and-Privacy-Controls-11102015.pdf"
   },
   {
@@ -1636,7 +1636,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.nerc.com/pa/Stand/Reliability%20Standards%20Complete%20Set/RSCompleteSet.pdf"
   },
   {
@@ -1648,7 +1648,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ecfr.gov/current/title-32/subtitle-A/chapter-I/subchapter-D/part-117"
   },
   {
@@ -1660,7 +1660,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.secnav.navy.mil/doni/Directives/09000%20General%20Ship%20Design%20and%20Support/09-200%20Propulsion%20Plants%20Support/N9210.3%20(Unclas%20Portion).pdf"
   },
   {
@@ -1672,7 +1672,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.sec.gov/files/rules/final/2023/33-11216.pdf"
   },
   {
@@ -1696,7 +1696,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Federal",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.tsa.gov/sites/default/files/sd-1580-82-2022-01.pdf"
   },
   {
@@ -1708,7 +1708,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.akleg.gov/basis/get_documents.asp?session=29&docid=65934"
   },
   {
@@ -1720,7 +1720,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180SB327"
   },
   {
@@ -1745,7 +1745,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=200120020SB1386"
   },
   {
@@ -1757,7 +1757,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://leg.colorado.gov/sites/default/files/2021a_190_signed.pdf"
   },
   {
@@ -1769,7 +1769,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ilga.gov/Legislation/ILCS/Articles?ActID=3004&ChapterID=57"
   },
   {
@@ -1781,7 +1781,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ilga.gov/Legislation/ILCS/Articles?ActID=3174&ChapterID=2"
   },
   {
@@ -1793,7 +1793,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ilga.gov/Legislation/ILCS/Articles?ActID=2702&ChapterID=67"
   },
   {
@@ -1805,7 +1805,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.mass.gov/doc/201-cmr-17-standards-for-the-protection-of-personal-information-of-residents-of-the-commonwealth/download"
   },
   {
@@ -1817,7 +1817,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.leg.state.nv.us/nrs/nrs-603a.html"
   },
   {
@@ -1829,7 +1829,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.gaming.nv.gov/siteassets/content/home/features/regulation5operation.pdf"
   },
   {
@@ -1841,7 +1841,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.leg.state.nv.us/App/NELIS/REL/80th2019/Bill/6365/Text"
   },
   {
@@ -1853,7 +1853,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.dfs.ny.gov/system/files/documents/2023/10/rf_fs_2amend23NYCRR500_text_20231101.pdf"
   },
   {
@@ -1865,7 +1865,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://legislation.nysenate.gov/pdf/bills/2019/s5575b"
   },
   {
@@ -1877,7 +1877,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.oregonlegislature.gov/bills_laws/ors/ors646a.html"
   },
   {
@@ -1889,7 +1889,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://olis.oregonlegislature.gov/liz/2023R1/Downloads/MeasureDocument/SB619/Enrolled"
   },
   {
@@ -1901,7 +1901,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.capitol.tn.gov/Bills/113/Amend/HA0348.pdf"
   },
   {
@@ -1913,7 +1913,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://statutes.capitol.texas.gov/?tab=1&code=BC&chapter=BC.521&artSec="
   },
   {
@@ -1925,7 +1925,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://capitol.texas.gov/tlodocs/88R/billtext/html/HB00004F.htm"
   },
   {
@@ -1937,7 +1937,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://dir.texas.gov/sites/default/files/2025-09/Security%20Control%20Standards%20Catalog_v2.2.pdf"
   },
   {
@@ -1949,7 +1949,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://capitol.texas.gov/tlodocs/86R/billtext/html/SB00820F.htm"
   },
   {
@@ -1961,7 +1961,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://capitol.texas.gov/tlodocs/89R/billtext/html/SB02610S.htm"
   },
   {
@@ -1973,7 +1973,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://dir.texas.gov/resource-library-item/tx-ramp-control-baselines-20"
   },
   {
@@ -1985,7 +1985,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://dir.texas.gov/resource-library-item/tx-ramp-control-baselines-20"
   },
   {
@@ -1997,7 +1997,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://law.lis.virginia.gov/vacodefull/title59.1/chapter53/"
   },
   {
@@ -2009,7 +2009,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "State",
     "geography": "US",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://legislature.vermont.gov/Documents/2018/Docs/ACTS/ACT171/ACT171%20As%20Enacted.pdf"
   },
   {
@@ -2021,7 +2021,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "EU",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R1689"
   },
   {
@@ -2033,7 +2033,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "EU",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=OJ:L_202402847"
   },
   {
@@ -2045,7 +2045,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "EU",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847#anx_I"
   },
   {
@@ -2057,7 +2057,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "EU",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.eba.europa.eu/regulation-and-policy/internal-governance/guidelines-on-ict-and-security-risk-management"
   },
   {
@@ -2069,7 +2069,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "EU",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022R2554&from=EN"
   },
   {
@@ -2094,7 +2094,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "EU",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.enisa.europa.eu/topics/awareness-and-cyber-hygiene/network-and-information-systems-directive-2-nis2"
   },
   {
@@ -2106,7 +2106,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "EU",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=intcom:C%282024%297151"
   },
   {
@@ -2118,7 +2118,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "EU",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32015L2366"
   },
   {
@@ -2130,7 +2130,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Austria",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=bundesnormen&Gesetzesnummer=10001597"
   },
   {
@@ -2142,7 +2142,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Belgium",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.dataprotectionauthority.be/publications/act-of-30-july-2018.pdf"
   },
   {
@@ -2154,7 +2154,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Germany",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.gesetze-im-internet.de/englisch_bdsg/englisch_bdsg.pdf"
   },
   {
@@ -2179,7 +2179,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Germany",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/CloudComputing/ComplianceControlsCatalogue-Cloud_Computing-C5.pdf?__blob=publicationFile&v=3"
   },
   {
@@ -2191,7 +2191,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Greece",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.dpa.gr/sites/default/files/2019-10/law_2472-97-nov2013-en.pdf"
   },
   {
@@ -2203,7 +2203,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Hungary",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://njt.jog.gov.hu/jogszabaly/2011-112-00-00"
   },
   {
@@ -2215,7 +2215,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Ireland",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://revisedacts.lawreform.ie/eli/2018/act/7/revised/en/html"
   },
   {
@@ -2227,7 +2227,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Israel",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.gov.il/BlobFolder/generalpage/cyber_security_methodology_2/en/ICDM%20V2.pdf"
   },
   {
@@ -2239,7 +2239,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Israel",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.trustiz.ai/wp-content/uploads/2025/09/English-Translation-of-the-Israeli-Privacy-Protection-Law-5741%E2%80%931981-as-amended-to-August-14-2025-2.pdf"
   },
   {
@@ -2251,7 +2251,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Italy",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2003-06-30;196"
   },
   {
@@ -2263,7 +2263,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Kenya",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "http://kenyalaw.org/kl/fileadmin/pdfdownloads/Acts/2019/TheDataProtectionAct__No24of2019.pdf"
   },
   {
@@ -2275,7 +2275,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Nigeria",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://nitda.gov.ng/wp-content/uploads/2020/11/NigeriaDataProtectionRegulation11.pdf"
   },
   {
@@ -2287,7 +2287,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Norway",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://lovdata.no/dokument/NLE/lov/2018-06-15-38"
   },
   {
@@ -2299,7 +2299,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Poland",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "http://www.giodo.gov.pl/144/id_art/171/j/en/"
   },
   {
@@ -2311,7 +2311,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Qatar",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://compliance.qcert.org/sites/default/files/library/2020-11/Law%20No.%20%2813%29%20of%202016%20%20on%20Protecting%20Personal%20Data%20Privacy%20-%20English.pdf"
   },
   {
@@ -2323,7 +2323,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Russia",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://normativ.kontur.ru/document?documentId=501173&moduleId=1"
   },
   {
@@ -2335,7 +2335,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Saudi Arabia",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.nca.gov.sa/en/legislation?item=194&slug=controls-list"
   },
   {
@@ -2347,7 +2347,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Saudi Arabia",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://cdn.nca.gov.sa/api/files/public/upload/207a41a9-febf-45ea-9517-5519e863028a_CGIoT-.pdf"
   },
   {
@@ -2359,7 +2359,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Saudi Arabia",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://nca.gov.sa/ar/ecc-en.pdf"
   },
   {
@@ -2371,7 +2371,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Saudi Arabia",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://nca.gov.sa/otcc_en.pdf"
   },
   {
@@ -2383,7 +2383,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Saudi Arabia",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://sdaia.gov.sa/en/SDAIA/about/Documents/Personal%20Data%20English%20V2-23April2023-%20Reviewed-.pdf"
   },
   {
@@ -2407,7 +2407,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Saudi Arabia",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://rulebook.sama.gov.sa/en/cyber-security-framework-2"
   },
   {
@@ -2419,7 +2419,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Serbia",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.refworld.org/legal/legislation/natlegbod/2018/en/123513"
   },
   {
@@ -2431,7 +2431,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "South Africa",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "http://www.justice.gov.za/legislation/acts/2013-004.pdf"
   },
   {
@@ -2443,7 +2443,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Spain",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2022-7191"
   },
   {
@@ -2455,7 +2455,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Spain",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ccn-cert.cni.es/es/800-guia-esquema-nacional-de-seguridad/7122-ccn-stic-825-national-security-framework-27001-certifications/file.html"
   },
   {
@@ -2467,7 +2467,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Switzerland",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.admin.ch/opc/en/classified-compilation/19920153/index.html"
   },
   {
@@ -2479,7 +2479,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Turkey",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.kvkk.gov.tr/Icerik/6649/Personal-Data-Protection-Law"
   },
   {
@@ -2491,7 +2491,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "UAE",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://u.ae/-/media/Documents-2023/National-Information-Assurance-Framework-NIAF.pdf"
   },
   {
@@ -2503,7 +2503,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "United Kingdom",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ncsc.gov.uk/files/NCSC-Cyber-Assessment-Framework-4.0.pdf"
   },
   {
@@ -2515,7 +2515,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "United Kingdom",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.caa.co.uk/data-and-publications/publications/documents/content/cap1850/"
   },
   {
@@ -2527,7 +2527,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "United Kingdom",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ncsc.gov.uk/files/cyber-essentials-requirements-for-it-infrastructure-v3-3.pdf"
   },
   {
@@ -2539,7 +2539,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "United Kingdom",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.gov.uk/government/publications/cyber-security-for-defence-suppliers-def-stan-05-138-issue-4"
   },
   {
@@ -2551,7 +2551,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "United Kingdom",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.gov.uk/government/publications/cyber-security-for-defence-suppliers-def-stan-05-138-issue-4"
   },
   {
@@ -2563,7 +2563,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "United Kingdom",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.gov.uk/government/publications/cyber-security-for-defence-suppliers-def-stan-05-138-issue-4"
   },
   {
@@ -2575,7 +2575,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "United Kingdom",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.gov.uk/government/publications/cyber-security-for-defence-suppliers-def-stan-05-138-issue-4"
   },
   {
@@ -2587,7 +2587,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "United Kingdom",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.gov.uk/government/publications/cyber-security-for-defence-suppliers-def-stan-05-138-issue-4"
   },
   {
@@ -2599,7 +2599,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "United Kingdom",
     "geography": "EMEA",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.legislation.gov.uk/ukpga/2018/12/contents"
   },
   {
@@ -2611,7 +2611,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Australia",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.cyber.gov.au/business-government/asds-cyber-security-frameworks/essential-eight/essential-eight-maturity-model-and-ism-mapping"
   },
   {
@@ -2623,7 +2623,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Australia",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.oaic.gov.au/privacy/australian-privacy-principles/australian-privacy-principles-quick-reference/"
   },
   {
@@ -2635,7 +2635,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Australia",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.cyber.gov.au/business-government/asds-cyber-security-frameworks/ism"
   },
   {
@@ -2647,7 +2647,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Australia",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.homeaffairs.gov.au/reports-and-pubs/files/code-of-practice.pdf"
   },
   {
@@ -2659,7 +2659,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Australia",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.apra.gov.au/sites/default/files/2023-07/Prudential%20Standard%20CPS%20230%20Operational%20Risk%20Management%20-%20clean.pdf"
   },
   {
@@ -2671,7 +2671,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Australia",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.apra.gov.au/sites/default/files/cps_234_july_2019_for_public_release.pdf"
   },
   {
@@ -2683,7 +2683,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "China",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://digichina.stanford.edu/work/translation-cybersecurity-law-of-the-peoples-republic-of-china-effective-june-1-2017/"
   },
   {
@@ -2695,7 +2695,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "China",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://digichina.stanford.edu/news/translation-data-security-law-peoples-republic-china"
   },
   {
@@ -2707,7 +2707,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "China",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://chinacopyrightandmedia.wordpress.com/2012/12/28/national-peoples-congress-standing-committee-decision-concerning-strengthening-network-information-protection/"
   },
   {
@@ -2719,7 +2719,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "China",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://digichina.stanford.edu/work/translation-personal-information-protection-law-of-the-peoples-republic-of-china-effective-nov-1-2021/"
   },
   {
@@ -2731,7 +2731,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Hong Kong",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.elegislation.gov.hk/hk/cap486!en-zh-Hant-HK.pdf?FROMCAPINDEX=Y"
   },
   {
@@ -2743,7 +2743,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "India",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.meity.gov.in/static/uploads/2024/06/2bf1f0e9f04e6fb4f8fef35e82c42aa5.pdf"
   },
   {
@@ -2755,7 +2755,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "India",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "http://www.wipo.int/edocs/lexdocs/laws/en/in/in098en.pdf"
   },
   {
@@ -2767,7 +2767,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "India",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.sebi.gov.in/legal/circulars/aug-2024/cybersecurity-and-cyber-resilience-framework-cscrf-for-sebi-regulated-entities-res-_85964.html"
   },
   {
@@ -2779,7 +2779,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Japan",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.ppc.go.jp/files/pdf/APPI_english.pdf"
   },
   {
@@ -2803,7 +2803,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Malaysia",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.investmalaysia.gov.my/media/3x4fsqum/personal-data-protection-act-2010.pdf"
   },
   {
@@ -2815,7 +2815,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Malaysia",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.bnm.gov.my/-/pd-rmit-nov25"
   },
   {
@@ -2827,7 +2827,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "New Zealand",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.tewhatuora.govt.nz/publications/health-information-security-framework/"
   },
   {
@@ -2839,7 +2839,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "New Zealand",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.tewhatuora.govt.nz/assets/Publications/HISO-Standards/HISO-10029-4-2023-Health-Information-Security-Framework-Guidance-for-Suppliers.pdf"
   },
   {
@@ -2851,7 +2851,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "New Zealand",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.nzism.gcsb.govt.nz/ism-document/"
   },
   {
@@ -2863,7 +2863,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "New Zealand",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.legislation.govt.nz/act/public/2020/0031/latest/LMS23223.html"
   },
   {
@@ -2875,7 +2875,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Philippines",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://privacy.gov.ph/implementing-rules-and-regulations-of-republic-act-no-10173-known-as-the-data-privacy-act-of-2012/"
   },
   {
@@ -2887,7 +2887,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Singapore",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://sso.agc.gov.sg/Act/PDPA2012"
   },
   {
@@ -2899,7 +2899,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Singapore",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.mas.gov.sg/-/media/MAS/Notices/PDF/MAS-Notice-132.pdf"
   },
   {
@@ -2911,7 +2911,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Singapore",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.mas.gov.sg/-/media/MAS/Regulations-and-Financial-Stability/Regulatory-and-Supervisory-Framework/Risk-Management/TRM-Guidelines-18-January-2021.pdf"
   },
   {
@@ -2923,7 +2923,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "South Korea",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "http://koreanlii.or.kr/w/images/0/0e/KoreanDPAct2011.pdf"
   },
   {
@@ -2935,7 +2935,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Taiwan",
     "geography": "APAC",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://law.moj.gov.tw/ENG/LawClass/LawAll.aspx?pcode=I0050021"
   },
   {
@@ -2947,7 +2947,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Argentina",
     "geography": "Americas",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.argentina.gob.ar/sites/default/files/mensaje_ndeg_147-2018_datos_personales.pdf"
   },
   {
@@ -2959,7 +2959,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Bahamas",
     "geography": "Americas",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.lexbahamas.com/Data%20Protection%202003.pdf"
   },
   {
@@ -2971,7 +2971,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Bermuda",
     "geography": "Americas",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.bma.bm/viewPDF/documents/2020-10-06-09-27-29-Insurance-Sector-Cyber-Risk-Management-Code-of-Conduct.pdf"
   },
   {
@@ -2983,7 +2983,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Brazil",
     "geography": "Americas",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.pnm.adv.br/wp-content/uploads/2018/08/Brazilian-General-Data-Protection-Law.pdf"
   },
   {
@@ -2995,7 +2995,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Canada",
     "geography": "Americas",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.osfi-bsif.gc.ca/Eng/fi-if/rg-ro/gdn-ort/gl-ld/Pages/b13-jul-let.aspx"
   },
   {
@@ -3007,7 +3007,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Canada",
     "geography": "Americas",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/technology-cyber-risk-management/technology-cyber-risk-management-self-assessment-tool"
   },
   {
@@ -3019,7 +3019,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Canada",
     "geography": "Americas",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.cyber.gc.ca/en/guidance/protecting-controlled-information-non-government-canada-systems-and-organizations-itsp10171"
   },
   {
@@ -3031,7 +3031,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Canada",
     "geography": "Americas",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "http://laws-lois.justice.gc.ca/eng/acts/p-8.6/FullText.html"
   },
   {
@@ -3043,7 +3043,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Chile",
     "geography": "Americas",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "http://www.leychile.cl/Navegar?idNorma=141599"
   },
   {
@@ -3055,7 +3055,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Colombia",
     "geography": "Americas",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=49981"
   },
   {
@@ -3067,7 +3067,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "family": "Mexico",
     "geography": "Americas",
     "visibility": "preview",
-    "exposureStatus": "non-public",
+    "exposureStatus": "public",
     "sourceUrl": "https://privacyassociation.org/media/pdf/knowledge_center/Mexico_Federal_Data_Protection_Act_July2010.pdf"
   }
 ] as CatalogFrameworkColumn[];

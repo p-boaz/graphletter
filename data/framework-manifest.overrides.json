@@ -2,269 +2,269 @@
   "americas-arg-ppd-2018": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "americas-bhs-dpa-2003": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "americas-bmu-mba-coc-2020": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Statutory-style code; BMA terms target mirroring/data feeds, not section citation; acknowledge BMA as source."
   },
   "americas-bra-lgpd-2018": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "americas-can-itsp-10-171-2025": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Canadian adaptation of NIST SP 800-171; identifiers are NIST's public-domain numbering."
   },
   "americas-can-osfi-b13-2022": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Crown copyright restricts reproducing materials, not section-number citation; OSFI prose/questionnaire content never reproduced."
   },
   "americas-can-osfi-self-assessment": {
     "kind": "standard",
     "visibility": "excluded",
     "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed.",
+    "exposureReason": "No exposure question: excluded (zero mapped controls). See docs/FRAMEWORK_EXPOSURE_REVIEW.md §6.",
     "exclusionReason": "Zero mapped controls in the SCF 2026.2 workbook.",
     "notes": "Upstream defect: Focal Documents assigns this FDI to two columns; this row (column 277, header 'Canada CSAG') has a truncated document name and zero mappings. The real OSFI Self-Assessment Guidance is keyed americas-can-osfi-self-assessment-column-279."
   },
   "americas-can-osfi-self-assessment-column-279": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Crown copyright restricts reproducing materials, not section-number citation; OSFI prose/questionnaire content never reproduced."
   },
   "americas-can-pipeda-2000": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "americas-chl-act-19628-1999": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "americas-col-law-1581-2012": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "americas-mex-fdpa-2010": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-aus-cop-sitc-2020": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): In-document CC BY 4.0 statement (© Commonwealth of Australia); CC BY attribution."
   },
   "apac-aus-essential-8-2024": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): ASD ISM is CC BY 4.0 with an OSCAL edition published for GRC tools; CC BY attribution."
   },
   "apac-aus-ism-2026-march": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): ASD ISM is CC BY 4.0 with an OSCAL edition published for GRC tools; CC BY attribution."
   },
   "apac-aus-privacy-principles-2026": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-aus-ps-cps-230-2023": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-aus-ps-cps-234-2019": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-chn-csnip-2012": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-chn-cybersecurity-law-2017": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-chn-data-security-law-2021": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-chn-pipl-2021": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-hkg-pdo-2022": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-ind-dpdpa-2023": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-ind-privacy-rules-2011": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-ind-sebi-2024": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): SEBI site policy allows free reproduction with acknowledgment; identifiers sit below that threshold; acknowledge SEBI as source."
   },
   "apac-jpn-appi-2020": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-jpn-ismap": {
     "kind": "standard",
     "visibility": "preview",
     "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureReason": "Kept non-public by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.4): portal requires IPA prior consent for republication; catalog derives from JIS/ISO copyrighted standards."
   },
   "apac-kor-pipa-2011": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-mys-bnm-rmit-2025": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Factual paragraph-ID citation of an openly published central-bank policy; strictly nominative use, no BNM emblem."
   },
   "apac-mys-pdpa-2010": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-nzl-hisf-microsmall-2023": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): HISF carries an in-document CC BY 4.0 grant; CC BY attribution."
   },
   "apac-nzl-hisf-mlhsp-2023": {
     "kind": "baseline",
     "visibility": "excluded",
     "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed.",
+    "exposureReason": "No exposure question: excluded (zero mapped controls). See docs/FRAMEWORK_EXPOSURE_REVIEW.md §6.",
     "exclusionReason": "Zero mapped controls in the SCF 2026.2 workbook."
   },
   "apac-nzl-hisf-suppliers-2023": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): HISF carries an in-document CC BY 4.0 grant; CC BY attribution."
   },
   "apac-nzl-ism-3-9": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): NZISM is CC BY 4.0 (NZGOAL); CC BY attribution."
   },
   "apac-nzl-privacy-act-2020": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-phl-dpa-2012": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-sgp-cyber-hygiene-practice-2019": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Paragraph-identifier citation of freely published MAS regulatory instruments; no MAS content reproduced."
   },
   "apac-sgp-mas-trm-2021": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Paragraph-identifier citation of freely published MAS regulatory instruments; no MAS content reproduced."
   },
   "apac-sgp-pdpa-2012": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "apac-twn-pdpa-2025": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-aut-dpa-2018": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-bel-act-30-2018": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-che-fadp-2025": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-deu-bsrit-2017": {
     "kind": "standard",
@@ -277,56 +277,56 @@
   "emea-deu-c5-2020": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): BSI C5 legal notice contains no restriction; criterion IDs published commercially by hyperscalers."
   },
   "emea-deu-fdpa-2017": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-esp-ccn-stic-825-2026": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Mapping column verified to contain only statutory ENS measure IDs from RD 311/2022 (copyright-exempt, Art. 13 TRLPI); nothing from the CCN guide reproduced."
   },
   "emea-esp-decree-311-2022": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-eu-ai-act-2024": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-eu-cyber-resilience-act-2024": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-eu-cyber-resilience-act-annex-i-2024": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "emea-eu-dora-2023": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-eu-eba-ict-srm-2025": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): EBA legal notice authorises reproduction with source acknowledgment."
   },
   "emea-eu-gdpr-2016": {
     "kind": "law",
@@ -339,218 +339,218 @@
   "emea-eu-nis2-2022": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-eu-nis2-annex-2024": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "emea-eu-psd2-2015": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-gbr-caf-4-0": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Crown copyright under Open Government Licence v3.0; OGL attribution; no certification badge use."
   },
   "emea-gbr-cap-1850-2020": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Identifiers are the OGL-licensed NCSC CAF's; CAP guidance text not reproduced (CAA is not OGL)."
   },
   "emea-gbr-cyber-essentials-requirements-3-3": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Crown copyright under Open Government Licence v3.0; OGL attribution; no certification badge use."
   },
   "emea-gbr-def-stan-05-138-2024": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Crown copyright under Open Government Licence v3.0; OGL attribution; no certification badge use."
   },
   "emea-gbr-def-stan-05-138-l0-2024": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Crown copyright under Open Government Licence v3.0; OGL attribution; no certification badge use."
   },
   "emea-gbr-def-stan-05-138-l1-2024": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Crown copyright under Open Government Licence v3.0; OGL attribution; no certification badge use."
   },
   "emea-gbr-def-stan-05-138-l2-2024": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Crown copyright under Open Government Licence v3.0; OGL attribution; no certification badge use."
   },
   "emea-gbr-def-stan-05-138-l3-2024": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Crown copyright under Open Government Licence v3.0; OGL attribution; no certification badge use."
   },
   "emea-gbr-dpa-2018": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-grc-pirppd-1997": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-hun-act-cxii-2011": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-irl-dpa-2018": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-isr-cmo-2-0": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): INCD explicitly permits free use and attributed reproduction; credit the Israel National Cyber Directorate."
   },
   "emea-isr-ppl-5741-2025": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-ita-pdpc-2018": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-ken-pda-2019": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-nga-dpr-2019": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-nor-pda-2018": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-pol-act-10-2018": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-qat-pdppl-2020": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-rus-152-fz-2025": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-sau-cgiot-2024": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): NCA documents marked TLP:White/Unclassified with no reproduction restriction; NCA publishes its own crosswalk annexes."
   },
   "emea-sau-cscc-1-2019": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): NCA documents marked TLP:White/Unclassified with no reproduction restriction; NCA publishes its own crosswalk annexes."
   },
   "emea-sau-ecc-1-2018": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): NCA documents marked TLP:White/Unclassified with no reproduction restriction; NCA publishes its own crosswalk annexes."
   },
   "emea-sau-otcc-1-2022": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): NCA documents marked TLP:White/Unclassified with no reproduction restriction; NCA publishes its own crosswalk annexes."
   },
   "emea-sau-pdpl-2023": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-sau-sacs-002-2022": {
     "kind": "standard",
     "visibility": "preview",
     "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureReason": "Kept non-public by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.4): corporate standard with Company General Use marking; site terms prohibit commercial public display without written consent."
   },
   "emea-sau-sama-csf-1-2017": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): SAMA rulebook publishes the full framework as open HTML with no reproduction restriction."
   },
   "emea-srb-act-9-2018": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-tur-lppd-2016": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "emea-uae-niaf-2023": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): NIAF and TDRA IA Regulation v1.1 openly published with no classification or reproduction notice."
   },
   "emea-zaf-popia-2013": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "general-aicpa-pmf-2020": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Same publisher posture as already-exposed AICPA SOC 2 TSC."
   },
   "general-aicpa-tsc-2017": {
     "kind": "standard",
@@ -563,14 +563,14 @@
   "general-apec-privacy-framework-2015": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): APEC reproduction-with-credit terms; no APEC logo."
   },
   "general-bsi-200-1-1-0": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Freely published BSI standard; chapter-number citations only."
   },
   "general-cis-csc-8-1": {
     "kind": "standard",
@@ -608,7 +608,7 @@
     "kind": "standard",
     "visibility": "preview",
     "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureReason": "Kept non-public by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.4): ISACA requires an annual licence for commercial products incorporating COBIT; awaiting written read from ISACA IP office."
   },
   "general-coso-2013": {
     "kind": "standard",
@@ -622,7 +622,7 @@
     "kind": "standard",
     "visibility": "preview",
     "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureReason": "Kept non-public by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.4): private-firm publisher with no published licence; awaiting publisher confirmation."
   },
   "general-csa-cmm-4-1-0": {
     "kind": "standard",
@@ -643,74 +643,74 @@
   "general-govramp": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels."
   },
   "general-govramp-core": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels."
   },
   "general-govramp-high": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels."
   },
   "general-govramp-low": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels."
   },
   "general-govramp-low-plus": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels."
   },
   "general-govramp-mod": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels."
   },
   "general-iec-62443-2-1-2024": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): IEC posture matches already-exposed ISO/IEC precedent; identifiers-only citation, no text reproduction."
   },
   "general-iec-62443-3-3-2013": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): IEC posture matches already-exposed ISO/IEC precedent; identifiers-only citation, no text reproduction."
   },
   "general-iec-62443-4-1-2018": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): IEC posture matches already-exposed ISO/IEC precedent; identifiers-only citation, no text reproduction."
   },
   "general-iec-62443-4-2-2019": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): IEC posture matches already-exposed ISO/IEC precedent; identifiers-only citation, no text reproduction."
   },
   "general-iec-tr-60601-4-5-2021": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): IEC posture matches already-exposed ISO/IEC precedent; identifiers-only citation, no text reproduction."
   },
   "general-imo-maritime-cyber-risk-management-2025": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Free-circulation IMO circular; section-number citation is not reuse of IMO Materials."
   },
   "general-iso-21434-2021": {
     "kind": "standard",
@@ -803,20 +803,20 @@
   "general-mitre-att_ck-16-1": {
     "kind": "reference",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): MITRE royalty-free commercial licence + Apache-2.0 CTID mappings; attribution line required (© The MITRE Corporation, reproduced with permission)."
   },
   "general-mpa-csbp-5-3-1": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.3): openly published for voluntary industry-wide adoption; workbook terms bot-walled — exposure accepted by decision 2026-07-11."
   },
   "general-naic-insurance-data-security-model-law-668-2017": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Freely published; section numbers also enacted as public-domain state statutes; no model-law text reproduced."
   },
   "general-nist-100-1-ai-rmf": {
     "kind": "standard",
@@ -829,8 +829,8 @@
   "general-nist-600-1-gen-ai-profile": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "general-nist-800-160-vol-2-r1": {
     "kind": "standard",
@@ -930,8 +930,8 @@
   "general-nist-800-172a-r3": {
     "kind": "reference",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "general-nist-800-207": {
     "kind": "standard",
@@ -1013,14 +1013,14 @@
   "general-nist-800-66-r2": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "general-nist-800-82-r3": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "general-nist-800-82-r3-high": {
     "kind": "baseline",
@@ -1057,8 +1057,8 @@
   "general-nist-cswp-39": {
     "kind": "reference",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "general-nist-privacy-framework-1-0": {
     "kind": "standard",
@@ -1071,14 +1071,14 @@
   "general-oecd-privacy-principles-2010": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): OECD excerpt-with-attribution permission; acknowledge OECD as source."
   },
   "general-owasp-top-10-2025": {
     "kind": "reference",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): CC BY 3.0; attribute OWASP Foundation."
   },
   "general-pci-dss-4-0-1": {
     "kind": "standard",
@@ -1164,62 +1164,62 @@
     "kind": "standard",
     "visibility": "excluded",
     "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed.",
+    "exposureReason": "No exposure question: excluded (zero mapped controls). See docs/FRAMEWORK_EXPOSURE_REVIEW.md §6.",
     "exclusionReason": "Zero mapped controls in the SCF 2026.2 workbook."
   },
   "general-shared-assessments-sig-2025": {
     "kind": "standard",
     "visibility": "preview",
     "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureReason": "Kept non-public by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.5): the SIG identifier scheme is itself the paid licensed asset."
   },
   "general-sparta": {
     "kind": "reference",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): Aerospace royalty-free commercial licence; reproduce Aerospace copyright designation."
   },
   "general-swift-cscf-2025": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.3): control IDs de facto public (cloud providers publish full CSCF mappings); publisher terms bot-walled — exposure accepted by decision 2026-07-11."
   },
   "general-tisax-6-0-3": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): ENX ISA catalogue is CC BY-ND 4.0 with derivative grant; attribution: TISAX® is a registered trademark of ENX Association; credit VDA/ENX."
   },
   "general-ul-2900-1-2017": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): UL identifiers freely viewable via Digital View and FDA's public recognized-standards database; never imply UL certification."
   },
   "general-ul-2900-2-2-2016": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): UL identifiers freely viewable via Digital View and FDA's public recognized-standards database; never imply UL certification."
   },
   "general-un-155-2021": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): International regulatory legal text mirrored in EUR-Lex; clause-number citation is universal practice."
   },
   "general-un-ece-wp-29-2020": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): International regulatory legal text mirrored in EUR-Lex; clause-number citation is universal practice."
   },
   "usa-federal-cms-marse-2-0": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-dhs-cisa-cpg-2-0": {
     "kind": "standard",
@@ -1247,176 +1247,176 @@
   "usa-federal-doc-data-privacy-framework-2023": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-doe-c2m2-2-1": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): DOE publication with no copyright assertion."
   },
   "usa-federal-dow-cert-rmm-1-2": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): CMU SEI Distribution Statement A (public release, unlimited distribution); identifiers only, no practice text."
   },
   "usa-federal-dow-cmmc-2-level-1": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-dow-cmmc-2-level-1-aos": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-dow-cmmc-2-level-2": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-dow-cmmc-2-level-3": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-dow-dfars-252-204-7012": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-dow-safeguarding-nnpi-2010": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-dow-zt-roadmap-1-1": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-dow-zta-reference-architecture-2-0": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-eo-14028": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-far-52-204-21": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-far-52-204-25": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-far-52-204-27": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-fbi-cjis-6-0": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): US government work (17 U.S.C. §105); no copyright notice in document."
   },
   "usa-federal-fda-21-cfr-part-11-2025": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-gsa-fedramp-5-high": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-gsa-fedramp-5-li-saas": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-gsa-fedramp-5-low": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-gsa-fedramp-5-mod": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-hhs-45-cfr-155-260-2016": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-irs-1075-2021": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-law-33-cfr-part-101-subpart-f": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-law-coppa-2024": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-law-facta-fcra-2023": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-law-ferpa-2010": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-law-ftc-act": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-law-glba-cfr-314-2023": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-law-hipaa-security-rule-2013": {
     "kind": "law",
@@ -1443,50 +1443,50 @@
   "usa-federal-nerc-cip-2024": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): NERC trademark guidelines expressly permit compliance products referencing Reliability Standards by identifier; no logo, no implied endorsement."
   },
   "usa-federal-nispom-2020": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-omb-fipps-1973": {
     "kind": "reference",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-sec-cybersecurity-rule-2023": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-federal-sro-fca-crm-2023": {
     "kind": "standard",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-sro-finra": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): SEC-approved SRO rules, publicly published; rule-number citation is universal practice."
   },
   "usa-federal-tsa-security-directive-1580-82-2022-01": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-ak-pipa-2009": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-ca-ccpa-cpra-2026": {
     "kind": "law",
@@ -1499,145 +1499,145 @@
   "usa-state-ca-sb1386-2002": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-ca-sb327-2018": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-co-privacy-act-2021": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-il-bipa-2008": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-il-ipa-2009": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-il-pipa-2006": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-ma-201-cmr-17-2008": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-nv-privacy-law-2023": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-nv-regulation-5-2024": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-nv-sb220-2019": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-ny-dfs-23-nycrr500-2023-amd2": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-ny-shield-act-2019": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-or-cpa-2023": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-or-ors-646a-2025": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-tn-tipa-2025": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-tx-bc521-2009": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-tx-cdpa-2025": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-tx-dir-security-control-standards-catalog-2-2": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-tx-sb2610-2025": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-tx-sb820-2019": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-tx-txramp-2-0-level-1": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-state-tx-txramp-2-0-level-2": {
     "kind": "baseline",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-state-va-cdpa-2023": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "usa-state-vt-act-171-2018": {
     "kind": "law",
     "visibility": "preview",
-    "exposureStatus": "non-public",
-    "exposureReason": "Pending licensing review: SCF crosswalk is CC BY-ND 4.0; exposure of source-framework identifiers not yet reviewed."
+    "exposureStatus": "public",
+    "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   }
 }
