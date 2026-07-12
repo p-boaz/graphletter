@@ -14,7 +14,7 @@ index, not a second backlog.
 ## Roadmaps
 
 - `scf-catalog-roadmap.md` — strategy of record for the full SCF catalog
-  expansion (~250 frameworks); stages 1–2 specced above, stages 3–8 pending.
+  expansion (~250 frameworks); stages 1–2 merged (PR #51, archived spec), stages 3–8 pending.
 
 ## Product Backlog
 
