@@ -1,8 +1,8 @@
 # Graphletter
 
-<!-- 66 = MAPPED_FRAMEWORK_COUNT in lib/scf-parser.ts — update together -->
+<!-- 81 = MAPPED_FRAMEWORK_COUNT in lib/scf-parser.ts — update together -->
 
-AI-powered compliance assessment. Upload your evidence documents — policies, procedures, screenshots, audit reports — and get control-level verdicts across 66 frameworks (SOC 2, ISO 27001, NIST CSF, PCI DSS, HIPAA, GDPR, and more).
+AI-powered compliance assessment. Upload your evidence documents — policies, procedures, screenshots, audit reports — and get control-level verdicts across 81 frameworks (SOC 2, ISO 27001, NIST CSF, PCI DSS, HIPAA, GDPR, FedRAMP, and more).
 
 **[Try it live — no signup required](https://www.graphletter.com/try)** · [www.graphletter.com](https://www.graphletter.com)
 
@@ -32,7 +32,7 @@ The goal is to make "see roughly where you stand against a control framework" a 
 
 ## What it does
 
-Graphletter takes real compliance evidence and evaluates it against the [Secure Controls Framework (SCF)](https://securecontrolsframework.com), a unified control library cross-mapped to hundreds of laws and standards — Graphletter maps 66 of them today.
+Graphletter takes real compliance evidence and evaluates it against the [Secure Controls Framework (SCF)](https://securecontrolsframework.com), a unified control library cross-mapped to hundreds of laws and standards — Graphletter maps 81 of them today.
 
 For each uploaded document, the platform:
 

@@ -189,6 +189,25 @@ test("stage-7 cohort: promoted frameworks are listed and badged Supported", asyn
     await searchInput.fill("GovRAMP");
     await expect(cardTitles.first()).toContainText("GovRAMP");
     expect(await cardLinks.count()).toBeGreaterThanOrEqual(6);
+
+    // The NIST third of the cohort: presence in this list pins the tier,
+    // because the /frameworks feed serves supported-only by default.
+    const nistCohort = [
+      "NIST AI 600-1",
+      "NIST SP 800-66 R2",
+      "NIST 800-82 R3",
+      "NIST 800-172A R3",
+      "NIST CSWP 39",
+    ];
+    for (const name of nistCohort) {
+      await searchInput.fill(name);
+      await expect(cardTitles.first()).toContainText(name);
+    }
+
+    // Detail badge on one NIST member too, not just FedRAMP.
+    await cardLinks.first().click();
+    await expect(page).toHaveURL(/\/frameworks\/[^/]+$/, { timeout: 20_000 });
+    await expect(page.getByTestId(selectors.public.frameworkTierBadge)).toHaveText("Supported");
   } finally {
     observer.stop();
     report = observer.getReport();
