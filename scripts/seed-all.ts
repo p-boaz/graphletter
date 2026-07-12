@@ -98,8 +98,14 @@ async function main(): Promise<void> {
   ]);
   if (impError) throw new Error(`seed-all: scf_imports insert failed: ${impError.message}`);
 
-  const writerSummary = await writeParsedSCF(supabase, parseResult, controlsCSV, importId);
-  console.log("seed-all: writer summary", writerSummary);
+  // SEED_SCOPE=catalog imports the full non-excluded framework catalog
+  // (sandbox rehearsals); default "supported" keeps production at the
+  // manifest's supported tier. See plans/scf-catalog-roadmap.md.
+  const frameworkScope = process.env.SEED_SCOPE === "catalog" ? "catalog" : "supported";
+  const writerSummary = await writeParsedSCF(supabase, parseResult, controlsCSV, importId, {
+    frameworkScope,
+  });
+  console.log(`seed-all: writer summary (frameworkScope=${frameworkScope})`, writerSummary);
 
   // Step 2: legacy importer subprocess
   console.log("seed-all: running scripts/import-scf-data.js …");

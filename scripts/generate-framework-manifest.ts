@@ -18,10 +18,9 @@
  */
 
 import { parse } from "csv-parse/sync";
-import { readFileSync, writeFileSync } from "fs";
+import { mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, join, resolve } from "path";
 import { fileURLToPath, pathToFileURL } from "url";
-import { FRAMEWORK_COLUMNS } from "../lib/scf-parser";
 
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DATA_DIR = join(REPO_ROOT, "data");
@@ -30,6 +29,7 @@ const FOCAL_DOCUMENTS_CSV = join(DATA_DIR, "Authoritative Sources.csv");
 const PROVENANCE_JSON = join(DATA_DIR, "PROVENANCE.json");
 const OVERRIDES_JSON = join(DATA_DIR, "framework-manifest.overrides.json");
 const MANIFEST_JSON = join(DATA_DIR, "framework-manifest.json");
+const GENERATED_COLUMNS_TS = join(REPO_ROOT, "lib", "scf", "__generated__", "framework-columns.ts");
 
 export const FRAMEWORK_KINDS = [
   "standard",
@@ -93,9 +93,8 @@ export interface ManifestEntry {
   sourceUrl: string;
   strmUrl: string;
   mappingCount: number;
+  /** True when visibility === "supported" — the set the production seed imports and serves. */
   currentlyImported: boolean;
-  importedName?: string;
-  importedVersion?: string;
   exclusionReason?: string;
   notes?: string;
   resolution: ResolutionStatus;
@@ -106,7 +105,6 @@ export interface ManifestException {
     | "focal-doc-without-column"
     | "column-without-focal-doc"
     | "zero-mapping-column"
-    | "imported-without-focal-doc"
     | "duplicate-focal-doc-identifier";
   detail: string;
 }
@@ -316,10 +314,6 @@ export function buildManifest(
     );
   }
 
-  const importedByHeader = new Map(
-    FRAMEWORK_COLUMNS.map((config) => [config.expectedHeader, config])
-  );
-
   const exceptions: ManifestException[] = [];
   for (const row of emptyHeaderRows) {
     exceptions.push({
@@ -338,16 +332,6 @@ export function buildManifest(
       type: "column-without-focal-doc",
       detail: `controls.csv column ${unmatched.columnIndex} inside mapping range has no Focal Documents row: ${JSON.stringify(unmatched.header)}`,
     });
-  }
-
-  const matchedHeaders = new Set(joined.matched.map((m) => m.record.scfColumnHeader));
-  for (const config of FRAMEWORK_COLUMNS) {
-    if (!matchedHeaders.has(config.expectedHeader)) {
-      exceptions.push({
-        type: "imported-without-focal-doc",
-        detail: `FRAMEWORK_COLUMNS entry "${config.frameworkName}" (column ${config.columnIndex}) matches no Focal Documents row`,
-      });
-    }
   }
 
   // Upstream FDIs are not guaranteed unique (2026.2 assigns
@@ -369,7 +353,6 @@ export function buildManifest(
   };
 
   const entries: ManifestEntry[] = joined.matched.map(({ record, columnIndex }) => {
-    const imported = importedByHeader.get(record.scfColumnHeader);
     const key = keyFor(record, columnIndex);
     const override = overrides[key];
     const mappingCount = countMappings(dataRows, columnIndex);
@@ -380,12 +363,13 @@ export function buildManifest(
       });
     }
 
+    const supported = override?.visibility === "supported";
     let resolution: ResolutionStatus;
     if (!override) {
       resolution = "unresolved";
     } else if (override.visibility === "excluded") {
       resolution = "excluded";
-    } else if (imported) {
+    } else if (supported) {
       resolution = "imported";
     } else {
       resolution = "classified";
@@ -395,13 +379,8 @@ export function buildManifest(
       key,
       upstreamHeader: record.scfColumnHeader,
       columnIndex,
-      displayName:
-        override?.displayName ??
-        imported?.frameworkName ??
-        displayNameFromHeader(record.scfColumnHeader),
-      ...((override?.version ?? imported?.frameworkVersion)
-        ? { version: override?.version ?? imported?.frameworkVersion }
-        : {}),
+      displayName: override?.displayName ?? displayNameFromHeader(record.scfColumnHeader),
+      ...(override?.version ? { version: override.version } : {}),
       family: override?.family ?? record.source,
       geography: record.geography,
       kind: override?.kind ?? null,
@@ -412,9 +391,7 @@ export function buildManifest(
       sourceUrl: record.focalDocumentSourceUrl,
       strmUrl: record.strmUrl,
       mappingCount,
-      currentlyImported: Boolean(imported),
-      ...(imported ? { importedName: imported.frameworkName } : {}),
-      ...(imported?.frameworkVersion ? { importedVersion: imported.frameworkVersion } : {}),
+      currentlyImported: supported,
       ...(override?.exclusionReason ? { exclusionReason: override.exclusionReason } : {}),
       ...(override?.notes ? { notes: override.notes } : {}),
       resolution,
@@ -486,23 +463,93 @@ export function readCommittedManifest(): string {
   return readFileSync(MANIFEST_JSON, "utf-8");
 }
 
+/**
+ * Compact importable projection of the manifest for runtime consumers
+ * (lib/scf-parser.ts, lib/scf/writer.ts). Excluded entries are dropped; the
+ * rest carry exactly the fields the import pipeline needs. Emitted under
+ * __generated__/ (prettier-ignored) so the freshness gate can byte-compare.
+ */
+export function serializeGeneratedColumns(manifest: FrameworkManifest): string {
+  const entries = manifest.entries
+    .filter((e) => e.visibility !== "excluded")
+    .map((e) => ({
+      columnIndex: e.columnIndex,
+      frameworkName: e.displayName,
+      ...(e.version ? { frameworkVersion: e.version } : {}),
+      expectedHeader: e.upstreamHeader,
+      catalogKey: e.key,
+      kind: e.kind,
+      family: e.family,
+      geography: e.geography,
+      visibility: e.visibility,
+      exposureStatus: e.exposureStatus,
+      ...(e.sourceUrl ? { sourceUrl: e.sourceUrl } : {}),
+    }));
+
+  return [
+    "// GENERATED FILE — do not edit. Regenerate with `pnpm manifest:generate`.",
+    "// Source of truth: data/framework-manifest.json (see scripts/generate-framework-manifest.ts).",
+    `// SCF ${manifest.provenance.scfVersion} · workbook sha256 ${manifest.provenance.workbookSha256}`,
+    "",
+    "// Self-contained union types (lib/ must not import from scripts/); the",
+    "// generator's freshness gate keeps them in lockstep with the manifest enums.",
+    `export type CatalogFrameworkKind = ${FRAMEWORK_KINDS.map((k) => JSON.stringify(k)).join(" | ")};`,
+    'export type CatalogVisibility = "supported" | "preview";',
+    `export type CatalogExposureStatus = ${EXPOSURE_STATUSES.map((s) => JSON.stringify(s)).join(" | ")};`,
+    "",
+    "export interface CatalogFrameworkColumn {",
+    "  columnIndex: number;",
+    "  frameworkName: string;",
+    "  frameworkVersion?: string;",
+    "  expectedHeader: string;",
+    "  catalogKey: string;",
+    "  kind: CatalogFrameworkKind;",
+    "  family: string;",
+    "  geography: string;",
+    "  visibility: CatalogVisibility;",
+    "  exposureStatus: CatalogExposureStatus;",
+    "  sourceUrl?: string;",
+    "}",
+    "",
+    `export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = ${JSON.stringify(entries, null, 2)} as CatalogFrameworkColumn[];`,
+    "",
+    "export const SUPPORTED_FRAMEWORK_COUNT = CATALOG_FRAMEWORK_COLUMNS.filter(",
+    '  (column) => column.visibility === "supported"',
+    ").length;",
+    "",
+  ].join("\n");
+}
+
+export function readCommittedGeneratedColumns(): string {
+  return readFileSync(GENERATED_COLUMNS_TS, "utf-8");
+}
+
 function main(): void {
   const checkMode = process.argv.includes("--check");
   const manifest = generate();
   const serialized = serializeManifest(manifest);
+  const generatedColumns = serializeGeneratedColumns(manifest);
 
   if (checkMode) {
-    const committed = readCommittedManifest();
-    if (committed !== serialized) {
+    const stale: string[] = [];
+    if (readCommittedManifest() !== serialized) stale.push("data/framework-manifest.json");
+    if (readCommittedGeneratedColumns() !== generatedColumns) {
+      stale.push("lib/scf/__generated__/framework-columns.ts");
+    }
+    if (stale.length > 0) {
       console.error(
-        "data/framework-manifest.json is stale — regenerate with `pnpm manifest:generate` and review the diff."
+        `Stale generated file(s): ${stale.join(", ")} — regenerate with \`pnpm manifest:generate\` and review the diff.`
       );
       process.exit(1);
     }
-    console.log("framework-manifest.json is fresh (byte-identical to regeneration).");
+    console.log("Manifest and generated columns are fresh (byte-identical to regeneration).");
   } else {
     writeFileSync(MANIFEST_JSON, serialized);
-    console.log(`Wrote data/framework-manifest.json`);
+    mkdirSync(dirname(GENERATED_COLUMNS_TS), { recursive: true });
+    writeFileSync(GENERATED_COLUMNS_TS, generatedColumns);
+    console.log(
+      "Wrote data/framework-manifest.json and lib/scf/__generated__/framework-columns.ts"
+    );
   }
 
   const { summary } = manifest;

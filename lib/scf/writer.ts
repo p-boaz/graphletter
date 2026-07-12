@@ -1,5 +1,9 @@
 import { createLogger } from "@/lib/logger";
 import { SCFParser } from "@/lib/scf-parser";
+import {
+  CATALOG_FRAMEWORK_COLUMNS,
+  type CatalogFrameworkColumn,
+} from "@/lib/scf/__generated__/framework-columns";
 import type { SCFImportResult } from "@/lib/scf-types";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
@@ -13,12 +17,25 @@ export interface WriteSummary {
   mappings: number;
 }
 
+export type FrameworkImportScope = "supported" | "catalog";
+
+export interface WriteOptions {
+  /**
+   * Which manifest visibility tiers to persist. "supported" (default) writes
+   * only production-supported frameworks; "catalog" writes the full
+   * non-excluded catalog (sandbox rehearsals and future cohort promotions).
+   */
+  frameworkScope?: FrameworkImportScope;
+}
+
 export async function writeParsedSCF(
   supabase: SupabaseClient,
   parseResult: SCFImportResult,
   controlsCSV: string | undefined,
-  importId: string
+  importId: string,
+  options: WriteOptions = {}
 ): Promise<WriteSummary> {
+  const frameworkScope: FrameworkImportScope = options.frameworkScope ?? "supported";
   // Clean up any existing data for this version to avoid conflicts
   log.info("Cleaning up existing data for version", { version: parseResult.summary.version });
 
@@ -228,18 +245,42 @@ export async function writeParsedSCF(
         return true;
       });
 
+      // Catalog lookup + scope filter: every parsed mapping must belong to a
+      // manifest framework, and only in-scope tiers are persisted.
+      const catalogByNameVersion = new Map<string, CatalogFrameworkColumn>(
+        CATALOG_FRAMEWORK_COLUMNS.map((column) => [
+          `${column.frameworkName}_${column.frameworkVersion || "default"}`,
+          column,
+        ])
+      );
+      const scopedMappings = validMappings.filter((mapping) => {
+        const catalog = catalogByNameVersion.get(
+          `${mapping.frameworkName}_${mapping.frameworkVersion || "default"}`
+        );
+        if (!catalog) {
+          throw new Error(
+            `Mapping references a framework absent from the generated catalog: ` +
+              `"${mapping.frameworkName}" (${mapping.frameworkVersion ?? "no version"}) — ` +
+              `regenerate lib/scf/__generated__/framework-columns.ts`
+          );
+        }
+        return frameworkScope === "catalog" || catalog.visibility === "supported";
+      });
+
       log.info("Filtered mappings", {
         total: controlMappings.length,
         valid: validMappings.length,
+        inScope: scopedMappings.length,
+        frameworkScope,
       });
 
-      if (validMappings.length === 0) {
+      if (scopedMappings.length === 0) {
         log.info("No valid control mappings to process");
       } else {
         // Group mappings by framework to create framework records efficiently
         const frameworksMap = new Map<string, { name: string; version?: string }>();
 
-        validMappings.forEach((mapping) => {
+        scopedMappings.forEach((mapping) => {
           const frameworkKey = `${mapping.frameworkName}_${mapping.frameworkVersion || "default"}`;
           if (!frameworksMap.has(frameworkKey)) {
             frameworksMap.set(frameworkKey, {
@@ -248,17 +289,30 @@ export async function writeParsedSCF(
             });
           }
         });
-        // Create framework records
-        const frameworksData = Array.from(frameworksMap.values()).map((fw) => ({
-          framework_name: fw.name,
-          framework_version: fw.version,
-          mapping_type: "direct" as const,
-          total_mappings: validMappings.filter(
-            (m) => m.frameworkName === fw.name && m.frameworkVersion === fw.version
-          ).length,
-          scf_version: parseResult.summary.version,
-          import_id: importId,
-        }));
+        // Create framework records with catalog metadata from the manifest
+        const frameworksData = Array.from(frameworksMap.entries()).map(([key, fw]) => {
+          const catalog = catalogByNameVersion.get(key);
+          if (!catalog) {
+            throw new Error(`Catalog entry vanished for framework key "${key}"`);
+          }
+          return {
+            framework_name: fw.name,
+            framework_version: fw.version,
+            mapping_type: "direct" as const,
+            total_mappings: scopedMappings.filter(
+              (m) => m.frameworkName === fw.name && m.frameworkVersion === fw.version
+            ).length,
+            scf_version: parseResult.summary.version,
+            import_id: importId,
+            catalog_key: catalog.catalogKey,
+            kind: catalog.kind,
+            family: catalog.family,
+            geography: catalog.geography,
+            visibility: catalog.visibility,
+            exposure_status: catalog.exposureStatus,
+            source_url: catalog.sourceUrl ?? null,
+          };
+        });
 
         const { data: frameworkRecords, error: frameworksError } = await supabase
           .from("scf_frameworks")
@@ -283,7 +337,7 @@ export async function writeParsedSCF(
         );
 
         // Create control mapping records
-        const mappingsData = validMappings
+        const mappingsData = scopedMappings
           .map((mapping) => {
             const frameworkKey = `${mapping.frameworkName}_${
               mapping.frameworkVersion || "default"

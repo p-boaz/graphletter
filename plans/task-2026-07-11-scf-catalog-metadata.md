@@ -4,7 +4,7 @@
 
 - Date: 2026-07-11
 - Owner: agent (Claude Code), reviewed by Peter
-- Status: Draft
+- Status: In Progress (approved 2026-07-11)
 - Branch: feat/scf-catalog-metadata
 - Related issue/PR: roadmap `plans/scf-catalog-roadmap.md` (stages 3–4, runtime licensing fields from stage 6); builds on PR #51
 

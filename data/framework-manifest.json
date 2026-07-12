@@ -53,8 +53,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-aicpa-tsc-2017.pdf",
       "mappingCount": 412,
       "currentlyImported": true,
-      "importedName": "SOC 2",
-      "importedVersion": "v2017",
       "resolution": "imported"
     },
     {
@@ -110,8 +108,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-cis-csc-8-1.pdf",
       "mappingCount": 234,
       "currentlyImported": true,
-      "importedName": "CIS Controls",
-      "importedVersion": "v8.1",
       "resolution": "imported"
     },
     {
@@ -131,8 +127,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-cis-csc-8-1-ig1.pdf",
       "mappingCount": 104,
       "currentlyImported": true,
-      "importedName": "CIS Controls IG1",
-      "importedVersion": "v8.1",
       "resolution": "imported"
     },
     {
@@ -152,8 +146,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-cis-csc-8-1-ig2.pdf",
       "mappingCount": 208,
       "currentlyImported": true,
-      "importedName": "CIS Controls IG2",
-      "importedVersion": "v8.1",
       "resolution": "imported"
     },
     {
@@ -173,8 +165,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-cis-csc-8-1-ig3.pdf",
       "mappingCount": 230,
       "currentlyImported": true,
-      "importedName": "CIS Controls IG3",
-      "importedVersion": "v8.1",
       "resolution": "imported"
     },
     {
@@ -212,8 +202,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-coso-2013.pdf",
       "mappingCount": 104,
       "currentlyImported": true,
-      "importedName": "COSO",
-      "importedVersion": "v2013",
       "resolution": "imported"
     },
     {
@@ -233,8 +221,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-csa-cmm-4-1-0.pdf",
       "mappingCount": 291,
       "currentlyImported": true,
-      "importedName": "CSA CCM",
-      "importedVersion": "v4.1.0",
       "resolution": "imported"
     },
     {
@@ -254,8 +240,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-csa-iot-2.pdf",
       "mappingCount": 253,
       "currentlyImported": true,
-      "importedName": "CSA IoT SCF",
-      "importedVersion": "v2",
       "resolution": "imported"
     },
     {
@@ -509,8 +493,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-iso-21434-2021.pdf",
       "mappingCount": 51,
       "currentlyImported": true,
-      "importedName": "ISO/SAE 21434",
-      "importedVersion": "v2021",
       "resolution": "imported"
     },
     {
@@ -530,8 +512,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-iso-22301-2019.pdf",
       "mappingCount": 36,
       "currentlyImported": true,
-      "importedName": "ISO 22301",
-      "importedVersion": "v2019",
       "resolution": "imported"
     },
     {
@@ -551,8 +531,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-iso-27001-2022.pdf",
       "mappingCount": 51,
       "currentlyImported": true,
-      "importedName": "ISO 27001",
-      "importedVersion": "v2022",
       "resolution": "imported"
     },
     {
@@ -572,8 +550,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-iso-27002-2022.pdf",
       "mappingCount": 316,
       "currentlyImported": true,
-      "importedName": "ISO 27002",
-      "importedVersion": "v2022",
       "resolution": "imported"
     },
     {
@@ -593,8 +569,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-iso-27017-2015.pdf",
       "mappingCount": 224,
       "currentlyImported": true,
-      "importedName": "ISO 27017",
-      "importedVersion": "v2015",
       "resolution": "imported"
     },
     {
@@ -614,8 +588,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-iso-27018-2025.pdf",
       "mappingCount": 322,
       "currentlyImported": true,
-      "importedName": "ISO 27018",
-      "importedVersion": "v2025",
       "resolution": "imported"
     },
     {
@@ -635,8 +607,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-iso-27701-2025.pdf",
       "mappingCount": 59,
       "currentlyImported": true,
-      "importedName": "ISO 27701",
-      "importedVersion": "v2025",
       "resolution": "imported"
     },
     {
@@ -656,8 +626,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-iso-29100-2024.pdf",
       "mappingCount": 43,
       "currentlyImported": true,
-      "importedName": "ISO 29100",
-      "importedVersion": "v2024",
       "resolution": "imported"
     },
     {
@@ -677,8 +645,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-iso-31000-2018.pdf",
       "mappingCount": 53,
       "currentlyImported": true,
-      "importedName": "ISO 31000",
-      "importedVersion": "v2018",
       "resolution": "imported"
     },
     {
@@ -698,8 +664,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-iso-31010-2009.pdf",
       "mappingCount": 31,
       "currentlyImported": true,
-      "importedName": "ISO 31010",
-      "importedVersion": "v2009",
       "resolution": "imported"
     },
     {
@@ -719,8 +683,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-iso-42001-2023.pdf",
       "mappingCount": 149,
       "currentlyImported": true,
-      "importedName": "ISO 42001",
-      "importedVersion": "v2023",
       "resolution": "imported"
     },
     {
@@ -794,8 +756,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-100-1-ai-rmf.pdf",
       "mappingCount": 158,
       "currentlyImported": true,
-      "importedName": "NIST AI RMF",
-      "importedVersion": "v1.0",
       "resolution": "imported"
     },
     {
@@ -833,8 +793,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-privacy-framework-1-0.pdf",
       "mappingCount": 153,
       "currentlyImported": true,
-      "importedName": "NIST Privacy Framework",
-      "importedVersion": "v1.0",
       "resolution": "imported"
     },
     {
@@ -854,8 +812,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-37-r2.pdf",
       "mappingCount": 45,
       "currentlyImported": true,
-      "importedName": "NIST 800-37",
-      "importedVersion": "vR2",
       "resolution": "imported"
     },
     {
@@ -874,7 +830,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-39.pdf",
       "mappingCount": 17,
       "currentlyImported": true,
-      "importedName": "NIST 800-39",
       "resolution": "imported"
     },
     {
@@ -894,8 +849,6 @@
       "strmUrl": "No STRM available - see NIST SP 800-53 R5",
       "mappingCount": 653,
       "currentlyImported": true,
-      "importedName": "NIST 800-53",
-      "importedVersion": "vR4",
       "resolution": "imported"
     },
     {
@@ -915,8 +868,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-53-r5-2.pdf",
       "mappingCount": 777,
       "currentlyImported": true,
-      "importedName": "NIST 800-53",
-      "importedVersion": "vR5",
       "resolution": "imported"
     },
     {
@@ -936,8 +887,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-53-r5-2-privacy.pdf",
       "mappingCount": 346,
       "currentlyImported": true,
-      "importedName": "NIST 800-53B Privacy",
-      "importedVersion": "vR5",
       "resolution": "imported"
     },
     {
@@ -957,8 +906,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-53-r5-2-low.pdf",
       "mappingCount": 202,
       "currentlyImported": true,
-      "importedName": "NIST 800-53B Low",
-      "importedVersion": "vR5",
       "resolution": "imported"
     },
     {
@@ -978,8 +925,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-53-r5-2-mod.pdf",
       "mappingCount": 157,
       "currentlyImported": true,
-      "importedName": "NIST 800-53B Moderate",
-      "importedVersion": "vR5",
       "resolution": "imported"
     },
     {
@@ -999,8 +944,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-53-r5-2-high.pdf",
       "mappingCount": 89,
       "currentlyImported": true,
-      "importedName": "NIST 800-53B High",
-      "importedVersion": "vR5",
       "resolution": "imported"
     },
     {
@@ -1056,8 +999,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-82-r3-low.pdf",
       "mappingCount": 251,
       "currentlyImported": true,
-      "importedName": "NIST 800-82 Low OT",
-      "importedVersion": "vR3",
       "resolution": "imported"
     },
     {
@@ -1077,8 +1018,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-82-r3-mod.pdf",
       "mappingCount": 390,
       "currentlyImported": true,
-      "importedName": "NIST 800-82 Moderate OT",
-      "importedVersion": "vR3",
       "resolution": "imported"
     },
     {
@@ -1098,8 +1037,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-82-r3-high.pdf",
       "mappingCount": 467,
       "currentlyImported": true,
-      "importedName": "NIST 800-82 High OT",
-      "importedVersion": "vR3",
       "resolution": "imported"
     },
     {
@@ -1119,8 +1056,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-160-vol-2-r1.pdf",
       "mappingCount": 204,
       "currentlyImported": true,
-      "importedName": "NIST 800-160",
-      "importedVersion": "vVol2R1",
       "resolution": "imported"
     },
     {
@@ -1140,8 +1075,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-161-r1.pdf",
       "mappingCount": 341,
       "currentlyImported": true,
-      "importedName": "NIST 800-161",
-      "importedVersion": "vR1",
       "resolution": "imported"
     },
     {
@@ -1161,8 +1094,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-161-r1-cscrm.pdf",
       "mappingCount": 132,
       "currentlyImported": true,
-      "importedName": "NIST 800-161 C-SCRM",
-      "importedVersion": "vR1",
       "resolution": "imported"
     },
     {
@@ -1182,8 +1113,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-161-r1-flowdown.pdf",
       "mappingCount": 107,
       "currentlyImported": true,
-      "importedName": "NIST 800-161 Flow Down",
-      "importedVersion": "vR1",
       "resolution": "imported"
     },
     {
@@ -1203,8 +1132,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-161-r1-level-1.pdf",
       "mappingCount": 95,
       "currentlyImported": true,
-      "importedName": "NIST 800-161 Level 1",
-      "importedVersion": "vR1",
       "resolution": "imported"
     },
     {
@@ -1224,8 +1151,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-161-r1-level-2.pdf",
       "mappingCount": 273,
       "currentlyImported": true,
-      "importedName": "NIST 800-161 Level 2",
-      "importedVersion": "vR1",
       "resolution": "imported"
     },
     {
@@ -1245,8 +1170,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-161-r1-level-3.pdf",
       "mappingCount": 284,
       "currentlyImported": true,
-      "importedName": "NIST 800-161 Level 3",
-      "importedVersion": "vR1",
       "resolution": "imported"
     },
     {
@@ -1266,8 +1189,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-171-r2.pdf",
       "mappingCount": 251,
       "currentlyImported": true,
-      "importedName": "NIST 800-171",
-      "importedVersion": "vR2",
       "resolution": "imported"
     },
     {
@@ -1287,8 +1208,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-171-r3.pdf",
       "mappingCount": 414,
       "currentlyImported": true,
-      "importedName": "NIST 800-171",
-      "importedVersion": "vR3",
       "resolution": "imported"
     },
     {
@@ -1307,7 +1226,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-171a.pdf",
       "mappingCount": 134,
       "currentlyImported": true,
-      "importedName": "NIST 800-171A",
       "resolution": "imported"
     },
     {
@@ -1327,8 +1245,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-171a-r3.pdf",
       "mappingCount": 414,
       "currentlyImported": true,
-      "importedName": "NIST 800-171A",
-      "importedVersion": "vR3",
       "resolution": "imported"
     },
     {
@@ -1348,8 +1264,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-172-r3.pdf",
       "mappingCount": 162,
       "currentlyImported": true,
-      "importedName": "NIST 800-172",
-      "importedVersion": "vR3",
       "resolution": "imported"
     },
     {
@@ -1386,7 +1300,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-207.pdf",
       "mappingCount": 93,
       "currentlyImported": true,
-      "importedName": "NIST 800-207",
       "resolution": "imported"
     },
     {
@@ -1405,7 +1318,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-218.pdf",
       "mappingCount": 59,
       "currentlyImported": true,
-      "importedName": "NIST 800-218 SSDF",
       "resolution": "imported"
     },
     {
@@ -1425,8 +1337,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-csf-2-0.pdf",
       "mappingCount": 250,
       "currentlyImported": true,
-      "importedName": "NIST CSF",
-      "importedVersion": "v2.0",
       "resolution": "imported"
     },
     {
@@ -1500,8 +1410,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-pci-dss-4-0-1.pdf",
       "mappingCount": 371,
       "currentlyImported": true,
-      "importedName": "PCI DSS",
-      "importedVersion": "v4.0.1",
       "resolution": "imported"
     },
     {
@@ -1521,8 +1429,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-pci-dss-4-0-1-saq-a.pdf",
       "mappingCount": 71,
       "currentlyImported": true,
-      "importedName": "PCI DSS SAQ A",
-      "importedVersion": "v4.0.1",
       "resolution": "imported"
     },
     {
@@ -1542,8 +1448,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-pci-dss-4-0-1-saq-a-ep.pdf",
       "mappingCount": 239,
       "currentlyImported": true,
-      "importedName": "PCI DSS SAQ A-EP",
-      "importedVersion": "v4.0.1",
       "resolution": "imported"
     },
     {
@@ -1563,8 +1467,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-pci-dss-4-0-1-saq-b.pdf",
       "mappingCount": 58,
       "currentlyImported": true,
-      "importedName": "PCI DSS SAQ B",
-      "importedVersion": "v4.0.1",
       "resolution": "imported"
     },
     {
@@ -1584,8 +1486,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-pci-dss-4-0-1-saq-b-ip.pdf",
       "mappingCount": 121,
       "currentlyImported": true,
-      "importedName": "PCI DSS SAQ B-IP",
-      "importedVersion": "v4.0.1",
       "resolution": "imported"
     },
     {
@@ -1605,8 +1505,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-pci-dss-4-0-1-saq-c.pdf",
       "mappingCount": 227,
       "currentlyImported": true,
-      "importedName": "PCI DSS SAQ C",
-      "importedVersion": "v4.0.1",
       "resolution": "imported"
     },
     {
@@ -1626,8 +1524,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-pci-dss-4-0-1-saq-c-vt.pdf",
       "mappingCount": 115,
       "currentlyImported": true,
-      "importedName": "PCI DSS SAQ C-VT",
-      "importedVersion": "v4.0.1",
       "resolution": "imported"
     },
     {
@@ -1647,8 +1543,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-pci-dss-4-0-1-saq-d-merchant.pdf",
       "mappingCount": 322,
       "currentlyImported": true,
-      "importedName": "PCI DSS SAQ D Merchant",
-      "importedVersion": "v4.0.1",
       "resolution": "imported"
     },
     {
@@ -1668,8 +1562,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-pci-dss-4-0-1-saq-d-service-provider.pdf",
       "mappingCount": 339,
       "currentlyImported": true,
-      "importedName": "PCI DSS SAQ D Service Provider",
-      "importedVersion": "v4.0.1",
       "resolution": "imported"
     },
     {
@@ -1689,8 +1581,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-pci-dss-4-0-1-saq-p2pe.pdf",
       "mappingCount": 47,
       "currentlyImported": true,
-      "importedName": "PCI DSS SAQ P2PE",
-      "importedVersion": "v4.0.1",
       "resolution": "imported"
     },
     {
@@ -1908,7 +1798,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-usa-federal-dhs-cisa-ssdaf-2024.pdf",
       "mappingCount": 41,
       "currentlyImported": true,
-      "importedName": "US DHS CISA SSDAF",
       "resolution": "imported"
     },
     {
@@ -1928,8 +1817,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-usa-federal-dhs-cisa-tic-3-0.pdf",
       "mappingCount": 148,
       "currentlyImported": true,
-      "importedName": "US DHS CISA TIC",
-      "importedVersion": "v3.0",
       "resolution": "imported"
     },
     {
@@ -1949,8 +1836,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-usa-federal-dhs-cisa-cpg-2-0.pdf",
       "mappingCount": 126,
       "currentlyImported": true,
-      "importedName": "US CISA CPG",
-      "importedVersion": "v2022",
       "resolution": "imported"
     },
     {
@@ -2474,8 +2359,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-usa-federal-law-hipaa-simplification-2013.pdf",
       "mappingCount": 170,
       "currentlyImported": true,
-      "importedName": "US HIPAA Administrative",
-      "importedVersion": "v2013",
       "resolution": "imported"
     },
     {
@@ -2494,7 +2377,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-usa-federal-law-hipaa-security-rule-2013.pdf",
       "mappingCount": 136,
       "currentlyImported": true,
-      "importedName": "US HIPAA Security Rule",
       "resolution": "imported"
     },
     {
@@ -2621,7 +2503,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-usa-federal-law-sox-2002.pdf",
       "mappingCount": 4,
       "currentlyImported": true,
-      "importedName": "US SOX",
       "resolution": "imported"
     },
     {
@@ -2695,8 +2576,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-usa-state-ca-ccpa-cpra-2026.pdf",
       "mappingCount": 258,
       "currentlyImported": true,
-      "importedName": "US-CA CCPA/CPRA",
-      "importedVersion": "v2025",
       "resolution": "imported"
     },
     {
@@ -3220,8 +3099,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-emea-eu-gdpr-2016.pdf",
       "mappingCount": 42,
       "currentlyImported": true,
-      "importedName": "EMEA EU GDPR",
-      "importedVersion": "v2016",
       "resolution": "imported"
     },
     {
@@ -3349,8 +3226,6 @@
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-emea-deu-bsrit-2017.pdf",
       "mappingCount": 91,
       "currentlyImported": true,
-      "importedName": "EMEA Germany BAIT",
-      "importedVersion": "v2017",
       "resolution": "imported"
     },
     {

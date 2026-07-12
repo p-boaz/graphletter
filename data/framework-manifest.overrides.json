@@ -270,7 +270,9 @@
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "EMEA Germany BAIT",
+    "version": "v2017"
   },
   "emea-deu-c5-2020": {
     "kind": "standard",
@@ -330,7 +332,9 @@
     "kind": "law",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "EMEA EU GDPR",
+    "version": "v2016"
   },
   "emea-eu-nis2-2022": {
     "kind": "law",
@@ -552,7 +556,9 @@
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "SOC 2",
+    "version": "v2017"
   },
   "general-apec-privacy-framework-2015": {
     "kind": "standard",
@@ -570,25 +576,33 @@
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "CIS Controls",
+    "version": "v8.1"
   },
   "general-cis-csc-8-1-ig1": {
     "kind": "implementation-group",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "CIS Controls IG1",
+    "version": "v8.1"
   },
   "general-cis-csc-8-1-ig2": {
     "kind": "implementation-group",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "CIS Controls IG2",
+    "version": "v8.1"
   },
   "general-cis-csc-8-1-ig3": {
     "kind": "implementation-group",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "CIS Controls IG3",
+    "version": "v8.1"
   },
   "general-cobit-2019": {
     "kind": "standard",
@@ -600,7 +614,9 @@
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "COSO",
+    "version": "v2013"
   },
   "general-cr-cmm-2026": {
     "kind": "standard",
@@ -612,13 +628,17 @@
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "CSA CCM",
+    "version": "v4.1.0"
   },
   "general-csa-iot-2": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "CSA IoT SCF",
+    "version": "v2"
   },
   "general-govramp": {
     "kind": "standard",
@@ -696,67 +716,89 @@
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "ISO/SAE 21434",
+    "version": "v2021"
   },
   "general-iso-22301-2019": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "ISO 22301",
+    "version": "v2019"
   },
   "general-iso-27001-2022": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "ISO 27001",
+    "version": "v2022"
   },
   "general-iso-27002-2022": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "ISO 27002",
+    "version": "v2022"
   },
   "general-iso-27017-2015": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "ISO 27017",
+    "version": "v2015"
   },
   "general-iso-27018-2025": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "ISO 27018",
+    "version": "v2025"
   },
   "general-iso-27701-2025": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "ISO 27701",
+    "version": "v2025"
   },
   "general-iso-29100-2024": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "ISO 29100",
+    "version": "v2024"
   },
   "general-iso-31000-2018": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "ISO 31000",
+    "version": "v2018"
   },
   "general-iso-31010-2009": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "ISO 31010",
+    "version": "v2009"
   },
   "general-iso-42001-2023": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "ISO 42001",
+    "version": "v2023"
   },
   "general-mitre-att_ck-16-1": {
     "kind": "reference",
@@ -780,7 +822,9 @@
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST AI RMF",
+    "version": "v1.0"
   },
   "general-nist-600-1-gen-ai-profile": {
     "kind": "baseline",
@@ -792,73 +836,96 @@
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-160",
+    "version": "vVol2R1"
   },
   "general-nist-800-161-r1": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-161",
+    "version": "vR1"
   },
   "general-nist-800-161-r1-cscrm": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-161 C-SCRM",
+    "version": "vR1"
   },
   "general-nist-800-161-r1-flowdown": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-161 Flow Down",
+    "version": "vR1"
   },
   "general-nist-800-161-r1-level-1": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-161 Level 1",
+    "version": "vR1"
   },
   "general-nist-800-161-r1-level-2": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-161 Level 2",
+    "version": "vR1"
   },
   "general-nist-800-161-r1-level-3": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-161 Level 3",
+    "version": "vR1"
   },
   "general-nist-800-171-r2": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-171",
+    "version": "vR2"
   },
   "general-nist-800-171-r3": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-171",
+    "version": "vR3"
   },
   "general-nist-800-171a": {
     "kind": "reference",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-171A"
   },
   "general-nist-800-171a-r3": {
     "kind": "reference",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-171A",
+    "version": "vR3"
   },
   "general-nist-800-172-r3": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-172",
+    "version": "vR3"
   },
   "general-nist-800-172a-r3": {
     "kind": "reference",
@@ -870,61 +937,78 @@
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-207"
   },
   "general-nist-800-218": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-218 SSDF"
   },
   "general-nist-800-37-r2": {
     "kind": "reference",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-37",
+    "version": "vR2"
   },
   "general-nist-800-39": {
     "kind": "reference",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-39"
   },
   "general-nist-800-53-r4": {
     "kind": "historical",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-53",
+    "version": "vR4"
   },
   "general-nist-800-53-r5-2": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-53",
+    "version": "vR5"
   },
   "general-nist-800-53-r5-2-high": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-53B High",
+    "version": "vR5"
   },
   "general-nist-800-53-r5-2-low": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-53B Low",
+    "version": "vR5"
   },
   "general-nist-800-53-r5-2-mod": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-53B Moderate",
+    "version": "vR5"
   },
   "general-nist-800-53-r5-2-privacy": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-53B Privacy",
+    "version": "vR5"
   },
   "general-nist-800-66-r2": {
     "kind": "law",
@@ -942,25 +1026,33 @@
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-82 High OT",
+    "version": "vR3"
   },
   "general-nist-800-82-r3-low": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-82 Low OT",
+    "version": "vR3"
   },
   "general-nist-800-82-r3-mod": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST 800-82 Moderate OT",
+    "version": "vR3"
   },
   "general-nist-csf-2-0": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST CSF",
+    "version": "v2.0"
   },
   "general-nist-cswp-39": {
     "kind": "reference",
@@ -972,7 +1064,9 @@
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "NIST Privacy Framework",
+    "version": "v1.0"
   },
   "general-oecd-privacy-principles-2010": {
     "kind": "law",
@@ -990,61 +1084,81 @@
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "PCI DSS",
+    "version": "v4.0.1"
   },
   "general-pci-dss-4-0-1-saq-a": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "PCI DSS SAQ A",
+    "version": "v4.0.1"
   },
   "general-pci-dss-4-0-1-saq-a-ep": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "PCI DSS SAQ A-EP",
+    "version": "v4.0.1"
   },
   "general-pci-dss-4-0-1-saq-b": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "PCI DSS SAQ B",
+    "version": "v4.0.1"
   },
   "general-pci-dss-4-0-1-saq-b-ip": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "PCI DSS SAQ B-IP",
+    "version": "v4.0.1"
   },
   "general-pci-dss-4-0-1-saq-c": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "PCI DSS SAQ C",
+    "version": "v4.0.1"
   },
   "general-pci-dss-4-0-1-saq-c-vt": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "PCI DSS SAQ C-VT",
+    "version": "v4.0.1"
   },
   "general-pci-dss-4-0-1-saq-d-merchant": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "PCI DSS SAQ D Merchant",
+    "version": "v4.0.1"
   },
   "general-pci-dss-4-0-1-saq-d-service-provider": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "PCI DSS SAQ D Service Provider",
+    "version": "v4.0.1"
   },
   "general-pci-dss-4-0-1-saq-p2pe": {
     "kind": "baseline",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "PCI DSS SAQ P2PE",
+    "version": "v4.0.1"
   },
   "general-scf-dpmp-2025": {
     "kind": "standard",
@@ -1111,19 +1225,24 @@
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "US CISA CPG",
+    "version": "v2022"
   },
   "usa-federal-dhs-cisa-ssdaf-2024": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "US DHS CISA SSDAF"
   },
   "usa-federal-dhs-cisa-tic-3-0": {
     "kind": "standard",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "US DHS CISA TIC",
+    "version": "v3.0"
   },
   "usa-federal-doc-data-privacy-framework-2023": {
     "kind": "standard",
@@ -1303,19 +1422,23 @@
     "kind": "law",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "US HIPAA Security Rule"
   },
   "usa-federal-law-hipaa-simplification-2013": {
     "kind": "law",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "US HIPAA Administrative",
+    "version": "v2013"
   },
   "usa-federal-law-sox-2002": {
     "kind": "law",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "US SOX"
   },
   "usa-federal-nerc-cip-2024": {
     "kind": "standard",
@@ -1369,7 +1492,9 @@
     "kind": "law",
     "visibility": "supported",
     "exposureStatus": "public",
-    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent)."
+    "exposureReason": "Already exposed in the production Framework Explorer before the catalog inventory (2026-07-11 precedent).",
+    "displayName": "US-CA CCPA/CPRA",
+    "version": "v2025"
   },
   "usa-state-ca-sb1386-2002": {
     "kind": "law",
