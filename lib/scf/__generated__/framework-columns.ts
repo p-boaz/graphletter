@@ -195,7 +195,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "standard",
     "family": "GovRAMP",
     "geography": "General",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://govramp.org/documents/"
   },
@@ -207,7 +207,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "baseline",
     "family": "GovRAMP",
     "geography": "General",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://govramp.org/documents/"
   },
@@ -219,7 +219,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "baseline",
     "family": "GovRAMP",
     "geography": "General",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://govramp.org/documents/"
   },
@@ -231,7 +231,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "baseline",
     "family": "GovRAMP",
     "geography": "General",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://govramp.org/documents/"
   },
@@ -243,7 +243,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "baseline",
     "family": "GovRAMP",
     "geography": "General",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://govramp.org/documents/"
   },
@@ -255,7 +255,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "baseline",
     "family": "GovRAMP",
     "geography": "General",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://govramp.org/documents/"
   },
@@ -531,7 +531,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "baseline",
     "family": "NIST",
     "geography": "General",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://doi.org/10.6028/NIST.AI.600-1"
   },
@@ -659,7 +659,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "law",
     "family": "NIST",
     "geography": "General",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://csrc.nist.gov/pubs/sp/800/66/r2/final"
   },
@@ -671,7 +671,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "standard",
     "family": "NIST",
     "geography": "General",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
   },
@@ -877,7 +877,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "reference",
     "family": "NIST",
     "geography": "General",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://csrc.nist.gov/pubs/sp/800/172/a/r3/final"
   },
@@ -926,7 +926,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "reference",
     "family": "NIST",
     "geography": "General",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.39.pdf"
   },
@@ -1454,7 +1454,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "baseline",
     "family": "Federal",
     "geography": "US",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://www.fedramp.gov/"
   },
@@ -1466,7 +1466,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "baseline",
     "family": "Federal",
     "geography": "US",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://www.fedramp.gov/"
   },
@@ -1478,7 +1478,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "baseline",
     "family": "Federal",
     "geography": "US",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://www.fedramp.gov/"
   },
@@ -1490,7 +1490,7 @@ export const CATALOG_FRAMEWORK_COLUMNS: CatalogFrameworkColumn[] = [
     "kind": "baseline",
     "family": "Federal",
     "geography": "US",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "sourceUrl": "https://www.fedramp.gov/"
   },

@@ -11,8 +11,8 @@
       "last": 284
     },
     "mappingColumns": 252,
-    "imported": 66,
-    "classified": 183,
+    "imported": 81,
+    "classified": 168,
     "excluded": 3,
     "unresolved": 0,
     "exceptions": 6
@@ -268,15 +268,15 @@
       "family": "GovRAMP",
       "geography": "General",
       "kind": "standard",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels.",
       "focalDocumentName": "Government Risk and Authorization Management Program (GovRAMP)",
       "sourceUrl": "https://govramp.org/documents/",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-govramp.pdf",
       "mappingCount": 441,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "general-govramp-core",
@@ -286,15 +286,15 @@
       "family": "GovRAMP",
       "geography": "General",
       "kind": "baseline",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels.",
       "focalDocumentName": "Government Risk and Authorization Management Program (GovRAMP) - Core Controls",
       "sourceUrl": "https://govramp.org/documents/",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-govramp-core.pdf",
       "mappingCount": 86,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "general-govramp-low",
@@ -304,15 +304,15 @@
       "family": "GovRAMP",
       "geography": "General",
       "kind": "baseline",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels.",
       "focalDocumentName": "Government Risk and Authorization Management Program (GovRAMP) - Low",
       "sourceUrl": "https://govramp.org/documents/",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-govramp-low.pdf",
       "mappingCount": 166,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "general-govramp-low-plus",
@@ -322,15 +322,15 @@
       "family": "GovRAMP",
       "geography": "General",
       "kind": "baseline",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels.",
       "focalDocumentName": "Government Risk and Authorization Management Program (GovRAMP) - Low+",
       "sourceUrl": "https://govramp.org/documents/",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-govramp-low-plus.pdf",
       "mappingCount": 230,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "general-govramp-mod",
@@ -340,15 +340,15 @@
       "family": "GovRAMP",
       "geography": "General",
       "kind": "baseline",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels.",
       "focalDocumentName": "Government Risk and Authorization Management Program (GovRAMP) - Moderate",
       "sourceUrl": "https://govramp.org/documents/",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-govramp-mod.pdf",
       "mappingCount": 347,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "general-govramp-high",
@@ -358,15 +358,15 @@
       "family": "GovRAMP",
       "geography": "General",
       "kind": "baseline",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels.",
       "focalDocumentName": "Government Risk and Authorization Management Program (GovRAMP) - High",
       "sourceUrl": "https://govramp.org/documents/",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-govramp-high.pdf",
       "mappingCount": 441,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "general-iec-tr-60601-4-5-2021",
@@ -766,15 +766,15 @@
       "family": "NIST",
       "geography": "General",
       "kind": "baseline",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations.",
       "focalDocumentName": "NIST AI 600 - 1 - Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile",
       "sourceUrl": "https://doi.org/10.6028/NIST.AI.600-1",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-600-1-gen-ai-profile.pdf",
       "mappingCount": 139,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "general-nist-privacy-framework-1-0",
@@ -954,15 +954,15 @@
       "family": "NIST",
       "geography": "General",
       "kind": "law",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations.",
       "focalDocumentName": "NIST SP 800 - 66 R2 - Implementing the Health Insurance Portability and Accountability Act (HIPAA) Security Rule: A Cybersecurity Resource Guide",
       "sourceUrl": "https://csrc.nist.gov/pubs/sp/800/66/r2/final",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-66-r2.pdf",
       "mappingCount": 112,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "general-nist-800-82-r3",
@@ -972,15 +972,15 @@
       "family": "NIST",
       "geography": "General",
       "kind": "standard",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations.",
       "focalDocumentName": "NIST SP 800 - 82 R3 - Guide to Operational Technology (OT) Security - Low OT Overlay",
       "sourceUrl": "https://csrc.nist.gov/pubs/sp/800/82/r3/final",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-82-r3.pdf",
       "mappingCount": 777,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "general-nist-800-82-r3-low",
@@ -1274,15 +1274,15 @@
       "family": "NIST",
       "geography": "General",
       "kind": "reference",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations.",
       "focalDocumentName": "NIST SP 800 - 172A R3 - Assessing Enhanced Security Requirements for Controlled Unclassified Information",
       "sourceUrl": "https://csrc.nist.gov/pubs/sp/800/172/a/r3/final",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-800-172a-r3.pdf",
       "mappingCount": 163,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "general-nist-800-207",
@@ -1347,15 +1347,15 @@
       "family": "NIST",
       "geography": "General",
       "kind": "reference",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations.",
       "focalDocumentName": "NIST CSWP 39 - Considerations for Achieving Crypto Agility",
       "sourceUrl": "https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.39.pdf",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-general-nist-cswp-39.pdf",
       "mappingCount": 15,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "general-oecd-privacy-principles-2010",
@@ -2152,15 +2152,15 @@
       "family": "Federal",
       "geography": "US",
       "kind": "baseline",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations.",
       "focalDocumentName": "US - Federal Risk and Authorization Management Program (FedRAMP) R5 - Low Baseline",
       "sourceUrl": "https://www.fedramp.gov/",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-usa-federal-gsa-fedramp-5-low.pdf",
       "mappingCount": 383,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "usa-federal-gsa-fedramp-5-mod",
@@ -2170,15 +2170,15 @@
       "family": "Federal",
       "geography": "US",
       "kind": "baseline",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations.",
       "focalDocumentName": "US - Federal Risk and Authorization Management Program (FedRAMP) R5 - Moderate Baseline",
       "sourceUrl": "https://www.fedramp.gov/",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-usa-federal-gsa-fedramp-5-mod.pdf",
       "mappingCount": 491,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "usa-federal-gsa-fedramp-5-high",
@@ -2188,15 +2188,15 @@
       "family": "Federal",
       "geography": "US",
       "kind": "baseline",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations.",
       "focalDocumentName": "US - Federal Risk and Authorization Management Program (FedRAMP) R5 - High Baseline",
       "sourceUrl": "https://www.fedramp.gov/",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-usa-federal-gsa-fedramp-5-high.pdf",
       "mappingCount": 561,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "usa-federal-gsa-fedramp-5-li-saas",
@@ -2206,15 +2206,15 @@
       "family": "Federal",
       "geography": "US",
       "kind": "baseline",
-      "visibility": "preview",
+      "visibility": "supported",
       "exposureStatus": "public",
       "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations.",
       "focalDocumentName": "US - Federal Risk and Authorization Management Program (FedRAMP) R5 - Li - SAAS Baseline",
       "sourceUrl": "https://www.fedramp.gov/",
       "strmUrl": "https://content.securecontrolsframework.com/strm/scf-strm-usa-federal-gsa-fedramp-5-li-saas.pdf",
       "mappingCount": 383,
-      "currentlyImported": false,
-      "resolution": "classified"
+      "currentlyImported": true,
+      "resolution": "imported"
     },
     {
       "key": "usa-federal-law-33-cfr-part-101-subpart-f",

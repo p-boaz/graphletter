@@ -642,37 +642,37 @@
   },
   "general-govramp": {
     "kind": "standard",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels."
   },
   "general-govramp-core": {
     "kind": "baseline",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels."
   },
   "general-govramp-high": {
     "kind": "baseline",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels."
   },
   "general-govramp-low": {
     "kind": "baseline",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels."
   },
   "general-govramp-low-plus": {
     "kind": "baseline",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels."
   },
   "general-govramp-mod": {
     "kind": "baseline",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §5.1): GovRAMP baselines openly downloadable; identifiers are NIST 800-53 public-domain control IDs plus GovRAMP grouping labels."
   },
@@ -828,7 +828,7 @@
   },
   "general-nist-600-1-gen-ai-profile": {
     "kind": "baseline",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
@@ -929,7 +929,7 @@
   },
   "general-nist-800-172a-r3": {
     "kind": "reference",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
@@ -1012,13 +1012,13 @@
   },
   "general-nist-800-66-r2": {
     "kind": "law",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §3): public legal text; identifiers are statutory citations."
   },
   "general-nist-800-82-r3": {
     "kind": "standard",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
@@ -1056,7 +1056,7 @@
   },
   "general-nist-cswp-39": {
     "kind": "reference",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
@@ -1348,25 +1348,25 @@
   },
   "usa-federal-gsa-fedramp-5-high": {
     "kind": "baseline",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-gsa-fedramp-5-li-saas": {
     "kind": "baseline",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-gsa-fedramp-5-low": {
     "kind": "baseline",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },
   "usa-federal-gsa-fedramp-5-mod": {
     "kind": "baseline",
-    "visibility": "preview",
+    "visibility": "supported",
     "exposureStatus": "public",
     "exposureReason": "Cleared by exposure review 2026-07-11 (docs/FRAMEWORK_EXPOSURE_REVIEW.md §4): government publication; identifiers are public-domain or official citations."
   },

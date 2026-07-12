@@ -56,5 +56,5 @@ is not itself a spec and holds no implementation detail.
 - [x] Stages 3–4: merged 2026-07-11 (PR #52; spec archived) — manifest-driven import, catalog metadata schema, visibility-filtered APIs; prod migration applied + verified; sandbox rehearsal green (249 fw / 69,791 mappings / 17s seed)
 - [x] Stage 5: merged 2026-07-11 (PR #53; spec archived) — detail pagination + mapping search + tier coherence; preview inspectability sandbox-proven (FedRAMP mod, 711 mappings, one page loaded)
 - [x] Stage 6: decided + applied 2026-07-11 — `docs/FRAMEWORK_EXPOSURE_REVIEW.md` reviewed all 183 preview frameworks; Peter exposed 178 (incl. SWIFT/MPA without the manual check), kept 5 non-public (COBIT, CR-CMM, SACS-002, ISMAP, SIG); overrides flipped, manifest regenerated, gates + 237 tests green; stage 7 cohort fully cleared
-- [ ] Stage 7: not yet specced
+- [ ] Stage 7: specced + implemented 2026-07-11 (`task-2026-07-11-scf-cohort-1-promotion.md`, PR #54) — 15-framework cohort flip sandbox-proven (81 fw / 32,646 mappings, zero code change); awaiting PR approval, then prod reseed ceremony
 - [ ] Stage 8: not yet specced

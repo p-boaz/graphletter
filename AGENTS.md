@@ -4,7 +4,7 @@ Single source of truth for all AI coding agents working on Graphletter (Claude C
 
 ## What this project is
 
-**Graphletter** — AI-powered compliance validation. Evidence documents → Secure Controls Framework (SCF; 66 mapped frameworks, see `MAPPED_FRAMEWORK_COUNT` in `lib/scf-parser.ts`) → automated compliance reports.
+**Graphletter** — AI-powered compliance validation. Evidence documents → Secure Controls Framework (SCF; 81 mapped frameworks, see `MAPPED_FRAMEWORK_COUNT` in `lib/scf-parser.ts`) → automated compliance reports.
 
 Stack: Next.js 16 (App Router) · React 19 · TypeScript strict · Tailwind + shadcn/ui · Supabase (Postgres + RLS + Storage) · Vercel AI SDK · pnpm.
 
