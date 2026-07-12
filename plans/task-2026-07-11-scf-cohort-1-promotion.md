@@ -4,7 +4,7 @@
 
 - Date: 2026-07-11
 - Owner: agent (Claude Code), reviewed by Peter
-- Status: Awaiting approval — implementation prepared on branch for PR review
+- Status: Approved (Peter, 2026-07-11) — production ceremony executed; archive after merge
 - Branch: feat/scf-cohort-1-promotion
 - Related issue/PR: roadmap `plans/scf-catalog-roadmap.md` stage 7 (principle 6: prove the mechanism once, then expand by metadata); builds on PRs #51–#53 and the stage 6 exposure decisions (`task-2026-07-11-scf-exposure-decisions.md`)
 
@@ -327,4 +327,4 @@ whole ceremony in one sitting after PR approval:
 - [x] Constraints explicit
 - [x] Test plan defined
 - [x] Acceptance criteria measurable
-- [ ] Human approved — gate = Peter's PR approval; merge and production reseed remain his calls
+- [x] Human approved — Peter, 2026-07-11: "You're approved to carry out 1 thru 4 now" (PR approval + ceremony steps 1–4)
