@@ -121,6 +121,14 @@ a completeness invariant, and consistency-checked against the parser's
 - [x] Post-commit fix: pre-commit prettier reformat displaced a
       `@ts-expect-error` in `tests/framework-manifest.test.ts`; moved inline,
       all gates re-verified green
+- [x] PR #51 review fix (Codex P2): mapping range was derived from min/max
+      matched columns, so a framework column appended upstream without a Focal
+      Documents row escaped inspection. Range is now derived from structural
+      sentinels (`MAPPING_RANGE_SENTINELS`: SCF CORE MA&D column before,
+      MCR+DSR column after) with hard failure when a sentinel is missing or a
+      Focal Document matches outside the range. Regression tests added for the
+      trailing-column case, sentinel absence/inversion, and the real-header
+      sentinel bounds (33–284). Manifest output byte-identical.
 
 ## Acceptance Criteria
 

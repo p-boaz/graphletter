@@ -5,6 +5,7 @@ import {
   buildManifest,
   countMappings,
   displayNameFromHeader,
+  findMappingRange,
   generate,
   joinFocalDocumentsToColumns,
   readCommittedManifest,
@@ -118,13 +119,18 @@ function record(header: string, fdi: string): FocalDocumentRecord {
   };
 }
 
-test("join: exact match only, unmatched sides reported, range derived from matches", () => {
+test("join: exact match only, unmatched sides reported within an explicit range", () => {
   const header = ["SCF #", "Control", "FW\nA", "Mystery\nColumn", "FW\nB", "Errata"];
-  const result = joinFocalDocumentsToColumns(header, [
-    record("FW\nA", "fw-a"),
-    record("FW\nB", "fw-b"),
-    record("FW\nC", "fw-c"), // not in header
-  ]);
+  const result = joinFocalDocumentsToColumns(
+    header,
+    [
+      record("FW\nA", "fw-a"),
+      record("FW\nB", "fw-b"),
+      record("FW\nC", "fw-c"), // not in header
+      record("Errata", "fw-outside"), // matches a column outside the range
+    ],
+    { first: 2, last: 4 }
+  );
 
   assert.deepEqual(
     result.matched.map((m) => [m.record.focalDocumentIdentifier, m.columnIndex]),
@@ -133,7 +139,6 @@ test("join: exact match only, unmatched sides reported, range derived from match
       ["fw-b", 4],
     ]
   );
-  assert.deepEqual(result.range, { first: 2, last: 4 });
   assert.deepEqual(
     result.unmatchedColumnsInRange.map((u) => u.columnIndex),
     [3],
@@ -143,13 +148,79 @@ test("join: exact match only, unmatched sides reported, range derived from match
     result.unmatchedFocalDocs.map((r) => r.focalDocumentIdentifier),
     ["fw-c"]
   );
+  assert.deepEqual(
+    result.matchedOutsideRange.map((m) => [m.record.focalDocumentIdentifier, m.columnIndex]),
+    [["fw-outside", 5]],
+    "a Focal Document matching outside the sentinel range is a structural anomaly"
+  );
+});
+
+test("findMappingRange: sentinel-bounded on the real controls header; hard-fails when absent", () => {
+  // On the committed workbook the sentinels must bound exactly the range the
+  // manifest was generated from — this is what catches an appended framework
+  // column that Focal Documents does not know about (PR #51 review finding).
+  assert.deepEqual(regenerated.summary.mappingColumnRange, {
+    first: 33,
+    last: 284,
+  });
+
+  assert.throws(
+    () => findMappingRange(["SCF #", "FW\nA"], { before: "SCF #", after: "GONE" }),
+    /sentinel\(s\) not found/i
+  );
+  assert.throws(
+    () => findMappingRange(["A", "B"], { before: "B", after: "A" }),
+    /inverted or adjacent/i
+  );
+});
+
+test("completeness gate catches a trailing framework column missing from Focal Documents", () => {
+  // The Codex-review scenario: upstream appends a framework column after the
+  // last matched one; Focal Documents has no row for it. The sentinel-derived
+  // range must still inspect it and surface an exception.
+  const controlsRows = [
+    ["SCF #", "BEFORE", "FW\nA", "FW\nNEW", "AFTER"],
+    ["GOV-01", "", "A-1", "N-1", ""],
+  ];
+  const focalRows = [
+    ["Geography", "SCF Column Header", "FDI", "Source", "FDN", "FDS", "STRM"],
+    ["General", "FW\nA", "fw-a", "Test", "First", "", ""],
+  ];
+  const manifest = buildManifest(
+    controlsRows,
+    focalRows,
+    {
+      "fw-a": {
+        kind: "standard",
+        visibility: "preview",
+        exposureStatus: "non-public",
+        exposureReason: "r",
+      },
+    },
+    {
+      scfVersion: "test",
+      workbookSha256: "x",
+      controlsCsvSha256: "y",
+      focalDocumentsCsvSha256: "z",
+    },
+    { before: "BEFORE", after: "AFTER" }
+  );
+
+  const drift = manifest.exceptions.filter((e) => e.type === "column-without-focal-doc");
+  assert.equal(drift.length, 1, "the appended column must be surfaced as an exception");
+  assert.match(drift[0].detail, /column 3/);
+  assert.equal(
+    manifest.summary.mappingColumnRange.last,
+    3,
+    "range must extend to the sentinel, not the last match"
+  );
 });
 
 test("buildManifest: duplicate FDIs get deterministic disambiguated keys and an exception", () => {
   const controlsRows = [
-    ["SCF #", "FW\nA", "FW\nB"],
-    ["GOV-01", "A-1", "B-1"],
-    ["GOV-02", "", "B-2"],
+    ["SCF #", "FW\nA", "FW\nB", "AFTER"],
+    ["GOV-01", "A-1", "B-1", ""],
+    ["GOV-02", "", "B-2", ""],
   ];
   const focalRows = [
     ["Geography", "SCF Column Header", "FDI", "Source", "FDN", "FDS", "STRM"],
@@ -165,7 +236,8 @@ test("buildManifest: duplicate FDIs get deterministic disambiguated keys and an 
       workbookSha256: "x",
       controlsCsvSha256: "y",
       focalDocumentsCsvSha256: "z",
-    }
+    },
+    { before: "SCF #", after: "AFTER" }
   );
 
   assert.deepEqual(

@@ -166,8 +166,53 @@ export function displayNameFromHeader(header: string): string {
   return header.replace(/\s*\n\s*/g, " ").trim();
 }
 
+export interface MappingRangeSentinels {
+  /** Last non-framework column immediately before the mapping block. */
+  before: string;
+  /** First non-framework column immediately after the mapping block. */
+  after: string;
+}
+
+// Structural boundaries of the framework-mapping block in the controls sheet.
+// The range is derived from these sentinels — NOT from which columns happen to
+// join to Focal Documents — so a framework column appended by a new SCF
+// release is still inspected (and fails the completeness gate) even when Focal
+// Documents lacks its row. If upstream renames either sentinel, the generator
+// hard-fails: re-derive both against the new workbook.
+export const MAPPING_RANGE_SENTINELS: MappingRangeSentinels = {
+  before: "SCF\nCORE\nMergers, Acquisitions & Divestitures (MA&D)",
+  after: "Minimum Security Requirements \nMCR + DSR",
+};
+
+export function findMappingRange(
+  controlsHeader: string[],
+  sentinels: MappingRangeSentinels = MAPPING_RANGE_SENTINELS
+): { first: number; last: number } {
+  const beforeIndex = controlsHeader.indexOf(sentinels.before);
+  const afterIndex = controlsHeader.indexOf(sentinels.after);
+  if (beforeIndex === -1 || afterIndex === -1) {
+    const missing = [
+      ...(beforeIndex === -1 ? [JSON.stringify(sentinels.before)] : []),
+      ...(afterIndex === -1 ? [JSON.stringify(sentinels.after)] : []),
+    ];
+    throw new Error(
+      `Mapping-range sentinel(s) not found in the controls header: ${missing.join(", ")}. ` +
+        "The SCF workbook layout changed — re-derive MAPPING_RANGE_SENTINELS against the new controls sheet."
+    );
+  }
+  if (afterIndex <= beforeIndex + 1) {
+    throw new Error(
+      `Mapping-range sentinels are inverted or adjacent (before=${beforeIndex}, after=${afterIndex}) — ` +
+        "re-derive MAPPING_RANGE_SENTINELS against the new controls sheet."
+    );
+  }
+  return { first: beforeIndex + 1, last: afterIndex - 1 };
+}
+
 export interface JoinResult {
   matched: { record: FocalDocumentRecord; columnIndex: number }[];
+  /** Focal Documents whose header matched a column outside the sentinel range — a structural anomaly. */
+  matchedOutsideRange: { record: FocalDocumentRecord; columnIndex: number }[];
   unmatchedFocalDocs: FocalDocumentRecord[];
   unmatchedColumnsInRange: { columnIndex: number; header: string }[];
   range: { first: number; last: number };
@@ -175,12 +220,13 @@ export interface JoinResult {
 
 /**
  * Exact-string join of Focal Documents records onto controls-sheet header
- * cells. The mapping-column range is defined by the min/max matched index;
- * any unmatched column inside that range is an exception, never a guess.
+ * cells within an explicit, structurally derived column range. Any unmatched
+ * column inside the range is an exception, never a guess.
  */
 export function joinFocalDocumentsToColumns(
   controlsHeader: string[],
-  records: FocalDocumentRecord[]
+  records: FocalDocumentRecord[],
+  range: { first: number; last: number }
 ): JoinResult {
   const columnIndexByHeader = new Map<string, number>();
   controlsHeader.forEach((header, index) => {
@@ -188,36 +234,28 @@ export function joinFocalDocumentsToColumns(
   });
 
   const matched: JoinResult["matched"] = [];
+  const matchedOutsideRange: JoinResult["matchedOutsideRange"] = [];
   const unmatchedFocalDocs: FocalDocumentRecord[] = [];
   for (const record of records) {
     const columnIndex = columnIndexByHeader.get(record.scfColumnHeader);
     if (columnIndex === undefined) {
       unmatchedFocalDocs.push(record);
+    } else if (columnIndex < range.first || columnIndex > range.last) {
+      matchedOutsideRange.push({ record, columnIndex });
     } else {
       matched.push({ record, columnIndex });
     }
   }
   matched.sort((a, b) => a.columnIndex - b.columnIndex);
 
-  if (matched.length === 0) {
-    return {
-      matched,
-      unmatchedFocalDocs,
-      unmatchedColumnsInRange: [],
-      range: { first: -1, last: -1 },
-    };
-  }
-
-  const first = matched[0].columnIndex;
-  const last = matched[matched.length - 1].columnIndex;
   const matchedIndices = new Set(matched.map((m) => m.columnIndex));
   const unmatchedColumnsInRange: JoinResult["unmatchedColumnsInRange"] = [];
-  for (let i = first; i <= last; i++) {
+  for (let i = range.first; i <= range.last; i++) {
     if (!matchedIndices.has(i)) {
       unmatchedColumnsInRange.push({ columnIndex: i, header: controlsHeader[i] });
     }
   }
-  return { matched, unmatchedFocalDocs, unmatchedColumnsInRange, range: { first, last } };
+  return { matched, matchedOutsideRange, unmatchedFocalDocs, unmatchedColumnsInRange, range };
 }
 
 export function countMappings(dataRows: string[][], columnIndex: number): number {
@@ -259,12 +297,24 @@ export function buildManifest(
   controlsRows: string[][],
   focalRows: string[][],
   overrides: OverridesFile,
-  provenance: FrameworkManifest["provenance"]
+  provenance: FrameworkManifest["provenance"],
+  sentinels: MappingRangeSentinels = MAPPING_RANGE_SENTINELS
 ): FrameworkManifest {
   const controlsHeader = controlsRows[0];
   const dataRows = controlsRows.slice(1);
   const { records, emptyHeaderRows } = parseFocalDocuments(focalRows);
-  const joined = joinFocalDocumentsToColumns(controlsHeader, records);
+  const range = findMappingRange(controlsHeader, sentinels);
+  const joined = joinFocalDocumentsToColumns(controlsHeader, records, range);
+
+  if (joined.matchedOutsideRange.length > 0) {
+    const details = joined.matchedOutsideRange.map(
+      (m) => `"${m.record.focalDocumentIdentifier}" at column ${m.columnIndex}`
+    );
+    throw new Error(
+      `Focal Documents header(s) matched outside the sentinel-bounded mapping range: ${details.join(", ")} — ` +
+        "the workbook layout changed; re-derive MAPPING_RANGE_SENTINELS."
+    );
+  }
 
   const importedByHeader = new Map(
     FRAMEWORK_COLUMNS.map((config) => [config.expectedHeader, config])
