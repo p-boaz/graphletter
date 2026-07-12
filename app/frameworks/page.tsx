@@ -36,6 +36,9 @@ interface Framework {
   framework_name: string;
   framework_version?: string;
   total_mappings: number;
+  family?: string | null;
+  kind?: string | null;
+  visibility?: string | null;
 }
 
 export default function FrameworksPage() {
@@ -68,7 +71,9 @@ export default function FrameworksPage() {
   const filteredFrameworks = frameworks.filter((framework) => {
     const matchesSearch = framework.framework_name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesFamily =
-      family === "All" ? true : frameworkFamily(framework.framework_name) === family;
+      family === "All"
+        ? true
+        : frameworkFamily(framework.framework_name, framework.family) === family;
     return matchesSearch && matchesFamily;
   });
 

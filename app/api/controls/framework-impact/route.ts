@@ -20,15 +20,17 @@ export async function POST(request: NextRequest) {
         `
         control_id,
         framework_control_id,
-        scf_frameworks (
+        scf_frameworks!inner (
           id,
           framework_name,
           framework_version,
-          total_mappings
+          total_mappings,
+          visibility
         )
       `
       )
-      .in("control_id", controlIds);
+      .in("control_id", controlIds)
+      .eq("scf_frameworks.visibility", "supported");
 
     if (error) {
       throw error;

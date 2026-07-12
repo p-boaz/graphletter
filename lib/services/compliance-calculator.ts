@@ -38,7 +38,8 @@ export class ComplianceCalculator {
       // Get all SCF frameworks for comparison
       const { data: frameworks, error: frameworksError } = await supabaseAdmin
         .from("scf_frameworks")
-        .select("*");
+        .select("*")
+        .eq("visibility", "supported");
 
       if (frameworksError) {
         log.error("compliance_calculator.frameworks_fetch_failed", {

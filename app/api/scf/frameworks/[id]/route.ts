@@ -8,15 +8,22 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
   try {
     const { id: frameworkId } = await params;
 
-    // Get framework details
+    // Get framework details. Only publicly-exposable tiers are served:
+    // exposure_status gates licensing, visibility gates curation — a
+    // framework outside both is a 404, not a hint that it exists.
     const { data: framework, error: frameworkError } = await supabase
       .from("scf_frameworks")
       .select("*")
       .eq("id", frameworkId)
-      .single();
+      .eq("exposure_status", "public")
+      .in("visibility", ["supported", "preview"])
+      .maybeSingle();
 
     if (frameworkError) {
       throw frameworkError;
+    }
+    if (!framework) {
+      return NextResponse.json({ error: "Framework not found" }, { status: 404 });
     }
 
     // Get all control mappings for this framework with control details

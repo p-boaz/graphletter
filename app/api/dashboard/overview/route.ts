@@ -363,7 +363,8 @@ async function fetchFrameworkComplianceFallback(supabase: SupabaseServerClient, 
     const { data: frameworks } = await supabase
       .from("scf_frameworks")
       .select("id, framework_name, framework_version")
-      .in("id", frameworkIds);
+      .in("id", frameworkIds)
+      .eq("visibility", "supported");
 
     const typedFrameworks = (frameworks || []) as FrameworkRow[];
     const frameworkMap = typedFrameworks.reduce(

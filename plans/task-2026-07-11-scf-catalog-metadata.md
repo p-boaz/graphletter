@@ -117,6 +117,10 @@ becomes a metadata flip, not a parser change.
    task — prod schema migration lands with the PR merge process; reseed stays
    on the existing supported scope.
 
+## Commit log
+
+- `a1ad78e` — pipeline + schema (commit 1 of the sequence in Constraints)
+
 ## Test Plan
 
 - [ ] Unit: parser config derivation — excluded entries absent, supported count = 66, headers validated
