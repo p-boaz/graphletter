@@ -6,18 +6,18 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                        | Status                             |
-| ------------------------------------------- | ---------------------------------- |
-| `task-2026-06-13-backlog-hygiene.md`        | Done; archive after merge          |
-| `task-2026-07-11-scf-exposure-decisions.md` | Done; archive after merge          |
-| `task-2026-07-11-scf-cohort-1-promotion.md` | Awaiting approval (PR review gate) |
+| Plan                                 | Status                    |
+| ------------------------------------ | ------------------------- |
+| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
 
 ## Roadmaps
 
 - `scf-catalog-roadmap.md` — strategy of record for the full SCF catalog
-  expansion (~250 frameworks); stages 1–6 done (PRs #51/#52/#53 + exposure
-  decisions applied 2026-07-11); in flight: stage 7 (first cohort promotion);
-  next: stage 8 (standing rollout spec).
+  expansion (~250 frameworks); stages 1–7 done (PRs #51/#52/#53/#54 + exposure
+  decisions applied 2026-07-11; stage 7 live in prod 2026-07-11, specs
+  archived); next: stage 8 (standing rollout spec — BLOCKED on the
+  non-destructive additive promotion path, see archived stage 7 spec
+  Follow-ups).
 
 ## Product Backlog
 
