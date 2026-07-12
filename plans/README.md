@@ -9,13 +9,12 @@ index, not a second backlog.
 | Plan                                       | Status                    |
 | ------------------------------------------ | ------------------------- |
 | `task-2026-06-13-backlog-hygiene.md`       | Done; archive after merge |
-| `task-2026-07-11-scf-catalog-metadata.md`  | Draft — awaiting approval |
 | `task-2026-07-11-scf-catalog-inventory.md` | Done; archive after merge |
 
 ## Roadmaps
 
 - `scf-catalog-roadmap.md` — strategy of record for the full SCF catalog
-  expansion (~250 frameworks); stages 1–2 merged (PR #51, archived spec), stages 3–8 pending.
+  expansion (~250 frameworks); stages 1–4 merged (PRs #51/#52, specs archived); next: stage 5 (catalog UI), 6 (licensing review), 7 (first cohort promotion).
 
 ## Product Backlog
 
