@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AssessmentStatusBadge, ConfidenceBadge } from "@/components/ui/status-badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import type { ControlGroup, ControlObjective, ObjectiveDetail } from "./types";
+import type { ControlGroup, ObjectiveDetail } from "./types";
 import {
   getControlOverallConfidence,
   getControlOverallResult,

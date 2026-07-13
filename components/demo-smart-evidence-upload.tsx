@@ -13,7 +13,6 @@ import {
   Shield,
   Target,
   Upload,
-  Zap,
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";

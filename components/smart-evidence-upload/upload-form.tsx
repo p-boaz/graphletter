@@ -3,7 +3,6 @@
 import { Check, ChevronsUpDown, FileSearch, FileUp } from "lucide-react";
 import { useRef, useState } from "react";
 import type { DropzoneState } from "react-dropzone";
-import { InlineHelp } from "@/components/inline-help";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
