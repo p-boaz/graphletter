@@ -4,7 +4,7 @@
 
 - Date: 2026-07-08
 - Owner: Codex
-- Status: Approved
+- Status: Done — implemented and merged via PR #45 (2026-07-09); acceptance gate tracked in issue #55
 - Branch: feat/adr-001-assessment-evidence-architecture
 - Related issue/PR: docs/adr/001-assessment-evidence-architecture.md
 

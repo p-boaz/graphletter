@@ -6,9 +6,12 @@ index, not a second backlog.
 
 ## Active Plans
 
-| Plan                                 | Status                    |
-| ------------------------------------ | ------------------------- |
-| `task-2026-06-13-backlog-hygiene.md` | Done; archive after merge |
+| Plan                                               | Status                                                                                                                                        |
+| -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `task-2026-07-08-assessment-quality-golden-set.md` | Unblocked 2026-07-13 — the acceptance gate for ADR-001 (shipped in PR #45); tracked as [#55](https://github.com/p-boaz/graphletter/issues/55) |
+
+All other specs through 2026-07-11 are Done and archived (reconciled
+2026-07-13; the ADR-001 architecture spec merged via PR #45 on 2026-07-09).
 
 ## Roadmaps
 
@@ -17,15 +20,20 @@ index, not a second backlog.
   decisions applied 2026-07-11; stage 7 live in prod 2026-07-11, specs
   archived); next: stage 8 (standing rollout spec — BLOCKED on the
   non-destructive additive promotion path, see archived stage 7 spec
-  Follow-ups).
+  Follow-ups). Tracked as
+  [#56](https://github.com/p-boaz/graphletter/issues/56).
 
 ## Product Backlog
 
-No open product backlog issues.
+- [#55](https://github.com/p-boaz/graphletter/issues/55) — run the
+  assessment-quality golden-set eval as the ADR-001 acceptance gate.
 
 ## Engineering Backlog
 
-No open engineering backlog issues.
+- [#56](https://github.com/p-boaz/graphletter/issues/56) — SCF stage 8:
+  non-destructive additive promotion path (blocking) + standing rollout spec.
+- [#50](https://github.com/p-boaz/graphletter/issues/50) — pre-existing `/try`
+  Playwright flake (open-smart-upload-button).
 
 ## Recent Reconciliation
 

@@ -4,7 +4,7 @@
 
 - Date: 2026-07-08 (rev 2 — measurement design grounded in probe run)
 - Owner: peter (ground-truth oracle) + claude-code (harness)
-- Status: Tabled (2026-07-08, Peter's call) — probe findings triggered a pipeline design review first; this spec becomes the acceptance gate for whatever redesign ships
+- Status: Unblocked (2026-07-13) — tabled 2026-07-08 pending the pipeline redesign; ADR-001 shipped via PR #45 (2026-07-09), so this spec is now the pending acceptance gate. Tracked as issue #55.
 - Branch: feat/assessment-quality-eval (when approved)
 - Related issue/PR: PR #44 (GitLab corpus provenance); plans/task-2026-06-12-ai-pipeline-test-baseline.md (mocked tests pin CODE; this task builds the missing model-QUALITY eval lane)
 
