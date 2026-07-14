@@ -5,6 +5,10 @@
 - Date: 2026-07-08 (rev 2 — measurement design grounded in probe run)
 - Owner: peter (ground-truth oracle) + claude-code (harness)
 - Status: Unblocked (2026-07-13) — tabled 2026-07-08 pending the pipeline redesign; ADR-001 shipped via PR #45 (2026-07-09), so this spec is now the pending acceptance gate. Tracked as issue #55.
+- COST GATE (Peter, 2026-07-13): do NOT execute this eval — including partial
+  or pilot passes — without Peter's explicit go-ahead and his review of a
+  projected cost estimate. Unblocked ≠ authorized; the spend decision is his,
+  per run.
 - Branch: feat/assessment-quality-eval (when approved)
 - Related issue/PR: PR #44 (GitLab corpus provenance); plans/task-2026-06-12-ai-pipeline-test-baseline.md (mocked tests pin CODE; this task builds the missing model-QUALITY eval lane)
 
