@@ -229,7 +229,7 @@ export default function CompliancePosturePage() {
         const data = await historyRes.json();
         setHistory(data.history || []);
       }
-    } catch (loadError) {
+    } catch {
       setError("Unable to load compliance posture data.");
     } finally {
       setLoading(false);

@@ -351,7 +351,6 @@ function ComplianceGaps() {
             .filter((controlId) => scopedControlIds.has(controlId))
         );
       }
-      const assessedControlsCount = assessedControlIds.size;
       const controlsById = new Map(controlCatalog.map((control) => [control.id, control]));
 
       const topGaps: TopGap[] = controls
