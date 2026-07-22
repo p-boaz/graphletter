@@ -65,7 +65,7 @@ test("selectAllRows: propagates an error from page 2 as a thrown Error", async (
 
   function buildQuery() {
     return {
-      range(_from: number, _to: number) {
+      range() {
         const call = rangeCallCount++;
         if (call === 0) {
           return Promise.resolve({ data: fullPage, error: null });

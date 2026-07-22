@@ -240,7 +240,7 @@ export async function previewUploadImpact(
         supabase.from("scf_controls").select("id, domain_id").order("id")
       ),
     ]);
-  } catch (_err) {
+  } catch {
     log.info("impact_previewer.no_gap_data", { userId, frameworkId });
     return null;
   }
