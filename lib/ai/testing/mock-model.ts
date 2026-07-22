@@ -11,7 +11,6 @@
 
 import type { LanguageModel } from "ai";
 import { setModelFactoryForTesting } from "@/lib/ai-client";
-import type { AIProvider, AIModel } from "@/lib/ai-config";
 
 /**
  * LanguageModelV2 is the concrete interface that LanguageModel resolves to
@@ -110,14 +109,14 @@ export function mockObjectModel(objects: unknown[] | (() => unknown)): MockLangu
   if (typeof objects === "function") {
     const factory = objects;
     return new MockLanguageModelV2({
-      doGenerate: async (_opts: DoGenerateOptions) => makeTextResult(factory()),
+      doGenerate: async () => makeTextResult(factory()),
     });
   }
 
   const items = [...objects];
   let idx = 0;
   return new MockLanguageModelV2({
-    doGenerate: async (_opts: DoGenerateOptions) => {
+    doGenerate: async () => {
       if (idx >= items.length) {
         throw new Error(`mockObjectModel: exhausted after ${items.length} calls`);
       }
@@ -135,7 +134,7 @@ export function mockObjectModel(objects: unknown[] | (() => unknown)): MockLangu
 export function failingModel(error: Error, failCount: number, then: unknown): MockLanguageModelV2 {
   let calls = 0;
   return new MockLanguageModelV2({
-    doGenerate: async (_opts: DoGenerateOptions) => {
+    doGenerate: async () => {
       calls += 1;
       if (calls <= failCount) throw error;
       return makeTextResult(then);
@@ -152,7 +151,7 @@ export function failingModel(error: Error, failCount: number, then: unknown): Mo
 
 export function hangingModel(signal?: AbortSignal): MockLanguageModelV2 {
   return new MockLanguageModelV2({
-    doGenerate: (_opts: DoGenerateOptions) =>
+    doGenerate: () =>
       new Promise<DoGenerateResult>((_resolve, reject) => {
         if (signal) {
           signal.addEventListener("abort", () =>
@@ -172,7 +171,7 @@ export function hangingModel(signal?: AbortSignal): MockLanguageModelV2 {
 // ---------------------------------------------------------------------------
 
 export function installMockModel(model: MockLanguageModelV2): void {
-  setModelFactoryForTesting((_provider: AIProvider, _model: AIModel) => model);
+  setModelFactoryForTesting(() => model);
 }
 
 export function resetMockModel(): void {
