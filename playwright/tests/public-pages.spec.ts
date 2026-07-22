@@ -7,6 +7,13 @@ import {
   trace_failure,
 } from "../helpers/browser-skills";
 import { selectors } from "../helpers/selectors";
+import {
+  CONTROL_COUNT,
+  CROSSWALK_COUNT,
+  FRAMEWORK_COUNT,
+  SCF_EDITION,
+  formatStat,
+} from "../../lib/scf/catalog-stats";
 
 test("public pages: dogfood report regressions are covered", async ({ page }, testInfo) => {
   test.setTimeout(60_000);
@@ -216,6 +223,24 @@ test("stage-7 cohort: promoted frameworks are listed and badged Supported", asyn
   }
 
   assert_no_browser_failures(report);
+});
+
+test("landing hero: SCF edition and catalog stats match the seeded catalog", async ({ page }) => {
+  // The 2026.2 migration shipped while the hero still hardcoded "2026.1.1" /
+  // "1,468 controls" (plans/task-2026-07-17-homepage-scf-edition-stats.md).
+  // The hero now derives from data/seed/expected_row_counts.json via
+  // lib/scf/catalog-stats — assert the derived values render and the stale
+  // edition string is gone from the whole page.
+  await open_local_app(page, "/");
+
+  const stats = page.getByTestId(selectors.public.heroStats);
+  await expect(stats).toBeVisible();
+  await expect(stats).toContainText(SCF_EDITION);
+  await expect(stats).toContainText(String(FRAMEWORK_COUNT));
+  await expect(stats).toContainText(formatStat(CONTROL_COUNT));
+  await expect(stats).toContainText(formatStat(CROSSWALK_COUNT));
+
+  await expect(page.locator("body")).not.toContainText("2026.1.1");
 });
 
 test("public pages: meta-description framework count stays truthful", async ({ page }) => {

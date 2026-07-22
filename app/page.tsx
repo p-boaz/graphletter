@@ -6,16 +6,26 @@ import { Button } from "@/components/ui/button";
 import { authUrl } from "@/lib/auth/auth-tabs";
 import { pageTitle } from "@/lib/seo/page-title";
 import { GITHUB_URL } from "@/lib/config/links";
+import {
+  CONTROL_COUNT,
+  CROSSWALK_COUNT,
+  FRAMEWORK_COUNT,
+  SCF_EDITION,
+  formatStat,
+} from "@/lib/scf/catalog-stats";
 
 export const metadata: Metadata = {
   title: pageTitle("Compliance analysis for regulatory frameworks"),
 };
 
+// Frameworks named outright in the hero paragraph; the rest render as "N more".
+const NAMED_FRAMEWORK_COUNT = 3;
+
 const HERO_STATS = [
-  { value: "79", label: "Frameworks covered" },
-  { value: "1,468", label: "Controls checked" },
-  { value: "34,619", label: "Cross-framework links" },
-  { value: "2026.1.1", label: "SCF edition" },
+  { value: String(FRAMEWORK_COUNT), label: "Frameworks covered" },
+  { value: formatStat(CONTROL_COUNT), label: "Controls checked" },
+  { value: formatStat(CROSSWALK_COUNT), label: "Cross-framework links" },
+  { value: SCF_EDITION, label: "SCF edition" },
 ] as const;
 
 export default function HomePage() {
@@ -27,7 +37,7 @@ export default function HomePage() {
       <section className="ft-container pt-16 pb-20 lg:pt-20 lg:pb-24">
         <div className="max-w-5xl">
           <p className="ft-eyebrow">
-            Edition 2026.1.1
+            Edition {SCF_EDITION}
             <span className="mx-2 text-ft-pink/50" aria-hidden>
               ·
             </span>
@@ -39,8 +49,9 @@ export default function HomePage() {
           </h1>
           <p className="ft-serif mt-8 max-w-2xl text-xl italic leading-relaxed text-slate-600 lg:text-2xl">
             Upload an evidence document. Graphletter reads it against the Secure Controls Framework
-            — a master catalog of 1,468 controls that crosswalks to SOC 2, ISO 27001, NIST, and 76
-            more — with AI reasoning quoted back to your source.
+            — a master catalog of {formatStat(CONTROL_COUNT)} controls that crosswalks to SOC 2, ISO
+            27001, NIST, and {FRAMEWORK_COUNT - NAMED_FRAMEWORK_COUNT} more — with AI reasoning
+            quoted back to your source.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <Button asChild size="lg" data-testid="hero-primary-cta">
@@ -56,7 +67,10 @@ export default function HomePage() {
 
         {/* Ticker rail */}
         <div className="mt-16 ft-rule pt-6 lg:mt-20">
-          <dl className="grid grid-cols-2 gap-y-6 sm:grid-cols-4 sm:gap-y-0 sm:divide-x sm:divide-slate-200">
+          <dl
+            data-testid="hero-stats"
+            className="grid grid-cols-2 gap-y-6 sm:grid-cols-4 sm:gap-y-0 sm:divide-x sm:divide-slate-200"
+          >
             {HERO_STATS.map((stat) => (
               <div key={stat.label} className="sm:px-6 sm:first:pl-0 sm:last:pr-0">
                 <dt className="ft-eyebrow text-slate-500">{stat.label}</dt>
@@ -101,7 +115,7 @@ export default function HomePage() {
                 <span className="mx-2 text-slate-300" aria-hidden>
                   ·
                 </span>
-                SCF 2026.1.1
+                SCF {SCF_EDITION}
               </p>
             </header>
 

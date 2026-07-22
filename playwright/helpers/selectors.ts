@@ -80,6 +80,7 @@ export const selectors = {
   },
   public: {
     navHeader: "primary-navigation",
+    heroStats: "hero-stats",
     tryItOutHeading: "try-it-out-heading",
     tryItOutSummary: "try-it-out-summary",
     tryItOutLiveUploadSection: "try-it-out-live-upload-section",
