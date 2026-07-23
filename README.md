@@ -2,7 +2,7 @@
 
 <!-- 81 = MAPPED_FRAMEWORK_COUNT in lib/scf-parser.ts — update together -->
 
-AI-powered compliance assessment. Upload your evidence documents — policies, procedures, screenshots, audit reports — and get control-level verdicts across 81 frameworks (SOC 2, ISO 27001, NIST CSF, PCI DSS, HIPAA, GDPR, FedRAMP, and more).
+Graphletter validates policies, procedures, screenshots, and audit reports against Secure Controls Framework controls. It shows what your evidence covers, what is missing, and why—then maps those findings to 81 supported frameworks, including SOC 2, ISO 27001, NIST CSF, PCI DSS, HIPAA, GDPR, and FedRAMP.
 
 **[Try it live — no signup required](https://www.graphletter.com/try)** · [www.graphletter.com](https://www.graphletter.com)
 
