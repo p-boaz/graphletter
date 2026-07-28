@@ -1,4 +1,4 @@
-import { type NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/database/supabase";
 import { createLogger } from "@/lib/logger";
 import { createClient } from "@/lib/supabase/server";
@@ -39,7 +39,7 @@ function secondsUntilAutoReset(trippedAt: string | null): number | null {
   return Math.ceil(remainingMs / 1000);
 }
 
-export async function GET(_request: NextRequest) {
+export async function GET() {
   try {
     const userSupabase = await createClient();
     let user = null;
