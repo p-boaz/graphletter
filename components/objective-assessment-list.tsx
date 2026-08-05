@@ -39,11 +39,11 @@ function EvidenceSpecimen({ quote }: { quote: EvidenceQuote }) {
       <div className="ft-rule mb-3" />
       <blockquote className="ft-serif text-sm leading-relaxed text-slate-900 sm:text-base">
         <span className="mr-1 text-2xl leading-none text-slate-300" aria-hidden="true">
-          "
+          &quot;
         </span>
         {quote.text}
         <span className="ml-1 text-2xl leading-none text-slate-300" aria-hidden="true">
-          "
+          &quot;
         </span>
       </blockquote>
       <figcaption className="ft-mono mt-3 text-[11px] uppercase tracking-[0.18em] text-slate-500">
