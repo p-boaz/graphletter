@@ -6,7 +6,7 @@ ENV PATH=$PNPM_HOME:$PATH
 
 WORKDIR /app
 
-RUN corepack enable
+RUN corepack enable && corepack prepare pnpm@10.33.4 --activate
 
 FROM base AS deps
 
