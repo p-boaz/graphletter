@@ -136,6 +136,13 @@ at the file level: `test.use({ storageState: { cookies: [], origins: [] } });`
 
 Those files are the truth. Duplicating them here guarantees drift.
 
+## Machine & session context
+
+- **Remote:** private GitHub `p-boaz/graphletter` (`origin`). This repo is remote-backed — push after committing.
+- **Root agent memory does not load here.** Machine-wide memory lives at `~/.claude/projects/-Users-boaz/memory/` (index: `MEMORY.md`) and loads only in `~`-started sessions. Read that index when cross-repo doctrine matters (8 GB workflow limits, secrets/API-access routes, repo/backup map).
+- **Product priority (Peter):** assessment quality is the core value; the classifier is secondary. Any golden-set eval run needs Peter's explicit go plus a cost projection first.
+- **This file is the operational authority for repo facts** (root memory keeps decisions + pointers only — Rule B, 2026-08-10).
+
 ## Tool interop
 
 Claude Code, Codex, Cursor, and Copilot all read `AGENTS.md`. When adding domain-specific rules, prefer a nested `AGENTS.md` in the relevant subdirectory — agents load the nearest one to the file they're editing.
