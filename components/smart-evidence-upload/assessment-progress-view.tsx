@@ -78,10 +78,10 @@ export function AssessmentProgressView({
             <AlertCircle className="mt-0.5 h-4 w-4 text-amber-700" />
             <div className="space-y-1 text-sm">
               <p className="font-medium text-amber-900">
-                We couldn't reliably read the text in this file
+                We couldn&apos;t reliably read the text in this file
               </p>
               <p className="text-amber-800">
-                The assessment can still run, but findings won't be traceable back to specific
+                The assessment can still run, but findings won&apos;t be traceable back to specific
                 passages until you upload a text-readable version (for example, a PDF or Word file
                 instead of a scanned image).
               </p>
