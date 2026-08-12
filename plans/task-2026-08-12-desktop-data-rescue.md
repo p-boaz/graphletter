@@ -42,7 +42,7 @@ Bring graphletter data that existed only as loose, unversioned files in
 
 1. Compare Desktop copies against existing repo files (dedupe check).
 2. Move unique data into fixtures/ and data/.
-3. Commit in blast-radius-compliant chunks.
+3. Commit in blast-radius-compliant chunks: fixtures first, then data/gitlab-benchmark.
 
 ## Test Plan
 
