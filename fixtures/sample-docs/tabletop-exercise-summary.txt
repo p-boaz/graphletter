@@ -1,0 +1,50 @@
+Tabletop Exercise Summary
+
+Exercise Name: Phishing-to-Ransomware Response Drill
+Date: March 4, 2026
+Duration: 90 minutes
+Facilitator: Security Program Manager
+
+Purpose
+Validate incident response roles, communication flow, and decision-making for a suspected ransomware event originating from a phishing email.
+
+Participants
+- Incident Commander (Security Lead)
+- SOC Analyst
+- IT Operations Lead
+- Legal Representative
+- HR Representative
+- Communications Representative
+
+Scenario Overview
+At 9:15 AM, a finance employee reported a suspicious email and an encrypted file note on a shared drive. The SOC detected unusual lateral movement attempts from the employee workstation and elevated the event to a potential ransomware incident.
+
+Timeline Highlights
+- 9:20 AM: Incident declared and Incident Commander assigned.
+- 9:25 AM: Affected workstation isolated from network.
+- 9:35 AM: Shared drive access temporarily restricted.
+- 9:50 AM: Internal stakeholder notification drafted and approved.
+- 10:05 AM: Legal and HR reviewed external notification thresholds.
+- 10:20 AM: Recovery and business continuity priorities confirmed.
+
+Roles and Responsibilities Review
+- Incident Commander coordinated response and approvals.
+- SOC Analyst owned triage, indicators, and containment recommendations.
+- IT Operations executed isolation and restoration planning.
+- Legal advised on notification and recordkeeping requirements.
+- HR supported employee communication and policy alignment.
+- Communications prepared internal and external message templates.
+
+Key Findings
+- Escalation path was clear and followed correctly.
+- Containment actions were timely.
+- Notification drafting worked but took longer than target SLA.
+- Asset owner list for one shared drive was outdated.
+
+Action Items
+- Update shared drive ownership registry by March 18, 2026 (IT Ops).
+- Pre-approve two notification templates by March 22, 2026 (Legal + Comms).
+- Run a follow-up 60-minute drill focused on executive notification by April 10, 2026 (Security).
+
+Outcome
+Exercise objectives were met. Team demonstrated adequate incident response role awareness with minor process gaps identified for remediation.

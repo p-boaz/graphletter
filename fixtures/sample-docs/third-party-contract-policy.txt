@@ -1,0 +1,75 @@
+ACME Corp — Third-Party Risk Management & Contracting Policy
+Version 2.1 | Effective: January 2026 | Owner: CISO Office
+
+1. PURPOSE
+This policy establishes requirements for managing cybersecurity risks associated with third-party service providers, vendors, and contractors who access, process, store, or transmit ACME Corp data or systems.
+
+2. SCOPE
+Applies to all third-party relationships involving access to ACME information systems, sensitive data, or critical infrastructure. Covers cloud service providers, SaaS vendors, outsourced IT, managed security providers, and contractors with system access.
+
+3. THIRD-PARTY SECURITY REQUIREMENTS
+
+3.1 Contractual Security Obligations
+All third-party contracts must include:
+- Data protection and confidentiality clauses
+- Security incident notification requirements (within 24 hours)
+- Right-to-audit provisions
+- Data handling, retention, and destruction requirements
+- Compliance with applicable regulatory frameworks (SOC 2, ISO 27001, HIPAA as relevant)
+- Business continuity and disaster recovery commitments
+- Subcontractor flow-down requirements
+
+3.2 Due Diligence
+Prior to engagement, all third parties must:
+- Complete a security risk questionnaire
+- Provide evidence of security certifications (SOC 2 Type II, ISO 27001, or equivalent)
+- Undergo risk classification (Critical, High, Medium, Low)
+- Demonstrate data encryption capabilities (in transit and at rest)
+
+3.3 Access Controls
+- Third-party access limited to minimum necessary (least privilege)
+- Dedicated accounts with MFA required for all system access
+- VPN or zero-trust network access required for remote connections
+- Access reviewed quarterly and revoked within 24 hours of contract termination
+
+3.4 Data Protection
+- Third parties must encrypt all ACME data using AES-256 or equivalent
+- Data processing restricted to approved jurisdictions
+- Data classification labels must be maintained by third parties
+- Return or certified destruction of all data upon contract termination
+
+4. MONITORING AND OVERSIGHT
+
+4.1 Ongoing Monitoring
+- Annual security assessments for Critical and High-risk vendors
+- Continuous monitoring of vendor security posture via security ratings services
+- Review of SOC 2 reports and penetration test results annually
+- Tracking of vendor security incidents and remediation
+
+4.2 Performance Metrics
+- SLA compliance tracking for security-related KPIs
+- Mean time to remediate identified vulnerabilities
+- Incident response time compliance
+- Patch management adherence
+
+5. INCIDENT MANAGEMENT
+- Third parties must report security incidents within 24 hours
+- Joint incident response procedures documented for critical vendors
+- Forensic investigation cooperation required by contract
+- Post-incident review within 30 days
+
+6. TERMINATION AND OFFBOARDING
+- Data return/destruction verification within 30 days
+- System access revocation within 24 hours
+- Certificate of data destruction required
+- Post-termination audit rights for 12 months
+
+7. COMPLIANCE
+This policy aligns with NIST 800-53 SA-9, SA-12, ISO 27001 A.15, SOC 2 CC9.2, and SCF third-party management controls.
+
+8. ENFORCEMENT
+Violations may result in contract termination and legal action. Exceptions require CISO approval with documented risk acceptance.
+
+Approved by: Jane Smith, CISO
+Last Review: January 15, 2026
+Next Review: July 15, 2026
