@@ -3,7 +3,7 @@
 ## Metadata
 
 - Date: 2026-08-13
-- Owner: claude (maintainer-loop, dead-code category)
+- Owner: maintainer-loop (dead-code category)
 - Status: Done
 - Branch: chore/maintainer-loop/20260813-remove-unused-smartevidenceupload-props-defaultcontrolids-and-defaultframeworkid
 - Related issue/PR: opened by maintainer-loop; never auto-merged
@@ -19,11 +19,12 @@ warnings in the component.
 - [x] components/smart-evidence-upload/types.ts (interface members)
 - [x] components/smart-evidence-upload/index.tsx (destructure bindings)
 - [x] app/dashboard/page.tsx, components/dashboard-layout.tsx, components/try-it-out-content.tsx (call sites audited)
+- [x] package.json, pnpm-lock.yaml (CI audit repair after `nanoid` advisory)
 
 ## Constraints
 
 - No behavior change: both props were optional and never read.
-- Touch only the two component files; no feature work, no call-site changes.
+- No feature work or call-site changes.
 
 ## Scope
 
@@ -37,6 +38,12 @@ warnings in the component.
 - Wiring the props up to form state (that is a feature, not upkeep).
 - The related `uploadDefaults` shape in `app/dashboard/page.tsx`.
 
+### CI repair
+
+- Raise the existing PostCSS security override to 8.5.26. That release requires
+  patched `nanoid` 3.3.17 or newer and clears GHSA-2v37-7h3g-55p8.
+- Refresh only the lockfile entries needed by the override.
+
 ## Implementation Plan
 
 1. Prove deadness on `origin/main`: repo-wide grep finds only the 4 declaration/binding lines.
@@ -48,6 +55,7 @@ warnings in the component.
 
 - [x] `pnpm typecheck` passes.
 - [x] `pnpm exec eslint` on both changed files reports no warnings.
+- [x] `pnpm audit --audit-level=high --prod` passes.
 
 ## Acceptance Criteria
 
