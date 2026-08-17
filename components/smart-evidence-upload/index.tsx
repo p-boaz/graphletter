@@ -39,8 +39,6 @@ export function SmartEvidenceUpload({
   onEvidenceProcessed,
   defaultDocumentationArtifact,
   defaultDescription,
-  defaultControlIds,
-  defaultFrameworkId,
   defaultEvidenceType,
   open,
   onOpenChange,

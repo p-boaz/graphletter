@@ -38,8 +38,6 @@ export interface SmartEvidenceUploadProps {
   onEvidenceProcessed?: (result: SmartUploadResult) => void;
   defaultDocumentationArtifact?: string;
   defaultDescription?: string;
-  defaultControlIds?: string[];
-  defaultFrameworkId?: string;
   defaultEvidenceType?: string;
   /** Controlled open state. When provided, the component becomes controlled. */
   open?: boolean;
