@@ -140,12 +140,12 @@ Those files are the truth. Duplicating them here guarantees drift.
 
 ## Delivery
 
-Vocabulary and rules: `~/.claude/CLAUDE.md` § Delivery (commit, push, ship). This block holds only this repo's values and is generated from `~/.exocortex/project-registry.json`.
+Vocabulary and rules: `~/.claude/CLAUDE.md` § Delivery (commit, push, land). This block holds only this repo's values and is generated from `~/.exocortex/project-registry.json`. Landing is `~/.claude/bin/land`.
 
 - **Remote:** `origin` = `p-boaz/graphletter`. Push with every commit.
-- **Gates (run once before push):** `pnpm lint && pnpm typecheck && pnpm schema:migrations:check`
+- **Gates (`land` runs them before push):** `pnpm lint && pnpm typecheck && pnpm schema:migrations:check`
 - **Release:** Vercel deploys `main` to Production automatically; `prod-smoke.yml` verifies it.
-- **Ship:** ask. Open the pull request, report it, stop.
+- **Landing:** Peter. Work on a branch; ask him once per session with a plain summary; then `land --approved-by-peter`.
 <!-- END GENERATED: delivery -->
 
 ## Machine & session context
