@@ -34,7 +34,9 @@
     "verify:sheetjs-provenance": "node scripts/verify-sheetjs-provenance.js",
     "prepare": "husky",
     "manifest:generate": "node --import tsx scripts/generate-framework-manifest.ts",
-    "manifest:check": "node --import tsx scripts/generate-framework-manifest.ts --check"
+    "manifest:check": "node --import tsx scripts/generate-framework-manifest.ts --check",
+    "format:check": "prettier --check .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@ai-sdk/anthropic": "2.0.56",
@@ -115,25 +117,11 @@
     "eslint": "^9.39.3",
     "eslint-config-next": "16.2.6",
     "husky": "^9.1.7",
-    "lint-staged": "^16.3.2",
     "postcss": "^8.5",
     "prettier": "^3.6.2",
     "tailwindcss": "^4.3.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix --quiet",
-      "prettier --write"
-    ],
-    "*.{js,jsx}": [
-      "eslint --fix --quiet",
-      "prettier --write"
-    ],
-    "*.{json,md,css}": [
-      "prettier --write"
-    ]
   },
   "packageManager": "pnpm@10.33.4",
   "engines": {

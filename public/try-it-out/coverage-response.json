@@ -1,39 +1,39 @@
 {
-	"gap_analysis": {
-		"success": true,
-		"analysis_version": "graph-gap-v1",
-		"inserted_rows": 2,
-		"summary": {
-			"total_controls": 2,
-			"compliant": 0,
-			"partial": 1,
-			"missing": 1,
-			"conflicting": 0
-		}
-	},
-	"coverage": {
-		"success": true,
-		"coverage": {
-			"total_controls": 2,
-			"covered_controls": 0,
-			"partial_controls": 1,
-			"missing_controls": 1,
-			"conflicting_controls": 0,
-			"coverage_percentage": 50
-		},
-		"controls": [
-			{
-				"scf_control_id": "SCF-IAO-04",
-				"strongest_coverage_rank": 2,
-				"status": "partial",
-				"gap_type": "covered_by_weak_evidence"
-			},
-			{
-				"scf_control_id": "SCF-IAO-05",
-				"strongest_coverage_rank": 0,
-				"status": "missing",
-				"gap_type": "no_evidence_mapping"
-			}
-		]
-	}
+  "gap_analysis": {
+    "success": true,
+    "analysis_version": "graph-gap-v1",
+    "inserted_rows": 2,
+    "summary": {
+      "total_controls": 2,
+      "compliant": 0,
+      "partial": 1,
+      "missing": 1,
+      "conflicting": 0
+    }
+  },
+  "coverage": {
+    "success": true,
+    "coverage": {
+      "total_controls": 2,
+      "covered_controls": 0,
+      "partial_controls": 1,
+      "missing_controls": 1,
+      "conflicting_controls": 0,
+      "coverage_percentage": 50
+    },
+    "controls": [
+      {
+        "scf_control_id": "SCF-IAO-04",
+        "strongest_coverage_rank": 2,
+        "status": "partial",
+        "gap_type": "covered_by_weak_evidence"
+      },
+      {
+        "scf_control_id": "SCF-IAO-05",
+        "strongest_coverage_rank": 0,
+        "status": "missing",
+        "gap_type": "no_evidence_mapping"
+      }
+    ]
+  }
 }

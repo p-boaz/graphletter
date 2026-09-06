@@ -1,103 +1,103 @@
 {
-	"success": true,
-	"report": {
-		"generated_at": "2026-03-04T20:01:00.000Z",
-		"framework_filter": {
-			"id": null,
-			"name": "SOC 2"
-		},
-		"summary": {
-			"total_controls": 2,
-			"compliant": 0,
-			"partial": 1,
-			"missing": 1,
-			"conflicting": 0,
-			"traceable_statuses": 2
-		},
-		"evidence_type_breakdown": {
-			"document": 2
-		},
-		"atom_type_breakdown": {
-			"policy_statement": 1,
-			"attestation": 1
-		},
-		"controls": [
-			{
-				"scf_control_id": "SCF-IAO-04",
-				"control_title": "Security Awareness Training",
-				"domain_id": "IAO",
-				"domain_name": "Security Education, Training and Awareness",
-				"status": "partial",
-				"gap_type": "covered_by_weak_evidence",
-				"summary": "Control SCF-IAO-04 is only weakly covered by supporting mapped evidence.",
-				"strongest_support_rank": 2,
-				"strongest_contradiction_rank": 0,
-				"traceable": true,
-				"evidence_type_breakdown": {
-					"document": 2
-				},
-				"atom_type_breakdown": {
-					"policy_statement": 1,
-					"attestation": 1
-				},
-				"supporting_atom_count": 2,
-				"supporting_atoms": [
-					{
-						"atom_id": "atom_demo_training_001",
-						"atom_type": "policy_statement",
-						"claim": "All workforce members must complete annual security awareness training.",
-						"supporting_text": "All workforce members must complete annual security awareness training and acknowledge policy updates.",
-						"confidence": 0.88,
-						"source_locator": {
-							"chunk_index": 0,
-							"char_start": 1,
-							"char_end": 418
-						},
-						"document_id": "document_demo_training_policy",
-						"chunk_id": "chunk_demo_training_001",
-						"document_file_name": "security-awareness-training-policy.pdf",
-						"source_evidence_id": "evidence_demo_training_policy",
-						"evidence_type": "document",
-						"mapping_polarity": "supports",
-						"coverage_rank": 2
-					},
-					{
-						"atom_id": "atom_demo_training_002",
-						"atom_type": "attestation",
-						"claim": "Q1 training completion rate is 62%.",
-						"supporting_text": "Quarterly report shows 62% completion for mandatory training.",
-						"confidence": 0.73,
-						"source_locator": {
-							"chunk_index": 1,
-							"char_start": 419,
-							"char_end": 796
-						},
-						"document_id": "document_demo_training_policy",
-						"chunk_id": "chunk_demo_training_002",
-						"document_file_name": "training-completion-q1.csv",
-						"source_evidence_id": "evidence_demo_training_policy",
-						"evidence_type": "document",
-						"mapping_polarity": "supports",
-						"coverage_rank": 2
-					}
-				]
-			},
-			{
-				"scf_control_id": "SCF-IAO-05",
-				"control_title": "Training Completion Monitoring",
-				"domain_id": "IAO",
-				"domain_name": "Security Education, Training and Awareness",
-				"status": "missing",
-				"gap_type": "no_evidence_mapping",
-				"summary": "Control SCF-IAO-05 has no supporting mapped evidence atoms.",
-				"strongest_support_rank": 0,
-				"strongest_contradiction_rank": 0,
-				"traceable": true,
-				"evidence_type_breakdown": {},
-				"atom_type_breakdown": {},
-				"supporting_atom_count": 0,
-				"supporting_atoms": []
-			}
-		]
-	}
+  "success": true,
+  "report": {
+    "generated_at": "2026-03-04T20:01:00.000Z",
+    "framework_filter": {
+      "id": null,
+      "name": "SOC 2"
+    },
+    "summary": {
+      "total_controls": 2,
+      "compliant": 0,
+      "partial": 1,
+      "missing": 1,
+      "conflicting": 0,
+      "traceable_statuses": 2
+    },
+    "evidence_type_breakdown": {
+      "document": 2
+    },
+    "atom_type_breakdown": {
+      "policy_statement": 1,
+      "attestation": 1
+    },
+    "controls": [
+      {
+        "scf_control_id": "SCF-IAO-04",
+        "control_title": "Security Awareness Training",
+        "domain_id": "IAO",
+        "domain_name": "Security Education, Training and Awareness",
+        "status": "partial",
+        "gap_type": "covered_by_weak_evidence",
+        "summary": "Control SCF-IAO-04 is only weakly covered by supporting mapped evidence.",
+        "strongest_support_rank": 2,
+        "strongest_contradiction_rank": 0,
+        "traceable": true,
+        "evidence_type_breakdown": {
+          "document": 2
+        },
+        "atom_type_breakdown": {
+          "policy_statement": 1,
+          "attestation": 1
+        },
+        "supporting_atom_count": 2,
+        "supporting_atoms": [
+          {
+            "atom_id": "atom_demo_training_001",
+            "atom_type": "policy_statement",
+            "claim": "All workforce members must complete annual security awareness training.",
+            "supporting_text": "All workforce members must complete annual security awareness training and acknowledge policy updates.",
+            "confidence": 0.88,
+            "source_locator": {
+              "chunk_index": 0,
+              "char_start": 1,
+              "char_end": 418
+            },
+            "document_id": "document_demo_training_policy",
+            "chunk_id": "chunk_demo_training_001",
+            "document_file_name": "security-awareness-training-policy.pdf",
+            "source_evidence_id": "evidence_demo_training_policy",
+            "evidence_type": "document",
+            "mapping_polarity": "supports",
+            "coverage_rank": 2
+          },
+          {
+            "atom_id": "atom_demo_training_002",
+            "atom_type": "attestation",
+            "claim": "Q1 training completion rate is 62%.",
+            "supporting_text": "Quarterly report shows 62% completion for mandatory training.",
+            "confidence": 0.73,
+            "source_locator": {
+              "chunk_index": 1,
+              "char_start": 419,
+              "char_end": 796
+            },
+            "document_id": "document_demo_training_policy",
+            "chunk_id": "chunk_demo_training_002",
+            "document_file_name": "training-completion-q1.csv",
+            "source_evidence_id": "evidence_demo_training_policy",
+            "evidence_type": "document",
+            "mapping_polarity": "supports",
+            "coverage_rank": 2
+          }
+        ]
+      },
+      {
+        "scf_control_id": "SCF-IAO-05",
+        "control_title": "Training Completion Monitoring",
+        "domain_id": "IAO",
+        "domain_name": "Security Education, Training and Awareness",
+        "status": "missing",
+        "gap_type": "no_evidence_mapping",
+        "summary": "Control SCF-IAO-05 has no supporting mapped evidence atoms.",
+        "strongest_support_rank": 0,
+        "strongest_contradiction_rank": 0,
+        "traceable": true,
+        "evidence_type_breakdown": {},
+        "atom_type_breakdown": {},
+        "supporting_atom_count": 0,
+        "supporting_atoms": []
+      }
+    ]
+  }
 }

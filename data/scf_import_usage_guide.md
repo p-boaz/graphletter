@@ -141,10 +141,10 @@ Example Edge Function:
 ```typescript
 // Import all SCF extension data
 export async function importAllScfData() {
-  const { data, error } = await supabase.rpc('run_scf_data_import', {
-    import_type: 'all'
+  const { data, error } = await supabase.rpc("run_scf_data_import", {
+    import_type: "all",
   });
-  
+
   if (error) throw error;
   return data;
 }

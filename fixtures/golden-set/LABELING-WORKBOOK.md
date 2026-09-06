@@ -15,19 +15,19 @@ Only the first 5 objectives per control are listed (kept to ~90 min). Fill the `
 ### Objectives — record pass / partial / fail / na _(showing 5 of 8)_
 
 **IAC-02_A01** — system, application and service users are identified.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **IAC-02_A02** — the identity of each user is authenticated or verified as a prerequisite to system access.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **IAC-02_A03** — processes acting on behalf of users are associated with uniquely identified and authenticated system users.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **IAC-02_A04** — the identity of each process acting on behalf of a user is authenticated or verified as a prerequisite to system access.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **IAC-02_A05** — the identity of each device accessing or connecting to the system is authenticated or verified as a prerequisite to system access.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 ### Maturity — record your level 0–5
 
@@ -53,10 +53,10 @@ Only the first 5 objectives per control are listed (kept to ~90 min). Fill the `
 ### Objectives — record pass / partial / fail / na _(showing 2 of 2)_
 
 **AST-04.1_A01** — system hardware components to be marked indicating the impact level or classification level of the information permitted to be processed, stored, or transmitted by the hardware component are defined.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **AST-04.1_A02** — system hardware components are marked indicating the impact level or classification level of the information permitted to be processed, stored, or transmitted by the hardware component.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 ### Maturity — record your level 0–5
 
@@ -80,16 +80,16 @@ Only the first 5 objectives per control are listed (kept to ~90 min). Fill the `
 ### Objectives — record pass / partial / fail / na _(showing 4 of 4)_
 
 **IAC-17_A01** — the frequency at which to review the privileges assigned to roles or classes of users is defined.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **IAC-17_A02** — roles or classes of users to which privileges are assigned are defined.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **IAC-17_A03** — the privileges assigned to roles or classes of users are reviewed <A.03.01.05.ODP[03]: frequency> to validate the need for such privileges.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **IAC-17_A04** — privileges are reassigned or removed, as necessary.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 ### Maturity — record your level 0–5
 
@@ -115,19 +115,19 @@ Only the first 5 objectives per control are listed (kept to ~90 min). Fill the `
 ### Objectives — record pass / partial / fail / na _(showing 5 of 18)_
 
 **IRO-01_A01** — the rigor of incident handling activities is comparable and predictable across the organization.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **IRO-01_A02** — the intensity of incident handling activities is comparable and predictable across the organization.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **IRO-01_A03** — the scope of incident handling activities is comparable and predictable across the organization.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **IRO-01_A04** — the results of incident handling activities are comparable and predictable across the organization.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **IRO-01_A05** — incident handling activities are coordinated with contingency planning activities.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 ### Maturity — record your level 0–5
 
@@ -153,19 +153,19 @@ Only the first 5 objectives per control are listed (kept to ~90 min). Fill the `
 ### Objectives — record pass / partial / fail / na _(showing 5 of 12)_
 
 **PRM-04_A01** — controls are assessed in the system and its environment of operation per an organization-defined assessment frequency to determine the extent to which the controls are implemented correctly, operating as intended and producing the desired outcome with respect to meeting established cybersecurity / data privacy requirements.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **PRM-04_A02** — an appropriate assessor or assessment team is selected for the type of assessment to be conducted.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **PRM-04_A03** — a control assessment report is produced that documents the results of the assessment.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **PRM-04_A04** — the results of the control assessment are provided to individuals or roles.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **PRM-04_A05** — the frequency at which to assess controls in the system and its environment of operation is defined.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 ### Maturity — record your level 0–5
 
@@ -192,16 +192,16 @@ Only the first 5 objectives per control are listed (kept to ~90 min). Fill the `
 ### Objectives — record pass / partial / fail / na _(showing 4 of 4)_
 
 **HRS-02_A01** — the frequency at which to review / update position risk designations is defined.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **HRS-02_A02** — a risk designation is assigned to all organizational positions.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **HRS-02_A03** — screening criteria are established for individuals filling organizational positions.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **HRS-02_A04** — position risk designations are reviewed / updated per an organization-defined frequency.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 ### Maturity — record your level 0–5
 
@@ -227,19 +227,19 @@ Only the first 5 objectives per control are listed (kept to ~90 min). Fill the `
 ### Objectives — record pass / partial / fail / na _(showing 5 of 20)_
 
 **CRY-01_A01** — cryptographic uses are identified / defined.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **CRY-01_A02** — cryptographic mechanisms intended to prevent unauthorized disclosure of sensitive / regulated data are identified.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **CRY-01_A03** — organization-defined types of cryptography are implemented to protect the confidentiality of sensitive / regulated data.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **CRY-01_A04** — as necessary for compliance requirements, FIPS-validated cryptography is employed to protect the confidentiality of sensitive / regulated data.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **CRY-01_A05** — security critical or essential software is defined.
-`>>> YOUR CALL: ________` note: ********\_\_\_\_********
+`>>> YOUR CALL: ________` note: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 ### Maturity — record your level 0–5
 
