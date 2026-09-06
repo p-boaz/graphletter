@@ -36,17 +36,17 @@ Full script list lives in `package.json`. Do not duplicate it here — it rots.
 
 ## Task specs
 
-Every task gets its own file at `plans/task-YYYY-MM-DD-<slug>.md` from `plans/task-template.md`. Implementation begins only after the spec is approved. Archive completed specs to `plans/archive/` after merge. Never append to a shared spec file.
+Every task gets its own file at `plans/task-YYYY-MM-DD-<slug>.md` from `plans/task-template.md`. The spec is the task's record, not an approval gate. Archive completed specs to `plans/archive/` after merge. Never append to a shared spec file.
 
-Required sequence: (1) create spec from template → (2) get approval → (3) implement → (4) run validation commands → (5) confirm acceptance criteria.
+Sequence: (1) create spec from template → (2) implement → (3) run the gates → (4) confirm acceptance criteria.
 
 ## Scope and blast radius
 
 - **Only modify files listed in the task spec's "Context Files" section.** Out-of-scope edits require an explicit spec expansion.
 - **No single commit touches more than 15 files.** Break larger changes into sequential, reviewable commits.
 
-<important if="you are about to commit">
-Before every commit, verify: (a) `pnpm lint` clean, (b) `pnpm typecheck` clean, (c) staged file count ≤ 15. If any fail, fix the root cause — do not bypass with `--no-verify`.
+<important if="you are about to push">
+Before push, the gates in § Delivery must be clean and no commit may stage more than 15 files (husky enforces both). If any fail, fix the root cause — do not bypass with `--no-verify`.
 </important>
 
 ## Code quality rules
@@ -136,9 +136,20 @@ at the file level: `test.use({ storageState: { cookies: [], origins: [] } });`
 
 Those files are the truth. Duplicating them here guarantees drift.
 
+<!-- BEGIN GENERATED: delivery (project-registry apply) -->
+
+## Delivery
+
+Vocabulary and rules: `~/.claude/CLAUDE.md` § Delivery (commit, push, land). This block holds only this repo's values and is generated from `~/.exocortex/project-registry.json`. Landing is `~/.claude/bin/land`.
+
+- **Remote:** `origin` = `p-boaz/graphletter`. Push with every commit.
+- **Gates (`land` runs them before push):** `pnpm lint && pnpm typecheck && pnpm schema:migrations:check`
+- **Release:** Vercel deploys `main` to Production automatically; `prod-smoke.yml` verifies it.
+- **Landing:** Peter. Work on a branch; ask him once per session with a plain summary; then `land --approved-by-peter`.
+<!-- END GENERATED: delivery -->
+
 ## Machine & session context
 
-- **Remote:** private GitHub `p-boaz/graphletter` (`origin`). This repo is remote-backed — push after committing.
 - **Root agent memory does not load here.** Machine-wide memory lives at `~/.claude/projects/-Users-boaz/memory/` (index: `MEMORY.md`) and loads only in `~`-started sessions. Read that index when cross-repo doctrine matters (8 GB workflow limits, secrets/API-access routes, repo/backup map).
 - **Product priority (Peter):** assessment quality is the core value; the classifier is secondary. Any golden-set eval run needs Peter's explicit go plus a cost projection first.
 - **This file is the operational authority for repo facts** (root memory keeps decisions + pointers only — Rule B, 2026-08-10).
