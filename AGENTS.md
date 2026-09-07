@@ -143,7 +143,7 @@ Vocabulary and rules: `~/.claude/CLAUDE.md` § Delivery (commit, push, land). Th
 - **Remote:** `origin` = `p-boaz/graphletter`. Push with every commit.
 - **Gates (`land` runs them before push):** `pnpm lint && pnpm typecheck && pnpm format:check && pnpm schema:migrations:check`
 - **Release:** Vercel deploys `main` to Production automatically; `prod-smoke.yml` verifies it.
-- **Landing:** Peter. Work on a branch; ask him once per session with a plain summary; then `land --approved-by-peter`.
+- **Landing:** Peter. Use a task worktree; ask him once per session with a plain summary; then the parent coordinator runs `land --approved-by-peter`.
 <!-- END GENERATED: delivery -->
 
 ## Machine & session context
