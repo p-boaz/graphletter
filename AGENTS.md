@@ -45,7 +45,7 @@ Sequence: (1) create spec from template → (2) implement → (3) run the gates 
 - **Only modify files listed in the task spec's "Context Files" section.** Out-of-scope edits require an explicit spec expansion.
 - Keep commits reviewable: one verified unit of work per commit.
 
-Gates run once, inside `land` (§ Delivery), never before every commit or push. The only git hook is `commit-msg` (commitlint, conventional subjects). If a gate fails, fix the root cause; `land` resets `main` and leaves the branch untouched.
+Gates run once, inside `land` (§ Delivery), never before every commit or push. The only git hook is `commit-msg` (commitlint, conventional subjects). If a gate fails, `land` leaves `main` unchanged and retains the task branch. Read the shared Delivery procedure before recovery.
 
 ## Code quality rules
 
@@ -142,8 +142,8 @@ Vocabulary and rules: `~/.claude/CLAUDE.md` § Delivery (commit, push, land). Th
 
 - **Remote:** `origin` = `p-boaz/graphletter`. Push with every commit.
 - **Gates (`land` runs them before push):** `pnpm lint && pnpm typecheck && pnpm format:check && pnpm schema:migrations:check`
-- **Release:** Vercel deploys `main` to Production automatically; `prod-smoke.yml` verifies it.
-- **Landing:** Peter. Use a task worktree; ask him once per session with a plain summary; then the parent coordinator runs `land --approved-by-peter`.
+- **Release:** Vercel deploys `main` to Production automatically.
+- **Landing:** Peter. Use a task worktree; ask him once per session with a plain summary; then run `land --approved-by-peter`, and inspect its receipt.
 <!-- END GENERATED: delivery -->
 
 ## Machine & session context
