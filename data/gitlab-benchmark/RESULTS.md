@@ -1,7 +1,7 @@
 # GitLab handbook classifier benchmark — run 2026-07-08
 
 Fresh trial corpus for the Graphletter artifact classifier, replacing the lost
-InterVenn set. 45 real controlled documents from GitLab's public handbook
+earlier private set. 45 real controlled documents from GitLab's public handbook
 (security policies, standards, procedures + acceptable use policy), labeled
 against the live 303-artifact SCF ERL catalog (Supabase).
 
@@ -18,11 +18,11 @@ against the live 303-artifact SCF ERL catalog (Supabase).
 | Wrong pick                   | 18         |
 | No prediction                | 0          |
 | Floor (EVAL_ACCURACY_FLOOR)  | 45% — PASS |
-| InterVenn empirical baseline | ~52%       |
+| Earlier private-set baseline | ~52%       |
 
 ## Miss character
 
-Same as InterVenn: mostly judgment-call disagreements, not blunders.
+Same as the earlier set: mostly judgment-call disagreements, not blunders.
 ~6 of 18 misses predicted the documented alternative label from the CSV notes
 (System Authenticator Types vs Authenticator Types ×2, SCRM Plan vs Third-Party
 Service Reviews, SLAs vs Flaw Remediation Actions, adjacent incident-response

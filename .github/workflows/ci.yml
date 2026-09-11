@@ -28,7 +28,6 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm lint
       - run: pnpm check:copy
-      - run: pnpm check:spec
       - run: pnpm schema:migrations:check
       - run: pnpm build
 

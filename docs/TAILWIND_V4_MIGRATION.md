@@ -43,7 +43,6 @@ pnpm typecheck
 pnpm build
 pnpm test:ui:bg playwright/tests/public-pages.spec.ts
 pnpm test:ui:bg playwright/tests/dashboard.spec.ts
-pnpm check:spec
 ```
 
 Public pages cover marketing/global styles and custom FT utilities. Dashboard

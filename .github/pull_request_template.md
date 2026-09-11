@@ -6,13 +6,6 @@
 
 <!-- Bullet list of changes -->
 
-## Task Spec
-
-<!-- Link to plans/task-*.md or explain why not needed -->
-
-- [ ] Task spec created/updated in `plans/`
-- [ ] `pnpm check:spec` passes
-
 ## Validation
 
 - [ ] `pnpm typecheck` passes

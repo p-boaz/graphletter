@@ -19,8 +19,6 @@ Thanks for considering a contribution.
 - TypeScript strict — no `as any` without a justifying comment on the same line.
 - Use `createLogger` from `@/lib/logger`, not `console.log`, inside `app/api/` and `lib/`. For request-scoped API logging, use `createRequestLogger` from `@/lib/observability/logger`.
 - Conventional Commits format for commit messages (`feat:`, `fix:`, `chore:`, `refactor:`, `docs:`, `test:`).
-- Per-task spec files under `plans/task-YYYY-MM-DD-slug.md` for non-trivial changes — see `plans/task-template.md`.
-- See [AGENTS.md](AGENTS.md) for the full coding standard, scope rules, and testing expectations.
 
 ## Scope
 

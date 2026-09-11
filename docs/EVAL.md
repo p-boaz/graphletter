@@ -52,7 +52,7 @@ the fixture set expands beyond deterministic classifier rules.
 
 `fixtures/gitlab-handbook-mapping.csv` is a 45-row real-world benchmark built
 2026-07-08 from GitLab's public handbook (see `fixtures/README.md` for
-provenance). It replaces the lost InterVenn validation set as the "real
+provenance). It replaces the lost earlier validation set as the "real
 corpus" measurement axis. It requires the live Supabase catalog and AI
 credentials, so it is local-only:
 
@@ -70,7 +70,7 @@ pnpm eval:artifact-classifier ./fixtures/gitlab-handbook-mapping.csv
 | Floor         | 45% (default)       |
 
 An earlier same-day run scored 60.0% (27/45) — expect run-to-run variance of
-a few rows from model nondeterminism. Prior InterVenn empirical baseline was
+a few rows from model nondeterminism. The earlier private set's baseline was
 ~52%. Misses are dominated by judgment-call disagreements (e.g.
 `Authenticator Types` vs `System Authenticator Types`); roughly a third of
 misses match the documented alternative label in the row's `notes`.

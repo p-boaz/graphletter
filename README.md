@@ -129,7 +129,7 @@ playwright/  End-to-end browser tests
 tests/       Node integration tests
 ```
 
-For the full coding standard, see [AGENTS.md](AGENTS.md).
+For code conventions and the contribution process, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## SCF data
 

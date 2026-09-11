@@ -50,6 +50,15 @@ scripts/out/
 # Claude Code local state (session locks, per-user settings, agent worktrees)
 .claude/
 
+# Agent instructions and working records live in a private companion repo,
+# cloned at .context/ and linked into each checkout. Never commit them here.
+/.context/
+/AGENTS.md
+/CLAUDE.md
+/TODOS.md
+/plans
+/docs/superpowers
+
 # common OS / editor artifacts
 .DS_Store
 Thumbs.db
