@@ -20,6 +20,7 @@ jobs:
           node-version: 24
       - run: pnpm audit --prod --audit-level=high
   secrets:
+    if: github.event.deleted != true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
@@ -30,6 +31,44 @@ jobs:
           curl --fail --location --retry 3 -o /tmp/gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
           echo '551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  /tmp/gitleaks.tar.gz' | sha256sum --check
           tar -xzf /tmp/gitleaks.tar.gz -C /tmp gitleaks
-      - name: Scan reachable history with redacted output
-        run: /tmp/gitleaks git . --log-opts='--all' --redact=100 --no-banner
+      - name: Select commits to scan
+        id: scope
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          SCAN_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          valid_commit() {
+            [[ "$1" =~ ^[0-9a-f]{40}$ ]] && git cat-file -e "$1^{commit}"
+          }
+          scope=--all
+          case "$EVENT_NAME" in
+            push|pull_request)
+              valid_commit "$SCAN_HEAD"
+              if [[ "$EVENT_NAME" == pull_request ]]; then
+                base="$PR_BASE"
+              elif [[ "$PUSH_BEFORE" == 0000000000000000000000000000000000000000 ]]; then
+                # A new branch has no before SHA. Scan its divergence from default.
+                base=$(git merge-base "origin/$DEFAULT_BRANCH" "$SCAN_HEAD")
+              else
+                base="$PUSH_BEFORE"
+              fi
+              valid_commit "$base"
+              # A first push of the default branch can make merge-base == HEAD.
+              # Scan all history rather than silently scan an empty initial range.
+              if [[ "$PUSH_BEFORE" != 0000000000000000000000000000000000000000 || "$base" != "$SCAN_HEAD" ]]; then
+                scope="$base..$SCAN_HEAD"
+              fi
+              ;;
+            schedule|workflow_dispatch) ;;
+            *) echo 'Unsupported security scan event' >&2; exit 1 ;;
+          esac
+          echo "log_opts=$scope" >> "$GITHUB_OUTPUT"
+      - name: Scan selected commits with redacted output
+        env:
+          LOG_OPTS: ${{ steps.scope.outputs.log_opts }}
+        run: /tmp/gitleaks git . --log-opts="$LOG_OPTS" --redact=100 --no-banner
 # END GENERATED: security workflow
