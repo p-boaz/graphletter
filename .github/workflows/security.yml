@@ -1,0 +1,35 @@
+# BEGIN GENERATED: security workflow
+# Source: p-boaz/project-health templates/security.yml. Use security-check workflows.
+name: Security
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 13 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+      - run: pnpm audit --prod --audit-level=high
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+      - name: Install verified secret scanner
+        run: |
+          curl --fail --location --retry 3 -o /tmp/gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+          echo '551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  /tmp/gitleaks.tar.gz' | sha256sum --check
+          tar -xzf /tmp/gitleaks.tar.gz -C /tmp gitleaks
+      - name: Scan reachable history with redacted output
+        run: /tmp/gitleaks git . --log-opts='--all' --redact=100 --no-banner
+# END GENERATED: security workflow

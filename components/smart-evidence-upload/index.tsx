@@ -233,46 +233,49 @@ export function SmartEvidenceUpload({
     }
   }, []);
 
-  const checkForExistingEvidence = useCallback(async (artifact: string) => {
-    if (!artifact) {
-      setExistingEvidence(null);
-      return;
-    }
+  const checkForExistingEvidence = useCallback(
+    async (artifact: string) => {
+      if (!artifact) {
+        setExistingEvidence(null);
+        return;
+      }
 
-    try {
-      const response = await fetch(
-        `/api/evidence/history?documentation_artifact=${encodeURIComponent(artifact)}`
-      );
-      if (response.ok) {
-        const data = (await response.json()) as {
-          evidence?: EvidenceHistoryItem[];
-        };
-        if (data.evidence && data.evidence.length > 0) {
-          const mostRecent = data.evidence
-            .filter((e) => e.metadata?.documentation_artifact === artifact)
-            .sort((a, b) => (b.version || 1) - (a.version || 1))[0];
+      try {
+        const response = await fetch(
+          `/api/evidence/history?documentation_artifact=${encodeURIComponent(artifact)}`
+        );
+        if (response.ok) {
+          const data = (await response.json()) as {
+            evidence?: EvidenceHistoryItem[];
+          };
+          if (data.evidence && data.evidence.length > 0) {
+            const mostRecent = data.evidence
+              .filter((e) => e.metadata?.documentation_artifact === artifact)
+              .sort((a, b) => (b.version || 1) - (a.version || 1))[0];
 
-          if (mostRecent) {
-            setExistingEvidence({
-              id: mostRecent.id,
-              file_name: mostRecent.file_name,
-              version: mostRecent.version || 1,
-              submitted_at: mostRecent.submitted_at,
-              evidence_status: mostRecent.evidence_status,
-            });
-            setShowVersionDialog(true);
-            return;
+            if (mostRecent) {
+              setExistingEvidence({
+                id: mostRecent.id,
+                file_name: mostRecent.file_name,
+                version: mostRecent.version || 1,
+                submitted_at: mostRecent.submitted_at,
+                evidence_status: mostRecent.evidence_status,
+              });
+              setShowVersionDialog(true);
+              return;
+            }
           }
         }
+      } catch (error) {
+        console.error("Error checking for existing evidence:", error);
       }
-    } catch (error) {
-      console.error("Error checking for existing evidence:", error);
-    }
 
-    setExistingEvidence(null);
-    setShowVersionDialog(false);
-    setVersionAction(null);
-  }, []);
+      setExistingEvidence(null);
+      setShowVersionDialog(false);
+      setVersionAction(null);
+    },
+    [setVersionAction]
+  );
 
   const resetDialog = useCallback(() => {
     setUploadResult(null);
@@ -635,7 +638,7 @@ export function SmartEvidenceUpload({
       console.error("Error approving assessment:", error);
       toast.error("Failed to approve assessment");
     }
-  }, [endSession, onEvidenceProcessed, pendingAssessmentResult]);
+  }, [endSession, onEvidenceProcessed, pendingAssessmentResult, setUploadResult]);
 
   const handleRejectAssessment = useCallback(
     async (rejectionReason: string) => {

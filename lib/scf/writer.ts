@@ -359,7 +359,7 @@ export async function writeParsedSCF(
               confidence_score: 1.0,
             };
           })
-          .filter(Boolean);
+          .filter((mapping) => mapping !== null);
 
         log.info("Inserting control mappings", { count: mappingsData.length });
 

@@ -374,7 +374,9 @@ export class EvidenceStorage {
         const extension = file.name.split(".").pop()?.toLowerCase() || "unknown";
         stats.fileTypes[extension] = (stats.fileTypes[extension] || 0) + 1;
 
+        if (!file.created_at) return;
         const createdAt = new Date(file.created_at);
+        if (Number.isNaN(createdAt.getTime())) return;
         if (!stats.oldestFile || createdAt < stats.oldestFile) {
           stats.oldestFile = createdAt;
         }
